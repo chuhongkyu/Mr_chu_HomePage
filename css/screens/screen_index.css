@@ -1,0 +1,31 @@
+#home_main_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20%;
+  animation: fadeIn 0.8s linear;
+}
+
+#home_main_container img {
+  width: 300px;
+  height: 300px;
+  margin-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.home_main_texts h1 {
+  font-family: serif;
+  font-size: 35px;
+}
+
+.home_main_texts h3 {
+  color: rgb(29, 28, 28, 0.7);
+}
+
+.home_main_texts h2 {
+  font-family: cursive;
+  color: rgb(29, 28, 28);
+  text-align: right;
+}
