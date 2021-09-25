@@ -1,0 +1,13 @@
+.footer_contents {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 80px 200px 150px;
+  grid-template-rows: 20px 20px 20px;
+  gap: 10px;
+  padding-bottom: 100px;
+  border-top: 2px solid rgba(0, 0, 0, 0.507);
+  margin-top: 200px;
+}
+.footer_contents h5 {
+  color: gray;
+}
