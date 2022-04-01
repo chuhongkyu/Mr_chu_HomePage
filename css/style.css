@@ -11,6 +11,10 @@
 @import "screens/screen_nft.css";
 @import "screens/screen_app.css";
 
+*{
+  box-sizing: border-box;
+}
+
 body {
   width: 100%;
   height: 100vh;

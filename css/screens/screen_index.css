@@ -1,7 +1,7 @@
 #home_main_container {
   margin-top: 100px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   animation: fadeIn 0.8s linear;
   margin-bottom: 20px;
   margin-left: 120px;
