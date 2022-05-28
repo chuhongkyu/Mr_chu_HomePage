@@ -34,6 +34,8 @@ footer, header, hgroup, menu, nav, section {
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	line-height: 1.2;
+	color: ${(props) => props.theme.white.darker};
+	background: ${(props) => props.theme.universe};
 }
 ol, ul {
 	list-style: none;
