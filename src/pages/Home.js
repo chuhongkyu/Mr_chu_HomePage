@@ -3,7 +3,6 @@ import AppLink from "../components/AppLink";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { AppList } from "../utils/AppList";
 import WindowBar from "../components/WindowBar";
-import { Link } from "react-router-dom";
 import About from "./About";
 
 const env = process.env;
@@ -12,7 +11,6 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -70,9 +68,12 @@ const Home = () => {
                           {...magic.dragHandleProps}
                           {...magic.draggableProps}
                         >
-                          <Link to="/about" element={<About />}>
-                            <AppLink title={App.name} img={App.logo} />
-                          </Link>
+                          <AppLink
+                            title={App.name}
+                            img={App.logo}
+                            path={"/about"}
+                            element={<About />}
+                          />
                         </li>
                       )}
                     </Draggable>

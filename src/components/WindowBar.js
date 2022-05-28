@@ -12,6 +12,8 @@ const Bar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1px 10px;
+  position: fixed;
+  bottom: 0;
   img {
     width: 30px;
     height: 4vh;

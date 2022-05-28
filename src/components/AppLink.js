@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const App = styled.div`
@@ -14,11 +15,13 @@ const App = styled.div`
   }
 `;
 
-const AppLink = ({ title, img }) => {
+const AppLink = ({ title, img, path, page }) => {
   return (
     <App>
-      <img src={img} alt={title} />
-      <p>{title}</p>
+      <Link to={path} element={page}>
+        <img src={img} alt={title} />
+        <p>{title}</p>
+      </Link>
     </App>
   );
 };

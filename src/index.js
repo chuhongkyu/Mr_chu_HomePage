@@ -4,6 +4,9 @@ import App from "./App";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { theme } from "./utils/theme";
 
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -35,6 +38,10 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 	line-height: 1.2;
 	color: ${(props) => props.theme.black.darker};
+	background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 ol, ul {
 	list-style: none;
