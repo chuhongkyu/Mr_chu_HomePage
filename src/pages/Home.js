@@ -3,10 +3,18 @@ import AppLink from "../components/AppLink";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { AppList } from "../utils/AppList";
 import WindowBar from "../components/WindowBar";
+import { Link } from "react-router-dom";
+import About from "./About";
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Window = styled.div`
@@ -26,15 +34,14 @@ const Window = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  h1 {
-    font-size: 25px;
-  }
+  font-size: 30px;
+  font-weight: 700;
 `;
 
 const Home = () => {
@@ -43,14 +50,13 @@ const Home = () => {
     <Wrapper>
       <Window>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Title>
-            <h1>Developer</h1>
-          </Title>
+          <Title>Developer</Title>
           <div
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              flexDirection: "column",
             }}
           >
             <Droppable droppableId="one">
@@ -64,7 +70,9 @@ const Home = () => {
                           {...magic.dragHandleProps}
                           {...magic.draggableProps}
                         >
-                          <AppLink title={App.name} img={App.logo} />
+                          <Link to="/about" element={<About />}>
+                            <AppLink title={App.name} img={App.logo} />
+                          </Link>
                         </li>
                       )}
                     </Draggable>

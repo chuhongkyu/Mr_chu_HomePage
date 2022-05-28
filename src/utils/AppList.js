@@ -1,13 +1,16 @@
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
+
 export const AppList = [
   {
     id: 0,
     name: "About Me",
-    logo: "https://png.pngtree.com/png-vector/20190217/ourmid/pngtree-vector-folder-icon-png-image_555493.jpg",
+    logo: `${env.PUBLIC_URL}/assets/img/folder.svg`,
   },
   {
     id: 1,
     name: "Works",
-    logo: "https://png.pngtree.com/png-vector/20190217/ourmid/pngtree-vector-folder-icon-png-image_555493.jpg",
+    logo: `${env.PUBLIC_URL}/assets/img/folder.svg`,
   },
   {
     id: 2,
