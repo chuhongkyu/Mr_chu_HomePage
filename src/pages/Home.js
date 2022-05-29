@@ -87,8 +87,8 @@ const Home = () => {
                           <AppLink
                             title={App.name}
                             img={App.logo}
-                            path={"/about"}
-                            element={<About />}
+                            path={App.path}
+                            page={App.page}
                           />
                         </li>
                       )}

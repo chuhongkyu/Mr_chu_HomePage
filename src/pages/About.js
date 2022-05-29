@@ -51,7 +51,14 @@ const TopNavBtn = styled.div`
 const ProfilContainer = styled.div`
   width: 30%;
   height: 96%;
-  background-color: ${(props) => props.theme.black.darker};
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    ),
+    url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
+  background-image: center;
+  background-size: cover;
   border-bottom-left-radius: 10px;
   display: flex;
   justify-content: flex-start;
@@ -60,12 +67,20 @@ const ProfilContainer = styled.div`
 `;
 
 const Face = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
   background-position: center;
   background-size: cover;
+  margin-top: 50px;
+`;
+
+const Conact = styled.span`
+  padding: 5px 10px;
+  background-color: ${(props) => props.theme.white.darker};
+  color: ${(props) => props.theme.black.darker};
+  border-radius: 25px;
 `;
 
 const RedBtn = styled(TopNavBtn)`
@@ -111,6 +126,8 @@ const About = () => {
         </TopNav>
         <ProfilContainer>
           <Face />
+          <h1>MR_CHU</h1>
+          <Conact>Conact Me</Conact>
         </ProfilContainer>
       </Modal>
 

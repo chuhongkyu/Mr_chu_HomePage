@@ -8,14 +8,20 @@ const apps = [
   {
     name: "About Me",
     logo: `${env.PUBLIC_URL}/assets/img/folder.svg`,
+    path: "/about",
+    page: "<About/>",
   },
   {
     name: "Works",
     logo: `${env.PUBLIC_URL}/assets/img/folder.svg`,
+    path: "/works",
+    page: "",
   },
   {
     name: "git Hub",
     logo: "https://seeklogo.com/images/G/github-logo-7880D80B8D-seeklogo.com.png",
+    path: "/git",
+    page: "",
   },
 ];
 
