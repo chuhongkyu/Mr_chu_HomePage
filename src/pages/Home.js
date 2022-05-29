@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import AppLink from "../components/AppLink";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { AppList } from "../utils/AppList";
 import WindowBar from "../components/WindowBar";
 import About from "./About";
+import { useRecoilState } from "recoil";
+import { appList } from "../atoms";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -43,7 +44,18 @@ const Title = styled.h1`
 `;
 
 const Home = () => {
-  const onDragEnd = () => {};
+  const [apps, setApp] = useRecoilState(appList);
+  const onDragEnd = ({ draggableId, destination, source }) => {
+    if (!destination) return;
+    setApp((oldApps) => {
+      const copyAppList = [...oldApps];
+      // Delete source.index
+      copyAppList.splice(source.index, 1);
+      // put back the item on the destination.index
+      copyAppList.splice(destination.index, 0, draggableId);
+      return copyAppList;
+    });
+  };
   return (
     <Wrapper>
       <Window>
@@ -60,8 +72,12 @@ const Home = () => {
             <Droppable droppableId="one">
               {(magic) => (
                 <ul ref={magic.innerRef} {...magic.droppableProps}>
-                  {AppList.map((App) => (
-                    <Draggable draggableId={App.id + ""} index={App.id}>
+                  {apps.map((App, index) => (
+                    <Draggable
+                      key={App.name}
+                      draggableId={App.name}
+                      index={index}
+                    >
                       {(magic) => (
                         <li
                           ref={magic.innerRef}

@@ -8,6 +8,7 @@ export const theme = {
   white: {
     lighter: "#fff",
     darker: "#e5e5e5",
+    gradient: "linear-gradient(to bottom, #fff , #e5e5e5)",
   },
   glass: "rgba(255,255,255,0.4)",
   universe:

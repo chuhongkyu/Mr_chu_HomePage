@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import WindowBar from "../components/WindowBar";
 
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
+
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -18,12 +21,14 @@ const Modal = styled(motion.div)`
   background-color: ${(props) => props.theme.white.lighter};
   position: relative;
   z-index: 5;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 `;
 
 const TopNav = styled.div`
   width: 100%;
-  height: 40px;
-  background-color: ${(props) => props.theme.white.darker};
+  height: 4%;
+  background: ${(props) => props.theme.white.gradient};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 5px;
@@ -41,6 +46,26 @@ const TopNavBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ProfilContainer = styled.div`
+  width: 30%;
+  height: 96%;
+  background-color: ${(props) => props.theme.black.darker};
+  border-bottom-left-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const Face = styled.div`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
+  background-position: center;
+  background-size: cover;
 `;
 
 const RedBtn = styled(TopNavBtn)`
@@ -84,7 +109,11 @@ const About = () => {
           <YellowBtn>-</YellowBtn>
           <GreenBtn></GreenBtn>
         </TopNav>
+        <ProfilContainer>
+          <Face />
+        </ProfilContainer>
       </Modal>
+
       <WindowBar />
     </Wrapper>
   );
