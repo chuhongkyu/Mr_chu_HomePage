@@ -1,17 +1,19 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import WindowBar from "../components/WindowBar";
+import ProfileItem from "../components/ProfileItem";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-const Wrapper = styled.div`
+const Position = styled.div`
   width: 100%;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 const Modal = styled(motion.div)`
@@ -23,6 +25,9 @@ const Modal = styled(motion.div)`
   z-index: 5;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TopNav = styled.div`
@@ -34,6 +39,8 @@ const TopNav = styled.div`
   padding: 5px;
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 0;
 `;
 
 const TopNavBtn = styled.div`
@@ -50,7 +57,7 @@ const TopNavBtn = styled.div`
 
 const ProfilContainer = styled.div`
   width: 30%;
-  height: 96%;
+  height: 100%;
   background-image: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.6),
@@ -59,11 +66,30 @@ const ProfilContainer = styled.div`
     url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
   background-image: center;
   background-size: cover;
+  border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+`;
+
+const MainContainer = styled.div`
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 50px;
+`;
+
+const ProfilGrid = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
 `;
 
 const Face = styled.div`
@@ -112,7 +138,7 @@ const ModalVariant = {
 
 const About = () => {
   return (
-    <Wrapper>
+    <Position>
       <Modal
         variants={ModalVariant}
         initial="inital"
@@ -129,10 +155,14 @@ const About = () => {
           <h1>MR_CHU</h1>
           <Conact>Conact Me</Conact>
         </ProfilContainer>
+        <MainContainer>
+          <h1>Developer</h1>
+          <ProfilGrid>
+            <ProfileItem></ProfileItem>
+          </ProfilGrid>
+        </MainContainer>
       </Modal>
-
-      <WindowBar />
-    </Wrapper>
+    </Position>
   );
 };
 

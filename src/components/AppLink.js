@@ -6,6 +6,8 @@ const App = styled.div`
   justify-self: center;
   align-items: center;
   flex-direction: column;
+  transform: ${(props) =>
+    props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {
     display: flex;
     justify-self: center;
@@ -21,10 +23,10 @@ const App = styled.div`
   }
 `;
 
-const AppLink = ({ title, img, path, page }) => {
+const AppLink = ({ title, img, pathUrl }) => {
   return (
     <App>
-      <Link to={path} element={page}>
+      <Link to={pathUrl}>
         <img src={img} alt={title} />
         <p>{title}</p>
       </Link>
