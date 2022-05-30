@@ -5,7 +5,7 @@ import WindowBar from "../components/WindowBar";
 import About from "./About";
 import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
-import { Route, Routes, useMatch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";

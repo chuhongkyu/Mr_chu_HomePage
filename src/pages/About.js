@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ProfileItem from "../components/ProfileItem";
 
@@ -111,6 +112,10 @@ const Conact = styled.span`
 
 const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  }
 `;
 
 const YellowBtn = styled(TopNavBtn)`
@@ -137,6 +142,10 @@ const ModalVariant = {
 };
 
 const About = () => {
+  const navigate = useNavigate();
+  const onExit = () => {
+    navigate("/");
+  };
   return (
     <Position>
       <Modal
@@ -146,7 +155,7 @@ const About = () => {
         transition="transition"
       >
         <TopNav>
-          <RedBtn>x</RedBtn>
+          <RedBtn onClick={onExit}>x</RedBtn>
           <YellowBtn>-</YellowBtn>
           <GreenBtn></GreenBtn>
         </TopNav>
@@ -158,7 +167,22 @@ const About = () => {
         <MainContainer>
           <h1>Developer</h1>
           <ProfilGrid>
-            <ProfileItem></ProfileItem>
+            <ProfileItem title="Education">
+              <div>
+                <p>중앙대학교 미술학부 한국화</p>
+                <p>2012 ~ 2018</p>
+              </div>
+              <div>
+                <p>중앙대학교 대학원 뉴미디어아트</p>
+                <p>중퇴</p>
+              </div>
+            </ProfileItem>
+            <ProfileItem title="Experience">
+              <div>
+                <p>중앙대학교 대학원 뉴미디어아트</p>
+                <p>중퇴</p>
+              </div>
+            </ProfileItem>
           </ProfilGrid>
         </MainContainer>
       </Modal>

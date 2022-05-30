@@ -3,19 +3,23 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding: 10px;
+  grid-column: span 1;
   h1 {
     font-size: 25px;
+    margin-bottom: 30px;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
   }
 `;
 
-function ProfileItem() {
+function ProfileItem({ title, children }) {
   return (
     <Wrapper>
-      <h1>Education</h1>
-      <div>
-        <p>중앙대학교 미술학부 한국화</p>
-        <p>2012~2018</p>
-      </div>
+      <h1>{title}</h1>
+      {children}
     </Wrapper>
   );
 }
