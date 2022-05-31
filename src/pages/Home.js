@@ -7,6 +7,7 @@ import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
 import DraggabbleCard from "../components/DraggabbleCard";
 import Title from "../components/Title";
+import Works from "./Works";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -63,6 +64,7 @@ const Home = () => {
       </Window>
       <Routes>
         <Route path="about" element={<About />} />
+        <Route path="works" element={<Works />} />
       </Routes>
       <WindowBar />
     </Wrapper>
