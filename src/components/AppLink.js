@@ -6,6 +6,8 @@ const App = styled.div`
   justify-self: center;
   align-items: center;
   flex-direction: column;
+  width: 70px;
+  height: 70px;
   transform: ${(props) =>
     props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {

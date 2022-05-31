@@ -7,14 +7,14 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Position = styled.div`
-  width: 100%;
-  height: 100vh;
+  width: 99vw;
+  height: 95vh;
   position: absolute;
-  top: 0;
+  top: 5px;
+  left: 5px;
   z-index: 5;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const Modal = styled(motion.div)`
@@ -179,8 +179,15 @@ const About = () => {
             </ProfileItem>
             <ProfileItem title="Experience">
               <div>
-                <p>중앙대학교 대학원 뉴미디어아트</p>
-                <p>중퇴</p>
+                <p>마포 청년 일자리 사업단</p>
+                <p>2022</p>
+              </div>
+            </ProfileItem>
+            <ProfileItem title="Front end">
+              <div>
+                <p>HTML,CSS</p>
+                <p>JavaScript</p>
+                <p>React</p>
               </div>
             </ProfileItem>
           </ProfilGrid>

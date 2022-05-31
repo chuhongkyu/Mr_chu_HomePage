@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useMatch, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const env = process.env;
@@ -20,7 +21,35 @@ const Bar = styled.div`
   }
 `;
 
+const BarBox = styled.div`
+  width: 10vw;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const OpenItem = styled.div`
+  background-color: ${(props) => props.theme.black.darker};
+  color: ${(props) => props.theme.white.darker};
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  transition: 0.5s;
+  &:hover {
+    background-color: ${(props) => props.theme.white.darker};
+    color: ${(props) => props.theme.black.darker};
+    transition: 0.5s;
+  }
+`;
+
 function WindowBar() {
+  const navigate = useNavigate();
+  const onExit = () => {
+    navigate("/");
+  };
+  const aboutMatch = useMatch("/about");
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -32,7 +61,11 @@ function WindowBar() {
 
   return (
     <Bar>
-      <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} />
+      <BarBox>
+        <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} />
+        {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
+      </BarBox>
+
       <span>{time.toLocaleTimeString()}</span>
     </Bar>
   );
