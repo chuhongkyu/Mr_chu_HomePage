@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
 import DraggabbleCard from "../components/DraggabbleCard";
+import Title from "../components/Title";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -30,16 +31,6 @@ const Boards = styled.div`
   width: 50%;
 `;
 
-const Title = styled.h1`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 30px;
-  font-weight: 700;
-`;
-
 const Home = () => {
   const [apps, setApp] = useRecoilState(appList);
   const onDragEnd = ({ draggableId, destination, source }) => {
@@ -56,7 +47,6 @@ const Home = () => {
   return (
     <Wrapper>
       <Window>
-        <Title>Welcome to Mr. Chu's homepage.</Title>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">
             {(magic) => (
@@ -69,6 +59,7 @@ const Home = () => {
             )}
           </Droppable>
         </DragDropContext>
+        <Title />
       </Window>
       <Routes>
         <Route path="about" element={<About />} />
