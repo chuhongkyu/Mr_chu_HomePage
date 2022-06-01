@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const env = process.env;

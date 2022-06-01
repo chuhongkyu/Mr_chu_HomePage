@@ -5,16 +5,17 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 30%;
   display: flex;
   h1 {
     font-size: 55px;
     color: white;
     font-weight: 800;
+    white-space: nowrap;
   }
 `;
 
-const textArr = "Welcome to Mr. Chu's homepage";
+const textArr = "Welcome to Mr. Chu's Homepage";
 const textArrS = textArr.split("");
 let copyArr = [];
 
