@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import DraggabbleCard from "../components/DraggabbleCard";
 import Title from "../components/Title";
 import Works from "./Works";
+import GitHub from "./GitHub";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -65,6 +66,7 @@ const Home = () => {
       <Routes>
         <Route path="about" element={<About />} />
         <Route path="works" element={<Works />} />
+        <Route path="github" element={<GitHub />} />
       </Routes>
       <WindowBar />
     </Wrapper>
