@@ -76,6 +76,8 @@ const MainContainer = styled.div`
   width: 100%;
   height: 96%;
   padding: 50px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   h1 {
     font-size: 40px;
     font-weight: 800;
@@ -98,7 +100,9 @@ const MainText = styled.div`
   width: 100%;
   h5 {
     font-size: 25px;
+    user-select: none;
     span {
+      user-select: none;
     }
   }
 `;
@@ -135,13 +139,23 @@ const ModalVariant = {
 };
 
 const Works = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    firstCode: false,
+    codeFeel: false,
+    nowCode: false,
+  });
+
+  const { firstCode, codeFeel, nowCode } = open;
   const navigate = useNavigate();
   const onExit = () => {
     navigate("/");
   };
-  const onClick = () => {
-    setOpen(!open);
+
+  const onClick = (e) => {
+    setOpen({ ...open, [e.target.getAttribute("name")]: true });
+
+    console.log(open);
+    console.log(e.target.getAttribute("name"));
   };
   return (
     <Position>
@@ -164,11 +178,11 @@ const Works = () => {
               비전공자 개발자입니다. <br /> 시간을 내여 저의 글을 읽어주셔서
               감사합니다.
             </p>
-            <MainText onClick={onClick}>
+            <MainText name={"firstCode"} onClick={onClick}>
               <h5>
                 <span>📌</span> 코딩을 처음 접하게 된 일
               </h5>
-              {open ? (
+              {open.firstCode ? (
                 <SubText
                   initial={{ translateY: -300, opacity: 0 }}
                   animate={{ translateY: 0, opacity: 1 }}
@@ -214,15 +228,48 @@ const Works = () => {
                 </SubText>
               ) : null}
             </MainText>
-            <MainText onClick={onClick}>
+            <MainText name={"codeFeel"} onClick={onClick}>
               <h5>
                 <span>📌</span> 개발 공부를 처음 시작한 일
               </h5>
+              {open.codeFeel ? (
+                <SubText>
+                  <div>
+                    <p>
+                      개발 공부를 처음 본격적으로 배우기 시작한 것은 2021년
+                      노마드 코드 인터넷 강의를 통해서 입니다. html,css,바닐라
+                      자바스크립트, scss 순으로 챌린지를 진행하며
+                      통과하였습니다. 사실 홈페이지를 디자인만하는 정도인
+                      것이지만 스스로 코딩을 잘한다고 생각하며 신나 있었습니다.
+                      그러다 리액트 챌린지를 시작하고 알게 되었습니다.
+                      자바스크립트에 대해 전혀 모르고 있었다는 것을... 저는
+                      처음으로 챌린지를 포기하고 말았습니다. 그리고 '내가
+                      개발자를 할 수 있는 것일까?' 생각하게 되었습니다.
+                    </p>
+                  </div>
+                </SubText>
+              ) : null}
             </MainText>
-            <MainText onClick={onClick}>
+            <MainText name={"nowCode"} onClick={onClick}>
               <h5>
                 <span>📌</span> 개발 일을 하며 내가 부족한점
               </h5>
+              {open.nowCode ? (
+                <SubText>
+                  <div>
+                    <p>
+                      2022년 마포구 일자리 사업단 앱 개발팀에서 일하게
+                      되었습니다. 주요 업무는 마포구에서 마포구 캐릭터를
+                      제작하는데 도움을 주는 것이였습니다. 저희 팀에는 14년차
+                      개발자 PM님이 계셨습니다. PM님은 저희가 많이 부족하여 매일
+                      1시간씩 자바스립트에 대한 연습과 문제를 내 주셨습니다.
+                      비전공자인 저는 스스로 많이 부족하다고 느꼈고 열심히 예습,
+                      복습을 하였습니다. 저는 5월이 되던날 자바스크립트을 이제야
+                      이해하게 되었습니다.
+                    </p>
+                  </div>
+                </SubText>
+              ) : null}
             </MainText>
           </div>
         </MainContainer>
