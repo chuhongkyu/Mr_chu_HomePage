@@ -139,6 +139,7 @@ const ModalVariant = {
 };
 
 const Works = () => {
+  const [show, setShow] = useState(false);
   const [open, setOpen] = useState({
     firstCode: false,
     codeFeel: false,
@@ -152,10 +153,13 @@ const Works = () => {
   };
 
   const onClick = (e) => {
-    setOpen({ ...open, [e.target.getAttribute("name")]: true });
-
+    setShow(!show);
+    setOpen({
+      ...open,
+      [e.target.getAttribute("name")]: !show,
+    });
     console.log(open);
-    console.log(e.target.getAttribute("name"));
+    console.log("show:" + show);
   };
   return (
     <Position>
@@ -178,7 +182,7 @@ const Works = () => {
               비전공자 개발자입니다. <br /> 시간을 내여 저의 글을 읽어주셔서
               감사합니다.
             </p>
-            <MainText name={"firstCode"} onClick={onClick}>
+            <MainText name={"firstCode"} onClick={onClick} value={firstCode}>
               <h5>
                 <span>📌</span> 코딩을 처음 접하게 된 일
               </h5>
@@ -228,12 +232,16 @@ const Works = () => {
                 </SubText>
               ) : null}
             </MainText>
-            <MainText name={"codeFeel"} onClick={onClick}>
+            <MainText name={"codeFeel"} onClick={onClick} value={codeFeel}>
               <h5>
                 <span>📌</span> 개발 공부를 처음 시작한 일
               </h5>
               {open.codeFeel ? (
-                <SubText>
+                <SubText
+                  initial={{ translateY: -300, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div>
                     <p>
                       개발 공부를 처음 본격적으로 배우기 시작한 것은 2021년
@@ -250,12 +258,16 @@ const Works = () => {
                 </SubText>
               ) : null}
             </MainText>
-            <MainText name={"nowCode"} onClick={onClick}>
+            <MainText name={"nowCode"} onClick={onClick} value={nowCode}>
               <h5>
                 <span>📌</span> 개발 일을 하며 내가 부족한점
               </h5>
               {open.nowCode ? (
-                <SubText>
+                <SubText
+                  initial={{ translateY: -300, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div>
                     <p>
                       2022년 마포구 일자리 사업단 앱 개발팀에서 일하게
