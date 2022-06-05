@@ -7,7 +7,7 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Bar = styled.div`
   width: 100%;
-  height: 5vh;
+  height: 40px;
   background-color: ${(props) => props.theme.black.cloud};
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@ const Bar = styled.div`
   bottom: 0;
   img {
     width: 30px;
-    height: 4vh;
+    height: 30px;
   }
 `;
 
@@ -49,6 +49,7 @@ function WindowBar() {
   const onExit = () => {
     navigate("/");
   };
+  const resumeMatch = useMatch("/resume");
   const aboutMatch = useMatch("/about");
   const [time, setTime] = useState(new Date());
 
@@ -63,6 +64,7 @@ function WindowBar() {
     <Bar>
       <BarBox>
         <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} />
+        {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
         {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
       </BarBox>
 

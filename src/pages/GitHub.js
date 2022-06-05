@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import GitUrl from "./GitUrl";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -57,7 +56,7 @@ const GitContainer = styled.div`
 
 const TopNav = styled.div`
   width: 100%;
-  height: 4%;
+  height: 30px;
   background: ${(props) => props.theme.white.gradient};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

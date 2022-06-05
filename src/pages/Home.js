@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import WindowBar from "../components/WindowBar";
-import About from "./About";
 import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
 import DraggabbleCard from "../components/DraggabbleCard";
 import Title from "../components/Title";
-import Works from "./Works";
+import Resume from "./Resume";
+import About from "./About";
 import GitHub from "./GitHub";
 
 const env = process.env;
@@ -64,8 +64,8 @@ const Home = () => {
         <Title />
       </Window>
       <Routes>
+        <Route path="resume" element={<Resume />} />
         <Route path="about" element={<About />} />
-        <Route path="works" element={<Works />} />
         <Route path="github" element={<GitHub />} />
       </Routes>
       <WindowBar />
