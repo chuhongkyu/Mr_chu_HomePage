@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 10px;
   grid-column: span 1;
-  h1 {
+  h3 {
     font-size: 25px;
     margin-bottom: 30px;
   }
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 function ProfileItem({ title, children }) {
   return (
     <Wrapper>
-      <h1>{title}</h1>
+      <h3>{title}</h3>
       {children}
     </Wrapper>
   );

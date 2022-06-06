@@ -73,7 +73,8 @@ const ProfilContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  h1 {
+  h2 {
+    margin-top: 20px;
     font-size: 20px;
     font-weight: 600;
   }
@@ -86,18 +87,18 @@ const Face = styled.div`
   background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
   background-position: center;
   background-size: cover;
-  margin-top: 50px;
+  margin-top: 100px;
   &:hover {
     border: 2px solid white;
   }
 `;
 
-const Conact = styled.span`
+const Conact = styled(motion.span)`
   padding: 5px 10px;
   background-color: ${(props) => props.theme.white.darker};
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
-  margin-top: 50px;
+  margin-top: 20px;
 `;
 
 const MainContainer = styled.div`
@@ -108,6 +109,9 @@ const MainContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 50px;
+  h1 {
+    font-size: 40px;
+  }
 `;
 
 const ProfilGrid = styled.div`
@@ -169,8 +173,16 @@ const Resume = () => {
         </TopNav>
         <ProfilContainer>
           <Face />
-          <h1>MR_CHU</h1>
-          <Conact>Conact Me</Conact>
+          <h2>추홍규</h2>
+          <Conact
+            whileHover={{
+              backgroundColor: "black",
+              color: "white",
+              transition: { duration: 0.5, ease: "linear" },
+            }}
+          >
+            Conact Me
+          </Conact>
         </ProfilContainer>
         <MainContainer>
           <h1>Developer</h1>
@@ -187,7 +199,11 @@ const Resume = () => {
             </ProfileItem>
             <ProfileItem title="Experience">
               <div>
-                <p>마포 청년 일자리 사업단</p>
+                <p>Sticker Slime(ios, android) - 1인개발</p>
+                <p>2021</p>
+              </div>
+              <div>
+                <p>마포 청년 일자리 사업단(앱 개발팀)</p>
                 <p>2022</p>
               </div>
             </ProfileItem>
