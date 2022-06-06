@@ -104,7 +104,9 @@ const MainText = styled.div`
   cursor: pointer;
   h5 {
     font-size: 25px;
-    user-select: none;
+    &:hover {
+      font-weight: 600;
+    }
     span {
       user-select: none;
     }
@@ -164,6 +166,7 @@ const About = () => {
     });
     console.log(open);
     console.log("show:" + show);
+    e.stopPropagation();
   };
   return (
     <Position>
@@ -186,8 +189,8 @@ const About = () => {
               비전공자 개발자입니다. <br /> 시간을 내여 저의 글을 읽어주셔서
               감사합니다.
             </p>
-            <MainText name={"firstCode"} onClick={onClick} value={firstCode}>
-              <h5>
+            <MainText>
+              <h5 name={"firstCode"} onClick={onClick} value={firstCode}>
                 <span>📌</span> 코딩을 처음 접하게 된 일
               </h5>
               {open.firstCode ? (
@@ -236,8 +239,8 @@ const About = () => {
                 </SubText>
               ) : null}
             </MainText>
-            <MainText name={"codeFeel"} onClick={onClick} value={codeFeel}>
-              <h5>
+            <MainText>
+              <h5 name={"codeFeel"} onClick={onClick} value={codeFeel}>
                 <span>📌</span> 개발 공부를 처음 시작한 일
               </h5>
               {open.codeFeel ? (
@@ -262,8 +265,8 @@ const About = () => {
                 </SubText>
               ) : null}
             </MainText>
-            <MainText name={"nowCode"} onClick={onClick} value={nowCode}>
-              <h5>
+            <MainText>
+              <h5 name={"nowCode"} onClick={onClick} value={nowCode}>
                 <span>📌</span> 개발 일을 하며 내가 부족한점
               </h5>
               {open.nowCode ? (

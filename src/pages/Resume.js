@@ -73,6 +73,31 @@ const ProfilContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+`;
+
+const Face = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-top: 50px;
+  &:hover {
+    border: 2px solid white;
+  }
+`;
+
+const Conact = styled.span`
+  padding: 5px 10px;
+  background-color: ${(props) => props.theme.white.darker};
+  color: ${(props) => props.theme.black.darker};
+  border-radius: 25px;
+  margin-top: 50px;
 `;
 
 const MainContainer = styled.div`
@@ -91,23 +116,6 @@ const ProfilGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
-`;
-
-const Face = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
-  background-position: center;
-  background-size: cover;
-  margin-top: 50px;
-`;
-
-const Conact = styled.span`
-  padding: 5px 10px;
-  background-color: ${(props) => props.theme.white.darker};
-  color: ${(props) => props.theme.black.darker};
-  border-radius: 25px;
 `;
 
 const RedBtn = styled(TopNavBtn)`
