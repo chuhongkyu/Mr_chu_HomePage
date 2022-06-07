@@ -54,6 +54,21 @@ const GitContainer = styled.div`
   }
 `;
 
+const GitProfil = styled.div`
+  width: 30%;
+  height: 95vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 50px;
+  h2 {
+    font-size: 25px;
+  }
+  li {
+  }
+`;
+
 const TopNav = styled.div`
   width: 100%;
   height: 30px;
@@ -64,6 +79,7 @@ const TopNav = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
+  z-index: 4;
   top: 0;
 `;
 
@@ -165,6 +181,13 @@ const GitHub = () => {
             </motion.svg>
             <span>Go Git Hub</span>
           </a>
+          <GitProfil>
+            <h2>깃 관련 공부</h2>
+            <ul>
+              <li>지옥에서 온 관리자 Git(인프런) - 최주호</li>
+            </ul>
+            <div>마이크로소프트</div>
+          </GitProfil>
         </GitContainer>
       </Modal>
     </Position>
