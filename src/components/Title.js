@@ -30,7 +30,7 @@ const Title = () => {
         setTimeout(() => makeText(newArr), 80);
       } else {
         // console.log("end");
-        clearTimeout();
+        return clearTimeout();
       }
       //console.log(text);
     };

@@ -9,6 +9,7 @@ import Title from "../components/Title";
 import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
+import Others from "./Others";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -67,7 +68,7 @@ const Home = () => {
         <Route path="resume" element={<Resume />} />
         <Route path="about" element={<About />} />
         <Route path="github" element={<GitHub />} />
-        <Route path="others" element={<GitHub />} />
+        <Route path="others" element={<Others />} />
       </Routes>
       <WindowBar />
     </Wrapper>
