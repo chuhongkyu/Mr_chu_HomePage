@@ -124,7 +124,7 @@ const gitOpenning = {
   },
 };
 
-const GitHub = () => {
+const Others = () => {
   const navigate = useNavigate();
   const onExit = () => {
     navigate("/");
@@ -144,7 +144,7 @@ const GitHub = () => {
         </TopNav>
         <GitContainer>
           <a
-            href="https://github.com/chuhongkyu"
+            href="https://Others.com/chuhongkyu"
             target="_blank"
             rel="noreferrer"
           >
@@ -172,4 +172,4 @@ const GitHub = () => {
   );
 };
 
-export default GitHub;
+export default Others;

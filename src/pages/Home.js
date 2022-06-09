@@ -67,6 +67,7 @@ const Home = () => {
         <Route path="resume" element={<Resume />} />
         <Route path="about" element={<About />} />
         <Route path="github" element={<GitHub />} />
+        <Route path="others" element={<GitHub />} />
       </Routes>
       <WindowBar />
     </Wrapper>
