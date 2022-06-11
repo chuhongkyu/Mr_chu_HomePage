@@ -51,6 +51,8 @@ function WindowBar() {
   };
   const resumeMatch = useMatch("/resume");
   const aboutMatch = useMatch("/about");
+  const othersMatch = useMatch("/others");
+  const githubMatch = useMatch("/github");
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -63,9 +65,11 @@ function WindowBar() {
   return (
     <Bar>
       <BarBox>
-        <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} />
+        <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} alt="mr.chu" />
         {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
         {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
+        {othersMatch && <OpenItem onClick={onExit}>Others</OpenItem>}
+        {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
       </BarBox>
 
       <span>{time.toLocaleTimeString()}</span>

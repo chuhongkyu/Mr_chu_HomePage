@@ -14,13 +14,11 @@ import Others from "./Others";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
 `;
 
 const Window = styled.div`
   width: 100%;
-  height: 95vh;
+  height: 100%;
   padding: 10px;
 `;
 
