@@ -28,7 +28,7 @@ const App = styled.div`
 const AppLink = ({ title, img, pathUrl }) => {
   return (
     <App>
-      <Link to={pathUrl}>
+      <Link to={`/home/${pathUrl}`}>
         <img src={img} alt={title} />
         <p>{title}</p>
       </Link>

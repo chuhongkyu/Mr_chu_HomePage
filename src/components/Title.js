@@ -3,10 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 30%;
+  width: 500px;
   display: flex;
+  justify-content: flex-start;
   h1 {
     font-size: 55px;
     color: white;

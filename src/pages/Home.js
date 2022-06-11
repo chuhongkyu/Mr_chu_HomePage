@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
 import DraggabbleCard from "../components/DraggabbleCard";
-import Title from "../components/Title";
 import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
@@ -57,7 +56,6 @@ const Home = () => {
             )}
           </Droppable>
         </DragDropContext>
-        <Title />
       </Window>
       <Routes>
         <Route path="resume" element={<Resume />} />

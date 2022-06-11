@@ -92,7 +92,7 @@ const WindowModal = ({ children, bgColor }) => {
   const [resize, setResize] = useState(false);
   const navigate = useNavigate();
   const onExit = () => {
-    navigate("/");
+    navigate("/home");
   };
   const onHandleSize = () => {
     setResize(!resize);

@@ -47,12 +47,12 @@ const OpenItem = styled.div`
 function WindowBar() {
   const navigate = useNavigate();
   const onExit = () => {
-    navigate("/");
+    navigate("/home");
   };
-  const resumeMatch = useMatch("/resume");
-  const aboutMatch = useMatch("/about");
-  const othersMatch = useMatch("/others");
-  const githubMatch = useMatch("/github");
+  const resumeMatch = useMatch("/home/resume");
+  const aboutMatch = useMatch("/home/about");
+  const othersMatch = useMatch("/home/others");
+  const githubMatch = useMatch("/home/github");
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
