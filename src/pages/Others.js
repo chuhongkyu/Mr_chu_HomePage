@@ -20,7 +20,7 @@ const Modal = styled(motion.div)`
   width: 99vw;
   height: 95vh;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.black.darker};
+  background-color: ${(props) => props.theme.white.lighter};
   position: relative;
   z-index: 5;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -72,6 +72,22 @@ const GreenBtn = styled(TopNavBtn)`
   background-color: rgb(23, 206, 95);
 `;
 
+const Icon = styled.div`
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    box-shadow: ${(prop) => prop.theme.shadow};
+  }
+`;
+
 const ModalVariant = {
   inital: {
     opacity: 0,
@@ -105,6 +121,14 @@ const Others = () => {
           <YellowBtn>-</YellowBtn>
           <GreenBtn></GreenBtn>
         </TopNav>
+        <Icon>
+          <img src={env.PUBLIC_URL + "/assets/app01.jpg"} />
+          <p>서랍속슬라임</p>
+        </Icon>
+        <Icon>
+          <img src={env.PUBLIC_URL + "/assets/app02.png"} />
+          <p>스티커슬라임</p>
+        </Icon>
       </Modal>
     </Position>
   );

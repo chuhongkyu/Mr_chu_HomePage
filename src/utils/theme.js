@@ -13,4 +13,5 @@ export const theme = {
   glass: "rgba(255,255,255,0.4)",
   universe:
     "linear-gradient(190deg, rgb(22, 27, 42), rgb(166, 115, 126), rgb(238,188,17) )",
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
 };

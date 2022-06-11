@@ -11,9 +11,6 @@ import About from "./About";
 import GitHub from "./GitHub";
 import Others from "./Others";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
