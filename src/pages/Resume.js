@@ -72,6 +72,24 @@ const ProfilGrid = styled.div`
   gap: 5px;
 `;
 
+const PickItem = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  grid-row: span 2;
+  h3 {
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  hr {
+    margin: 5px 0px;
+  }
+`;
+
 const Resume = () => {
   return (
     <WindowModal bgColor="white">
@@ -149,6 +167,47 @@ const Resume = () => {
               </span>
             </div>
           </ProfileItem>
+          <PickItem>
+            <h3>수강 강의</h3>
+            <div>
+              <p>코코아톡 클론코딩</p>
+              <p>노마드 코더</p>
+            </div>
+            <div>
+              <p>바닐라 JS로 크롬 앱 만들기</p>
+              <p>노마드 코더</p>
+            </div>
+            <div>
+              <p>CSS Layout 마스터 클래스</p>
+              <p>노마드 코더</p>
+            </div>
+            <div>
+              <p>React JS 마스터클래스</p>
+              <p>노마드 코더</p>
+            </div>
+            <hr />
+            <div>
+              <p>만들면서 배우는 리액트 : 기초</p>
+              <p>진유림</p>
+            </div>
+            <div>
+              <p>한입 크기로 잘라먹는 리액트 : 기초부터 실전</p>
+              <p>이정환</p>
+            </div>
+            <div>
+              <p>지옥에서 온 관리자 Git</p>
+              <p>최주호</p>
+            </div>
+            <div>
+              <p>자바스크립트 : 기초부터 실전까지 올인원</p>
+              <p>코딩알려주는 누나</p>
+            </div>
+            <hr />
+            <div>
+              <p>김민태의 프론트엔드 아카데미: JavaScript/TypeScript</p>
+              <p>김민태</p>
+            </div>
+          </PickItem>
           <ProfileItem title="Others">
             <div>
               <img

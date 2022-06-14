@@ -49,13 +49,14 @@ const SubText = styled(motion.div)`
   h2 {
     font-size: 22px;
     margin-bottom: 5px;
+    font-weight: 600;
   }
   div {
     margin-bottom: 20px;
     p {
-      color: black;
+      color: rgba(50, 50, 50, 1);
       margin-bottom: 10px;
-      font-size: 20px;
+      font-size: 19px;
     }
     span {
       text-decoration: underline;
@@ -90,7 +91,7 @@ const About = () => {
         <h1>자기소개</h1>
         <div>
           <p>
-            안녕하세요 저는 92년생 추홍규 입니다. 이제는 특별할 것도 없는
+            👋 안녕하세요 저는 92년생 추홍규 입니다. 이제는 특별할 것도 없는
             비전공자 개발자입니다. <br /> 시간을 내여 저의 글을 읽어주셔서
             감사합니다.
           </p>
