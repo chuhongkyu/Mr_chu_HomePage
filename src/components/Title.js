@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   h1 {
-    font-size: 55px;
+    font-size: 50px;
     color: white;
     font-weight: 800;
     white-space: nowrap;

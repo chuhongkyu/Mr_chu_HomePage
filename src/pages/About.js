@@ -47,7 +47,7 @@ const MainText = styled.div`
 const SubText = styled(motion.div)`
   margin-top: 20px;
   h2 {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 5px;
     font-weight: 600;
   }
@@ -56,7 +56,7 @@ const SubText = styled(motion.div)`
     p {
       color: rgba(50, 50, 50, 1);
       margin-bottom: 10px;
-      font-size: 19px;
+      font-size: 18px;
     }
     span {
       text-decoration: underline;

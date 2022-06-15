@@ -6,8 +6,8 @@ const App = styled.div`
   justify-self: center;
   align-items: center;
   flex-direction: column;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   transform: ${(props) =>
     props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {
@@ -16,11 +16,12 @@ const App = styled.div`
     align-items: center;
     flex-direction: column;
     img {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       border-radius: 5%;
     }
     p {
+      font-size: 12px;
     }
   }
 `;
