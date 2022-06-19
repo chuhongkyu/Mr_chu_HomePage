@@ -99,12 +99,32 @@ const Others = () => {
             ))}
           </SliderContainer>
         </IconDescription>
-      </OnePerson>
 
-      {/* <Icon>
-        <img src={env.PUBLIC_URL + "/assets/app02.png"} alt="스티커 슬라임" />
-        <p>스티커 슬라임</p>
-      </Icon> */}
+        <TextBox>
+          <GameText style={{ width: "20%" }}>
+            <Icon>
+              <img
+                src={env.PUBLIC_URL + "/assets/app02.png"}
+                alt="스티커 슬라임"
+              />
+              <p>스티커 슬라임</p>
+            </Icon>
+          </GameText>
+
+          <GameText>
+            <h5>배포: ios/android</h5>
+            <p>형태: 2D 게임</p>
+            <p>수익방식: 구글 애드몹</p>
+          </GameText>
+          <GameText>
+            <p>내용: </p>
+            <p>
+              Slimes are moving in the drawer. You should not let the slime bump
+              into each other. Drag and drop~
+            </p>
+          </GameText>
+        </TextBox>
+      </OnePerson>
     </WindowModal>
   );
 };

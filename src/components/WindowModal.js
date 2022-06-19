@@ -28,7 +28,6 @@ const Modal = styled(motion.div)`
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const TopNav = styled.div`
@@ -97,6 +96,7 @@ const WindowModal = ({ children, bgColor }) => {
   const onHandleSize = () => {
     setResize(!resize);
   };
+
   return (
     <Position>
       <Modal
