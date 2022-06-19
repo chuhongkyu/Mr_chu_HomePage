@@ -2,39 +2,24 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import throttle from "../utils/throttle";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Container = styled.div`
   width: 100%;
-  background-color: gray;
+  overflow-x: hidden;
 `;
 
 const List = styled.div`
   width: 100%;
   height: 20vh;
   padding: 5px;
-  overflow-y: hidden;
+  overflow-x: scroll;
   display: flex;
-
+  cursor: pointer;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const Item = styled.div`
-  background-color: rgb(255, 255, 234);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 5px;
-  img {
-    width: 250px;
-    height: 100%;
-  }
-`;
-
-const SliderContainer = () => {
+const SliderContainer = ({ children }) => {
   const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState();
@@ -74,21 +59,7 @@ const SliderContainer = () => {
         onMouseUp={onDragEnd}
         onMouseLeave={onDragEnd}
       >
-        <Item>
-          <img src={env.PUBLIC_URL + "/assets/others_img/01.png"} alt="dd" />
-        </Item>
-        <Item>
-          <img src={env.PUBLIC_URL + "/assets/others_img/02.jpg"} alt="dd" />
-        </Item>
-        <Item>
-          <img src={env.PUBLIC_URL + "/assets/others_img/03.jpg"} alt="dd" />
-        </Item>
-        <Item>
-          <img src={env.PUBLIC_URL + "/assets/others_img/04.jpg"} alt="dd" />
-        </Item>
-        <Item>
-          <img src={env.PUBLIC_URL + "/assets/others_img/05.png"} alt="dd" />
-        </Item>
+        {children}
       </List>
     </Container>
   );
