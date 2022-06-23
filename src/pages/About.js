@@ -3,6 +3,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
 import { write } from "../utils/write";
+import ReactTooltip from "react-tooltip";
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -160,12 +164,22 @@ const About = () => {
                   <h2>{write.about[2].sub_title4}</h2>
                   <p>{write.about[2].sub_txt4}</p>
                   <div>
+                    <ReactTooltip id="book">
+                      <img
+                        src={
+                          "http://image.kyobobook.co.kr/images/book/large/033/l9791196918033.jpg"
+                        }
+                        alt="비전공자를 위한"
+                      />
+                    </ReactTooltip>
                     <p>
                       'IT용어 정리' 지금의 회사에 들어와서 처음 했던 일 입니다.
                       WBS,ASSAP등의 단어들을 PM님이 갈켜주셔서 공부했습니다.
-                      '비전공자를 위한 이해할 수 있는 it 지식 - 최원영' 책을
-                      읽었습니다. 굉장히 재미있고 프론트엔드가 아닌 다른 분야
-                      개발에 대해서도 조금 알게 되었습니다.
+                      <span data-for="book" data-tip="">
+                        '비전공자를 위한 이해할 수 있는 it 지식 - 최원영'
+                      </span>{" "}
+                      책을 읽었습니다. 굉장히 재미있고 프론트엔드가 아닌 다른
+                      분야 개발에 대해서도 조금 알게 되었습니다.
                     </p>
                   </div>
                   <div>
@@ -181,14 +195,23 @@ const About = () => {
                   </div>
                 </div>
                 <div>
-                  <h2>첫 프로젝트</h2>
+                  <ReactTooltip id="1project">
+                    <img
+                      style={{ width: 400 }}
+                      src={env.PUBLIC_URL + "/assets/1project.png"}
+                      alt="카페 소개"
+                    />
+                  </ReactTooltip>
+                  <h2 data-tip="" data-for="1project">
+                    첫 프로젝트
+                  </h2>
                   <p>
                     팀의 첫 프로젝트는 개개인마다 Html/Css와 바닐라 자바스크립트
-                    만으로 마포구 관련 사이트를 만드는 것이었습니다.
-                    스토리보드를 제작하여 중간발표를 했습니다. 5월에는 완성된
-                    홈페이지와 홈페이지를 만들면서 겪은 애로사항들을 해결했던
-                    점과 못했던 점을 발표했습니다. 이러한 계획을 짜고 개발을
-                    진행하고 결과를 보고하는 과정은 좋은 경험이 되었습니다.
+                    만으로 마포구 관련 사이트를 만드는 것이었습니다. 기획의도,
+                    와이어프레임, 스토리보드 등을 제작하여 중간 발표를 하고
+                    개발을 하는 형식이였습니다. 5월에는 완성된 홈페이지를
+                    배포하고 홈페이지를 만들면서 겪은 애로사항들과 그것을
+                    해결했던 점과 못했던 점을 발표했습니다.
                   </p>
                 </div>
                 <div>
