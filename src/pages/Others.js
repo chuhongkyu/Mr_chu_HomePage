@@ -10,7 +10,7 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const OnePerson = styled.div`
   width: 100%;
   height: 100vh;
-  padding: 70px 20px;
+  padding: 50px 20px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -35,6 +35,7 @@ const Icon = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  white-space: nowrap;
   img {
     border-radius: 15px;
     width: 60px;
@@ -86,8 +87,9 @@ const Others = () => {
           <GameText>
             <p>내용: </p>
             <p>
-              Slimes are moving in the drawer. You should not let the slime bump
-              into each other. Drag and drop~
+              Slimes are moving in the drawer.
+              <br /> You should not let the slime bump into each other. <br />{" "}
+              Drag and drop~
             </p>
           </GameText>
         </TextBox>
@@ -113,14 +115,15 @@ const Others = () => {
 
           <GameText>
             <h5>배포: ios/android</h5>
-            <p>형태: 2D 게임</p>
-            <p>수익방식: 구글 애드몹</p>
+            <p>형태: 3D 게임</p>
+            <p>수익방식: 구글 애드몹, 부분 유료화</p>
           </GameText>
           <GameText>
             <p>내용: </p>
             <p>
-              Slimes are moving in the drawer. You should not let the slime bump
-              into each other. Drag and drop~
+              Slimes are moving in the drawer.
+              <br /> You should not let the slime bump into each other. <br />{" "}
+              Drag and drop~
             </p>
           </GameText>
         </TextBox>

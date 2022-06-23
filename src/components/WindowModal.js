@@ -18,8 +18,10 @@ const Position = styled.div`
 `;
 
 const Modal = styled(motion.div)`
-  width: ${(props) => (props.active ? "95vw" : "99vw")};
-  height: ${(props) => (props.active ? "90vh" : "95vh")};
+  width: ${(props) => props.first};
+  height: ${(props) => props.second};
+  /* width: ${(props) => (props.active ? "95vw" : "99vw")};
+  height: ${(props) => (props.active ? "90vh" : "95vh")}; */
   border-radius: 10px;
   position: relative;
   z-index: 5;
@@ -100,7 +102,8 @@ const WindowModal = ({ children, bgColor }) => {
   return (
     <Position>
       <Modal
-        active={resize}
+        first={resize ? "95vw" : "99vw"}
+        second={resize ? "90vh" : "95vh"}
         variants={ModalVariant}
         initial="inital"
         animate="animate"

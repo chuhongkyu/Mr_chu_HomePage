@@ -14,13 +14,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const textArr = "Welcome to Mr. Chu's Homepage";
-const textArrS = textArr.split("");
-let copyArr = [];
-
 const Title = () => {
   const [text, setText] = useState([]);
   const [blink, setBlink] = useState(false);
+  const textArr = "Welcome to Mr. Chu's Homepage";
+  const textArrS = textArr.split("");
+  let copyArr = [];
   useEffect(() => {
     const makeText = (newArr) => {
       if (newArr.length > 0) {

@@ -10,8 +10,7 @@ const Container = styled.div`
   margin-right: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   img {
-    width: 250px;
-    height: 100%;
+    width: 20vw;
   }
 `;
 
