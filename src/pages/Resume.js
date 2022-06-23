@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import ProfileItem from "../components/ProfileItem";
 import WindowModal from "../components/WindowModal";
+import ReactTooltip from "react-tooltip";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -170,19 +171,45 @@ const Resume = () => {
           <PickItem>
             <h3>수강 강의</h3>
             <div>
-              <p>코코아톡 클론코딩</p>
+              <p
+                data-tip="html/css 기초"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                코코아톡 클론코딩
+              </p>
+              <a target="blank_" href="https://nomadcoders.co/community">
+                <p>노마드 코더</p>
+              </a>
+            </div>
+            <div>
+              <p
+                data-tip="js 기초"
+                data-text-color="black"
+                data-background-color="yellow"
+              >
+                바닐라 JS로 크롬 앱 만들기
+              </p>
               <p>노마드 코더</p>
             </div>
             <div>
-              <p>바닐라 JS로 크롬 앱 만들기</p>
+              <p
+                data-tip="SCSS"
+                data-text-color="black"
+                data-background-color="pink"
+              >
+                CSS Layout 마스터 클래스
+              </p>
               <p>노마드 코더</p>
             </div>
             <div>
-              <p>CSS Layout 마스터 클래스</p>
-              <p>노마드 코더</p>
-            </div>
-            <div>
-              <p>React JS 마스터클래스</p>
+              <p
+                data-tip="React"
+                data-text-color="black"
+                data-background-color="skyblue"
+              >
+                React JS 마스터클래스
+              </p>
               <p>노마드 코더</p>
             </div>
             <hr />
@@ -210,14 +237,29 @@ const Resume = () => {
           </PickItem>
           <ProfileItem title="Others">
             <div>
-              <img
-                alt="Unity"
-                src="https://img.shields.io/badge/Unity-5f5a5f?style=flat-square&logo=Unity&logoColor=white"
-              />
+              <span>
+                <img
+                  alt="Unity"
+                  src="https://img.shields.io/badge/Unity-5f5a5f?style=flat-square&logo=Unity&logoColor=white"
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <img
+                  alt="Slack"
+                  src="https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=Slack&logoColor=white"
+                />
+                <img
+                  alt="Notion"
+                  src="https://img.shields.io/badge/Notion-141414?style=flat-square&logo=Notion&logoColor=#000000"
+                />
+              </span>
             </div>
           </ProfileItem>
         </ProfilGrid>
       </MainContainer>
+      <ReactTooltip />
     </WindowModal>
   );
 };
