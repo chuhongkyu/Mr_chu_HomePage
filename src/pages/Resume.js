@@ -10,11 +10,7 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const ProfilContainer = styled.div`
   width: 30%;
   height: 100%;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    ),
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
     url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
   background-image: center;
   background-size: cover;
@@ -24,10 +20,24 @@ const ProfilContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  transition: 0.5s;
   h2 {
     margin-top: 20px;
     font-size: 20px;
     font-weight: 600;
+    color: white;
+  }
+  &:hover {
+    h2 {
+      color: black;
+    }
+    transition: 0.5s;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
   }
 `;
 

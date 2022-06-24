@@ -20,8 +20,6 @@ const Position = styled.div`
 const Modal = styled(motion.div)`
   width: ${(props) => props.first};
   height: ${(props) => props.second};
-  /* width: ${(props) => (props.active ? "95vw" : "99vw")};
-  height: ${(props) => (props.active ? "90vh" : "95vh")}; */
   border-radius: 10px;
   position: relative;
   z-index: 5;
@@ -112,7 +110,7 @@ const WindowModal = ({ children, bgColor }) => {
       >
         <TopNav>
           <RedBtn onClick={onExit}>x</RedBtn>
-          <YellowBtn>-</YellowBtn>
+          <YellowBtn></YellowBtn>
           <GreenBtn onClick={onHandleSize}></GreenBtn>
         </TopNav>
         {children}
