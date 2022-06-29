@@ -166,18 +166,6 @@ const About = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div>
-                  <h2>{write.about[2].sub_title1}</h2>
-                  <p>{write.about[2].sub_txt1}</p>
-                </div>
-                <div>
-                  <h2>{write.about[2].sub_title2}</h2>
-                  <p>{write.about[2].sub_txt2}</p>
-                </div>
-                <div>
-                  <h2>{write.about[2].sub_title3}</h2>
-                  <p>{write.about[2].sub_txt3}</p>
-                </div>
-                <div>
                   <h2>{write.about[2].sub_title4}</h2>
                   <p>{write.about[2].sub_txt4}</p>
                   <div>
@@ -221,7 +209,7 @@ const About = () => {
                   </ReactTooltip>
                   <a target="blank_" href="https://mapocafe.netlify.app/">
                     <h2 data-tip="" data-for="1project">
-                      첫 프로젝트
+                      첫 프로젝트 - (마포구 이쁜 카페 소개 10선)
                     </h2>
                   </a>
                   <p>
@@ -232,19 +220,64 @@ const About = () => {
                     배포하고 홈페이지를 만들면서 겪은 애로사항들과 그것을
                     해결했던 점과 못했던 점을 발표했습니다.
                   </p>
+                  <p>
+                    <a
+                      target="blank_"
+                      href="https://github.com/chuhongkyu/Cafe_HomePage#readme"
+                    >
+                      github
+                    </a>
+                  </p>
                 </div>
                 <div>
-                  <h2>두번쨰 프로젝트</h2>
+                  <ReactTooltip id="2project">
+                    <img
+                      style={{ width: 400 }}
+                      src={env.PUBLIC_URL + "/assets/2project.png"}
+                      alt="카페 소개"
+                    />
+                  </ReactTooltip>
+                  <a
+                    target="blank_"
+                    href="https://chuhongkyu.github.io/mapoCharacter/"
+                  >
+                    <h2 data-tip="" data-for="2project">
+                      두번째 프로젝트 - (마포 버디즈)
+                    </h2>
+                  </a>
+
                   <p>
-                    캐릭터 팀과 협업하여 캐릭터를 소개하는 홈페이지를 만들기로
-                    했습니다. 저와 함께할 팀원들이 굉장히 적극적인 팀이라
-                    여러가지 저에게 요구를 한다면 힘들겠지만 최대한 들어주겠다는
-                    생각으로 회의에 참여하였습니다. 하지만 IT에 대해 전혀 모르는
-                    기획자와 회의를 하는 것은 굉장히 어려웠습니다. 캐릭터를
-                    소개하는 홈페이지만이 아니라 구독 기능, 굿즈 페이지등 다양한
-                    것을 요구했습니다. 회의는 그렇게 한번이 아니라 5번이 되어
-                    3주를 남은 상태에서 개발을 할 수 있게 되었습니다.
+                    2022년 마포구 일자리 사업단의 주요 과업은 마포구를 대표하는
+                    캐릭터를 만드는 것입니다. 웹 개발 팀은 그 캐릭터와 함께
+                    관련된 사이트와 게임 등으로 캐릭터 홍보에 도움을 주는
+                    것입니다. 저는 캐릭터 팀 중 가장 적극적인 팀이였던 '마포
+                    버디즈'라는 캐릭터 팀과 함께 협업을 하기로 하였습니다.
                   </p>
+                  <p>
+                    마포 버디즈 캐릭터는 마포에 소식을 전하는 캐릭터들 입니다.
+                    홈페이지의 주요 기능에 유저가 자신의 메일과 이름을 입력하면
+                    캐릭터들이 소식을 전해주는 컨셉입니다.
+                  </p>
+                  <p>
+                    <a
+                      target="blank_"
+                      href="https://github.com/chuhongkyu/mapoCharacter#readme"
+                    >
+                      github
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <h2>{write.about[2].sub_title1}</h2>
+                  <p>{write.about[2].sub_txt1}</p>
+                </div>
+                <div>
+                  <h2>{write.about[2].sub_title2}</h2>
+                  <p>{write.about[2].sub_txt2}</p>
+                </div>
+                <div>
+                  <h2>{write.about[2].sub_title3}</h2>
+                  <p>{write.about[2].sub_txt3}</p>
                 </div>
               </SubText>
             ) : null}
