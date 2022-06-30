@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   width: 500px;
   display: flex;
   justify-content: flex-start;
+  font-family: sans-serif;
   h1 {
     font-size: 50px;
     color: white;

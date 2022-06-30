@@ -21,6 +21,7 @@ const ProfilContainer = styled.div`
   align-items: center;
   flex-direction: column;
   transition: 0.5s;
+  font-family: sans-serif;
   h2 {
     margin-top: 20px;
     font-size: 20px;
@@ -55,11 +56,17 @@ const Face = styled.div`
 `;
 
 const Conact = styled(motion.span)`
-  padding: 5px 10px;
-  background-color: ${(props) => props.theme.white.darker};
+  padding: 5px 10px 3px 10px;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
   margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.5s;
+  background: linear-gradient(100deg, black 50%, white 50%);
+  background-size: 220% 100%;
+  background-position: right bottom;
+  cursor: pointer;
 `;
 
 const MainContainer = styled.div`
@@ -70,6 +77,7 @@ const MainContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 50px;
+  font-family: sans-serif;
   h1 {
     font-size: 40px;
   }
@@ -102,14 +110,19 @@ const PickItem = styled.div`
 `;
 
 const Resume = () => {
+  const onCopy = (e) => {
+    e.preventDefault();
+    e.clipboardData.setData("chuhongkyu@gmail.com");
+  };
   return (
     <WindowModal bgColor="white">
       <ProfilContainer>
         <Face />
         <h2>추홍규</h2>
         <Conact
+          onClick={(e) => onCopy(e)}
           whileHover={{
-            backgroundColor: "black",
+            backgroundPosition: "left bottom",
             color: "white",
             transition: { duration: 0.5, ease: "linear" },
           }}
