@@ -8,8 +8,24 @@ import { RecoilRoot } from "recoil";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
+const FontUrl = `${env.PUBLIC_URL}/assets/fonts/`;
+
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@font-face {
+  font-family: "Maple_story";
+  src: local("Maple_story"), url(${FontUrl}Maplestory_Bold.ttf?#iefix) format("truetype"),
+  url(${FontUrl}Maplestory_OTF_Bold.otf) format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Maple_story";
+  src: local("Maple_story"), url(${FontUrl}Maplestory_Light.ttf?#iefix) format("truetype"),
+  url(${FontUrl}Maplestory_OTF_Light.otf) format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -36,7 +52,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	font-family: 'Black Han Sans', sans-serif;
+	font-family: "Maple_story";
 	line-height: 1.4;
 	color: ${(props) => props.theme.black.darker};
 	background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
