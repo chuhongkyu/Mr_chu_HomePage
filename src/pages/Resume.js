@@ -43,6 +43,9 @@ const ProfilContainer = styled.div`
       ),
       url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
   }
+  @media ${(props) => props.theme.device.mobile} {
+    display: none;
+  }
 `;
 
 const Face = styled.div`
@@ -81,8 +84,19 @@ const MainContainer = styled.div`
   flex-direction: column;
   padding: 50px;
   font-family: sans-serif;
+  h3 {
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
   h1 {
     font-size: 40px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
+    padding: 40px 20px 0px 20px;
+    h1 {
+      font-size: 30px;
+    }
   }
 `;
 
@@ -91,7 +105,7 @@ const ProfilGrid = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  gap: 3px;
 `;
 
 const PickItem = styled.div`
@@ -99,16 +113,21 @@ const PickItem = styled.div`
   height: 100%;
   padding: 10px;
   grid-row: span 2;
-  h3 {
-    font-size: 25px;
-    margin-bottom: 30px;
-  }
   div {
     display: flex;
     justify-content: space-between;
   }
   hr {
     margin: 5px 0px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 11px;
+    }
   }
 `;
 

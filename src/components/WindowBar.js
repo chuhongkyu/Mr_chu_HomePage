@@ -23,7 +23,7 @@ const Bar = styled.div`
 `;
 
 const BarBox = styled.div`
-  width: 10vw;
+  width: 200px;
   height: 100%;
   display: flex;
   justify-content: space-between;

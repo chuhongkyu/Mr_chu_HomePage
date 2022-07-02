@@ -13,6 +13,21 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  @media ${(props) => props.theme.device.mobile} {
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    @media ${(props) => props.theme.device.mobile} {
+      h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 11px;
+      }
+    }
+  }
 `;
 
 function ProfileItem({ title, children }) {

@@ -40,6 +40,7 @@ const MainText = styled.div`
   h5 {
     font-size: 25px;
     cursor: pointer;
+    white-space: nowrap;
     &:hover {
       font-weight: 600;
     }
