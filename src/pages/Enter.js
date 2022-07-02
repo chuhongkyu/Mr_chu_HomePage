@@ -37,6 +37,14 @@ const Circle = styled(motion.div)`
   background-position: center;
   background-size: cover;
   border: 2px solid white;
+  @media ${(props) => props.theme.device.tablet} {
+    width: 90px;
+    height: 90px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const openVariants = {

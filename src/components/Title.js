@@ -13,6 +13,20 @@ const Wrapper = styled.div`
     font-weight: 800;
     white-space: nowrap;
   }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 500px;
+    h1 {
+      font-size: 40px;
+      font-weight: 500;
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: 500px;
+    margin-left: 200px;
+    h1 {
+      font-size: 25px;
+    }
+  }
 `;
 
 const textArr = "Welcome to Mr. Chu's Homepage";
