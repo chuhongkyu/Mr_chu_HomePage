@@ -12,7 +12,7 @@ const Position = styled.div`
   position: absolute;
   top: 5px;
   left: 5px;
-  z-index: 5;
+  z-index: 10;
   display: flex;
   justify-content: center;
 `;

@@ -45,9 +45,13 @@ const OpenItem = styled.div`
 `;
 
 function WindowBar() {
+  const [slide, setSlide] = useState(false);
   const navigate = useNavigate();
   const onExit = () => {
     navigate("/home");
+  };
+  const onHandleSlide = () => {
+    setSlide(!slide);
   };
   const resumeMatch = useMatch("/home/resume");
   const aboutMatch = useMatch("/home/about");
@@ -65,7 +69,11 @@ function WindowBar() {
   return (
     <Bar>
       <BarBox>
-        <img src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"} alt="mr.chu" />
+        <img
+          onClick={onHandleSlide}
+          src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
+          alt="mr.chu"
+        />
         {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
         {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
         {othersMatch && <OpenItem onClick={onExit}>Others</OpenItem>}

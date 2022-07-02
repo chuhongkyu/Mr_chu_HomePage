@@ -3,11 +3,14 @@ import styled from "styled-components";
 import ProfileItem from "../components/ProfileItem";
 import WindowModal from "../components/WindowModal";
 import ReactTooltip from "react-tooltip";
+import { useEffect, useState } from "react";
+import Alert from "../components/Alert";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ProfilContainer = styled.div`
+  position: relative;
   width: 30%;
   height: 100%;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
@@ -110,15 +113,26 @@ const PickItem = styled.div`
 `;
 
 const Resume = () => {
+  const [alert, setAlert] = useState(false);
   const onCopy = (e) => {
-    e.preventDefault();
+    setAlert(!alert);
     e.clipboardData.setData("chuhongkyu@gmail.com");
+    e.preventDefault();
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert(false);
+    }, 1500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [alert]);
   return (
     <WindowModal bgColor="white">
       <ProfilContainer>
         <Face />
         <h2>추홍규</h2>
+        {alert ? <Alert /> : null}
         <Conact
           onClick={(e) => onCopy(e)}
           whileHover={{

@@ -70,6 +70,16 @@ const SubText = styled(motion.div)`
   }
 `;
 
+const ReadMe = styled.a`
+  padding: 5px 15px;
+  background-color: black;
+  color: white;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+`;
+
 const About = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState({
@@ -166,8 +176,8 @@ const About = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div>
-                  <h2>{write.about[2].sub_title4}</h2>
-                  <p>{write.about[2].sub_txt4}</p>
+                  <h2>{write.about[2].sub_title1}</h2>
+                  <p>{write.about[2].sub_txt1}</p>
                   <div>
                     <ReactTooltip id="book">
                       <img
@@ -221,12 +231,12 @@ const About = () => {
                     해결했던 점과 못했던 점을 발표했습니다.
                   </p>
                   <p>
-                    <a
+                    <ReadMe
                       target="blank_"
                       href="https://github.com/chuhongkyu/Cafe_HomePage#readme"
                     >
-                      github
-                    </a>
+                      README.md
+                    </ReadMe>
                   </p>
                 </div>
                 <div>
@@ -245,7 +255,6 @@ const About = () => {
                       두번째 프로젝트 - (마포 버디즈)
                     </h2>
                   </a>
-
                   <p>
                     2022년 마포구 일자리 사업단의 주요 과업은 마포구를 대표하는
                     캐릭터를 만드는 것입니다. 웹 개발 팀은 그 캐릭터와 함께
@@ -259,25 +268,13 @@ const About = () => {
                     캐릭터들이 소식을 전해주는 컨셉입니다.
                   </p>
                   <p>
-                    <a
+                    <ReadMe
                       target="blank_"
                       href="https://github.com/chuhongkyu/mapoCharacter#readme"
                     >
-                      github
-                    </a>
+                      README.md
+                    </ReadMe>
                   </p>
-                </div>
-                <div>
-                  <h2>{write.about[2].sub_title1}</h2>
-                  <p>{write.about[2].sub_txt1}</p>
-                </div>
-                <div>
-                  <h2>{write.about[2].sub_title2}</h2>
-                  <p>{write.about[2].sub_txt2}</p>
-                </div>
-                <div>
-                  <h2>{write.about[2].sub_title3}</h2>
-                  <p>{write.about[2].sub_txt3}</p>
                 </div>
               </SubText>
             ) : null}
