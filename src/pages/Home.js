@@ -26,6 +26,13 @@ const Boards = styled.div`
   display: flex;
   justify-content: center;
   width: 50%;
+  @media ${(props) => props.theme.device.tablet} {
+    width: 70%;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 10px 10px;
+    width: 100%;
+  }
 `;
 
 const Home = () => {

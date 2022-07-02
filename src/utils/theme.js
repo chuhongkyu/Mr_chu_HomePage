@@ -14,4 +14,8 @@ export const theme = {
   universe:
     "linear-gradient(190deg, rgb(22, 27, 42), rgb(166, 115, 126), rgb(238,188,17) )",
   shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  device: {
+    mobile: "screen and (max-width: 768px)",
+    tablet: "screen and (max-width: 1024px)",
+  },
 };

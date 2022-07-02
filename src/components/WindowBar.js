@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Menu from "./Menu";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -67,21 +68,23 @@ function WindowBar() {
   }, []);
 
   return (
-    <Bar>
-      <BarBox>
-        <img
-          onClick={onHandleSlide}
-          src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
-          alt="mr.chu"
-        />
-        {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
-        {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
-        {othersMatch && <OpenItem onClick={onExit}>Others</OpenItem>}
-        {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
-      </BarBox>
-
-      <span>{time.toLocaleTimeString()}</span>
-    </Bar>
+    <>
+      {slide ? <Menu /> : null}
+      <Bar>
+        <BarBox>
+          <img
+            onClick={onHandleSlide}
+            src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
+            alt="mr.chu"
+          />
+          {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
+          {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
+          {othersMatch && <OpenItem onClick={onExit}>Others</OpenItem>}
+          {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
+        </BarBox>
+        <span>{time.toLocaleTimeString()}</span>
+      </Bar>
+    </>
   );
 }
 

@@ -24,6 +24,25 @@ const App = styled.div`
       font-size: 12px;
     }
   }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 60px;
+    height: 60px;
+    img {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    p {
+      font-size: 11px;
+    }
+  }
 `;
 
 const AppLink = ({ title, img, pathUrl }) => {
