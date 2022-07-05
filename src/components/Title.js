@@ -44,10 +44,8 @@ const Title = () => {
         setText(copyArr);
         setTimeout(() => makeText(newArr), 80);
       } else {
-        // console.log("end");
         return clearTimeout();
       }
-      //console.log(text);
     };
     makeText(textArrS);
   }, []);
