@@ -16,6 +16,9 @@ const Container = styled(motion.div)`
   .left_side {
     width: 20%;
     height: 100%;
+    display: grid;
+    gap: 2px;
+    grid-auto-flow: row;
   }
   .grid_side {
     width: 80%;
@@ -60,7 +63,9 @@ const Variants = {
 const Menu = () => {
   return (
     <Container variants={Variants} initial="initial" animate="animate">
-      <div className="left_side">✔️</div>
+      <div className="left_side">
+        <span>dd</span>
+      </div>
       <div className="grid_side">
         <div className="grid_tom">
           <Item></Item>

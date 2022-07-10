@@ -87,12 +87,12 @@ a{
   user-select: none;
 }
 ::-moz-selection {
-   background: black;
-   color: #fff;
+   background: ${(props) => props.theme.black.darker};
+   color: ${(props) => props.theme.white.lighter};
 }
 ::selection {
-   background: black;
-   color: #fff;
+   background: ${(props) => props.theme.black.darker};
+   color: ${(props) => props.theme.white.lighter};
 }
 `;
 

@@ -180,6 +180,7 @@ const About = () => {
                   <h2>{write.about[2].sub_title1}</h2>
                   <p>{write.about[2].sub_txt1}</p>
                   <div>
+                    <h2>책</h2>
                     <ReactTooltip id="book">
                       <img
                         src={
@@ -190,13 +191,15 @@ const About = () => {
                     </ReactTooltip>
                     <p>
                       'IT용어 정리' 지금의 회사에 들어와서 처음 했던 일 입니다.
-                      WBS,ASSAP등의 단어들을 PM님이 갈켜주셔서 공부했습니다.
+                      PM님께서 실무 단어 정리를 해주셨습니다. WBS,ASSAP등의
+                      단어들이 무엇인지 공부했습니다. 그리고
                       <span data-for="book" data-tip="">
                         '비전공자를 위한 이해할 수 있는 it 지식 - 최원영'
                       </span>{" "}
-                      책을 읽었습니다. 굉장히 재미있고 프론트엔드가 아닌 다른
-                      분야 개발에 대해서도 조금 알게 되었습니다.
+                      책을 추천 받게 되었습니다. 굉장히 재미있고 프론트엔드가
+                      아닌 다른 분야 개발에 대해서도 조금 알게 되었습니다.
                     </p>
+                    <p>모던 자바스크립트 Deep Dive</p>
                   </div>
                   <div>
                     <p>
