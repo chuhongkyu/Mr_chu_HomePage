@@ -9,6 +9,7 @@ import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
 import Others from "./Others";
+import Clone from "./Clone";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,8 +31,11 @@ const Boards = styled.div`
     width: 70%;
   }
   @media ${(props) => props.theme.device.mobile} {
+    align-items: flex-end;
+    flex-direction: column;
     padding: 10px 10px;
     width: 100%;
+    height: 70%;
   }
 `;
 
@@ -69,6 +73,7 @@ const Home = () => {
         <Route path="about" element={<About />} />
         <Route path="github" element={<GitHub />} />
         <Route path="others" element={<Others />} />
+        <Route path="clone" element={<Clone />} />
       </Routes>
       <WindowBar />
     </Wrapper>
