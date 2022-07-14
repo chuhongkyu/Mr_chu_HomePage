@@ -9,9 +9,10 @@ const Container = styled.div`
 
 const List = styled.div`
   width: 100%;
-  height: 20vh;
+  height: 21vh;
   padding: 5px;
   overflow-x: scroll;
+  overflow-y: hidden;
   display: flex;
   cursor: pointer;
   &::-webkit-scrollbar {

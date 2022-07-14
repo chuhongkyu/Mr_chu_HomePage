@@ -121,9 +121,8 @@ const Others = () => {
           <GameText>
             <p>내용: </p>
             <p>
-              Slimes are moving in the drawer.
-              <br /> You should not let the slime bump into each other. <br />{" "}
-              Drag and drop~
+              Sticker Slime 슬라임들이 스티커로 돌아 왔어요.
+              <br />
             </p>
           </GameText>
         </TextBox>
