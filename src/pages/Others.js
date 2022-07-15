@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Item from "../components/Item";
 import SliderContainer from "../components/SliderContainer";
 import WindowModal from "../components/WindowModal";
-import { icons } from "../utils/icons";
+import { drawers, stickers } from "../utils/icons";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -15,6 +15,7 @@ const OnePerson = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  overflow-y: scroll;
   h1 {
     font-size: 25px;
   }
@@ -95,9 +96,14 @@ const Others = () => {
         </TextBox>
 
         <IconDescription>
-          <SliderContainer>
-            {icons.map((icon, index) => (
-              <Item key={index} imgSrc={icon.imgSrc} alt={icon.name} />
+          <SliderContainer height="21vh">
+            {drawers.map((drawer, index) => (
+              <Item
+                key={index}
+                wSize={"20vw"}
+                imgSrc={drawer.imgSrc}
+                alt={drawer.name}
+              />
             ))}
           </SliderContainer>
         </IconDescription>
@@ -126,6 +132,19 @@ const Others = () => {
             </p>
           </GameText>
         </TextBox>
+
+        <IconDescription>
+          <SliderContainer height="300px">
+            {stickers.map((sticker, index) => (
+              <Item
+                key={index}
+                wSize={"120px"}
+                imgSrc={sticker.imgSrc}
+                alt={sticker.name}
+              />
+            ))}
+          </SliderContainer>
+        </IconDescription>
       </OnePerson>
     </WindowModal>
   );

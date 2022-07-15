@@ -2,25 +2,21 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import throttle from "../utils/throttle";
 
-const Container = styled.div`
-  width: 100%;
-  overflow-x: hidden;
-`;
-
 const List = styled.div`
   width: 100%;
-  height: 21vh;
   padding: 5px;
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   cursor: pointer;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const SliderContainer = ({ children }) => {
+const SliderContainer = ({ height, children }) => {
   const scrollRef = useRef(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState();
@@ -52,17 +48,16 @@ const SliderContainer = ({ children }) => {
   const delay = 100;
   const onThrottleDragMove = throttle(onDragMove, delay);
   return (
-    <Container>
-      <List
-        ref={scrollRef}
-        onMouseDown={onDragStart}
-        onMouseMove={isDrag ? onThrottleDragMove : null}
-        onMouseUp={onDragEnd}
-        onMouseLeave={onDragEnd}
-      >
-        {children}
-      </List>
-    </Container>
+    <List
+      style={{ height: height }}
+      ref={scrollRef}
+      onMouseDown={onDragStart}
+      onMouseMove={isDrag ? onThrottleDragMove : null}
+      onMouseUp={onDragEnd}
+      onMouseLeave={onDragEnd}
+    >
+      {children}
+    </List>
   );
 };
 

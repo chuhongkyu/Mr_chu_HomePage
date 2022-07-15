@@ -9,15 +9,12 @@ const Container = styled.div`
   align-items: center;
   margin-right: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  img {
-    width: 20vw;
-  }
 `;
 
-const Item = ({ imgSrc, name }) => {
+const Item = ({ imgSrc, name, wSize }) => {
   return (
     <Container>
-      <img src={env.PUBLIC_URL + imgSrc} alt={name} />
+      <img style={{ width: wSize }} src={env.PUBLIC_URL + imgSrc} alt={name} />
     </Container>
   );
 };
