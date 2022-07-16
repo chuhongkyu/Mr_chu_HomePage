@@ -9,7 +9,6 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const OnePerson = styled.div`
   width: 100%;
-  height: 100vh;
   padding: 50px 20px;
   display: flex;
   justify-content: flex-start;
@@ -56,6 +55,7 @@ const GameText = styled.div`
 
 const IconDescription = styled.div`
   width: 100%;
+  margin-bottom: 50px;
 `;
 
 const Others = () => {
@@ -127,8 +127,8 @@ const Others = () => {
           <GameText>
             <p>내용: </p>
             <p>
-              Sticker Slime 슬라임들이 스티커로 돌아 왔어요.
-              <br />
+              슬라임들이 스티커로 돌아 왔어요.
+              <br /> 다양한 슬라임들과 함께 하늘에서 떨어지는 물건들을 피하세요.
             </p>
           </GameText>
         </TextBox>
