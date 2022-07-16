@@ -5,7 +5,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Container = styled(motion.div)`
-  width: 20vw;
+  width: 300px;
   height: 100vh;
   background-color: ${(props) => props.theme.black.cloud};
   position: absolute;
@@ -13,6 +13,7 @@ const Container = styled(motion.div)`
   transform-origin: bottom;
   padding-bottom: 40px;
   display: flex;
+  overflow-x: hidden;
   .left_side {
     width: 20%;
     height: 100%;
@@ -64,7 +65,7 @@ const Menu = () => {
   return (
     <Container variants={Variants} initial="initial" animate="animate">
       <div className="left_side">
-        <span>dd</span>
+        <span>icon</span>
       </div>
       <div className="grid_side">
         <div className="grid_tom">

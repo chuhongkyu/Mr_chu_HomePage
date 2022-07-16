@@ -265,6 +265,7 @@ const About = () => {
                     </ReadMe>
                   </p>
                 </div>
+
                 <div>
                   <ReactTooltip id="2project">
                     <img
@@ -293,6 +294,37 @@ const About = () => {
                     캐릭터들의 컨셉과 맞게 홈페이지의 주요 기능에는 유저가
                     자신의 메일과 이름을 입력하면 이쁜 캐릭터 소개 메일을 받을
                     수 있습니다.
+                  </p>
+                  <p>
+                    <ReadMe
+                      target="blank_"
+                      href="https://github.com/chuhongkyu/mapoCharacter#readme"
+                    >
+                      README.md
+                    </ReadMe>
+                  </p>
+                </div>
+
+                <div>
+                  <ReactTooltip id="3project">
+                    <img
+                      style={{ width: 400 }}
+                      src={env.PUBLIC_URL + "/assets/3project.png"}
+                      alt="헌 옷 수거 플랫폼"
+                    />
+                  </ReactTooltip>
+                  <a
+                    target="blank_"
+                    href="https://github.com/Mapo-Project/SecondLife-frontend"
+                  >
+                    <h2 data-tip="" data-for="3project">
+                      세번째 프로젝트 - (헌 옷 수거 플랫폼)
+                    </h2>
+                  </a>
+                  <p>UX/UI: 2명/ 프론트엔드: 3명/ 백엔드: 1명</p>
+                  <p>
+                    현재 진행형: 헌 옷을 수거하여 이쁘게 사진을 찍어 판매해주는
+                    플랫폼
                   </p>
                   <p>
                     <ReadMe
