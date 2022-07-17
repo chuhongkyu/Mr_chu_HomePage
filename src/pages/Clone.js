@@ -11,6 +11,12 @@ const MainContainer = styled.div`
   padding: 50px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  hr {
+    margin: 10px 0px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 50px 30px;
+  }
 `;
 
 const Handle = styled.div`
@@ -33,10 +39,23 @@ const Handle = styled.div`
     color: rgb(230, 220, 220);
     transition: 0.5s;
   }
+  @media ${(props) => props.theme.device.tablet} {
+    h1 {
+      font-size: 22px;
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h1 {
+      font-size: 19px;
+    }
+  }
 `;
 
 const Title = styled.h1`
   font-size: 25px;
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 20px;
+  }
 `;
 const SubTitle = styled.p`
   font-size: 15px;

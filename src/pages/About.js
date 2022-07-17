@@ -29,6 +29,18 @@ const MainContainer = styled.div`
       margin-bottom: 10px;
     }
   }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 50px 30px;
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    div {
+      p {
+        font-size: 12px;
+      }
+    }
+  }
 `;
 
 const MainText = styled.div`
@@ -46,6 +58,11 @@ const MainText = styled.div`
     }
     span {
       user-select: none;
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h5 {
+      font-size: 19px;
     }
   }
 `;
@@ -67,6 +84,20 @@ const SubText = styled(motion.div)`
     span {
       text-decoration: underline;
       margin-left: 10px;
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h2 {
+      font-size: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    div {
+      p {
+        color: rgba(50, 50, 50, 1);
+        margin-bottom: 10px;
+        font-size: 12px;
+      }
     }
   }
 `;
