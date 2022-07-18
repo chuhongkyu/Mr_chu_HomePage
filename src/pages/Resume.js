@@ -24,7 +24,7 @@ const ProfileContainer = styled.div`
   align-items: center;
   flex-direction: column;
   transition: 0.5s;
-  font-family: "Times New Roman", Times, serif;
+  font-family: sans-serif;
   h2 {
     margin-top: 20px;
     font-size: 20px;
@@ -83,7 +83,7 @@ const MainContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 50px;
-  font-family: sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   h3 {
     font-size: 25px;
     margin-bottom: 30px;
