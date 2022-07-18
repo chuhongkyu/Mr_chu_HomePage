@@ -14,12 +14,12 @@ const MainContainer = styled.div`
   padding: 50px;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  h1 {
+  .title {
     font-size: 40px;
     font-weight: 800;
     margin-bottom: 10px;
   }
-  div {
+  .description {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -31,345 +31,145 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     padding: 50px 30px;
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-    }
-    div {
-      p {
-        font-size: 12px;
-      }
-    }
   }
+`;
+
+const Introduction = styled.div`
+  width: 100%;
+  margin-top: 5px;
 `;
 
 const MainText = styled.div`
-  width: 100%;
   display: flex;
-  align-items: center;
-  margin-top: 30px;
-  padding: 5px;
-  h5 {
-    font-size: 25px;
-    cursor: pointer;
-    white-space: nowrap;
-    &:hover {
-      font-weight: 600;
-    }
-    span {
-      user-select: none;
-    }
+  font-size: 25px;
+  span {
+    margin-right: 10px;
   }
-  @media ${(props) => props.theme.device.mobile} {
-    h5 {
-      font-size: 19px;
-    }
+  h1 {
   }
 `;
 
-const SubText = styled(motion.div)`
-  margin-top: 20px;
-  h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
-    font-weight: 600;
-  }
-  div {
-    margin-bottom: 20px;
-    p {
-      color: rgba(50, 50, 50, 1);
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    span {
-      text-decoration: underline;
-      margin-left: 10px;
-    }
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    h2 {
-      font-size: 15px;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    div {
-      p {
-        color: rgba(50, 50, 50, 1);
-        margin-bottom: 10px;
-        font-size: 12px;
-      }
-    }
+const Description = styled.div`
+  margin: 10px 50px;
+  font-size: 15px;
+  margin-bottom: 40px;
+  p {
   }
 `;
 
-const ReadMe = styled.a`
-  padding: 5px 15px;
-  background-color: black;
-  color: white;
-  &:hover {
-    background-color: white;
-    color: black;
-  }
-`;
+const MainTextArray = [
+  "관심 있는 개발 분야 소개",
+  "개발자를 선택하게 된 이유",
+  "다른 사람과 구별되는 나만의 강점",
+  "성격의 장점과 단점",
+];
 
 const About = () => {
-  const [show, setShow] = useState(false);
-  const [open, setOpen] = useState({
-    firstCode: false,
-    codeFeel: false,
-    nowCode: false,
-  });
-
-  const { firstCode, codeFeel, nowCode } = open;
-
-  const onClick = (e) => {
-    setShow(!show);
-    setOpen({
-      ...open,
-      [e.target.getAttribute("name")]: !show,
-    });
-    console.log(open);
-    console.log("show:" + show);
-    e.stopPropagation();
-  };
   return (
     <WindowModal bgColor="white">
       <MainContainer>
-        <h1>자기소개</h1>
-        <div>
+        <h1 className="title">자기소개</h1>
+        <div className="description">
           <p>
             {write.introduction.substring(0, 53)}
             <br />
             {write.introduction.substring(53)}
           </p>
-          <MainText>
-            <h5 name={"firstCode"} onClick={onClick} value={firstCode}>
-              <span>📌</span> {write.about[0].main_txt}
-            </h5>
-            {open.firstCode ? (
-              <SubText
-                initial={{ translateY: -300, opacity: 0 }}
-                animate={{ translateY: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div>
-                  <ReactTooltip id="media">
-                    <img
-                      style={{ width: 400 }}
-                      src={env.PUBLIC_URL + "/assets/media.png"}
-                      alt="미디어 작품"
-                    />
-                  </ReactTooltip>
-                  <p>
-                    대학원에서 아두이노 센서를 활용해 자동 주행 비행선을
-                    제작하며 처음 코딩을 접하게 되었습니다. 그 후 자바 기반
-                    미디어 아트 프로그램 프로세싱 툴을 다루면서 본격적으로
-                    코딩으로 아트를 하게 되었습니다.
-                    <span data-for="media" data-tip="">
-                      뉴미디어 아트 작품
-                    </span>
-                    코딩은 제가 할 수 없던 영역의 일을 점점할 수 있게
-                    만들어주었습니다. 결국 점차 재미를 느끼게 되었습니다.
-                  </p>
-                </div>
-                <div>
-                  <p>{write.about[0].sub_txt2}</p>
-                </div>
-                <div>
-                  <p>{write.about[0].sub_txt3}</p>
-                </div>
-              </SubText>
-            ) : null}
-          </MainText>
-          <MainText>
-            <h5 name={"codeFeel"} onClick={onClick} value={codeFeel}>
-              <span>📌</span> {write.about[1].main_txt}
-            </h5>
-            {open.codeFeel ? (
-              <SubText
-                initial={{ translateY: -300, opacity: 0 }}
-                animate={{ translateY: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div>
-                  <p>{write.about[1].sub_txt1}</p>
-                </div>
-              </SubText>
-            ) : null}
-          </MainText>
-          <MainText>
-            <h5 name={"nowCode"} onClick={onClick} value={nowCode}>
-              <span>📌</span> {write.about[2].main_txt}
-            </h5>
-            {open.nowCode ? (
-              <SubText
-                initial={{ translateY: -300, opacity: 0 }}
-                animate={{ translateY: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div>
-                  <h2>{write.about[2].sub_title1}</h2>
-                  <p>{write.about[2].sub_txt1}</p>
-                  <div>
-                    <ReactTooltip id="book">
-                      <img
-                        style={{ width: 150, height: 240 }}
-                        src={
-                          "http://image.kyobobook.co.kr/images/book/large/033/l9791196918033.jpg"
-                        }
-                        alt="비전공자를 위한"
-                      />
-                    </ReactTooltip>
-                    <p>
-                      'IT용어 정리' 지금의 회사에 들어와서 처음 했던 일입니다.
-                      앞서 말한 것처럼 개발자 간에 소통하는 데 있어서 용어를
-                      모르면 안 됩니다. 그러한 저에게 PM님께서 실무 단어 정리와
-                      책을 추천해 주셨습니다. WBS, ASAP등 회사에서 사용하는
-                      단어들을 정리하며 표를 만들었습니다. 또한
-                      <span data-for="book" data-tip="">
-                        '비전공자를 위한 이해할 수 있는 it 지식 - 최원영'
-                      </span>{" "}
-                      을 읽었습니다. 이 책은 굉장히 재미있었고 프론트엔드가 아닌
-                      다른 분야 개발에 대해서도 조금 알게 되었습니다.
-                    </p>
-                    <ReactTooltip id="book2">
-                      <img
-                        style={{ width: 150, height: 240 }}
-                        src={"http://image.yes24.com/goods/92742567/XL"}
-                        alt="모던 자바스크립트"
-                      />
-                    </ReactTooltip>
-                    <p>
-                      자바스크립트 원리에 대한 이해도를 높이고 다른 개발자가
-                      자바스크립트에 대해 질문을 한다면 멋지게 대답할 수 있는
-                      사람이 되고 싶었습니다. 많은 유튜버와 주변인들이 추천해준
-                      <span data-for="book2" data-tip="">
-                        모던 자바스크립트 Deep Dive
-                      </span>
-                      를 사서 계속 읽기로 했습니다. 현재도 자주 반복해서 읽고
-                      있는 중일 것입니다.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      프론트 엔드 팀원 중에 욕심이 있는 사람(3명)끼리 리액트
-                      스터디를 하였습니다. 스터디는 벨로퍼트 리액트 docs를 통한
-                      리액트 원리와 개념에 대해 공부했습니다. 매번 발표 또는
-                      질문을 서로에게 하고 코딩 과제 리뷰를 해왔습니다. 스터디가
-                      끝난 후에는 노션을 통해 느낀 점과 스터디에 대한 피드백을
-                      정리하고 코딩 과제를 수행합니다. 스터디를 하다 보니 같은
-                      문서를 보고 공부해도 사람마다 관심이 생기는 곳이 달라서
-                      공부를 3배나 더 하게 되었습니다. 그리고 팀원들에 해주는
-                      질문들 속에서 많이 성장할 수 있었습니다. 한 달 반 동안
-                      진행한 스터디는 힘들었지만 많은 것을 배우고 느끼게
-                      해주었습니다.
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <ReactTooltip id="1project">
-                    <img
-                      style={{ width: 400 }}
-                      src={env.PUBLIC_URL + "/assets/1project.png"}
-                      alt="카페 소개"
-                    />
-                  </ReactTooltip>
-                  <a target="blank_" href="https://mapocafe.netlify.app/">
-                    <h2 data-tip="" data-for="1project">
-                      첫 프로젝트 - (마포구 이쁜 카페 소개 10선)
-                    </h2>
-                  </a>
-                  <p>
-                    팀의 첫 프로젝트는 개개인마다 Html/Css와 바닐라 자바스크립트
-                    만으로 마포구 관련 사이트를 만드는 것이었습니다. 기획의도,
-                    와이어프레임, 스토리보드 등을 제작하여 중간 발표를 하고
-                    개발을 하는 형식이였습니다. 5월에는 완성된 홈페이지를
-                    배포하고 홈페이지를 만들면서 겪은 애로사항들과 그것을
-                    해결했던 점과 못했던 점을 발표했습니다.
-                  </p>
-                  <p>
-                    <ReadMe
-                      target="blank_"
-                      href="https://github.com/chuhongkyu/Cafe_HomePage#readme"
-                    >
-                      README.md
-                    </ReadMe>
-                  </p>
-                </div>
-
-                <div>
-                  <ReactTooltip id="2project">
-                    <img
-                      style={{ width: 400 }}
-                      src={env.PUBLIC_URL + "/assets/2project.png"}
-                      alt="카페 소개"
-                    />
-                  </ReactTooltip>
-                  <a
-                    target="blank_"
-                    href="https://chuhongkyu.github.io/mapoCharacter/"
-                  >
-                    <h2 data-tip="" data-for="2project">
-                      두번째 프로젝트 - (마포 버디즈)
-                    </h2>
-                  </a>
-                  <p>
-                    2022년 마포구 일자리 사업단의 주요 과업은 마포구를 대표하는
-                    캐릭터를 만드는 것입니다. 웹 개발 팀은 그 캐릭터와 함께
-                    관련된 사이트와 게임 등으로 캐릭터 홍보에 도움을 주는
-                    것입니다. 저는 캐릭터 팀 중 가장 적극적인 팀이였던 '마포
-                    버디즈'라는 캐릭터 팀과 함께 협업을 하기로 하였습니다.
-                  </p>
-                  <p>
-                    마포 버디즈는 마포에 소식을 전하는 캐릭터들 입니다.
-                    캐릭터들의 컨셉과 맞게 홈페이지의 주요 기능에는 유저가
-                    자신의 메일과 이름을 입력하면 이쁜 캐릭터 소개 메일을 받을
-                    수 있습니다.
-                  </p>
-                  <p>
-                    <ReadMe
-                      target="blank_"
-                      href="https://github.com/chuhongkyu/mapoCharacter#readme"
-                    >
-                      README.md
-                    </ReadMe>
-                  </p>
-                </div>
-
-                <div>
-                  <ReactTooltip id="3project">
-                    <img
-                      style={{ width: 400 }}
-                      src={env.PUBLIC_URL + "/assets/3project.png"}
-                      alt="헌 옷 수거 플랫폼"
-                    />
-                  </ReactTooltip>
-                  <a
-                    target="blank_"
-                    href="https://github.com/Mapo-Project/SecondLife-frontend"
-                  >
-                    <h2 data-tip="" data-for="3project">
-                      세번째 프로젝트 - (헌 옷 수거 플랫폼)
-                    </h2>
-                  </a>
-                  <p>UX/UI: 2명/ 프론트엔드: 3명/ 백엔드: 1명</p>
-                  <p>
-                    현재 진행형: 헌 옷을 수거하여 이쁘게 사진을 찍어 판매해주는
-                    플랫폼
-                  </p>
-                  <p>
-                    <ReadMe
-                      target="blank_"
-                      href="https://github.com/chuhongkyu/mapoCharacter#readme"
-                    >
-                      README.md
-                    </ReadMe>
-                  </p>
-                </div>
-              </SubText>
-            ) : null}
-          </MainText>
         </div>
+        <Introduction>
+          <MainText>
+            <span>📌</span>
+            <h1>{MainTextArray[0]}</h1>
+          </MainText>
+          <Description>
+            <p>
+              &nbsp; 개발 공부를 하면서 제일 관심이 있는 분야는 인터랙티브한
+              홈페이지를 만드는 것 입니다. 코딩을 전문적으로 배우기 전에 미디어
+              아트나 게임을 만들고는 했습니다. 프론트엔드가 유저에게 좋은 경험을
+              선사하는 것은 작가가 그림을 전시하여 사람들로 하여금 좋은 추억을
+              만들어 주는 것과 비슷하다고 생각합니다. 현재는 취미로 CSS, 3D모델,
+              svg로 인터랙티브한 코딩 작업을 즐기고 있습니다. 무거운 이미지나
+              모델들을 다뤄야 하니 최적화에도 신경을 쓰고 있습니다. 새로운
+              훅이나 라이브러리를 보면 어떻게 하면 더 멋있는 동적인 페이지를
+              만들 수 있을까 고민하게 됩니다. 그리고 그러한 고민이 재미가 있고
+              그 원동력으로 다른 개발 분야도 공부하고 있습니다.
+            </p>
+          </Description>
+
+          <MainText>
+            <span>📌</span>
+            <h1>{MainTextArray[1]}</h1>
+          </MainText>
+          <Description>
+            <p>
+              &nbsp; 미술 전공을 하면서 돈과 시간이 없어서 표현하지 못하는
+              것들이 많았습니다. 그러나 생각보다 코딩을 하면서 컴퓨터 안에서
+              스스로가 자유롭다는 생각이 들었습니다. 앞서 말한 인터랙티브한
+              코딩이 정말 재밌어서 선택한 이유도 있지만 개발자라는 직업이 참
+              멋있는 것 같습니다. 개발자들은 직장인이지만 자신의 발전 방향을
+              골라서 회사를 정하기도 하고 문제를 자신의 도전과제로 여깁니다.
+              또한 현업에 오래 계신 개발자들은 개발 문화를 좋게 하고자 계속
+              고민해주시고 노력합니다. 깃허브의 설립부터 오픈소스로 공유를
+              목적으로 이루어져 그런 것일까? 무언가 개발자라는 직업이 다른
+              직업보다 팀원과 친근 하다고 생각합니다. 협업, 창의력이 중요하고
+              무엇보다 실력이 중요하기에 직장인들 치고는 틀에 막혀 있지 않다고
+              생각합니다. 깃허브를 이쁘게 꾸민 사람들이 많습니다. 저도
+              오픈소스로 스킬들을 마크업 해주는 코드를 사용하고 있습니다.
+              개발자로서 계속 나아가게 된다면 꼭 개발자들에게 이렇게 어떠한 작은
+              코드를 사용해 비주얼적으로 깃을 꾸민다거나 방문자 수를 알려주는
+              소스를 만들어 공유하고 싶습니다.
+            </p>
+          </Description>
+
+          <MainText>
+            <span>📌</span>
+            <h1>{MainTextArray[2]}</h1>
+          </MainText>
+          <Description>
+            <p>
+              &nbsp; 사실 실무에서 실제로 일하고 계신 프론트 엔드를 만나 본 적이
+              없기 때문에 제 장점을 비교하고 객관화하기에는 어려움이 있습니다.
+              하지만 제 경험 안에서만 비교를 해본다면 CSS에 강점이 있습니다.
+              회사에는 8년 차 개발자 PM 님이 계시지만 3월부터 8월이 되어가는
+              지금까지 CSS 적인 부분은 PM 님을 포함하여 팀원들이 저에게 물어보고
+              있습니다. 예시로 산책 코스 추천 홈페이지에서 스크롤을 내릴 때
+              코스의 선이 스크롤에 맞춰서 이쁘게 선이 만들어지며 내려오는 것을
+              만들다 던지, 빵집 홈페이지에서 마우스로 홈페이지를 클릭 시 빵
+              그림이 랜덤하게 튀어나오게 하는 법을 구글 검색 없이도 저는 상상해
+              낼 수 있었습니다. 어떤 분이 모달 창을 만드셨는데 버튼이 마지막
+              요소만 클릭 되는 경우가 있었습니다. 그래서 자바스크립트 코드에
+              문제가 있나 고민을 하셨지만 제가 확인해보니 요소들의 컴포넌트들이
+              z-index가 동일하기 때문에 발생한 일 이였습니다. opacity로 요소들을
+              숨기지말고 display: none으로 숨기라고 알려드려 해결 했습니다.
+              노마드 코더의 챌린지라는 프로그램이 있습니다. 제가 챌린지에서
+              우수작으로 통과를 하는 이유에는 코드를 잘짰던 것도 있겠지만
+              디자인을 하는 CSS를 귀찮아 하지 않았기 때문이라고 생각합니다.
+            </p>
+          </Description>
+
+          <MainText>
+            <span>📌</span>
+            <h1>{MainTextArray[3]}</h1>
+          </MainText>
+          <Description>
+            <p>
+              &nbsp; 글에서도 티를 냈을지 모르겠지만 저는 굉장히 말 앞에 전제를
+              많이 붙입니다. 예를들어 누가 “사람은 처음부터 착해?, 나뻐?”이렇게
+              묻는다면 “우리가 생각하는 ‘악’이 ‘악’이 맞다면 성악설이 맞아.”
+              이렇게 대답할 것입니다. 이러한 저의 말하는 방식에 사람들은
+              답답함을 많이 느끼는 것 같습니다. 제가 만약 누군가에게 일을 시키는
+              사람이라면 “너가 할수 있다면 해” 이렇게 말을 할 수도 있다고
+              생각합니다. 그러면 당사자는 “할수 없으면 안 해도 되나?” 이렇게
+              생각하고 안 할 수도 있습니다. 이것은 회사 조직에서 안좋게 작용 할
+              수 있습니다. 하지만 이러한 전제를 까는 것이 책임을 회피하려고
+              이야기 하는 것은 아닙니다. 저는 객관적, 절대적인 것이 세상에 없고
+              다 주관에 의해 만들어 진 것이라 생각합니다. 그래서 전제를 깔고
+              말하고는 하지만 ’제가 만약 할 수 있다. 그렇다’ 이렇게 단호하게
+              말하는 부분이 있다면 그 일을 무조건 해낼 것이고 책임감있게 완수 할
+              것입니다.
+            </p>
+          </Description>
+        </Introduction>
       </MainContainer>
     </WindowModal>
   );
