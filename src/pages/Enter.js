@@ -11,21 +11,32 @@ const Wrapper = styled(motion.section)`
   height: 100vh;
   display: flex;
   background-color: rgba(0, 0, 0, 1);
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 
 const LoginBox = styled.div`
+  width: 1000px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
-  width: 100%;
   a {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 700px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    width: 500px;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-left: 30px;
+    }
   }
 `;
 
@@ -37,13 +48,15 @@ const Circle = styled(motion.div)`
   background-position: center;
   background-size: cover;
   border: 2px solid white;
+  margin-right: 20px;
   @media ${(props) => props.theme.device.tablet} {
     width: 90px;
     height: 90px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
   }
 `;
 

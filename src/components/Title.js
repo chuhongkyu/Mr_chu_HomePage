@@ -3,9 +3,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 500px;
-  display: flex;
-  justify-content: flex-start;
   font-family: sans-serif;
   h1 {
     font-size: 50px;
@@ -14,17 +11,13 @@ const Wrapper = styled.div`
     white-space: nowrap;
   }
   @media ${(props) => props.theme.device.tablet} {
-    width: 500px;
     h1 {
-      font-size: 40px;
-      font-weight: 500;
+      font-size: 30px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 500px;
-    margin-left: 200px;
     h1 {
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 `;
@@ -57,8 +50,10 @@ const Title = () => {
   }, [blink]);
   return (
     <Wrapper>
-      <h1>{text}</h1>
-      {blink ? <h1>|</h1> : null}
+      <h1>
+        {text}
+        {blink ? "|" : null}
+      </h1>
     </Wrapper>
   );
 };
