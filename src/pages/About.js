@@ -43,6 +43,7 @@ const MainText = styled(motion.div)`
   font-size: 25px;
   margin-top: 30px;
   white-space: nowrap;
+  font-weight: bold;
   span {
     margin-right: 10px;
     user-select: none;
@@ -59,7 +60,6 @@ const Description = styled(motion.div)`
   h2 {
     font-size: 20px;
     margin-bottom: 5px;
-    font-weight: 600;
     margin-top: 50px;
   }
   p {
@@ -71,6 +71,16 @@ const Description = styled(motion.div)`
     text-decoration: underline;
     margin-left: 10px;
     margin-right: 10px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      color: rgba(50, 50, 50, 1);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
   }
 `;
 
