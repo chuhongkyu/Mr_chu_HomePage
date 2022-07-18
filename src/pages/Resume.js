@@ -9,7 +9,7 @@ import Alert from "../components/Alert";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-const ProfilContainer = styled.div`
+const ProfileContainer = styled.div`
   position: relative;
   width: 30%;
   height: 100%;
@@ -24,7 +24,7 @@ const ProfilContainer = styled.div`
   align-items: center;
   flex-direction: column;
   transition: 0.5s;
-  font-family: sans-serif;
+  font-family: "Times New Roman", Times, serif;
   h2 {
     margin-top: 20px;
     font-size: 20px;
@@ -61,7 +61,7 @@ const Face = styled.div`
   }
 `;
 
-const Conact = styled(motion.span)`
+const Contact = styled(motion.span)`
   padding: 5px 10px 3px 10px;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
@@ -100,7 +100,7 @@ const MainContainer = styled.div`
   }
 `;
 
-const ProfilGrid = styled.div`
+const ProfileGrid = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
@@ -148,11 +148,11 @@ const Resume = () => {
   }, [alert]);
   return (
     <WindowModal bgColor="white">
-      <ProfilContainer>
+      <ProfileContainer>
         <Face />
         <h2>추홍규</h2>
         {alert ? <Alert /> : null}
-        <Conact
+        <Contact
           onClick={(e) => onCopy(e)}
           whileHover={{
             backgroundPosition: "left bottom",
@@ -160,12 +160,12 @@ const Resume = () => {
             transition: { duration: 0.5, ease: "linear" },
           }}
         >
-          Conact Me
-        </Conact>
-      </ProfilContainer>
+          Contact Me
+        </Contact>
+      </ProfileContainer>
       <MainContainer>
         <h1>Developer</h1>
-        <ProfilGrid>
+        <ProfileGrid>
           <ProfileItem title="Education">
             <div>
               <p>중앙대학교 미술학부 한국화</p>
@@ -313,7 +313,7 @@ const Resume = () => {
               </span>
             </div>
           </ProfileItem>
-        </ProfilGrid>
+        </ProfileGrid>
       </MainContainer>
       <ReactTooltip />
     </WindowModal>

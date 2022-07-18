@@ -76,11 +76,14 @@ const Description = styled(motion.div)`
 
 const ReadMe = styled.a`
   padding: 5px 15px;
-  background-color: black;
+  background: linear-gradient(to right, black 50%, rgb(245, 220, 245) 50%);
+  background-size: 200%;
+  background-position: left center;
   color: white;
   &:hover {
-    background-color: white;
+    background-position: right center;
     color: black;
+    transition: 0.5s;
   }
 `;
 
@@ -102,7 +105,7 @@ const About = () => {
           animate={{
             y: [50, 0],
             opacity: [0, 0.5, 1],
-            transition: { duration: 0.5, delay: 1 },
+            transition: { duration: 0.5, delay: 0.8 },
           }}
         >
           <MainText>
