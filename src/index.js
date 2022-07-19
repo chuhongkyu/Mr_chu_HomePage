@@ -52,7 +52,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	font-family: "Maple_story";
+  font-family: roboto, Helvetica, Arial, sans-serif;
 	line-height: 1.4;
 	color: ${(props) => props.theme.black.darker};
 	background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");

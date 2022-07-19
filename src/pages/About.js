@@ -8,6 +8,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const MainContainer = styled.div`
+  font-family: "Maple_story";
   width: 100%;
   height: 96%;
   padding: 50px;

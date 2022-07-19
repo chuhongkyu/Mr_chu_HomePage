@@ -8,6 +8,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const OnePerson = styled.div`
+  font-family: roboto, Helvetica, Arial, sans-serif;
   width: 100%;
   padding: 50px 20px;
   display: flex;

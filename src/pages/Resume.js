@@ -24,7 +24,6 @@ const ProfileContainer = styled.div`
   align-items: center;
   flex-direction: column;
   transition: 0.5s;
-  font-family: sans-serif;
   h2 {
     margin-top: 20px;
     font-size: 20px;
@@ -83,19 +82,25 @@ const MainContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 50px;
+  overflow-y: scroll;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
   h3 {
     font-size: 25px;
     margin-bottom: 30px;
   }
-  h1 {
-    font-size: 40px;
-  }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-    padding: 40px 20px 0px 20px;
+    padding: 40px 0px 0px 10px;
     h1 {
-      font-size: 30px;
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
     }
   }
 `;
@@ -105,28 +110,23 @@ const ProfileGrid = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3px;
-`;
-
-const PickItem = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  grid-row: span 2;
-  div {
+  gap: 20px;
+  .between {
     display: flex;
     justify-content: space-between;
   }
   hr {
     margin: 5px 0px;
   }
+  @media ${(props) => props.theme.device.tablet} {
+  }
   @media ${(props) => props.theme.device.mobile} {
-    h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 11px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    .between {
+      img {
+        height: 10px;
+      }
     }
   }
 `;
@@ -164,30 +164,39 @@ const Resume = () => {
         </Contact>
       </ProfileContainer>
       <MainContainer>
-        <h1>Developer</h1>
+        <h1>✏️ RESUME</h1>
         <ProfileGrid>
-          <ProfileItem title="Education">
-            <div>
+          <ProfileItem
+            icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f3eb.svg"
+            title="Education"
+          >
+            <div className="between">
               <p>중앙대학교 미술학부 한국화</p>
               <p>2012 ~ 2018</p>
             </div>
-            <div>
+            <div className="between">
               <p>중앙대학교 대학원 뉴미디어아트</p>
-              <p>중퇴</p>
+              <p>자퇴</p>
             </div>
           </ProfileItem>
-          <ProfileItem title="Experience">
-            <div>
+          <ProfileItem
+            icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4bc.svg"
+            title="Experience"
+          >
+            <div className="between">
               <p>Sticker Slime(ios, android) - 1인개발</p>
               <p>2021</p>
             </div>
-            <div>
+            <div className="between">
               <p>마포 청년 일자리 사업단(앱 개발팀)</p>
               <p>2022</p>
             </div>
           </ProfileItem>
-          <ProfileItem title="Front end">
-            <div>
+          <ProfileItem
+            icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
+            title="Front end"
+          >
+            <div className="between">
               <span>
                 <img
                   alt="HTML5"
@@ -199,7 +208,7 @@ const Resume = () => {
                 />
               </span>
             </div>
-            <div>
+            <div className="between">
               <span>
                 <img
                   alt="Sass"
@@ -207,7 +216,7 @@ const Resume = () => {
                 />
               </span>
             </div>
-            <div>
+            <div className="between">
               <span>
                 <img
                   alt="JavaScript"
@@ -224,9 +233,13 @@ const Resume = () => {
               </span>
             </div>
           </ProfileItem>
-          <PickItem>
-            <h3>수강 강의</h3>
-            <div>
+          <ProfileItem
+            icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
+            title="수강 강의"
+            column={2 / -1}
+            row={"span 2"}
+          >
+            <div className="between">
               <p
                 data-tip="html/css 기초"
                 data-text-color="black"
@@ -238,7 +251,7 @@ const Resume = () => {
                 <p>노마드 코더</p>
               </a>
             </div>
-            <div>
+            <div className="between">
               <p
                 data-tip="js 기초"
                 data-text-color="black"
@@ -248,7 +261,7 @@ const Resume = () => {
               </p>
               <p>노마드 코더</p>
             </div>
-            <div>
+            <div className="between">
               <p
                 data-tip="SCSS"
                 data-text-color="black"
@@ -258,7 +271,7 @@ const Resume = () => {
               </p>
               <p>노마드 코더</p>
             </div>
-            <div>
+            <div className="between">
               <p
                 data-tip="React"
                 data-text-color="black"
@@ -269,30 +282,34 @@ const Resume = () => {
               <p>노마드 코더</p>
             </div>
             <hr />
-            <div>
+            <div className="between">
               <p>만들면서 배우는 리액트 : 기초</p>
               <p>진유림</p>
             </div>
-            <div>
+            <div className="between">
               <p>한입 크기로 잘라먹는 리액트 : 기초부터 실전</p>
               <p>이정환</p>
             </div>
-            <div>
+            <div className="between">
               <p>지옥에서 온 관리자 Git</p>
               <p>최주호</p>
             </div>
-            <div>
+            <div className="between">
               <p>자바스크립트 : 기초부터 실전까지 올인원</p>
               <p>코딩알려주는 누나</p>
             </div>
             <hr />
-            <div>
+            <div className="between">
               <p>김민태의 프론트엔드 아카데미: JavaScript/TypeScript</p>
               <p>김민태</p>
             </div>
-          </PickItem>
-          <ProfileItem title="Others">
-            <div>
+          </ProfileItem>
+
+          <ProfileItem
+            icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
+            title="Others"
+          >
+            <div className="between">
               <span>
                 <img
                   alt="Unity"
@@ -300,7 +317,7 @@ const Resume = () => {
                 />
               </span>
             </div>
-            <div>
+            <div className="between">
               <span>
                 <img
                   alt="Slack"
