@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -49,8 +50,8 @@ const TopNavBtn = styled.div`
   height: 15px;
   border-radius: 50%;
   margin-right: 5px;
-  font-size: 6px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,9 +110,13 @@ const WindowModal = ({ children, bgColor }) => {
         style={{ backgroundColor: bgColor }}
       >
         <TopNav>
-          <RedBtn onClick={onExit}>x</RedBtn>
+          <RedBtn onClick={onExit}>
+            <AiOutlineClose />
+          </RedBtn>
           <YellowBtn></YellowBtn>
-          <GreenBtn onClick={onHandleSize}></GreenBtn>
+          <GreenBtn onClick={onHandleSize}>
+            <AiOutlineExpand />
+          </GreenBtn>
         </TopNav>
         {children}
       </Modal>

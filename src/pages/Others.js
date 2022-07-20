@@ -44,14 +44,23 @@ const Icon = styled.div`
     margin-bottom: 5px;
     box-shadow: ${(prop) => prop.theme.shadow};
   }
+  @media ${(props) => props.theme.device.mobile} {
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 `;
 
 const GameText = styled.div`
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const IconDescription = styled.div`
@@ -71,7 +80,7 @@ const Others = () => {
           />
         </h1>
         <TextBox>
-          <GameText style={{ width: "20%" }}>
+          <GameText>
             <Icon>
               <img
                 src={env.PUBLIC_URL + "/assets/app01.jpg"}
@@ -110,7 +119,7 @@ const Others = () => {
         </IconDescription>
 
         <TextBox>
-          <GameText style={{ width: "20%" }}>
+          <GameText>
             <Icon>
               <img
                 src={env.PUBLIC_URL + "/assets/app02.png"}
