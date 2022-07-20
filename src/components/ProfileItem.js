@@ -6,12 +6,13 @@ const Wrapper = styled.div`
   margin: 20px 30px;
   border-bottom: 2px solid #bebebe;
   .icon {
-    width: 30px;
+    width: 25px;
     margin-right: 10px;
   }
   h3 {
     font-size: 25px;
     margin-bottom: 10px;
+    font-weight: 500;
     display: flex;
     align-items: center;
   }

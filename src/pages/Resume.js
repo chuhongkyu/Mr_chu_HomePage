@@ -5,6 +5,7 @@ import WindowModal from "../components/WindowModal";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
 import Alert from "../components/Alert";
+import { AiFillMail } from "react-icons/ai";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -17,30 +18,39 @@ const ProfileContainer = styled.div`
     url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
   background-image: center;
   background-size: cover;
+  background-position: bottom center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
   transition: 0.5s;
-  h2 {
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: 600;
-    color: white;
+  .dummy {
+    width: 100%;
+    height: 70%;
   }
-  &:hover {
-    h2 {
-      color: black;
-    }
+  .profile {
+    width: 100%;
+    height: 30%;
+    position: relative;
+    background-position: top;
+    background: linear-gradient(
+      to top,
+      rgb(242, 242, 242) 90%,
+      transparent 50%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     transition: 0.5s;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.6),
-        transparent
-      ),
-      url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
+    &:hover {
+      transition: 0.5s;
+      /* background: rgba(242, 242, 242, 0.6); */
+    }
+    h2 {
+      font-family: "YUniverse-B";
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
   }
   @media ${(props) => props.theme.device.mobile} {
     display: none;
@@ -48,23 +58,26 @@ const ProfileContainer = styled.div`
 `;
 
 const Face = styled.div`
+  position: absolute;
+  top: -70px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
   background-position: center;
   background-size: cover;
-  margin-top: 100px;
   &:hover {
-    border: 2px solid white;
+    transform: translateY(-5px);
+    transition: 0.5s;
   }
 `;
 
 const Contact = styled(motion.span)`
-  padding: 5px 10px 3px 10px;
+  padding: 5px 10px 5px 10px;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
   margin-top: 20px;
+  margin-bottom: 40px;
   text-align: center;
   font-weight: 600;
   transition: 0.5s;
@@ -72,6 +85,13 @@ const Contact = styled(motion.span)`
   background-size: 220% 100%;
   background-position: right bottom;
   cursor: pointer;
+  display: flex;
+  span {
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -93,7 +113,7 @@ const MainContainer = styled.div`
     margin-bottom: 30px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 100%;
+    width: 95%;
     padding: 40px 0px 0px 10px;
     h1 {
       font-size: 20px;
@@ -125,7 +145,7 @@ const ProfileGrid = styled.div`
     gap: 10px;
     .between {
       img {
-        height: 10px;
+        height: 18px;
       }
     }
   }
@@ -149,19 +169,25 @@ const Resume = () => {
   return (
     <WindowModal bgColor="white">
       <ProfileContainer>
-        <Face />
-        <h2>추홍규</h2>
-        {alert ? <Alert /> : null}
-        <Contact
-          onClick={(e) => onCopy(e)}
-          whileHover={{
-            backgroundPosition: "left bottom",
-            color: "white",
-            transition: { duration: 0.5, ease: "linear" },
-          }}
-        >
-          Contact Me
-        </Contact>
+        <div className="dummy"></div>
+        <div className="profile">
+          <Face />
+          <h2>추홍규</h2>
+          {alert ? <Alert /> : null}
+          <Contact
+            onClick={(e) => onCopy(e)}
+            whileHover={{
+              backgroundPosition: "left bottom",
+              color: "white",
+              transition: { duration: 0.5, ease: "linear" },
+            }}
+          >
+            <span>
+              <AiFillMail />
+            </span>{" "}
+            Contact Me
+          </Contact>
+        </div>
       </ProfileContainer>
       <MainContainer>
         <h1>✏️ RESUME</h1>
