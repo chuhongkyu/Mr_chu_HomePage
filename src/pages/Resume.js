@@ -33,7 +33,7 @@ const ProfileContainer = styled.div`
     background-position: top;
     background: linear-gradient(
       to top,
-      rgb(242, 242, 242) 90%,
+      rgb(255, 255, 255) 90%,
       transparent 50%
     );
     display: flex;
@@ -46,7 +46,6 @@ const ProfileContainer = styled.div`
       /* background: rgba(242, 242, 242, 0.6); */
     }
     h2 {
-      font-family: "YUniverse-B";
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 4px;
@@ -86,6 +85,8 @@ const Contact = styled(motion.span)`
   background-position: right bottom;
   cursor: pointer;
   display: flex;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   span {
     margin-right: 5px;
     display: flex;
@@ -101,7 +102,9 @@ const MainContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  padding: 50px;
+  padding: 50px 40px 10px 30px;
+  background-color: rgb(242, 242, 242);
+  overflow-x: hidden;
   overflow-y: scroll;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   h1 {
@@ -113,8 +116,8 @@ const MainContainer = styled.div`
     margin-bottom: 30px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 95%;
-    padding: 40px 0px 0px 10px;
+    width: 100%;
+    padding: 50px 10px 10px 10px;
     h1 {
       font-size: 20px;
     }
@@ -129,8 +132,10 @@ const ProfileGrid = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: minmax(200px, auto) minmax(200px, auto);
+  gap: 15px;
+  margin: 5px 10px;
+  /* background-color: #bebebe; */
   .between {
     display: flex;
     justify-content: space-between;
