@@ -173,6 +173,13 @@ const ProfileGrid = styled.div`
     }
   }
   @media ${(props) => props.theme.device.mac} {
+    .between {
+      display: flex;
+      justify-content: space-between;
+      img {
+        height: 20px;
+      }
+    }
     hr {
       margin: 5px 0px;
     }
@@ -349,12 +356,12 @@ const Resume = () => {
               <p>최주호</p>
             </div>
             <div className="between">
-              <p>자바스크립트 : 기초부터 실전까지 올인원</p>
+              <p>js : 기초부터 실전까지 올인원</p>
               <p>코딩알려주는 누나</p>
             </div>
             <hr />
             <div className="between">
-              <p>김민태의 프론트엔드 아카데미: JavaScript/TypeScript</p>
+              <p>김민태의 프론트엔드 아카데미: JS/TypeScript</p>
               <p>김민태</p>
             </div>
           </ProfileItem>

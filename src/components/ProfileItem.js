@@ -45,10 +45,14 @@ const Wrapper = styled.div`
     }
     h3 {
       font-size: 25px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       font-weight: 500;
       display: flex;
       align-items: center;
+    }
+    p {
+      font-size: 17px;
+      line-height: 23px;
     }
   }
 `;
