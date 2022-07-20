@@ -46,7 +46,7 @@ const ProfileContainer = styled.div`
       /* background: rgba(242, 242, 242, 0.6); */
     }
     h2 {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: bold;
       letter-spacing: 4px;
       margin-top: 15px;
@@ -69,9 +69,9 @@ const ProfileContainer = styled.div`
 
 const Face = styled.div`
   position: absolute;
-  top: -60px;
-  width: 100px;
-  height: 100px;
+  top: -100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
   background-position: center;
@@ -80,10 +80,15 @@ const Face = styled.div`
     transform: translateY(-5px);
     transition: 0.5s;
   }
+  @media ${(props) => props.theme.device.mac} {
+    top: -60px;
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const Contact = styled(motion.span)`
-  padding: 5px 10px 5px 10px;
+  padding: 10px 20px;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
   margin-top: 20px;
@@ -104,6 +109,9 @@ const Contact = styled(motion.span)`
     justify-content: center;
     align-items: center;
   }
+  @media ${(props) => props.theme.device.mac} {
+    padding: 5px 10px;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -119,12 +127,8 @@ const MainContainer = styled.div`
   overflow-y: scroll;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   h1 {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: bold;
-  }
-  h3 {
-    font-size: 25px;
-    margin-bottom: 30px;
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
@@ -132,20 +136,12 @@ const MainContainer = styled.div`
     h1 {
       font-size: 20px;
     }
-    h3 {
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
   }
   @media ${(props) => props.theme.device.mac} {
     padding: 40px 40px 10px 30px;
     h1 {
       font-size: 40px;
       font-weight: bold;
-    }
-    h3 {
-      font-size: 25px;
-      margin-bottom: 20px;
     }
   }
 `;
@@ -160,9 +156,12 @@ const ProfileGrid = styled.div`
   .between {
     display: flex;
     justify-content: space-between;
+    img {
+      height: 25px;
+    }
   }
   hr {
-    margin: 5px 0px;
+    margin: 10px 0px;
   }
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: 1fr;
