@@ -24,6 +24,7 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
+    white-space: nowrap;
     p {
       color: rgb(180, 180, 180);
       margin-bottom: 10px;
@@ -105,9 +106,11 @@ const About = () => {
         <h1 className="title">자기소개</h1>
         <div className="description">
           <p>
-            {write.introduction.substring(0, 53)}
+            {write.introduction.substring(0, 10)}
             <br />
-            {write.introduction.substring(53)}
+            {write.introduction.substring(10, 46)}
+            <br />
+            {write.introduction.substring(46, 100)}
           </p>
         </div>
 

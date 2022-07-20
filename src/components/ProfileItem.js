@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   height: 100%;
   margin: 20px 30px;
   border-bottom: 2px solid #bebebe;
+  white-space: nowrap;
   .icon {
     width: 25px;
     margin-right: 10px;
