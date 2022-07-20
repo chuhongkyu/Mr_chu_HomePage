@@ -49,16 +49,27 @@ const ProfileContainer = styled.div`
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 4px;
+      margin-top: 15px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
     display: none;
   }
+  @media ${(props) => props.theme.device.mac} {
+    .profile {
+      h2 {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        margin-top: 20px;
+      }
+    }
+  }
 `;
 
 const Face = styled.div`
   position: absolute;
-  top: -70px;
+  top: -60px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -126,6 +137,17 @@ const MainContainer = styled.div`
       margin-bottom: 5px;
     }
   }
+  @media ${(props) => props.theme.device.mac} {
+    padding: 40px 40px 10px 30px;
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    h3 {
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const ProfileGrid = styled.div`
@@ -135,15 +157,12 @@ const ProfileGrid = styled.div`
   grid-template-columns: minmax(200px, auto) minmax(200px, auto);
   gap: 15px;
   margin: 5px 10px;
-  /* background-color: #bebebe; */
   .between {
     display: flex;
     justify-content: space-between;
   }
   hr {
     margin: 5px 0px;
-  }
-  @media ${(props) => props.theme.device.tablet} {
   }
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: 1fr;
@@ -152,6 +171,11 @@ const ProfileGrid = styled.div`
       img {
         height: 18px;
       }
+    }
+  }
+  @media ${(props) => props.theme.device.mac} {
+    hr {
+      margin: 5px 0px;
     }
   }
 `;

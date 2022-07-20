@@ -17,5 +17,6 @@ export const theme = {
   device: {
     mobile: "screen and (max-width: 768px)",
     tablet: "screen and (max-width: 1024px)",
+    mac: "screen and (max-width: 1440px)",
   },
 };

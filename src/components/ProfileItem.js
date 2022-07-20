@@ -38,6 +38,20 @@ const Wrapper = styled.div`
       font-size: 11px;
     }
   }
+  @media ${(props) => props.theme.device.mac} {
+    padding: 20px 20px 30px 20px;
+    .icon {
+      width: 25px;
+      margin-right: 10px;
+    }
+    h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -46,6 +60,10 @@ const Container = styled.div`
   @media ${(props) => props.theme.device.mobile} {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  @media ${(props) => props.theme.device.mac} {
+    margin-left: 40px;
+    margin-right: 40px;
   }
 `;
 
