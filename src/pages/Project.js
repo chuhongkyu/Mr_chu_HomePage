@@ -70,31 +70,55 @@ const Accordion = styled.div`
 const CircleContainer = styled(motion.div)`
   width: 500px;
   height: 500px;
-  background-color: black;
+  background-color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
 const SmallContainer = styled(motion.div)`
   width: 300px;
   height: 300px;
-  background-color: white;
+  background-color: #eef2f5;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  position: relative;
-  z-index: 99;
   display: flex;
   justify-content: center;
-  .position {
+  align-items: center;
+  position: relative;
+  z-index: 60;
+  .line {
+    width: 500px;
+    height: 500px;
     position: absolute;
-    top: -60px;
-    width: 100px;
-    height: 50px;
-    transition: 0.5s;
-    color: white;
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to left, #d5d6d7 50%, transparent 50%);
+    }
+  }
+`;
+
+const PathPosition = styled.div`
+  position: absolute;
+  top: 0px;
+  border-bottom: 270px solid transparent;
+  border-top: 220px solid #eef1f4;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  transition: 0.5s;
+  transform: rotateZ(-10deg);
+  h5 {
+    color: black;
+    transform: translateY(-170px);
   }
 `;
 
@@ -196,12 +220,26 @@ const Project = () => {
           </Modal>
         </MyStory>
         <Accordion>
-          <CircleContainer
-            onClick={onRotate}
-            animate={{ transform: `rotateZ(${degreed}deg)` }}
-          >
-            <SmallContainer>
-              <div className="position">현재 위치</div>
+          <CircleContainer>
+            <PathPosition>
+              <h5>{position}</h5>
+            </PathPosition>
+            <SmallContainer
+              onClick={onRotate}
+              animate={{ transform: `rotateZ(${degreed}deg)` }}
+            >
+              <div className="line">
+                <span style={{ transform: "rotateZ(40deg)" }}></span>
+                <span style={{ transform: "rotateZ(80deg)" }}></span>
+                <span style={{ transform: "rotateZ(120deg)" }}></span>
+                <span style={{ transform: "rotateZ(160deg)" }}></span>
+                <span style={{ transform: "rotateZ(200deg)" }}></span>
+                <span style={{ transform: "rotateZ(240deg)" }}></span>
+                <span style={{ transform: "rotateZ(280deg)" }}></span>
+                <span style={{ transform: "rotateZ(320deg)" }}></span>
+                <span style={{ transform: "rotateZ(360deg)" }}></span>
+              </div>
+              <SmallContainer></SmallContainer>
             </SmallContainer>
           </CircleContainer>
         </Accordion>
