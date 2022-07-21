@@ -61,10 +61,20 @@ const Works = styled(motion.div)`
     align-content: center;
     flex-direction: column;
     margin-right: 50px;
+    .icon {
+      width: 30px;
+    }
     h1 {
       font-size: 30px;
       font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h6 {
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(108, 117, 125, 0.8);
       margin-bottom: 40px;
+      text-align: end;
     }
     img {
       width: 100%;
@@ -150,9 +160,10 @@ const worksData = [
   {
     id: 0,
     name: "인터랙티브 코딩 취미",
-    date: "2022.06",
+    date: "(2022.03)",
     img: "/assets/works/cube.jpg",
-    description: "자바스크립트와 CSS만으로 만든 인터랙티브 작업",
+    description:
+      "자바스크립트와 CSS만으로 만든 인터랙티브 작업입니다. 첫번째 페이지에는 마우스를 따라 움직이는 귀여운 유령이 있습니다. 페이지에는 별이 랜덤으로 하늘에서 떨어집니다. 2번째 페이지는 회전하는 박스가 있습니다. 박스 가운데 빨간 점을 누르면 camera 시점이 변합니다.",
     point: ["마우스에 따라 돌아다니는 고스트", "회전하는 3D박스"],
     github: "https://chuhongkyu.github.io/Workspace_MaPo/",
     skills: ["바닐라 JS", "Html,css"],
@@ -243,7 +254,7 @@ const worksData = [
     point: ["영화,드라마 검색", "콘텐츠 상세 보기"],
     github: "https://chuhongkyu.github.io/chuflix/",
     skills: ["React"],
-    people: "캐릭터 디자인 5명, 프론트 엔드 1 (1인 개발)",
+    people: "캐릭터 디자인 5명, 프론트 엔드(1인 개발)",
   },
 ];
 
@@ -287,6 +298,7 @@ const Project = () => {
                   >
                     <div className="container">
                       <h1>{data.name}</h1>
+                      <h6>{data.date}</h6>
                       <img src={env.PUBLIC_URL + data.img} alt={data.name} />
                     </div>
                     <div className="container">
