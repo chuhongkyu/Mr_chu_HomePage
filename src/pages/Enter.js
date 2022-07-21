@@ -77,7 +77,14 @@ const Enter = () => {
     <Wrapper variants={openVariants} initial="inital" animate="animate">
       <LoginBox>
         <Link to="home">
-          <Circle whileHover={{ y: -5 }}></Circle>
+          <Circle
+            initial={{ y: 0 }}
+            animate={{
+              y: [0, -10, 0],
+              transition: { delay: 2, type: "spring", repeat: Infinity },
+            }}
+            whileHover={{ y: -5 }}
+          ></Circle>
           <Title />
         </Link>
       </LoginBox>
