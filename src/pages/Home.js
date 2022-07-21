@@ -9,7 +9,7 @@ import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
 import Others from "./Others";
-import Clone from "./Clone";
+import Project from "./Project";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -73,7 +73,7 @@ const Home = () => {
         <Route path="about" element={<About />} />
         <Route path="github" element={<GitHub />} />
         <Route path="others" element={<Others />} />
-        <Route path="clone" element={<Clone />} />
+        <Route path="project" element={<Project />} />
       </Routes>
       <WindowBar />
     </Wrapper>
