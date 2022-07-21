@@ -64,7 +64,7 @@ const Works = styled(motion.div)`
     h1 {
       font-size: 30px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 40px;
     }
     img {
       width: 100%;
@@ -110,7 +110,6 @@ const SmallContainer = styled(motion.div)`
   height: 300px;
   background-color: #eef2f5;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,53 +150,65 @@ const worksData = [
   {
     id: 0,
     name: "인터랙티브 코딩 취미",
+    date: "2022.06",
     img: "/assets/works/cube.jpg",
     description: "자바스크립트와 CSS만으로 만든 인터랙티브 작업",
     point: ["마우스에 따라 돌아다니는 고스트", "회전하는 3D박스"],
     github: "https://chuhongkyu.github.io/Workspace_MaPo/",
     skills: ["바닐라 JS", "Html,css"],
+    people: "개인 프로젝트",
   },
   {
     id: 1,
     name: "BMW",
+    date: "2022.04",
     img: "/assets/works/bmw.jpg",
     description:
       "리액트와 Three 라이브러리를 활용하여 BMW모델을 인터랙티브하게 감상할 수 있게 하였다. ",
     point: ["모델 파츠 별로 색깔 변경 기능", "모델 회전"],
     github: "https://chuhongkyu.github.io/bmw-car/",
     skills: ["React", "three 라이브러리", "Blender"],
+    people: "개인 프로젝트",
   },
   {
     id: 2,
     name: "넷플릭스",
+    date: "2022.05",
     img: "/assets/works/chuflix.jpg",
     description: "리액트와 타입스크립트를 활용한 넷플릭스 클론코딩",
     point: ["영화,드라마 검색", "콘텐츠 상세 보기"],
     github: "https://chuhongkyu.github.io/chuflix/",
     skills: ["React", "TypeScript"],
+    people: "(개인 프로젝트)",
   },
   {
     id: 3,
     name: "댓글앱",
-    img: "/assets/works/댓글.png",
+    date: "2022.05",
+    img: "/assets/works/comments.jpg",
     description: "리액트로 만든 댓글 앱",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://chuhongkyu.github.io/Comments_app/",
     skills: ["React"],
+    people: "(개인 프로젝트)",
   },
   {
     id: 4,
     name: "댓글앱",
-    img: "/assets/works/댓글.png",
+    date: "2022.06",
+    img: "/assets/works/comments.jpg",
     description: "리액트로 만든 댓글 앱",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://chuhongkyu.github.io/Comments_app/",
     skills: ["React"],
+    people: "(개인 프로젝트)",
   },
   {
     id: 5,
     name: "댓글앱",
-    img: "/assets/works/댓글.png",
+    date: "2022.06",
+    people: "2022.03 (개인 프로젝트)",
+    img: "/assets/works/comments.jpg",
     description: "리액트로 만든 댓글 앱",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://chuhongkyu.github.io/Comments_app/",
@@ -206,16 +217,18 @@ const worksData = [
   {
     id: 6,
     name: "댓글앱",
-    img: "/assets/works/댓글.png",
+    date: "2022.06",
+    img: "/assets/works/comments.jpg",
     description: "리액트로 만든 댓글 앱",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://chuhongkyu.github.io/Comments_app/",
     skills: ["React"],
+    people: "(개인 프로젝트)",
   },
   {
     id: 7,
     name: "댓글앱",
-    img: "/assets/works/댓글.png",
+    img: "/assets/works/comments.jpg",
     description: "리액트로 만든 댓글 앱",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://chuhongkyu.github.io/Comments_app/",
@@ -224,11 +237,13 @@ const worksData = [
   {
     id: 8,
     name: "마포 버디즈",
+    date: "2022.06 ~ 2022.07",
     img: "/assets/works/2project.png",
     description: "마포 버디즈 홈페이지",
     point: ["영화,드라마 검색", "콘텐츠 상세 보기"],
     github: "https://chuhongkyu.github.io/chuflix/",
     skills: ["React"],
+    people: "캐릭터 디자인 5명, 프론트 엔드 1 (1인 개발)",
   },
 ];
 
@@ -273,9 +288,9 @@ const Project = () => {
                     <div className="container">
                       <h1>{data.name}</h1>
                       <img src={env.PUBLIC_URL + data.img} alt={data.name} />
-                      <p>{data.description}</p>
                     </div>
                     <div className="container">
+                      <p>{data.description}</p>
                       <table>
                         <tr>
                           <th>
@@ -344,7 +359,9 @@ const Project = () => {
                 <span style={{ transform: "rotateZ(320deg)" }}></span>
                 <span style={{ transform: "rotateZ(360deg)" }}></span>
               </div>
-              <SmallContainer></SmallContainer>
+              <SmallContainer
+                whileHover={{ backgroundColor: "#98aec4" }}
+              ></SmallContainer>
             </SmallContainer>
           </CircleContainer>
         </Accordion>
