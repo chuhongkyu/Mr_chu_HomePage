@@ -169,11 +169,17 @@ const SmallContainer = styled(motion.div)`
     }
   }
   @media ${(props) => props.theme.device.mac} {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     .line {
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
+      span {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to left, #d5d6d7 50%, transparent 50%);
+      }
     }
   }
 `;
@@ -192,9 +198,13 @@ const PathPosition = styled.div`
     transform: translateY(-170px);
   }
   @media ${(props) => props.theme.device.mac} {
+    border-bottom: 200px solid transparent;
+    border-top: 200px solid #eef1f4;
+    border-left: 68px solid transparent;
+    border-right: 68px solid transparent;
     h5 {
       color: black;
-      transform: translateY(-200px);
+      transform: translateY(-160px);
     }
   }
 `;
