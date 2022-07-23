@@ -62,10 +62,10 @@ const Circle = styled(motion.div)`
 
 const openVariants = {
   inital: {
-    opacity: 1,
+    background: "rgba(0, 0, 0, 1)",
   },
   animate: {
-    opacity: 0.4,
+    background: "rgba(0, 0, 0, 0.3)",
     transition: {
       duration: 5,
     },

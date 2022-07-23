@@ -47,6 +47,7 @@ const Title = () => {
       setBlink(!blink);
     };
     setTimeout(showblink, 600);
+    return clearTimeout();
   }, [blink]);
   return (
     <Wrapper>

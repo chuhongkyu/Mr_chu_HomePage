@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
 

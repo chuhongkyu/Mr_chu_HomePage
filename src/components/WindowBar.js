@@ -9,7 +9,8 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const Bar = styled.div`
   width: 100%;
   height: 40px;
-  background-color: ${(props) => props.theme.black.cloud};
+  background-color: ${(props) => props.theme.black.good};
+  color: ${(props) => props.theme.white.lighter};
   display: flex;
   justify-content: space-between;
   align-items: center;

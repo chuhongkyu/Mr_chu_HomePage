@@ -61,7 +61,7 @@ body {
   font-family: roboto, Helvetica, Arial, sans-serif;
 	line-height: 1.4;
 	color: ${(props) => props.theme.black.darker};
-	background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
+  background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

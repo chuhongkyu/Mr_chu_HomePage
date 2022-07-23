@@ -101,7 +101,7 @@ const WindowModal = ({ children, bgColor }) => {
   return (
     <Position>
       <Modal
-        first={resize ? "95vw" : "99vw"}
+        first={resize ? "80vw" : "99vw"}
         second={resize ? "90vh" : "95vh"}
         variants={ModalVariant}
         initial="inital"

@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import WindowBar from "../components/WindowBar";
 import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
-import DraggabbleCard from "../components/DraggabbleCard";
 import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
 import Others from "./Others";
 import Project from "./Project";
+import AppLink from "../components/AppLink";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -19,11 +19,11 @@ const Wrapper = styled.div`
 const Window = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 20px;
 `;
 
 const Boards = styled.div`
-  padding: 20px 20px;
+  padding: 30px 30px;
   display: flex;
   justify-content: center;
   width: 50%;
@@ -39,6 +39,14 @@ const Boards = styled.div`
   }
 `;
 
+const Board = styled.div`
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  display: inline-flex;
+  flex: 1;
+`;
+
 const Home = () => {
   const [apps, setApp] = useRecoilState(appList);
   const onDragEnd = ({ draggableId, destination, source }) => {
@@ -49,6 +57,7 @@ const Home = () => {
       copyAppList.splice(source.index, 1);
       // put back the item on the destination.index
       copyAppList.splice(destination.index, 0, draggableId);
+      console.log(copyAppList);
       return copyAppList;
     });
   };
@@ -60,7 +69,18 @@ const Home = () => {
             {(magic) => (
               <Boards ref={magic.innerRef} {...magic.droppableProps}>
                 {apps.map((app, index) => (
-                  <DraggabbleCard key={app} index={index} app={app} />
+                  <Draggable key={app} draggableId={app} index={index}>
+                    {(magic) => (
+                      <Board
+                        ref={magic.innerRef}
+                        {...magic.dragHandleProps}
+                        {...magic.draggableProps}
+                      >
+                        {console.log(app.name)}
+                        <AppLink title={app} pathUrl={`/${app}`} type={app} />
+                      </Board>
+                    )}
+                  </Draggable>
                 ))}
                 {magic.placeholder}
               </Boards>

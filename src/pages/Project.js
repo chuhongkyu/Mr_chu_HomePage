@@ -197,6 +197,7 @@ const PathPosition = styled.div`
   h5 {
     color: black;
     transform: translateY(-170px);
+    font-size: 11px;
   }
   @media ${(props) => props.theme.device.mac} {
     border-bottom: 200px solid transparent;

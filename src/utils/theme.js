@@ -3,6 +3,7 @@ export const theme = {
     veryDark: "#141414",
     darker: "#181818",
     lighter: "#2F2F2F",
+    good: "rgb(34,34,34)",
     cloud: "rgba(0, 0, 0, 0.3)",
   },
   white: {
@@ -10,6 +11,7 @@ export const theme = {
     darker: "#e5e5e5",
     gradient: "linear-gradient(to bottom, #fff , #e5e5e5)",
   },
+  yellow: "rgb(249,197,30)",
   glass: "rgba(255,255,255,0.4)",
   universe:
     "linear-gradient(190deg, rgb(22, 27, 42), rgb(166, 115, 126), rgb(238,188,17) )",
