@@ -282,7 +282,7 @@ const About = () => {
             </ReactTooltip>
             <a
               target="blank_"
-              href="https://github.com/Mapo-Project/SecondLife-frontend"
+              href="https://mapo-project.github.io/SecondLife-frontend/"
             >
               <h2 data-tip="" data-for="3project">
                 세번째 프로젝트 - (헌 옷 수거 플랫폼)
@@ -295,7 +295,7 @@ const About = () => {
             <p>
               <ReadMe
                 target="blank_"
-                href="https://github.com/chuhongkyu/mapoCharacter#readme"
+                href="https://github.com/Mapo-Project/SecondLife-frontend#readme"
               >
                 README.md
               </ReadMe>

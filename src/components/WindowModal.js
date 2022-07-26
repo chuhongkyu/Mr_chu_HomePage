@@ -88,7 +88,7 @@ const ModalVariant = {
   },
 };
 
-const WindowModal = ({ children, bgColor }) => {
+const WindowModal = ({ children, bgColor, widthSize, heightSize }) => {
   const [resize, setResize] = useState(false);
   const navigate = useNavigate();
   const onExit = () => {
@@ -101,8 +101,8 @@ const WindowModal = ({ children, bgColor }) => {
   return (
     <Position>
       <Modal
-        first={resize ? "80vw" : "99vw"}
-        second={resize ? "90vh" : "95vh"}
+        first={resize ? widthSize[0] : widthSize[1]}
+        second={resize ? heightSize[0] : heightSize[1]}
         variants={ModalVariant}
         initial="inital"
         animate="animate"
@@ -126,6 +126,8 @@ const WindowModal = ({ children, bgColor }) => {
 
 WindowModal.defaultProps = {
   bgColor: "white",
+  widthSize: ["80vw", "99vw"],
+  heightSize: ["90vh", "95vh"],
 };
 
 export default WindowModal;

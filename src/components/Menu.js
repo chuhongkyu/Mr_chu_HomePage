@@ -18,8 +18,13 @@ const Container = styled(motion.div)`
     width: 20%;
     height: 100%;
     display: grid;
-    gap: 2px;
+    gap: 5px;
+    padding: 10px;
     grid-auto-flow: row;
+    img {
+      width: 80%;
+      height: auto;
+    }
   }
   .grid_side {
     width: 80%;
@@ -65,7 +70,12 @@ const Menu = () => {
   return (
     <Container variants={Variants} initial="initial" animate="animate">
       <div className="left_side">
-        <span>icon</span>
+        <span>
+          <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
+        </span>
+        <span>
+          <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
+        </span>
       </div>
       <div className="grid_side">
         <div className="grid_tom">
@@ -74,17 +84,17 @@ const Menu = () => {
           <Item></Item>
           <Item>이력서</Item>
           <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/resume.svg"} alt="resume" />
+            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
             이력서
           </Item>
         </div>
         <div className="grid_tom">
           <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/resume.svg"} alt="resume" />
+            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
             About
           </Item>
           <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/resume.svg"} alt="resume" />
+            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
             About
           </Item>
           <Item>
@@ -97,12 +107,11 @@ const Menu = () => {
             Adobe Photoshop CC 2022
           </Item>
           <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/resume.svg"} alt="resume" />
+            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
             About
           </Item>
           <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/resume.svg"} alt="resume" />
-            Resume
+            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
           </Item>
         </div>
       </div>

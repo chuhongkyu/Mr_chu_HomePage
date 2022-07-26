@@ -49,7 +49,11 @@ const GitHub = () => {
     setTimeout(goGit, 3000);
   }, []);
   return (
-    <WindowModal bgColor="black">
+    <WindowModal
+      bgColor="black"
+      widthSize={["70vw", "50vw"]}
+      heightSize={["70vh", "50vh"]}
+    >
       <GitContainer>
         <a
           href="https://github.com/chuhongkyu"

@@ -43,7 +43,6 @@ const ProfileContainer = styled.div`
     transition: 0.5s;
     &:hover {
       transition: 0.5s;
-      /* background: rgba(242, 242, 242, 0.6); */
     }
     h2 {
       font-size: 25px;
@@ -348,7 +347,7 @@ const Resume = () => {
               <p>진유림</p>
             </div>
             <div className="between">
-              <p>한입 크기로 잘라먹는 리액트 : 기초부터 실전</p>
+              <p>한입 크기로 잘라먹는 리액트</p>
               <p>이정환</p>
             </div>
             <div className="between">
@@ -361,7 +360,7 @@ const Resume = () => {
             </div>
             <hr />
             <div className="between">
-              <p>김민태의 프론트엔드 아카데미: JS/TypeScript</p>
+              <p>프론트엔드 아카데미: JS/TypeScript</p>
               <p>김민태</p>
             </div>
           </ProfileItem>
