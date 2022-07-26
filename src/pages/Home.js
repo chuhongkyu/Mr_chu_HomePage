@@ -57,7 +57,6 @@ const Home = () => {
       copyAppList.splice(source.index, 1);
       // put back the item on the destination.index
       copyAppList.splice(destination.index, 0, draggableId);
-      console.log(copyAppList);
       return copyAppList;
     });
   };
@@ -76,7 +75,6 @@ const Home = () => {
                         {...magic.dragHandleProps}
                         {...magic.draggableProps}
                       >
-                        {console.log(app.name)}
                         <AppLink title={app} pathUrl={`/${app}`} type={app} />
                       </Board>
                     )}

@@ -48,6 +48,9 @@ const Modal = styled(motion.div)`
   @media ${(props) => props.theme.device.mac} {
     height: 500px;
   }
+  @media ${(props) => props.theme.device.mobile} {
+    height: 700px;
+  }
 `;
 
 const Works = styled(motion.div)`
@@ -117,6 +120,14 @@ const Works = styled(motion.div)`
         margin-bottom: 10px;
       }
     }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    height: 700px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
   }
 `;
 
@@ -234,10 +245,12 @@ const Project = () => {
             MY PROJECT
           </Title>
           <Modal>
-            {worksData.map((data) => (
-              <>
+            {worksData.map((data, index) => (
+              <div key={index}>
                 {position === data.id ? (
                   <Works
+                    key={data.id}
+                    id={data.id}
                     initial={{ opacity: 1 }}
                     animate={{
                       y: [500, 0],
@@ -246,8 +259,6 @@ const Project = () => {
                       opacity: [0, 1],
                       transition: { duration: 0.5, type: "spring" },
                     }}
-                    key={data.id}
-                    id={data.id}
                   >
                     <div className="container">
                       <h1>{data.name}</h1>
@@ -258,59 +269,59 @@ const Project = () => {
                       <p>{data.description}</p>
                       <hr />
                       <table>
-                        <tr>
-                          <th>
-                            <AiTwotoneCrown style={{ marginRight: 5 }} />
-                            주요 기능 :
-                          </th>
-                          <td>
-                            {data.point.map((m, index) => (
-                              <p key={index}>{m}</p>
-                            ))}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            <AiTwotoneCrown style={{ marginRight: 5 }} />깃 허브
-                            :
-                          </th>
-                          <td>
-                            <a
-                              href={data.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {data.github}
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            <AiTwotoneCrown style={{ marginRight: 5 }} />
-                            기술 :
-                          </th>
-                          <td>
-                            <tr>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              주요 기능 :
+                            </td>
+                            <td>
+                              {data.point.map((m, index) => (
+                                <p key={index}>{m}</p>
+                              ))}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />깃
+                              허브 :
+                            </td>
+                            <td>
+                              <a
+                                href={data.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {data.github}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              기술 :
+                            </td>
+                            <td>
                               {data.skills.map((m, index) => (
                                 <p key={index}>{m}</p>
                               ))}
-                            </tr>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            <AiTwotoneCrown style={{ marginRight: 5 }} />
-                            개발 :
-                          </th>
-                          <td>
-                            <tr>{data.people}</tr>
-                          </td>
-                        </tr>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              개발 :
+                            </td>
+                            <td>
+                              <p>{data.people}</p>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </div>
                   </Works>
                 ) : null}
-              </>
+              </div>
             ))}
           </Modal>
         </MyStory>

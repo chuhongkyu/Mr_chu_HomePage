@@ -12,7 +12,7 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ProfileContainer = styled.div`
   position: relative;
-  width: 30%;
+  width: 25%;
   height: 100%;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
     url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
@@ -114,7 +114,7 @@ const Contact = styled(motion.span)`
 `;
 
 const MainContainer = styled.div`
-  width: 70%;
+  width: 75%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -128,6 +128,13 @@ const MainContainer = styled.div`
   h1 {
     font-size: 42px;
     font-weight: bold;
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 100%;
+    padding: 50px 10px 10px 10px;
+    h1 {
+      font-size: 30px;
+    }
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
@@ -161,6 +168,15 @@ const ProfileGrid = styled.div`
   }
   hr {
     margin: 10px 0px;
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    .between {
+      img {
+        height: 20px;
+      }
+    }
   }
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: 1fr;

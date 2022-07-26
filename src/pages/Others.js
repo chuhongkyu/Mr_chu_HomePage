@@ -18,6 +18,9 @@ const OnePerson = styled.div`
   overflow-y: scroll;
   h1 {
     font-size: 25px;
+    margin-bottom: 20px;
+  }
+  @media ${(props) => props.theme.device.mac} {
   }
 `;
 
@@ -66,6 +69,7 @@ const GameText = styled.div`
 const IconDescription = styled.div`
   width: 100%;
   margin-bottom: 50px;
+  margin-top: 50px;
 `;
 
 const Others = () => {
