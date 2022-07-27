@@ -98,8 +98,8 @@ export const worksData = [
   {
     id: 8,
     name: "Cloud Coin",
-    date: "2022.06",
-    img: "/assets/works/coins2.png",
+    date: "2022.06.25",
+    img: "/assets/works/coin.gif",
     description:
       "Coin tickers를 활용하여 코인 종류를 나열 했습니다. 코인을 누르면 상세 페이지가 보이고 코인의 가격과 차트를 그래프로 보실 수 있습니다. recoil을 활용한 다크모드 기능이 있습니다.",
     point: ["코인 가격 그래프", "다크 모드", "Recoil"],
