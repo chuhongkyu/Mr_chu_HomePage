@@ -217,7 +217,13 @@ const About = () => {
             </h1>
           </MainText>
           {third ? (
-            <Description>
+            <Description
+              animate={{
+                opacity: [0, 1],
+                y: [-50, 0],
+                transition: { duration: 0.5 },
+              }}
+            >
               <ReactTooltip id="2project">
                 <img
                   style={{ width: 400 }}
@@ -259,7 +265,13 @@ const About = () => {
             </h1>
           </MainText>
           {fourth ? (
-            <Description>
+            <Description
+              animate={{
+                opacity: [0, 1],
+                y: [-50, 0],
+                transition: { duration: 0.5 },
+              }}
+            >
               <h2 style={{ marginTop: 15 }}>{write.about[3].sub_title1}</h2>
               <p>&nbsp;{write.about[3].sub_txt1}</p>
               <ReactTooltip id="book">

@@ -171,6 +171,7 @@ const SmallContainer = styled(motion.div)`
   height: 300px;
   background-color: #eef2f5;
   border-radius: 50%;
+  border: 2px solid #d5d6d7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -355,9 +356,7 @@ const Project = () => {
                 <span style={{ transform: "rotateZ(320deg)" }}></span>
                 <span style={{ transform: "rotateZ(360deg)" }}></span>
               </div>
-              <SmallContainer
-                whileHover={{ backgroundColor: "#98aec4" }}
-              ></SmallContainer>
+              <SmallContainer whileHover={{ backgroundColor: "#98aec4" }} />
             </SmallContainer>
           </CircleContainer>
         </Accordion>
