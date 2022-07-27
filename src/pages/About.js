@@ -172,13 +172,12 @@ const About = () => {
                 &nbsp; 대학원에서 아두이노 센서를 활용해 자율 주행 비행선을
                 제작하며 처음 코딩을 접하게 되었습니다. 그 후 자바 기반 미디어
                 아트 프로그램 프로세싱 툴을 다루면서 본격적으로 코딩으로 아트를
-                하게 되었습니다.
+                하게 되었습니다. {write.about[0].sub_txt1}
                 <span data-for="media" data-tip="">
                   뉴미디어 아트
                 </span>
-                를 배우면서 제가 할 수 없던 영역의 일을 점점할 수 있게
-                되었습니다. 그러다보니 점차 코딩에 더 재미를 느끼게 되었습니다.
               </p>
+
               <p>{write.about[0].sub_txt2}</p>
               <p>{write.about[0].sub_txt3}</p>
             </Description>
