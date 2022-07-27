@@ -15,7 +15,7 @@ export const worksData = [
     id: 1,
     name: "마포 버디즈",
     date: "2022.06 ~ 2022.07",
-    img: "/assets/works/2project.png",
+    img: "/assets/works/buddies.gif",
     description:
       "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트를 스크롤 홈페이지로 감상이 가능합니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다.",
     point: ["상세 페이지", "Email 송신 시스템"],
@@ -39,7 +39,7 @@ export const worksData = [
     id: 3,
     name: "BMW",
     date: "2022.04",
-    img: "/assets/works/bmw.jpg",
+    img: "/assets/works/bmw.gif",
     description:
       "리액트와 Three 라이브러리를 활용하여 BMW모델을 인터랙티브하게 감상할 수 있게 하였습니다. 차체, 창문, 바퀴 색을 직접 변경하며 감상할 수 있습니다",
     point: ["모델 파츠 별로 색깔 변경 기능", "모델 회전"],

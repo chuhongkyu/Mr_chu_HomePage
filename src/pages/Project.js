@@ -90,9 +90,10 @@ const Works = styled(motion.div)`
       font-size: 25px;
     }
     img {
-      width: 100%;
+      width: 600px;
       height: auto;
       border: 2px solid black;
+      border-radius: 15px;
     }
     hr {
       margin-top: 5px;
@@ -113,11 +114,15 @@ const Works = styled(motion.div)`
   @media ${(props) => props.theme.device.mac} {
     height: 500px;
     .container {
+      width: 100%;
       h1 {
         margin-bottom: 5px;
       }
       h6 {
         margin-bottom: 10px;
+      }
+      img {
+        width: 500px;
       }
     }
   }
@@ -128,6 +133,11 @@ const Works = styled(motion.div)`
     align-items: center;
     flex-direction: column;
     padding: 2rem;
+    .container {
+      img {
+        width: 300px;
+      }
+    }
   }
 `;
 
