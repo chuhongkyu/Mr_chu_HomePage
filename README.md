@@ -17,8 +17,8 @@
 
 <img style="width: 500px; height: auto;" src="https://github.com/chuhongkyu/Mr_chu_HomePage/blob/main/public/assets/home.png?raw=true" alt="페이지"/>
 
-- 인터랙티브한 강점을 보여주기 위한 포트폴리오
-  지금까지 해온 프로젝트를 감상하실수 있습니다.
+- 인터랙티브한 강점을 보여주기 위한 포트폴리오.
+  지금까지 해온 프로젝트들을 감상하실 수 있습니다.
 
 - 화면 구성
   - Enter
