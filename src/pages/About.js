@@ -16,9 +16,14 @@ const MainContainer = styled.div`
   overflow-y: scroll;
   scroll-behavior: smooth;
   .title {
-    font-size: 40px;
-    font-weight: 800;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+    h1 {
+      font-size: 40px;
+      font-weight: 800;
+    }
   }
   .description {
     display: flex;
@@ -33,6 +38,20 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     padding: 50px 30px;
+  }
+`;
+
+const GoogleDrive = styled(motion.a)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  p {
+    font-size: 11px;
+  }
+  img {
+    width: 50px;
+    height: auto;
   }
 `;
 
@@ -124,7 +143,23 @@ const About = () => {
   return (
     <WindowModal bgColor="white">
       <MainContainer>
-        <h1 className="title">자기소개</h1>
+        <div className="title">
+          <h1>자기소개</h1>
+
+          <GoogleDrive
+            href="https://drive.google.com/file/d/1SdqJTdIleqVrDkJDOfRKnQP1wn7yGcr1/view?usp=sharing"
+            target="_blank"
+            initial={{ y: 0, scale: 1 }}
+            whileHover={{ y: -10, scale: 1.2 }}
+          >
+            <img
+              src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw"
+              alt="drive"
+            />
+            <p>자기소개.pdf</p>
+          </GoogleDrive>
+        </div>
+
         <div className="description">
           <p>
             {write.introduction.substring(0, 10)}
