@@ -61,7 +61,7 @@ const Works = styled(motion.div)`
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border-radius: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   padding: 3rem;
   .container {
@@ -90,7 +90,7 @@ const Works = styled(motion.div)`
       font-size: 25px;
     }
     img {
-      width: 600px;
+      width: 100%;
       height: auto;
       border: 2px solid black;
       border-radius: 15px;
@@ -152,7 +152,7 @@ const Accordion = styled.div`
 const CircleContainer = styled(motion.div)`
   width: 500px;
   height: 500px;
-  background-color: white;
+  background-color: rgb(249, 197, 30);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -169,9 +169,9 @@ const CircleContainer = styled(motion.div)`
 const SmallContainer = styled(motion.div)`
   width: 300px;
   height: 300px;
-  background-color: #eef2f5;
+  background-color: #2f2f2f;
   border-radius: 50%;
-  border: 2px solid #d5d6d7;
+  border: 2px solid #181818;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,7 +188,7 @@ const SmallContainer = styled(motion.div)`
       position: absolute;
       width: 100%;
       height: 3px;
-      background: linear-gradient(to left, #d5d6d7 50%, transparent 50%);
+      background: linear-gradient(to left, #181818 50%, transparent 50%);
     }
   }
   @media ${(props) => props.theme.device.mac} {
@@ -197,12 +197,6 @@ const SmallContainer = styled(motion.div)`
     .line {
       width: 400px;
       height: 400px;
-      span {
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(to left, #d5d6d7 50%, transparent 50%);
-      }
     }
   }
 `;
@@ -219,7 +213,8 @@ const PathPosition = styled.div`
   h5 {
     color: black;
     transform: translateY(-170px);
-    font-size: 11px;
+    font-size: 15px;
+    font-weight: bold;
   }
   @media ${(props) => props.theme.device.mac} {
     border-bottom: 200px solid transparent;
@@ -356,7 +351,13 @@ const Project = () => {
                 <span style={{ transform: "rotateZ(320deg)" }}></span>
                 <span style={{ transform: "rotateZ(360deg)" }}></span>
               </div>
-              <SmallContainer whileHover={{ backgroundColor: "#98aec4" }} />
+              <SmallContainer whileHover={{ backgroundColor: "#141414" }}>
+                <h3 style={{ fontSize: "1.5rem", color: "white" }}>
+                  Click Me!
+                  <br /> Click Me!
+                  <br /> Click Me!
+                </h3>
+              </SmallContainer>
             </SmallContainer>
           </CircleContainer>
         </Accordion>

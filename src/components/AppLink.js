@@ -108,7 +108,7 @@ const AppLink = ({ title, type, pathUrl }) => {
             </g>
           </Svg>
         );
-      case "others":
+      case "game_app":
         return (
           <Svg
             xmlns="http://www.w3.org/2000/svg"

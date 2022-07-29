@@ -3,7 +3,7 @@ export const worksData = [
     id: 0,
     name: "SECOND_LIFE",
     date: "(2022.07) ~ 현재 진행형",
-    img: "/assets/works/3project.jpg",
+    img: "/assets/works/second_life.gif",
     description:
       "마포구청에서 일할 때 기획 된 헌 옷 수거 플랫폼 입니다. 프론트엔드 리드로서 환경설정, 로그인 페이지, 배너를 현재 구현 했습니다. 백으로부터 JWT를 요청, 저장 관리합니다. 이를 통해서 로그인, 간편 로그인(카카오,구글), 간편 회원가입, 자동 로그인, 인증 만료시 재 요청등의 기능을 구현했습니다.",
     point: ["로그인, 판매, 예약"],

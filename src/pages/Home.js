@@ -90,7 +90,7 @@ const Home = () => {
         <Route path="resume" element={<Resume />} />
         <Route path="about" element={<About />} />
         <Route path="github" element={<GitHub />} />
-        <Route path="others" element={<Others />} />
+        <Route path="game_app" element={<Others />} />
         <Route path="project" element={<Project />} />
       </Routes>
       <WindowBar />
