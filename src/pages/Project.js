@@ -11,18 +11,22 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+  background-color: rgb(242, 242, 242);
   font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 `;
 
 const Title = styled.h1`
+  width: 100%;
+  text-align: center;
   white-space: nowrap;
   font-size: 35px;
   font-weight: 800;
-  margin-bottom: 2rem;
+  margin-bottom: 70px;
   img {
     width: 25px;
     margin-right: 10px;
@@ -33,37 +37,54 @@ const Title = styled.h1`
 `;
 
 const MyStory = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 80%;
   padding: 50px;
-  background-color: rgb(242, 242, 242);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 15px;
 `;
 
 const Modal = styled(motion.div)`
   width: 100%;
-  height: 700px;
   display: flex;
   justify-content: center;
-  align-items: center;
   @media ${(props) => props.theme.device.mac} {
-    height: 500px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    height: 700px;
   }
 `;
 
 const Works = styled(motion.div)`
-  width: 100%;
-  height: 700px;
+  width: 900px;
   background-color: white;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border-radius: 15px;
+  padding: 50px;
+  transform-origin: center;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 3rem;
+  .wcontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-direction: column;
+    h1 {
+      font-size: 25px;
+      white-space: nowrap;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border: 2px solid black;
+      border-radius: 15px;
+    }
+  }
   .container {
     width: 50%;
     display: flex;
@@ -71,6 +92,9 @@ const Works = styled(motion.div)`
     align-content: center;
     flex-direction: column;
     margin-right: 50px;
+    &:last-of-type {
+      margin-right: 0px;
+    }
     .icon {
       width: 30px;
     }
@@ -78,6 +102,7 @@ const Works = styled(motion.div)`
       font-size: 30px;
       font-weight: 700;
       margin-bottom: 10px;
+      white-space: nowrap;
     }
     h6 {
       font-size: 20px;
@@ -112,32 +137,8 @@ const Works = styled(motion.div)`
     }
   }
   @media ${(props) => props.theme.device.mac} {
-    height: 500px;
-    .container {
-      width: 100%;
-      h1 {
-        margin-bottom: 5px;
-      }
-      h6 {
-        margin-bottom: 10px;
-      }
-      img {
-        width: 500px;
-      }
-    }
   }
   @media ${(props) => props.theme.device.mobile} {
-    height: 700px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    padding: 2rem;
-    .container {
-      img {
-        width: 300px;
-      }
-    }
   }
 `;
 
@@ -147,6 +148,7 @@ const Accordion = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 60;
 `;
 
 const CircleContainer = styled(motion.div)`
@@ -251,20 +253,14 @@ const Project = () => {
             MY PROJECT
           </Title>
           <Modal>
-            {worksData.map((data, index) => (
-              <div key={index}>
+            {worksData.map((data) => (
+              <>
                 {position === data.id ? (
                   <Works
                     key={data.id}
                     id={data.id}
-                    initial={{ opacity: 1 }}
-                    animate={{
-                      y: [500, 0],
-                      x: [-500, 0],
-                      rotate: [-80, 0],
-                      opacity: [0, 1],
-                      transition: { duration: 0.5, type: "spring" },
-                    }}
+                    initial={{ x: 0 }}
+                    animate={{ position: "absolute", zIndex: 1, x: 100 }}
                   >
                     <div className="container">
                       <h1>{data.name}</h1>
@@ -326,8 +322,25 @@ const Project = () => {
                       </table>
                     </div>
                   </Works>
-                ) : null}
-              </div>
+                ) : (
+                  <Works
+                    initial={{
+                      scaleY: 0.7,
+                      scaleX: 0.7,
+                      x: 0,
+                      opacity: 0.5,
+                    }}
+                    animate={{
+                      x: 5,
+                    }}
+                  >
+                    <div className="wcontainer">
+                      <h1>{data.name}</h1>
+                      <img src={env.PUBLIC_URL + data.img} alt={data.name} />
+                    </div>
+                  </Works>
+                )}
+              </>
             ))}
           </Modal>
         </MyStory>
