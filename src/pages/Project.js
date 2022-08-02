@@ -17,7 +17,7 @@ const MainContainer = styled.div`
   position: relative;
   border-radius: 15px;
   background-color: rgb(242, 242, 242);
-  font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+  font-family: "Montserrat", sans-serif;
 `;
 
 const Title = styled.h1`
@@ -57,7 +57,7 @@ const Modal = styled(motion.div)`
 `;
 
 const Works = styled(motion.div)`
-  width: 900px;
+  width: 1000px;
   background-color: white;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -128,7 +128,11 @@ const Works = styled(motion.div)`
     }
     table {
       width: 100%;
-      white-space: nowrap;
+      .point {
+        white-space: nowrap;
+        font-weight: 700;
+        padding-right: 10px;
+      }
       th {
         text-align: start;
         font-size: 20px;
@@ -273,9 +277,9 @@ const Project = () => {
                       <table>
                         <tbody>
                           <tr>
-                            <td>
+                            <td className="point">
                               <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              주요 기능 :
+                              주요 기능
                             </td>
                             <td>
                               {data.point.map((m, index) => (
@@ -284,9 +288,9 @@ const Project = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td>
+                            <td className="point">
                               <AiTwotoneCrown style={{ marginRight: 5 }} />깃
-                              허브 :
+                              허브
                             </td>
                             <td>
                               <a
@@ -294,14 +298,16 @@ const Project = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {data.github}
+                                {data.github.length < 40
+                                  ? data.github
+                                  : data.github.substring(0, 40) + "..."}
                               </a>
                             </td>
                           </tr>
                           <tr>
-                            <td>
+                            <td className="point">
                               <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              기술 :
+                              기술
                             </td>
                             <td>
                               {data.skills.map((m, index) => (
@@ -310,9 +316,9 @@ const Project = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td>
+                            <td className="point">
                               <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              개발 :
+                              개발
                             </td>
                             <td>
                               <p>{data.people}</p>

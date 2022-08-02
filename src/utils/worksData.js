@@ -54,7 +54,7 @@ export const worksData = [
     img: "/assets/works/chuflix.jpg",
     description:
       "리액트와 타입스크립트를 활용한 넷플릭스 클론 코딩입니다. Movie, Tv show, Search, Enter 페이지로 구성 되어 있습니다. ",
-    point: ["영화,드라마 검색", "콘텐츠 상세 보기"],
+    point: ["영화, 드라마 검색", "콘텐츠 상세 보기"],
     github: "https://chuhongkyu.github.io/chuflix/",
     skills: ["React", "TypeScript"],
     people: "넷플릭스 클론 코딩(개인 프로젝트)",
@@ -66,7 +66,7 @@ export const worksData = [
     img: "/assets/works/todo.png",
     description:
       "할일 체크 앱입니다. 할일을 카테고리 별로 추가해 관리 할 수 있습니다.",
-    point: ["할일 제거, 할일 로컬스토리지 관리, 커스텀 카데고리 제작"],
+    point: ["할일 제거, 로컬스토리지 관리", "커스텀 카데고리 제작"],
     github: "https://chuhongkyu.github.io/todolist/",
     skills: ["React", "TypeScript"],
     people: "노마드 코더 챌린지 - 우수작 (개인 프로젝트)",
@@ -78,7 +78,7 @@ export const worksData = [
     img: "/assets/works/1project.png",
     description:
       "마포구 이쁜 카페 소개 10선, 바닐라JS 프로젝트 입니다. HOME 화면은 원형으로 도는 TEXT와 슬라이드 컨테이너가 있습니다. CSS로 만든 커피 관련 애니메이션이 있습니다. HASH태그 칸에서 10선한 카페 10개를 해쉬태그에 따라 분류에 볼 수 있습니다. MAP컨테이너에서는 카페를 선택하면 카카오 지도에서 카페를 볼 수 있습니다.",
-    point: ["카페 검색, 지도, 인터랙티브, 다크모드"],
+    point: ["카페 검색, 지도", "인터랙티브, 다크모드"],
     github: "https://chuhongkyu.github.io/Cafe_HomePage/",
     skills: ["javaScript"],
     people: "1인 개발 - 회사 프로젝트",
@@ -102,7 +102,7 @@ export const worksData = [
     img: "/assets/works/coin.gif",
     description:
       "Coin tickers를 활용하여 코인 종류를 나열 했습니다. 코인을 누르면 상세 페이지가 보이고 코인의 가격과 차트를 그래프로 보실 수 있습니다. recoil을 활용한 다크모드 기능이 있습니다.",
-    point: ["코인 가격 그래프", "다크 모드", "Recoil"],
+    point: ["코인 가격 그래프", "다크 모드, Recoil"],
     github: "https://chuhongkyu.github.io/Coin-tickers/",
     skills: ["React", "TypeScript"],
     people: "프론트 엔드(1인 개발)",

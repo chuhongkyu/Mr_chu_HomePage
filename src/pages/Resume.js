@@ -22,6 +22,7 @@ const ProfileContainer = styled.div`
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: 0.5s;
+  font-family: "Noto Sans KR", sans-serif;
   .dummy {
     width: 100%;
     height: 70%;
@@ -124,8 +125,9 @@ const MainContainer = styled.div`
   background-color: rgb(242, 242, 242);
   overflow-x: hidden;
   overflow-y: scroll;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Noto Sans KR" sans-serif;
   h1 {
+    font-family: "Montserrat", sans-serif;
     font-size: 42px;
     font-weight: bold;
   }

@@ -8,59 +8,76 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const OnePerson = styled.div`
-  font-family: roboto, Helvetica, Arial, sans-serif;
   width: 100%;
-  padding: 50px 20px;
+  padding: 70px 50px 0px 50px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   overflow-y: scroll;
+  font-family: "Montserrat", sans-serif;
   h1 {
     font-size: 25px;
     margin-bottom: 20px;
+  }
+  .small {
+    color: rgb(150, 150, 150);
+    margin-bottom: 10px;
   }
   @media ${(props) => props.theme.device.mac} {
   }
 `;
 
-const TextBox = styled.div`
+const GameBox = styled.div`
   width: 100%;
-  height: 150px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
-const Icon = styled.div`
-  width: 100px;
-  height: 100px;
+const TextBox = styled.div`
+  width: 50%;
+  height: 150px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
-  white-space: nowrap;
-  img {
-    border-radius: 15px;
-    width: 60px;
-    height: 60px;
-    margin-bottom: 5px;
-    box-shadow: ${(prop) => prop.theme.shadow};
+  margin-bottom: 30px;
+  h1 {
+    font-size: 40px;
   }
-  @media ${(props) => props.theme.device.mobile} {
-    img {
-      width: 50px;
-      height: 50px;
+  .sub_title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+    .green {
+      font-size: 15px;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background-color: rgb(23, 206, 95);
+      color: white;
+      margin-bottom: 5px;
+    }
+    span {
+      margin-right: 5px;
+      font-size: 15px;
+      font-weight: bold;
     }
   }
 `;
 
+const BigIcon = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  box-shadow: ${(prop) => prop.theme.shadow};
+  background-size: cover;
+  background-position: center;
+`;
+
 const GameText = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
+  font-size: 14px;
   @media ${(props) => props.theme.device.mobile} {
     font-size: 11px;
   }
@@ -83,32 +100,40 @@ const Others = () => {
             src="https://img.shields.io/badge/Unity-5f5a5f?style=flat-square&logo=Unity&logoColor=white"
           />
         </h1>
+        <p className="small">
+          *재직중/휴업 상태입니다. 스토어에서 앱 비활성화.
+        </p>
         <TextBox>
-          <GameText>
-            <Icon>
-              <img
-                src={env.PUBLIC_URL + "/assets/app01.jpg"}
-                alt="서랍속 슬라임"
-              />
-              <p>서랍속 슬라임</p>
-            </Icon>
-          </GameText>
-
-          <GameText>
-            <h5>배포: ios/android</h5>
-            <p>형태: 2D 게임</p>
-            <p>수익방식: 구글 애드몹</p>
-          </GameText>
-          <GameText>
-            <p>내용: </p>
-            <p>
-              Slimes are moving in the drawer.
-              <br /> You should not let the slime bump into each other. <br />{" "}
-              Drag and drop~
-            </p>
-          </GameText>
+          <h5>
+            프론트 엔드 공부를 하기 전에 제작했던 유니티 프로그램을 통한
+            ios/android 출시 게임 앱입니다. 1인 개발 프로젝트로 기획, 개발과
+            디자인을 했습니다.
+          </h5>
         </TextBox>
-
+        <GameBox>
+          <BigIcon
+            style={{
+              backgroundImage: `url(${env.PUBLIC_URL}/assets/app01.jpg)`,
+            }}
+          />
+          <TextBox>
+            <h1>서랍속 슬라임</h1>
+            <div className="sub_title">
+              <span className="green">캐쥬얼</span>
+            </div>
+            <div className="sub_title">
+              <span>광고 포함 /</span>
+            </div>
+            <GameText>
+              <p>
+                서랍속 슬라임은 레벨이 15까지 있는 단순한 게임입니다. 슬라임들이
+                서로 부딪히지 않게 움직여 제한 시간을 버티면 클리어 입니다.
+                슬라임 캐릭터 마다 움직임과 특징이 존재합니다. 구글 애드몹 보상
+                광고를 통한 수익 방식을 가집니다.
+              </p>
+            </GameText>
+          </TextBox>
+        </GameBox>
         <IconDescription>
           <SliderContainer height="21vh">
             {drawers.map((drawer, index) => (
@@ -122,30 +147,34 @@ const Others = () => {
           </SliderContainer>
         </IconDescription>
 
-        <TextBox>
-          <GameText>
-            <Icon>
-              <img
-                src={env.PUBLIC_URL + "/assets/app02.png"}
-                alt="스티커 슬라임"
-              />
-              <p>스티커 슬라임</p>
-            </Icon>
-          </GameText>
-
-          <GameText>
-            <h5>배포: ios/android</h5>
-            <p>형태: 3D 게임</p>
-            <p>수익방식: 구글 애드몹, 부분 유료화</p>
-          </GameText>
-          <GameText>
-            <p>내용: </p>
-            <p>
-              슬라임들이 스티커로 돌아 왔어요.
-              <br /> 다양한 슬라임들과 함께 하늘에서 떨어지는 물건들을 피하세요.
-            </p>
-          </GameText>
-        </TextBox>
+        <GameBox>
+          <TextBox>
+            <h1>스티커 슬라임</h1>
+            <div className="sub_title">
+              <span className="green">캐쥬얼</span>
+            </div>
+            <div className="sub_title">
+              <span>광고 포함 /</span>
+              <span>인앱 결제</span>
+            </div>
+            <GameText>
+              <p>
+                기존에 유명한 '똥 피하기 게임'에서 아이디어를 얻은 게임입니다.
+                슬라임 캐릭터들을 스티커로 만들어 2.5D 느낌을 준 것이
+                특징입니다. 캐릭터들마다 하늘에서 떨어지는 물체가 다르고 스킬이
+                다릅니다. 게임을 하며 얻은 코인으로 캐릭터를 해금할 수 있습니다.
+                물론 보상 광고를 통해 코인을 더 많이 획득할 수 있습니다. 많은
+                유저들이 다운로드를 했으나 유지, 보수를 할 실력이 안되어
+                유지하지 못했습니다.
+              </p>
+            </GameText>
+          </TextBox>
+          <BigIcon
+            style={{
+              backgroundImage: `url(${env.PUBLIC_URL}/assets/app02.png)`,
+            }}
+          />
+        </GameBox>
 
         <IconDescription>
           <SliderContainer height="300px">

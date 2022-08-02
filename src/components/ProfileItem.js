@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 30px;
+    font-family: "Montserrat", sans-serif;
   }
   p {
     font-size: 20px;

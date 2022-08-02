@@ -14,6 +14,7 @@ import AppLink from "../components/AppLink";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  font-family: sans-serif;
 `;
 
 const Window = styled.div`
@@ -23,6 +24,7 @@ const Window = styled.div`
 `;
 
 const Boards = styled.div`
+  font-family: "Montserrat", sans-serif;
   padding: 30px 30px;
   display: flex;
   justify-content: center;
