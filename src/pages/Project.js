@@ -44,6 +44,9 @@ const MyStory = styled.div`
   align-items: flex-start;
   flex-direction: column;
   border-radius: 15px;
+  @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
+  }
 `;
 
 const Modal = styled(motion.div)`
@@ -140,9 +143,58 @@ const Works = styled(motion.div)`
       }
     }
   }
-  @media ${(props) => props.theme.device.mac} {
-  }
   @media ${(props) => props.theme.device.mobile} {
+    width: 390px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .wcontainer {
+      h1 {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+    }
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      &:last-of-type {
+        margin-bottom: 0px;
+      }
+      .icon {
+        width: 20px;
+      }
+      h1 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      h6 {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(108, 117, 125, 0.8);
+        margin-bottom: 20px;
+        text-align: end;
+      }
+      h3 {
+        font-size: 13px;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        border: 2px solid black;
+        border-radius: 15px;
+      }
+      p {
+        font-size: 11px;
+      }
+    }
   }
 `;
 
@@ -263,8 +315,8 @@ const Project = () => {
                   <Works
                     key={data.id}
                     id={data.id}
-                    initial={{ x: 0 }}
-                    animate={{ position: "absolute", zIndex: 1, x: 100 }}
+                    initial={{ x: 100 }}
+                    animate={{ position: "absolute", zIndex: 1, x: 0 }}
                   >
                     <div className="container">
                       <h1>{data.name}</h1>
