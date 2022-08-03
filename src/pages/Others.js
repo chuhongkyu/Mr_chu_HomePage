@@ -24,7 +24,19 @@ const OnePerson = styled.div`
     color: rgb(150, 150, 150);
     margin-bottom: 10px;
   }
-  @media ${(props) => props.theme.device.mac} {
+  h5 {
+    margin-bottom: 50px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 50px 20px 0px 20px;
+    h1 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+    .small {
+      color: rgb(150, 150, 150);
+      margin-bottom: 5px;
+    }
   }
 `;
 
@@ -33,6 +45,9 @@ const GameBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${(props) => props.theme.device.mobile} {
+    justify-content: space-around;
+  }
 `;
 
 const TextBox = styled.div`
@@ -65,6 +80,25 @@ const TextBox = styled.div`
       font-weight: bold;
     }
   }
+  @media ${(props) => props.theme.device.mobile} {
+    margin-bottom: 10px;
+    h1 {
+      font-size: 18px;
+    }
+    .sub_title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 5px;
+      .green {
+        font-size: 10px;
+        padding: 5px 10px;
+      }
+      span {
+        font-size: 11px;
+      }
+    }
+  }
 `;
 
 const BigIcon = styled.img`
@@ -74,6 +108,10 @@ const BigIcon = styled.img`
   box-shadow: ${(prop) => prop.theme.shadow};
   background-size: cover;
   background-position: center;
+  @media ${(props) => props.theme.device.mobile} {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const GameText = styled.div`
@@ -103,13 +141,13 @@ const Others = () => {
         <p className="small">
           *재직중/휴업 상태입니다. 스토어에서 앱 비활성화.
         </p>
-        <TextBox>
-          <h5>
-            프론트 엔드 공부를 하기 전에 제작했던 유니티 프로그램을 통한
-            ios/android 출시 게임 앱입니다. 1인 개발 프로젝트로 기획, 개발과
-            디자인을 했습니다.
-          </h5>
-        </TextBox>
+
+        <h5>
+          프론트 엔드 공부를 하기 전에 제작했던 유니티 프로그램을 통한 게임
+          앱들입니다. 1인 개발 프로젝트로 기획, 개발과 디자인을 했습니다. 구글
+          플레이스토어, AppleStore 플랫폼에 배포 했습니다.
+        </h5>
+
         <GameBox>
           <BigIcon
             style={{
@@ -160,8 +198,8 @@ const Others = () => {
             <GameText>
               <p>
                 기존에 유명한 '똥 피하기 게임'에서 아이디어를 얻은 게임입니다.
-                슬라임 캐릭터들을 스티커로 만들어 2.5D 느낌을 준 것이
-                특징입니다. 캐릭터들마다 하늘에서 떨어지는 물체가 다르고 스킬이
+                캐릭터들을 스티커로 만들어 2.5D 느낌을 준 것이 특징입니다.
+                캐릭터들마다 하늘에서 떨어지는 물체가 다르고 능력과 스킬이
                 다릅니다. 게임을 하며 얻은 코인으로 캐릭터를 해금할 수 있습니다.
                 물론 보상 광고를 통해 코인을 더 많이 획득할 수 있습니다. 많은
                 유저들이 다운로드를 했으나 유지, 보수를 할 실력이 안되어
@@ -176,7 +214,7 @@ const Others = () => {
           />
         </GameBox>
 
-        <IconDescription>
+        <IconDescription style={{ marginTop: 100 }}>
           <SliderContainer height="300px">
             {stickers.map((sticker, index) => (
               <Item
