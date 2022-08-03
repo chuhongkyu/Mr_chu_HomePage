@@ -57,7 +57,8 @@ function WindowBar() {
   };
   const resumeMatch = useMatch("/home/resume");
   const aboutMatch = useMatch("/home/about");
-  const othersMatch = useMatch("/home/others");
+  const othersMatch = useMatch("/home/game_app");
+  const projectMatch = useMatch("/home/project");
   const githubMatch = useMatch("/home/github");
   const [time, setTime] = useState(new Date());
 
@@ -80,8 +81,9 @@ function WindowBar() {
           />
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
           {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
-          {othersMatch && <OpenItem onClick={onExit}>Others</OpenItem>}
+          {othersMatch && <OpenItem onClick={onExit}>GameApp</OpenItem>}
           {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
+          {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
         <span>{time.toLocaleTimeString()}</span>
       </Bar>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileItem from "../components/ProfileItem";
 import WindowModal from "../components/WindowModal";
 import ReactTooltip from "react-tooltip";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Alert from "../components/Alert";
 import { AiFillMail } from "react-icons/ai";
 
@@ -205,9 +205,10 @@ const ProfileGrid = styled.div`
 
 const Resume = () => {
   const [alert, setAlert] = useState(false);
-  const onCopy = (e) => {
+
+  const onCopyier = (e) => {
     setAlert(!alert);
-    e.clipboardData.setData("chuhongkyu@gmail.com");
+    navigator.clipboard.writeText("chuhongkyu@gmail.com");
     e.preventDefault();
   };
   useEffect(() => {
@@ -227,7 +228,7 @@ const Resume = () => {
           <h2>추홍규</h2>
           {alert ? <Alert /> : null}
           <Contact
-            onClick={(e) => onCopy(e)}
+            onClick={(e) => onCopyier(e)}
             whileHover={{
               backgroundPosition: "left bottom",
               color: "white",
@@ -236,8 +237,8 @@ const Resume = () => {
           >
             <span>
               <AiFillMail />
-            </span>{" "}
-            Contact Me
+            </span>
+            Conatact
           </Contact>
         </div>
       </ProfileContainer>

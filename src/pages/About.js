@@ -37,7 +37,23 @@ const MainContainer = styled.div`
     }
   }
   @media ${(props) => props.theme.device.mobile} {
-    padding: 50px 30px;
+    padding: 50px 20px;
+    .title {
+      h1 {
+        font-size: 30px;
+      }
+    }
+    .description {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      p {
+        font-size: 11px;
+        color: rgb(180, 180, 180);
+        margin-bottom: 10px;
+      }
+    }
   }
 `;
 
@@ -57,25 +73,33 @@ const GoogleDrive = styled(motion.a)`
 
 const Introduction = styled(motion.div)`
   width: 100%;
+  margin: 0;
 `;
 
 const MainText = styled(motion.div)`
   width: 100%;
   display: flex;
-  font-size: 25px;
   margin-top: 30px;
-  white-space: nowrap;
+  font-size: 25px;
   font-weight: 700;
   span {
     margin-right: 10px;
     user-select: none;
   }
   h1 {
+    white-space: nowrap;
     color: rgb(180, 180, 180);
     cursor: pointer;
   }
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 19px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    h1 {
+      white-space: normal;
+      color: rgb(180, 180, 180);
+      cursor: pointer;
+    }
   }
 `;
 
@@ -102,7 +126,7 @@ const Description = styled(motion.div)`
     }
     p {
       color: rgba(50, 50, 50, 1);
-      font-size: 13px;
+      font-size: 11px;
       margin-bottom: 10px;
     }
   }
