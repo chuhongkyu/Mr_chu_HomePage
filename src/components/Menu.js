@@ -73,13 +73,10 @@ const Menu = () => {
         <span>
           <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
         </span>
-        <span>
-          <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-        </span>
       </div>
       <div className="grid_side">
         <div className="grid_tom">
-          <Item></Item>
+          <Item>Project 폴더를 관람해 주세요.</Item>
           <Item></Item>
           <Item></Item>
           <Item>이력서</Item>

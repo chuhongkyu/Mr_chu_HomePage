@@ -29,12 +29,12 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     .left {
-      left: 30px;
+      left: 10px;
       top: 50px;
       transform: rotateZ(180deg);
     }
     .right {
-      right: 30px;
+      right: 10px;
       top: 50px;
     }
   }
