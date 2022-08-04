@@ -27,6 +27,17 @@ const MainContainer = styled.div`
     right: 30px;
     top: 50%;
   }
+  @media ${(props) => props.theme.device.mobile} {
+    .left {
+      left: 30px;
+      top: 50px;
+      transform: rotateZ(180deg);
+    }
+    .right {
+      right: 30px;
+      top: 50px;
+    }
+  }
 `;
 
 const ArrowBtn = styled(motion.svg)`
