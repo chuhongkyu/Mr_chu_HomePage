@@ -18,6 +18,22 @@ const MainContainer = styled.div`
   border-radius: 15px;
   background-color: rgb(242, 242, 242);
   font-family: "Montserrat", sans-serif;
+  .left {
+    left: 30px;
+    top: 50%;
+    transform: rotateZ(180deg);
+  }
+  .right {
+    right: 30px;
+    top: 50%;
+  }
+`;
+
+const ArrowBtn = styled(motion.svg)`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 40;
 `;
 
 const Title = styled.h1`
@@ -53,10 +69,6 @@ const Modal = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: center;
-  @media ${(props) => props.theme.device.mac} {
-  }
-  @media ${(props) => props.theme.device.mobile} {
-  }
 `;
 
 const Works = styled(motion.div)`
@@ -297,9 +309,30 @@ const Project = () => {
       setPosition(0);
     }
   };
+  const onMinusRotate = () => {
+    setDeg(degreed - 40);
+    setPosition(position - 1);
+    if (degreed === 360 || position <= 0) {
+      setDeg(0);
+      setPosition(0);
+    }
+  };
   return (
     <WindowModal bgColor="white">
       <MainContainer>
+        <ArrowBtn
+          onClick={onMinusRotate}
+          className="left"
+          viewBox="0 0 17 16"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#434343"
+          whileHover={{ opacity: 1, fill: "#434343" }}
+          initial={{ opacity: 0.6 }}
+          fill="none"
+        >
+          <motion.path d="M6.077,1.162 C6.077,1.387 6.139,1.612 6.273,1.812 L10.429,8.041 L6.232,14.078 C5.873,14.619 6.019,15.348 6.56,15.707 C7.099,16.068 7.831,15.922 8.19,15.382 L12.82,8.694 C13.084,8.3 13.086,7.786 12.822,7.39 L8.233,0.51 C7.873,-0.032 7.141,-0.178 6.601,0.181 C6.26,0.409 6.077,0.782 6.077,1.162 L6.077,1.162 Z"></motion.path>
+        </ArrowBtn>
         <MyStory>
           <Title>
             <img
@@ -432,6 +465,19 @@ const Project = () => {
             </SmallContainer>
           </CircleContainer>
         </Accordion>
+        <ArrowBtn
+          onClick={onRotate}
+          className="right"
+          viewBox="0 0 17 16"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#434343"
+          whileHover={{ opacity: 1, fill: "#434343" }}
+          initial={{ opacity: 0.6 }}
+          fill="none"
+        >
+          <motion.path d="M6.077,1.162 C6.077,1.387 6.139,1.612 6.273,1.812 L10.429,8.041 L6.232,14.078 C5.873,14.619 6.019,15.348 6.56,15.707 C7.099,16.068 7.831,15.922 8.19,15.382 L12.82,8.694 C13.084,8.3 13.086,7.786 12.822,7.39 L8.233,0.51 C7.873,-0.032 7.141,-0.178 6.601,0.181 C6.26,0.409 6.077,0.782 6.077,1.162 L6.077,1.162 Z"></motion.path>
+        </ArrowBtn>
       </MainContainer>
     </WindowModal>
   );
