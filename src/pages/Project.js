@@ -153,6 +153,7 @@ const Works = styled(motion.div)`
     p {
     }
     table {
+      margin-top: 10px;
       width: 100%;
       .point {
         white-space: nowrap;
@@ -369,7 +370,13 @@ const Project = () => {
                     <div className="container">
                       <h1>{data.name}</h1>
                       <h6>{data.date}</h6>
-                      <img src={env.PUBLIC_URL + data.img} alt={data.name} />
+                      <a
+                        href={data.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
+                      </a>
                     </div>
                     <div className="container">
                       <p>{data.description}</p>
