@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileItem from "../components/ProfileItem";
 import WindowModal from "../components/WindowModal";
 import ReactTooltip from "react-tooltip";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "../components/Alert";
 import { AiFillMail } from "react-icons/ai";
 

@@ -219,6 +219,10 @@ const Works = styled(motion.div)`
       }
     }
   }
+  .url_decoration {
+    text-decoration: underline;
+    font-weight: 500;
+  }
 `;
 
 const Accordion = styled.div`
@@ -381,6 +385,22 @@ const Project = () => {
                               {data.point.map((m, index) => (
                                 <p key={index}>{m}</p>
                               ))}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              배포
+                            </td>
+                            <td>
+                              <a
+                                className="url_decoration"
+                                href={data.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Link
+                              </a>
                             </td>
                           </tr>
                           <tr>

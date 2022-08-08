@@ -96,10 +96,8 @@ const Menu = () => {
           </Item>
           <Item>
             <img
-              src={
-                "https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg"
-              }
-              alt="photo"
+              src="https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg"
+              alt="adobe_photo"
             />
             Adobe Photoshop CC 2022
           </Item>
