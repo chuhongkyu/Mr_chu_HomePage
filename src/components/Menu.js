@@ -21,6 +21,8 @@ const Container = styled(motion.div)`
     gap: 5px;
     padding: 10px;
     grid-auto-flow: row;
+    border-right: 2px solid black;
+    background-color: rgb(48, 48, 48);
     img {
       width: 80%;
       height: auto;
@@ -35,29 +37,44 @@ const Container = styled(motion.div)`
     .grid_tom {
       width: 100%;
       display: grid;
-      gap: 2px;
+      gap: 10px;
       grid-auto-flow: row;
       margin-top: 20px;
+      padding: 10px;
     }
   }
 `;
 
-const Item = styled.span`
+const SpanItem = styled.a`
   width: 100%;
   height: 100%;
   grid-column: span 1;
-  background-color: rgb(227, 79, 38);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.4);
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding: 10px 0px 10px 20px;
-  font-size: 11px;
-  white-space: nowrap;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
   img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+    width: 100%;
+  }
+  div {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(4, 10, 10);
+    color: white;
+    padding: 5px;
+    h2 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 11px;
+    }
+  }
+  &:hover {
+    transform: translateY(-5px);
+    transition: 0.5s;
   }
 `;
 
@@ -76,38 +93,39 @@ const Menu = () => {
       </div>
       <div className="grid_side">
         <div className="grid_tom">
-          <Item>Project 폴더를 관람해 주세요.</Item>
-          <Item></Item>
-          <Item></Item>
-          <Item>이력서</Item>
-          <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-            이력서
-          </Item>
-        </div>
-        <div className="grid_tom">
-          <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-            About
-          </Item>
-          <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-            About
-          </Item>
-          <Item>
+          <SpanItem
+            href="https://mapo-project.github.io/SecondLife-frontend/"
+            target="blank"
+          >
             <img
-              src="https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg"
-              alt="adobe_photo"
+              src={env.PUBLIC_URL + "/assets/works/3project.jpg"}
+              alt="세컨드 라이프"
             />
-            Adobe Photoshop CC 2022
-          </Item>
-          <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-            About
-          </Item>
-          <Item>
-            <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-          </Item>
+            <div>
+              <h2>SECOND_LIFE</h2>
+              <p>협업, Git, 로그인, JWT, OAuth</p>
+            </div>
+          </SpanItem>
+          <SpanItem
+            href="https://chuhongkyu.github.io/Cafe_HomePage/"
+            target="blank"
+          >
+            <img
+              src={env.PUBLIC_URL + "/assets/works/1project.png"}
+              alt="마포구 이쁜카페 10선"
+            />
+            <div>
+              <h2>마포구 예쁜 카페 10선</h2>
+              <p>순수 바닐라 자바스크립트</p>
+            </div>
+          </SpanItem>
+          <SpanItem target="blank" href="https://chuhongkyu.github.io/bmw-car/">
+            <img src={env.PUBLIC_URL + "/assets/works/bmw.gif"} alt="bmw" />
+            <div>
+              <h2>BMW</h2>
+              <p>webgl, three.js,3D </p>
+            </div>
+          </SpanItem>
         </div>
       </div>
     </Container>

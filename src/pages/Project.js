@@ -27,6 +27,13 @@ const MainContainer = styled.div`
     right: 30px;
     top: 50%;
   }
+  .state {
+    position: absolute;
+    text-align: end;
+    right: 10px;
+    bottom: 10px;
+    font-size: 11px;
+  }
   @media ${(props) => props.theme.device.mobile} {
     .left {
       left: 10px;
@@ -355,7 +362,7 @@ const Project = () => {
               src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4a1.svg"
               alt="아이디어"
             />
-            MY PROJECT
+            MY PROJECTS
           </Title>
           <Modal>
             {worksData.map((data) => (
@@ -449,6 +456,9 @@ const Project = () => {
                           </tr>
                         </tbody>
                       </table>
+                      <div className="state">
+                        <p>{position + 1} / 9</p>
+                      </div>
                     </div>
                   </Works>
                 ) : (
@@ -476,7 +486,7 @@ const Project = () => {
         <Accordion>
           <CircleContainer>
             <PathPosition>
-              <h5>{position}</h5>
+              <h5>{position + 1}</h5>
             </PathPosition>
             <SmallContainer
               onClick={onRotate}
