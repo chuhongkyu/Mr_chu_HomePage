@@ -97,7 +97,7 @@ export const worksData = [
     people: "2022.03 (개인 프로젝트)",
     img: "/assets/works/comments.jpg",
     description:
-      "리액트로 만든 댓글 앱, 스터디를 하면서 자바스크립트의 불변성을 지켜주며 제작한 앱입니다",
+      "리액트로 만든 댓글 앱, 스터디를 하면서 불변성에 대해 공부하며 만든 앱입니다. 불변성이란 메모리 영역의 값을 변경할 수 없는 것입니다. 리액트는 불변성을 지켜줌으로써 효율적인 상태업데이트를 합니다. 사이드 이펙트를 사전 방지하고 프로그래밍의 구조를 단순하게 유지합니다. 불변성을 가진 원시타입과 달리 참조타입의 경우에는 의도적으로 불변성을 지켜주어야합니다. 그래서 새로운 주소 값을 가진 객체를 생성하여 상태를 업데이트 해줍니다. spread operator, map, filter, slice, reduce 메소드들을 활용해서",
     point: ["댓글 작성, 수정, 삭제, 체크"],
     github: "https://github.com/chuhongkyu/Comments_app",
     link: "https://chuhongkyu.github.io/Comments_app/",
