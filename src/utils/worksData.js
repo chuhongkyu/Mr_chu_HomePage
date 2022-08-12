@@ -109,7 +109,7 @@ export const worksData = [
     date: "(2022.06.25)",
     img: "/assets/works/coin.gif",
     description:
-      "Coin tickers를 활용하여 코인 종류를 나열 했습니다. 코인을 누르면 상세 페이지가 보이고 코인의 가격과 차트를 그래프로 보실 수 있습니다. recoil을 활용한 다크모드 기능이 있습니다.",
+      "coinpaprika API를 활용하여 코인관련 앱을 만들었습니다. 여러 종류의 코인중 코인을 고르면 상세 페이지로 이동합니다. 상세 페이지는 코인의 공급 가격 그래프와 제일 높은 가격과 제일 낮은 가격 차트 그래프로 보실 수 있습니다. 전역 값 관리 라이브러리 recoil을 활용한 다크모드 기능이 있습니다.",
     point: ["코인 가격 그래프", "다크 모드, Recoil"],
     github: "https://github.com/chuhongkyu/Coin-tickers",
     link: "https://chuhongkyu.github.io/Coin-tickers/",

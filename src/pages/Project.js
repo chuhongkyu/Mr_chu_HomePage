@@ -163,9 +163,13 @@ const Works = styled(motion.div)`
       margin-top: 10px;
       width: 100%;
       .point {
-        white-space: nowrap;
         font-weight: 700;
         padding-right: 10px;
+        white-space: nowrap;
+        vertical-align: top;
+      }
+      a {
+        font-size: 15px;
       }
       th {
         text-align: start;
@@ -224,6 +228,11 @@ const Works = styled(motion.div)`
       }
       p {
         font-size: 11px;
+      }
+      table {
+        a {
+          font-size: 11px;
+        }
       }
     }
   }
