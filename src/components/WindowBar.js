@@ -20,6 +20,10 @@ const Bar = styled.div`
   img {
     width: 30px;
     height: 30px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 `;
 

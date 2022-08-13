@@ -21,11 +21,21 @@ const Container = styled(motion.div)`
     gap: 5px;
     padding: 10px;
     grid-auto-flow: row;
-    border-right: 2px solid black;
-    background-color: rgb(48, 48, 48);
-    img {
-      width: 80%;
-      height: auto;
+    background-color: rgba(48, 48, 48, 0.7);
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      img {
+        width: 100%;
+        height: auto;
+      }
+      p {
+        font-size: 11px;
+        color: white;
+        text-align: center;
+      }
     }
   }
   .grid_side {
@@ -89,6 +99,7 @@ const Menu = () => {
       <div className="left_side">
         <span>
           <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
+          <p>폴더</p>
         </span>
       </div>
       <div className="grid_side">
