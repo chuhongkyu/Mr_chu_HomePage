@@ -3,6 +3,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Enter from "./pages/Enter";
 import Home from "./pages/Home";
+import Meta from "./utils/Meta";
 
 function App() {
   let params = useParams();
@@ -12,10 +13,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <Helmet>
-        <title>Mr.chu 홈페이지</title>
-        <meta name="미스터 추" content="미스터 추" />
-      </Helmet>
+      <Meta />
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Enter />} />
