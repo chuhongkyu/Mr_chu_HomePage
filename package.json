@@ -14,6 +14,7 @@
     "react-helmet-async": "^1.3.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
+    "react-router-sitemap": "^1.2.0",
     "react-scripts": "5.0.1",
     "react-tooltip": "^4.2.21",
     "recoil": "^0.7.3-alpha.2",
@@ -26,7 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html && gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "sitemap": "babel-node ./src/sitemapGenerator.js"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +48,11 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://chuhongkyu.github.io/Mr_chu_HomePage"
+  "homepage": "http://chuhongkyu.github.io/Mr_chu_HomePage",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0"
+  }
 }
