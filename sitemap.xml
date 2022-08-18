@@ -3,4 +3,5 @@
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/</loc> </url>
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/</loc> </url>
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home</loc> </url>
+<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/*</loc> </url>
 </urlset>
