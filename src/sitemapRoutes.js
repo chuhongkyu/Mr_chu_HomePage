@@ -5,5 +5,6 @@ export default (
   <Route>
     <Route path="/" />
     <Route path="/home" />
+    <Route path="/home/*" />
   </Route>
 );

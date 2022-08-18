@@ -1,3 +1,4 @@
 Sitemap: https://github.com/chuhongkyu/Mr_chu_HomePage/blob/gh-pages/sitemap.xml
 User-agent: *
 Disallow: /
+Disallow: /**.html$
