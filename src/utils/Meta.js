@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 const Meta = () => {
   const metaData = {
     title: "Mr.chu 홈페이지",
-    description: "Mr.chu 홈페이지 - 개발자, 포트폴리오, 프론트엔드, 인터랙티브",
+    description: "Mr.chu 홈페이지 - 개발자, 포트폴리오, 프론트엔드",
     keywords: "개발자, 프론트 엔드, 미스터추, 포트폴리오",
   };
   return (
