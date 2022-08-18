@@ -1,3 +1,3 @@
-# google4bd092f5216dd2f8.html
+Sitemap: https://github.com/chuhongkyu/Mr_chu_HomePage/blob/gh-pages/sitemap.xml
 User-agent: *
 Disallow: /
