@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Enter from "./pages/Enter";
 import Home from "./pages/Home";
