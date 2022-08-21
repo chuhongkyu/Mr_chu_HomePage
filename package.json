@@ -16,6 +16,7 @@
     "react-router-dom": "^6.3.0",
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "5.0.1",
+    "react-snap": "^1.23.0",
     "react-tooltip": "^4.2.21",
     "recoil": "^0.7.3-alpha.2",
     "styled-components": "^5.3.5",
@@ -28,7 +29,15 @@
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html && gh-pages -d build",
     "predeploy": "npm run build",
+    "postbuild": "react-snap",
     "sitemap": "babel-node ./src/sitemapGenerator.js"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/home",
+      "/home/*"
+    ]
   },
   "eslintConfig": {
     "extends": [
