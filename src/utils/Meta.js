@@ -9,7 +9,7 @@ const Meta = () => {
     keywords: "개발자, 프론트 엔드, 미스터추, 포트폴리오",
     imgsrc:
       "https://raw.githubusercontent.com/chuhongkyu/Mr_chu_HomePage/main/public/assets/home.png",
-    url: "https://chuhongkyu.github.io/Mr_chu_HomePage/",
+    url: "https://chuhongkyu.github.io/Mr_chu_HomePage",
   };
   return (
     <Helmet>
@@ -28,7 +28,7 @@ const Meta = () => {
       <meta name="twitter:title" content={metaData.title} />
       <meta name="twitter:description" content={metaData.description} />
       <meta name="twitter:image" content={metaData.imgsrc} />
-      {/* <link rel="canonical" href={metaData.url} /> */}
+      <link rel="canonical" href={metaData.url} />
     </Helmet>
   );
 };
