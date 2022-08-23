@@ -32,6 +32,7 @@
       const urlString = location.href;
       if (urlString.match(targetUrl)) {
         window.location.replace(urlString.replace(targetUrl, changeUrl));
+        console.log("성공");
       }
     </script>
   </body>
