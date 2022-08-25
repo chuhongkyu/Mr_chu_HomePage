@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../components/Title";
 
@@ -73,6 +74,14 @@ const openVariants = {
 };
 
 const Enter = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigate("/home");
+    }, 4000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <Wrapper variants={openVariants} initial="inital" animate="animate">
       <LoginBox>
