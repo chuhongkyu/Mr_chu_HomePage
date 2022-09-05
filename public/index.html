@@ -25,5 +25,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      const targetUrl =
+        "https://chuhongkyu.github.io/Mr_chu_HomePage/index.html";
+      const changeUrl = "https://chuhongkyu.github.io/Mr_chu_HomePage/";
+      const urlString = location.href;
+      if (urlString.match(targetUrl)) {
+        window.location.replace(urlString.replace(targetUrl, changeUrl));
+        console.log("성공");
+      }
+    </script>
   </body>
 </html>

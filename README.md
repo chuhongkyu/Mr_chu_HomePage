@@ -25,11 +25,11 @@
 - 화면 구성
   - Enter
   - Home
-    - RESUME
-    - ABOUT
-    - GITHUB
-    - PROJECT (프로젝트)
-    - OTHERS
+   - RESUME
+   - ABOUT
+   - GITHUB
+   - PROJECT (프로젝트)
+   - OTHERS
 
 ---
 
@@ -54,6 +54,8 @@
 - react-helmet
 
 ---
+
+리액트가 렌더링 되는 경우는 state,props가 변경되었을 떄
 
 - 함수형 컴포넌트는 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.
 - 컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다.

@@ -3,5 +3,8 @@
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/</loc> </url>
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/</loc> </url>
 <url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home</loc> </url>
-<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/*</loc> </url>
+<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/resume</loc> </url>
+<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/about</loc> </url>
+<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/game_app</loc> </url>
+<url> <loc>http://chuhongkyu.github.io/Mr_chu_HomePage/home/project</loc> </url>
 </urlset>

@@ -5,11 +5,11 @@ import { Helmet } from "react-helmet-async";
 const Meta = () => {
   const metaData = {
     title: "Mr.chu 홈페이지",
-    description: "Mr.chu 홈페이지 - 개발자, 포트폴리오, 프론트엔드",
-    keywords: "개발자, 프론트 엔드, 미스터추, 포트폴리오",
+    description: "추홍규 | 프론트 엔드 · 개발자 · 포트폴리오",
+    keywords: "추홍규 · 프론트 엔드 · Mr.chu · 포트폴리오 · chu_hong_kyu ",
     imgsrc:
       "https://raw.githubusercontent.com/chuhongkyu/Mr_chu_HomePage/main/public/assets/home.png",
-    url: "https://chuhongkyu.github.io/Mr_chu_HomePage/",
+    url: "https://chuhongkyu.github.io/Mr_chu_HomePage",
   };
   return (
     <Helmet>
@@ -28,7 +28,7 @@ const Meta = () => {
       <meta name="twitter:title" content={metaData.title} />
       <meta name="twitter:description" content={metaData.description} />
       <meta name="twitter:image" content={metaData.imgsrc} />
-      {/* <link rel="canonical" href={metaData.url} /> */}
+      <link rel="canonical" href={metaData.url} />
     </Helmet>
   );
 };
