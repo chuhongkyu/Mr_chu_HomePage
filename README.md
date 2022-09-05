@@ -25,11 +25,11 @@
 - 화면 구성
   - Enter
   - Home
-    - RESUME
-    - ABOUT
-    - GITHUB
-    - PROJECT (프로젝트)
-    - OTHERS
+   - RESUME
+   - ABOUT
+   - GITHUB
+   - PROJECT (프로젝트)
+   - OTHERS
 
 ---
 

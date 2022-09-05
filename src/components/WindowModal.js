@@ -96,6 +96,7 @@ const WindowModal = ({ children, bgColor, widthSize, heightSize }) => {
   };
   const onHandleSize = () => {
     setResize(!resize);
+    console.log("windowModal 렌더링");
   };
 
   return (
