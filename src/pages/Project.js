@@ -346,7 +346,7 @@ const Project = () => {
     setPosition(position - 1);
     if (degreed === 360 || position <= 0) {
       setDeg(0);
-      setPosition(0);
+      setPosition(8);
     }
   };
   return (
