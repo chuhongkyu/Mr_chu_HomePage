@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AiTwotoneCrown } from "react-icons/ai";
 import { worksData } from "../utils/worksData";
+import { Fragment } from "react";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -178,6 +179,10 @@ const Works = styled(motion.div)`
       }
     }
   }
+  .url_decoration {
+    text-decoration: underline;
+    font-weight: 500;
+  }
   @media ${(props) => props.theme.device.mobile} {
     width: 390px;
     padding: 20px;
@@ -235,10 +240,6 @@ const Works = styled(motion.div)`
         }
       }
     }
-  }
-  .url_decoration {
-    text-decoration: underline;
-    font-weight: 500;
   }
 `;
 
@@ -374,122 +375,131 @@ const Project = () => {
             MY PROJECTS
           </Title>
           <Modal>
-            {worksData.map((data) => (
-              <>
-                {position === data.id ? (
-                  <Works
-                    key={data.id}
-                    id={data.id}
-                    initial={{ x: 100 }}
-                    animate={{ position: "absolute", zIndex: 1, x: 0 }}
-                  >
-                    <div className="container">
-                      <h1>{data.name}</h1>
-                      <h6>{data.date}</h6>
-                      <a
-                        href={data.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
-                      </a>
-                    </div>
-                    <div className="container">
-                      <p>{data.description}</p>
-                      <hr />
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td className="point">
-                              <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              주요 기능
-                            </td>
-                            <td>
-                              {data.point.map((m, index) => (
-                                <p key={index}>{m}</p>
-                              ))}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="point">
-                              <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              배포
-                            </td>
-                            <td>
-                              <a
-                                className="url_decoration"
-                                href={data.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Link
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="point">
-                              <AiTwotoneCrown style={{ marginRight: 5 }} />깃
-                              허브
-                            </td>
-                            <td>
-                              <a
-                                href={data.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {data.github.length < 40
-                                  ? data.github
-                                  : data.github.substring(0, 40) + "..."}
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="point">
-                              <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              기술
-                            </td>
-                            <td>
-                              {data.skills.map((m, index) => (
-                                <p key={index}>{m}</p>
-                              ))}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="point">
-                              <AiTwotoneCrown style={{ marginRight: 5 }} />
-                              개발
-                            </td>
-                            <td>
-                              <p>{data.people}</p>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div className="state">
-                        <p>{position + 1} / 9</p>
+            <AnimatePresence>
+              {worksData.map((data, index) => (
+                <Fragment key={index}>
+                  {position === data.id ? (
+                    <Works
+                      key={data.id}
+                      id={data.id}
+                      initial={{ scale: 0.8 }}
+                      animate={{
+                        scale: 1,
+                        position: "absolute",
+                        zIndex: 1,
+                        x: 0,
+                      }}
+                    >
+                      <div className="container">
+                        <h1>{data.name}</h1>
+                        <h6>{data.date}</h6>
+                        <a
+                          href={data.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src={env.PUBLIC_URL + data.img}
+                            alt={data.name}
+                          />
+                        </a>
                       </div>
-                    </div>
-                  </Works>
-                ) : (
-                  <Works
-                    initial={{
-                      scaleY: 0.7,
-                      scaleX: 0.7,
-                      x: 0,
-                      opacity: 0.5,
-                    }}
-                    animate={{
-                      x: 5,
-                    }}
-                  >
-                    <div className="wcontainer">
-                      <h1>{data.name}</h1>
-                      <img src={env.PUBLIC_URL + data.img} alt={data.name} />
-                    </div>
-                  </Works>
-                )}
-              </>
-            ))}
+                      <div className="container">
+                        <p>{data.description}</p>
+                        <hr />
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td className="point">
+                                <AiTwotoneCrown style={{ marginRight: 5 }} />
+                                주요 기능
+                              </td>
+                              <td>
+                                {data.point.map((m, index) => (
+                                  <p key={index}>{m}</p>
+                                ))}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="point">
+                                <AiTwotoneCrown style={{ marginRight: 5 }} />
+                                배포
+                              </td>
+                              <td>
+                                <a
+                                  className="url_decoration"
+                                  href={data.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Link
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="point">
+                                <AiTwotoneCrown style={{ marginRight: 5 }} />깃
+                                허브
+                              </td>
+                              <td>
+                                <a
+                                  href={data.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {data.github.length < 40
+                                    ? data.github
+                                    : data.github.substring(0, 40) + "..."}
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="point">
+                                <AiTwotoneCrown style={{ marginRight: 5 }} />
+                                기술
+                              </td>
+                              <td>
+                                {data.skills.map((m, index) => (
+                                  <p key={index}>{m}</p>
+                                ))}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="point">
+                                <AiTwotoneCrown style={{ marginRight: 5 }} />
+                                개발
+                              </td>
+                              <td>
+                                <p>{data.people}</p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div className="state">
+                          <p>{position + 1} / 9</p>
+                        </div>
+                      </div>
+                    </Works>
+                  ) : (
+                    <Works
+                      initial={{
+                        scale: 0.7,
+                        x: 0,
+                        opacity: 0.5,
+                      }}
+                      animate={{
+                        x: 5,
+                      }}
+                    >
+                      <div className="wcontainer">
+                        <h1>{data.name}</h1>
+                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
+                      </div>
+                    </Works>
+                  )}
+                </Fragment>
+              ))}
+            </AnimatePresence>
           </Modal>
         </MyStory>
         <Accordion>

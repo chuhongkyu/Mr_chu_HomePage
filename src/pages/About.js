@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
 import { write } from "../utils/write";
-import ReactTooltip from "react-tooltip";
 import { Fragment, useState } from "react";
 
 const env = process.env;
@@ -91,6 +90,7 @@ const MainText = styled(motion.div)`
   h1 {
     white-space: nowrap;
     color: rgb(180, 180, 180);
+    pointer-events: none;
   }
   @media ${(props) => props.theme.device.mobile} {
     margin-top: 20px;
@@ -147,39 +147,42 @@ const ReadMe = styled.a`
 
 const About = () => {
   const [pageShow, setPageShow] = useState([
-  {
-    id: "first",
-    data: false,
-    readme: false,
-  },
-  {
-    id: "second",
-    data: false,
-    readme: false,
-  },
-  {
-    id: "third",
-    data: true,
-    readme: true,
-  },
-  {
-    id: "fourth",
-    data: false,
-    readme: false,
-  },
-  // {
-  //   id: "fiveth",
-  //   data: false,
-  //   readme: false,
-  // }
-])
+    {
+      id: "first",
+      data: false,
+      readme: false,
+    },
+    {
+      id: "second",
+      data: false,
+      readme: false,
+    },
+    {
+      id: "third",
+      data: true,
+      readme: true,
+    },
+    {
+      id: "fourth",
+      data: false,
+      readme: false,
+    },
+    {
+      id: "fiveth",
+      data: false,
+      readme: false,
+    },
+  ]);
 
-  const onHandlePage = (e)=>{
+  const onHandlePage = (e) => {
     e.stopPropagation();
     const id = e.target.id;
-    setPageShow(pageShow.map(page => page.id === id ? {...page, data: !page.data}: page))
-  }
-  
+    setPageShow(
+      pageShow.map((page) =>
+        page.id === id ? { ...page, data: !page.data } : page
+      )
+    );
+  };
 
   return (
     <WindowModal bgColor="white">
@@ -218,38 +221,52 @@ const About = () => {
             transition: { duration: 0.5, delay: 0.8 },
           }}
         >
-          {pageShow.map((page, index)=>{
-            return(
+          {pageShow.map((page, index) => {
+            return (
               <Fragment key={index}>
                 <MainText id={page.id} onClick={onHandlePage}>
                   <span>📌</span>
-                  <h1 style={!page.data ? { color: "rgb(180, 180, 180)" } : { color: "black" }}
-                >{write.about[index].main_txt}</h1>
+                  <h1
+                    style={
+                      !page.data
+                        ? { color: "rgb(180, 180, 180)" }
+                        : { color: "black" }
+                    }
+                  >
+                    {write.about[index].main_txt}
+                  </h1>
                 </MainText>
                 {page.data ? (
-                <Description
-                  animate={{
-                    opacity: [0, 1],
-                    y: [-50, 0],
-                    transition: { duration: 0.5 },
-                  }}
-                >
-                  <h2 style={{ marginTop: 15 }}>{write.about[index].sub_title1}</h2>
-                  <p>&nbsp; {write.about[index].sub_txt1}</p>
-                  {write.about[index].sub_txt2 ? <p>&nbsp; {write.about[index].sub_txt2}</p> : null }
-                  {write.about[index].sub_txt3 ? <p>&nbsp; {write.about[index].sub_txt3}</p> : null }
-                  {page.readme ? 
-                  <ReadMe
-                      target="blank_"
-                      href="https://github.com/chuhongkyu/mapoCharacter#readme"
-                    >
-                      README.md
-                  </ReadMe>: null}
-                </Description>): null}
+                  <Description
+                    animate={{
+                      opacity: [0, 1],
+                      y: [-50, 0],
+                      transition: { duration: 0.5 },
+                    }}
+                  >
+                    <h2 style={{ marginTop: 15 }}>
+                      {write.about[index].sub_title1}
+                    </h2>
+                    <p>&nbsp; {write.about[index].sub_txt1}</p>
+                    {write.about[index].sub_txt2 ? (
+                      <p>&nbsp; {write.about[index].sub_txt2}</p>
+                    ) : null}
+                    {write.about[index].sub_txt3 ? (
+                      <p>&nbsp; {write.about[index].sub_txt3}</p>
+                    ) : null}
+                    {page.readme ? (
+                      <ReadMe
+                        target="blank_"
+                        href="https://github.com/chuhongkyu/mapoCharacter#readme"
+                      >
+                        README.md
+                      </ReadMe>
+                    ) : null}
+                  </Description>
+                ) : null}
               </Fragment>
-            )
-          }
-        )}
+            );
+          })}
         </Introduction>
       </MainContainer>
     </WindowModal>
