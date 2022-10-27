@@ -131,6 +131,13 @@ const MainContainer = styled.div`
     font-size: 42px;
     font-weight: bold;
   }
+  @media ${(props) => props.theme.device.mac} {
+    padding: 40px 40px 10px 30px;
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+  }
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
     padding: 50px 10px 10px 10px;
@@ -140,16 +147,9 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-    padding: 50px 10px 10px 10px;
+    padding: 50px 10px 10px;
     h1 {
       font-size: 20px;
-    }
-  }
-  @media ${(props) => props.theme.device.mac} {
-    padding: 40px 40px 10px 30px;
-    h1 {
-      font-size: 40px;
-      font-weight: bold;
     }
   }
 `;
@@ -171,24 +171,6 @@ const ProfileGrid = styled.div`
   hr {
     margin: 10px 0px;
   }
-  @media ${(props) => props.theme.device.tablet} {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    .between {
-      img {
-        height: 20px;
-      }
-    }
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    .between {
-      img {
-        height: 18px;
-      }
-    }
-  }
   @media ${(props) => props.theme.device.mac} {
     .between {
       display: flex;
@@ -199,6 +181,24 @@ const ProfileGrid = styled.div`
     }
     hr {
       margin: 5px 0px;
+    }
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    .between {
+      img {
+        height: 18px;
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    .between {
+      img {
+        height: 15px;
+      }
     }
   }
 `;
@@ -268,7 +268,11 @@ const Resume = () => {
             </div>
             <div className="between">
               <p>마포 청년 일자리 사업단(앱 개발팀)</p>
-              <p>2022</p>
+              <p>2022.03</p>
+            </div>
+            <div className="between">
+              <p>더즈 인터랙티브 (프론트 엔드)</p>
+              <p>2022.08</p>
             </div>
           </ProfileItem>
           <ProfileItem

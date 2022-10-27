@@ -8,7 +8,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Position = styled.div`
-  width: 99vw;
+  width: 98vw;
   height: 95vh;
   position: absolute;
   top: 5px;
@@ -16,6 +16,10 @@ const Position = styled.div`
   z-index: 10;
   display: flex;
   justify-content: center;
+  @media ${(props) => props.theme.device.mobile} {
+    top: 1.5px;
+    left: 1.5px;
+  }
 `;
 
 const Modal = styled(motion.div)`

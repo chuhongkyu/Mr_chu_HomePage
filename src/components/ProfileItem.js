@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 25px 20px 30px 20px;
+  padding: 25px 20px 20px;
   white-space: nowrap;
   background-color: white;
   border-radius: 15px;
@@ -23,21 +23,6 @@ const Wrapper = styled.div`
     font-size: 20px;
     line-height: 30px;
   }
-
-  @media ${(props) => props.theme.device.mobile} {
-    margin: 20px 0px;
-    .icon {
-      width: 20px;
-      margin-right: 10px;
-    }
-    h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-    p {
-      font-size: 11px;
-    }
-  }
   @media ${(props) => props.theme.device.mac} {
     padding: 20px 20px 30px 20px;
     .icon {
@@ -46,7 +31,7 @@ const Wrapper = styled.div`
     }
     h3 {
       font-size: 25px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -56,18 +41,30 @@ const Wrapper = styled.div`
       line-height: 23px;
     }
   }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 12px 15px 12px;
+    margin: 20px 0px;
+    .icon {
+      width: 20px;
+      margin-right: 10px;
+    }
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 11px;
+    }
+  }
 `;
 
 const Container = styled.div`
   margin-left: 45px;
-  margin-right: 45px;
-  @media ${(props) => props.theme.device.mobile} {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
   @media ${(props) => props.theme.device.mac} {
     margin-left: 40px;
-    margin-right: 40px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    margin-left: 20px;
   }
 `;
 
