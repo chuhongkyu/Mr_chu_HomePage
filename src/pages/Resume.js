@@ -195,6 +195,7 @@ const ProfileGrid = styled.div`
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: 1fr;
     gap: 10px;
+    margin: 5px 0;
     .between {
       img {
         height: 15px;

@@ -42,7 +42,7 @@ const Wrapper = styled.div`
     }
   }
   @media ${(props) => props.theme.device.mobile} {
-    padding: 12px 15px 12px;
+    padding: 20px 15px 15px;
     margin: 20px 0px;
     .icon {
       width: 20px;
