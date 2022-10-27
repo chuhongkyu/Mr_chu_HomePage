@@ -150,6 +150,7 @@ const About = () => {
   const [second, setSecond] = useState(false);
   const [third, setThird] = useState(true);
   const [fourth, setFourth] = useState(false);
+  const [fivesth, setFivesth] = useState(false);
 
   const onFirst = () => {
     setFirst(!first);
@@ -162,6 +163,9 @@ const About = () => {
   };
   const onFourth = () => {
     setFourth(!fourth);
+  };
+  const onFivesth = () => {
+    setFivesth(!fivesth);
   };
 
   return (
