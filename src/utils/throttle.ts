@@ -1,6 +1,6 @@
-const throttle = (func, ms) => {
+const throttle = (func: any, ms: any) => {
   let throttled = false;
-  return (...args) => {
+  return (...args: any) => {
     if (!throttled) {
       throttled = true;
       setTimeout(() => {

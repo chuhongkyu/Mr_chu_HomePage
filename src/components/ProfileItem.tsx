@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -68,7 +69,15 @@ const Container = styled.div`
   }
 `;
 
-function ProfileItem({ title, children, icon, column, row }) {
+interface IWorks {
+  children: ReactNode;
+  title: string;
+  icon: string;
+  column: string | number;
+  row: string;
+}
+
+function ProfileItem({ title, children, icon, column, row }: IWorks) {
   return (
     <Wrapper style={{ gridColumn: column, gridRow: row }}>
       <h3>

@@ -11,7 +11,13 @@ const Container = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
-const Item = ({ imgSrc, name, wSize }) => {
+interface Iitem {
+  imgSrc: string;
+  name: string;
+  wSize: string;
+}
+
+const Item = ({ imgSrc, name, wSize }: Iitem) => {
   return (
     <Container>
       <img style={{ width: wSize }} src={env.PUBLIC_URL + imgSrc} alt={name} />

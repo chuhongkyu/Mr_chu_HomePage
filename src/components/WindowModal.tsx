@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
@@ -7,24 +7,25 @@ import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
+export interface Props {
+  first: string;
+  second: string;
+}
+
 const Position = styled.div`
-  width: 98vw;
-  height: 95vh;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 0px;
+  left: 0px;
   z-index: 10;
   display: flex;
   justify-content: center;
-  @media ${(props) => props.theme.device.mobile} {
-    top: 1.5px;
-    left: 1.5px;
-  }
 `;
 
 const Modal = styled(motion.div)`
-  width: ${(props) => props.first};
-  height: ${(props) => props.second};
+  width: ${(props: Props) => props.first};
+  height: ${(props: Props) => props.second};
   border-radius: 10px;
   position: relative;
   z-index: 5;
@@ -85,14 +86,18 @@ const ModalVariant = {
   animate: {
     opacity: 1,
     scale: 1,
-  },
-  transition: {
-    duration: 2,
-    type: "spring",
+    transition: { duration: 1.5, type: "spring" },
   },
 };
 
-const WindowModal = ({ children, bgColor, widthSize, heightSize }) => {
+interface IWindow {
+  children: ReactNode;
+  bgColor: string;
+  widthSize: string[];
+  heightSize: string[];
+}
+
+const WindowModal = ({ children, bgColor, widthSize, heightSize }: IWindow) => {
   const [resize, setResize] = useState(false);
   const navigate = useNavigate();
   const onExit = () => {
@@ -111,7 +116,6 @@ const WindowModal = ({ children, bgColor, widthSize, heightSize }) => {
         variants={ModalVariant}
         initial="inital"
         animate="animate"
-        transition="transition"
         style={{ backgroundColor: bgColor }}
       >
         <TopNav>

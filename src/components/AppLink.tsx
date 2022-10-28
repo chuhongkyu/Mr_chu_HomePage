@@ -9,7 +9,7 @@ const App = styled.div`
   flex-direction: column;
   width: 70px;
   height: 70px;
-  transform: ${(props) =>
+  transform: ${(props: any) =>
     props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {
     display: flex;
@@ -49,7 +49,13 @@ const App = styled.div`
 
 const Svg = styled(motion.svg)``;
 
-const AppLink = ({ title, type, pathUrl }) => {
+interface IApp {
+  title: string;
+  type: any;
+  pathUrl: string;
+}
+
+const AppLink = ({ title, type, pathUrl }: IApp) => {
   const choosePage = () => {
     switch (type) {
       case "resume":

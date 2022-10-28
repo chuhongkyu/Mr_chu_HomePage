@@ -94,17 +94,17 @@ a{
   user-select: none;
 }
 ::-moz-selection {
-   background: ${(props) => props.theme.black.darker};
-   color: ${(props) => props.theme.white.lighter};
+   background: ${(props: any) => props.theme.black.darker};
+   color: ${(props: any) => props.theme.white.lighter};
 }
 ::selection {
-   background: ${(props) => props.theme.black.darker};
-   color: ${(props) => props.theme.white.lighter};
+   background: ${(props: any) => props.theme.black.darker};
+   color: ${(props: any) => props.theme.white.lighter};
 }
 `;
 
 const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
+if (rootElement?.hasChildNodes()) {
   hydrate(
     <RecoilRoot>
       <ThemeProvider theme={theme}>

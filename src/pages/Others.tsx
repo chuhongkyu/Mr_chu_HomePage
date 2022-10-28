@@ -179,7 +179,7 @@ const Others = () => {
                 key={index}
                 wSize={"20vw"}
                 imgSrc={drawer.imgSrc}
-                alt={drawer.name}
+                name={drawer.name}
               />
             ))}
           </SliderContainer>
@@ -221,7 +221,7 @@ const Others = () => {
                 key={index}
                 wSize={"120px"}
                 imgSrc={sticker.imgSrc}
-                alt={sticker.name}
+                name={sticker.name}
               />
             ))}
           </SliderContainer>

@@ -42,6 +42,7 @@ const ProfileContainer = styled.div`
     align-items: center;
     flex-direction: column;
     transition: 0.5s;
+    border-bottom-left-radius: 10px;
     &:hover {
       transition: 0.5s;
     }
@@ -125,6 +126,7 @@ const MainContainer = styled.div`
   background-color: rgb(242, 242, 242);
   overflow-x: hidden;
   overflow-y: scroll;
+  border-bottom-right-radius: 10px;
   font-family: "Noto Sans KR" sans-serif;
   h1 {
     font-family: "Montserrat", sans-serif;
@@ -205,9 +207,9 @@ const ProfileGrid = styled.div`
 `;
 
 const Resume = () => {
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState<boolean>(false);
 
-  const onCopyier = (e) => {
+  const onCopyier = (e: any) => {
     setAlert(!alert);
     navigator.clipboard.writeText("chuhongkyu@gmail.com");
     e.preventDefault();

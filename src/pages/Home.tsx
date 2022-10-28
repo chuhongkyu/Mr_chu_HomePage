@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
 import WindowBar from "../components/WindowBar";
 import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
@@ -51,7 +56,7 @@ const Board = styled.div`
 
 const Home = () => {
   const [apps, setApp] = useRecoilState(appList);
-  const onDragEnd = ({ draggableId, destination, source }) => {
+  const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
     if (!destination) return;
     setApp((oldApps) => {
       const copyAppList = [...oldApps];

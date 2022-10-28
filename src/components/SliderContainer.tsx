@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import throttle from "../utils/throttle";
@@ -16,12 +17,17 @@ const List = styled.div`
   }
 `;
 
-const SliderContainer = ({ height, children }) => {
-  const scrollRef = useRef(null);
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState();
+interface ISlider {
+  children: ReactNode;
+  height: string;
+}
 
-  const onDragStart = (e) => {
+const SliderContainer = ({ height, children }: ISlider) => {
+  const scrollRef = useRef<any>(null);
+  const [isDrag, setIsDrag] = useState(false);
+  const [startX, setStartX] = useState<any>();
+
+  const onDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDrag(true);
     setStartX(e.pageX + scrollRef.current.scrollLeft);
@@ -31,7 +37,7 @@ const SliderContainer = ({ height, children }) => {
     setIsDrag(false);
   };
 
-  const onDragMove = (e) => {
+  const onDragMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isDrag) {
       const { scrollWidth, clientWidth, scrollLeft } = scrollRef.current;
 
@@ -46,7 +52,7 @@ const SliderContainer = ({ height, children }) => {
   };
 
   const delay = 100;
-  const onThrottleDragMove = throttle(onDragMove, delay);
+  const onThrottleDragMove: any = throttle(onDragMove, delay);
   return (
     <List
       style={{ height: height }}

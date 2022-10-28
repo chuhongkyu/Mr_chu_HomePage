@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiTwotoneCrown } from "react-icons/ai";
-import { worksData } from "../utils/worksData";
+import { IWorksArray, worksData } from "../utils/worksData";
 import { Fragment } from "react";
 
 const env = process.env;
@@ -332,6 +332,7 @@ const PathPosition = styled.div`
 `;
 
 const Project = () => {
+  const [datas, setDatas] = useState<IWorksArray>(worksData);
   const [position, setPosition] = useState(0);
   const [degreed, setDeg] = useState(0);
   const onRotate = () => {
@@ -350,6 +351,9 @@ const Project = () => {
       setPosition(8);
     }
   };
+  useEffect(() => {
+    setDatas(worksData);
+  }, []);
   return (
     <WindowModal bgColor="white">
       <MainContainer>
@@ -376,12 +380,12 @@ const Project = () => {
           </Title>
           <Modal>
             <AnimatePresence>
-              {worksData.map((data, index) => (
+              {datas.map((data, index) => (
                 <Fragment key={index}>
                   {position === data.id ? (
                     <Works
                       key={data.id}
-                      id={data.id}
+                      id={data.id + ""}
                       initial={{ scale: 0.8 }}
                       animate={{
                         scale: 1,

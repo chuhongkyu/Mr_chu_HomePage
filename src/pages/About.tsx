@@ -10,10 +10,11 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const MainContainer = styled.div`
   font-family: "Maple_story";
   width: 100%;
-  height: 96%;
+  height: 100%;
   padding: 50px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  border-radius: 10px;
   .title {
     display: flex;
     justify-content: space-between;
@@ -174,9 +175,9 @@ const About = () => {
     },
   ]);
 
-  const onHandlePage = (e) => {
+  const onHandlePage = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    const id = e.target.id;
+    const id = e.currentTarget.id;
     setPageShow(
       pageShow.map((page) =>
         page.id === id ? { ...page, data: !page.data } : page

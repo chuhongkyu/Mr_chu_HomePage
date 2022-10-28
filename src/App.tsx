@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Enter from "./pages/Enter";

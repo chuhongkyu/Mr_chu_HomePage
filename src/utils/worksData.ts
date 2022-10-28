@@ -1,3 +1,18 @@
+interface IWorks {
+  id: number;
+  name: string;
+  date: string;
+  img: string;
+  description: string;
+  point: string[];
+  github: string;
+  link: string;
+  skills: string[];
+  people: string;
+}
+
+export interface IWorksArray extends Array<IWorks> {}
+
 export const worksData = [
   {
     id: 0,

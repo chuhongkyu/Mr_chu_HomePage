@@ -29,35 +29,38 @@ const textArr = [
   "개발자 화이팅! 👍👍",
 ];
 
-let copyArr = [];
+let copyArr: [] = [];
 
 const Title = () => {
-  const [randText, setRandomText] = useState([]);
-  const [text, setText] = useState();
-  const [check, setCheck] = useState(false);
-  const [blink, setBlink] = useState(false);
+  const [randText, setRandomText] = useState<string[]>([]);
+  const [text, setText] = useState<any>();
+  const [check, setCheck] = useState<boolean>(false);
+  const [blink, setBlink] = useState<boolean>(false);
 
-  const randomNumber = (random) => {
+  const randomNumber = (random: string[]) => {
     const randomType = Math.floor(Math.random() * random.length);
     setRandomText(textArr[randomType].split(""));
   };
 
-  const makeText = (newArr) => {
+  const makeText = (newArr: any) => {
     if (newArr.length > 0) {
       copyArr += newArr.shift();
       setText(copyArr);
       setTimeout(() => makeText(newArr), 80);
     } else {
       copyArr = [];
-      setCheck(!check)
+      setCheck(!check);
     }
   };
 
   useEffect(() => {
-    const timer = setTimeout(()=>{ setText([]); randomNumber(textArr);}, 700)
-    return ()=> clearTimeout(timer)
+    const timer = setTimeout(() => {
+      setText([]);
+      randomNumber(textArr);
+    }, 700);
+    return () => clearTimeout(timer);
   }, [check]);
-  
+
   useEffect(() => {
     makeText(randText);
   }, [randText]);
