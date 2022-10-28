@@ -335,6 +335,7 @@ const Project = () => {
   const [datas, setDatas] = useState<IWorksArray>(worksData);
   const [position, setPosition] = useState(0);
   const [degreed, setDeg] = useState(0);
+
   const onRotate = () => {
     setDeg(degreed + 40);
     setPosition(position + 1);

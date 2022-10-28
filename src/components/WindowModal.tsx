@@ -1,13 +1,14 @@
-import { motion } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { motion, useDragControls } from "framer-motion";
+import { ReactNode, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
+import { AnimatePresence } from "framer-motion";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-export interface Props {
+interface Props {
   first: string;
   second: string;
 }
@@ -15,7 +16,7 @@ export interface Props {
 const Position = styled.div`
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   z-index: 10;
@@ -86,7 +87,11 @@ const ModalVariant = {
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1.5, type: "spring" },
+    transition: { duration: 1 },
+  },
+  exit: {
+    scale: 0,
+    transition: { duration: 1 },
   },
 };
 
@@ -99,26 +104,37 @@ interface IWindow {
 
 const WindowModal = ({ children, bgColor, widthSize, heightSize }: IWindow) => {
   const [resize, setResize] = useState(false);
+  const controls = useDragControls();
+  const constraintsRef = useRef(null);
   const navigate = useNavigate();
+
+  const startDrag = (event: any) => {
+    controls.start(event);
+  };
+
   const onExit = () => {
     navigate("/home");
   };
   const onHandleSize = () => {
     setResize(!resize);
-    console.log("windowModal 렌더링");
   };
 
   return (
-    <Position>
+    <Position ref={constraintsRef}>
       <Modal
         first={resize ? widthSize[0] : widthSize[1]}
         second={resize ? heightSize[0] : heightSize[1]}
         variants={ModalVariant}
         initial="inital"
         animate="animate"
+        exit="exit"
         style={{ backgroundColor: bgColor }}
+        drag="x"
+        dragConstraints={constraintsRef}
+        dragControls={controls}
+        dragListener={false}
       >
-        <TopNav>
+        <TopNav onPointerDown={startDrag}>
           <RedBtn onClick={onExit}>
             <AiOutlineClose />
           </RedBtn>

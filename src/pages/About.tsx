@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
 import { write } from "../utils/write";
@@ -222,52 +222,54 @@ const About = () => {
             transition: { duration: 0.5, delay: 0.8 },
           }}
         >
-          {pageShow.map((page, index) => {
-            return (
-              <Fragment key={index}>
-                <MainText id={page.id} onClick={onHandlePage}>
-                  <span>📌</span>
-                  <h1
-                    style={
-                      !page.data
-                        ? { color: "rgb(180, 180, 180)" }
-                        : { color: "black" }
-                    }
-                  >
-                    {write.about[index].main_txt}
-                  </h1>
-                </MainText>
-                {page.data ? (
-                  <Description
-                    animate={{
-                      opacity: [0, 1],
-                      y: [-50, 0],
-                      transition: { duration: 0.5 },
-                    }}
-                  >
-                    <h2 style={{ marginTop: 15 }}>
-                      {write.about[index].sub_title1}
-                    </h2>
-                    <p>&nbsp; {write.about[index].sub_txt1}</p>
-                    {write.about[index].sub_txt2 ? (
-                      <p>&nbsp; {write.about[index].sub_txt2}</p>
-                    ) : null}
-                    {write.about[index].sub_txt3 ? (
-                      <p>&nbsp; {write.about[index].sub_txt3}</p>
-                    ) : null}
-                    {page.readme ? (
-                      <ReadMe
-                        target="blank_"
-                        href="https://github.com/chuhongkyu/mapoCharacter#readme"
-                      >
-                        README.md
-                      </ReadMe>
-                    ) : null}
-                  </Description>
-                ) : null}
-              </Fragment>
-            );
-          })}
+          <AnimatePresence>
+            {pageShow.map((page, index) => {
+              return (
+                <Fragment key={index}>
+                  <MainText id={page.id} onClick={onHandlePage}>
+                    <span>📌</span>
+                    <h1
+                      style={
+                        !page.data
+                          ? { color: "rgb(180, 180, 180)" }
+                          : { color: "black" }
+                      }
+                    >
+                      {write.about[index].main_txt}
+                    </h1>
+                  </MainText>
+                  {page.data ? (
+                    <Description
+                      animate={{
+                        opacity: [0, 1],
+                        y: [-50, 0],
+                        transition: { duration: 0.5 },
+                      }}
+                    >
+                      <h2 style={{ marginTop: 15 }}>
+                        {write.about[index].sub_title1}
+                      </h2>
+                      <p>&nbsp; {write.about[index].sub_txt1}</p>
+                      {write.about[index].sub_txt2 ? (
+                        <p>&nbsp; {write.about[index].sub_txt2}</p>
+                      ) : null}
+                      {write.about[index].sub_txt3 ? (
+                        <p>&nbsp; {write.about[index].sub_txt3}</p>
+                      ) : null}
+                      {page.readme ? (
+                        <ReadMe
+                          target="blank_"
+                          href="https://github.com/chuhongkyu/mapoCharacter#readme"
+                        >
+                          README.md
+                        </ReadMe>
+                      ) : null}
+                    </Description>
+                  ) : null}
+                </Fragment>
+              );
+            })}
+          </AnimatePresence>
         </Introduction>
       </MainContainer>
     </WindowModal>
