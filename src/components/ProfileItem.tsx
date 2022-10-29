@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 25px 20px 20px;
@@ -79,7 +80,10 @@ interface IWorks {
 
 function ProfileItem({ title, children, icon, column, row }: IWorks) {
   return (
-    <Wrapper style={{ gridColumn: column, gridRow: row }}>
+    <Wrapper
+      style={{ gridColumn: column, gridRow: row }}
+      whileHover={{ y: -3 }}
+    >
       <h3>
         <img className="icon " src={icon} alt={title} />
         {title}

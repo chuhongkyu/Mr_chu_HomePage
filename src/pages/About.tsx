@@ -206,11 +206,17 @@ const About = () => {
 
         <div className="description">
           <p>
-            {write.introduction.substring(0, 10)}
+            {write.introduction.substring(
+              0,
+              write.introduction.indexOf("👋") + 2
+            )}
             <br />
-            {write.introduction.substring(10, 46)}
+            {write.introduction.substring(
+              write.introduction.indexOf("👋") + 2,
+              write.introduction.indexOf(".")
+            )}
             <br />
-            {write.introduction.substring(46, 100)}
+            {write.introduction.substring(write.introduction.indexOf(".") + 1)}
           </p>
         </div>
 

@@ -300,6 +300,10 @@ const Resume = () => {
                   alt="Sass"
                   src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white"
                 />
+                <img
+                  alt="styled-components"
+                  src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&amp;logo=styled-components&amp;logoColor=white"
+                />
               </span>
             </div>
             <div className="between">
@@ -315,6 +319,10 @@ const Resume = () => {
                 <img
                   alt="TypeScript"
                   src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"
+                />
+                <img
+                  alt="Next.js"
+                  src="https://img.shields.io/badge/Next.js-000000?style=flat-square&amp;logo=Next.js&amp;logoColor=white"
                 />
               </span>
             </div>
