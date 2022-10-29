@@ -1,104 +1,270 @@
 import styled from "styled-components";
-import gsap, { Power1, Power2, Expo } from "gsap";
 import React, { useEffect, useRef, useState } from "react";
+import { IWorksArray, worksData } from "utils/worksData";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { AiTwotoneCrown } from "react-icons/ai";
+import "swiper/css";
+import { motion } from "framer-motion";
 
 const Carousel = styled.div`
-  position: relative;
-  opacity: 1;
-  background: red;
+  display: flex;
   width: 100%;
+  height: 100%;
+`;
+
+const BigSlide = styled(motion.div)`
   overflow: hidden;
-  .carousel__stage {
+  min-height: 400px;
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 15px;
+  transform-origin: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  .Carousel_Header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
     position: relative;
-    display: block;
-    white-space: nowrap;
-    .slide {
-      display: inline-block;
-      width: 2600px;
-      height: 300px;
-      margin: 20px;
-      background: yellow;
-      padding: 0;
+    overflow: hidden;
+    a {
+      width: 100%;
+      display: block;
+      img {
+        width: 100%;
+        height: 320px;
+      }
+      .Header_text {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, transparent, white 50%);
+        padding: 20px;
+        h5 {
+          font-size: 30px;
+          font-weight: 700;
+        }
+        b {
+          font-size: 15px;
+          color: rgba(108, 117, 125, 0.8);
+        }
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    .Carousel_Header {
+      .Header_text {
+        h5 {
+          font-size: 12px;
+        }
+        b {
+          font-size: 11px;
+        }
+      }
     }
   }
 `;
 
-gsap.registerPlugin(Draggable, InertiaPlugin);
+const Description = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px 20px;
+`;
 
-interface IRule {
-  vars?: Draggable.Vars | undefined;
-}
+const Table = styled.table`
+  margin-top: 10px;
+  width: 100%;
+  .point {
+    font-weight: 700;
+    padding-right: 10px;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+  a {
+    font-size: 15px;
+  }
+  th {
+    text-align: start;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    .point {
+      padding-right: 15px;
+    }
+    a {
+      font-size: 11px;
+    }
+    th,
+    td,
+    p {
+      font-size: 11px;
+    }
+  }
+`;
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Project_Carousel = () => {
-  const [curSlide, updateCurSlide] = useState(1);
-  const [slideCount, updateSlideCount] = useState(3);
-  const dragInstance = useRef<any>();
-  const dragTarget = useRef(null);
-  const dragBounds = useRef<any>(null);
-  const itemsRef = useRef<any>([]);
-
-  useEffect(() => {}, []);
-
-  const DragRule: IRule = {
-    vars: {
-      type: "scroll",
-      bounds: { width: 1920, height: 1080 },
-      throwProps: true,
-      dragClickables: true,
-    },
-  };
-
-  useEffect(() => {
-    dragInstance.current = Draggable.create(dragTarget.current, DragRule);
-    // Cleanup
-    return () => dragInstance.current[0].kill();
-  }, []);
-
-  const onThrow = () => {
-    updateCurrentSlide(itemsRef.current[curSlide]);
-  };
-
-  const updateCurrentSlide = (slide: any) => {
-    let slideX = slide.getBoundingClientRect().left;
-    let slideWidth = slide.getBoundingClientRect().width;
-
-    if (slideX < 0) {
-      updateCurSlide(curSlide + 1);
-    }
-    console.log(curSlide);
-  };
-
-  useEffect(() => {
-    dragInstance.current[0].addEventListener("throwupdate", () => {
-      onThrow();
-    });
-  }, [dragInstance]);
+  const [datas, setDatas] = useState<IWorksArray>(worksData);
+  const [state, setState] = useState<number>(0);
 
   return (
-    <Carousel ref={dragBounds}>
-      <div>
-        {curSlide} of {slideCount}
-      </div>
-      <div ref={dragTarget} draggable="true" className="carousel__stage">
-        <div
-          className="slide"
-          ref={(el) => {
-            itemsRef.current[0] = el;
-          }}
-        ></div>
-        <div
-          className="slide"
-          ref={(el) => {
-            itemsRef.current[1] = el;
-          }}
-        ></div>
-        <div
-          className="slide"
-          ref={(el) => {
-            itemsRef.current[2] = el;
-          }}
-        ></div>
-      </div>
+    <Carousel>
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={1}
+        centeredSlides={true}
+        roundLengths={true}
+        loop={true}
+        onSlideChange={(swiper) => {
+          setState(swiper.realIndex);
+          console.log("slide change", state);
+        }}
+        style={{
+          height: "100%",
+          paddingTop: 10,
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          // flexDirection: "column",
+        }}
+      >
+        {datas.map((data, index) => {
+          return (
+            <SwiperSlide key={index} id={data.id + ""}>
+              <BigSlide
+                initial={
+                  state === index
+                    ? { scale: 1 }
+                    : {
+                        scale: 0.8,
+                        background: `url(${
+                          env.PUBLIC_URL + data.img
+                        }) center no-repeat`,
+                        backgroundSize: "cover",
+                      }
+                }
+                animate={
+                  state === index
+                    ? {
+                        scale: 1,
+                        background: "white",
+                      }
+                    : {
+                        scale: 0.8,
+                        background: `url(${
+                          env.PUBLIC_URL + data.img
+                        }) center no-repeat`,
+                        backgroundSize: "cover",
+                      }
+                }
+                transition={{ duration: 1, type: "spring" }}
+              >
+                {state === index ? (
+                  <>
+                    <div className="Carousel_Header">
+                      <a
+                        href={data.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
+                        <div className="Header_text">
+                          <h5>{data.name}</h5>
+                          <b>{data.date}</b>
+                        </div>
+                      </a>
+                    </div>
+                    <Description>
+                      <Table>
+                        <tbody>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              주요 기능
+                            </td>
+                            <td>
+                              <span style={{ display: "flex" }}>
+                                {data.point.map((m, index) => (
+                                  <p key={index}>{m}</p>
+                                ))}
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              배포
+                            </td>
+                            <td>
+                              <a
+                                className="url_decoration"
+                                href={data.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Link
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />깃
+                              허브
+                            </td>
+                            <td>
+                              <a
+                                href={data.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {data.github.length < 40
+                                  ? data.github
+                                  : data.github.substring(0, 40) + "..."}
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              기술
+                            </td>
+                            <td>
+                              <span style={{ display: "flex" }}>
+                                {data.skills.map((m, index) => (
+                                  <p key={index}>{m}, </p>
+                                ))}
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="point">
+                              <AiTwotoneCrown style={{ marginRight: 5 }} />
+                              개발
+                            </td>
+                            <td>
+                              <p>{data.people}</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Description>
+                  </>
+                ) : null}
+              </BigSlide>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </Carousel>
   );
 };
