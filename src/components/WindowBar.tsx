@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Menu from "./Menu";
+import Weather from "./Weather";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -25,6 +26,13 @@ const Bar = styled.div`
       transform: scale(1.2);
     }
   }
+`;
+
+const DateBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 `;
 
 const BarBox = styled.div`
@@ -89,7 +97,9 @@ function WindowBar() {
           {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
           {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
-        <span>{time.toLocaleTimeString()}</span>
+        <DateBox>
+          <span>{time.toLocaleTimeString()}</span> <Weather />
+        </DateBox>
       </Bar>
     </>
   );

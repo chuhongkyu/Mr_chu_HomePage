@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { IWorksArray, worksData } from "utils/worksData";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { AiTwotoneCrown } from "react-icons/ai";
 import "swiper/css";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const Carousel = styled.div`
   display: flex;
@@ -116,6 +117,10 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const Project_Carousel = () => {
   const [datas, setDatas] = useState<IWorksArray>(worksData);
   const [state, setState] = useState<number>(0);
+
+  useEffect(() => {
+    setDatas(worksData);
+  }, []);
 
   return (
     <Carousel>

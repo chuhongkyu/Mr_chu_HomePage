@@ -3,7 +3,6 @@ import { ReactNode, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
-import { AnimatePresence } from "framer-motion";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
