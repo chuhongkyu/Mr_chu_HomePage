@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
-import { AnimatePresence, motion } from "framer-motion";
-import { IWorksArray, worksData } from "../utils/worksData";
-import { Fragment } from "react";
 import Project_Carousel from "components/Project_Carousel";
 
 const Title = styled.h1`
