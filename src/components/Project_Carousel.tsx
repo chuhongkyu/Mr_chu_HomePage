@@ -130,6 +130,14 @@ const Project_Carousel = () => {
         centeredSlides={true}
         roundLengths={true}
         loop={true}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+        }}
         onSlideChange={(swiper) => {
           setState(swiper.realIndex);
           console.log("slide change", state);
