@@ -76,11 +76,9 @@ const openVariants = {
 const Enter = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      navigate("/home");
-    }, 4000);
+    const timeout = setTimeout(() => navigate("/home"), 5000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [navigate]);
 
   return (
     <Wrapper variants={openVariants} initial="inital" animate="animate">

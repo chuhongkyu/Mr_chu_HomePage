@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import WindowModal from "../components/WindowModal";
-import Project_Carousel from "components/Project_Carousel";
+import ProjectCarousel from "components/ProjectCarousel";
 
 const Title = styled.h1`
   width: 100%;
@@ -31,7 +31,7 @@ const Project = () => {
           />
           MY PROJECTS
         </Title>
-        <Project_Carousel />
+        <ProjectCarousel />
       </Wrapper>
     </WindowModal>
   );
