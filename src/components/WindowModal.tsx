@@ -10,6 +10,7 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 interface Props {
   first: string;
   second: string;
+  third: string;
 }
 
 const Position = styled.div`
@@ -27,7 +28,7 @@ const Modal = styled(motion.div)`
   width: ${(props: Props) => props.first};
   height: ${(props: Props) => props.second};
   border-radius: 10px;
-  position: relative;
+  position: ${(props: Props) => props.third};
   z-index: 5;
   transition: 0.5s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -48,6 +49,7 @@ const TopNav = styled.div`
   position: absolute;
   z-index: 4;
   top: 0;
+  cursor: pointer;
 `;
 
 const TopNavBtn = styled.div`
@@ -99,9 +101,16 @@ interface IWindow {
   bgColor: string;
   widthSize: string[];
   heightSize: string[];
+  position: string[];
 }
 
-const WindowModal = ({ children, bgColor, widthSize, heightSize }: IWindow) => {
+const WindowModal = ({
+  children,
+  bgColor,
+  widthSize,
+  heightSize,
+  position,
+}: IWindow) => {
   const [resize, setResize] = useState(false);
   const controls = useDragControls();
   const constraintsRef = useRef(null);
@@ -123,12 +132,13 @@ const WindowModal = ({ children, bgColor, widthSize, heightSize }: IWindow) => {
       <Modal
         first={resize ? widthSize[0] : widthSize[1]}
         second={resize ? heightSize[0] : heightSize[1]}
+        third={resize ? position[0] : position[1]}
         variants={ModalVariant}
         initial="inital"
         animate="animate"
         exit="exit"
         style={{ backgroundColor: bgColor }}
-        drag="x"
+        drag
         dragConstraints={constraintsRef}
         dragControls={controls}
         dragListener={false}
@@ -150,8 +160,9 @@ const WindowModal = ({ children, bgColor, widthSize, heightSize }: IWindow) => {
 
 WindowModal.defaultProps = {
   bgColor: "white",
-  widthSize: ["80vw", "99vw"],
-  heightSize: ["90vh", "95vh"],
+  widthSize: ["80vw", "100vw"],
+  heightSize: ["80vh", "100vh"],
+  position: ["relative", "fixed"],
 };
 
 export default WindowModal;
