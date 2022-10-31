@@ -42,6 +42,9 @@ const Weather = () => {
         //   weather.innerHTML = `<h1>${data.name}</h1> ${weatherIcon} <p> ${data.main.temp}°C</p>`;
         // }
         // console.log(data.weather[0].main);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }
 

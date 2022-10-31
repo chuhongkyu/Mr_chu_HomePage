@@ -33,20 +33,19 @@ const BigSlide = styled(motion.div)`
     overflow: hidden;
     a {
       width: 100%;
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 20px 15px 0;
       img {
-        width: 100%;
-        height: 320px;
+        width: 250px;
+        height: 150px;
+        border: 1px solid black;
       }
       .Header_text {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background: linear-gradient(to bottom, transparent, white 50%);
-        padding: 20px;
         h5 {
-          font-size: 30px;
+          font-size: 40px;
           font-weight: 700;
         }
         b {
@@ -77,10 +76,14 @@ const Description = styled.div`
   align-items: flex-start;
   flex-direction: column;
   padding: 10px 20px;
+  .description {
+    margin-top: 10px;
+    font-size: 15px;
+  }
 `;
 
 const Table = styled.table`
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   .point {
     font-weight: 700;
@@ -190,11 +193,11 @@ const Project_Carousel = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
                         <div className="Header_text">
                           <h5>{data.name}</h5>
                           <b>{data.date}</b>
                         </div>
+                        <img src={env.PUBLIC_URL + data.img} alt={data.name} />
                       </a>
                     </div>
                     <Description>
@@ -270,6 +273,7 @@ const Project_Carousel = () => {
                           </tr>
                         </tbody>
                       </Table>
+                      <div className="description">{data.description}</div>
                     </Description>
                   </>
                 ) : null}
