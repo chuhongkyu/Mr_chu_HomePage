@@ -33,6 +33,10 @@ const DateBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  font-size: 15px;
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const BarBox = styled.div`

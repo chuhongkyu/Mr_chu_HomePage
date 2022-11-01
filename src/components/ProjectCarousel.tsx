@@ -57,12 +57,19 @@ const BigSlide = styled(motion.div)`
   }
   @media ${(props) => props.theme.device.mobile} {
     .Carousel_Header {
-      .Header_text {
-        h5 {
-          font-size: 12px;
+      a {
+        img {
+          width: 200px;
+          height: 120px;
+          border: 1px solid black;
         }
-        b {
-          font-size: 11px;
+        .Header_text {
+          h5 {
+            font-size: 19px;
+          }
+          b {
+            font-size: 11px;
+          }
         }
       }
     }
@@ -79,6 +86,12 @@ const Description = styled.div`
   .description {
     margin-top: 10px;
     font-size: 15px;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    .description {
+      margin-top: 8px;
+      font-size: 12px;
+    }
   }
 `;
 

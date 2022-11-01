@@ -12,6 +12,9 @@ const Title = styled.h1`
     width: 25px;
     margin-right: 10px;
   }
+  @media ${(props) => props.theme.device.mobile} {
+    font-size: 20px;
+  }
 `;
 
 const Wrapper = styled.div`

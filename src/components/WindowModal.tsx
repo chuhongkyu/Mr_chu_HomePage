@@ -29,6 +29,8 @@ const Modal = styled(motion.div)`
   height: ${(props: Props) => props.second};
   border-radius: 10px;
   position: ${(props: Props) => props.third};
+  top: 0;
+  left: 0;
   z-index: 5;
   transition: 0.5s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
