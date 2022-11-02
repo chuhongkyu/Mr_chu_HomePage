@@ -53,9 +53,6 @@ const ProfileContainer = styled.div`
       margin-top: 15px;
     }
   }
-  @media ${(props) => props.theme.device.mobile} {
-    display: none;
-  }
   @media ${(props) => props.theme.device.mac} {
     .profile {
       h2 {
@@ -65,6 +62,9 @@ const ProfileContainer = styled.div`
         margin-top: 20px;
       }
     }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    display: none;
   }
 `;
 

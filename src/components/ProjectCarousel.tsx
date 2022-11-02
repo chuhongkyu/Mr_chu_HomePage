@@ -39,8 +39,8 @@ const BigSlide = styled(motion.div)`
       gap: 10px;
       padding: 20px 15px 0;
       img {
-        width: 250px;
-        height: 150px;
+        width: 460px;
+        height: 320px;
         border: 1px solid black;
       }
       .Header_text {
@@ -51,6 +51,27 @@ const BigSlide = styled(motion.div)`
         b {
           font-size: 15px;
           color: rgba(108, 117, 125, 0.8);
+        }
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mac} {
+    .Carousel_Header {
+      a {
+        gap: 10px;
+        padding: 20px 15px 0;
+        img {
+          width: 350px;
+          height: 200px;
+        }
+        .Header_text {
+          h5 {
+            font-size: 38px;
+            font-weight: 700;
+          }
+          b {
+            font-size: 15px;
+          }
         }
       }
     }
