@@ -113,7 +113,7 @@ const WindowModal = ({
   heightSize,
   position,
 }: IWindow) => {
-  const [resize, setResize] = useState(false);
+  const [resize, setResize] = useState(true);
   const controls = useDragControls();
   const constraintsRef = useRef(null);
   const navigate = useNavigate();
@@ -164,7 +164,7 @@ WindowModal.defaultProps = {
   bgColor: "white",
   widthSize: ["80vw", "100vw"],
   heightSize: ["80vh", "100vh"],
-  position: ["relative", "fixed"],
+  position: ["relative", "absolute"],
 };
 
 export default WindowModal;
