@@ -329,74 +329,79 @@ const Resume = () => {
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
-            title="수강 강의"
+            title="프로젝트"
             column={2 / -1}
             row={"span 2"}
           >
             <div className="between">
               <p
-                data-tip="html/css 기초"
-                data-text-color="black"
+                data-tip="JS,리액트,넥스트"
+                data-text-color="white"
+                data-background-color="darkred"
+              >
+                Mr.chu 홈페이지
+              </p>
+              <a target="blank_" href="javascript:void(0)">
+                <p>개인 프로젝트</p>
+              </a>
+            </div>
+            <hr/>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="white"
                 data-background-color="orange"
               >
-                코코아톡 클론코딩
+                마포구 예쁜 카페 10선
               </p>
-              <a target="blank_" href="https://nomadcoders.co/community">
-                <p>노마드 코더</p>
+              <a target="blank_" href="https://chuhongkyu.github.io/Cafe_HomePage/">
+                <p>마포구청</p>
               </a>
             </div>
             <div className="between">
               <p
-                data-tip="js 기초"
-                data-text-color="black"
-                data-background-color="yellow"
-              >
-                바닐라 JS로 크롬 앱 만들기
-              </p>
-              <p>노마드 코더</p>
-            </div>
-            <div className="between">
-              <p
-                data-tip="SCSS"
-                data-text-color="black"
-                data-background-color="pink"
-              >
-                CSS Layout 마스터 클래스
-              </p>
-              <p>노마드 코더</p>
-            </div>
-            <div className="between">
-              <p
-                data-tip="React"
-                data-text-color="black"
+                data-tip="리액트"
+                data-text-color="white"
                 data-background-color="skyblue"
               >
-                React JS 마스터클래스
+                마포 버디즈 소개 홈페이지
               </p>
-              <p>노마드 코더</p>
+              <a target="blank_" href="https://chuhongkyu.github.io/mapoCharacter/">
+                <p>마포구청</p>
+              </a>
+            </div>
+            <div className="between">
+              <p
+                data-tip="리액트"
+                data-text-color="white"
+                data-background-color="skyblue"
+              >
+                세컨드 라이프(헌 옷 수거 플랫폼)
+              </p>
+              <p>마포구청</p>
             </div>
             <hr />
             <div className="between">
-              <p>만들면서 배우는 리액트 : 기초</p>
-              <p>진유림</p>
+              <p
+                data-tip="Next.js"
+                data-text-color="white"
+                data-background-color="darkblue"
+              >
+                CASS 월드컵
+              </p>
+              <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
-              <p>한입 크기로 잘라먹는 리액트</p>
-              <p>이정환</p>
-            </div>
-            <div className="between">
-              <p>지옥에서 온 관리자 Git</p>
-              <p>최주호</p>
-            </div>
-            <div className="between">
-              <p>js : 기초부터 실전까지 올인원</p>
-              <p>코딩알려주는 누나</p>
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                롯데백화점 리뉴얼
+              </p>
+              <p>더즈 인터랙티브</p>
             </div>
             <hr />
-            <div className="between">
-              <p>프론트엔드 아카데미: JS/TypeScript</p>
-              <p>김민태</p>
-            </div>
           </ProfileItem>
 
           <ProfileItem
