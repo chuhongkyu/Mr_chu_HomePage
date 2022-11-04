@@ -17,20 +17,24 @@ const Wrapper = styled(motion.section)`
 `;
 
 const LoginBox = styled.div`
-  width: 1000px;
+  width: 1400px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   a {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  @media ${(props) => props.theme.device.mac} {
+    width: 1000px;
+  }
   @media ${(props) => props.theme.device.tablet} {
     width: 700px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 500px;
+    width: 100%;
     a {
       display: flex;
       justify-content: center;
@@ -55,8 +59,11 @@ const Circle = styled(motion.div)`
     height: 90px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 50px;
-    height: 50px;
+    position: absolute;
+    left: 30%;
+    top: -120px;
+    width: 100px;
+    height: 100px;
     margin-bottom: 10px;
   }
 `;
@@ -76,7 +83,7 @@ const openVariants = {
 const Enter = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const timeout = setTimeout(() => navigate("/home"), 5000);
+    const timeout = setTimeout(() => navigate("/home"), 8000);
     return () => clearTimeout(timeout);
   }, [navigate]);
 

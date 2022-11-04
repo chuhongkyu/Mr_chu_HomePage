@@ -10,6 +10,11 @@ const Wrapper = styled.div`
     font-weight: 800;
     white-space: nowrap;
   }
+  @media ${(props) => props.theme.device.mac} {
+    h1 {
+      font-size: 40px;
+    }
+  }
   @media ${(props) => props.theme.device.tablet} {
     h1 {
       font-size: 30px;
