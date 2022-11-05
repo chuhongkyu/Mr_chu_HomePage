@@ -17,8 +17,8 @@ const Position = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@ const Modal = styled(motion.div)`
   justify-content: center;
 `;
 
-const TopNav = styled.div`
+const TopNav = styled(motion.div)`
   width: 100%;
   height: 30px;
   background: ${(props) => props.theme.white.gradient};
@@ -54,7 +54,7 @@ const TopNav = styled.div`
   cursor: pointer;
 `;
 
-const TopNavBtn = styled.div`
+const TopNavBtn = styled(motion.div)`
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -141,11 +141,12 @@ const WindowModal = ({
         exit="exit"
         style={{ backgroundColor: bgColor }}
         drag
+        dragSnapToOrigin
         dragConstraints={constraintsRef}
         dragControls={controls}
         dragListener={false}
       >
-        <TopNav onPointerDown={startDrag}>
+        <TopNav onPointerDown={startDrag} whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
           <RedBtn onClick={onExit}>
             <AiOutlineClose />
           </RedBtn>

@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 const Carousel = styled.div`
-  display: flex;
   width: 100%;
   height: 100%;
 `;
