@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const API = process.env.REACT_APP_API_KEY;
 
@@ -8,6 +12,24 @@ interface IWeather {
   id: number;
   main: string;
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+
+const WeatherIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  @media ${(props) => props.theme.device.mobile} {
+    width: 15px;
+    height: 15px;
+  }
+`
+
+const weather_icon = ["/weather/clear.svg","/weather/clouds.svg","/weather/rain.svg","/weather/snow.svg","/weather/thunderstorm.svg"]
 
 const Weather = () => {
   const [data, setData] = useState<IWeather>();
@@ -51,7 +73,7 @@ const Weather = () => {
   function onGeoError() {
     alert("Can't find you. No weather for you.");
   }
-  return <span>{data?.main ? data.main : "Weather.."}</span>;
+  return <Wrapper>{data?.main ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${data.main.toLowerCase()}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
 };
 
 export default Weather;
