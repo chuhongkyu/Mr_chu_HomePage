@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Calender from "./Calender";
 import Menu from "./Menu";
 import Weather from "./Weather";
 
@@ -34,6 +35,7 @@ const DateBox = styled.div`
   align-items: center;
   gap: 10px;
   font-size: 15px;
+  cursor: pointer;
   @media ${(props) => props.theme.device.mobile} {
     font-size: 11px;
   }
@@ -65,18 +67,25 @@ const OpenItem = styled.div`
 function WindowBar() {
   const [slide, setSlide] = useState(false);
   const navigate = useNavigate();
+
   const onExit = () => {
     navigate("/home");
   };
   const onHandleSlide = () => {
     setSlide(!slide);
   };
+
   const resumeMatch = useMatch("/home/resume");
   const aboutMatch = useMatch("/home/about");
   const othersMatch = useMatch("/home/game_app");
   const projectMatch = useMatch("/home/project");
   const githubMatch = useMatch("/home/github");
   const [time, setTime] = useState(new Date());
+  const [open, setOpen] = useState(false);
+
+  const onHandleCalender = () =>{
+    setOpen(!open)
+  }
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -102,9 +111,10 @@ function WindowBar() {
           {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
         <DateBox>
-          <span>{time.toLocaleTimeString()}</span> <Weather />
+          <span onClick={onHandleCalender}>{time.toLocaleTimeString()}</span> <Weather />
         </DateBox>
       </Bar>
+      {open ? <Calender/> : null}
     </>
   );
 }

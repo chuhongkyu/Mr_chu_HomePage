@@ -341,7 +341,7 @@ const Resume = () => {
               >
                 Mr.chu 홈페이지
               </p>
-              <a target="blank_" href="javascript:void(0)">
+              <a onClick={e => e.preventDefault()}>
                 <p>개인 프로젝트</p>
               </a>
             </div>
