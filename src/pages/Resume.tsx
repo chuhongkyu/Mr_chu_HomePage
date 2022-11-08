@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import ProfileItem from "../components/ProfileItem";
-import WindowModal from "../components/WindowModal";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import Alert from "../components/Alert";
 import { AiFillMail } from "react-icons/ai";
+import ProfileItem from "components/resume/ProfileItem";
+import WindowModal from "components/WindowModal";
+import Alert from "components/resume/Alert";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";

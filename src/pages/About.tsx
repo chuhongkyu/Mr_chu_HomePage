@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
-import WindowModal from "../components/WindowModal";
-import { write } from "../utils/write";
+import WindowModal from "components/WindowModal";
+import { write } from "utils/write";
 import { Fragment, useState } from "react";
 
 const env = process.env;

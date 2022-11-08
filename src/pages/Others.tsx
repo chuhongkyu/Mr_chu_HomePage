@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Item from "../components/Item";
-import SliderContainer from "../components/SliderContainer";
-import WindowModal from "../components/WindowModal";
-import { drawers, stickers } from "../utils/icons";
+import Item from "components/Item";
+import SliderContainer from "components/gameapp/SliderContainer";
+import WindowModal from "components/WindowModal";
+import { drawers, stickers } from "utils/icons";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";

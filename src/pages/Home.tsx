@@ -5,7 +5,7 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
-import WindowBar from "../components/WindowBar";
+import WindowBar from "components/WindowBar";
 import { useRecoilState } from "recoil";
 import { appList } from "../atoms";
 import { Route, Routes } from "react-router-dom";
@@ -14,7 +14,7 @@ import About from "./About";
 import GitHub from "./GitHub";
 import Others from "./Others";
 import Project from "./Project";
-import AppLink from "../components/AppLink";
+import AppLink from "components/AppLink";
 
 const Wrapper = styled.div`
   width: 100%;

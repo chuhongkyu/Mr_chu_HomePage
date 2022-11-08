@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
-import WindowModal from "../components/WindowModal";
+import WindowModal from "components/WindowModal";
 
 const GitContainer = styled.div`
   display: flex;

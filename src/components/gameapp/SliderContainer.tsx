@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import throttle from "../utils/throttle";
+import throttle from "utils/throttle";
 
 const List = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import {useEffect, useState } from 'react';
 import { format, addMonths, subMonths } from 'date-fns';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
-import { isSameMonth, isSameDay, addDays, parse } from 'date-fns';
+import { isSameMonth, isSameDay, addDays} from 'date-fns';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { motion } from 'framer-motion';
@@ -156,7 +156,7 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }:any) => {
                             : 'valid'
                     }`}
                     key={i}
-                    // onClick={() => onDateClick(parse(cloneDay))}
+                    onClick={() => onDateClick(cloneDay)}
                 >
                     <span
                         className={

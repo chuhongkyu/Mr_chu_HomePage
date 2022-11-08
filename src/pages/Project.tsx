@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import WindowModal from "../components/WindowModal";
-import ProjectCarousel from "components/ProjectCarousel";
+import WindowModal from "components/WindowModal";
+import ProjectCarousel from "components/project/ProjectCarousel";
 
 const Title = styled.h1`
   width: 100%;
