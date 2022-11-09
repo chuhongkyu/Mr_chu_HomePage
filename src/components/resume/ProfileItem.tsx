@@ -43,12 +43,29 @@ const Wrapper = styled(motion.div)`
       line-height: 23px;
     }
   }
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 20px 20px 20px 20px;
+    .icon {
+      width: 22px;
+      margin-right: 9px;
+    }
+    h3 {
+      font-size: 20px;
+      margin-bottom: 18px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
   @media ${(props) => props.theme.device.mobile} {
     padding: 20px 15px 15px;
     margin: 20px 0px;
     .icon {
       width: 20px;
-      margin-right: 10px;
+      margin-right: 8px;
     }
     h3 {
       font-size: 18px;
@@ -62,8 +79,12 @@ const Wrapper = styled(motion.div)`
 
 const Container = styled.div`
   margin-left: 45px;
+  overflow-y: hidden;
   @media ${(props) => props.theme.device.mac} {
     margin-left: 40px;
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    margin-left: 30px;
   }
   @media ${(props) => props.theme.device.mobile} {
     margin-left: 20px;

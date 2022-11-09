@@ -3,6 +3,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Calender from "./Calender";
 import Menu from "./Menu";
+import SearchForm from "./SearchForm";
 import Weather from "./Weather";
 
 const env = process.env;
@@ -42,10 +43,10 @@ const DateBox = styled.div`
 `;
 
 const BarBox = styled.div`
-  width: 200px;
+  width: 600px;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -104,6 +105,7 @@ function WindowBar() {
             src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
             alt="mr.chu"
           />
+          <SearchForm/>
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
           {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
           {othersMatch && <OpenItem onClick={onExit}>GameApp</OpenItem>}

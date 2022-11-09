@@ -63,6 +63,15 @@ const ProfileContainer = styled.div`
       }
     }
   }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 100%;
+    padding: 50px 10px 10px 10px;
+    .profile {
+      h2 {
+        font-size: 15px;
+      }
+    }
+  }
   @media ${(props) => props.theme.device.mobile} {
     display: none;
   }

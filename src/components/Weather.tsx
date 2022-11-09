@@ -33,6 +33,43 @@ const weather_icon = ["/weather/clear.svg","/weather/clouds.svg","/weather/rain.
 
 const Weather = () => {
   const [data, setData] = useState<IWeather>();
+  const [icon, setIcon] = useState<string>();
+
+  const makeIcon = (type:string ) =>{
+    switch(type){
+      case "Clear":
+        setIcon(type.toLowerCase())
+        break;
+      
+      case "Clouds":
+        setIcon(type.toLowerCase())
+        break;
+      
+      case "Rain":
+        setIcon(type.toLowerCase())
+        break;
+
+      case "Snow":
+        setIcon(type.toLowerCase())
+        break;
+
+      case "Mist":
+        setIcon(type.toLowerCase())
+        break;
+
+      case "Drizzle":
+        setIcon(type.toLowerCase())
+        break;
+
+      case "Thunderstorm":
+        setIcon(type.toLowerCase())
+        break;
+
+      default:
+        setIcon("weather")
+        break;
+    }
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
@@ -47,6 +84,7 @@ const Weather = () => {
       .then((data) => {
         if (data) {
           setData(data.weather[0]);
+          makeIcon(data.weather[0].main);
           console.log(data.weather[0]);
         } else {
           console.log(data);
@@ -60,7 +98,7 @@ const Weather = () => {
   function onGeoError() {
     alert("Can't find you. No weather for you.");
   }
-  return <Wrapper>{data?.main ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${data.main.toLowerCase()}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
+  return <Wrapper>{icon ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${icon}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
 };
 
 export default Weather;
