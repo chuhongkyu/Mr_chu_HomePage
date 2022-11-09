@@ -113,7 +113,7 @@ const WindowModal = ({
   heightSize,
   position,
 }: IWindow) => {
-  const [resize, setResize] = useState(true);
+  const [resize, setResize] = useState(false);
   const controls = useDragControls();
   const constraintsRef = useRef(null);
   const navigate = useNavigate();
