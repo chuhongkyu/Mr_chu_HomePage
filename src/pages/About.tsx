@@ -191,7 +191,7 @@ const About = () => {
         <div className="title">
           <h1>자기소개</h1>
           <GoogleDrive
-            href="https://drive.google.com/file/d/1SdqJTdIleqVrDkJDOfRKnQP1wn7yGcr1/view?usp=sharing"
+            href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
             target="_blank"
             initial={{ y: 0, scale: 1 }}
             whileHover={{ y: -10, scale: 1.2 }}
