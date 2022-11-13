@@ -19,8 +19,8 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   padding: 50px 0px 50px;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  overflow: hidden;
 `;
 
 const Project = () => {

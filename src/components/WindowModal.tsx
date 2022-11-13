@@ -142,6 +142,7 @@ const WindowModal = ({
         style={{ backgroundColor: bgColor }}
         drag
         dragSnapToOrigin
+        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
         dragConstraints={constraintsRef}
         dragControls={controls}
         dragListener={false}
