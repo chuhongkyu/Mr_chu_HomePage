@@ -1,10 +1,13 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useState } from "react";
 import { IWorksArray, worksData } from "utils/worksData";
 import { AiTwotoneCrown } from "react-icons/ai";
 import "swiper/css";
-import { motion, useMotionValue, useTransform, useViewportScroll } from "framer-motion";
+import { motion, useMotionValue, useTransform} from "framer-motion";
 import { useEffect } from "react";
+
+const env = process.env;
+env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Carousel = styled.div`
   display: flex;
@@ -34,21 +37,76 @@ const CardGroup = styled(motion.div)`
 
 const SmallCard = styled(motion.div)`
   position: absolute;
-  width: 250px;
-  height: 350px;
-  background-color: white;
-  padding: 10px; 
-  border-radius: 5%;
-  box-shadow: rgba(133, 101, 101, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  width: 300px;
+  height: 400px;
   cursor: grab;
+  transform-style: preserve-3d;
+  .front{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    padding: 10px; 
+    border-radius: 5%;
+    box-shadow: rgba(133, 101, 101, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    z-index: 4;
+    backface-visibility: hidden;
+  }
+  .back{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    padding: 10px; 
+    border-radius: 5%;
+    border: 1px solid black;
+    z-index: -1;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    .card{
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      border-radius: 5%;
+      background: repeating-linear-gradient(-45deg, #273d7a, #273d7a 10px, 
+    #1897af 0, 
+    #1897af 20px);
+    }
+  }
   h5{
-    font-size: 15px;
+    font-size: 17px;
     margin-bottom: 3px;
   }
   img{
       width: 100%;
       height: auto;
       pointer-events: none;
+  }
+
+  @media ${(props) => props.theme.device.mac} {
+    width: 250px;
+    height: 350px;
+    .front{
+      width: 250px;
+      height: 350px;
+    }
+    .back{
+      width: 250px;
+      height: 350px;
+    }
+    h5{
+    font-size: 15px;
+    margin-bottom: 3px;
+    }
+    img{
+        width: 100%;
+        height: auto;
+        pointer-events: none;
+    }
   }
 `
 
@@ -106,9 +164,6 @@ const Table = styled.table`
   }
 `;
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Project_Carousel = () => {
   const [datas, setDatas] = useState<IWorksArray>(worksData);
   const [state, setState] = useState<string>();
@@ -132,9 +187,18 @@ const Project_Carousel = () => {
     {rotateY: -324, z: 0, x: 240},
   ];
 
-  const Anim = {
-    z: 600, x: 0, rotateY: 0
-  }
+  const Anim = [
+    {z: 600, x: [400, 450, 0], rotateY: 0},
+    {z: 600, x: [240, 340, 0], rotateY: 0},
+    {z: 600, x: [80, 180, 0], rotateY: 0},
+    {z: 600, x: [-80, -180, 0], rotateY: 0},
+    {z: 600, x: [-240, -340, 0], rotateY: 0},
+    {z: 600, x: [-400, -500, 0], rotateY: 0},
+    {z: 600, x: [-240, -340, 0], rotateY: 0},
+    {z: 600, x: [-80, -180, 0], rotateY: 0},
+    {z: 600, x: [80, 180, 0], rotateY: 0},
+    {z: 600, x: [240, 340, 0], rotateY: 0},
+  ]
 
   useEffect(() => {
     setDatas(worksData);
@@ -146,7 +210,7 @@ const Project_Carousel = () => {
         <CardGroup
         style={{z:-100, x: x, rotateY: rotate}}
         drag="x"
-        animate={{scale: [0.1, 1], rotateY:[0, 360], transition: {duration : 5}}}
+        animate={{rotateY:[0, 360], transition: {duration : 5}}}
         dragConstraints={{ left: 0, right: 0 }}>
           {datas.map((data, index)=>{
             return(
@@ -155,12 +219,10 @@ const Project_Carousel = () => {
                 id={data.id + ""}
                 initial={rotateTag[index]}
                 onClick={(e) => e.currentTarget.id === state ? setState("") : setState(e.currentTarget.id)}
-                animate={state === data.id + "" ? Anim : {}}
+                animate={state === data.id + "" ? Anim[index] : {}}
                 transition={{duration: 1.5, ease: "easeInOut"}}
               >
-                <div id={data.id + ""} 
-                  style={state === data.id + "" ? {}:
-                  {pointerEvents: "none",}}>
+                <div className="front">
                   <h5>{data.name}</h5>
                   <img src={env.PUBLIC_URL + data.img} alt={data.name}/>
                   <Table>
@@ -207,7 +269,7 @@ const Project_Carousel = () => {
                                 >
                                   {data.github.length < 40
                                     ? data.github
-                                    : data.github.substring(0, 40) + "..."}
+                                    : data.github.substring(0, 35) + "..."}
                                 </a>
                               </td>
                             </tr>
@@ -240,7 +302,8 @@ const Project_Carousel = () => {
                       {data.description.substring(0, 150)+ "..."}
                     </p>
                   </Description>
-                </div>            
+                </div>
+                <div className="back"><div className="card"></div></div>
               </SmallCard>
             )
           })}
