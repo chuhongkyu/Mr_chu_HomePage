@@ -25,6 +25,8 @@ const Form = styled(motion.div)`
             outline: none;
         }
     }
+    @media ${(props) => props.theme.device.mobile} {
+    }
 `;
 
 const SearchBox = styled.div`
@@ -39,7 +41,7 @@ const SearchBox = styled.div`
     }
     @media ${(props) => props.theme.device.mobile} {
     p{
-        font-size: 12px;
+        font-size: 11px;
     }
     }
 `;

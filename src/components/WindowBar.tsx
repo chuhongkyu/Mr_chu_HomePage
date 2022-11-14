@@ -32,22 +32,26 @@ const Bar = styled.div`
 
 const DateBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
   font-size: 15px;
   cursor: pointer;
+  width: 30%;
+  height: auto;
   @media ${(props) => props.theme.device.mobile} {
     font-size: 11px;
   }
 `;
 
 const BarBox = styled.div`
-  width: 600px;
+  width: 70%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  @media ${(props) => props.theme.device.mobile} {
+  }
 `;
 
 const OpenItem = styled.div`
