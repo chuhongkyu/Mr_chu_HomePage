@@ -41,6 +41,7 @@ const SmallCard = styled(motion.div)`
   height: 400px;
   cursor: grab;
   transform-style: preserve-3d;
+  perspective: 1800px;
   .front{
     top: 0;
     left: 0;
@@ -116,13 +117,25 @@ const Description = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  padding-top: 5px;
+  border-top: 0.5px solid rgba(0,0,0,0.14);
   .description {
-    margin-top: 5px;
-    font-size: 9px;
+    font-size: 11px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+  }
+  @media ${(props) => props.theme.device.mac} {
+    .description {
+      font-size: 10px;
+    }
   }
   @media ${(props) => props.theme.device.mobile} {
     .description {
-      margin-top: 3px;
       font-size: 9px;
     }
   }
@@ -210,7 +223,6 @@ const Project_Carousel = () => {
         <CardGroup
         style={{z:-100, x: x, rotateY: rotate}}
         drag="x"
-        animate={{rotateY:[0, 360], transition: {duration : 5}}}
         dragConstraints={{ left: 0, right: 0 }}>
           {datas.map((data, index)=>{
             return(
@@ -297,9 +309,10 @@ const Project_Carousel = () => {
                             </tr>
                           </tbody>
                   </Table>
+                  
                   <Description>
                     <p className="description">
-                      {data.description.substring(0, 150)+ "..."}
+                      {data.description}
                     </p>
                   </Description>
                 </div>
