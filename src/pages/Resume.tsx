@@ -396,7 +396,7 @@ const Resume = () => {
                 data-text-color="white"
                 data-background-color="darkblue"
               >
-                CASS 월드컵
+                CASS 월드컵 프로젝트
               </p>
               <p>더즈 인터랙티브</p>
             </div>
@@ -407,6 +407,26 @@ const Resume = () => {
                 data-background-color="orange"
               >
                 롯데백화점 리뉴얼
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                정관장 운용
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                한국타이어 운용
               </p>
               <p>더즈 인터랙티브</p>
             </div>
