@@ -40,9 +40,9 @@ const SearchBox = styled.div`
         font-size: 15px;
     }
     @media ${(props) => props.theme.device.mobile} {
-    p{
-        font-size: 11px;
-    }
+        p{
+            font-size: 11px;
+        }
     }
 `;
 
@@ -56,9 +56,12 @@ const SearchForm = () => {
         console.log(value);
     }
 
-    const onFocus = () =>{
-        setOpen(!open)
-        console.log(open)
+    const onOpen = () =>{
+        setOpen(true)
+    }
+
+    const onClose = () =>{
+        setOpen(false)
     }
 
     useEffect(()=>{
@@ -66,7 +69,7 @@ const SearchForm = () => {
     },[])
     
     return(
-        <Form animate={open ? {height: 400} : {height: 37}}>
+        <Form animate={open ? {height: 400} : {height: 37}} transition={{duration: 0.5, ease:"easeInOut"}}>
             {open ? 
                 <SearchBox>
                     <p>제작중....</p>      
@@ -74,8 +77,10 @@ const SearchForm = () => {
             : null
             }
             <input 
-                onFocus={onFocus} 
+                onFocus={onOpen}
                 onChange={onChange} 
+                onKeyUp={onOpen}
+                onBlur={onClose}
                 placeholder="검색을 입력하십시오." 
                 type="text" />
         </Form>

@@ -24,6 +24,30 @@ const Slider = styled(motion.div)`
   align-items: center;
 `;
 
+const LeftArrow = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotateY(180deg);
+  z-index: 20;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  background: url("${env.PUBLIC_URL}/assets/icons/arrow.svg") center center/ cover no-repeat;
+  cursor: pointer;
+`
+
+const RightArrow = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  right: 10px;
+  width: 70px;
+  height: 70px;
+  background: url("${env.PUBLIC_URL}/assets/icons/arrow.svg") center center/ cover no-repeat;
+  cursor: pointer;
+`
+
 const CardGroup = styled(motion.div)`
   width: 100%;
   height: auto;
@@ -82,10 +106,14 @@ const SmallCard = styled(motion.div)`
     font-size: 17px;
     margin-bottom: 3px;
   }
-  img{
+  .__img{
       width: 100%;
       height: auto;
       pointer-events: none;
+      &.column{
+        width: auto;
+        height: 150px;
+      }
   }
 
   @media ${(props) => props.theme.device.mac} {
@@ -103,7 +131,7 @@ const SmallCard = styled(motion.div)`
     font-size: 15px;
     margin-bottom: 3px;
     }
-    img{
+    .__img{
         width: 100%;
         height: auto;
         pointer-events: none;
@@ -179,7 +207,7 @@ const Table = styled.table`
 
 const Project_Carousel = () => {
   const [datas, setDatas] = useState<IWorksArray>(worksData);
-  const [state, setState] = useState<string>();
+  const [state, setState] = useState<string>("0");
 
   const x = useMotionValue(0)
   const rotate = useTransform(x,
@@ -217,8 +245,26 @@ const Project_Carousel = () => {
     setDatas(worksData);
   }, []);
 
+  const LeftBtn = ()=>{
+    if(state == "0" || undefined || null || ""){
+      setState("9")
+    }else{
+      setState(prev => (Number(prev) - 1)+ "")
+    }
+  }
+
+  const RightBtn = ()=>{
+    if(state == "9" || undefined || null || ""){
+      setState("0")
+    }else{
+      setState(prev => (Number(prev) + 1)+ "")
+    }
+  }
+
   return (
     <Carousel>
+      <LeftArrow onClick={LeftBtn}></LeftArrow>
+      <RightArrow onClick={RightBtn}></RightArrow>
       <Slider>
         <CardGroup
         style={{z:-100, x: x, rotateY: rotate}}
@@ -236,7 +282,7 @@ const Project_Carousel = () => {
               >
                 <div className="front">
                   <h5>{data.name}</h5>
-                  <img src={env.PUBLIC_URL + data.img} alt={data.name}/>
+                  <img className={data.id == 2 ? "__img column": "__img"} src={env.PUBLIC_URL + data.img} alt={data.name}/>
                   <Table>
                   <tbody>
                             <tr>

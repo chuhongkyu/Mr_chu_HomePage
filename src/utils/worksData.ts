@@ -42,15 +42,15 @@ export const worksData = [
   },
   {
     id: 2,
-    name: "인터랙티브 코딩 취미",
-    date: "(2022.03.30 ~ )",
-    img: "/assets/works/cube.jpg",
+    name: "Match-Fruits",
+    date: "(2022.11.27 ~ )",
+    img: "/assets/works/match-fruits.png",
     description:
-      "자바스크립트와 CSS만으로 만든 인터랙티브 작업입니다. 첫번째 페이지에는 마우스를 따라 움직이는 귀여운 유령이 있습니다. 페이지에는 별이 랜덤으로 하늘에서 떨어집니다. 2번째 페이지는 회전하는 박스가 있습니다. 박스 가운데 빨간 점을 누르면 camera 시점이 변합니다.",
-    point: ["마우스에 따라 돌아다니는 고스트", "회전하는 3D박스"],
-    github: "https://chuhongkyu.github.io/Workspace_MaPo/",
-    link: "https://chuhongkyu.github.io/Workspace_MaPo/",
-    skills: ["바닐라 JS", "Html,Css"],
+      "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
+    point: ["mobile", "게임 알고리즘"],
+    github: "https://github.com/chuhongkyu/Card",
+    link: "https://match-fruits-mrchu.vercel.app/",
+    skills: ["Next.js", "scss"],
     people: "개인 프로젝트",
   },
   {
