@@ -145,7 +145,7 @@ const Description = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  padding-top: 5px;
+  padding-top: 10px;
   border-top: 0.5px solid rgba(0,0,0,0.14);
   .description {
     font-size: 11px;
@@ -158,11 +158,13 @@ const Description = styled.div`
     word-break: keep-all;
   }
   @media ${(props) => props.theme.device.mac} {
+    padding-top: 10px;
     .description {
       font-size: 10px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
+    padding-top: 5px;
     .description {
       font-size: 9px;
     }
@@ -170,26 +172,26 @@ const Description = styled.div`
 `;
 
 const Table = styled.table`
-  margin-top: 5px;
+  margin: 5px 0 10px;
   width: 100%;
-  .point {
-    font-weight: 700;
-    padding-right: 3px;
-    white-space: nowrap;
-    vertical-align: top;
-  }
-  a {
-    font-size: 10px;
-  }
-  th {
-    text-align: start;
-    font-size: 10px;
-    font-weight: 600;
-  }
-  td,
-  p{
-    font-size: 10px;
-  }
+    .point {
+      font-weight: 700;
+      padding-right: 3px;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+    a {
+      font-size: 10px;
+    }
+    th {
+      text-align: start;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    td,
+    p{
+      font-size: 10px;
+    }
   @media ${(props) => props.theme.device.mobile} {
     .point {
       padding-right: 2px;
@@ -284,7 +286,7 @@ const Project_Carousel = () => {
                   <h5>{data.name}</h5>
                   <img className={data.id == 2 ? "__img column": "__img"} src={env.PUBLIC_URL + data.img} alt={data.name}/>
                   <Table>
-                  <tbody>
+                    <tbody>
                             <tr>
                               <td className="point">
                                 <AiTwotoneCrown style={{ marginRight: 5 }} />
@@ -353,7 +355,7 @@ const Project_Carousel = () => {
                                 <p>{data.people}</p>
                               </td>
                             </tr>
-                          </tbody>
+                    </tbody>
                   </Table>
                   
                   <Description>

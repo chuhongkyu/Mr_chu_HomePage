@@ -59,8 +59,8 @@ const TopNavBtn = styled(motion.div)`
   height: 15px;
   border-radius: 50%;
   margin-right: 5px;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
+  font-weight: 800;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,6 +119,7 @@ const WindowModal = ({
   const navigate = useNavigate();
 
   const startDrag = (event: any) => {
+    if(!resize) return;
     controls.start(event);
   };
 
@@ -166,7 +167,7 @@ WindowModal.defaultProps = {
   bgColor: "white",
   widthSize: ["80vw", "100vw"],
   heightSize: ["80vh", "100vh"],
-  position: ["relative", "absolute"],
+  position: ["relative", "fixed"],
 };
 
 export default WindowModal;
