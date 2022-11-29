@@ -339,7 +339,6 @@ const Resume = () => {
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
             title="프로젝트"
-            column={2 / -1}
             row={"span 2"}
           >
             <div className="between">

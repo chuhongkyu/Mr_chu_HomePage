@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
-  min-height: 100px;
   padding: 25px 20px 20px;
   white-space: nowrap;
   background-color: white;
