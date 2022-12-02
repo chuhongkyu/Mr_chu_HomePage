@@ -60,9 +60,7 @@ const Home = () => {
     if (!destination) return;
     setApp((oldApps) => {
       const copyAppList = [...oldApps];
-      // Delete source.index
       copyAppList.splice(source.index, 1);
-      // put back the item on the destination.index
       copyAppList.splice(destination.index, 0, draggableId);
       return copyAppList;
     });

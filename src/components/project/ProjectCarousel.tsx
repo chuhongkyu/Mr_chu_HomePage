@@ -70,7 +70,7 @@ const SmallCard = styled(motion.div)`
     top: 0;
     left: 0;
     position: absolute;
-    width: 300px;
+    width: 100%;
     height: 400px;
     background-color: white;
     padding: 10px; 
@@ -83,7 +83,7 @@ const SmallCard = styled(motion.div)`
     top: 0;
     left: 0;
     position: absolute;
-    width: 300px;
+    width: 100%;
     height: 400px;
     background-color: white;
     padding: 10px; 
@@ -108,7 +108,7 @@ const SmallCard = styled(motion.div)`
   }
   .__img{
       width: 100%;
-      height: auto;
+      height: 170px;
       pointer-events: none;
       &.column{
         width: auto;
@@ -120,11 +120,11 @@ const SmallCard = styled(motion.div)`
     width: 250px;
     height: 350px;
     .front{
-      width: 250px;
+      width: 100%;
       height: 350px;
     }
     .back{
-      width: 250px;
+      width: 100%;
       height: 350px;
     }
     h5{
@@ -133,7 +133,7 @@ const SmallCard = styled(motion.div)`
     }
     .__img{
         width: 100%;
-        height: auto;
+        height: 150px;
         pointer-events: none;
     }
   }
@@ -174,24 +174,29 @@ const Description = styled.div`
 const Table = styled.table`
   margin: 5px 0 10px;
   width: 100%;
-    .point {
+  .url_decoration{
+    text-decoration: underline;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .point {
       font-weight: 700;
       padding-right: 3px;
       white-space: nowrap;
       vertical-align: top;
-    }
-    a {
+  }
+  a {
       font-size: 10px;
-    }
-    th {
+  }
+  th {
       text-align: start;
       font-size: 10px;
       font-weight: 600;
-    }
-    td,
-    p{
+  }
+  td,
+  p{
       font-size: 10px;
-    }
+  }
   @media ${(props) => props.theme.device.mobile} {
     .point {
       padding-right: 2px;
@@ -231,16 +236,16 @@ const Project_Carousel = () => {
   ];
 
   const Anim = [
-    {z: 600, x: [400, 450, 0], rotateY: 0},
-    {z: 600, x: [240, 340, 0], rotateY: 0},
-    {z: 600, x: [80, 180, 0], rotateY: 0},
-    {z: 600, x: [-80, -180, 0], rotateY: 0},
-    {z: 600, x: [-240, -340, 0], rotateY: 0},
-    {z: 600, x: [-400, -500, 0], rotateY: 0},
-    {z: 600, x: [-240, -340, 0], rotateY: 0},
-    {z: 600, x: [-80, -180, 0], rotateY: 0},
-    {z: 600, x: [80, 180, 0], rotateY: 0},
-    {z: 600, x: [240, 340, 0], rotateY: 0},
+    {z: 600, x: [400, 450, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [240, 340, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [80, 180, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [-80, -180, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [-240, -340, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [-400, -500, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [-240, -340, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [-80, -180, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [80, 180, 0], rotateY: 0, width: "450px"},
+    {z: 600, x: [240, 340, 0], rotateY: 0, width: "450px"},
   ]
 
   useEffect(() => {
@@ -284,7 +289,9 @@ const Project_Carousel = () => {
               >
                 <div className="front">
                   <h5>{data.name}</h5>
-                  <img className={data.id == 2 ? "__img column": "__img"} src={env.PUBLIC_URL + data.img} alt={data.name}/>
+                    <img className={data.id == 2 ? "__img column": "__img"} 
+                         src={env.PUBLIC_URL + data.img} alt={data.name}
+                    />
                   <Table>
                     <tbody>
                             <tr>
@@ -302,7 +309,7 @@ const Project_Carousel = () => {
                             </tr>
                             <tr>
                               <td className="point">
-                                <AiTwotoneCrown style={{ marginRight: 5 }} />
+                                <AiTwotoneCrown style={{ marginRight: 5, }} />
                                 배포
                               </td>
                               <td>
@@ -312,7 +319,7 @@ const Project_Carousel = () => {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  Link
+                                  ####Link####
                                 </a>
                               </td>
                             </tr>
