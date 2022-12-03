@@ -78,6 +78,7 @@ const SmallCard = styled(motion.div)`
     box-shadow: rgba(133, 101, 101, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     z-index: 4;
     backface-visibility: hidden;
+    overflow: hidden;
   }
   .back{
     top: 0;
@@ -106,15 +107,22 @@ const SmallCard = styled(motion.div)`
     font-size: 17px;
     margin-bottom: 3px;
   }
-  .__img{
-      width: 100%;
+  .card-top{
+    width: 100%;
+    height: 170px;
+    display: flex;
+    gap: 10px;
+    .__img{
+      max-width: 200px;
       height: 170px;
       pointer-events: none;
       &.column{
         width: auto;
         height: 150px;
       }
+    }
   }
+  
 
   @media ${(props) => props.theme.device.mac} {
     width: 250px;
@@ -131,10 +139,37 @@ const SmallCard = styled(motion.div)`
     font-size: 15px;
     margin-bottom: 3px;
     }
-    .__img{
-        width: 100%;
-        height: 150px;
+    .card-top{
+      width: 100%;
+      height: 140px;
+      .__img{
+        max-width: 200px;
+        height: 140px;
         pointer-events: none;
+        &.column{
+          width: auto;
+          height: 140px;
+        }
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    h5{
+    font-size: 12px;
+    margin-bottom: 3px;
+    }
+    .card-top{
+      width: 100%;
+      height: 100px;
+      .__img{
+        max-width: 200px;
+        height: 100px;
+        pointer-events: none;
+        &.column{
+          width: auto;
+          height: 10px;
+        }
+      }
     }
   }
 `
@@ -232,7 +267,7 @@ const Project_Carousel = () => {
     {rotateY: -216, z: 0, x: -240},
     {rotateY: -252, z: -100, x: -80},
     {rotateY: -288, z: -100, x: 80},
-    {rotateY: -324, z: 0, x: 240},
+    // {rotateY: -324, z: 0, x: 240},
   ];
 
   const Anim = [
@@ -245,7 +280,7 @@ const Project_Carousel = () => {
     {z: 600, x: [-240, -340, 0], rotateY: 0, width: "450px"},
     {z: 600, x: [-80, -180, 0], rotateY: 0, width: "450px"},
     {z: 600, x: [80, 180, 0], rotateY: 0, width: "450px"},
-    {z: 600, x: [240, 340, 0], rotateY: 0, width: "450px"},
+    // {z: 600, x: [240, 340, 0], rotateY: 0, width: "450px"},
   ]
 
   useEffect(() => {
@@ -254,14 +289,14 @@ const Project_Carousel = () => {
 
   const LeftBtn = ()=>{
     if(state == "0" || undefined || null || ""){
-      setState("9")
+      setState("8")
     }else{
       setState(prev => (Number(prev) - 1)+ "")
     }
   }
 
   const RightBtn = ()=>{
-    if(state == "9" || undefined || null || ""){
+    if(state == "8" || undefined || null || ""){
       setState("0")
     }else{
       setState(prev => (Number(prev) + 1)+ "")
@@ -284,16 +319,18 @@ const Project_Carousel = () => {
                 id={data.id + ""}
                 initial={rotateTag[index]}
                 onClick={(e) => e.currentTarget.id === state ? setState("") : setState(e.currentTarget.id)}
-                animate={state === data.id + "" ? Anim[index] : {}}
+                animate={state == data.id + "" ? Anim[index] : {}}
                 transition={{duration: 1.5, ease: "easeInOut"}}
               >
                 <div className="front">
                   <h5>{data.name}</h5>
+                  <div className="card-top">
                     <img className={data.id == 2 ? "__img column": "__img"} 
-                         src={env.PUBLIC_URL + data.img} alt={data.name}
-                    />
-                  <Table>
-                    <tbody>
+                          src={env.PUBLIC_URL + data.img} alt={data.name}
+                      />
+                    {state == data.id + "" ?
+                      <Table>
+                      <tbody>
                             <tr>
                               <td className="point">
                                 <AiTwotoneCrown style={{ marginRight: 5 }} />
@@ -363,7 +400,10 @@ const Project_Carousel = () => {
                               </td>
                             </tr>
                     </tbody>
-                  </Table>
+                    </Table>: null}
+                  </div>
+                    
+                  
                   
                   <Description>
                     <p className="description">

@@ -20,7 +20,7 @@ export const worksData = [
     date: "(2022.07)",
     img: "/assets/works/second_life.gif",
     description:
-      "마포구청에서 일할 때 기획 된 헌 옷 수거 플랫폼 입니다. 프론트엔드 리드로서 환경설정, 로그인 페이지, 배너를 현재 구현 했습니다. 백으로부터 JWT를 요청, 저장 관리합니다. 이를 통해서 로그인, 간편 로그인(카카오,구글), 간편 회원가입, 자동 로그인, 인증 만료시 재 요청등의 기능을 구현했습니다.",
+      "마포구청에서 일할 때 기획 된 헌 옷 수거 플랫폼 입니다. 프론트 엔드 프로젝트 리더로서 크게는 환경설정, 로그인 페이지, 롤링 배너를 담당했습니다. 구체적으로는 백으로부터 JWT를 요청, 리덕스 툴킷을 통해 데이터를 전역 관리합니다. 이를 통해서 로그인, 간편 로그인(카카오,구글), 간편 회원가입, 자동 로그인, 인증 만료시 재 요청등의 기능을 구현했습니다. 토큰을 활용한 로그인 프로세스에 대해 고민을 많이 할 수 있었습니다.",
     point: ["로그인, 판매, 예약"],
     github: "https://github.com/Mapo-Project/SecondLife-frontend",
     link: "https://mapo-project.github.io/SecondLife-frontend/",
@@ -33,11 +33,11 @@ export const worksData = [
     date: "(2022.06 ~ 2022.07)",
     img: "/assets/works/buddies.gif",
     description:
-      "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트를 스크롤 홈페이지로 감상이 가능합니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다.",
+      "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트, 스토리에 대해 홈페이지를 통해 알 수 있습니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다. 프로젝트를 하면서 캐릭터 팀(기획자들)의 요구는 끝이 없다는 것을 알게 되었습니다. 그러므로 프로젝트의 방향성이 빠르게 결정되지 못하면 개발 시간이 줄어든 다는 것을 알게 되었습니다.",
     point: ["상세 페이지, ", "Email 송신 시스템"],
     github: "https://github.com/chuhongkyu/mapoCharacter",
     link: "https://chuhongkyu.github.io/mapoCharacter/",
-    skills: ["React"],
+    skills: ["React", "email.js"],
     people: "캐릭터 디자인 5명, 프론트 엔드(1인 개발)",
   },
   {
@@ -86,7 +86,7 @@ export const worksData = [
     img: "/assets/works/todo.png",
     description:
       "할일 체크 앱입니다. 할일을 카테고리 별로 추가해 관리 할 수 있습니다.",
-    point: ["할일 제거, 로컬스토리지 관리", "커스텀 카데고리 제작"],
+    point: ["커스텀 할일, 로컬스토리지 관리",],
     github: "https://github.com/chuhongkyu/todolist",
     link: "https://chuhongkyu.github.io/todolist/",
     skills: ["React", "TypeScript"],
@@ -130,17 +130,5 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/Coin-tickers/",
     skills: ["React", "TypeScript"],
     people: "프론트 엔드(1인 개발)",
-  },
-  {
-    id: 9,
-    name: "CASS_WorldCup",
-    date: "(2022.09)",
-    img: "/assets/works/cass.jpeg",
-    description: "카스 월드컵 기념",
-    point: ["게임 6종, 경기 점수 예측, 카스 소개"],
-    github: "/",
-    link: "/",
-    skills: ["Next.js", "gsap", "scss"],
-    people: "더즈 10명",
   },
 ];

@@ -415,7 +415,7 @@ const Resume = () => {
                 data-text-color="black"
                 data-background-color="orange"
               >
-                정관장 운용
+                정관장 kgc 운용
               </p>
               <p>더즈 인터랙티브</p>
             </div>
