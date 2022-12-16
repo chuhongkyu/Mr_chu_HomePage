@@ -209,6 +209,10 @@ const Description = styled.div`
 const Table = styled.table`
   margin: 5px 0 10px;
   width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   .url_decoration{
     text-decoration: underline;
     font-weight: 800;
@@ -223,10 +227,15 @@ const Table = styled.table`
   a {
       font-size: 10px;
   }
+  tbody{
+    height: fit-content;
+  }
   th {
       text-align: start;
       font-size: 10px;
       font-weight: 600;
+  }
+  tr{
   }
   td,
   p{
@@ -402,9 +411,7 @@ const Project_Carousel = () => {
                     </tbody>
                     </Table>: null}
                   </div>
-                    
-                  
-                  
+                       
                   <Description>
                     <p className="description">
                       {data.description}
