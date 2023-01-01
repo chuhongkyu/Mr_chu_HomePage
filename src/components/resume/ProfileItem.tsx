@@ -16,13 +16,13 @@ const Wrapper = styled(motion.div)`
     margin-right: 15px;
   }
   h3 {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 30px;
     font-family: "Montserrat", sans-serif;
   }
   p {
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
   }
   @media ${(props) => props.theme.device.mac} {
