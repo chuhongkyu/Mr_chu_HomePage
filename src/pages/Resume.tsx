@@ -250,7 +250,7 @@ const Resume = () => {
             <span>
               <AiFillMail />
             </span>
-            Conatact
+            Contact Me
           </Contact>
         </div>
       </ProfileContainer>
