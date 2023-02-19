@@ -4,6 +4,8 @@ import Enter from "pages/Enter";
 import Home from "pages/Home";
 import Meta from "utils/Meta";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { stateType } from "atoms";
 
 
 function App() {
@@ -12,7 +14,7 @@ function App() {
     const params = new URLSearchParams(querystring);
 
     return params.get(key);
-};
+  };
 
   useEffect(()=>{
     const state = getParam('test')
