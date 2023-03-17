@@ -6,9 +6,6 @@ interface ImageDimmerProps {
   alt: string;
 }
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const ImgContainer = styled.div`
     position: relative;
     width: 100%;
@@ -62,8 +59,7 @@ function ImageDimmer({ imageUrl, alt }: ImageDimmerProps) {
       context?.drawImage(image, 0, 0, image.width, image.height);
 
       const imageData = context?.getImageData(0, 0, image.width, image.height)?.data;
-      if (!imageData) return;
-
+      if (!imageData) return
       let red = 0;
       let green = 0;
       let blue = 0;
@@ -79,15 +75,16 @@ function ImageDimmer({ imageUrl, alt }: ImageDimmerProps) {
       blue /= imageData.length / 4;
 
       setImageColor(`rgba(${red}, ${green}, ${blue}, 1) 20%, rgba(${red}, ${green}, ${blue}, 0.4) 100%`);
+      console.log('clear', imageColor)
     };
 
   }, [imageUrl]);
 
   return (
     <ImgContainer>
-      <img src={env.PUBLIC_URL + imageUrl} alt={alt} />
+      <img src={imageUrl} alt={alt} />
       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-      <div className="__dim" style={{ backgroundColor: `linear-gradient(40deg, ${imageColor})` }}></div>
+      <div className="__dim" style={{ background: `linear-gradient(40deg, ${imageColor})` }}></div>
     </ImgContainer>
   );
 }

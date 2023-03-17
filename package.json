@@ -40,9 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html && gh-pages -d build",
-    "predeploy": "npm run build",
-    "postbuild": "react-snap",
-    "sitemap": "babel-node ./src/sitemapGenerator.js"
+    "predeploy": "npm run build"
   },
   "reactSnap": {
     "include": [

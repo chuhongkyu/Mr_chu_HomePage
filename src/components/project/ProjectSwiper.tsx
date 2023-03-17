@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
 import { AiTwotoneCrown } from "react-icons/ai";
@@ -83,7 +83,7 @@ function ProjectSwiper(){
                         <b>{data.name}</b>
                         <p>{data.date}</p>
                       </div>
-                      <ImageDimmer imageUrl={data.img} alt={data.id + ""}/>
+                      <ImageDimmer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
                   </SmallCard>
                 </SwiperSlide>
               )
