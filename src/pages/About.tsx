@@ -163,16 +163,6 @@ const About = () => {
       data: true,
       readme: true,
     },
-    {
-      id: "fourth",
-      data: false,
-      readme: false,
-    },
-    {
-      id: "fiveth",
-      data: false,
-      readme: false,
-    },
   ]);
 
   const onHandlePage = (e: React.MouseEvent<HTMLDivElement>) => {
