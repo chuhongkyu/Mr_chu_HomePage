@@ -12,7 +12,8 @@ const ImgContainer = styled.div`
     height: 100%;
     &:hover{
         .__dim{
-            display: none;
+            /* display: none; */
+            opacity: 0;
             transition: 0.5s ease-in-out;
         }
     }
@@ -24,7 +25,8 @@ const ImgContainer = styled.div`
         width: 100%; 
         height: 100%;
         display: block;
-        transition: 0.1s ease-in-out;
+        opacity: 1;
+        transition: 0.5s ease-in-out;
     }
     img{
         display: block;
