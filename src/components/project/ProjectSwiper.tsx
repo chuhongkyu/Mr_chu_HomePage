@@ -17,6 +17,9 @@ const Wrapper = styled.div`
     padding-top: 50px;
     padding-bottom: 50px;
   }
+  @media ${(props) => props.theme.device.mobile} {
+    padding-left: 20px;
+  }
 `
 
 const SmallCard = styled(motion.div)`
@@ -52,6 +55,50 @@ const SmallCard = styled(motion.div)`
     @media ${(props) => props.theme.device.mac} {
       width: 600px;
       height: 400px;
+      .card_title{
+        p{
+          font-size: 30px;
+          display: block;  
+        }
+        b{
+          font-size: 35px;
+          font-weight: 700;
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    @media ${(props) => props.theme.device.tablet} {
+      width: 450px;
+      height: 400px;
+      .card_title{
+        p{
+          font-size: 30px;
+          display: block;  
+        }
+        b{
+          font-size: 35px;
+          font-weight: 700;
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    @media ${(props) => props.theme.device.mobile} {
+      width: calc(100% - 20px);
+      height: 400px;
+      .card_title{
+        p{
+          font-size: 20px;
+          display: block;  
+        }
+        b{
+          font-size: 15px;
+          font-weight: 700;
+          display: block;
+          margin-bottom: 6px;
+        }
+      }
     }
 `;
 
@@ -66,12 +113,22 @@ function ProjectSwiper(){
     return(
       <Wrapper>
         <Swiper
-            spaceBetween={50}
-            slidesPerView={2.2}
+            spaceBetween={20}
+            slidesPerView={1}
             centeredSlides={true}
             loop={true}
             onSlideChange={() => {}}
             onSwiper={(swiper) => console.log(swiper)}
+            breakpoints={{
+              768: {
+                slidesPerView: 1.8,  //브라우저가 768보다 클 때
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 2.2,  //브라우저가 1024보다 클 때
+                spaceBetween: 50,
+              },
+            }}
           >
               {datas.map((data, index)=>{
               return(

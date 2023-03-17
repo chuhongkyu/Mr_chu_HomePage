@@ -16,6 +16,19 @@ export interface IWorksArray extends Array<IWorks> {}
 export const worksData = [
   {
     id: 0,
+    name: "LOTTE 리뉴얼",
+    date: "2023.03.07",
+    img: "/assets/works/lotte.png",
+    description:
+      "",
+    point: ["로그인, 판매, 예약"],
+    github: "https://github.com/Mapo-Project/SecondLife-frontend",
+    link: "https://mapo-project.github.io/SecondLife-frontend/",
+    skills: ["React", "Redux-toolik", "useForm"],
+    people: "UI/UX 2명, 프론트 엔드 3명, 백엔드 1명",
+  },
+  {
+    id: 1,
     name: "SECOND_LIFE",
     date: "(2022.07)",
     img: "/assets/works/second_life.gif",
@@ -28,7 +41,7 @@ export const worksData = [
     people: "UI/UX 2명, 프론트 엔드 3명, 백엔드 1명",
   },
   {
-    id: 1,
+    id: 2,
     name: "마포 버디즈",
     date: "(2022.06 ~ 2022.07)",
     img: "/assets/works/buddies.gif",
@@ -39,19 +52,6 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/mapoCharacter/",
     skills: ["React", "email.js"],
     people: "캐릭터 디자인 5명, 프론트 엔드(1인 개발)",
-  },
-  {
-    id: 2,
-    name: "Match-Fruits",
-    date: "(2022.11.27 ~ )",
-    img: "/assets/works/match-fruits.png",
-    description:
-      "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
-    point: ["mobile", "게임 알고리즘"],
-    github: "https://github.com/chuhongkyu/Card",
-    link: "https://match-fruits-mrchu.vercel.app/",
-    skills: ["Next.js", "scss"],
-    people: "개인 프로젝트",
   },
   {
     id: 3,
@@ -130,5 +130,18 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/Coin-tickers/",
     skills: ["React", "TypeScript"],
     people: "프론트 엔드(1인 개발)",
+  },
+  {
+    id: 9,
+    name: "CASS 카타르 월드컵 기념 넘버 맥주",
+    date: "2022.10",
+    img: "/assets/works/cass.jpg",
+    description:
+      "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
+    point: ["mobile", "게임 알고리즘"],
+    github: "https://github.com/chuhongkyu/Card",
+    link: "https://match-fruits-mrchu.vercel.app/",
+    skills: ["Next.js", "scss"],
+    people: "개인 프로젝트",
   },
 ];
