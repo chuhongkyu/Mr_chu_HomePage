@@ -9,6 +9,7 @@ import { stateType } from "atoms";
 
 
 function App() {
+  const [keyValue, setKeyValue] = useRecoilState(stateType)
   const getParam = (key:string) => {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
@@ -18,6 +19,11 @@ function App() {
 
   useEffect(()=>{
     const state = getParam('test')
+    if(state){
+      setKeyValue(true)
+    }else{
+      setKeyValue(false)
+    }
     console.log('state:', state)
   },[])
   

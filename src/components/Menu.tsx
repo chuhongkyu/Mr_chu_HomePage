@@ -90,7 +90,7 @@ const SpanItem = styled.a`
 
 const Variants = {
   initial: { opacity: 1 },
-  animate: { scaleY: [0, 1] },
+  animate: { scaleY: 1 },
 };
 
 const Menu = () => {

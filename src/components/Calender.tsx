@@ -186,7 +186,7 @@ const Calender = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(()=>{
-        console.log(currentMonth)
+        // console.log(currentMonth)
     },[])
 
     const prevMonth = () => {

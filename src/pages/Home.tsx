@@ -6,8 +6,8 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import WindowBar from "components/WindowBar";
-import { useRecoilState } from "recoil";
-import { appList } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { appList, stateType } from "../atoms";
 import { Route, Routes } from "react-router-dom";
 import Resume from "./Resume";
 import About from "./About";
@@ -15,6 +15,7 @@ import GitHub from "./GitHub";
 import Others from "./Others";
 import Project from "./Project";
 import AppLink from "components/AppLink";
+import TestCoach from "components/TestCoach";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -55,6 +56,7 @@ const Board = styled.div`
 `;
 
 const Home = () => {
+  const keyValue = useRecoilValue(stateType)
   const [apps, setApp] = useRecoilState(appList);
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
     if (!destination) return;
@@ -67,6 +69,7 @@ const Home = () => {
   };
   return (
     <Wrapper>
+      {keyValue ? <TestCoach /> : null}
       <Window>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">

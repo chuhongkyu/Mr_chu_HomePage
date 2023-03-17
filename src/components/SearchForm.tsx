@@ -53,7 +53,7 @@ const SearchForm = () => {
         let data = e.target.value;
         e.preventDefault();
         setValue(data);
-        console.log(value);
+        // console.log(value);
     }
 
     const onOpen = () =>{

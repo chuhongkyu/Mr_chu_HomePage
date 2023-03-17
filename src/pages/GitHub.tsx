@@ -43,7 +43,6 @@ const gitOpenning = {
 const GitHub = () => {
   const goGit = () => {
     window.open("https://github.com/chuhongkyu", "_blank");
-    console.log("성공");
   };
   useEffect(() => {
     setTimeout(goGit, 3000);

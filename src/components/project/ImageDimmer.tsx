@@ -77,7 +77,7 @@ function ImageDimmer({ imageUrl, alt }: ImageDimmerProps) {
       blue /= imageData.length / 4;
 
       setImageColor(`rgba(${red}, ${green}, ${blue}, 1) 20%, rgba(${red}, ${green}, ${blue}, 0.4) 100%`);
-      console.log('clear', imageColor)
+
     };
 
   }, [imageUrl]);

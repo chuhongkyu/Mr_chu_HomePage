@@ -85,9 +85,9 @@ const Weather = () => {
         if (data) {
           setData(data.weather[0]);
           makeIcon(data.weather[0].main);
-          console.log(data.weather[0]);
+          // console.log(data.weather[0]);
         } else {
-          console.log(data);
+          // console.log(data);
         }
       })
       .catch((error) => {
