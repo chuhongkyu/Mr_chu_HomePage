@@ -1,4 +1,3 @@
-import console from 'console';
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +9,7 @@ interface ImageDimmerProps {
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-const Img = styled.div`
+const ImgContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
@@ -54,8 +53,9 @@ function ImageDimmer({ imageUrl, alt }: ImageDimmerProps) {
 
     const context = canvas.getContext('2d');
     const image = new Image();
+    image.crossOrigin = 'anonymous';
     image.src = imageUrl;
-    
+
     image.onload = () => {
       canvas.width = image.width;
       canvas.height = image.height;
@@ -84,11 +84,11 @@ function ImageDimmer({ imageUrl, alt }: ImageDimmerProps) {
   }, [imageUrl]);
 
   return (
-    <Img>
-      <img src={`${env.PUBLIC_URL}` + imageUrl} alt={alt} />
+    <ImgContainer>
+      <img src={env.PUBLIC_URL + imageUrl} alt={alt} />
       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-      <div className="__dim" style={{ background: `linear-gradient(40deg, ${imageColor})` }}></div>
-    </Img>
+      <div className="__dim" style={{ backgroundColor: `linear-gradient(40deg, ${imageColor})` }}></div>
+    </ImgContainer>
   );
 }
 

@@ -2,7 +2,7 @@ import App from "./App";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { theme } from "./utils/theme";
 import { RecoilRoot } from "recoil";
-import { hydrate, render } from "react-dom";
+import * as ReactDOM from 'react-dom/client';
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -101,35 +101,12 @@ a{
 }
 `;
 
-const rootElement = document.getElementById("root");
-if (rootElement?.hasChildNodes()) {
-  hydrate(
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>,
-    rootElement
-  );
-} else {
-  render(
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>,
-    rootElement
-  );
-}
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <RecoilRoot>
-//     <ThemeProvider theme={theme}>
-//       <GlobalStyle />
-//       <App />
-//     </ThemeProvider>
-//   </RecoilRoot>
-// );
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+root.render(
+  <RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </RecoilRoot>
+);
