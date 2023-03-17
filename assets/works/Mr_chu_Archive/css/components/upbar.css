@@ -1,0 +1,26 @@
+.upbar-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  z-index: 1500;
+}
+.upbar-column span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.upbar-column img {
+  width: 35px;
+  height: 35px;
+  padding: 0px 10px;
+  cursor: pointer;
+}

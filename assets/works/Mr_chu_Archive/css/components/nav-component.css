@@ -1,0 +1,24 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(121, 121, 121, 0.3);
+  z-index: 1000;
+}
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.nav__link {
+  position: relative;
+  color: black;
+  transition: all 0.5s;
+}
+
+.nav__link:hover {
+  color: aqua;
+}

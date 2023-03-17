@@ -1,0 +1,45 @@
+.profile-bg {
+  background-color: black;
+}
+
+.profile_column {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile_column img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-writers {
+  margin-top: 150px;
+  margin-right: 400px;
+  padding: 10px;
+  display: block;
+  width: 800px;
+  height: 750px;
+  z-index: 10;
+}
+
+.profile-writers h1 {
+  font-size: 40px;
+  font-weight: 600;
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  color: white;
+}
+.profile-writers h6 {
+  padding: 3px 0px;
+  color: white;
+}
+
+.profile-writers h6:nth-child(6) {
+  margin-bottom: 50px;
+}

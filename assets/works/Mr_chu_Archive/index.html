@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr.chu</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="img/Mrchu.ico">
+</head>
+<body class="bg-index">
+<section>
+    <img src="img/moon.png" id="moon">
+    <img src="img/cityView_behind.png" id="city_behind">
+    <h2 id="text">세상은 언제나 변해</h2>
+    <a href="#" class="btn"></a>
+    <img src="img/CityView_front.png" id="city_front">
+</section>
+<div class="sec">
+    <h2>Welcome to Mr.chu's Archive</h2>
+        <p style="line-height:150%">&nbsp;&nbsp;이곳은 추홍규(Mr.chu)의 삶에 대해 알 수 있는 공간입니다. 홈페이지는 작가가 직접 디자인하고 만들었으며 프로필, 예술작품, 3D프린터 강사, 앱 개발자와 NFT 작품 테마로 구성되어 있습니다. 작가와 연락을 하고 싶으신 분은 이메일을 통해 연락하시면 됩니다. 감사합니다!
+        </p>
+</div>
+  <nav class="nav">
+    <ul class="nav__list">
+        <li class="nav__btn"><a class="nav__link" href="index.html">
+            <i class="fas fa-home fa-lg"></i></a></li>
+        <li class="nav__btn"><a class="nav__link" href="artworks.html">
+            <i class="fas fa-palette fa-lg"></i></a></li>
+        <li class="nav__btn"><a class="nav__link" href="book.html">
+            <i class="fas fa-book-open fa-lg"></i></a></li>
+        <li class="nav__btn"><a class="nav__link" href="NFT.html">
+            <i class="fas fa-cubes fa-lg"></i></a></li>
+        <li class="nav__btn"><a class="nav__link" href="profile.html">
+            <i class="fas fa-id-badge fa-lg"></i></a></li>
+        <li class="nav__btn"><a class="nav__link" href="app.html">
+            <i class="fab fa-app-store-ios fa-lg"></i></a></li>
+    </ul>
+</nav>
+<div id="no-mobile">
+    <span>Hey~ look at the homepage on your computer</span>
+</div>
+
+<script>
+let moon = document.getElementById('moon');
+let city_behind = document.getElementById('city_behind');
+let text = document.getElementById('text');
+let city_front = document.getElementById('city_front');
+let max = 500;
+
+const h2 = document.querySelector("div.sec h2");
+
+function handleWindowCopy(){
+  alert("Copying was successful! You have to remember Mr.chu's copyright.");
+}
+
+function handleMouseEnter(){
+    h2.style.fontWeight = "800";
+}
+
+function handleMouseLeave(){
+    h2.style.fontWeight = "600";
+}
+
+h2.onmouseenter = handleMouseEnter;
+h2.onmouseleave = handleMouseLeave;
+
+window.addEventListener("copy", handleWindowCopy);
+window.addEventListener('scroll', function()
+{
+  let value = window.scrollY;
+  moon.style.top = value * 1.05 + 'px';
+  city_behind.style.top = value * 0.5 + 'px';
+  city_front.style.top = value * 0 + 'px';
+  text.style.marginRight = value * 4 + 'px';
+  text.style.marginTop = value * 1.5 + 'px';
+})
+</script>
+<script src="https://kit.fontawesome.com/6478f529f2.js"
+crossorigin="anonymous"></script>
+</body>
+</html>
