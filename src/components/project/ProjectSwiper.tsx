@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   }
 `
 
-const SmallCard = styled(motion.div)`
+const SmallCard = styled(motion.a)`
     position: relative;
     width: 800px;
     height: 600px;
@@ -135,6 +135,9 @@ function ProjectSwiper(){
                 <SwiperSlide key={data.id + index}>
                   <SmallCard 
                       id={data.id + ""}
+                      href={data.link}
+                      target="_blank"
+                      whileHover={{y:-5}}
                   >
                       <div className="card_title">
                         <b>{data.name}</b>

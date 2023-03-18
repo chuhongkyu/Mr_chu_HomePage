@@ -23,7 +23,7 @@ export const worksData = [
       "",
     point: ["로그인, 판매, 예약"],
     github: "https://github.com/Mapo-Project/SecondLife-frontend",
-    link: "https://mapo-project.github.io/SecondLife-frontend/",
+    link: "https://www.lotteshopping.com/main",
     skills: ["React", "Redux-toolik", "useForm"],
     people: "UI/UX 2명, 프론트 엔드 3명, 백엔드 1명",
   },

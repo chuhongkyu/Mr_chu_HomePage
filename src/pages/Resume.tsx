@@ -405,9 +405,29 @@ const Resume = () => {
                 data-text-color="black"
                 data-background-color="orange"
               >
-                롯데백화점 리뉴얼
+                롯데백화점 리뉴얼 [PCW]
               </p>
               <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                롯데백화점 리뉴얼 [MOW]
+              </p>
+              <p>더즈 인터랙티브</p> 
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                롯데백화점 리뉴얼 앱 [AOS,IOS]
+              </p>
+              <p>더즈 인터랙티브</p> 
             </div>
             <div className="between">
               <p
