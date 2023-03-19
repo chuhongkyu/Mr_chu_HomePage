@@ -9,6 +9,7 @@ interface IWorks {
   link: string;
   skills: string[];
   people: string;
+  company?: string;
 }
 
 export interface IWorksArray extends Array<IWorks> {}
@@ -16,21 +17,22 @@ export interface IWorksArray extends Array<IWorks> {}
 export const worksData = [
   {
     id: 0,
-    name: "LOTTE 리뉴얼",
+    name: "롯데백화점 리뉴얼",
     date: "2023.03.07",
     img: "/assets/works/lotte.png",
     description:
-      "",
+      "롯데백화점 리뉴얼 프론트 엔드로 참여",
     point: ["로그인, 판매, 예약"],
-    github: "https://github.com/Mapo-Project/SecondLife-frontend",
+    github: "",
     link: "https://www.lotteshopping.com/main",
     skills: ["React", "Redux-toolik", "useForm"],
-    people: "UI/UX 2명, 프론트 엔드 3명, 백엔드 1명",
+    people: "프론트 3명 중 한명",
+    company: "더즈 인터렉티브"
   },
   {
     id: 1,
     name: "SECOND_LIFE",
-    date: "(2022.07)",
+    date: "2022.07",
     img: "/assets/works/second_life.gif",
     description:
       "마포구청에서 일할 때 기획 된 헌 옷 수거 플랫폼 입니다. 프론트 엔드 프로젝트 리더로서 크게는 환경설정, 로그인 페이지, 롤링 배너를 담당했습니다. 구체적으로는 백으로부터 JWT를 요청, 리덕스 툴킷을 통해 데이터를 전역 관리합니다. 이를 통해서 로그인, 간편 로그인(카카오,구글), 간편 회원가입, 자동 로그인, 인증 만료시 재 요청등의 기능을 구현했습니다. 토큰을 활용한 로그인 프로세스에 대해 고민을 많이 할 수 있었습니다.",
@@ -38,7 +40,8 @@ export const worksData = [
     github: "https://github.com/Mapo-Project/SecondLife-frontend",
     link: "https://mapo-project.github.io/SecondLife-frontend/",
     skills: ["React", "Redux-toolik", "useForm"],
-    people: "UI/UX 2명, 프론트 엔드 3명, 백엔드 1명",
+    people: "프론트 엔드 3명 중 1명",
+    company: "마포구청"
   },
   {
     id: 2,
@@ -51,7 +54,8 @@ export const worksData = [
     github: "https://github.com/chuhongkyu/mapoCharacter",
     link: "https://chuhongkyu.github.io/mapoCharacter/",
     skills: ["React", "email.js"],
-    people: "캐릭터 디자인 5명, 프론트 엔드(1인 개발)",
+    people: "프론트 엔드(1인 개발)",
+    company: "마포구청"
   },
   {
     id: 3,
@@ -65,6 +69,7 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/bmw-car/",
     skills: ["React", "three 라이브러리", "Blender"],
     people: "개인 프로젝트",
+    company: "개인 프로젝트"
   },
   {
     id: 4,
@@ -77,7 +82,8 @@ export const worksData = [
     github: "https://github.com/chuhongkyu/chuflix",
     link: "https://chuhongkyu.github.io/chuflix/",
     skills: ["React", "TypeScript"],
-    people: "넷플릭스 클론 코딩(개인 프로젝트)",
+    people: "개인 프로젝트",
+    company: "개인 프로젝트"
   },
   {
     id: 5,
@@ -91,6 +97,7 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/todolist/",
     skills: ["React", "TypeScript"],
     people: "노마드 코더 챌린지 - 우수작 (개인 프로젝트)",
+    company: "개인 프로젝트"
   },
   {
     id: 6,
@@ -104,19 +111,21 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/Cafe_HomePage/",
     skills: ["javaScript"],
     people: "1인 개발 - 회사 프로젝트",
+    company: "마포구청"
   },
   {
     id: 7,
-    name: "댓글앱",
-    date: "(2022.06)",
-    people: "2022.03 (개인 프로젝트)",
-    img: "/assets/works/comments.jpg",
+    name: "말장난 게임",
+    date: "2023.11",
+    people: "개인 프로젝트",
+    img: "/assets/works/word-play.png",
     description:
       "리액트로 만든 댓글 앱, 스터디를 하면서 불변성에 대해 공부하며 만든 앱입니다. 불변성이란 메모리 영역의 값을 변경할 수 없는 것입니다. 리액트는 불변성을 지켜줌으로써 효율적인 상태업데이트를 합니다. 사이드 이펙트를 사전 방지하고 프로그래밍의 구조를 단순하게 유지합니다. 불변성을 가진 원시타입과 달리 참조타입의 경우에는 의도적으로 불변성을 지켜주어야합니다. 그래서 새로운 주소 값을 가진 객체를 생성하여 상태를 업데이트 해줍니다. spread operator, map, filter, slice, reduce 메소드들을 활용",
     point: ["댓글 작성, 수정, 삭제, 체크"],
-    github: "https://github.com/chuhongkyu/Comments_app",
-    link: "https://chuhongkyu.github.io/Comments_app/",
+    github: "https://github.com/chuhongkyu/word-play",
+    link: "https://word-play.vercel.app/",
     skills: ["React"],
+    company: "개인 프로젝트"
   },
   {
     id: 8,
@@ -130,6 +139,7 @@ export const worksData = [
     link: "https://chuhongkyu.github.io/Coin-tickers/",
     skills: ["React", "TypeScript"],
     people: "프론트 엔드(1인 개발)",
+    company: "개인 프로젝트"
   },
   {
     id: 9,
@@ -142,6 +152,7 @@ export const worksData = [
     github: "https://github.com/chuhongkyu/Card",
     link: "https://match-fruits-mrchu.vercel.app/",
     skills: ["Next.js", "scss"],
-    people: "개인 프로젝트",
+    people: "프론트 엔드 5명 중 한명",
+    company: "더즈 인터렉티브"
   },
 ];

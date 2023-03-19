@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import ProjectCarousel from "components/project/ProjectCarousel";
 import ProjectSwiper from "components/project/ProjectSwiper";
 
 const Title = styled.h1`

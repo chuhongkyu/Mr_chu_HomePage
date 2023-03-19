@@ -1,8 +1,7 @@
 import React,{ useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
-import { AiTwotoneCrown } from "react-icons/ai";
-import { IWorksArray, worksData } from "utils/worksData";
+import { IWorksArray, worksData} from "utils/worksData";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import ImageDimmer from "components/project/ImageDimmer";
@@ -16,6 +15,22 @@ const Wrapper = styled.div`
   .swiper{
     padding-top: 50px;
     padding-bottom: 50px;
+    .swiper-slide{
+      position: relative;
+      .badge{
+        position: absolute;
+        z-index: 3;
+        display: block;
+        left: 20px;
+        top: -10px;
+        padding: 5px 12px;
+        background: #333;
+        border-radius: 25px;
+        color: white;
+        font-size: 1rem;
+      }
+    }
+    
   }
   @media ${(props) => props.theme.device.mobile} {
     padding-left: 20px;
@@ -34,6 +49,11 @@ const SmallCard = styled(motion.a)`
     flex-direction: column;
     overflow: hidden;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    &:hover{
+      .card_title{
+        display: none;
+      }
+    }
     .card_title{
         position: absolute;
         bottom: 24px;
@@ -41,26 +61,30 @@ const SmallCard = styled(motion.a)`
         z-index: 2;
         font-weight: 600;
         color: #fff;
-        p{
+        .desc{
             font-size: 35px;
             display: block;  
+            .people{
+              margin-left: 10px;
+            }
         }
-        b{
+        .title{
             font-size: 45px;
             font-weight: 700;
             display: block;
             margin-bottom: 10px;
         }
     }
+    
     @media ${(props) => props.theme.device.mac} {
       width: 600px;
       height: 400px;
       .card_title{
-        p{
+        .desc{
           font-size: 30px;
           display: block;  
         }
-        b{
+        .title{
           font-size: 35px;
           font-weight: 700;
           display: block;
@@ -72,11 +96,11 @@ const SmallCard = styled(motion.a)`
       width: 450px;
       height: 400px;
       .card_title{
-        p{
+        .desc{
           font-size: 30px;
           display: block;  
         }
-        b{
+        .title{
           font-size: 35px;
           font-weight: 700;
           display: block;
@@ -133,15 +157,19 @@ function ProjectSwiper(){
               {datas.map((data, index)=>{
               return(
                 <SwiperSlide key={data.id + index}>
+                  <span className="badge">
+                        {data.company}
+                  </span>
                   <SmallCard 
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
                       whileHover={{y:-5}}
-                  >
+                    >
+                      
                       <div className="card_title">
-                        <b>{data.name}</b>
-                        <p>{data.date}</p>
+                        <b className="title">{data.name}</b>
+                        <p className="desc">{data.date}<b className="people">{data.people}</b></p>
                       </div>
                       <ImageDimmer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
                   </SmallCard>
