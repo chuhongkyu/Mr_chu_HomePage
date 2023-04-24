@@ -3,39 +3,23 @@ import styled from "styled-components";
 import WindowModal from "components/WindowModal";
 import { write } from "utils/write";
 import { Fragment, useState } from "react";
+import Header from "components/about/Header";
+import Description from "components/about/Description";
+import Content from "components/about/Content";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const MainContainer = styled.div`
   font-family: "Maple_story";
-  width: 100%;
+  width: 1200px;
   height: 100%;
-  padding: 50px;
+  padding: 30px 50px 0;
   overflow-y: scroll;
   scroll-behavior: smooth;
   border-radius: 10px;
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    h1 {
-      font-size: 40px;
-      font-weight: 800;
-    }
-  }
-  .description {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    white-space: nowrap;
-    p {
-      color: rgb(180, 180, 180);
-      margin-bottom: 10px;
-    }
-  }
+  position: relative;
+  
   @media ${(props) => props.theme.device.mobile} {
     padding: 50px 20px;
     .title {
@@ -54,20 +38,6 @@ const MainContainer = styled.div`
         margin-bottom: 10px;
       }
     }
-  }
-`;
-
-const GoogleDrive = styled(motion.a)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  p {
-    font-size: 11px;
-  }
-  img {
-    width: 50px;
-    height: auto;
   }
 `;
 
@@ -104,7 +74,7 @@ const MainText = styled(motion.div)`
   }
 `;
 
-const Description = styled(motion.div)`
+const Description1 = styled(motion.div)`
   margin: 10px 30px;
   h2 {
     font-size: 20px;
@@ -178,37 +148,8 @@ const About = () => {
   return (
     <WindowModal bgColor="white">
       <MainContainer>
-        <div className="title">
-          <h1>자기소개</h1>
-          <GoogleDrive
-            href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
-            target="_blank"
-            initial={{ y: 0, scale: 1 }}
-            whileHover={{ y: -10, scale: 1.2 }}
-          >
-            <img
-              src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw"
-              alt="drive"
-            />
-            <p>자기소개.pdf</p>
-          </GoogleDrive>
-        </div>
-
-        <div className="description">
-          <p>
-            {write.introduction.substring(
-              0,
-              write.introduction.indexOf("👋") + 2
-            )}
-            <br />
-            {write.introduction.substring(
-              write.introduction.indexOf("👋") + 2,
-              write.introduction.indexOf(".")
-            )}
-            <br />
-            {write.introduction.substring(write.introduction.indexOf(".") + 1)}
-          </p>
-        </div>
+        <Header/>
+        <Description/>
 
         <Introduction
           initial={{ y: 0 }}
@@ -218,6 +159,7 @@ const About = () => {
             transition: { duration: 0.5, delay: 0.8 },
           }}
         >
+          <Content/>
           <AnimatePresence>
             {pageShow.map((page, index) => {
               return (
@@ -235,7 +177,7 @@ const About = () => {
                     </h1>
                   </MainText>
                   {page.data ? (
-                    <Description
+                    <Description1
                       animate={{
                         opacity: [0, 1],
                         y: [-50, 0],
@@ -260,7 +202,7 @@ const About = () => {
                           README.md
                         </ReadMe>
                       ) : null}
-                    </Description>
+                    </Description1>
                   ) : null}
                 </Fragment>
               );
