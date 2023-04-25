@@ -3,6 +3,9 @@ import WindowModal from "components/WindowModal";
 import ProjectSwiper from "components/project/ProjectSwiper";
 
 const Title = styled.h1`
+  position: absolute;
+  top: 50px;
+  left: 0;
   width: 100%;
   white-space: nowrap;
   font-size: 35px;
@@ -20,20 +23,24 @@ const Title = styled.h1`
 const Wrapper = styled.div`
   padding: 50px 0px 50px;
   width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   overflow: hidden;
 `;
 
 const Project = () => {
   return (
     <WindowModal bgColor="#fafafa">
-      <Wrapper>
-        <Title>
+      <Title>
           <img
             src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4a1.svg"
             alt="아이디어"
           />
           MY PROJECTS
-        </Title>
+      </Title>
+      <Wrapper>
         {/* <ProjectCarousel /> */}
         <ProjectSwiper/>
       </Wrapper>

@@ -17,7 +17,7 @@ const Wrapper = styled(motion.div)`
         padding: max(5.208vw, 80px) 0;
     }
     .content{
-        font-size: max(1.25vw, 28px);
+        font-size: max(1.25vw, 22px);
         font-weight: 500;
         line-height: 1.8;
         letter-spacing: -0.02em;
@@ -29,7 +29,7 @@ const Wrapper = styled(motion.div)`
             line-height: 1.5;
             letter-spacing: -0.02em;
             text-align: left;
-            padding-bottom: max(8.333vw, 80px);
+            padding-bottom: 0;
         }
     }
 `;

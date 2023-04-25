@@ -92,7 +92,7 @@ const SmallCard = styled(motion.a)`
         }
       }
     }
-    @media ${(props) => props.theme.device.tablet} {
+    /* @media ${(props) => props.theme.device.tablet} {
       width: 450px;
       height: 400px;
       .card_title{
@@ -107,7 +107,7 @@ const SmallCard = styled(motion.a)`
           margin-bottom: 10px;
         }
       }
-    }
+    } */
     @media ${(props) => props.theme.device.mobile} {
       width: calc(100% - 20px);
       height: 400px;
@@ -144,10 +144,7 @@ function ProjectSwiper(){
             onSlideChange={() => {}}
             onSwiper={(swiper) => console.log(swiper)}
             breakpoints={{
-              768: {
-                slidesPerView: 1.8,  //브라우저가 768보다 클 때
-                spaceBetween: 30,
-              },
+
               1024: {
                 slidesPerView: 2.2,  //브라우저가 1024보다 클 때
                 spaceBetween: 50,
