@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Wrapper = styled(motion.div)`
-  max-width: 1200px;
+  width: 100%;
+  padding: 0 50px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -16,15 +17,16 @@ const Wrapper = styled(motion.div)`
   .content{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 0;
+    position: relative;
   }
   h1 {
     font-size: max(3.1250vw, 40px);
     color: #000;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.02em;
     font-weight: 600;
     display: block;
   }
@@ -32,6 +34,8 @@ const Wrapper = styled(motion.div)`
 
 
 const GoogleDrive = styled(motion.a)`
+    position: absolute;
+    right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,23 +49,30 @@ const GoogleDrive = styled(motion.a)`
     }
 `;
 
-const Header = () => {
+interface IData {
+  title: string;
+  icon: boolean;
+}
+
+const Header = (props:IData) => {
+  const {title, icon} = props;
   return (
     <Wrapper>
         <div className="content">
-            <h1>자기소개</h1>
-            <GoogleDrive
-            href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
-            target="_blank"
-            initial={{ y: 0, scale: 1 }}
-            whileHover={{ y: -10, scale: 1.2 }}
+            <h1>{title}</h1>
+            {icon ? <GoogleDrive
+              href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
+              target="_blank"
+              initial={{ y: 0, scale: 1 }}
+              whileHover={{ y: -10, scale: 1.2 }}
             >
-            <img
-                src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw"
-                alt="drive"
-            />
-            <p>자기소개.pdf</p>
-            </GoogleDrive>
+              <img
+                  src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw"
+                  alt="drive"
+              />
+              <p>자기소개.pdf</p>
+            </GoogleDrive> : null }
+            
         </div>
     </Wrapper>
   )

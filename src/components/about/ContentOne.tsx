@@ -8,6 +8,7 @@ const Wrapper = styled(motion.div)`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    position: relative;
     /* padding-bottom: max(8.333vw, 120px); */
     .title{
         font-size: max(1.25vw, 38px);
@@ -34,7 +35,7 @@ const Wrapper = styled(motion.div)`
     }
 `;
 
-const Content = () => {
+const ContentOne = () => {
   return (
     <Wrapper>
         <div className="title">
@@ -54,4 +55,4 @@ const Content = () => {
   )
 };
 
-export default Content;
+export default ContentOne;
