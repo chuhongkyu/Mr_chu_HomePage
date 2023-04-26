@@ -6,6 +6,16 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/date-fns": "^2.6.0",
+    "@types/gsap": "^3.0.0",
+    "@types/jest": "^29.2.0",
+    "@types/node": "^18.11.7",
+    "@types/react": "^18.0.24",
+    "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/react-dom": "^18.0.8",
+    "@types/styled-components": "^5.1.26",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
     "framer-motion": "^6.3.4",
     "gh-pages": "^4.0.0",
     "react": "^18.1.0",
@@ -20,6 +30,8 @@
     "react-tooltip": "^4.2.21",
     "recoil": "^0.7.3-alpha.2",
     "styled-components": "^5.3.5",
+    "swiper": "^8.4.7",
+    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -28,9 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html && gh-pages -d build",
-    "predeploy": "npm run build",
-    "postbuild": "react-snap",
-    "sitemap": "babel-node ./src/sitemapGenerator.js"
+    "predeploy": "npm run build"
   },
   "reactSnap": {
     "include": [
