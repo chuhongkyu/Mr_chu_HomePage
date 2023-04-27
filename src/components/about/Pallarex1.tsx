@@ -10,6 +10,9 @@ const ParallaxContainer = styled.div`
   overflow-x: hidden;
   width: 100%;
   height: 500px;
+  @media ${(props) => props.theme.device.tablet} {
+    height: 400px;
+  }
 `;
 
 const ParallaxWrapper = styled(motion.div)`
@@ -36,6 +39,9 @@ const ParallaxImage = styled(motion.a)`
         height: 300px;
         object-fit: cover;
         transform-origin: center;
+    }
+    @media ${(props) => props.theme.device.tablet} {
+      display: none;
     }
 `;
 

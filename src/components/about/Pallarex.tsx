@@ -20,6 +20,9 @@ const ParallaxWrapper = styled(motion.div)`
   align-items: center;
   position: relative;
   transform-style: preserve-3d;
+  @media ${(props) => props.theme.device.tablet} {
+    width: 400%;
+  }
 `;
 
 const ParallaxImage = styled(motion.a)`
@@ -35,6 +38,9 @@ const ParallaxImage = styled(motion.a)`
         height: 300px;
         object-fit: cover;
         transform-origin: center;
+    }
+    @media ${(props) => props.theme.device.tablet} {
+      height: 400px;
     }
 `;
 

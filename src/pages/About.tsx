@@ -33,34 +33,17 @@ const MainContainer = styled.div`
 
   @media ${(props) => props.theme.device.mobile} {
     padding: 50px 20px;
-    .title {
-      h1 {
-        font-size: 30px;
-      }
-    }
-    .description {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
-      p {
-        font-size: 11px;
-        color: rgb(180, 180, 180);
-        margin-bottom: 10px;
-      }
-    }
   }
 `;
 
-const Introduction = styled(motion.div)`
-  width: 100%;
-  margin: 0;
-`;
 
 const LeftContainer = styled.div`
   width: 300px;
   background: rgb(46,142,214);
   padding: 20px;
+  @media ${(props) => props.theme.device.mobile} {
+    display: none;
+  }
 `;
 
 const CategoryItem = styled.div`

@@ -30,6 +30,14 @@ const Wrapper = styled(motion.div)`
     font-weight: 600;
     display: block;
   }
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 0 10px;
+    h1 {font-size: 22px;}
+    .content{
+      width: 100%;
+      padding: 10px 0;
+    }
+  }
 `;
 
 
@@ -47,6 +55,9 @@ const GoogleDrive = styled(motion.a)`
       width: 50px;
       height: auto;
     }
+  @media ${(props) => props.theme.device.tablet} {
+    display: none;
+  }
 `;
 
 interface IData {
