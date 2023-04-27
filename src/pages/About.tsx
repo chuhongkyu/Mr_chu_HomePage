@@ -114,9 +114,16 @@ const About = () => {
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
-    setCategory(
-      category.map((el)=> el.id ===  target.id ? { ...el, active: true } : { ...el, active: false } )
-    )
+    const refs = [oneRef, twoRef, threeRef];
+    const activeIndex = category.findIndex(el => el.id === target.id);
+    const targetRef = refs[activeIndex];
+
+    if (targetRef && rightContainerRef.current) {
+      rightContainerRef.current.scrollTo({
+        top:  targetRef.current ? targetRef.current.offsetTop : 0,
+        behavior: "smooth"
+      });
+    }
   }
 
   const autoChange = () => {

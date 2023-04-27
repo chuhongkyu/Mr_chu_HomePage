@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import Pallarex1 from "components/about/Pallarex1";
 
 const Wrapper = styled(motion.div)`
     width: 100%;
@@ -65,10 +66,9 @@ const ContentTwo = () => {
                 캐릭터 홍보 사이트 (버디즈)
             </div>
             <div className="description">
-                유니티로 혼자서 앱 게임을 출시 해본 경험은 개발공부를 스스로 하는 습관을 길러 주었습니다.<br/>
-                프론트 엔드로서 회사에서 하는 업무만으로는 개발에 대한 호기심이 충족 되지 않았고 계속 공부 하게 되었습니다.<br/>
+                처음으로 기획자, 디자이너와 함께 작업한 프로젝트 였습니다. 마포구의 홍보를 위해 버디즈라는 캐릭터를 기획하고 이들을 코엑스에 전시할때 홈페이지도 같이 전시되는 작업이 였습니다.
             </div>
-            
+            <Pallarex1/>
         </div>
     </Wrapper>
   )

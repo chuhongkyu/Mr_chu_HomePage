@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Parallax from "components/about/Pallarex";
+import Pallarex from "components/about/Pallarex";
 
 const Wrapper = styled(motion.div)`
     width: 100%;
@@ -50,7 +50,7 @@ const ContentOne = () => {
             디자이너 출신인이 아니기 때문에 무작정 화려한 홈페이지에는 거부감이 있고 굉장히 깔끔한 UI를 좋아합니다.<br/>
             하지만 의외로 화려한 것을 좋아하는 제작자, 투자자가 많고 ... 저는 가끔은 기대에 부응 해야합니다.
         </div>
-        <Parallax />
+        <Pallarex />
     </Wrapper>
   )
 };
