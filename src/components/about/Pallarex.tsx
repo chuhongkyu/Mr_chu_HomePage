@@ -87,6 +87,8 @@ const Parallax = () => {
               <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Imag 4"/>
         </ParallaxImageB>
         <ParallaxImage
+         target={"_blank"}
+          href={"https://match-fruits-mrchu.vercel.app/"}
           whileHover={{
             scale: 1.1,
             rotateX: 10,

@@ -9,6 +9,7 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-top: 100px;
     /* padding-bottom: max(8.333vw, 120px); */
     .title{
         font-size: max(1.25vw, 38px);

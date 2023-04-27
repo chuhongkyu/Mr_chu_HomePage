@@ -3,10 +3,10 @@ import styled from "styled-components";
 import WindowModal from "components/WindowModal";
 import { write } from "utils/write";
 import React, { useEffect, useRef, useState } from "react";
-import Description from "components/about/Description";
+import Header from "components/about/Header";
 import ContentOne from "components/about/ContentOne";
 import ContentTwo from "components/about/ContentTwo";
-import Header from "components/about/Header";
+import ContentThree from "components/about/ContentThree";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -59,7 +59,7 @@ const Introduction = styled(motion.div)`
 
 const LeftContainer = styled.div`
   width: 300px;
-  background: lightgray;
+  background: rgb(46,142,214);
   padding: 20px;
 `;
 
@@ -67,6 +67,7 @@ const CategoryItem = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   font-weight: ${({ isActive }:Category) => (isActive ? 'bold' : 'normal')};
+  color: ${({ isActive }:Category) => (isActive ? 'black' : 'white')};
 `;
 
 const RightContainer = styled.div`
@@ -86,12 +87,12 @@ const categories = [
   },
   {
     id: "1",
-    name: "프론트 엔드",
+    name: "마포구청",
     active: false,
   },
   {
     id: "2",
-    name: "더미2",
+    name: "개발자들의 환상",
     active: false,
   }
 ]
@@ -194,7 +195,7 @@ const About = () => {
             <ContentTwo/>
           </ContentContainer>
           <ContentContainer id="2" ref={threeRef}>
-            <ContentOne/>
+            <ContentThree/>
           </ContentContainer>
         </RightContainer>
 
