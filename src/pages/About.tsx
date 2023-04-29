@@ -38,22 +38,47 @@ const MainContainer = styled.div`
 
 
 const LeftContainer = styled.div`
-  width: 300px;
+  width: 25%;
   background: rgb(46,142,214);
-  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
   @media ${(props) => props.theme.device.mobile} {
     display: none;
   }
+  img{
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+  &::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(-50deg, transparent, rgb(46,142,214) );
+  }
 `;
+
+const CaegoryItems = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+`
 
 const CategoryItem = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
+  font-size: 18px;
   font-weight: ${({ isActive }:Category) => (isActive ? 'bold' : 'normal')};
   color: ${({ isActive }:Category) => (isActive ? 'black' : 'white')};
 `;
 
 const RightContainer = styled.div`
+  width: 75%;
   flex: 1;
   overflow-y: auto;
 `;
@@ -153,21 +178,23 @@ const About = () => {
     <WindowModal bgColor="white">
       <MainContainer>
         <LeftContainer>
-          {
-            category.map((item)=>{
-              return(
-                <CategoryItem 
-                  onClick={onClick}
-                  key={item.id} 
-                  id={item.id}
-                  isActive={item.active}
-                >
-                  {item.name}
-                </CategoryItem>
-              )
-            })
-
-          }
+          <CaegoryItems>
+            {
+              category.map((item)=>{
+                return(
+                  <CategoryItem 
+                    onClick={onClick}
+                    key={item.id} 
+                    id={item.id}
+                    isActive={item.active}
+                  >
+                    {item.name}
+                  </CategoryItem>
+                )
+              })
+            }
+          </CaegoryItems>
+          <img src={env.PUBLIC_URL + '/assets/img/about/left/03.png'} alt="03" />
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
           <Header title={title} icon={true}/>
