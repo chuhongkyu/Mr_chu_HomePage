@@ -17,6 +17,20 @@ export interface IWorksArray extends Array<IWorks> {}
 export const worksData = [
   {
     id: 0,
+    name: "We T",
+    date: "2023.05.13",
+    img: "/assets/works/project_0.png",
+    description:
+      "우리들의 OTT We T",
+    point: ["로그인, 회원가입, 게시판"],
+    github: "",
+    link: "https://we-t-ott.vercel.app/",
+    skills: ["NEXT.js", "MongoDB", "TS"],
+    people: "풀스택 코딩",
+    company: "개인 프로젝트"
+  },
+  {
+    id: 1,
     name: "롯데백화점 리뉴얼",
     date: "2023.03.07",
     img: "/assets/works/lotte.png",
@@ -30,7 +44,7 @@ export const worksData = [
     company: "더즈 인터렉티브"
   },
   {
-    id: 1,
+    id: 2,
     name: "SECOND_LIFE",
     date: "2022.07",
     img: "/assets/works/second_life.gif",
@@ -44,7 +58,7 @@ export const worksData = [
     company: "마포구청"
   },
   {
-    id: 2,
+    id: 3,
     name: "마포 버디즈",
     date: "(2022.06 ~ 2022.07)",
     img: "/assets/works/buddies.gif",
@@ -58,7 +72,7 @@ export const worksData = [
     company: "마포구청"
   },
   {
-    id: 3,
+    id: 4,
     name: "BMW",
     date: "(2022.04.25 ~ )",
     img: "/assets/works/bmw.gif",
@@ -72,7 +86,7 @@ export const worksData = [
     company: "개인 프로젝트"
   },
   {
-    id: 4,
+    id: 5,
     name: "넷플릭스",
     date: "(2022.05.29)",
     img: "/assets/works/chuflix.jpg",
@@ -86,7 +100,7 @@ export const worksData = [
     company: "개인 프로젝트"
   },
   {
-    id: 5,
+    id: 6,
     name: "ToDo App",
     date: "(2022.05)",
     img: "/assets/works/todo.png",
@@ -100,7 +114,7 @@ export const worksData = [
     company: "개인 프로젝트"
   },
   {
-    id: 6,
+    id: 7,
     name: "마포구 이쁜 카페 소개 10선",
     date: "(2022.05.25)",
     img: "/assets/works/1project.png",
@@ -114,7 +128,7 @@ export const worksData = [
     company: "마포구청"
   },
   {
-    id: 7,
+    id: 8,
     name: "말장난 게임",
     date: "2023.11",
     people: "개인 프로젝트",
@@ -128,7 +142,7 @@ export const worksData = [
     company: "개인 프로젝트"
   },
   {
-    id: 8,
+    id: 9,
     name: "Cloud Coin",
     date: "(2022.06.25)",
     img: "/assets/works/coin.gif",
