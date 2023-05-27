@@ -24,10 +24,11 @@ const Meta = () => {
       <meta property="og:description" content={metaData.description} />
       <meta property="og:image" content={metaData.imgsrc} />
       <meta property="og:url" content={metaData.url} />
-
+    
       <meta name="twitter:title" content={metaData.title} />
       <meta name="twitter:description" content={metaData.description} />
       <meta name="twitter:image" content={metaData.imgsrc} />
+
       <link rel="canonical" href={metaData.url} />
     </Helmet>
   );
