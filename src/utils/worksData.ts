@@ -29,20 +29,20 @@ export const worksData = [
     people: "풀스택 코딩",
     company: "개인 프로젝트"
   },
-  {
-    id: 1,
-    name: "롯데백화점 리뉴얼",
-    date: "2023.03.07",
-    img: "/assets/works/lotte.png",
-    description:
-      "롯데백화점 리뉴얼 프론트 엔드로 참여",
-    point: ["로그인, 판매, 예약"],
-    github: "",
-    link: "https://www.lotteshopping.com/main",
-    skills: ["React", "Redux-toolik", "useForm"],
-    people: "프론트 3명 중 한명",
-    company: "더즈 인터렉티브"
-  },
+  // {
+  //   id: 1,
+  //   name: "롯데백화점 리뉴얼",
+  //   date: "2023.03.07",
+  //   img: "/assets/works/lotte.png",
+  //   description:
+  //     "롯데백화점 리뉴얼 프론트 엔드로 참여",
+  //   point: ["로그인, 판매, 예약"],
+  //   github: "",
+  //   link: "https://www.lotteshopping.com/main",
+  //   skills: ["React", "Redux-toolik", "useForm"],
+  //   people: "프론트 3명 중 한명",
+  //   company: "더즈 인터렉티브"
+  // },
   {
     id: 2,
     name: "SECOND_LIFE",
@@ -57,20 +57,20 @@ export const worksData = [
     people: "프론트 엔드 3명 중 1명",
     company: "마포구청"
   },
-  {
-    id: 3,
-    name: "마포 버디즈",
-    date: "(2022.06 ~ 2022.07)",
-    img: "/assets/works/buddies.gif",
-    description:
-      "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트, 스토리에 대해 홈페이지를 통해 알 수 있습니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다. 프로젝트를 하면서 캐릭터 팀(기획자들)의 요구는 끝이 없다는 것을 알게 되었습니다. 그러므로 프로젝트의 방향성이 빠르게 결정되지 못하면 개발 시간이 줄어든 다는 것을 알게 되었습니다.",
-    point: ["상세 페이지, ", "Email 송신 시스템"],
-    github: "https://github.com/chuhongkyu/mapoCharacter",
-    link: "https://chuhongkyu.github.io/mapoCharacter/",
-    skills: ["React", "email.js"],
-    people: "프론트 엔드(1인 개발)",
-    company: "마포구청"
-  },
+  // {
+  //   id: 3,
+  //   name: "마포 버디즈",
+  //   date: "(2022.06 ~ 2022.07)",
+  //   img: "/assets/works/buddies.gif",
+  //   description:
+  //     "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트, 스토리에 대해 홈페이지를 통해 알 수 있습니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다. 프로젝트를 하면서 캐릭터 팀(기획자들)의 요구는 끝이 없다는 것을 알게 되었습니다. 그러므로 프로젝트의 방향성이 빠르게 결정되지 못하면 개발 시간이 줄어든 다는 것을 알게 되었습니다.",
+  //   point: ["상세 페이지, ", "Email 송신 시스템"],
+  //   github: "https://github.com/chuhongkyu/mapoCharacter",
+  //   link: "https://chuhongkyu.github.io/mapoCharacter/",
+  //   skills: ["React", "email.js"],
+  //   people: "프론트 엔드(1인 개발)",
+  //   company: "마포구청"
+  // },
   {
     id: 4,
     name: "BMW",
@@ -155,18 +155,18 @@ export const worksData = [
     people: "프론트 엔드(1인 개발)",
     company: "개인 프로젝트"
   },
-  {
-    id: 9,
-    name: "CASS 카타르 월드컵 기념 넘버 맥주",
-    date: "2022.10",
-    img: "/assets/works/cass.jpg",
-    description:
-      "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
-    point: ["mobile", "게임 알고리즘"],
-    github: "https://github.com/chuhongkyu/Card",
-    link: "https://match-fruits-mrchu.vercel.app/",
-    skills: ["Next.js", "scss"],
-    people: "프론트 엔드 5명 중 한명",
-    company: "더즈 인터렉티브"
-  },
+  // {
+  //   id: 9,
+  //   name: "CASS 카타르 월드컵 기념 넘버 맥주",
+  //   date: "2022.10",
+  //   img: "/assets/works/cass.jpg",
+  //   description:
+  //     "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
+  //   point: ["mobile", "게임 알고리즘"],
+  //   github: "https://github.com/chuhongkyu/Card",
+  //   link: "https://match-fruits-mrchu.vercel.app/",
+  //   skills: ["Next.js", "scss"],
+  //   people: "프론트 엔드 5명 중 한명",
+  //   company: "더즈 인터렉티브"
+  // },
 ];

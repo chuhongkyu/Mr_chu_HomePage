@@ -1,4 +1,4 @@
-import { motion, useDragControls } from "framer-motion";
+import { motion, useDragControls, AnimatePresence , LayoutGroup} from "framer-motion";
 import { ReactNode, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ interface Props {
   third: string;
 }
 
-const Position = styled.div`
+const Position = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -90,11 +90,11 @@ const ModalVariant = {
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1 },
+    transition: { duration: 0.5, type: "spring" },
   },
   exit: {
     scale: 0,
-    transition: { duration: 1 },
+    transition: { duration: 0.5, type: "spring" },
   },
 };
 
@@ -131,35 +131,39 @@ const WindowModal = ({
   };
 
   return (
-    <Position ref={constraintsRef}>
-      <Modal
-        first={resize ? widthSize[0] : widthSize[1]}
-        second={resize ? heightSize[0] : heightSize[1]}
-        third={resize ? position[0] : position[1]}
-        variants={ModalVariant}
-        initial="inital"
-        animate="animate"
-        exit="exit"
-        style={{ backgroundColor: bgColor }}
-        drag
-        dragSnapToOrigin
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        dragConstraints={constraintsRef}
-        dragControls={controls}
-        dragListener={false}
-      >
-        <TopNav onPointerDown={startDrag} whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
-          <RedBtn onClick={onExit}>
-            <AiOutlineClose />
-          </RedBtn>
-          <YellowBtn></YellowBtn>
-          <GreenBtn onClick={onHandleSize}>
-            <AiOutlineExpand />
-          </GreenBtn>
-        </TopNav>
-        {children}
-      </Modal>
-    </Position>
+      <LayoutGroup>
+        <Position 
+          variants={ModalVariant}
+          initial="inital"
+          animate="animate"
+          exit="exit"
+          ref={constraintsRef}>
+          <Modal
+            first={resize ? widthSize[0] : widthSize[1]}
+            second={resize ? heightSize[0] : heightSize[1]}
+            third={resize ? position[0] : position[1]}
+           
+            style={{ backgroundColor: bgColor }}
+            drag
+            dragSnapToOrigin
+            dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+            dragConstraints={constraintsRef}
+            dragControls={controls}
+            dragListener={false}
+          >
+            <TopNav onPointerDown={startDrag} whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
+              <RedBtn onClick={onExit}>
+                <AiOutlineClose />
+              </RedBtn>
+              <YellowBtn></YellowBtn>
+              <GreenBtn onClick={onHandleSize}>
+                <AiOutlineExpand />
+              </GreenBtn>
+            </TopNav>
+            {children}
+          </Modal>
+        </Position>
+      </LayoutGroup>
   );
 };
 

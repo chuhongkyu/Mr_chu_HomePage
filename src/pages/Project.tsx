@@ -38,7 +38,7 @@ const Project = () => {
             src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4a1.svg"
             alt="아이디어"
           />
-          MY PROJECTS
+          TOY PROJECTS
       </Title>
       <Wrapper>
         {/* <ProjectCarousel /> */}

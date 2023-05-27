@@ -8,7 +8,8 @@ import {
 import WindowBar from "components/WindowBar";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { appList, stateType } from "../atoms";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion"
 import Resume from "./Resume";
 import About from "./About";
 import GitHub from "./GitHub";
@@ -58,6 +59,9 @@ const Board = styled.div`
 const Home = () => {
   const keyValue = useRecoilValue(stateType)
   const [apps, setApp] = useRecoilState(appList);
+
+  const location  = useLocation()
+
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
     if (!destination) return;
     setApp((oldApps) => {
@@ -68,6 +72,7 @@ const Home = () => {
     });
   };
   return (
+    <AnimatePresence exitBeforeEnter>
     <Wrapper>
       {keyValue ? <TestCoach /> : null}
       <Window>
@@ -94,15 +99,18 @@ const Home = () => {
           </Droppable>
         </DragDropContext>
       </Window>
-      <Routes>
-        <Route path="resume" element={<Resume />} />
-        <Route path="about" element={<About />} />
-        <Route path="github" element={<GitHub />} />
-        <Route path="game_app" element={<Others />} />
-        <Route path="project" element={<Project />} />
-      </Routes>
+      <AnimatePresence initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="resume" element={<Resume />} />
+          <Route path="about" element={<About />} />
+          <Route path="github" element={<GitHub />} />
+          <Route path="game_app" element={<Others />} />
+          <Route path="project" element={<Project />} />
+        </Routes>
+      </AnimatePresence>
       <WindowBar />
     </Wrapper>
+    </AnimatePresence>
   );
 };
 
