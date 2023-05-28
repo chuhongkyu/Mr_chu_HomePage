@@ -64,8 +64,7 @@ const ProfileContainer = styled.div`
     }
   }
   @media ${(props) => props.theme.device.tablet} {
-    width: 100%;
-    padding: 50px 10px 10px 10px;
+    display: none;
     .profile {
       h2 {
         font-size: 15px;
@@ -127,23 +126,22 @@ const Contact = styled(motion.span)`
 const MainContainer = styled.div`
   width: 75%;
   height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 50px 40px 10px 30px;
+  padding: 50px 30px 10px 30px;
   background-color: rgb(242, 242, 242);
   overflow-x: hidden;
   overflow-y: scroll;
   border-bottom-right-radius: 10px;
   font-family: "Noto Sans KR" sans-serif;
   h1 {
+    display: block;
+    text-align: left;
     font-family: "Montserrat", sans-serif;
     font-size: 42px;
     font-weight: bold;
+    margin-bottom: max(1.2500vw, 1.5px);
   }
   @media ${(props) => props.theme.device.mac} {
-    padding: 40px 40px 10px 30px;
+    padding: 40px 30px 10px 30px;
     h1 {
       font-size: 40px;
       font-weight: bold;
@@ -151,14 +149,14 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
-    padding: 50px 10px 10px 10px;
+    padding: 40px 10px 10px 10px;
     h1 {
       font-size: 30px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-    padding: 50px 10px 10px;
+    padding: 40px 10px 40px;
     h1 {
       font-size: 20px;
     }
@@ -169,12 +167,29 @@ const ProfileGrid = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(200px, auto) minmax(200px, auto);
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin: 5px 10px;
+  /* margin-bottom: max(1.2500vw, 1.5px); */
   .between {
     display: flex;
     justify-content: space-between;
+    p{
+      height: 1.5rem;
+      &:first-of-type{
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+      &:last-of-type{
+        display: block;
+        white-space: nowrap;
+      }
+      
+    }
     img {
       height: 25px;
     }
@@ -183,6 +198,7 @@ const ProfileGrid = styled.div`
     margin: 10px 0px;
   }
   @media ${(props) => props.theme.device.mac} {
+    gap: 10px;
     .between {
       display: flex;
       justify-content: space-between;
@@ -196,7 +212,7 @@ const ProfileGrid = styled.div`
   }
   @media ${(props) => props.theme.device.tablet} {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 7px;
     .between {
       img {
         height: 18px;
@@ -205,8 +221,7 @@ const ProfileGrid = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     grid-template-columns: 1fr;
-    gap: 10px;
-    margin: 5px 0;
+    gap: 6px;
     .between {
       img {
         height: 15px;

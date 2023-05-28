@@ -6,7 +6,6 @@ const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 25px 20px 20px;
-  white-space: nowrap;
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -23,7 +22,7 @@ const Wrapper = styled(motion.div)`
   }
   p {
     font-size: 25px;
-    line-height: 30px;
+    line-height: 135%;
   }
   @media ${(props) => props.theme.device.mac} {
     padding: 20px 20px 30px 20px;
@@ -40,7 +39,6 @@ const Wrapper = styled(motion.div)`
     }
     p {
       font-size: 17px;
-      line-height: 23px;
     }
   }
   @media ${(props) => props.theme.device.tablet} {
@@ -72,7 +70,7 @@ const Wrapper = styled(motion.div)`
       margin-bottom: 10px;
     }
     p {
-      font-size: 11px;
+      font-size: 12px;
     }
   }
 `;
