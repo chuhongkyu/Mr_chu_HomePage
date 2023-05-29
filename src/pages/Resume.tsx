@@ -450,9 +450,9 @@ const Resume = () => {
                 data-text-color="black"
                 data-background-color="orange"
               >
-                정관장 kgc 운용
+                롯데백화점 리뉴얼 다국어 [PCW]
               </p>
-              <p>더즈 인터랙티브</p>
+              <p>더즈 인터랙티브</p> 
             </div>
             <div className="between">
               <p
@@ -460,7 +460,17 @@ const Resume = () => {
                 data-text-color="black"
                 data-background-color="orange"
               >
-                한국타이어 운용
+                롯데백화점 리뉴얼 다국어 [MOW]
+              </p>
+              <p>더즈 인터랙티브</p> 
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                정관장 kgc 운용
               </p>
               <p>더즈 인터랙티브</p>
             </div>

@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import { write } from "utils/write";
 import React, { useEffect, useRef, useState } from "react";
 import Header from "components/about/Header";
 import ContentOne from "components/about/ContentOne";
 import ContentTwo from "components/about/ContentTwo";
 import ContentThree from "components/about/ContentThree";
+import ContentFour from "components/about/ContentFour";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -102,6 +102,11 @@ const categories = [
     id: "2",
     name: "개발자들의 환상",
     active: false,
+  },
+  {
+    id: "3",
+    name: "반응형 코딩에 대한 생각",
+    active: false,
   }
 ]
 
@@ -118,12 +123,13 @@ const About = () => {
   const oneRef = useRef<HTMLDivElement | null>(null);
   const twoRef = useRef<HTMLDivElement | null>(null);
   const threeRef = useRef<HTMLDivElement | null>(null);
+  const fourRef = useRef<HTMLDivElement | null>(null);
   const [category, setCategory] = useState(categories);
   const [title, setTitle] = useState("자기소개");
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
-    const refs = [oneRef, twoRef, threeRef];
+    const refs = [oneRef, twoRef, threeRef, fourRef];
     const activeIndex = category.findIndex(el => el.id === target.id);
     const targetRef = refs[activeIndex];
 
@@ -151,14 +157,18 @@ const About = () => {
       const section1Position = oneRef.current ? oneRef.current.offsetTop : 0;
       const section2Position = twoRef.current ? twoRef.current.offsetTop : 0;
       const section3Position = threeRef.current ? threeRef.current.offsetTop : 0
+      const section4Position = fourRef.current ? fourRef.current.offsetTop : 0
       if (scrollPosition >= section1Position && scrollPosition < section2Position) {
         setSection(0);
         autoChange();
       } else if (scrollPosition >= section2Position && scrollPosition < section3Position) {
         setSection(1);
         autoChange();
-      } else {
+      } else if (scrollPosition >= section3Position && scrollPosition < section4Position) {
         setSection(2);
+        autoChange();
+      } else {
+        setSection(3);
         autoChange();
       }
       console.log('현재 위치', currentSection)
@@ -207,21 +217,10 @@ const About = () => {
           <ContentContainer id="2" ref={threeRef}>
             <ContentThree/>
           </ContentContainer>
+          <ContentContainer id="3" ref={fourRef}>
+            <ContentFour/>
+          </ContentContainer>
         </RightContainer>
-
-        {/* <Header/>
-        <Description/>
-
-        <Introduction
-          initial={{ y: 0 }}
-          animate={{
-            y: [50, 0],
-            opacity: [0, 0.5, 1],
-            transition: { duration: 0.5, delay: 0.8 },
-          }}
-        >
-          <Content/>
-        </Introduction> */}
       </MainContainer>
     </WindowModal>
   );
