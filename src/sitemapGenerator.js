@@ -7,7 +7,7 @@ const Sitemap = require("react-router-sitemap").default;
 
 function generateSitemap() {
   return new Sitemap(router)
-    .build("http://chuhongkyu.github.io/Mr_chu_HomePage") // 도메인
+    .build("https://mrchu.netlify.app") // 도메인
     .save("./public/sitemap.xml"); // sitemap.xml 파일이 생성될 위치
 }
 
