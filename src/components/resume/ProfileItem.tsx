@@ -60,7 +60,6 @@ const Wrapper = styled(motion.div)`
   }
   @media ${(props) => props.theme.device.mobile} {
     padding: 20px 15px 15px;
-    margin: 20px 0px;
     .icon {
       width: 20px;
       margin-right: 8px;

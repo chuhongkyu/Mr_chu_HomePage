@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const Form = styled(motion.div)`
-    margin: 0.5px 10px;
+    margin: 0.5px 10px 0.5px 0;
     width: 250px;
     height: 37px;
     display: flex;
@@ -12,7 +12,6 @@ const Form = styled(motion.div)`
     align-items: center;
     background-color: rgba(255,255,255, 0.85);
     padding-left: 20px;
-    margin-left: 20px;
     position: relative;
     z-index: 2;
     transform-origin: center bottom;
@@ -26,6 +25,7 @@ const Form = styled(motion.div)`
         }
     }
     @media ${(props) => props.theme.device.mobile} {
+        display: none;
     }
 `;
 

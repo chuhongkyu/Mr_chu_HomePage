@@ -20,12 +20,25 @@ const Bar = styled.div`
   padding: 1px 10px;
   position: fixed;
   bottom: 0;
-  img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.2);
+  .main_icon{
+    width: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    img {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    .main_icon{
+      margin-right: 10px;
     }
   }
 `;
@@ -55,15 +68,16 @@ const BarBox = styled.div`
 `;
 
 const OpenItem = styled.div`
-  background-color: ${(props) => props.theme.black.darker};
+  background-color: rgba(255,255,255,0.5);
   color: ${(props) => props.theme.white.darker};
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0px 10px;
   transition: 0.5s;
+  font-weight: 600;
+  border-bottom: 2px solid rgb(46,142,214);
   &:hover {
-    background-color: ${(props) => props.theme.white.darker};
     color: ${(props) => props.theme.black.darker};
     transition: 0.5s;
   }
@@ -104,11 +118,12 @@ function WindowBar() {
       {slide ? <Menu /> : null}
       <Bar>
         <BarBox>
-          <img
-            onClick={onHandleSlide}
-            src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
-            alt="mr.chu"
-          />
+          <div className="main_icon" onClick={onHandleSlide}>
+            <img
+              src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
+              alt="mr.chu"
+            />
+          </div>
           <SearchForm/>
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
           {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}

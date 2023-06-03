@@ -126,7 +126,7 @@ const Contact = styled(motion.span)`
 const MainContainer = styled.div`
   width: 75%;
   height: 100%;
-  padding: 50px 30px 10px 30px;
+  padding: 50px 30px 50px;
   background-color: rgb(242, 242, 242);
   overflow-x: hidden;
   overflow-y: scroll;
@@ -141,7 +141,7 @@ const MainContainer = styled.div`
     margin-bottom: max(1.2500vw, 1.5px);
   }
   @media ${(props) => props.theme.device.mac} {
-    padding: 40px 30px 10px 30px;
+    padding: 50px 30px 40px;
     h1 {
       font-size: 40px;
       font-weight: bold;
@@ -149,14 +149,14 @@ const MainContainer = styled.div`
   }
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
-    padding: 40px 10px 10px 10px;
+    padding: 50px 20px 40px;
     h1 {
       font-size: 30px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-    padding: 40px 10px 40px;
+    padding: 50px 20px 30px;
     h1 {
       font-size: 20px;
     }
@@ -169,6 +169,7 @@ const ProfileGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
+  margin-top: 1rem;
   /* margin-bottom: max(1.2500vw, 1.5px); */
   .between {
     display: flex;
@@ -474,7 +475,6 @@ const Resume = () => {
               </p>
               <p>더즈 인터랙티브</p>
             </div>
-            <hr />
           </ProfileItem>
 
           <ProfileItem

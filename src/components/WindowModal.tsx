@@ -15,7 +15,7 @@ interface Props {
 
 const Position = styled(motion.div)`
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 40px);
   position: fixed;
   top: 0;
   left: 0;
@@ -170,7 +170,7 @@ const WindowModal = ({
 WindowModal.defaultProps = {
   bgColor: "white",
   widthSize: ["80vw", "100vw"],
-  heightSize: ["80vh", "100vh"],
+  heightSize: ["80vh", "calc(100vh - 40px)"],
   position: ["relative", "fixed"],
 };
 
