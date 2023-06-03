@@ -19,6 +19,12 @@
 
 ---
 
+# 2023/06/03 넷틀리파이 배포로 변경
+
+- https://mrchu.netlify.app/
+
+---
+
 ## home 화면
 
 <img style="width: 500px; height: auto;" src="https://github.com/chuhongkyu/Mr_chu_HomePage/blob/main/public/assets/home.png?raw=true" alt="페이지"/>
