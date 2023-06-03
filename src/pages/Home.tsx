@@ -88,7 +88,7 @@ const Home = () => {
                         {...magic.dragHandleProps}
                         {...magic.draggableProps}
                       >
-                        <AppLink title={app} pathUrl={`/${app}`} type={app} />
+                        <AppLink title={app} pathUrl={`${app}`} type={app} />
                       </Board>
                     )}
                   </Draggable>
