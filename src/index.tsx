@@ -3,6 +3,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { theme } from "./utils/theme";
 import { RecoilRoot } from "recoil";
 import * as ReactDOM from 'react-dom/client';
+import { render } from "react-dom";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -101,12 +102,35 @@ a{
 }
 `;
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <RecoilRoot>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-  </RecoilRoot>
-);
+declare global {
+  interface Window {
+    snapSaveState?: () => void;
+    snapRenderCallback?: () => void;
+  }
+}
+
+const rootElement = document.getElementById("root");
+const renderApp = () => {
+  render(
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </RecoilRoot>,
+    rootElement
+  );
+};
+
+if (process.env.NODE_ENV === "production") {
+  // For pre-rendering
+  if (window.snapSaveState) {
+    window.snapSaveState();
+  }
+  // Render app when pre-rendering is done
+  window.snapRenderCallback = () => {
+    renderApp();
+  };
+} else {
+  renderApp();
+}

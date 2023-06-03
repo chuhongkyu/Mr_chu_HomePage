@@ -37,18 +37,21 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-snap && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html",
     "predeploy": "npm run build",
-    "sitemap": "babel-node src/sitemapGenerator.js"
+    "sitemap": "babel-node src/sitemapGenerator.js",
   },
   "reactSnap": {
     "include": [
       "/",
       "/home",
-      "/home/*"
+      "/home/resume",
+      "/home/about",
+      "/home/game_app",
+      "/home/project"
     ]
   },
   "eslintConfig": {
