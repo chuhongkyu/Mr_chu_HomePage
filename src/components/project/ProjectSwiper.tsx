@@ -10,13 +10,18 @@ import ImageDimmer from "components/project/ImageDimmer";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   width: 100%;
   .swiper{
     padding-top: 50px;
     padding-bottom: 50px;
     .swiper-slide{
       position: relative;
+      transition: 300ms;
+      &:hover{
+        transform: translateY(-5px);
+        transition: 300ms;
+      }
       .badge{
         position: absolute;
         z-index: 3;
@@ -30,7 +35,6 @@ const Wrapper = styled.div`
         font-size: 1rem;
       }
     }
-    
   }
   @media ${(props) => props.theme.device.mobile} {
     padding-left: 20px;
@@ -153,17 +157,17 @@ function ProjectSwiper(){
           >
               {datas.map((data, index)=>{
               return(
-                <SwiperSlide key={data.id + index}>
+                <SwiperSlide 
+                  key={data.id + index}>
                   <span className="badge">
-                        {data.company}
+                     {data.company}
                   </span>
                   <SmallCard 
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
-                      whileHover={{y:-5}}
                     >
-                      
+                     
                       <div className="card_title">
                         <b className="title">{data.name}</b>
                         <p className="desc">{data.date}<b className="people">{data.people}</b></p>
