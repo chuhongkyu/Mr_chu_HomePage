@@ -42,7 +42,7 @@
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html",
     "predeploy": "npm run build",
-    "sitemap": "babel-node src/sitemapGenerator.js",
+    "sitemap": "babel-node src/sitemapGenerator.js"
   },
   "reactSnap": {
     "include": [

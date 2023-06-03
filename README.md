@@ -1,6 +1,16 @@
-# 2021/09/25
+# 2023/06/03 넷틀리파이 배포로 변경
 
-- html/css/js로만 만든 포트폴리오 홈페이지
+- https://mrchu.netlify.app/
+- 네이버 사이트맵 추가
+
+---
+
+# 2022/10/20 포트폴리오 타입스크립트로 변경
+
+- 취직후 SEO가 너무 중요하다 생각하여 리액트에 무엇을 더 할지 고민중
+- react-snap 추가
+- 구글 사이트맵 추가
+- robots.txt 추가
 
 ---
 
@@ -11,17 +21,9 @@
 
 ---
 
-# 2022/10/20 포트폴리오 타입스크립트로 변경
+# 2021/09/25
 
-- 취직후 SEO가 너무 중요하다 생각하여 리액트에 무엇을 더할지 고민중
-  - react-router-sitemap 타입스크립트를 지원하지 않음.
-- NEXT.JS는 따로 활용할 예정
-
----
-
-# 2023/06/03 넷틀리파이 배포로 변경
-
-- https://mrchu.netlify.app/
+- html/css/js로만 만든 포트폴리오 홈페이지
 
 ---
 
@@ -52,6 +54,8 @@
   - framer-motion
   - react-tooltip
   - react-icons
+  - react-router-sitemap
+  - react-snap
 
 ---
 
