@@ -47,7 +47,6 @@
   },
   "reactSnap": {
     "include": [
-      "/",
       "/home",
       "/home/resume",
       "/home/about",
