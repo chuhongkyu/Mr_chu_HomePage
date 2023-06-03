@@ -501,6 +501,9 @@ const Resume = () => {
                 />
               </span>
             </div>
+            <div className="between">
+              <span><img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&amp;logo=MongoDB&amp;logoColor=white"></img></span>
+            </div>
           </ProfileItem>
         </ProfileGrid>
       </MainContainer>

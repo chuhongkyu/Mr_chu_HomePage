@@ -81,6 +81,7 @@ const RightContainer = styled.div`
   width: 75%;
   flex: 1;
   overflow-y: auto;
+  padding-bottom: max(3.75vw, 32px);
 `;
 
 const ContentContainer = styled(motion.div)`
