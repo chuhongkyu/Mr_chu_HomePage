@@ -1,4 +1,3 @@
 Sitemap: https://mrchu.netlify.app/sitemap.xml
 User-agent: *
-Disallow: /
-Disallow: /**.html$
+Disallow:
