@@ -41,7 +41,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html",
-    "predeploy": "npm run build && react-snap",
+    "predeploy": "npm run build",
     "sitemap": "babel-node src/sitemapGenerator.js",
     "poster" : "react-snap"
   },
