@@ -37,16 +37,17 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snap",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp build/index.html build/404.html",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && react-snap",
     "sitemap": "babel-node src/sitemapGenerator.js",
     "poster" : "react-snap"
   },
   "reactSnap": {
     "include": [
+      "/",
       "/home",
       "/home/resume",
       "/home/about",
