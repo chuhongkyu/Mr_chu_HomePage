@@ -39,7 +39,7 @@ const Meta = (props:IProps) => {
 
 Meta.defaultProps = {
   title: "home",
-  description: "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. CASS 월드컵, 롯데백화점, 정관장, 한국타이어등 이력을 확인해보세요.",
+  description: "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 마포구청, CASS 월드컵, 롯데백화점, 정관장, 한국타이어등",
 }
 
 export default Meta;

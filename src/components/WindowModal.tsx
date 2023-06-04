@@ -46,12 +46,17 @@ const TopNav = styled(motion.div)`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 5px;
+  padding-left: 10px;
   display: flex;
   align-items: center;
   position: absolute;
   z-index: 4;
   top: 0;
   cursor: pointer;
+  @media ${(props) => props.theme.device.tablet} {
+    height: 40px;
+    padding-left: 20px;
+  }
 `;
 
 const TopNavBtn = styled(motion.div)`
@@ -60,7 +65,7 @@ const TopNavBtn = styled(motion.div)`
   border-radius: 50%;
   margin-right: 5px;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,18 +73,30 @@ const TopNavBtn = styled(motion.div)`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
       rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
 `;
 
 const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
+  
 `;
 
 const YellowBtn = styled(TopNavBtn)`
   background-color: rgb(255, 212, 71);
+  @media ${(props) => props.theme.device.tablet} {
+    display: none;
+  }
 `;
 
 const GreenBtn = styled(TopNavBtn)`
   background-color: rgb(23, 206, 95);
+  @media ${(props) => props.theme.device.tablet} {
+    display: none;
+  }
 `;
 
 const ModalVariant = {
