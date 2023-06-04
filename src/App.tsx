@@ -24,13 +24,12 @@ function App() {
     }else{
       setKeyValue(false)
     }
-    console.log('state:', state)
   },[])
   
   return (
     <HelmetProvider>
-      <Meta />
       <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Meta />
         <Routes>
           <Route path="/" element={<Enter />} />
           <Route path="/home" element={<Home />} />
