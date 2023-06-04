@@ -6,6 +6,7 @@ import Meta from "utils/Meta";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { stateType } from "atoms";
+import NotFound from "NotFound";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Meta />
         <Routes>
           <Route path="/" element={<Enter />} />
+          <Route path="/*" element={<NotFound />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home/*" element={<Home />} />
         </Routes>
