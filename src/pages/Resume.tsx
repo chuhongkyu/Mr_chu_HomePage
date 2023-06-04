@@ -165,7 +165,7 @@ const MainContainer = styled.div`
 
 const ProfileGrid = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
@@ -354,7 +354,7 @@ const Resume = () => {
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
-            title="프로젝트"
+            title="구축 및 운영"
             row={"span 2"}
           >
             <div className="between">
@@ -467,11 +467,21 @@ const Resume = () => {
             </div>
             <div className="between">
               <p
-                data-tip="JS"
+                data-tip="JSP"
                 data-text-color="black"
-                data-background-color="orange"
+                data-background-color="red"
               >
                 정관장 kgc 운용
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="React.js"
+                data-text-color="white"
+                data-background-color="blue"
+              >
+                CASS COOL 프로젝트
               </p>
               <p>더즈 인터랙티브</p>
             </div>
