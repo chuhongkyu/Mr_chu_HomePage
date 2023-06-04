@@ -9,7 +9,7 @@ const Meta = () => {
     keywords: "추홍규 · 프론트 엔드 · Mr.chu · 포트폴리오 · chu_hong_kyu",
     imgsrc:
       "https://raw.githubusercontent.com/chuhongkyu/Mr_chu_HomePage/main/public/assets/home.png",
-    url: "https://chuhongkyu.github.io/Mr_chu_HomePage",
+    url: "https://mrchu.netlify.app",
   };
   return (
     <Helmet>
