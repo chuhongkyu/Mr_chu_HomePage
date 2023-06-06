@@ -32,28 +32,27 @@ const Window = styled.div`
 
 const Boards = styled.div`
   font-family: "Montserrat", sans-serif;
-  padding: 30px 30px;
   display: flex;
-  justify-content: center;
-  width: 50%;
+  justify-content: flex-start;
   @media ${(props) => props.theme.device.tablet} {
-    width: 70%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   @media ${(props) => props.theme.device.mobile} {
-    align-items: flex-end;
-    flex-direction: column;
-    padding: 10px 10px;
-    width: 100%;
-    height: 70%;
   }
 `;
 
 const Board = styled.div`
-  width: 70px;
-  height: 70px;
-  margin: 0;
-  display: inline-flex;
-  flex: 1;
+  flex: left;
+  margin-right: 40px;
+  @media ${(props) => props.theme.device.tablet} {
+    flex: right;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 const Home = () => {

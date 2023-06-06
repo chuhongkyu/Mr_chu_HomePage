@@ -7,10 +7,10 @@ const App = styled.div`
   justify-self: center;
   align-items: center;
   flex-direction: column;
-  width: 70px;
-  height: 70px;
+  width: auto;
+  height: auto;
   transform: ${(props: any) =>
-    props.isActive ? "translateY(-5px)" : "translateY(0)"};
+  props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {
     display: flex;
     justify-self: center;
@@ -27,16 +27,16 @@ const App = styled.div`
     }
   }
   @media ${(props) => props.theme.device.tablet} {
-    width: 60px;
-    height: 60px;
+    width: auto;
+    height: auto;
     img {
       width: 45px;
       height: 45px;
     }
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: 50px;
-    height: 50px;
+    width: auto;
+    height: auto;
     img {
       width: 40px;
       height: 40px;
