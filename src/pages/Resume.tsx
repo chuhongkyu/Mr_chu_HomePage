@@ -174,8 +174,11 @@ const ProfileGrid = styled.div`
   .between {
     display: flex;
     justify-content: space-between;
+    line-height: 135%;
+    &:not(:last-of-type){
+      margin-bottom: 3px;
+    }
     p{
-      height: 1.5rem;
       &:first-of-type{
         display: -webkit-box;
         overflow: hidden;
