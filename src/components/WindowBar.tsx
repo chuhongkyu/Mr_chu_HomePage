@@ -50,15 +50,16 @@ const DateBox = styled.div`
   gap: 10px;
   font-size: 15px;
   cursor: pointer;
-  width: 30%;
-  height: auto;
+  /* width: 30%; */
+  min-width: 150px;
+  height: 100%;
   @media ${(props) => props.theme.device.mobile} {
-    font-size: 11px;
+    font-size: 12px;
   }
 `;
 
 const BarBox = styled.div`
-  width: 70%;
+  width: calc(100% - 150px);
   height: 100%;
   display: flex;
   justify-content: flex-start;

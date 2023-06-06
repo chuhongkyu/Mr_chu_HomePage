@@ -18,30 +18,23 @@ const Wrapper = styled(motion.section)`
 
 const LoginBox = styled.div`
   width: 1400px;
+  height: auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
   a {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 20px;
+    position: relative;
   }
   @media ${(props) => props.theme.device.mac} {
     width: 1000px;
   }
-  @media ${(props) => props.theme.device.tablet} {
-    width: 700px;
-  }
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
-      margin-left: 30px;
-    }
+    padding-left: 20px;
   }
 `;
 
@@ -55,16 +48,13 @@ const Circle = styled(motion.div)`
   border: 2px solid white;
   margin-right: 20px;
   @media ${(props) => props.theme.device.tablet} {
-    width: 90px;
-    height: 90px;
+    position: absolute;
+    left: 0px;
+    top: -65px;
+    width: 50px;
+    height: 50px;
   }
   @media ${(props) => props.theme.device.mobile} {
-    position: absolute;
-    left: 30%;
-    top: -120px;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
   }
 `;
 
@@ -92,18 +82,20 @@ const Enter = () => {
       <LoginBox>
         <Link to="home">
           <Circle
-            initial={{ y: 0 }}
+            initial={{ y: 1 }}
             animate={{
-              y: [0, -10, 5, -10, 5, 0],
+              y: [ 1, -7, 1],
               transition: {
-                delay: 2,
+                delay: 1,
+                duration: 0.3,
                 type: "spring",
+                bounce: 1,
                 repeat: Infinity,
-                repeatDelay: 1,
+                repeatDelay: 2,
               },
             }}
             whileHover={{ y: -5 }}
-          ></Circle>
+          />
           <Title />
         </Link>
       </LoginBox>

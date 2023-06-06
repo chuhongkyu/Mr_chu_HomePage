@@ -27,7 +27,10 @@ const Wrapper = styled.div`
 const Window = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 30px;
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 20px 10px 10px 0;
+  }
 `;
 
 const Boards = styled.div`
