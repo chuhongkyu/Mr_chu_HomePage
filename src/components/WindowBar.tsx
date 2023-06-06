@@ -51,20 +51,25 @@ const DateBox = styled.div`
   font-size: 15px;
   cursor: pointer;
   /* width: 30%; */
-  min-width: 150px;
+  min-width: 180px;
   height: 100%;
+  .current_time{
+    white-space: nowrap;
+  }
   @media ${(props) => props.theme.device.mobile} {
+    min-width: 150px;
     font-size: 12px;
   }
 `;
 
 const BarBox = styled.div`
-  width: calc(100% - 150px);
+  width: calc(100% - 180px);
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   @media ${(props) => props.theme.device.mobile} {
+    width: calc(100% - 150px);
   }
 `;
 
@@ -133,7 +138,7 @@ function WindowBar() {
           {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
         <DateBox>
-          <span onClick={onHandleCalender}>{time.toLocaleTimeString()}</span> <Weather />
+          <span className="current_time" onClick={onHandleCalender}>{time.toLocaleTimeString()}</span> <Weather />
         </DateBox>
       </Bar>
       {open ? <Calender/> : null}

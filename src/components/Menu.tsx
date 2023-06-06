@@ -6,10 +6,11 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Container = styled(motion.div)`
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background-color: ${(props) => props.theme.black.cloud};
   position: absolute;
   top: 0;
+  left: 0;
   transform-origin: bottom;
   padding-bottom: 40px;
   display: flex;
@@ -53,6 +54,9 @@ const Container = styled(motion.div)`
       padding: 10px;
     }
   }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 250px;
+  }
 `;
 
 const SpanItem = styled.a`
@@ -85,6 +89,13 @@ const SpanItem = styled.a`
   &:hover {
     transform: translateY(-5px);
     transition: 0.5s;
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    div{
+      h2 {
+        font-size: 16px;
+      }
+    }
   }
 `;
 
