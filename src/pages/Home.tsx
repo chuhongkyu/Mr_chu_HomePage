@@ -27,9 +27,12 @@ const Wrapper = styled.div`
 const Window = styled.div`
   width: 100%;
   height: 100%;
-  padding: 30px;
+  padding: 40px;
+  @media ${(props) => props.theme.device.mac} {
+    padding: 30px;
+  }
   @media ${(props) => props.theme.device.tablet} {
-    padding: 20px 10px 10px 0;
+    padding: 25px;
   }
 `;
 
@@ -50,7 +53,10 @@ const Boards = styled.div`
 
 const Board = styled.div`
   flex: left;
-  margin-right: 40px;
+  margin-right: 60px;
+  @media ${(props) => props.theme.device.mac} {
+    margin-right: 40px;
+  }
   @media ${(props) => props.theme.device.tablet} {
     flex: right;
     margin-right: 0;
