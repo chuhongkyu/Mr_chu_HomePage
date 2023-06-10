@@ -32,9 +32,10 @@ const LoginBox = styled.div`
   @media ${(props) => props.theme.device.mac} {
     width: 1000px;
   }
-  @media ${(props) => props.theme.device.mobile} {
+  
+  @media ${(props) => props.theme.device.tablet} {
     width: 100%;
-    padding-left: 20px;
+    padding-left: max(3.75vw, 24px);
   }
 `;
 
