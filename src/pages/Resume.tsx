@@ -131,7 +131,9 @@ const MainContainer = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   border-bottom-right-radius: 10px;
-  font-family: "Noto Sans KR" sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
   h1 {
     display: block;
     text-align: left;
