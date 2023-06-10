@@ -4,7 +4,6 @@ import styled from "styled-components";
 const Wrapper = styled(motion.div)`
   width: 100%;
   padding: 0 50px;
-  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -22,8 +22,10 @@ const App = styled.div`
       border-radius: 5%;
     }
     h2 {
+      text-align: center;
       font-size: 14px;
       font-weight: 800;
+      white-space: pre-line;
     }
   }
   @media ${(props) => props.theme.device.tablet} {
@@ -98,10 +100,10 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
           >
             <g id="surface983695">
               <motion.path
-                initial={{ pathLength: 0, fill: "rgb(46,142,214)" }}
+                initial={{ pathLength: 0, fill: "rgb(238,188,17)" }}
                 animate={{
                   pathLength: 1,
-                  fill: "rgb(46,142,214)",
+                  fill: "rgb(238,188,17)",
                   transition: { duration: 2 },
                 }}
                 whileHover={{
@@ -155,10 +157,10 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
           >
             <g id="surface983695">
               <motion.path
-                initial={{ pathLength: 0 }}
+                initial={{ pathLength: 0, fill: "rgb(46,142,214)" }}
                 animate={{
                   pathLength: 1,
-                  fill: "rgb(238,188,17)",
+                  fill: "rgb(46,142,214)",
                   transition: { duration: 2 },
                 }}
                 whileHover={{
@@ -216,7 +218,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
     <App>
       <Link to={`/home/${pathUrl}`}>
         {choosePage()}
-        <h2>{title.toUpperCase()}</h2>
+        <h2>{title == "project" ? "Project\nToy" : title.toUpperCase()}</h2>
       </Link>
     </App>
   );

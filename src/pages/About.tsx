@@ -31,7 +31,7 @@ const MainContainer = styled.div`
     display: none; /* Chrome, Safari, Opera*/
   }
 
-  @media ${(props) => props.theme.device.mobile} {
+  @media ${(props) => props.theme.device.tablet} {
     padding: 50px 20px;
   }
 `;
@@ -39,7 +39,7 @@ const MainContainer = styled.div`
 
 const LeftContainer = styled.div`
   width: 25%;
-  background: rgb(46,142,214);
+  background: rgb(238,188,17);
   position: relative;
   overflow-x: hidden;
   display: flex;
@@ -58,7 +58,7 @@ const LeftContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(-50deg, transparent, rgb(46,142,214) );
+    background: linear-gradient(-50deg, transparent, rgba(238,188,17,0.5) );
   }
 `;
 
@@ -136,7 +136,7 @@ const About = () => {
 
     if (targetRef && rightContainerRef.current) {
       rightContainerRef.current.scrollTo({
-        top:  targetRef.current ? targetRef.current.offsetTop : 0,
+        top:  targetRef.current ? targetRef.current.offsetTop - 100 : 0,
         behavior: "smooth"
       });
     }

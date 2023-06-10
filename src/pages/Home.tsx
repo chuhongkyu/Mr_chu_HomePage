@@ -32,7 +32,9 @@ const Window = styled.div`
     padding: 30px;
   }
   @media ${(props) => props.theme.device.tablet} {
-    padding: 25px;
+    padding: 20px 0 20px 20px;
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
@@ -41,9 +43,8 @@ const Boards = styled.div`
   display: flex;
   justify-content: flex-start;
   @media ${(props) => props.theme.device.tablet} {
-    width: 30%;
+    width: 30vw;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
   }
