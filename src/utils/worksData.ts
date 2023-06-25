@@ -29,20 +29,20 @@ export const worksData = [
     people: "풀스택 코딩",
     company: "개인 프로젝트"
   },
-  // {
-  //   id: 1,
-  //   name: "롯데백화점 리뉴얼",
-  //   date: "2023.03.07",
-  //   img: "/assets/works/lotte.png",
-  //   description:
-  //     "롯데백화점 리뉴얼 프론트 엔드로 참여",
-  //   point: ["로그인, 판매, 예약"],
-  //   github: "",
-  //   link: "https://www.lotteshopping.com/main",
-  //   skills: ["React", "Redux-toolik", "useForm"],
-  //   people: "프론트 3명 중 한명",
-  //   company: "더즈 인터렉티브"
-  // },
+  {
+    id: 1,
+    name: "마리오 월드(개발자)",
+    date: "2023.03.09",
+    img: "/assets/img/about/01.png",
+    description:
+      "개발자 마리오 월드",
+    point: ["three.js"],
+    github: "",
+    link: "https://chuhongkyu.github.io/interact_3D/",
+    skills: ["React", "Redux-toolik", "useForm"],
+    people: "개인 개발",
+    company: "개인"
+  },
   {
     id: 2,
     name: "SECOND_LIFE",
