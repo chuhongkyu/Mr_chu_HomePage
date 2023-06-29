@@ -11,124 +11,111 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Wrapper = styled(motion.div)`
-  width: 100%;
   .swiper{
-    padding-top: 50px;
-    padding-bottom: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     .swiper-slide{
       position: relative;
+      width: 100%;
+      height: 100%;
       transition: 300ms;
-      &:hover{
-        transform: translateY(-5px);
-        transition: 300ms;
-      }
-      .badge{
-        position: absolute;
-        z-index: 3;
-        display: block;
-        left: 20px;
-        top: -10px;
-        padding: 5px 12px;
-        background: #333;
-        border-radius: 25px;
-        color: white;
-        font-size: 1rem;
-      }
+      display: flex;
     }
   }
-  @media ${(props) => props.theme.device.mobile} {
-    padding-left: 20px;
+  @media ${(props) => props.theme.device.tablet} {
+
   }
 `
 
 const SmallCard = styled(motion.a)`
+    width: 35vw;
+    height: 100vh;
     position: relative;
-    width: 800px;
-    height: 600px;
     background: #fff;
-    border-radius: 25px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: 100ms ease-in-out;
     &:hover{
-      .card_title{
-        display: none;
-      }
+      width: 70vw;
+      transition: 300ms ease-in-out;
     }
-    .card_title{
-        position: absolute;
-        bottom: 24px;
-        left: 24px;
-        z-index: 2;
-        font-weight: 600;
-        color: #fff;
-        .desc{
-            font-size: 35px;
-            display: block;  
-            .people{
-              margin-left: 10px;
-            }
-        }
-        .title{
-            font-size: 45px;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 10px;
-        }
+    @media ${(props) => props.theme.device.tablet} {
+      display: none;
     }
-    
-    @media ${(props) => props.theme.device.mac} {
-      width: 600px;
-      height: 400px;
-      .card_title{
-        .desc{
-          font-size: 30px;
-          display: block;  
-        }
-        .title{
-          font-size: 35px;
-          font-weight: 700;
-          display: block;
-          margin-bottom: 10px;
-        }
-      }
-    }
-    /* @media ${(props) => props.theme.device.tablet} {
-      width: 450px;
-      height: 400px;
-      .card_title{
-        .desc{
-          font-size: 30px;
-          display: block;  
-        }
-        .title{
-          font-size: 35px;
-          font-weight: 700;
-          display: block;
-          margin-bottom: 10px;
-        }
-      }
-    } */
     @media ${(props) => props.theme.device.mobile} {
-      width: calc(100% - 20px);
-      height: 400px;
-      .card_title{
-        p{
-          font-size: 20px;
-          display: block;  
-        }
-        b{
-          font-size: 15px;
-          font-weight: 700;
-          display: block;
-          margin-bottom: 6px;
-        }
-      }
     }
 `;
+
+const RightCard = styled(motion.div)`
+  width: 100%;
+  padding: 20px;
+  .badge{
+    padding: 5px 12px;
+    background: #333;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+  }
+  .card_title{
+    color: #000;
+    margin-top: 20px;
+    .head{
+      font-size: 16px;
+      line-height: 150%;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: block;  
+      .people{
+        margin-left: 10px;
+      }
+    }
+    .desc{
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 150%;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: block;  
+      white-space: pre-line;
+    }
+    .title{
+        font-size: 45px;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 10px;
+    }
+    p{
+      font-size: 16px;
+      line-height: 150%;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: block;
+    }
+    .link{
+      margin-top: 10px;
+      display: block;
+      font-size: 16px;
+      line-height: 150%;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .points,.skills{
+      margin-top: 10px;
+      display: flex;
+      font-size: 16px;
+      line-height: 150%;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      p{
+        display: block;
+        &:not(:last-of-type){
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+`
 
 
 function ProjectSwiper(){
@@ -141,17 +128,14 @@ function ProjectSwiper(){
     return(
       <Wrapper>
         <Swiper
-            spaceBetween={20}
-            slidesPerView={1}
-            centeredSlides={true}
+            // slidesPerView={1}
+            // centeredSlides={true}
             loop={true}
             onSlideChange={() => {}}
             onSwiper={(swiper) => console.log(swiper)}
             breakpoints={{
-
               1024: {
-                slidesPerView: 2.2,  //브라우저가 1024보다 클 때
-                spaceBetween: 50,
+               
               },
             }}
           >
@@ -159,21 +143,30 @@ function ProjectSwiper(){
               return(
                 <SwiperSlide 
                   key={data.id + index}>
-                  <span className="badge">
-                     {data.company}
-                  </span>
                   <SmallCard 
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
-                    >
-                     
-                      <div className="card_title">
-                        <b className="title">{data.name}</b>
-                        <p className="desc">{data.date}<b className="people">{data.people}</b></p>
-                      </div>
+                    >  
                       <ImageDimmer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
                   </SmallCard>
+                  <RightCard>
+                      <span className="badge">{data.company}</span>
+                      <div className="card_title">
+                        <b className="title">{data.name}</b>
+                        <p className="head">{data.date}<b className="people">{data.people}</b></p>
+                        <p className="desc">{data.description}</p>
+                        <span className="points">주요 기능 :&nbsp;{data.point.map((el)=>{
+                          return <p key={el+""}>{el}</p>
+                        })}</span>
+                        <span className="skills">주요 스택 :&nbsp;{data.skills.map((el)=>{
+                          return <p key={el+""}>{el}</p>
+                        })}</span>
+                        <span className="link">
+                          <a href={data.link} target="_blank">Link :&nbsp;{data.link}</a>
+                        </span>
+                      </div>
+                  </RightCard>
                 </SwiperSlide>
               )
             })}

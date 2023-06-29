@@ -21,8 +21,15 @@ export const worksData = [
     date: "2023.05.13",
     img: "/assets/works/project_0.png",
     description:
-      "우리들의 OTT We T",
-    point: ["로그인, 회원가입, 게시판"],
+      `우리들의 OTT "We T"입니다. "We T"는 개인 프로젝트로 개발된 온라인 플랫폼입니다.\n 이 플랫폼은 OTT(Over-The-Top) 서비스들을 비교하고 사용자들끼리 이야기를 나누는 게시판 기능을 제공합니다.
+      "We T"에는 로그인과 회원가입 기능이 있어 사용자들은 자신의 계정으로 플랫폼에 접속할 수 있습니다. 로그인 기능은 구글 OAuth를 통해 구현되어 있어 편리하게 사용할 수 있습니다.
+      플랫폼의 캐릭터는 귀여운 고양이 모양의 의자로 디자인되었습니다. 이 캐릭터는 사용자들에게 친근감을 주며, 편안하게 플랫폼을 이용할 수 있도록 도와줍니다.
+      주요 기능인 게시판은 사용자들이 다양한 OTT 서비스들을 비교하고 관련 이야기를 나눌 수 있는 공간입니다. 여기서 사용자들은 각자의 경험과 의견을 공유하며, OTT 서비스들에 대한 정보를 얻을 수 있습니다. 이를 통해 사용자들은 어떤 OTT 서비스가 자신에게 맞는지에 대한 판단을 도울 수 있습니다.
+      "We T"는 다양한 기술과 도구를 사용하여 개발되었습니다. 프론트엔드 개발에는 NEXT.js를 활용하여 웹 인터페이스를 구성했고, 백엔드는 MongoDB를 사용하여 데이터를 관리합니다. 또한 TypeScript를 사용하여 코드의 안정성과 가독성을 높였습니다.
+      이 프로젝트는 풀스택 코딩으로 개발되었으며, 개인 프로젝트로 진행되었습니다. "We T"의 온라인 플랫폼을 아래 링크를 통해 접속할 수 있습니다.\n
+      "We T"는 OTT 서비스에 대한 정보를 공유하고 소통할 수 있는 플랫폼으로, 사용자들에게 유용한 경험을 제공합니다. 다양한 OTT 서비스에 관심이 있는 분들에게 추천드립니다.`
+      ,
+    point: ["로그인", "회원가입", "게시판"],
     github: "",
     link: "https://we-t-ott.vercel.app/",
     skills: ["NEXT.js", "MongoDB", "TS"],
@@ -35,13 +42,17 @@ export const worksData = [
     date: "2023.03.09",
     img: "/assets/img/about/01.png",
     description:
-      "개발자 마리오 월드",
+      `지금 소개할 프로젝트는 '마리오 월드(개발자)'입니다.\n 이 프로젝트는 개발자들을 위한 흥미로운 경험을 제공하기 위해 three.js를 활용하여 웹에 3D 모델들을 보여줍니다.
+      '마리오 월드(개발자)'는 마리오를 통해 개발자들의 인생을 엿볼 수 있는 특별한 경험을 제공합니다. 이 웹 페이지에 접속하면 마리오와 함께 다양한 이벤트 칸을 탐험할 수 있습니다. 이 이벤트 칸에 들어가면 개발자들의 재미난 에피소드와 함께 모델링된 요소들이 나타나게 됩니다.
+      마리오를 조종하면서 버섯을 총 3개 수집하는 임무를 가지게 됩니다. 이를 통해 마리오 월드(개발자)를 클리어할 수 있습니다. 이 재미난 게임 요소는 개발자들에게 흥미를 끌어주고, 마리오를 통한 체험 속에서 재밌고 유익한 시간을 보낼 수 있게 해줍니다.
+      three.js를 주요 기술로 사용하여 웹에서 3D 모델을 렌더링하고 구현했습니다. 또한 webpack을 사용하여 모듈 번들링하고 CSS를 통해 디자인과 스타일을 구성했습니다.
+      `,
     point: ["three.js"],
     github: "",
     link: "https://chuhongkyu.github.io/interact_3D/",
-    skills: ["React", "Redux-toolik", "useForm"],
-    people: "개인 개발",
-    company: "개인"
+    skills: ["three.js", "webpack", "css"],
+    people: "개인 프로젝트",
+    company: "개인 프로젝트"
   },
   {
     id: 2,
@@ -50,7 +61,7 @@ export const worksData = [
     img: "/assets/works/second_life.gif",
     description:
       "마포구청에서 일할 때 기획 된 헌 옷 수거 플랫폼 입니다. 프론트 엔드 프로젝트 리더로서 크게는 환경설정, 로그인 페이지, 롤링 배너를 담당했습니다. 구체적으로는 백으로부터 JWT를 요청, 리덕스 툴킷을 통해 데이터를 전역 관리합니다. 이를 통해서 로그인, 간편 로그인(카카오,구글), 간편 회원가입, 자동 로그인, 인증 만료시 재 요청등의 기능을 구현했습니다. 토큰을 활용한 로그인 프로세스에 대해 고민을 많이 할 수 있었습니다.",
-    point: ["로그인, 판매, 예약"],
+    point: ["로그인", "판매", "예약"],
     github: "https://github.com/Mapo-Project/SecondLife-frontend",
     link: "https://mapo-project.github.io/SecondLife-frontend/",
     skills: ["React", "Redux-toolik", "useForm"],
@@ -100,20 +111,6 @@ export const worksData = [
     company: "개인 프로젝트"
   },
   {
-    id: 6,
-    name: "ToDo App",
-    date: "(2022.05)",
-    img: "/assets/works/todo.png",
-    description:
-      "할일 체크 앱입니다. 할일을 카테고리 별로 추가해 관리 할 수 있습니다.",
-    point: ["커스텀 할일, 로컬스토리지 관리",],
-    github: "https://github.com/chuhongkyu/todolist",
-    link: "https://chuhongkyu.github.io/todolist/",
-    skills: ["React", "TypeScript"],
-    people: "노마드 코더 챌린지 - 우수작 (개인 프로젝트)",
-    company: "개인 프로젝트"
-  },
-  {
     id: 7,
     name: "마포구 이쁜 카페 소개 10선",
     date: "(2022.05.25)",
@@ -155,18 +152,4 @@ export const worksData = [
     people: "프론트 엔드(1인 개발)",
     company: "개인 프로젝트"
   },
-  // {
-  //   id: 9,
-  //   name: "CASS 카타르 월드컵 기념 넘버 맥주",
-  //   date: "2022.10",
-  //   img: "/assets/works/cass.jpg",
-  //   description:
-  //     "넥스트.js로 만든 게임, 카드 맞추기 게임과 유사합니다. 게임 관련 알고리즘과 모바일 폰 안에서 반응형 scss",
-  //   point: ["mobile", "게임 알고리즘"],
-  //   github: "https://github.com/chuhongkyu/Card",
-  //   link: "https://match-fruits-mrchu.vercel.app/",
-  //   skills: ["Next.js", "scss"],
-  //   people: "프론트 엔드 5명 중 한명",
-  //   company: "더즈 인터렉티브"
-  // },
 ];
