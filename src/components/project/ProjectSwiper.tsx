@@ -11,6 +11,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Wrapper = styled(motion.div)`
+  height: 100%;
   .swiper{
     width: 100%;
     height: 100%;
@@ -49,7 +50,9 @@ const SmallCard = styled(motion.a)`
 
 const RightCard = styled(motion.div)`
   width: 100%;
-  padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
+  padding: max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem);
   .badge{
     padding: 5px 12px;
     background: #333;
@@ -93,15 +96,17 @@ const RightCard = styled(motion.div)`
       display: block;
     }
     .link{
-      margin-top: 10px;
+      margin-top: 2rem;
       display: block;
       font-size: 16px;
       line-height: 150%;
       font-weight: 600;
       letter-spacing: -0.01em;
     }
+    .points{
+      margin-top: 2rem;
+    }
     .points,.skills{
-      margin-top: 10px;
       display: flex;
       font-size: 16px;
       line-height: 150%;
@@ -114,6 +119,9 @@ const RightCard = styled(motion.div)`
         }
       }
     }
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 20px 20px 20px 20px;
   }
 `
 
