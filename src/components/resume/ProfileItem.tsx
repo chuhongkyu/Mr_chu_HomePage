@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
-  padding: 25px 40px 35px 20px;
+  padding: 30px 40px 45px 30px;
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
