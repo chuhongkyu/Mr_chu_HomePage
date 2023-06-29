@@ -476,7 +476,17 @@ const Resume = () => {
                 data-text-color="black"
                 data-background-color="red"
               >
-                정관장 kgc 운용
+                정관장 kgc 브랜드 운영
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="JSP"
+                data-text-color="black"
+                data-background-color="red"
+              >
+                정관장 kgc 리브랜딩
               </p>
               <p>더즈 인터랙티브</p>
             </div>
