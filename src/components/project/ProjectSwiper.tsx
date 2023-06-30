@@ -5,6 +5,9 @@ import { IWorksArray, worksData} from "utils/worksData";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import ImageDimmer from "components/project/ImageDimmer";
+import { Navigation } from "swiper";
+// Import Swiper styles
+import 'swiper/css';
 
 
 const env = process.env;
@@ -28,16 +31,21 @@ const Wrapper = styled(motion.div)`
     .swiper-button-prev, .swiper-button-next {
       position: absolute;
       top: 50%;
-      left: getVW(10px);
+      left: 10px;
       transform: translateY(-50%);
-      width: getVW(24px);
-      height: getVW(24px);
-      // background: url('/assets/img/play/navbtn.svg') 100% 100%/contain no-repeat;
-      z-index: 100;
+      width: max(4.3vw, 24px);
+      height: max(4.3vw, 24px);
+      background: url('/assets/icons/navbtn.svg') 100% 100%/contain no-repeat;
+      z-index: 33;
+      opacity: 0.7;
+      &:hover{
+        opacity: 1;
+        transition: 300ms opacity;
+      }
     }
     .swiper-button-next {
         left: unset;
-        right: getVW(10px);
+        right: 10px;
         transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -55,7 +63,7 @@ const SmallCard = styled(motion.a)`
     transition: 100ms ease-in-out;
     &:hover{
       width: 70vw;
-      transition: 300ms ease-in-out;
+      transition: 300ms 0.8s ease-in-out;
     }
     @media ${(props) => props.theme.device.tablet} {
       display: none;
@@ -172,13 +180,11 @@ function ProjectSwiper(){
     return(
       <Wrapper>
         <Swiper
+            modules={[Navigation]}
             loop={true}
             onSlideChange={() => {}}
             onSwiper={(swiper) => console.log(swiper)}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            }}
+            navigation
           >
             
               {datas.map((data, index)=>{
