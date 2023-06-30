@@ -10,6 +10,11 @@ const Wrapper = styled.div`
     overflow-y: scroll;
     padding-top: 50px;
     padding-bottom: 50px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar{
+      display: none;
+    }
   }
 `;
 

@@ -10,6 +10,7 @@ import ImageDimmer from "components/project/ImageDimmer";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
+
 const Wrapper = styled(motion.div)`
   height: 100%;
   .swiper{
@@ -136,17 +137,15 @@ function ProjectSwiper(){
     return(
       <Wrapper>
         <Swiper
-            // slidesPerView={1}
-            // centeredSlides={true}
             loop={true}
             onSlideChange={() => {}}
             onSwiper={(swiper) => console.log(swiper)}
-            breakpoints={{
-              1024: {
-               
-              },
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
             }}
           >
+            
               {datas.map((data, index)=>{
               return(
                 <SwiperSlide 
@@ -178,6 +177,7 @@ function ProjectSwiper(){
                 </SwiperSlide>
               )
             })}
+            
           </Swiper>
         </Wrapper>
     )
