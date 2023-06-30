@@ -24,6 +24,21 @@ const Wrapper = styled(motion.div)`
       transition: 300ms;
       display: flex;
     }
+    .swiper-button-prev, .swiper-button-next {
+      position: absolute;
+      top: 50%;
+      left: getVW(10px);
+      transform: translateY(-50%);
+      width: getVW(24px);
+      height: getVW(24px);
+      // background: url('/assets/img/play/navbtn.svg') 100% 100%/contain no-repeat;
+      z-index: 100;
+    }
+    .swiper-button-next {
+        left: unset;
+        right: getVW(10px);
+        transform: translateY(-50%) rotate(180deg);
+    }
   }
   @media ${(props) => props.theme.device.tablet} {
 
