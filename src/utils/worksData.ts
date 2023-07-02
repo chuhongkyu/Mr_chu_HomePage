@@ -66,20 +66,20 @@ export const worksData = [
     people: "프론트 엔드 3명 중 1명",
     company: "마포구청"
   },
-  // {
-  //   id: 3,
-  //   name: "마포 버디즈",
-  //   date: "(2022.06 ~ 2022.07)",
-  //   img: "/assets/works/buddies.gif",
-  //   description:
-  //     "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트, 스토리에 대해 홈페이지를 통해 알 수 있습니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다. 프로젝트를 하면서 캐릭터 팀(기획자들)의 요구는 끝이 없다는 것을 알게 되었습니다. 그러므로 프로젝트의 방향성이 빠르게 결정되지 못하면 개발 시간이 줄어든 다는 것을 알게 되었습니다.",
-  //   point: ["상세 페이지, ", "Email 송신 시스템"],
-  //   github: "https://github.com/chuhongkyu/mapoCharacter",
-  //   link: "https://chuhongkyu.github.io/mapoCharacter/",
-  //   skills: ["React", "email.js"],
-  //   people: "프론트 엔드(1인 개발)",
-  //   company: "마포구청"
-  // },
+  {
+    id: 3,
+    name: "마포 버디즈",
+    date: "(2022.06 ~ 2022.07)",
+    img: "/assets/works/buddies.gif",
+    description:
+      "마포 버디즈 홈페이지, 버디즈는 우체통 캐릭터입니다. Email.js를 활용하여 닉네임과 Email을 입력시 행운의 편지가 메일로 전송됩니다. 귀여운 캐릭터와 일러스트, 스토리에 대해 홈페이지를 통해 알 수 있습니다. 2022년 캐릭터 라이선싱 페어 전시 되었습니다. 프로젝트를 하면서 캐릭터 팀(기획자들)의 요구는 끝이 없다는 것을 알게 되었습니다. 그러므로 프로젝트의 방향성이 빠르게 결정되지 못하면 개발 시간이 줄어든 다는 것을 알게 되었습니다.",
+    point: ["상세 페이지, ", "Email 송신 시스템"],
+    github: "https://github.com/chuhongkyu/mapoCharacter",
+    link: "https://chuhongkyu.github.io/mapoCharacter/",
+    skills: ["React", "email.js"],
+    people: "프론트 엔드(1인 개발)",
+    company: "마포구청"
+  },
   {
     id: 4,
     name: "BMW",
@@ -96,15 +96,19 @@ export const worksData = [
   },
   {
     id: 5,
-    name: "넷플릭스",
-    date: "(2022.05.29)",
-    img: "/assets/works/chuflix.jpg",
+    name: "transparent-gradient",
+    date: "(2023.07.01)",
+    img: "/assets/works/transparent-gradient.png",
     description:
-      "리액트와 타입스크립트를 활용한 넷플릭스 클론 코딩입니다. Movie, Tv show, Search, Enter 페이지로 구성 되어 있습니다. ",
-    point: ["영화, 드라마 검색", "콘텐츠 상세 보기"],
-    github: "https://github.com/chuhongkyu/chuflix",
-    link: "https://chuhongkyu.github.io/chuflix/",
-    skills: ["React", "TypeScript"],
+      `L사 백화점 app 프로젝트를 진행중 디자이너가 blur에 투명을 서서히 주는 그라디언트로 디자인 시안을 주었습니다.
+      google, stackoverflow등 모든 곳에서 예시들은 흰색 바탕에 흰색 그라디언트를 주거나, 배경 이미지의 평균 색상 값을 가져와 가짜 투명 그라디언트를 만드는 식으로 작용 했습니다.
+      그러나 내가 같이 일하는 디자이너의 시안은 이미지가 배경이고 글씨에 투명을 넣어주어야하는 작업이었습니다.
+      이것을 내가 해결했을 때, 나는 해결하였지만 다른 앱 개발자, 웹 퍼블리셔 와 프론트 엔드들은 굉장히 힘이 들어 했습니다.
+      나는 그런 이들을 위해서 npm 으로 transparent-gradient를 배포하기로 결심 했습니다.`,
+    point: ["npm 배포"],
+    github: "https://github.com/chuhongkyu/transparent-gradient",
+    link: "https://transparent-gradient.netlify.app/",
+    skills: ["webpack", "JS", "npm"],
     people: "개인 프로젝트",
     company: "개인 프로젝트"
   },
