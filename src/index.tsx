@@ -12,23 +12,17 @@ const FontUrl = `${env.PUBLIC_URL}/assets/fonts/`;
 const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: "Maple_story";
-  src: local("Maple_story"), url(${FontUrl}Maplestory_Bold.ttf?#iefix) format("truetype"),
+  src: local("Maple_story"), url(${FontUrl}Maplestory_Light.woff) format("woff"),
   url(${FontUrl}Maplestory_OTF_Bold.otf) format("opentype");
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Maple_story";
-  src: local("Maple_story"), url(${FontUrl}Maplestory_Light.ttf?#iefix) format("truetype"),
-  url(${FontUrl}Maplestory_OTF_Light.otf) format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-    font-family: 'YUniverseB';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Maple_story";
+  src: local("Maple_story"), url(${FontUrl}Maplestory_Bold.woff) format("woff"),
+  url(${FontUrl}Maplestory_OTF_Light.otf) format("opentype");
+  font-weight: bold;
+  font-style: normal;
 }
 
 html, body, div, span, applet, object, iframe,

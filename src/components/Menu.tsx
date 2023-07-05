@@ -72,6 +72,7 @@ const SpanItem = styled.a`
   overflow: hidden;
   img {
     width: 100%;
+    height: max(6.6583vw, 120px);
   }
   div {
     width: 100%;
@@ -108,10 +109,7 @@ const Menu = () => {
   return (
     <Container variants={Variants} initial="initial" animate="animate">
       <div className="left_side">
-        <span>
-          <img src={env.PUBLIC_URL + "/assets/img/folder.svg"} alt="folder" />
-          <p>폴더</p>
-        </span>
+        
       </div>
       <div className="grid_side">
         <div className="grid_tom">

@@ -15,7 +15,7 @@ const OnePerson = styled.div`
   align-items: flex-start;
   flex-direction: column;
   overflow-y: scroll;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   h1 {
     font-size: 25px;
     margin-bottom: 20px;
