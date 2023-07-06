@@ -17,7 +17,7 @@ const Bar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1px 10px;
+  padding: 1px 10px 1px 0;
   position: fixed;
   bottom: 0;
   .main_icon{
@@ -27,6 +27,9 @@ const Bar = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #333;
     img {
       width: 30px;
       height: 30px;
@@ -130,7 +133,7 @@ function WindowBar() {
               alt="mr.chu"
             />
           </div>
-          <SearchForm/>
+          {/* <SearchForm/> */}
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
           {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
           {othersMatch && <OpenItem onClick={onExit}>GameApp</OpenItem>}
