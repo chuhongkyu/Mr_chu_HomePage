@@ -133,11 +133,11 @@ export const worksData = [
     people: "개인 프로젝트",
     img: "/assets/works/word-play.png",
     description:
-      "리액트로 만든 댓글 앱, 스터디를 하면서 불변성에 대해 공부하며 만든 앱입니다. 불변성이란 메모리 영역의 값을 변경할 수 없는 것입니다. 리액트는 불변성을 지켜줌으로써 효율적인 상태업데이트를 합니다. 사이드 이펙트를 사전 방지하고 프로그래밍의 구조를 단순하게 유지합니다. 불변성을 가진 원시타입과 달리 참조타입의 경우에는 의도적으로 불변성을 지켜주어야합니다. 그래서 새로운 주소 값을 가진 객체를 생성하여 상태를 업데이트 해줍니다. spread operator, map, filter, slice, reduce 메소드들을 활용",
-    point: ["댓글 작성, 수정, 삭제, 체크"],
+      "리액트로 만든 말장난 게임, 언터넷에 떠도는 아재개그들을 모아 시간내에 풀어야하는 게임",
+    point: ["타이머, 점수, 입력"],
     github: "https://github.com/chuhongkyu/word-play",
     link: "https://word-play.vercel.app/",
-    skills: ["React"],
+    skills: ["NEXT.js", "SCSS"],
     company: "개인 프로젝트"
   },
   {

@@ -118,32 +118,32 @@ const Menu = () => {
             target="blank"
           >
             <img
-              src={env.PUBLIC_URL + "/assets/works/3project.jpg"}
-              alt="세컨드 라이프"
+              src={env.PUBLIC_URL + "/assets/works/word-play.png"}
+              alt="말장난 게임"
             />
             <div>
-              <h2>SECOND_LIFE</h2>
-              <p>협업, Git, 로그인, JWT, OAuth</p>
+              <h2>말장난 게임</h2>
+              <p>말장난 게임, Vercel 자동 배포</p>
             </div>
           </SpanItem>
           <SpanItem
-            href="https://chuhongkyu.github.io/Cafe_HomePage/"
+            href="https://match-fruits-mrchu.vercel.app/"
             target="blank"
           >
             <img
-              src={env.PUBLIC_URL + "/assets/works/1project.png"}
-              alt="마포구 이쁜카페 10선"
+              src={env.PUBLIC_URL + "/assets/works/match-landscape.png"}
+              alt="Match-fruits"
             />
             <div>
-              <h2>마포구 예쁜 카페 10선</h2>
-              <p>순수 바닐라 자바스크립트</p>
+              <h2>Match-fruits</h2>
+              <p>NEXT.js, 카드 맞추기 게임</p>
             </div>
           </SpanItem>
-          <SpanItem target="blank" href="https://chuhongkyu.github.io/bmw-car/">
-            <img src={env.PUBLIC_URL + "/assets/works/bmw.gif"} alt="bmw" />
+          <SpanItem target="blank" href="https://chuhongkyu.github.io/interact_3D/">
+            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="mario" />
             <div>
-              <h2>BMW</h2>
-              <p>webgl, three.js,3D </p>
+              <h2>마리오 월드(개발자)</h2>
+              <p>three.js, 3D </p>
             </div>
           </SpanItem>
         </div>
