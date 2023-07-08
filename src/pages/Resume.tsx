@@ -16,7 +16,6 @@ const ProfileContainer = styled.div`
   height: 100%;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
     url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
-  background-image: center;
   background-size: cover;
   background-position: bottom center;
   border-top-left-radius: 10px;
@@ -126,7 +125,7 @@ const Contact = styled(motion.span)`
 const MainContainer = styled.div`
   width: 75%;
   height: 100%;
-  padding: 50px 30px 50px;
+  padding: max(2.6042vw, 50px) max(1.5625vw, 20px) max(2.6042vw, 30px);
   background-color: rgb(242, 242, 242);
   overflow-x: hidden;
   overflow-y: scroll;
@@ -138,30 +137,14 @@ const MainContainer = styled.div`
     display: block;
     text-align: left;
     font-family: "Montserrat", sans-serif;
-    font-size: 42px;
-    font-weight: bold;
+    font-size: max(2.0833vw, 20px);
+    font-weight: 600;
     margin-bottom: max(1.2500vw, 1.5px);
   }
   @media ${(props) => props.theme.device.mac} {
-    padding: 50px 30px 40px;
-    h1 {
-      font-size: 40px;
-      font-weight: bold;
-    }
   }
   @media ${(props) => props.theme.device.tablet} {
     width: 100%;
-    padding: 50px 20px 40px;
-    h1 {
-      font-size: 30px;
-    }
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    width: 100%;
-    padding: 50px 20px 30px;
-    h1 {
-      font-size: 20px;
-    }
   }
 `;
 

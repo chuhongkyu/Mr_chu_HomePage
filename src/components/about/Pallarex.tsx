@@ -1,122 +1,113 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react"; 
+import "swiper/css"; 
+import { Autoplay } from "swiper";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ParallaxContainer = styled.div`
-  perspective: 1000px;
+  margin-top: max(1.5625vw, 20px);
   overflow-x: hidden;
   width: 100%;
-  height: 500px;
-`;
-
-const ParallaxWrapper = styled(motion.div)`
-  width: 130%;
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  transform-style: preserve-3d;
-  @media ${(props) => props.theme.device.tablet} {
-    width: 400%;
+  height: max(21.8750vw, 380px);
+  padding: 0 max(1.5625vw, 20px);
+  .swiper-wrapper{
+    width: 100%;
+    .swiper-slide{
+      width: 100%;
+      border-radius: 25px;
+      overflow: hidden;
+      margin-right: 20px;
+      height: max(21.8750vw, 380px);
+      @media ${(props) => props.theme.device.mobile} {
+        margin-right: 0px;
+      }
+    }
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    padding: 0;
   }
 `;
 
 const ParallaxImage = styled(motion.a)`
-    width: fit-content;
-    height: fit-content;
-    display: block;
-    border: 1px solid rgba(0,0,0,.8);
-    border-radius: 4px;
-    overflow: hidden;
+    border-radius: 25px;
+    width: 100%;
+    height: max(21.8750vw, 380px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    &::after{
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.05);
+      content: '';
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
     img{
         display: block;
-        width: 180px;
-        height: 300px;
-        object-fit: cover;
-        transform-origin: center;
-    }
-    @media ${(props) => props.theme.device.tablet} {
-      height: 400px;
-    }
-`;
-
-const ParallaxImageB = styled(ParallaxImage)`
-    width: fit-content;
-    height: fit-content;
-    display: block;
-    img{
-        display: block;
-        width: 380px;
-        height: 230px;
-        object-fit: cover;
-        transform-origin: center;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
     }
 `;
 
 const Parallax = () => {
   return (
     <ParallaxContainer>
-      <ParallaxWrapper
-        initial={{ x: -400 }}
-        animate={{ x: [-400, 0 , -400]}}
-        transition={{
-          duration: 15,
-          loop: Infinity,
-          ease: "linear",
+      <Swiper
+        modules={[Autoplay]}
+        slidesPerView={1}
+        centeredSlides={true}
+        loop={true}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        breakpoints={{
+          // when window width is >= 768px
+          1024: {
+            slidesPerView: 2.2,
+            spaceBetween:20,
+          },
         }}
-      >
-        <ParallaxImageB
-          target={"_blank"}
-          href={"https://chuhongkyu.github.io/interact_3D/"}
-          whileHover={{
-            scale: 1.1,
-            rotateX: 10,
-            rotateY: 10,
-            transition: { duration: 0.5 },
-          }}
         >
-          <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="Image 1"/>
-        </ParallaxImageB>
-        <ParallaxImageB
+        <SwiperSlide>
+          <ParallaxImage
+            target={"_blank"}
+            href={"https://chuhongkyu.github.io/interact_3D/"}
+            >
+            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="Image 1"/>
+          </ParallaxImage>
+        </SwiperSlide>
+        <SwiperSlide>
+          <ParallaxImage
             target={"_blank"}
             href={"https://chuhongkyu.github.io/bmw-car/"}
-            whileHover={{
-                scale: 1.1,
-                rotateX: -10,
-                rotateY: -10,
-                transition: { duration: 0.5 },
-            }} >
-              <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Imag 4"/>
-        </ParallaxImageB>
-        <ParallaxImage
-         target={"_blank"}
-          href={"https://match-fruits-mrchu.vercel.app/"}
-          whileHover={{
-            scale: 1.1,
-            rotateX: 10,
-            rotateY: 10,
-            transition: { duration: 0.5 },
-          }}
-        >
-            <img src={env.PUBLIC_URL + "/assets/img/about/02.png"} alt="Image 3"/>
-        </ParallaxImage>
-        <ParallaxImageB
-          target={"_blank"}
-          href={"https://chuhongkyu.github.io/mapoCharacter/"}
-          whileHover={{
-            scale: 1.1,
-            rotateX: -10,
-            rotateY: -10,
-            transition: { duration: 0.5 },
-          }}
-        >
-            <img src={env.PUBLIC_URL + "/assets/img/about/03.gif"} alt="Image 3"/>
-        </ParallaxImageB>
-      </ParallaxWrapper>
+          >
+            <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Image 4"/>
+          </ParallaxImage>
+        </SwiperSlide>
+        <SwiperSlide>
+          <ParallaxImage
+            target={"_blank"}
+            href={"https://chuhongkyu.github.io/mapoCharacter/"}
+          >
+            <img src={env.PUBLIC_URL + "/assets/works/buddies.gif"} alt="Image 3"/>
+          </ParallaxImage>
+        </SwiperSlide>
+        <SwiperSlide>
+          <ParallaxImage
+            target={"_blank"}
+            href={"https://match-fruits-mrchu.vercel.app/"}
+          >
+            <img src={env.PUBLIC_URL + "/assets/works/match-landscape.png"} alt="Image 4"/>
+          </ParallaxImage>
+        </SwiperSlide>
+      </Swiper>
     </ParallaxContainer>
   );
 };

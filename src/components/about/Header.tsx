@@ -22,7 +22,7 @@ const Wrapper = styled(motion.div)`
     position: relative;
   }
   h1 {
-    font-size: max(3.1250vw, 40px);
+    font-size: max(2.0833vw, 20px);
     color: #000;
     line-height: 1.2;
     letter-spacing: 0.02em;
@@ -31,7 +31,6 @@ const Wrapper = styled(motion.div)`
   }
   @media ${(props) => props.theme.device.tablet} {
     padding: 0 10px;
-    h1 {font-size: 22px;}
     .content{
       width: 100%;
       padding: 10px 0;

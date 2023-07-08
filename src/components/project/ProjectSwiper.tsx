@@ -6,8 +6,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import ImageDimmer from "components/project/ImageDimmer";
 import { Navigation } from "swiper";
-// Import Swiper styles
-import 'swiper/css';
 
 
 const env = process.env;

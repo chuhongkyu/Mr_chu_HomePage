@@ -14,7 +14,7 @@ const Wrapper = styled(motion.div)`
     padding-top: 100px;
     /* padding-bottom: max(8.333vw, 120px); */
     .title{
-        font-size: max(1.25vw, 38px);
+        font-size: max(1.6667vw, 20px);
         font-weight: 500;
         line-height: 1.5;
         letter-spacing: -0.02em;
@@ -69,7 +69,6 @@ const Wrapper = styled(motion.div)`
     @media ${(props) => props.theme.device.mobile} {
         padding-top: 10px;
         .title{
-            font-size: 20px;
             padding: 0 0 10px;
         }
         .content{
