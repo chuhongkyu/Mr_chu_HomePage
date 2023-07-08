@@ -73,8 +73,21 @@ const SmallCard = styled(motion.a)`
 const RightCard = styled(motion.div)`
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
   padding: max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem) max(4.1667vw, 4.8rem);
+  overflow-y: auto;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #484848d5; /* 스크롤바의 색상 */
+    background-clip: padding-box;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent /*스크롤바 뒷 배경 색상*/
+  }
   .badge{
     padding: 5px 12px;
     background: #333;

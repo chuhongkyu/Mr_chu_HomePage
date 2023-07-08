@@ -43,8 +43,8 @@ const TopNav = styled(motion.div)`
   width: 100%;
   height: 30px;
   background: ${(props) => props.theme.white.gradient};
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   padding: 5px;
   padding-left: 10px;
   display: flex;

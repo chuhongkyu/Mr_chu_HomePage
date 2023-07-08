@@ -82,6 +82,19 @@ const RightContainer = styled.div`
   flex: 1;
   overflow-y: auto;
   padding-bottom: max(3.75vw, 32px);
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #484848d5; /* 스크롤바의 색상 */
+    background-clip: padding-box;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent /*스크롤바 뒷 배경 색상*/
+  }
 `;
 
 const ContentContainer = styled(motion.div)`
