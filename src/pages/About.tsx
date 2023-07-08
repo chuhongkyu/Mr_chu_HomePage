@@ -32,7 +32,7 @@ const MainContainer = styled.div`
   }
 
   @media ${(props) => props.theme.device.tablet} {
-    padding: 50px 20px;
+    padding-top: 40px;
   }
 `;
 

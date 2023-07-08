@@ -1,5 +1,5 @@
 import { motion, useDragControls, AnimatePresence , LayoutGroup} from "framer-motion";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
@@ -132,7 +132,8 @@ const WindowModal = ({
 }: IWindow) => {
   const [resize, setResize] = useState(false);
   const controls = useDragControls();
-  const constraintsRef = useRef(null);
+  const constraintsRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
   const startDrag = (event: any) => {
@@ -146,6 +147,24 @@ const WindowModal = ({
   const onHandleSize = () => {
     setResize(!resize);
   };
+
+  // useEffect(()=>{
+  //   window.addEventListener('resize', ()=>{
+  //     if (modalRef.current === null){
+  //       return
+  //     }
+  //     modalRef.current.style.transform = "none";
+  //   })
+
+  //   return () => {
+  //     window.removeEventListener('resize', ()=>{
+  //       if (modalRef.current === null){
+  //         return
+  //       }
+  //       modalRef.current.style.transform = "none";
+  //     })
+  //   }
+  // },[])
 
   return (
       <LayoutGroup>
@@ -163,8 +182,9 @@ const WindowModal = ({
             style={{ backgroundColor: bgColor }}
             drag
             dragSnapToOrigin
-            dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+            dragTransition={{ bounceStiffness: 8, bounceDamping: 3 }}
             dragConstraints={constraintsRef}
+            ref={modalRef}
             dragControls={controls}
             dragListener={false}
           >
