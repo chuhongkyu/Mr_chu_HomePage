@@ -1,11 +1,13 @@
-import React,{ useEffect, useState } from "react";
+import React,{ lazy, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
 import { IWorksArray, worksData} from "utils/worksData";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import ImageDimmer from "components/project/ImageDimmer";
+// import ImageDimmer from "components/project/ImageDimmer";
 import { Navigation } from "swiper";
+import { Suspense } from "react";
+import Loading from "components/Loading";
 
 
 const env = process.env;
@@ -52,13 +54,16 @@ const Wrapper = styled(motion.div)`
   }
 `
 
-const SmallCard = styled(motion.a)`
+const LeftCard = styled(motion.a)`
     width: 35vw;
     height: 100vh;
     position: relative;
     background: #fff;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: 100ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover{
       width: 70vw;
       transition: 300ms 0.8s ease-in-out;
@@ -180,6 +185,8 @@ const RightCard = styled(motion.div)`
   }
 `
 
+const LazyImgContainer = lazy(() => import('components/project/ImageDimmer'));
+
 
 function ProjectSwiper(){
     const [datas, setDatas] = useState<IWorksArray>(worksData);
@@ -202,13 +209,16 @@ function ProjectSwiper(){
               return(
                 <SwiperSlide 
                   key={data.id + index}>
-                  <SmallCard 
+                  <LeftCard  
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
                     >  
-                      <ImageDimmer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
-                  </SmallCard>
+                    <Suspense fallback={<Loading/>}>
+                      <LazyImgContainer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
+                    </Suspense>
+                      
+                  </LeftCard>
                   <RightCard>
                       <span className="badge">{data.company}</span>
                       <div className="card_title">
