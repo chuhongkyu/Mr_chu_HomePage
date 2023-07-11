@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react"; 
@@ -80,7 +79,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/interact_3D/"}
             >
-            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="Image 1"/>
+            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="Image_1"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -88,7 +87,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/bmw-car/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Image 4"/>
+            <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -96,7 +95,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/mapoCharacter/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/works/buddies.gif"} alt="Image 3"/>
+            <img src={env.PUBLIC_URL + "/assets/works/buddies.gif"} alt="Image_3"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -104,7 +103,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://match-fruits-mrchu.vercel.app/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/works/match-landscape.png"} alt="Image 4"/>
+            <img src={env.PUBLIC_URL + "/assets/works/match-landscape.png"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>

@@ -38,7 +38,7 @@ let copyArr: [] = [];
 
 const Title = () => {
   const [randText, setRandomText] = useState<string[]>([]);
-  const [text, setText] = useState<any>();
+  const [text, setText] = useState<[]>();
   const [check, setCheck] = useState<boolean>(false);
   const [blink, setBlink] = useState<boolean>(false);
 

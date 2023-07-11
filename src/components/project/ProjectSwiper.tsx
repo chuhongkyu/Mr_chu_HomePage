@@ -1,4 +1,4 @@
-import React,{ lazy, useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
 import { IWorksArray, worksData} from "utils/worksData";
@@ -231,7 +231,7 @@ function ProjectSwiper(){
                           return <p key={el+""}>{el}</p>
                         })}</span>
                         <span className="link">
-                          <a href={data.link} target="_blank">Link :&nbsp;{data.link}</a>
+                          <a href={data.link} target="_blank" rel="noreferrer">Link :&nbsp;{data.link}</a>
                         </span>
                       </div>
                   </RightCard>

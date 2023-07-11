@@ -90,23 +90,6 @@ const Wrapper = styled(motion.div)`
     }
 `;
 
-const ParallaxImage = styled(motion.a)`
-    width: fit-content;
-    height: fit-content;
-    display: block;
-    border: 1px solid rgba(0,0,0,.8);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-top: 30px;
-    img{
-        display: block;
-        width: 180px;
-        height: 300px;
-        object-fit: cover;
-        transform-origin: center;
-    }
-`;
-
 const ContentFour = () => {
   return (
     <Wrapper>

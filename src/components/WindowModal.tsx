@@ -1,4 +1,4 @@
-import { motion, useDragControls, AnimatePresence , LayoutGroup} from "framer-motion";
+import { motion, useDragControls, LayoutGroup} from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -148,23 +148,23 @@ const WindowModal = ({
     setResize(!resize);
   };
 
-  // useEffect(()=>{
-  //   window.addEventListener('resize', ()=>{
-  //     if (modalRef.current === null){
-  //       return
-  //     }
-  //     modalRef.current.style.transform = "none";
-  //   })
+  useEffect(()=>{
+    window.addEventListener('resize', ()=>{
+      if (modalRef.current === null){
+        return
+      }
+      modalRef.current.style.transform = "none";
+    })
 
-  //   return () => {
-  //     window.removeEventListener('resize', ()=>{
-  //       if (modalRef.current === null){
-  //         return
-  //       }
-  //       modalRef.current.style.transform = "none";
-  //     })
-  //   }
-  // },[])
+    return () => {
+      window.removeEventListener('resize', ()=>{
+        if (modalRef.current === null){
+          return
+        }
+        modalRef.current.style.transform = "none";
+      })
+    }
+  },[])
 
   return (
       <LayoutGroup>

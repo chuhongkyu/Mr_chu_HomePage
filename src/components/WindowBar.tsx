@@ -3,7 +3,6 @@ import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Calender from "./Calender";
 import Menu from "./Menu";
-import SearchForm from "./SearchForm";
 import Weather from "./Weather";
 
 const env = process.env;

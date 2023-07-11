@@ -60,6 +60,16 @@ body {
 	background-size: cover;
 	overflow: hidden;
 }
+
+body{
+  &.coach{
+    *{
+      box-sizing: border-box;
+      border: 1px solid #38c96f;
+    }
+  }
+}
+
 ol, ul {
 	list-style: none;
 }

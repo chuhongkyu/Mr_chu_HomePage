@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Pallarex1 from "components/about/Pallarex1";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -122,7 +121,7 @@ const ContentThree = () => {
                     transition: { duration: 0.5 },
                 }}
             >
-                <img src={env.PUBLIC_URL + "/assets/img/about/02.png"} alt="Image 3"/>
+                <img src={env.PUBLIC_URL + "/assets/img/about/02.png"} alt="Image3"/>
             </ParallaxImage>
         </div>
     </Wrapper>

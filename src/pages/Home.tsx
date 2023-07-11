@@ -6,8 +6,8 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import WindowBar from "components/WindowBar";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { appList, stateType } from "../atoms";
+import { useRecoilState } from "recoil";
+import { appList } from "../atoms";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 import Resume from "./Resume";
@@ -16,7 +16,9 @@ import GitHub from "./GitHub";
 import Others from "./Others";
 import Project from "./Project";
 import AppLink from "components/AppLink";
-import TestCoach from "components/TestCoach";
+import { getParam } from "utils/helper";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -66,9 +68,8 @@ const Board = styled.div`
 `;
 
 const Home = () => {
-  const keyValue = useRecoilValue(stateType)
   const [apps, setApp] = useRecoilState(appList);
-
+  const [coach, setCoach] = useState<any>()
   const location  = useLocation()
 
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
@@ -80,10 +81,20 @@ const Home = () => {
       return copyAppList;
     });
   };
+
+  useEffect(() => {
+    const state = getParam('test');
+    setCoach(state)
+    if(coach){
+      window.document.body.classList.add('coach');
+    }else{
+      window.document.body.classList.remove('coach');
+    }
+  }, [coach])
+
   return (
     <AnimatePresence exitBeforeEnter>
     <Wrapper>
-      {keyValue ? <TestCoach /> : null}
       <Window>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">

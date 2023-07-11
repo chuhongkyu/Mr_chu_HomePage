@@ -218,7 +218,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
     <App>
       <Link to={`/home/${pathUrl}`}>
         {choosePage()}
-        <h2>{title == "project" ? "Project\nToy" : title.toUpperCase()}</h2>
+        <h2>{title === "project" ? "Project\nToy" : title.toUpperCase()}</h2>
       </Link>
     </App>
   );

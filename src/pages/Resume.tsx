@@ -360,13 +360,13 @@ const Resume = () => {
           >
             <div className="between">
               <p
-                data-tip="JS,리액트,넥스트"
+                data-tip="JS,리액트"
                 data-text-color="white"
                 data-background-color="darkred"
               >
                 Mr.chu 홈페이지
               </p>
-              <a onClick={e => e.preventDefault()}>
+              <a target="blank_" href="https://mrchu.netlify.app/">
                 <p>개인 프로젝트</p>
               </a>
             </div>
@@ -523,7 +523,7 @@ const Resume = () => {
               </span>
             </div>
             <div className="between">
-              <span><img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&amp;logo=MongoDB&amp;logoColor=white"></img></span>
+              <span><img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&amp;logo=MongoDB&amp;logoColor=white" alt="img"></img></span>
             </div>
           </ProfileItem>
         </ProfileGrid>

@@ -1,5 +1,3 @@
-import id from "date-fns/esm/locale/id/index.js";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 

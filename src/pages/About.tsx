@@ -124,12 +124,6 @@ const categories = [
   }
 ]
 
-interface iCategory {
-  id: string;
-  name: string;
-  active: boolean;
-};
-
 
 const About = () => {
   const [currentSection, setSection] = useState(0)
@@ -157,7 +151,7 @@ const About = () => {
 
   const autoChange = () => {
     setCategory(
-      category.map((el)=> el.id == currentSection +"" ? { ...el, active: true } : { ...el, active: false } )
+      category.map((el)=> el.id === currentSection +"" ? { ...el, active: true } : { ...el, active: false } )
     )
   }
 

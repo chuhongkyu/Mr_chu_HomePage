@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import styled, { keyframes } from "styled-components";
 
 const rotation = keyframes`

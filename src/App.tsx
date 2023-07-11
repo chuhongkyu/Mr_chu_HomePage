@@ -3,29 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Enter from "pages/Enter";
 import Home from "pages/Home";
 import Meta from "utils/Meta";
-import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { stateType } from "atoms";
 import NotFound from "NotFound";
 
 
 function App() {
-  const [keyValue, setKeyValue] = useRecoilState(stateType)
-  const getParam = (key:string) => {
-    const querystring = window.location.search;
-    const params = new URLSearchParams(querystring);
-
-    return params.get(key);
-  };
-
-  useEffect(()=>{
-    const state = getParam('test')
-    if(state){
-      setKeyValue(true)
-    }else{
-      setKeyValue(false)
-    }
-  },[])
   
   return (
     <HelmetProvider>

@@ -6,12 +6,12 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const API = process.env.REACT_APP_API_KEY;
 
-interface IWeather {
-  description: string;
-  icon: string;
-  id: number;
-  main: string;
-}
+// interface IWeather {
+//   description: string;
+//   icon: string;
+//   id: number;
+//   main: string;
+// }
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,10 +29,8 @@ const WeatherIcon = styled.img`
   }
 `
 
-const weather_icon = ["/weather/clear.svg","/weather/clouds.svg","/weather/rain.svg","/weather/snow.svg","/weather/thunderstorm.svg"]
-
 const Weather = () => {
-  const [data, setData] = useState<IWeather>();
+  // const [data, setData] = useState<IWeather>();
   const [icon, setIcon] = useState<string>();
 
   const makeIcon = (type:string ) =>{
@@ -83,7 +81,7 @@ const Weather = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          setData(data.weather[0]);
+          // setData(data.weather[0]);
           makeIcon(data.weather[0].main);
           // console.log(data.weather[0]);
         } else {

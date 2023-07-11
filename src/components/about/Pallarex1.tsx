@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -72,7 +71,7 @@ const Pallarex1 = () => {
             transition: { duration: 0.5 },
           }}
         >
-          <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image 1"/>
+          <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image_1"/>
         </ParallaxImage>
         <ParallaxImage
           whileHover={{
@@ -82,7 +81,7 @@ const Pallarex1 = () => {
             transition: { duration: 0.5 },
           }}
         >
-            <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image 2"/>
+            <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image_2"/>
         </ParallaxImage>
         <ParallaxImageB
           target={"_blank"}
@@ -94,7 +93,7 @@ const Pallarex1 = () => {
             transition: { duration: 0.5 },
           }}
         >
-            <img src={env.PUBLIC_URL + "/assets/img/about/03.gif"} alt="Image 3"/>
+            <img src={env.PUBLIC_URL + "/assets/img/about/03.gif"} alt="Image_3"/>
         </ParallaxImageB>
       </ParallaxWrapper>
     </ParallaxContainer>
