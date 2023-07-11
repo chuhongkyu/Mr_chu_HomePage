@@ -217,7 +217,6 @@ function ProjectSwiper(){
                     <Suspense fallback={<Loading/>}>
                       <LazyImgContainer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
                     </Suspense>
-                      
                   </LeftCard>
                   <RightCard>
                       <span className="badge">{data.company}</span>

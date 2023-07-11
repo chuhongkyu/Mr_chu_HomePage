@@ -218,7 +218,7 @@ const About = () => {
               })
             }
           </CaegoryItems>
-          <img src={env.PUBLIC_URL + '/assets/img/about/left/03.png'} alt="03" />
+          <img loading="lazy" src={env.PUBLIC_URL + '/assets/img/about/left/03.png'} alt="03" />
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
           <Header title={title} icon={true}/>
