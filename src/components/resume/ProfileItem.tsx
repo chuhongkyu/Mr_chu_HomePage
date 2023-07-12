@@ -16,7 +16,7 @@ const Wrapper = styled(motion.div)`
   }
   h3 {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 30px;
     font-family: "Montserrat", sans-serif;
   }

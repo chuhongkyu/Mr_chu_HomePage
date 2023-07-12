@@ -114,7 +114,7 @@ const categories = [
   },
   {
     id: "2",
-    name: "개발자들의 환상",
+    name: "성능 최적화",
     active: false,
   },
   {

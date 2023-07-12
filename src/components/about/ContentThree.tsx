@@ -38,6 +38,9 @@ const Wrapper = styled(motion.div)`
         &.type2{
             width: 100%;
             padding: 0 50px;
+            &:not(:last-of-type){
+                margin-bottom: max(1.28vw, 30px);
+            }
             .sub_title{
                 font-size: max(1.25vw, 22px);
                 font-weight: 600;
@@ -101,28 +104,26 @@ const ContentThree = () => {
     <Wrapper>
         <div className="content type2">
             <div className="sub_title">
-                카타르 월드컵 2022 카스 프로젝트
+                롯데백화점 리뉴얼 운영/구축
             </div>
             <div className="description">
-                더즈에 처음 맡게 된 프로젝트 입니다. NEXT.js와 scss를 활용하여 6종의 게임 들어가 있습니다.
-                담당하게 된 게임은 '카스 더 매치' 0~9의 넘버 카스 2페어를 뒤집어 놓고 같은 숫자를 맞추면 성공인 게임입니다.
-                개발을 시작할때 게임의 알고리즘을 어떻게하면 성능적으로 좋게 만들 수 있을까 고민을 많이 했습니다.<br/>하지만 회사가 원하는 것은 
-                빠르게 완성하는 것이고 큰 성능의 최적화가 없다면 이러한 고민에 별로 사람들은 관심이 없다는 것을 알게 되었습니다.
-                <br></br>
-                아래의 이미지는 프로젝트가 끝나고 다시한번 '카스 더 매치' 개발 하게 된다면 이렇게 작업하겠다고 생각하며 더미로 만든 게임입니다. 
+                성능 향상을 실무에서 처음 요구 받은 것은 롯데 백화점 운영때 였습니다.<br/>
+                구축 당시 webpack을 통해 js와 css파일을 압축한 적이 있지만 운영 때는 구체적으로
+                PageSpeed Insights 를 활용하여 성능을 체크하고 성능을 개선을 하게 되었습니다.
+                이미지 리소스들을 최대한 줄이고 불필요한 코드들이 없애는 방식으로 개선해 갔습니다.
             </div>
-            <ParallaxImage
-                target={"_blank"}
-                href={"https://chuhongkyu.github.io/mapoCharacter/"}
-                whileHover={{
-                    scale: 1.1,
-                    rotateX: 10,
-                    rotateY: 10,
-                    transition: { duration: 0.5 },
-                }}
-            >
-                <img src={env.PUBLIC_URL + "/assets/img/about/02.png"} alt="Image3"/>
-            </ParallaxImage>
+        </div>
+        <div className="content type2">
+            <div className="sub_title">
+                CASSCOOL 카스 쿨 
+            </div>
+            <div className="description">
+                카스 쿨 프로젝트에서는 네이버 지도에 많은 양의 마크를 세워야 했습니다.<br/>
+                대량의 마크를 세워야 하기 때문에 지도는 버벅거리는 현상이 발생 했습니다.<br/>
+                지도에서 화면에 보여지는 위치에만 그리는 방법을 사용하였지만 그것만으로는 부족했습니다.<br/>
+                결국 '마스크 클리핑' 이라는 개념을 통해 마크업들이 여러개가 겹쳐졌을 때 묶어서 그룹화를 시켰습니다.
+                이로 인해 지도의 버벅거림이 사라지고 카스 쿨을 페이지에 접속하는 사용자들에게 좋은 사용자경험을 선사 하였습니다.
+            </div>
         </div>
     </Wrapper>
   )

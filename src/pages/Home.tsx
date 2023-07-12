@@ -44,6 +44,7 @@ const Boards = styled.div`
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: flex-start;
+  font-weight: 600;
   @media ${(props) => props.theme.device.tablet} {
     width: 30vw;
     display: flex;
