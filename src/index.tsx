@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Maple_story";
   src: local("Maple_story"), url(${FontUrl}Maplestory_Bold.woff) format("woff"),
@@ -43,6 +44,13 @@ const GlobalStyle = createGlobalStyle`
   font-family: "Noto Sans KR";
   src: url(${FontUrl}NotoSansKR700.woff2) format("woff2");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(${FontUrl}Montserrat-SemiBold.woff) format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
