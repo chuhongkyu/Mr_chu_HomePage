@@ -128,6 +128,7 @@ function WindowBar() {
         <BarBox>
           <div className="main_icon" onClick={onHandleSlide}>
             <img
+              loading="lazy"
               src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
               alt="mr.chu"
             />
