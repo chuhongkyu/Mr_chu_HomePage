@@ -121,6 +121,10 @@ const BigIcon = styled.img`
   box-shadow: ${(prop) => prop.theme.shadow};
   background-size: cover;
   background-position: center;
+  &:hover{
+    transform: translateY(-5px);
+    transition: 300ms;
+  }
   @media ${(props) => props.theme.device.mobile} {
     width: 100px;
     height: 100px;
@@ -161,11 +165,13 @@ const Others = () => {
         </h5>
 
         <GameBox>
+          <a href="https://slimeinthedrawer.netlify.app" target="_blank">
           <BigIcon
             style={{
               backgroundImage: `url(${env.PUBLIC_URL}/assets/app01.jpg)`,
             }}
           />
+          </a>
           <TextBox>
             <h1>서랍속 슬라임</h1>
             <div className="sub_title">
