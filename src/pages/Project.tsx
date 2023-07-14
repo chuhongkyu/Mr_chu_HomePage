@@ -26,7 +26,6 @@ const Project = () => {
   return (
     <WindowModal bgColor="#fafafa">
       <Wrapper>
-        {/* <ProjectCarousel /> */}
         <ProjectSwiper/>
       </Wrapper>
     </WindowModal>
