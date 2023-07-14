@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import Parallax2 from "./Parallax2";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -11,7 +12,6 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
-    /* padding-bottom: max(8.333vw, 120px); */
     .title{
         font-size: max(1.6667vw, 32px);
         font-weight: 500;
@@ -81,23 +81,6 @@ const Wrapper = styled(motion.div)`
     }
 `;
 
-const ParallaxImage = styled(motion.a)`
-    width: fit-content;
-    height: fit-content;
-    display: block;
-    border: 1px solid rgba(0,0,0,.8);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-top: 30px;
-    img{
-        display: block;
-        width: 180px;
-        height: 300px;
-        object-fit: cover;
-        transform-origin: center;
-    }
-`;
-
 const ContentThree = () => {
   return (
     <Wrapper>
@@ -127,6 +110,7 @@ const ContentThree = () => {
                 이로 인해 지도의 버벅거림이 사라지고 카스 쿨을 페이지에 접속하는 사용자들에게 좋은 사용자경험을 선사 하였습니다.
             </div>
         </div>
+        <Parallax2/>
     </Wrapper>
   )
 };

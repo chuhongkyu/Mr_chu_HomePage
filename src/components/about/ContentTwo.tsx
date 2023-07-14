@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Pallarex1 from "components/about/Pallarex1";
+import Parallax1 from "components/about/Parallax1";
 
 const Wrapper = styled(motion.div)`
     width: 100%;
@@ -92,8 +92,8 @@ const ContentTwo = () => {
                 혼자서 개발을 하다보면 기획자나 디자이너와의 소통이 매우 중요하다는 것을 느꼈습니다. 여러 요구사항이 추가되는 상황에서도 합의를 이루어내기 위해서는 서로의 의견을 듣고 조율할 수 있는 능력이 필요합니다. 
                 이를 위해서는 노션을 통해 일정을 짜고 기획자와 디자이너에게 주기적으로 작업을 공유 하였습니다.
             </div>
-            <Pallarex1/>
         </div>
+        <Parallax1/>
     </Wrapper>
   )
 };

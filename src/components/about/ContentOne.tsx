@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Pallarex from "components/about/Pallarex";
+import Pallarex from "components/about/Parallax";
 
 const Wrapper = styled(motion.div)`
     width: 100%;

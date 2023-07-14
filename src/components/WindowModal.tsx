@@ -69,6 +69,7 @@ const TopNavBtn = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   &:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
       rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
@@ -82,7 +83,7 @@ const TopNavBtn = styled(motion.div)`
 
 const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
-  
+  font-weight: 500;
 `;
 
 const YellowBtn = styled(TopNavBtn)`
