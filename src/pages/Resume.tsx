@@ -235,11 +235,12 @@ const ProfileGrid = styled.div`
 const Resume = () => {
   const [alert, setAlert] = useState<boolean>(false);
 
-  const onCopyier = (e: any) => {
+  const onCopyier = (e: React.MouseEvent<HTMLDivElement>) => {
     setAlert(!alert);
     navigator.clipboard.writeText("chuhongkyu@gmail.com");
     e.preventDefault();
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setAlert(false);
@@ -257,7 +258,7 @@ const Resume = () => {
           <h2>추홍규</h2>
           {alert ? <Alert /> : null}
           <Contact
-            onClick={(e) => onCopyier(e)}
+            onClick={onCopyier}
             whileHover={{
               backgroundPosition: "left bottom",
               color: "white",

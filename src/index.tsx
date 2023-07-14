@@ -1,6 +1,6 @@
 import App from "./App";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { theme } from "./utils/theme";
+import { ITheme, theme } from "./utils/theme";
 import { RecoilRoot } from "recoil";
 import * as ReactDOM from 'react-dom/client';
 
@@ -125,12 +125,12 @@ a{
   user-select: none;
 }
 ::-moz-selection {
-   background: ${(props: any) => props.theme.black.darker};
-   color: ${(props: any) => props.theme.white.lighter};
+   background: ${(props: ITheme) => props.theme.black.darker};
+   color: ${(props: ITheme) => props.theme.white.lighter};
 }
 ::selection {
-   background: ${(props: any) => props.theme.black.darker};
-   color: ${(props: any) => props.theme.white.lighter};
+   background: ${(props: ITheme) => props.theme.black.darker};
+   color: ${(props: ITheme) => props.theme.white.lighter};
 }
 `;
 

@@ -47,7 +47,7 @@ const Title = () => {
     setRandomText(textArr[randomType].split(""));
   };
 
-  const makeText = (newArr: any) => {
+  const makeText = (newArr:any) => {
     if (newArr.length > 0) {
       copyArr += newArr.shift();
       setText(copyArr);

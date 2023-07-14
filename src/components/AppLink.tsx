@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components"
 
 const App = styled.div`
   display: flex;
@@ -9,8 +9,6 @@ const App = styled.div`
   flex-direction: column;
   width: auto;
   height: auto;
-  transform: ${(props: any) =>
-  props.isActive ? "translateY(-5px)" : "translateY(0)"};
   a {
     display: flex;
     justify-self: center;
@@ -53,7 +51,7 @@ const Svg = styled(motion.svg)``;
 
 interface IApp {
   title: string;
-  type: any;
+  type: string;
   pathUrl: string;
 }
 

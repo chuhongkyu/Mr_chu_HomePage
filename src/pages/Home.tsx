@@ -70,7 +70,7 @@ const Board = styled.div`
 
 const Home = () => {
   const [apps, setApp] = useRecoilState(appList);
-  const [coach, setCoach] = useState<any>()
+  const [coach, setCoach] = useState<string|boolean|null>()
   const location  = useLocation()
 
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {

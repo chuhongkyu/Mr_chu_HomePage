@@ -1,3 +1,31 @@
+export interface ITheme {
+  theme:{
+    black: {
+      veryDark: string;
+      darker: string;
+      lighter: string;
+      good: string;
+      cloud: string;
+    };
+    white: {
+      lighter: string;
+      darker: string;
+      gradient: string;
+    };
+    yellow: string;
+    glass: string;
+    universe: string;
+    shadow: string;
+    device: {
+      mobile: string;
+      tablet: string;
+      mac: string;
+    },
+  }
+};
+
+
+
 export const theme = {
   black: {
     veryDark: "#141414",
