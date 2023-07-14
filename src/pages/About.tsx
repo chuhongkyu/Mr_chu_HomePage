@@ -44,7 +44,7 @@ const LeftContainer = styled.div`
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  @media ${(props) => props.theme.device.mobile} {
+  @media ${(props) => props.theme.device.tablet} {
     display: none;
   }
   img{
@@ -94,6 +94,15 @@ const RightContainer = styled.div`
 
   &::-webkit-scrollbar-track {
     background: transparent /*스크롤바 뒷 배경 색상*/
+  }
+  @media ${(props) => props.theme.device.tablet} {
+    width: 100%;
+    padding: 0 20px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
   }
 `;
 

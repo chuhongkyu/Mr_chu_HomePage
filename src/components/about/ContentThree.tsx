@@ -11,10 +11,9 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 100px;
     /* padding-bottom: max(8.333vw, 120px); */
     .title{
-        font-size: max(1.6667vw, 20px);
+        font-size: max(1.6667vw, 32px);
         font-weight: 500;
         line-height: 1.5;
         letter-spacing: -0.02em;
@@ -61,7 +60,7 @@ const Wrapper = styled(motion.div)`
     @media ${(props) => props.theme.device.mobile} {
         padding-top: 10px;
         .title{
-            padding: 0 0 10px;
+            padding: 0 0 20px;
         }
         .content{
             font-size: 16px;
@@ -102,6 +101,9 @@ const ParallaxImage = styled(motion.a)`
 const ContentThree = () => {
   return (
     <Wrapper>
+        <div className="title">
+            성능 최적화
+        </div>
         <div className="content type2">
             <div className="sub_title">
                 롯데백화점 리뉴얼 운영/구축

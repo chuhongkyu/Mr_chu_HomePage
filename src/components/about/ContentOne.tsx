@@ -9,10 +9,8 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
-    /* padding-top: 100px; */
-    /* padding-bottom: max(8.333vw, 120px); */
     .title{
-        font-size: max(1.6667vw, 20px);
+        font-size: max(1.6667vw, 32px);
         font-weight: 500;
         line-height: 1.5;
         letter-spacing: -0.02em;
@@ -23,7 +21,7 @@ const Wrapper = styled(motion.div)`
         font-weight: 500;
         line-height: 1.8;
         letter-spacing: -0.02em;
-        padding-bottom: max(8.333vw, 120px);
+        padding-bottom: max(6.2500vw, 80px);
         text-align: center;
         &.type1{
             font-size: max(1.25vw, 16px);
@@ -37,7 +35,7 @@ const Wrapper = styled(motion.div)`
     @media ${(props) => props.theme.device.mobile} {
         padding-top: 10px;
         .title{
-            padding: 0 0 10px;
+            padding: 0 0 20px;
         }
         .content{
             font-size: 16px;

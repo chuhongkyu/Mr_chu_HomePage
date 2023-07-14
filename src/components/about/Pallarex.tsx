@@ -8,7 +8,7 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ParallaxContainer = styled.div`
-  margin-top: max(1.5625vw, 20px);
+  margin-top: max(1.6667vw, 32px);
   overflow-x: hidden;
   width: 100%;
   height: max(21.8750vw, 380px);
