@@ -50,6 +50,7 @@ const LeftContainer = styled.div`
   picture{
     width: auto;
     height: 100%;
+    object-fit: cover;
   }
   img{
     width: auto;
@@ -229,7 +230,7 @@ const About = () => {
           <picture>
             <source type="image/webp" srcSet={env.PUBLIC_URL + '/assets/img/about/left/03.webp'}/>
             <source type="image/jpeg" srcSet={env.PUBLIC_URL + '/assets/img/about/left/03.jpg'}/>
-            <img src={env.PUBLIC_URL + '/assets/img/about/left/03.jpg'} alt="3"/>
+            <img src={env.PUBLIC_URL + '/assets/img/about/left/03.webp'} alt="3"/>
           </picture>
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>

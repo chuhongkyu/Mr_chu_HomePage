@@ -29,12 +29,17 @@ const Bar = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     background: #333;
+    picture{
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
     img {
       width: 30px;
       height: 30px;
       cursor: pointer;
       &:hover {
-        transform: scale(1.2);
+        transform: scale(1.1);
       }
     }
   }
@@ -127,11 +132,11 @@ function WindowBar() {
       <Bar>
         <BarBox>
           <div className="main_icon" onClick={onHandleSlide}>
-            <img
-              loading="lazy"
-              src={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}
-              alt="mr.chu"
-            />
+            <picture>
+              <source type="image/webp" srcSet={env.PUBLIC_URL + "/assets/img/mrchu.webp"}/>
+              <source type="image/jpeg" srcSet={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}/>
+              <img src={env.PUBLIC_URL + "/assets/img/mrchu.webp"} alt="3"/>
+            </picture>
           </div>
           {/* <SearchForm/> */}
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
