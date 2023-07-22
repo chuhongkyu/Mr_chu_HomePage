@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 import ProfileItem from "components/resume/ProfileItem";
 import WindowModal from "components/WindowModal";
-import ProfileContainer from "components/about/ProfileContainer";
+import ProfileContainer from "components/resume/ProfileContainer";
 
 
 const env = process.env;

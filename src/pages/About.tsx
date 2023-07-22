@@ -41,11 +41,15 @@ const LeftContainer = styled.div`
   width: 25%;
   background: rgb(238,188,17);
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   @media ${(props) => props.theme.device.tablet} {
     display: none;
+  }
+  picture{
+    width: auto;
+    height: 100%;
   }
   img{
     width: auto;
@@ -221,7 +225,12 @@ const About = () => {
               })
             }
           </CaegoryItems>
-          <img loading="lazy" src={env.PUBLIC_URL + '/assets/img/about/left/03.png'} alt="03" />
+
+          <picture>
+            <source type="image/webp" srcSet={env.PUBLIC_URL + '/assets/img/about/left/03.webp'}/>
+            <source type="image/jpeg" srcSet={env.PUBLIC_URL + '/assets/img/about/left/03.jpg'}/>
+            <img src={env.PUBLIC_URL + '/assets/img/about/left/03.jpg'} alt="3"/>
+          </picture>
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
           <Header title={title} icon={true}/>
