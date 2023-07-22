@@ -133,7 +133,7 @@ export const worksData = [
     people: "개인 프로젝트",
     img: "/assets/works/word-play.png",
     description:
-      "리액트로 만든 말장난 게임, 언터넷에 떠도는 아재개그들을 모아 시간내에 풀어야하는 게임",
+      "말장난 게임, 언터넷에 떠도는 아재 개그들을 모아 시간내에 풀어야하는 게임입니다. 최초 접속을 로컬스토리지로 체크합니다. 인트로가 나오고 게임이 시작됩니다. 게임이 시작되면 문제와 목숨 3개, 타이머가 있습니다. 시간내에 문제를 맞추지 못하면 목숨이 사라지고 마침내 목숨이 0이되면 실패와 함께 다음 문제로 넘어갑니다.",
     point: ["타이머, 점수, 입력"],
     github: "https://github.com/chuhongkyu/word-play",
     link: "https://word-play.vercel.app/",

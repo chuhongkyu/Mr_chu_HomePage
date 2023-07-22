@@ -114,7 +114,7 @@ const Menu = () => {
       <div className="grid_side">
         <div className="grid_tom">
           <SpanItem
-            href="https://mapo-project.github.io/SecondLife-frontend/"
+            href="https://word-play.vercel.app/"
             target="blank"
           >
             <img
