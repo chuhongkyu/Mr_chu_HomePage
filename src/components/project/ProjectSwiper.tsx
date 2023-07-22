@@ -4,7 +4,7 @@ import "swiper/css";
 import { IWorksArray, worksData} from "utils/worksData";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-// import ImageDimmer from "components/project/ImageDimmer";
+import { isMobile } from 'react-device-detect';
 import { Navigation } from "swiper";
 import { Suspense } from "react";
 import Loading from "components/Loading";
@@ -209,7 +209,8 @@ function ProjectSwiper(){
               return(
                 <SwiperSlide 
                   key={data.id + index}>
-                  <LeftCard  
+                  {isMobile ? null : 
+                  (<LeftCard  
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
@@ -217,7 +218,7 @@ function ProjectSwiper(){
                     <Suspense fallback={<Loading/>}>
                       <LazyImgContainer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
                     </Suspense>
-                  </LeftCard>
+                  </LeftCard>)}
                   <RightCard>
                       <span className="badge">{data.company}</span>
                       <div className="card_title">
