@@ -19,6 +19,7 @@ import AppLink from "components/AppLink";
 import { getParam } from "utils/helper";
 import { useEffect } from "react";
 import { useState } from "react";
+import AddFolder from "components/AddFolder";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -41,6 +42,7 @@ const Window = styled.div`
 `;
 
 const Boards = styled.div`
+  max-width: 80vw;
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: flex-start;
@@ -119,6 +121,7 @@ const Home = () => {
             )}
           </Droppable>
         </DragDropContext>
+        <AddFolder/>
       </Window>
       <AnimatePresence initial={false}>
         <Routes location={location} key={location.pathname}>
