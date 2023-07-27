@@ -65,6 +65,7 @@ const Parallax = () => {
         slidesPerView={1}
         centeredSlides={true}
         loop={true}
+        spaceBetween={20}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         breakpoints={{
           // when window width is >= 768px

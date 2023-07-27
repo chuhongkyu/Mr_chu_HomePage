@@ -83,6 +83,7 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
 	line-height: 1.4;
 	color: ${(props) => props.theme.black.darker};
+  background-color: #eae8e2;
   background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg");
 	background-position: center;
 	background-repeat: no-repeat;

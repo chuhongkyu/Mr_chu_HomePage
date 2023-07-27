@@ -61,6 +61,7 @@ const Parallax2 = () => {
     <ParallaxContainer>
       <Swiper
         slidesPerView={1}
+        spaceBetween={20}
         breakpoints={{
           // when window width is >= 768px
           1024: {
