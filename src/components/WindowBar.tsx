@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,7 +9,7 @@ import Weather from "./Weather";
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
-const Bar = styled.div`
+const Bar = styled(motion.div)`
   width: 100%;
   height: 40px;
   background-color: ${(props) => props.theme.black.good};
@@ -129,7 +130,7 @@ function WindowBar() {
   return (
     <>
       {slide ? <Menu /> : null}
-      <Bar>
+      <Bar initial={{y:50}} animate={{y: 0}} transition={{ease: "linear"}}>
         <BarBox>
           <div className="main_icon" onClick={onHandleSlide}>
             <picture>

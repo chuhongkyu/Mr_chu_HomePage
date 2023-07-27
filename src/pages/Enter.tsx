@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Title from "components/Title";
+import { useRecoilState } from "recoil";
+import { loginAtom } from "atoms";
+import { setCookie } from "utils/helper";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Wrapper = styled(motion.section)`
+  position: fixed;
+  top:0;
+  left: 0;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -22,7 +26,9 @@ const LoginBox = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  a {
+  
+  .handle {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,19 +75,25 @@ const openVariants = {
       duration: 5,
     },
   },
+  exit: {
+    background: "rgba(0, 0, 0, 0)",
+    opacity: 0,
+    transition: {
+      duration: 1,
+    },
+  },
 };
 
 const Enter = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const timeout = setTimeout(() => navigate("/home"), 8000);
-    return () => clearTimeout(timeout);
-  }, [navigate]);
-
+  const [login, setLogin] = useRecoilState<boolean>(loginAtom)
+  const onHandleLogin = () => {
+    setLogin(false);
+    setCookie('login', 'false', 30); // 30일 동안 유지되는 쿠키로 설정
+  }
   return (
-    <Wrapper variants={openVariants} initial="inital" animate="animate">
-      <LoginBox>
-        <Link to="home">
+    <Wrapper variants={openVariants} initial="inital" animate="animate" exit="exit">
+      <LoginBox >
+        <span className="handle" onClick={onHandleLogin}>
           <Circle
             initial={{ y: 1 }}
             animate={{
@@ -96,9 +108,10 @@ const Enter = () => {
               },
             }}
             whileHover={{ y: -5 }}
+            exit={{scale:[1.2,0],border: "none",transition: {type: "spring", duration: 0.8}}}
           />
           <Title />
-        </Link>
+        </span>
       </LoginBox>
     </Wrapper>
   );

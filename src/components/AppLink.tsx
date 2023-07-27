@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 
-const App = styled.div`
+const App = styled(motion.div)`
   display: flex;
   justify-self: center;
   align-items: center;

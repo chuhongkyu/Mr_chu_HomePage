@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 
 const Wrapper = styled(motion.div)`
     display: block;
-    padding: 20px 25px;
     position: absolute;
     bottom: 60px;
     right: 20px;
@@ -20,6 +19,20 @@ const Wrapper = styled(motion.div)`
     font-size: 32px;
     color: #fff;
     cursor: pointer;
+    .btn{
+        padding: 20px 25px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .x-btn{
+        margin-left: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     @media ${(props) => props.theme.device.tablet} {
         padding: 20px 20px;
         font-size: 22px;
@@ -32,6 +45,7 @@ const Wrapper = styled(motion.div)`
 `;
 
 const InputForm = styled.form`
+    padding: 20px 25px 20px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,8 +83,10 @@ const AddFolder = () => {
         console.log(value)
     },[value])
     return(
-        <Wrapper>
-            {plus ? <AiOutlinePlus onClick={onClick} /> : <AiFillCloseCircle style={{marginRight: "10px"}} onClick={onClick}/> }
+        <Wrapper >
+            {plus ? 
+                <span className="btn" onClick={onClick}><AiOutlinePlus /></span> :
+                <span className="x-btn"><AiFillCloseCircle style={{marginRight: "10px"}} onClick={onClick}/></span> }
             {plus ? null :  
                 <InputForm onSubmit={onSubmit}>
                     <input name="제목" type="text" placeholder="폴더명" minLength={1} maxLength={5} onChange={onChange} />

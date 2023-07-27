@@ -1,9 +1,11 @@
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   font-family: sans-serif;
+  transform-origin: left;
   h1 {
     font-size: 50px;
     color: white;
@@ -76,7 +78,7 @@ const Title = () => {
   }, [blink]);
 
   return (
-    <Wrapper>
+    <Wrapper exit={{ scaleX: 0, opacity: 0, transition: {duration:0.3}}}>
       <h1>
         {text}
         {blink ? "|" : null}
