@@ -24,7 +24,7 @@ import Enter from "./Enter";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   font-family: sans-serif;
 `;
 

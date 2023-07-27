@@ -13,7 +13,7 @@ const Wrapper = styled(motion.section)`
   top:0;
   left: 0;
   width: 100%;
-  height: var(--100vh);
+  height: var(--100vh, 100vh);
   display: flex;
   background-color: rgba(0, 0, 0, 1);
   justify-content: flex-end;
