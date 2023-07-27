@@ -34,10 +34,24 @@ const Wrapper = styled(motion.div)`
         align-items: center;
     }
     @media ${(props) => props.theme.device.tablet} {
-        padding: 20px 20px;
         font-size: 22px;
         left: 20px;
         right: initial;
+        .btn{
+            padding: 20px 25px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .x-btn{
+            margin-left: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       
     }
     @media ${(props) => props.theme.device.tablet} {
        
