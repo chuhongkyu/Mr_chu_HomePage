@@ -6,17 +6,17 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const Container = styled(motion.div)`
   width: 300px;
-  height: 100%;
+  height: 70vh;
   background-color: ${(props) => props.theme.black.cloud};
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   transform-origin: bottom;
   padding-bottom: 40px;
   display: flex;
   overflow-x: hidden;
   .left_side {
-    width: 20%;
+    width: 45px;
     height: 100%;
     display: grid;
     gap: 5px;
@@ -39,12 +39,13 @@ const Container = styled(motion.div)`
       }
     }
   }
-  .grid_side {
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
+  .right_side {
+    width: 100%;
+    padding-bottom: 40px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {display: none;}
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     .grid_tom {
       width: 100%;
       display: grid;
@@ -101,8 +102,9 @@ const SpanItem = styled.a`
 `;
 
 const Variants = {
-  initial: { opacity: 1 },
-  animate: { scaleY: 1 },
+  initial: { y: "100%" },
+  animate: { y: 0 , transition:{ duration: 0.3, ease: "linear" } },
+  
 };
 
 const Menu = () => {
@@ -111,7 +113,7 @@ const Menu = () => {
       <div className="left_side">
         
       </div>
-      <div className="grid_side">
+      <motion.div className="right_side" initial={{y: 120}} animate={{y: 0}} transition={{duration: 0.9}}>
         <div className="grid_tom">
           <SpanItem
             href="https://word-play.vercel.app/"
@@ -147,7 +149,7 @@ const Menu = () => {
             </div>
           </SpanItem>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };
