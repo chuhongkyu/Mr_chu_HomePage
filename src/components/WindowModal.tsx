@@ -19,6 +19,7 @@ const Position = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -133,14 +134,8 @@ const WindowModal = ({
 }: IWindow) => {
   const [resize, setResize] = useState(false);
   const controls = useDragControls();
-  const constraintsRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
-
-  const startDrag = (event: any) => {
-    if(!resize) return;
-    controls.start(event);
-  };
 
   const onExit = () => {
     navigate("/home");
@@ -174,22 +169,14 @@ const WindowModal = ({
           initial="inital"
           animate="animate"
           exit="exit"
-          ref={constraintsRef}>
+          >
           <Modal
             first={resize ? widthSize[0] : widthSize[1]}
             second={resize ? heightSize[0] : heightSize[1]}
             third={resize ? position[0] : position[1]}
-           
             style={{ backgroundColor: bgColor }}
-            drag
-            dragSnapToOrigin
-            dragTransition={{ bounceStiffness: 8, bounceDamping: 3 }}
-            dragConstraints={constraintsRef}
-            ref={modalRef}
-            dragControls={controls}
-            dragListener={false}
           >
-            <TopNav onPointerDown={startDrag} whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
+            <TopNav whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
               <RedBtn onClick={onExit}>
                 <AiOutlineClose />
               </RedBtn>
