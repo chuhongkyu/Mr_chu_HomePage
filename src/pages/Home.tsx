@@ -104,7 +104,7 @@ const Home = () => {
 
   const onHandleLogin = () => {
     setLogin(false);
-    setCookie('login', 'false', 30);
+    setCookie('login', 'false', 1);
   }
 
   return (

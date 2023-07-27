@@ -88,7 +88,7 @@ const Enter = () => {
   const [login, setLogin] = useRecoilState<boolean>(loginAtom)
   const onHandleLogin = () => {
     setLogin(false);
-    setCookie('login', 'false', 30); // 30일 동안 유지되는 쿠키로 설정
+    setCookie('login', 'false', 1);
   }
   return (
     <Wrapper variants={openVariants} initial="inital" animate="animate" exit="exit">
