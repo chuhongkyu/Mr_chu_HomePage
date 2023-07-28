@@ -14,7 +14,7 @@ const Container = styled(motion.div)`
   transform-origin: bottom;
   padding-bottom: 40px;
   display: flex;
-  overflow-x: hidden;
+  overflow: hidden;
   .left_side {
     width: 45px;
     height: 100%;
