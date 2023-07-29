@@ -1,5 +1,5 @@
-import { motion, useDragControls, LayoutGroup} from "framer-motion";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { motion, LayoutGroup} from "framer-motion";
+import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
@@ -133,8 +133,6 @@ const WindowModal = ({
   position,
 }: IWindow) => {
   const [resize, setResize] = useState(false);
-  const controls = useDragControls();
-  const modalRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
   const onExit = () => {
@@ -143,24 +141,6 @@ const WindowModal = ({
   const onHandleSize = () => {
     setResize(!resize);
   };
-
-  useEffect(()=>{
-    window.addEventListener('resize', ()=>{
-      if (modalRef.current === null){
-        return
-      }
-      modalRef.current.style.transform = "none";
-    })
-
-    return () => {
-      window.removeEventListener('resize', ()=>{
-        if (modalRef.current === null){
-          return
-        }
-        modalRef.current.style.transform = "none";
-      })
-    }
-  },[])
 
   return (
       <LayoutGroup>

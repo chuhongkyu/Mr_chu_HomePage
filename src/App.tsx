@@ -5,7 +5,6 @@ import Meta from "utils/Meta";
 import NotFound from "NotFound";
 import Index from "pages/Index";
 import { useEffect } from "react";
-import { isMobile } from "react-device-detect";
 
 
 function App() {
@@ -14,10 +13,14 @@ function App() {
     document.documentElement.style.setProperty('--100vh', `${window.innerHeight}px`);
   }
 
-
   useEffect(()=>{
     handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   },[])
+
   return (
     <HelmetProvider>
       <BrowserRouter basename={process.env.PUBLIC_URL}>

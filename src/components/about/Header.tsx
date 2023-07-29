@@ -69,7 +69,8 @@ const Header = (props:IData) => {
     <Wrapper>
         <div className="content">
             <h1>{title}</h1>
-            {icon ? <GoogleDrive
+            {/* {icon ? 
+            <GoogleDrive
               href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
               target="_blank"
               initial={{ y: 0, scale: 1 }}
@@ -80,7 +81,8 @@ const Header = (props:IData) => {
                   alt="drive"
               />
               <p>자기소개.pdf</p>
-            </GoogleDrive> : null }
+            </GoogleDrive> 
+            : null } */}
             
         </div>
     </Wrapper>
