@@ -5,13 +5,13 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const API = process.env.REACT_APP_API_KEY;
+interface ILocation {
+  coords : {
+    latitude: number;
+    longitude: number;
+  }
+}
 
-// interface IWeather {
-//   description: string;
-//   icon: string;
-//   id: number;
-//   main: string;
-// }
 
 const Wrapper = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ const Weather = () => {
     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
   }, []);
 
-  function onGeoOk(position: any) {
+  function onGeoOk(position:ILocation) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API}&units=metric`;
@@ -81,9 +81,8 @@ const Weather = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          // setData(data.weather[0]);
           makeIcon(data.weather[0].main);
-          // console.log(data.weather[0]);
+          console.log(data);
         } else {
           // console.log(data);
         }
@@ -96,6 +95,7 @@ const Weather = () => {
   function onGeoError() {
     alert("Can't find you. No weather for you.");
   }
+  
   return <Wrapper>{icon ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${icon}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
 };
 

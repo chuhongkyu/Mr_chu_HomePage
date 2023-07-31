@@ -147,7 +147,8 @@ function WindowBar() {
           {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
         <DateBox>
-          <span className="current_time" onClick={onHandleCalender}>{time.toLocaleTimeString()}</span> <Weather />
+          <span className="current_time" onClick={onHandleCalender}>{time.toLocaleTimeString()}</span>
+          <Weather />
         </DateBox>
       </Bar>
       {open ? <Calender/> : null}
