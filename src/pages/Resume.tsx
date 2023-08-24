@@ -347,6 +347,16 @@ const Resume = () => {
               </p>
               <p>더즈 인터랙티브</p>
             </div>
+            <div className="between">
+              <p
+                data-tip="React.js"
+                data-text-color="white"
+                data-background-color="blue"
+              >
+                삼성액티브자산운용
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
           </ProfileItem>
 
           <ProfileItem
