@@ -82,7 +82,6 @@ const Weather = () => {
       .then((data) => {
         if (data) {
           makeIcon(data.weather[0].main);
-          console.log(data);
         } else {
           // console.log(data);
         }

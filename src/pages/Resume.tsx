@@ -259,81 +259,11 @@ const Resume = () => {
             <hr />
             <div className="between">
               <p
-                data-tip="Next.js"
+                data-tip="React.js"
                 data-text-color="white"
-                data-background-color="darkblue"
+                data-background-color="blue"
               >
-                CASS 월드컵 프로젝트
-              </p>
-              <p>더즈 인터랙티브</p>
-            </div>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="black"
-                data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 [PCW]
-              </p>
-              <p>더즈 인터랙티브</p>
-            </div>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="black"
-                data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 [MOW]
-              </p>
-              <p>더즈 인터랙티브</p> 
-            </div>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="black"
-                data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 앱 [AOS,IOS]
-              </p>
-              <p>더즈 인터랙티브</p> 
-            </div>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="black"
-                data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 다국어 [PCW]
-              </p>
-              <p>더즈 인터랙티브</p> 
-            </div>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="black"
-                data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 다국어 [MOW]
-              </p>
-              <p>더즈 인터랙티브</p> 
-            </div>
-            <div className="between">
-              <p
-                data-tip="JSP"
-                data-text-color="black"
-                data-background-color="red"
-              >
-                정관장 kgc 브랜드 운영
-              </p>
-              <p>더즈 인터랙티브</p>
-            </div>
-            <div className="between">
-              <p
-                data-tip="JSP"
-                data-text-color="black"
-                data-background-color="red"
-              >
-                정관장 kgc 리브랜딩
+                삼성액티브자산운용
               </p>
               <p>더즈 인터랙티브</p>
             </div>
@@ -349,11 +279,41 @@ const Resume = () => {
             </div>
             <div className="between">
               <p
-                data-tip="React.js"
-                data-text-color="white"
-                data-background-color="blue"
+                data-tip="JSP"
+                data-text-color="black"
+                data-background-color="red"
               >
-                삼성액티브자산운용
+                정관장 kgc 리브랜딩
+              </p>
+              <p>더즈 인터랙티브</p>
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                롯데백화점 리뉴얼 [MOW][PCW]
+              </p>
+              <p>더즈 인터랙티브</p> 
+            </div>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="black"
+                data-background-color="orange"
+              >
+                롯데백화점 리뉴얼 앱 [AOS,IOS]
+              </p>
+              <p>더즈 인터랙티브</p> 
+            </div>
+            <div className="between">
+              <p
+                data-tip="Next.js"
+                data-text-color="white"
+                data-background-color="darkblue"
+              >
+                CASS 월드컵 프로젝트
               </p>
               <p>더즈 인터랙티브</p>
             </div>
