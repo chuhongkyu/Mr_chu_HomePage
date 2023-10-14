@@ -129,31 +129,16 @@ const Resume = () => {
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f3eb.svg"
             title="Education"
           >
-            <div className="between">
-              <p>중앙대학교 미술학부 한국화</p>
-              <p>2012 ~ 2018</p>
-            </div>
-            <div className="between">
-              <p>중앙대학교 대학원 뉴미디어아트</p>
-              <p>자퇴</p>
-            </div>
+            <div className="between"><p>중앙대학교 미술학부 한국화</p><p>2012 ~ 2018</p></div>
+            <div className="between"><p>중앙대학교 대학원 뉴미디어아트</p><p>자퇴</p></div>
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4bc.svg"
             title="Experience"
           >
-            <div className="between">
-              <p>Sticker Slime(ios, android) - 1인개발</p>
-              <p>2021</p>
-            </div>
-            <div className="between">
-              <p>마포 청년 일자리 사업단(앱 개발팀)</p>
-              <p>2022.03</p>
-            </div>
-            <div className="between">
-              <p>더즈 인터랙티브 (프론트 엔드)</p>
-              <p>2022.08</p>
-            </div>
+            <div className="between"><p>Sticker Slime(ios, android) - 1인개발</p><p>2021</p></div>
+            <div className="between"><p>마포 청년 일자리 사업단(앱 개발팀)</p><p>2022.03</p></div>
+            <div className="between"><p>더즈 인터랙티브 (프론트 엔드)</p><p>2022.08</p></div>
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
@@ -211,54 +196,6 @@ const Resume = () => {
           >
             <div className="between">
               <p
-                data-tip="JS,리액트"
-                data-text-color="white"
-                data-background-color="darkred"
-              >
-                Mr.chu 홈페이지
-              </p>
-              <a target="blank_" href="https://mrchu.netlify.app/">
-                <p>개인 프로젝트</p>
-              </a>
-            </div>
-            <hr/>
-            <div className="between">
-              <p
-                data-tip="JS"
-                data-text-color="white"
-                data-background-color="orange"
-              >
-                마포구 예쁜 카페 10선
-              </p>
-              <a target="blank_" href="https://chuhongkyu.github.io/Cafe_HomePage/">
-                <p>마포구청</p>
-              </a>
-            </div>
-            <div className="between">
-              <p
-                data-tip="리액트"
-                data-text-color="white"
-                data-background-color="skyblue"
-              >
-                마포 버디즈 소개 홈페이지
-              </p>
-              <a target="blank_" href="https://chuhongkyu.github.io/mapoCharacter/">
-                <p>마포구청</p>
-              </a>
-            </div>
-            <div className="between">
-              <p
-                data-tip="리액트"
-                data-text-color="white"
-                data-background-color="skyblue"
-              >
-                세컨드 라이프(헌 옷 수거 플랫폼)
-              </p>
-              <p>마포구청</p>
-            </div>
-            <hr />
-            <div className="between">
-              <p
                 data-tip="React.js"
                 data-text-color="white"
                 data-background-color="blue"
@@ -278,33 +215,35 @@ const Resume = () => {
               <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
+              <a href="https://www.jungkwanjang.co.kr/" target="_blank">
               <p
                 data-tip="JSP"
                 data-text-color="black"
                 data-background-color="red"
               >
                 정관장 kgc 리브랜딩
-              </p>
+              </p></a>
               <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
+              <a href="https://www.lotteshopping.com/main" target="_blank">
               <p
                 data-tip="JS"
                 data-text-color="black"
                 data-background-color="orange"
               >
                 롯데백화점 리뉴얼 [MOW][PCW]
-              </p>
+              </p></a>
               <p>더즈 인터랙티브</p> 
             </div>
             <div className="between">
+              <a href="https://play.google.com/store/apps/details?id=com.innov.lottecoupon&hl=ko&gl=US" target="_blank">
               <p
                 data-tip="JS"
                 data-text-color="black"
                 data-background-color="orange"
-              >
-                롯데백화점 리뉴얼 앱 [AOS,IOS]
-              </p>
+              >롯데백화점 리뉴얼 앱 [AOS,IOS]
+              </p></a>
               <p>더즈 인터랙티브</p> 
             </div>
             <div className="between">
@@ -312,11 +251,41 @@ const Resume = () => {
                 data-tip="Next.js"
                 data-text-color="white"
                 data-background-color="darkblue"
-              >
-                CASS 월드컵 프로젝트
-              </p>
+              >CASS 월드컵 프로젝트</p>
               <p>더즈 인터랙티브</p>
             </div>
+            <hr/>
+            <div className="between">
+              <p
+                data-tip="JS"
+                data-text-color="white"
+                data-background-color="orange"
+              >
+                마포구 예쁜 카페 10선
+              </p>
+              <a target="blank_" href="https://chuhongkyu.github.io/Cafe_HomePage/">
+                <p>마포구청</p>
+              </a>
+            </div>
+            <div className="between">
+              <a target="blank_" href="https://chuhongkyu.github.io/mapoCharacter/">
+              <p
+                data-tip="리액트"
+                data-text-color="white"
+                data-background-color="skyblue"
+              >마포 버디즈 소개 홈페이지
+              </p></a><p>마포구청</p>
+            </div>
+            <div className="between">
+              <a target="blank_" href="https://mapo-project.github.io/SecondLife-frontend/">
+              <p
+                data-tip="리액트"
+                data-text-color="white"
+                data-background-color="skyblue"
+              >세컨드 라이프(헌 옷 수거 플랫폼)
+              </p></a><p>마포구청</p>
+            </div>
+            
           </ProfileItem>
 
           <ProfileItem
