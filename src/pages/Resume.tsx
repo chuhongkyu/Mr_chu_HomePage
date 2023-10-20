@@ -139,6 +139,7 @@ const Resume = () => {
             <div className="between"><p>Sticker Slime(ios, android) - 1인개발</p><p>2021</p></div>
             <div className="between"><p>마포 청년 일자리 사업단(앱 개발팀)</p><p>2022.03</p></div>
             <div className="between"><p>더즈 인터랙티브 (프론트 엔드)</p><p>2022.08</p></div>
+            <div className="between"><a href="https://fastcampus.co.kr/dev_online_3dinteractive" target="_blank"><p>패스트 캠퍼스 (R3F 강사)</p></a><p>2023.10.16</p></div>
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
