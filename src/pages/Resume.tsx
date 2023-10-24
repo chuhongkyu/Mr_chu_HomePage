@@ -196,13 +196,15 @@ const Resume = () => {
             row={"span 2"}
           >
             <div className="between">
-              <p
-                data-tip="React.js"
-                data-text-color="white"
-                data-background-color="blue"
-              >
-                삼성액티브자산운용
-              </p>
+              <a href="https://www.samsungactive.co.kr/main.do" target="_blank">
+                <p
+                  data-tip="React.js"
+                  data-text-color="white"
+                  data-background-color="blue"
+                >
+                  삼성액티브자산운용
+                </p>
+              </a>
               <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
