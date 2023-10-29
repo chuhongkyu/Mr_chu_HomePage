@@ -86,7 +86,7 @@ const Parallax = () => {
         <SwiperSlide>
           <ParallaxImage
             target={"_blank"}
-            href={"https://chuhongkyu.github.io/bmw-car/"}
+            href={"https://mr-chu-car-web.netlify.app/"}
           >
             <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Image_4"/>
           </ParallaxImage>
