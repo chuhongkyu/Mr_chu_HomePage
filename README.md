@@ -1,3 +1,12 @@
+# 2023/11/06 백엔드 구축중 (완성 예정 12.11)
+
+- Node.js
+- koyeb로 배포
+- (https://developed-heath-mr-chu.koyeb.app/)
+
+---
+
+
 # 2023/06/03 넷틀리파이 배포로 변경
 
 - https://mrchu.netlify.app/
