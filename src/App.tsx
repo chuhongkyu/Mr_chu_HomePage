@@ -5,6 +5,7 @@ import Meta from "utils/Meta";
 import NotFound from "NotFound";
 import Index from "pages/Index";
 import { useEffect } from "react";
+import Webgl from "webgl/Webgl";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <HelmetProvider>
+      <Webgl/>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Meta />
         <Routes>

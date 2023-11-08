@@ -13,11 +13,14 @@ import Project from "./Project";
 import { getParam, setCookie } from "utils/helper";
 import { useEffect } from "react";
 import { useState } from "react";
-import AddFolder from "components/AddFolder";
 import Enter from "./Enter";
 import AppWrapper from "components/window/AppWrapper";
 
 const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
   width: 100%;
   height: var(--100vh, 100vh);
 `;
@@ -64,14 +67,12 @@ const Home = () => {
 
   return (
       <Wrapper>
-        
         <AnimatePresence exitBeforeEnter>
         {login ? <Enter key="loading"/> 
         : (
             <>
               <Window>
                 <AppWrapper/>
-                <AddFolder/>
               </Window>
               <AnimatePresence initial={false}>
                 <Routes location={location} key={location.pathname}>
