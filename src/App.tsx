@@ -8,7 +8,6 @@ import { useEffect } from "react";
 
 
 function App() {
-
   const handleResize = () =>  {
     document.documentElement.style.setProperty('--100vh', `${window.innerHeight}px`);
   }

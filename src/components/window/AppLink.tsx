@@ -3,47 +3,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 
 const App = styled(motion.div)`
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  flex-direction: column;
-  width: auto;
-  height: auto;
+  /* border: 1px solid red; */
   a {
     display: flex;
     justify-self: center;
     align-items: center;
     flex-direction: column;
-    img {
-      width: 45px;
-      height: 45px;
-      border-radius: 5%;
-    }
-    h2 {
-      text-align: center;
-      font-size: 14px;
-      font-weight: 800;
+    p{
       white-space: pre-line;
     }
   }
   @media ${(props) => props.theme.device.tablet} {
-    width: auto;
-    height: auto;
-    img {
-      width: 45px;
-      height: 45px;
-    }
   }
   @media ${(props) => props.theme.device.mobile} {
-    width: auto;
-    height: auto;
-    img {
-      width: 40px;
-      height: 40px;
-    }
-    h2 {
-      font-size: 11px;
-    }
   }
 `;
 
@@ -216,7 +188,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
     <App>
       <Link to={`/home/${pathUrl}`}>
         {choosePage()}
-        <h2>{title === "project" ? "Project\nToy" : title.toUpperCase()}</h2>
+        <p className="font-app">{title === "project" ? "Project\nToy" : title.toUpperCase()}</p>
       </Link>
     </App>
   );
