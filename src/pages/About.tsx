@@ -16,7 +16,6 @@ interface Category {
 }
 
 const MainContainer = styled.div`
-  font-family: "Maple_story";
   padding-top: 30px;
   width: 100%;
   height: 100%;
