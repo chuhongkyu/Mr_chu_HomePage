@@ -11,8 +11,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 25%;
   height: 100%;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
-    url("${env.PUBLIC_URL}/assets/img/profile_bg.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent), url("/assets/img/profile_bg.jpg");
   background-size: cover;
   background-position: bottom center;
   border-top-left-radius: 10px;
@@ -108,6 +107,7 @@ const Contact = styled(motion.span)`
   display: flex;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  font-size: 1.6rem;
   span {
     margin-right: 5px;
     display: flex;

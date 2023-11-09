@@ -9,8 +9,8 @@ env.PUBLIC_URL = env.PUBLIC_URL || "";
 const OnePerson = styled.div`
   width: 100%;
   padding: 70px 50px 0px 50px;
-  font-family: 'Noto Sans KR', sans-serif;
   overflow-y: auto;
+  font-size: 1.6rem;
   &::-webkit-scrollbar{
     width: 10px;
   }
