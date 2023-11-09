@@ -9,7 +9,7 @@ import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
 
 const Form = styled(motion.div)`
-    margin-top: 40rem;
+    margin-top: 25rem;
     border-radius: 2.2rem;
     width: max(40vw, 680px);
     background-color:${(props:ITheme) => props.theme.white.lighter};
@@ -32,7 +32,7 @@ const Form = styled(motion.div)`
         }
     }
     @media ${(props) => props.theme.device.mobile} {
-        margin-top: 20rem;
+        margin-top: 21rem;
         width: 100%;
         input{
             padding: 1px 22px;
@@ -70,6 +70,7 @@ const Item = styled.div`
     font-size: 16px;
     line-height: 125%;
     padding: 1rem 0;
+    background-color: ${(props:ITheme) => props.theme.white.lighter};
     a{
         display: flex;
         justify-content: space-between;

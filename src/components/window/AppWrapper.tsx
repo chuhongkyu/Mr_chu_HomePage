@@ -6,7 +6,7 @@ import AppLink from "components/window/AppLink";
 import AddAppBtn from "./AddAppBtn";
 
 const AppContainer = styled.div`
-  margin-top: 50rem;
+  margin-top: 30rem;
   position: fixed;
   @media ${(props) => props.theme.device.mobile} {
     margin-top: 30rem;
@@ -45,7 +45,8 @@ const AppWrapper = ()=> {
           copyAppList.splice(destination.index, 0, draggableId);
           return copyAppList;
         });
-      };
+    };
+    
     return(
       <AppContainer>
         <DragDropContext onDragEnd={onDragEnd}>

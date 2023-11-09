@@ -38,13 +38,17 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Noto Sans KR', sans-serif;
     color: ${(props) => props.theme.black.darker};
-    /* background-image: url("${env.PUBLIC_URL}/assets/img/bg.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  html { font-size: 62.5%; }
+  html { 
+    font-size: 86.0%; 
+    @media ${(props) => props.theme.device.tablet} {
+      font-size: 62.5%
+    }
+  }
 
   ::-moz-selection {
     background: ${(props: ITheme) => props.theme.black.darker};
