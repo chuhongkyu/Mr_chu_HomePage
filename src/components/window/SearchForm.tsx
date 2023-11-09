@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, {  useState } from "react";
+import React, {  Suspense, useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { getProjectList } from "utils/api";
@@ -15,7 +15,7 @@ const Form = styled(motion.div)`
     background-color:${(props:ITheme) => props.theme.white.lighter};
     height: fit-content;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
     box-shadow: ${(props:ITheme) => props.theme.shadow};
     input{
@@ -39,6 +39,21 @@ const Form = styled(motion.div)`
         }
     }
 `;
+
+const SearchIcon = styled(motion.span)`
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 18px;
+    top: 11px;
+    background-image: url('/assets/img/search.png');
+    @media ${(props) => props.theme.device.mobile} {
+        left: initial;
+        right: 10px;
+    }
+`
 
 const SearchPanel = styled(motion.div)`
     width: 100%;
@@ -108,6 +123,7 @@ const SearchForm = () => {
     
     return(
         <Form transition={{duration: 0.5, ease:"easeInOut"}}>
+            <SearchIcon/>
             <input 
                 onFocus={onHandleOpen}
                 onChange={onChange} 
@@ -116,6 +132,7 @@ const SearchForm = () => {
                 placeholder="검색을 입력하십시오." 
                 maxLength={15}
                 type="text" />
+            
             <AnimatePresence initial={false}>
                 {isOpen && (
                 <SearchPanel
@@ -129,6 +146,7 @@ const SearchForm = () => {
                     }}
                     transition={{ duration: 0 }}
                 >
+                    <Suspense fallback={null}>
                     {items.length > 0 ? items?.map((item, i)=>{
                         if(i > 5){
                             return
@@ -163,6 +181,7 @@ const SearchForm = () => {
                         </Item>
                     )
                     }
+                    </Suspense>
                 </SearchPanel>
                 )}
             </AnimatePresence>
