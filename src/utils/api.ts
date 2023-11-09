@@ -3,7 +3,7 @@ interface IList {
 }
   
 const getProjectList = ({ keyword }: IList = {}) => {
-    let url = 'http://localhost:3000/api/get/projectList';
+    let url = 'https://developed-heath-mr-chu.koyeb.app/api/get/projectList';
     if (keyword) {
         url += `?keyword=${keyword}`;
     }
