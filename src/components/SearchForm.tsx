@@ -65,7 +65,7 @@ const SearchForm = () => {
         setOpen(true)
     }
 
-    const onClose = () =>{
+    const onHandleClose = () =>{
         setOpen(false)
     }
 
@@ -79,7 +79,7 @@ const SearchForm = () => {
                 onFocus={onHandleOpen}
                 onChange={onChange} 
                 onKeyUp={onHandleOpen}
-                onBlur={onClose}
+                onBlur={onHandleClose}
                 placeholder="검색을 입력하십시오." 
                 type="text" />
             <AnimatePresence initial={false}>
