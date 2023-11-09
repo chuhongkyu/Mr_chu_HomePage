@@ -6,6 +6,7 @@ import { getProjectList } from "utils/api";
 import { IList } from "utils/interface";
 import { ITheme } from "utils/theme";
 import Tools from "./Tools";
+import { useMediaQuery } from "react-responsive";
 
 const Form = styled(motion.div)`
     margin-top: 40rem;
@@ -23,7 +24,7 @@ const Form = styled(motion.div)`
         border: none;
         background-color: transparent;
         outline: none;
-        font-size: 14px;
+        font-size: 16px;
         padding: 1px 42px;
         height: 40px;
         &:focus{
@@ -33,6 +34,9 @@ const Form = styled(motion.div)`
     @media ${(props) => props.theme.device.mobile} {
         margin-top: 20rem;
         width: 100%;
+        input{
+            padding: 1px 22px;
+        }
     }
 `;
 
@@ -41,11 +45,14 @@ const SearchPanel = styled(motion.div)`
     height: 40vh;
     padding: 10px 42px;
     background-color:${(props:ITheme) => props.theme.white.lighter};
+    @media ${(props) => props.theme.device.mobile} {
+        padding: 10px 22px;
+    }
 `
 
 const Item = styled.div`
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 125%;
     padding: 1rem 0;
     a{
@@ -67,6 +74,9 @@ const SearchForm = () => {
     const [value, setValue] = useState<any>()
     const [isOpen, setOpen] = useState<boolean>(false)
     const [items, setItems] = useState<IList[]>([])
+    const isMoible = useMediaQuery({
+        query: '(min-width: 681px)'
+    })
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let data = e.target.value;
@@ -127,16 +137,19 @@ const SearchForm = () => {
                             <Item key={i + "key_List"}>
                                 <a href={item.link && item.link} target="_blank" rel="noreferrer noopener">
                                     <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
-                                    {item.tools.length >= 3 ? item.tools.slice(0,3).map((el, i)=>{
-                                        return(
-                                            <Tools key={i + "key badge"} text={el}/>
-                                        )
-                                    }) : 
-                                    item.tools.map((el)=>{
-                                        return(
-                                            <Tools key={i + "key badge"} text={el}/>
-                                        )
-                                    })}
+                                        {isMoible ? (
+                                        <>
+                                            {item.tools.length >= 3 ? item.tools.slice(0,3).map((el, i)=>{
+                                                return(
+                                                    <Tools key={i + "key badge"} text={el}/>
+                                                )
+                                            }) : 
+                                            item.tools.map((el)=>{
+                                                return(
+                                                    <Tools key={i + "key badge"} text={el}/>
+                                                )
+                                            })}
+                                        </>)  : null}
                                     </b>
                                     
                                     <p>{item.company}</p>
