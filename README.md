@@ -1,8 +1,9 @@
-# 2023/11/06 백엔드 구축중 (완성 예정 12.11)
+# 2023/11/07 백엔드 구축중 (완성 예정 12.11)
 
 - Node.js
 - koyeb로 배포
 - (https://developed-heath-mr-chu.koyeb.app/)
+- 검색기능 추가
 
 ---
 
