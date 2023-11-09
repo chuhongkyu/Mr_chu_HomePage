@@ -1,0 +1,64 @@
+import { motion } from "framer-motion"
+import styled from "styled-components"
+import { ITheme } from "utils/theme"
+
+const Badge = styled(motion.span)`
+    padding: 0.4rem 0.8rem;
+    color: ${(props:ITheme) => props.theme.white.lighter};
+    background: ${(props:ITheme) => props.theme.blue};
+    &:first-of-type{
+        margin-left: 1rem;
+    }
+`
+
+const Tools = (props:{ text: string }) => {
+    const { text } = props
+
+    const determineBadgeColor = (text: string): string => {
+        let color
+        switch (text) {
+            case 'react':
+                color = 'rgb(46,142,214)'
+                break;
+            case 'next.js':
+                color = 'rgb(29, 29, 29)'
+                break;
+            case 'ts':
+                color = 'rgb(48, 119, 196)'
+                break;
+            case 'vite':
+                color = 'rgb(118, 74, 188)'
+                break;
+            case 'redux':
+                color = 'rgb(118, 74, 188)'
+                break;
+            case 'js':
+                color = 'rgb(238,188,17)'
+                break;
+            case 'scss':
+                color = 'rgb(192,63,128)'
+                break;
+            case 'styled-component':
+                color = 'rgb(192,63,128)'
+                break;
+            case 'gsap':
+                color = 'rgb(2, 110, 51)'
+                break;
+            case 'jsp':
+                color = 'rgb(224,64,47)'
+                break;
+            default:
+                color = 'rgb(121, 120, 120)'
+                break;
+        }
+        return color;
+    };
+
+    return(
+        <Badge style={{ background: determineBadgeColor(text) }}>
+            {text}
+        </Badge>
+    )
+}
+
+export default Tools

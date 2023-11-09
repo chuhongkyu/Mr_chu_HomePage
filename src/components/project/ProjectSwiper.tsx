@@ -201,7 +201,6 @@ function ProjectSwiper(){
             modules={[Navigation]}
             loop={true}
             onSlideChange={() => {}}
-            onSwiper={(swiper) => console.log(swiper)}
             navigation
           >
             

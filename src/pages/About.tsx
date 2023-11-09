@@ -192,7 +192,7 @@ const About = () => {
         setSection(3);
         autoChange();
       }
-      console.log('현재 위치', currentSection)
+      // console.log('현재 위치', currentSection)
     }
 
     // 스크롤 이벤트 리스너 등록

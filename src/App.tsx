@@ -5,10 +5,10 @@ import Meta from "utils/Meta";
 import NotFound from "NotFound";
 import Index from "pages/Index";
 import { useEffect } from "react";
+import Webgl from "webgl/Webgl";
 
 
 function App() {
-
   const handleResize = () =>  {
     document.documentElement.style.setProperty('--100vh', `${window.innerHeight}px`);
   }
@@ -23,6 +23,7 @@ function App() {
 
   return (
     <HelmetProvider>
+      <Webgl/>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Meta />
         <Routes>

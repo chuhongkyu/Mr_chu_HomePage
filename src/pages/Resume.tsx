@@ -139,7 +139,7 @@ const Resume = () => {
             <div className="between"><p>Sticker Slime(ios, android) - 1인개발</p><p>2021</p></div>
             <div className="between"><p>마포 청년 일자리 사업단(앱 개발팀)</p><p>2022.03</p></div>
             <div className="between"><p>더즈 인터랙티브 (프론트 엔드)</p><p>2022.08</p></div>
-            <div className="between"><a href="https://fastcampus.co.kr/dev_online_3dinteractive" target="_blank"><p>패스트 캠퍼스 (R3F 강사)</p></a><p>2023.10.16</p></div>
+            <div className="between"><a href="https://fastcampus.co.kr/dev_online_3dinteractive" target="_blank" rel="noreferrer noopener"><p>패스트 캠퍼스 (R3F 강사)</p></a><p>2023.10.16</p></div>
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
@@ -196,7 +196,7 @@ const Resume = () => {
             row={"span 2"}
           >
             <div className="between">
-              <a href="https://www.samsungactive.co.kr/main.do" target="_blank">
+              <a href="https://www.samsungactive.co.kr/main.do" target="_blank" rel="noreferrer noopener">
                 <p
                   data-tip="React.js"
                   data-text-color="white"
@@ -218,7 +218,7 @@ const Resume = () => {
               <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
-              <a href="https://www.jungkwanjang.co.kr/" target="_blank">
+              <a href="https://www.jungkwanjang.co.kr/" target="_blank" rel="noreferrer noopener">
               <p
                 data-tip="JSP"
                 data-text-color="black"
@@ -229,7 +229,7 @@ const Resume = () => {
               <p>더즈 인터랙티브</p>
             </div>
             <div className="between">
-              <a href="https://www.lotteshopping.com/main" target="_blank">
+              <a href="https://www.lotteshopping.com/main" target="_blank" rel="noreferrer noopener">
               <p
                 data-tip="JS"
                 data-text-color="black"
@@ -240,7 +240,7 @@ const Resume = () => {
               <p>더즈 인터랙티브</p> 
             </div>
             <div className="between">
-              <a href="https://play.google.com/store/apps/details?id=com.innov.lottecoupon&hl=ko&gl=US" target="_blank">
+              <a href="https://play.google.com/store/apps/details?id=com.innov.lottecoupon&hl=ko&gl=US" target="_blank" rel="noreferrer noopener">
               <p
                 data-tip="JS"
                 data-text-color="black"
@@ -266,12 +266,12 @@ const Resume = () => {
               >
                 마포구 예쁜 카페 10선
               </p>
-              <a target="blank_" href="https://chuhongkyu.github.io/Cafe_HomePage/">
+              <a target="_blank" href="https://chuhongkyu.github.io/Cafe_HomePage/" rel="noreferrer noopener">
                 <p>마포구청</p>
               </a>
             </div>
             <div className="between">
-              <a target="blank_" href="https://chuhongkyu.github.io/mapoCharacter/">
+              <a target="_blank" href="https://chuhongkyu.github.io/mapoCharacter/" rel="noreferrer noopener">
               <p
                 data-tip="리액트"
                 data-text-color="white"
@@ -280,7 +280,7 @@ const Resume = () => {
               </p></a><p>마포구청</p>
             </div>
             <div className="between">
-              <a target="blank_" href="https://mapo-project.github.io/SecondLife-frontend/">
+              <a target="_blank" href="https://mapo-project.github.io/SecondLife-frontend/" rel="noreferrer noopener">
               <p
                 data-tip="리액트"
                 data-text-color="white"
