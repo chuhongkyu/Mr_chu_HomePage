@@ -12,6 +12,8 @@ export interface ITheme {
       darker: string;
       gradient: string;
     };
+    red: string;
+    blue: string;
     yellow: string;
     glass: string;
     universe: string;
@@ -39,6 +41,8 @@ export const theme = {
     darker: "#e5e5e5",
     gradient: "linear-gradient(to bottom, #fff , #e5e5e5)",
   },
+  red: "rgb(224,64,47)",
+  blue: "rgb(46,142,214)",
   yellow: "rgb(249,197,30)",
   glass: "rgba(255,255,255,0.4)",
   universe:

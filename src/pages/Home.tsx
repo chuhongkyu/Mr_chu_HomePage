@@ -11,7 +11,7 @@ import { getParam } from "utils/helper";
 import { useEffect, useState } from "react";
 import AppWrapper from "components/window/AppWrapper";
 import { useMediaQuery } from "react-responsive";
-import SearchForm from "components/SearchForm";
+import SearchForm from "components/window/SearchForm";
 
 const Wrapper = styled.div`
   position: fixed;
