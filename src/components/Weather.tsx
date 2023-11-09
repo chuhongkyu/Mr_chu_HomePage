@@ -70,7 +70,8 @@ const Weather = () => {
   }
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+    navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
+    console.log(navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError))
   }, []);
 
   function onGeoOk(position:ILocation) {

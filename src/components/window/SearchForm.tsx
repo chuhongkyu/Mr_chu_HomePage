@@ -41,7 +41,6 @@ const SearchPanel = styled(motion.div)`
     height: 40vh;
     padding: 10px 42px;
     background-color:${(props:ITheme) => props.theme.white.lighter};
-
 `
 
 const Item = styled.div`
@@ -61,6 +60,8 @@ const Item = styled.div`
 
     }
 `;
+
+
 
 const SearchForm = () => {
     const [value, setValue] = useState<any>()
@@ -118,7 +119,7 @@ const SearchForm = () => {
                     }}
                     transition={{ duration: 0 }}
                 >
-                    {items?.map((item, i)=>{
+                    {items.length > 0 ? items?.map((item, i)=>{
                         if(i > 5){
                             return
                         }
@@ -142,7 +143,13 @@ const SearchForm = () => {
                                 </a>
                             </Item>
                         )
-                    })}
+                    })
+                    : (
+                        <Item>
+                            <p>검색결과 없음</p>
+                        </Item>
+                    )
+                    }
                 </SearchPanel>
                 )}
             </AnimatePresence>
