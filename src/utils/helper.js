@@ -28,5 +28,5 @@ export function getCookie(name) {
       }
     }
     return "";
-  }
+}
   

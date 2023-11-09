@@ -44,11 +44,6 @@ const Bar = styled(motion.div)`
       }
     }
   }
-  @media ${(props) => props.theme.device.mobile} {
-    .main_icon{
-      margin-right: 10px;
-    }
-  }
 `;
 
 const DateBox = styled.div`
@@ -64,10 +59,6 @@ const DateBox = styled.div`
   .current_time{
     white-space: nowrap;
   }
-  @media ${(props) => props.theme.device.mobile} {
-    min-width: 150px;
-    font-size: 12px;
-  }
 `;
 
 const BarBox = styled.div`
@@ -76,9 +67,6 @@ const BarBox = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  @media ${(props) => props.theme.device.mobile} {
-    width: calc(100% - 150px);
-  }
 `;
 
 const OpenItem = styled.div`
@@ -139,7 +127,6 @@ function WindowBar() {
               <img src={env.PUBLIC_URL + "/assets/img/mrchu.webp"} alt="3"/>
             </picture>
           </div>
-          {/* <SearchForm/> */}
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}
           {aboutMatch && <OpenItem onClick={onExit}>About</OpenItem>}
           {othersMatch && <OpenItem onClick={onExit}>GameApp</OpenItem>}

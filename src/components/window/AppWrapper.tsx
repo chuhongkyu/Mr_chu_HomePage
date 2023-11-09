@@ -6,20 +6,22 @@ import AppLink from "components/window/AppLink";
 import AddAppBtn from "./AddAppBtn";
 
 const AppContainer = styled.div`
-  margin-top: 40rem;
-  position: relative;
+  margin-top: 50rem;
+  position: fixed;
+  @media ${(props) => props.theme.device.mobile} {
+    margin-top: 30rem;
+  }
 `
 
 const Boards = styled.div`
-  width: 40vw;
+  width: max(40vw, 680px);
   min-height: 22rem;
   font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 1fr 1fr;
-  @media ${(props) => props.theme.device.tablet} {
-  }
   @media ${(props) => props.theme.device.mobile} {
+    width: 100%;
   }
 `;
 

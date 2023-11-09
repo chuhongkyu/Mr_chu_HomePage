@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Enter from "./Enter";
 import AppWrapper from "components/window/AppWrapper";
+import { useMediaQuery } from "react-responsive";
+import SearchForm from "components/SearchForm";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -29,13 +31,11 @@ const Window = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
   @media ${(props) => props.theme.device.tablet} {
-    display: flex;
-    justify-content: flex-end;
+
   }
 `;
 
@@ -43,6 +43,9 @@ const Home = () => {
   const [coach, setCoach] = useState<string|boolean|null>()
   const [login, setLogin] = useRecoilState<boolean>(loginAtom)
   const location  = useLocation()
+  const isMoible = useMediaQuery({
+    query: '(min-width: 681px)'
+  })
 
 
   useEffect(() => {
@@ -72,17 +75,19 @@ const Home = () => {
         : (
             <>
               <Window>
+                <SearchForm/>
                 <AppWrapper/>
               </Window>
               <AnimatePresence initial={false}>
                 <Routes location={location} key={location.pathname}>
-                  <Route path="resume" element={<Resume />} />
-                  <Route path="about" element={<About />} />
-                  <Route path="github" element={<GitHub />} />
-                  <Route path="game_app" element={<Others />} />
-                  <Route path="project" element={<Project />} />
+                  <Route path="/resume" element={<Resume />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/github" element={<GitHub />} />
+                  <Route path="/game_app" element={<Others />} />
+                  <Route path="/project" element={<Project />} />
                 </Routes>
               </AnimatePresence>
+              {isMoible ? <WindowBar/> : null}
             </>
           ) 
         }

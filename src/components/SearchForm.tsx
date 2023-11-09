@@ -1,33 +1,44 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, {  useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { ITheme } from "utils/theme";
 
 const Form = styled(motion.div)`
-    margin: 0.5px 10px 0.5px 0;
-    width: 250px;
-    height: 37px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255,255,255, 0.85);
-    padding-left: 20px;
+    margin-top: 40rem;
+    border-radius: 2.2rem;
+    width: max(40vw, 680px);
+    background-color:${(props:ITheme) => props.theme.white.lighter};
+    height: fit-content;
     position: relative;
     z-index: 2;
-    transform-origin: center bottom;
+    overflow: hidden;
     input{
         width: 100%;
         height: 100%;
         border: none;
         background-color: transparent;
+        outline: none;
+        font-size: 14px;
+        padding: 1px 42px;
+        height: 40px;
         &:focus{
             outline: none;
         }
     }
     @media ${(props) => props.theme.device.mobile} {
-        display: none;
+        margin-top: 20rem;
+        width: 100%;
     }
 `;
+
+const SearchPanel = styled(motion.div)`
+    width: 100%;
+    height: 40vh;
+    padding: 10px 42px;
+    background-color:${(props:ITheme) => props.theme.white.lighter};
+
+`
 
 const SearchBox = styled.div`
     position: absolute;
@@ -36,27 +47,21 @@ const SearchBox = styled.div`
     margin: 2px;
     color: ${(props) => props.theme.black.darker};
     padding: 10px;
-    p{
-        font-size: 15px;
-    }
     @media ${(props) => props.theme.device.mobile} {
-        p{
-            font-size: 11px;
-        }
+
     }
 `;
 
 const SearchForm = () => {
     const [value, setValue] = useState<any>()
-    const [open, setOpen] = useState<boolean>(false)
+    const [isOpen, setOpen] = useState<boolean>(false)
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let data = e.target.value;
         e.preventDefault();
         setValue(data);
-        // console.log(value);
     }
 
-    const onOpen = () =>{
+    const onHandleOpen = () =>{
         setOpen(true)
     }
 
@@ -69,20 +74,31 @@ const SearchForm = () => {
     },[])
     
     return(
-        <Form animate={open ? {height: 400} : {height: 37}} transition={{duration: 0.5, ease:"easeInOut"}}>
-            {open ? 
-                <SearchBox>
-                    <p>제작중....</p>      
-                </SearchBox> 
-            : null
-            }
+        <Form transition={{duration: 0.5, ease:"easeInOut"}}>
             <input 
-                onFocus={onOpen}
+                onFocus={onHandleOpen}
                 onChange={onChange} 
-                onKeyUp={onOpen}
+                onKeyUp={onHandleOpen}
                 onBlur={onClose}
                 placeholder="검색을 입력하십시오." 
                 type="text" />
+            <AnimatePresence initial={false}>
+                {isOpen && (
+                <SearchPanel
+                    key="content"
+                    initial="collapsed"
+                    animate="open"
+                    exit="collapsed"
+                    variants={{
+                        open: { height: "auto" },
+                        collapsed: { height: 0 }
+                    }}
+                    transition={{ duration: 0 }}
+                >
+
+                </SearchPanel>
+                )}
+            </AnimatePresence>
         </Form>
     )
 }
