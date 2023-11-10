@@ -38,6 +38,9 @@ const Modal = styled(motion.div)`
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   display: flex;
   justify-content: center;
+  @media ${(props) => props.theme.device.mobile} {
+    height: 100vh;
+  }
 `;
 
 const TopNav = styled(motion.div)`

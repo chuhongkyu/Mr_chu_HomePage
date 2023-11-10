@@ -9,17 +9,23 @@ import Webgl from "webgl/Webgl";
 
 
 function App() {
-  const handleResize = () =>  {
-    document.documentElement.style.setProperty('--100vh', `${window.innerHeight}px`);
-  }
+  const handleResize = () => {
+    const baseFontSize = 18;
+    const screenWidth = window.innerWidth;
+    const calculatedFontSize = screenWidth / 1920 * baseFontSize;
+    const dynamicFontSize = Math.min(baseFontSize, calculatedFontSize);
 
-  useEffect(()=>{
-    handleResize()
-    window.addEventListener('resize', handleResize)
+    document.documentElement.style.setProperty('--dynamic-font-size', `${dynamicFontSize}px`);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  },[])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   return (
     <HelmetProvider>

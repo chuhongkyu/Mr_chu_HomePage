@@ -9,8 +9,8 @@ import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
 
 const Form = styled(motion.div)`
-    margin-top: 25rem;
-    border-radius: 2.2rem;
+    margin-top: 20rem;
+    border-radius: 24px;
     width: max(40vw, 680px);
     background-color:${(props:ITheme) => props.theme.white.lighter};
     height: fit-content;
@@ -26,13 +26,13 @@ const Form = styled(motion.div)`
         outline: none;
         font-size: 16px;
         padding: 1px 42px;
-        height: 40px;
+        height: 42px;
         &:focus{
             outline: none;
         }
     }
     @media ${(props) => props.theme.device.mobile} {
-        margin-top: 21rem;
+        margin-top: 23rem;
         width: 100%;
         input{
             padding: 1px 22px;

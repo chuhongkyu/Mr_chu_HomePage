@@ -44,10 +44,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html { 
-    font-size: 86.0%; 
-    @media ${(props) => props.theme.device.tablet} {
-      font-size: 62.5%
-    }
+    font-size: max(var(--dynamic-font-size), 10px)
   }
 
   ::-moz-selection {
@@ -61,7 +58,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .font-app{
     text-align: center;
-    font-size: 1.4rem;
+    font-size: max(1vw, 14px);
     letter-spacing: -0.01em ;
     font-weight: 600;
   }

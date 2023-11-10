@@ -19,8 +19,8 @@ const Btn = styled(motion.div)`
     color: #fff;
     cursor: pointer;
     .btn{
-        padding: 1.5rem;
-        font-size: 3.3rem;
+        padding: 1rem;
+        font-size: 1.8rem;
         width: 100%;
         height: 100%;
         display: flex;
@@ -28,8 +28,8 @@ const Btn = styled(motion.div)`
         align-items: center;
     }
     .x-btn{
-        padding: 1.5rem;
-        font-size: 3.3rem;
+        padding: 1rem;
+        font-size: 1.8rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -37,16 +37,16 @@ const Btn = styled(motion.div)`
 `
 
 const InputForm = styled.form`
-    padding: 2rem 1rem 2rem 2rem;
+    padding: 1rem 1rem 1rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     input{
         border: none;
         max-width: 120px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 500;
-        padding: 1rem;
+        padding: 10px;
         &:focus{
             outline: none;
         }

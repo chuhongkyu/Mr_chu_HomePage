@@ -6,7 +6,7 @@ import AppLink from "components/window/AppLink";
 import AddAppBtn from "./AddAppBtn";
 
 const AppContainer = styled.div`
-  margin-top: 30rem;
+  margin-top: 25rem;
   position: fixed;
   @media ${(props) => props.theme.device.mobile} {
     margin-top: 30rem;
@@ -15,13 +15,14 @@ const AppContainer = styled.div`
 
 const Boards = styled.div`
   width: max(40vw, 680px);
-  min-height: 22rem;
+  min-height: 14rem;
   font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 1fr 1fr;
   @media ${(props) => props.theme.device.mobile} {
     width: 100%;
+    min-height: 20rem;
   }
 `;
 
