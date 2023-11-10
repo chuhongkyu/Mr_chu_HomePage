@@ -1,14 +1,17 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useBox } from "@react-three/cannon";
 import { Center, Text3D } from "@react-three/drei";
 import { TextureLoader } from "three";
 import { useThree } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
+import { useRecoilValue } from "recoil";
+import { typing } from "atoms";
 
 const fontUrl = '/assets/fonts/Pretendard.json'
 
 const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
   const { width: w, height: h } = useThree((state) => state.viewport);
+  const typingValue = useRecoilValue(typing)
   const isDeskTop = useMediaQuery({
     query: '(min-width: 1281px)'
   })
@@ -23,7 +26,7 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
     return matcapTexture;
   }, []);
 
-  const [ref] = useBox(() => ({
+  const [ref, api] = useBox(() => ({
     mass,
     position: [offset, offsetY, offsetZ],
     args: [text ? text.length * 0.2 : 0, 0.2, 0.1],
@@ -33,6 +36,20 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
   const onCollider = () => {
   
   }
+
+  useEffect(()=>{
+    if(typingValue == true){
+      switch (text) {
+        case '.':
+          api.velocity.set(0, 2, 0)
+          break;
+      
+        default:
+          break;
+      }
+      
+    }
+  },[typingValue, text])
 
   if (!text) {
     return null;

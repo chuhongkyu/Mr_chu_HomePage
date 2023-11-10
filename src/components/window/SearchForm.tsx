@@ -7,6 +7,8 @@ import { IList } from "utils/interface";
 import { ITheme } from "utils/theme";
 import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
+import { useRecoilState } from "recoil";
+import { typing } from "atoms";
 
 const Form = styled(motion.div)`
     margin-top: 20rem;
@@ -90,6 +92,8 @@ const SearchForm = () => {
     const [value, setValue] = useState<any>()
     const [isOpen, setOpen] = useState<boolean>(false)
     const [items, setItems] = useState<IList[]>([])
+    const [typingValue, setTyping] = useRecoilState(typing);
+
     const isMoible = useMediaQuery({
         query: '(min-width: 681px)'
     })
@@ -97,6 +101,10 @@ const SearchForm = () => {
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let data = e.target.value;
         setValue(data);
+    }
+
+    const onKeyDown = () => {
+        setTyping(!typingValue)
     }
 
     const onHandleOpen = () =>{
@@ -132,6 +140,7 @@ const SearchForm = () => {
                 onBlur={onHandleClose}
                 placeholder="검색을 입력하십시오." 
                 maxLength={15}
+                onKeyDown={onKeyDown}
                 type="text" />
             
             <AnimatePresence initial={false}>

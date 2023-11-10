@@ -12,3 +12,8 @@ export const loginAtom = atom({
   default: Boolean(getCookie('login')) ? false : true,
 });
 
+
+export const typing = atom({
+  key: "typing",
+  default: false
+});
