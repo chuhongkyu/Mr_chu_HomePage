@@ -56,6 +56,13 @@ export const GlobalStyle = createGlobalStyle`
     color: ${(props: ITheme) => props.theme.white.lighter};
   }
 
+  h1 {
+    display: block;
+    text-align: left;
+    font-size: max(2.0833vw, 20px);
+    font-weight: 600;
+  }
+
   .font-app{
     text-align: center;
     font-size: max(1vw, 14px);

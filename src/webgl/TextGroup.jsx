@@ -31,7 +31,7 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
   }));
 
   const onCollider = () => {
-   
+  
   }
 
   if (!text) {

@@ -1,5 +1,9 @@
 export interface ITheme {
   theme:{
+    fontFamily: {
+      Montserrat: string;
+      NotoKr: string;
+    },
     black: {
       veryDark: string;
       darker: string;
@@ -29,6 +33,10 @@ export interface ITheme {
 
 
 export const theme = {
+  fontFamily: {
+    Montserrat: "Montserrat",
+    NotoKr: "Noto Sans KR"
+  },
   black: {
     veryDark: "#141414",
     darker: "#181818",

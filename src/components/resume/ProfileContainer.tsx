@@ -92,13 +92,12 @@ const Face = styled.div`
 `;
 
 const Contact = styled(motion.span)`
-  padding: 10px 20px;
+  padding: 1.2rem 1.4rem;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
-  font-weight: 600;
   transition: 0.5s;
   background: linear-gradient(100deg, black 50%, white 50%);
   background-size: 220% 100%;
@@ -107,7 +106,8 @@ const Contact = styled(motion.span)`
   display: flex;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  font-size: 1.6rem;
+  font-weight: 500;
+  font-size: 1.2rem;
   span {
     margin-right: 5px;
     display: flex;

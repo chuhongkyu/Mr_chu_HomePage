@@ -3,6 +3,7 @@ import ReactTooltip from "react-tooltip";
 import ProfileItem from "components/resume/ProfileItem";
 import WindowModal from "components/WindowModal";
 import ProfileContainer from "components/resume/ProfileContainer";
+import { ITheme } from "utils/theme";
 
 
 const env = process.env;
@@ -32,12 +33,8 @@ const MainContainer = styled.div`
   &::-webkit-scrollbar-track {
     background: transparent /*스크롤바 뒷 배경 색상*/
   }
-  h1 {
-    display: block;
-    text-align: left;
-    font-family: "Montserrat", sans-serif;
-    font-size: max(2.0833vw, 20px);
-    font-weight: 600;
+  h1{
+    font-family: ${(props:ITheme) => props.theme.fontFamily.Montserrat} ;
     margin-bottom: max(1.2500vw, 1.5px);
   }
   @media ${(props) => props.theme.device.mac} {

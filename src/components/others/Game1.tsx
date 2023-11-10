@@ -28,7 +28,7 @@ const Wrapper = styled.section`
   }
 `
 
-const Title = styled.h1`
+const Title = styled.h3`
     font-size: 25px;
     margin-bottom: 20px;    
 `
@@ -50,7 +50,7 @@ const TextBox = styled.div`
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 30px;
-  h2 {
+  h5 {
     font-size: 32px;
     margin-bottom: 12px;
   }
@@ -75,7 +75,7 @@ const TextBox = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     margin-bottom: 10px;
-    h2 {
+    h5 {
       font-size: 18px;
     }
     .sub_title {
@@ -139,7 +139,7 @@ const Game1 = () => {
                 <BigIcon style={{ backgroundImage: `url(${env.PUBLIC_URL}/assets/app01.jpg)`,}}/>
               </a>
             <TextBox>
-              <h2>서랍속 슬라임</h2>
+              <h5>서랍속 슬라임</h5>
               <div className="sub_title"><span className="green">캐쥬얼</span></div>
               <div className="sub_title"><span>광고 포함 /</span></div>
               <GameText>

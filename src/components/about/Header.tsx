@@ -20,14 +20,9 @@ const Wrapper = styled(motion.div)`
     align-items: center;
     padding: 20px 0;
     position: relative;
-  }
-  h1 {
-    font-size: max(2.0833vw, 20px);
-    color: #000;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    font-weight: 600;
-    display: block;
+    h1{
+      text-align: center;
+    }
   }
   @media ${(props) => props.theme.device.tablet} {
     padding: 0 10px;
@@ -69,21 +64,6 @@ const Header = (props:IData) => {
     <Wrapper>
         <div className="content">
             <h1>{title}</h1>
-            {/* {icon ? 
-            <GoogleDrive
-              href="https://drive.google.com/file/d/1GBtYmWO3Dw3DPwlRyOvbq2YMOoeOr0Tm/view?usp=share_link"
-              target="_blank"
-              initial={{ y: 0, scale: 1 }}
-              whileHover={{ y: -10, scale: 1.2 }}
-            >
-              <img
-                  src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw"
-                  alt="drive"
-              />
-              <p>자기소개.pdf</p>
-            </GoogleDrive> 
-            : null } */}
-            
         </div>
     </Wrapper>
   )

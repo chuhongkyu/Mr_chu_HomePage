@@ -27,7 +27,7 @@ const Container = styled(motion.div)`
     height: 40px;
     margin-right: 5px;
   }
-  h1 {
+  p {
     white-space: nowrap;
   }
 `;
@@ -41,7 +41,7 @@ const Alert = () => {
     >
       <div>
         <img src={env.PUBLIC_URL + "/assets/img/memo.png"} alt="memo" />
-        <h1>이메일 복사 되었습니다.</h1>
+        <p>이메일 복사 되었습니다.</p>
       </div>
     </Container>
   );
