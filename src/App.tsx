@@ -33,9 +33,10 @@ function App() {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Meta />
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/home" element={<Home />} />
+          <Route index path="/" element={<Index />} />
+
+          {/* <Route path="/*" element={<NotFound />} /> */}
+          <Route path="/*" element={<Home />} />
           <Route path="/home/*" element={<Home />} />
         </Routes>
       </BrowserRouter>
