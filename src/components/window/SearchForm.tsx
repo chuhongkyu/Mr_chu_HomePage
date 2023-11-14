@@ -9,6 +9,7 @@ import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { typing } from "atoms";
+import { Link } from "react-router-dom";
 
 const Form = styled(motion.div)`
     margin-top: 20rem;
@@ -112,7 +113,9 @@ const SearchForm = () => {
     }
 
     const onHandleClose = () =>{
-        setOpen(false)
+        setTimeout(()=>{
+            setOpen(false)
+        },500)
     }
 
     useEffect(() => {
@@ -154,7 +157,7 @@ const SearchForm = () => {
                         open: { height: "auto" },
                         collapsed: { height: 0 }
                     }}
-                    transition={{ duration: 0 }}
+                    transition={{ duration: 0.2 }}
                 >
                     <Suspense fallback={null}>
                     {items.length > 0 ? items?.map((item, i)=>{
@@ -163,7 +166,7 @@ const SearchForm = () => {
                         }
                         return(
                             <Item key={i + "key_List"}>
-                                <a href={item.link && item.link} target="_blank" rel="noreferrer noopener">
+                                <Link to={`/home/detail/${item.id}`}>
                                     <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
                                         {isMoible ? (
                                         <>
@@ -181,7 +184,7 @@ const SearchForm = () => {
                                     </b>
                                     
                                     <p>{item.company}</p>
-                                </a>
+                                </Link>
                             </Item>
                         )
                     })

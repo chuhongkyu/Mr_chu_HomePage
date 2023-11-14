@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import AppWrapper from "components/window/AppWrapper";
 import { useMediaQuery } from "react-responsive";
 import SearchForm from "components/window/SearchForm";
+import Detail from "./Detail";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -65,6 +66,7 @@ const Home = () => {
               <Route path="github" element={<GitHub />} />
               <Route path="game_app" element={<Others />} />
               <Route path="project" element={<Project />} />
+              <Route path="detail/:id" element={<Detail />} />
             </Routes>
           </AnimatePresence>
           {isMoible ? <WindowBar/> : null}

@@ -5,7 +5,6 @@ import ProjectSwiper from "components/project/ProjectSwiper";
 const Wrapper = styled.div`
   overflow: hidden;
   padding-top: 30px;
-  font-family: 'Noto Sans KR', sans-serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar{

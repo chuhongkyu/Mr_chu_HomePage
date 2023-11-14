@@ -1,6 +1,10 @@
 interface IList {
     keyword?: string;
 }
+
+export interface IDetail {
+    id?: string;
+}
   
 const getProjectList = ({ keyword }: IList = {}) => {
     let url = 'https://developed-heath-mr-chu.koyeb.app/api/get/projectList';
@@ -20,5 +24,23 @@ const getProjectList = ({ keyword }: IList = {}) => {
         });
 };
 
-export { getProjectList };
+const getProjectDetail = async ({ id }: IDetail) => {
+    const url = `http://developed-heath-mr-chu.koyeb.app/api/get/projectDetail/${id}`;
+  
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('프로젝트 상세 정보를 불러오는 데 실패했습니다.');
+      }
+  
+      const data = await response.json();
+      console.log('프로젝트 상세 정보:', data.project);
+      return data;
+    } catch (error) {
+      console.error('에러:', error);
+      return null;
+    }
+};
+
+export { getProjectList, getProjectDetail };
   
