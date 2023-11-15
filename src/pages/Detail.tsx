@@ -7,6 +7,9 @@ import "prismjs/themes/prism-tomorrow.css";
 import { NotionRenderer } from 'react-notion';
 
 const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   overflow-y: scroll;
   padding-top: 50px;
   -ms-overflow-style: none;
