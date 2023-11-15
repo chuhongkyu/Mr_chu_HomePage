@@ -2,11 +2,13 @@ import WindowModal from "components/WindowModal";
 import { Suspense, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getProjectDetail } from "utils/api";
+import "react-notion/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
+import { NotionRenderer } from 'react-notion';
 
 const Wrapper = styled.div`
-  overflow: hidden;
-  padding-top: 30px;
+  overflow-y: scroll;
+  padding-top: 50px;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar{
@@ -23,41 +25,42 @@ const Wrapper = styled.div`
   }
 `;
 
-const H5 = styled.h5`
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 135%;
-`
+export const NotionPage = ({ notionData }:any) => {
+  return (
+      <NotionRenderer blockMap={notionData} />
+  );
+};
 
 
 const Detail = () => {
   const { id } = useParams();
+
   const [projectDetail, setProjectDetail] = useState<any | null>(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getProjectDetail({ id });
-        if (data) {
-          setProjectDetail(data.project);
-        }
+        const response = await fetch(`https://notion-api.splitbee.io/v1/page/${id}`);
+        const data = await response.json();
+        setProjectDetail(data);
       } catch (error) {
         console.error('프로젝트 상세 정보를 불러오는 데 에러 발생:', error);
       }
     };
 
     fetchData();
-  },[id])
+  }, [id]);
 
-  useEffect(()=>{ console.log(projectDetail)},[projectDetail])
+  // useEffect(()=>{ console.log(projectDetail)},[projectDetail])
 
     return (
       <WindowModal bgColor="#fafafa">
         <Wrapper>
-          <Suspense fallback={null}>
-            <H5></H5>
-          </Suspense>
+        {projectDetail && (
+          <div style={{ maxWidth: 768 }}>
+            <NotionRenderer blockMap={projectDetail} />
+          </div>
+        )}
         </Wrapper>
       </WindowModal>
     );

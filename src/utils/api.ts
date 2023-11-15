@@ -5,9 +5,9 @@ interface IList {
 export interface IDetail {
     id?: string;
 }
-  
+
 const getProjectList = ({ keyword }: IList = {}) => {
-    let url = 'https://developed-heath-mr-chu.koyeb.app/api/get/projectList';
+    let url = 'https://developed-heath-mr-chu.koyeb.app/api/notion/projectList';
     if (keyword) {
         url += `?keyword=${keyword}`;
     }
@@ -25,7 +25,7 @@ const getProjectList = ({ keyword }: IList = {}) => {
 };
 
 const getProjectDetail = async ({ id }: IDetail) => {
-    const url = `http://developed-heath-mr-chu.koyeb.app/api/get/projectDetail/${id}`;
+    const url = `https://developed-heath-mr-chu.koyeb.app/api/get/projectDetail/${id}`;
   
     try {
       const response = await fetch(url);
@@ -34,8 +34,8 @@ const getProjectDetail = async ({ id }: IDetail) => {
       }
   
       const data = await response.json();
-      console.log('프로젝트 상세 정보:', data.project);
       return data;
+
     } catch (error) {
       console.error('에러:', error);
       return null;

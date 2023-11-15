@@ -17,13 +17,13 @@ const Tools = (props:{ text: string }) => {
     const determineBadgeColor = (text: string): string => {
         let color
         switch (text) {
-            case 'react':
+            case '리액트':
                 color = 'rgb(46,142,214)'
                 break;
-            case 'next.js':
+            case 'NEXT.js':
                 color = 'rgb(29, 29, 29)'
                 break;
-            case 'ts':
+            case 'TS':
                 color = 'rgb(48, 119, 196)'
                 break;
             case 'vite':
@@ -32,7 +32,7 @@ const Tools = (props:{ text: string }) => {
             case 'redux':
                 color = 'rgb(118, 74, 188)'
                 break;
-            case 'js':
+            case 'JS':
                 color = 'rgb(238,188,17)'
                 break;
             case 'scss':

@@ -166,23 +166,17 @@ const SearchForm = () => {
                         }
                         return(
                             <Item key={i + "key_List"}>
-                                <Link to={`/home/detail/${item.id}`}>
+                                <Link to={`/home/detail/${item.id.replace(/-/g, '')}`}>
                                     <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
                                         {isMoible ? (
                                         <>
-                                            {item.tools.length >= 3 ? item.tools.slice(0,3).map((el, i)=>{
-                                                return(
-                                                    <Tools key={i + "key badge"} text={el}/>
-                                                )
-                                            }) : 
-                                            item.tools.map((el)=>{
+                                            {item.tools.map((el, i)=>{
                                                 return(
                                                     <Tools key={i + "key badge"} text={el}/>
                                                 )
                                             })}
                                         </>)  : null}
                                     </b>
-                                    
                                     <p>{item.company}</p>
                                 </Link>
                             </Item>
