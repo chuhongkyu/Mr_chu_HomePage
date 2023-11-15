@@ -1,5 +1,5 @@
 import WindowModal from "components/WindowModal";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import "react-notion/src/styles.css";
@@ -29,10 +29,10 @@ const Wrapper = styled.div`
 `;
 
 const NotionWrapper = styled.div`
-  max-width: 768px;
+  max-width: 1024px;
   @media ${(props) => props.theme.device.tablet} {
     padding: 0 2rem;
-    max-width: 680px;
+    max-width: 740px;
   }
 `;
 
