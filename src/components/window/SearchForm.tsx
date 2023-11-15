@@ -161,7 +161,7 @@ const SearchForm = () => {
                 >
                     <Suspense fallback={null}>
                     {items.length > 0 ? items?.map((item, i)=>{
-                        if(i > 5){
+                        if(i >= 5){
                             return
                         }
                         return(
