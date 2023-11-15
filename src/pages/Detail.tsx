@@ -25,6 +25,14 @@ const Wrapper = styled.div`
   }
 `;
 
+const NotionWrapper = styled.div`
+  max-width: 768px;
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 0 2rem;
+    max-width: 680px;
+  }
+`;
+
 export const NotionPage = ({ notionData }:any) => {
   return (
       <NotionRenderer blockMap={notionData} />
@@ -57,9 +65,9 @@ const Detail = () => {
       <WindowModal bgColor="#fafafa">
         <Wrapper>
         {projectDetail && (
-          <div style={{ maxWidth: 768 }}>
+          <NotionWrapper >
             <NotionRenderer blockMap={projectDetail} />
-          </div>
+          </NotionWrapper >
         )}
         </Wrapper>
       </WindowModal>
