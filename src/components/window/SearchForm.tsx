@@ -141,7 +141,7 @@ const SearchForm = () => {
                 onChange={onChange} 
                 onKeyUp={onHandleOpen}
                 onBlur={onHandleClose}
-                placeholder="검색을 입력하십시오." 
+                placeholder="키워드를 검색하세요. ex)리액트" 
                 maxLength={15}
                 onKeyDown={onKeyDown}
                 type="text" />
@@ -162,25 +162,22 @@ const SearchForm = () => {
                     <Suspense fallback={null}>
                     {items.length > 0 ? items?.map((item, i)=>{
                         if(i >= 5){
-                            return
+                            return null
+                        }else{
+                            return(
+                                <Item key={i + "key_List"}>
+                                    <Link to={`/home/detail/${item.id.replace(/-/g, '')}`}>
+                                        <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
+                                            {isMoible ? (
+                                            <>
+                                                {item.tools? <Tools key={"key badge"} text={item.tools[0]}/> : null}
+                                            </>)  : null}
+                                        </b>
+                                        <p>{item.company}</p>
+                                    </Link>
+                                </Item>
+                            )
                         }
-                        return(
-                            <Item key={i + "key_List"}>
-                                <Link to={`/home/detail/${item.id.replace(/-/g, '')}`}>
-                                    <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
-                                        {isMoible ? (
-                                        <>
-                                            {item.tools.map((el, i)=>{
-                                                return(
-                                                    <Tools key={i + "key badge"} text={el}/>
-                                                )
-                                            })}
-                                        </>)  : null}
-                                    </b>
-                                    <p>{item.company}</p>
-                                </Link>
-                            </Item>
-                        )
                     })
                     : (
                         <Item>
