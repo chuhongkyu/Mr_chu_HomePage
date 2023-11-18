@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { ITheme } from "utils/theme"
 
 const Badge = styled(motion.span)`
-    padding: 0.1rem 0.6rem;
+    padding: 0.1rem 0.6rem 0.18rem;
+    border-radius: 25px;
+    font-size: 13px;
+    line-height: 130%;
     color: ${(props:ITheme) => props.theme.white.lighter};
     background: ${(props:ITheme) => props.theme.blue};
-    &:first-of-type{
-        margin-left: 1rem;
-    }
 `
 
 const Tools = (props:{ text: string }) => {

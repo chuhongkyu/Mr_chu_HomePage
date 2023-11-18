@@ -10,6 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { typing } from "atoms";
 import { Link } from "react-router-dom";
+import SearchKeyword from "./SearchKeyword";
 
 const Form = styled(motion.div)`
     margin-top: 20rem;
@@ -61,10 +62,10 @@ const SearchIcon = styled(motion.span)`
 const SearchPanel = styled(motion.div)`
     width: 100%;
     height: 40vh;
-    padding: 10px 42px;
+    padding: 10px 0;
     background-color:${(props:ITheme) => props.theme.white.lighter};
     @media ${(props) => props.theme.device.mobile} {
-        padding: 10px 22px;
+        padding: 10px 0;
     }
 `
 
@@ -72,7 +73,7 @@ const Item = styled.div`
     width: 100%;
     font-size: 16px;
     line-height: 125%;
-    padding: 1rem 0;
+    padding: 0.8rem 42px;
     background-color: ${(props:ITheme) => props.theme.white.lighter};
     a{
         display: flex;
@@ -80,13 +81,22 @@ const Item = styled.div`
         align-items: center;
     }
     b{
-        font-weight: 500;
+        display: flex;
+        p{
+            font-weight: 500;
+            padding-right: 1rem;
+        }
     }
     p{
 
     }
+    &:hover{
+        background-color: ${(props:ITheme) => props.theme.white.darker};
+    }
+    @media ${(props) => props.theme.device.mobile} {
+        padding: 0.8rem 22px;
+    }
 `;
-
 
 
 const SearchForm = () => {
@@ -160,6 +170,7 @@ const SearchForm = () => {
                     transition={{ duration: 0.2 }}
                 >
                     <Suspense fallback={null}>
+                    {/* <SearchKeyword/> */}
                     {items.length > 0 ? items?.map((item, i)=>{
                         if(i >= 5){
                             return null
@@ -167,7 +178,8 @@ const SearchForm = () => {
                             return(
                                 <Item key={i + "key_List"}>
                                     <Link to={`/home/detail/${item.id.replace(/-/g, '')}`}>
-                                        <b>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }
+                                        <b>
+                                            <p>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }</p>
                                             {isMoible ? (
                                             <>
                                                 {item.tools? <Tools key={"key badge"} text={item.tools[0]}/> : null}
