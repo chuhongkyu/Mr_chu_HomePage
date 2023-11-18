@@ -86,7 +86,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
             </g>
           </Svg>
         );
-      case "game_app":
+      case "unity":
         return (
           <Svg
             xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +195,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
           <p className="font-app">{title}</p>
         </a>      
       :
-      <Link to={`/home/${pathUrl}`}>
+      <Link to={`/home/${pathUrl == 'unity' ? 'game_app' : pathUrl}`}>
         {choosePage()}
         <p className="font-app">{title === "project" ? "Project Toy" : title.toUpperCase()}</p>
       </Link>}

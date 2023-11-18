@@ -33,15 +33,12 @@ const Wrapper = styled.section`
 const Description = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  @media ${(props) => props.theme.device.mobile} {
-    justify-content: space-around;
-  }
+  gap: 2rem;
 `;
 
 const TextBox = styled.div`
-  width: 50%;
+  width: calc(100% - 200px);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -72,6 +69,7 @@ const TextBox = styled.div`
   }
   @media ${(props) => props.theme.device.mobile} {
     margin-bottom: 10px;
+    width: calc(100% - 100px);
     h2 {
       font-size: 18px;
     }
@@ -109,10 +107,6 @@ const BigIcon = styled.img`
 `;
 
 const GameText = styled.div`
-  font-size: 14px;
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 11px;
-  }
 `;
 
 const ScreenShot = styled.img`

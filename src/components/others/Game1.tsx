@@ -36,15 +36,15 @@ const Title = styled.h3`
 const Description = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
   align-items: center;
   @media ${(props) => props.theme.device.mobile} {
-    justify-content: space-around;
+    
   }
 `;
 
 const TextBox = styled.div`
-  width: 50%;
+  width: calc(100% - 200px);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -74,6 +74,7 @@ const TextBox = styled.div`
     }
   }
   @media ${(props) => props.theme.device.mobile} {
+    width: calc(100% - 100px);
     margin-bottom: 10px;
     h5 {
       font-size: 18px;
@@ -112,10 +113,6 @@ const BigIcon = styled.img`
 `;
 
 const GameText = styled.div`
-  font-size: 14px;
-  @media ${(props) => props.theme.device.mobile} {
-    font-size: 11px;
-  }
 `;
 
 const ScreenShot = styled.img`
@@ -138,20 +135,20 @@ const Game1 = () => {
               <a href="https://slimeinthedrawer.netlify.app" target="_blank" rel="noreferrer">
                 <BigIcon style={{ backgroundImage: `url(${env.PUBLIC_URL}/assets/app01.jpg)`,}}/>
               </a>
-            <TextBox>
-              <h5>서랍속 슬라임</h5>
-              <div className="sub_title"><span className="green">캐쥬얼</span></div>
-              <div className="sub_title"><span>광고 포함 /</span></div>
-              <GameText>
-                <p>
-                  서랍속 슬라임은 레벨이 15까지 있는 단순한 게임입니다. 슬라임들이
-                  서로 부딪히지 않게 움직여 제한 시간을 버티면 클리어 입니다.
-                  슬라임 캐릭터 마다 움직임과 특징이 존재합니다. 구글 애드몹 보상
-                  광고를 통한 수익 방식을 가집니다.
-                </p>
-              </GameText>
-            </TextBox>
-          </Description>
+              <TextBox>
+                <h5>서랍속 슬라임</h5>
+                <div className="sub_title"><span className="green">캐쥬얼</span></div>
+                <div className="sub_title"><span>광고 포함 /</span></div>
+                <GameText>
+                  <p>
+                    서랍속 슬라임은 레벨이 15까지 있는 단순한 게임입니다. 슬라임들이
+                    서로 부딪히지 않게 움직여 제한 시간을 버티면 클리어 입니다.
+                    슬라임 캐릭터 마다 움직임과 특징이 존재합니다. 구글 애드몹 보상
+                    광고를 통한 수익 방식을 가집니다.
+                  </p>
+                </GameText>
+              </TextBox>
+            </Description>
           <Swiper 
             slidesPerView={2.2}
             spaceBetween={10}

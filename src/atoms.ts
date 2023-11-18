@@ -3,7 +3,7 @@ import { getCookie } from "utils/helper";
 
 export const appList = atom({
   key: "app",
-  default: ["resume", "about", "github", "project", "game_app"],
+  default: ["resume", "about", "github", "project", "unity"],
 });
 
 
