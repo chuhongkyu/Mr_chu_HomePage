@@ -4,7 +4,7 @@
 - 매번 홈페이지를 관리하기에 부담을 느낌
 - 노션 데이터 베이스 api 활용하기로함.
 - api/get/projectList => api/notion/projectList 변경
-- 프론트에서 page id로 노션에 page 블록 데이터를 얻고 그것을 마크다운으로 리액트로 보여줌
+- 프론트에서 page id로 노션에 page 블록 데이터를 얻고 그것을 마크다운으로 받아 리액트에서 보여줌
 
 ----
 
