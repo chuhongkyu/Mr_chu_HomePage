@@ -34,7 +34,7 @@ const NotFound = () =>{
     return (
         <Wrapper>
             <h5>Not Found</h5>
-            <Link to="/">Go home</Link>
+            <Link to="/home">Go home</Link>
         </Wrapper>
     )
 }

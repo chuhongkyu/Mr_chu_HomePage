@@ -1,5 +1,5 @@
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useNavigate, useLocation } from "react-router-dom";
 import Home from "pages/Home";
 import Meta from "utils/Meta";
 import NotFound from "NotFound";
@@ -17,6 +17,14 @@ function App() {
 
     document.documentElement.style.setProperty('--dynamic-font-size', `${dynamicFontSize}px`);
   };
+  const navigate = useNavigate();
+  const location = useLocation()
+
+  useEffect(() => {
+    if(location.pathname == '/'){
+      navigate("/home")
+    }
+  }, [location]);
 
   useEffect(() => {
     handleResize();
@@ -30,16 +38,8 @@ function App() {
   return (
     <HelmetProvider>
       <Webgl/>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Meta />
-        <Routes>
-          <Route index path="/" element={<Index />} />
-
-          {/* <Route path="/*" element={<NotFound />} /> */}
-          <Route path="/*" element={<Home />} />
-          <Route path="/home/*" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
+      <Meta />
+      <Outlet/>
     </HelmetProvider>
   );
 }
