@@ -34,22 +34,7 @@ const Wrapper = styled(motion.div)`
     }
     @media ${(props) => props.theme.device.mobile} {
         padding-top: 10px;
-        .title{
-            padding: 0 0 20px;
-        }
-        .content{
-            font-size: 16px;
-            padding-bottom: 15px;
-            text-align: left;
-            &.type1{
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: left;
-                padding-bottom: 15px;
-            }
-        }
+       
     }
 `;
 
