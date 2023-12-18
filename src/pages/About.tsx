@@ -10,6 +10,7 @@ import ContentOne from "components/about/ContentOne";
 import ContentTwo from "components/about/ContentTwo";
 import ContentThree from "components/about/ContentThree";
 import ContentFour from "components/about/ContentFour";
+import ContentFive from "components/about/ContentFive";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -171,6 +172,9 @@ const About = () => {
           </ContentContainer>
           <ContentContainer id={category[3].id} ref={(element)=> categoryRefs.current[3] = element}>
             <ContentFour/>
+          </ContentContainer>
+          <ContentContainer id={category[4].id} ref={(element)=> categoryRefs.current[4] = element}>
+            <ContentFive/>
           </ContentContainer>
         </RightContainer>
       </MainContainer>

@@ -11,7 +11,6 @@ const ParallaxContainer = styled.div`
   overflow-x: hidden;
   width: 100%;
   height: max(21.8750vw, 380px);
-  padding: 0 max(1.5625vw, 20px);
   .swiper-wrapper{
     width: 100%;
     .swiper-slide{
@@ -24,9 +23,6 @@ const ParallaxContainer = styled.div`
         margin-right: 0px;
       }
     }
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    padding: 0;
   }
 `;
 

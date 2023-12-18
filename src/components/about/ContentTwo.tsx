@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import Parallax1 from "components/about/Parallax1";
+import { TextGroup } from "./ContentContainer";
 
 const Wrapper = styled(motion.div)`
     width: 100%;
@@ -9,91 +10,27 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
-    /* padding-bottom: max(8.333vw, 120px); */
-    .title{
-        font-size: max(1.6667vw, 32px);
-        font-weight: 500;
-        line-height: 1.5;
-        letter-spacing: -0.02em;
-        padding: max(5.208vw, 80px) 0;
-    }
-    .content{
-        font-size: max(1.25vw, 22px);
-        font-weight: 500;
-        line-height: 1.8;
-        letter-spacing: -0.02em;
-        padding-bottom: max(8.333vw, 120px);
-        text-align: center;
-        &.type1{
-            font-size: max(1.25vw, 16px);
-            font-weight: 500;
-            line-height: 1.5;
-            letter-spacing: -0.02em;
-            text-align: left;
-            padding-bottom: 0;
-        }
-        &.type2{
-            width: 100%;
-            padding: 0 50px;
-            .sub_title{
-                font-size: max(1.25vw, 22px);
-                font-weight: 600;
-                line-height: 1.8;
-                letter-spacing: -0.02em;
-                text-align: left;
-                padding-bottom: 20px;
-            }
-            .description{
-                font-size: max(1.25vw, 16px);
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: left;
-            }
-        }
-    }
-    @media ${(props) => props.theme.device.mobile} {
-        padding-top: 10px;
-        .title{
-            padding: 0 0 20px;
-        }
-        .content{
-            font-size: 16px;
-            padding-bottom: 15px;
-            text-align: left;
-            &.type1{
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: left;
-                padding-bottom: 15px;
-            }
-            &.type2{
-                padding : 0;
-            }
-        }
-    }
 `;
 
 const ContentTwo = () => {
   return (
     <Wrapper>
-        <div className="title">
-            개발자는 문재해결을 하는 것이다.
-        </div>
-        <div className="content type2">
-            <div className="sub_title">
-                캐릭터 홍보 사이트 (버디즈)
+        <TextGroup>
+            <div className="title">
+                어떻게 하면 소통을 잘할 수 있나요?
             </div>
             <div className="description">
-                마포구청에서 일할 때 참여한 프로젝트 입니다. 2022 캐릭터 라이션싱 페어에 마포구 버디즈를 홍보하기 위해 홈페이지를 만들게 되었습니다.
-                귀여운 캐릭터들 소개와 함께 이메일 js를 통해 이메일과 이름을 입력하면 행운의 편지가 가는 시스템을 구현 하였습니다. 리액트를 통해 처음으로 CSR 렌더링으로 이루어진 프로젝트 입니다.
-                혼자서 개발을 하다보면 기획자나 디자이너와의 소통이 매우 중요하다는 것을 느꼈습니다. 여러 요구사항이 추가되는 상황에서도 합의를 이루어내기 위해서는 서로의 의견을 듣고 조율할 수 있는 능력이 필요합니다. 
-                이를 위해서는 노션을 통해 일정을 짜고 기획자와 디자이너에게 주기적으로 작업을 공유 하였습니다.
+            아무래도 웹에이전시에 다녔던 저는 여러 고객사의 다양한 유형의 기획자, 디자이너분들과 소통을 한 경험이 많습니다. 그때마다 저는 소통이 잘 되는 사람으로 평가되는 것 같습니다. 하지만 누군가 저에게 '어떻게 하면 소통을 잘할 수 있나요?' 라고 물어본다면 어떻게 대답해야 할지 고민이 됩니다.
+            그래서 질문에 대답하기 위해서 소통 관련 인프콘 컨퍼런스, it 서적 등을 참고하며 어떻게 하면 소통을 잘할 수 있는가?에 대해 고민해 봤습니다.<br/><br/>
+            제가 내린 결론은 우리는 <b>'문제 해결을 위해 모여서 일하고 있다'</b>는 것을 기억해야한다는 것입니다.<br/><br/>
+            기획자가 개발자에게 일을 더 많이 시키려고 기획을 추가하는 것이 아니고 디자이너가 개발자를 고생시키기 위해서 어려운 디자인을 하는 것이 아닙니다.
+            모두 좋은 서비스를 만들기 위해서 나아가는 것입니다. 마찬가지로 개발자가 안된다고 말하는 이유는 하기 싫어서가 아니라 UX 적으로 기획적으로 이상하기 때문일 것입니다.
+            그렇기 때문에 우리는 그것이 왜 안되는지 설명해 줄 수 있는 개발자가 되어야 합니다.<br/><br/>
+            기획자의 요청에 맡게 변경하기가 어려운 개발이 있습니다. 그럴 때는 어려운 이유와 실행할시 걸리는 공수를 설명하고 다른 방향을 제시해야 합니다. 물론, 다른 방향을 제시할 수 없다면 일정을 잡고 침착하게 일을 진행해야 합니다.<br/><br/>
+            기획자의 말뜻을 알아들을 수가 없을 때가 있습니다. 그럴 때 “00님 제가 이해한 바로는 7월 31일까지 프로젝트 상품 카테고리 추가 건 진행하고 개발서버에만 배포하는 것이 맞을까요?“재차 확인 요청하는 방식은 굉장히 유용하고 실수를 사전에 줄일 수 있습니다.
             </div>
-        </div>
-        <Parallax1/>
+       
+        </TextGroup>
     </Wrapper>
   )
 };

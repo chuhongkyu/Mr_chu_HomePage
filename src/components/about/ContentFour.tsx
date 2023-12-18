@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { TextGroup } from "./ContentContainer";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -11,119 +12,29 @@ const Wrapper = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 100px;
-    /* padding-bottom: max(8.333vw, 120px); */
-    .title{
-        font-size: max(1.6667vw, 20px);
-        font-weight: 500;
-        line-height: 1.5;
-        letter-spacing: -0.02em;
-        padding: max(5.208vw, 80px) 0;
-    }
-    .content{
-        font-size: max(1.25vw, 22px);
-        font-weight: 500;
-        line-height: 1.8;
-        letter-spacing: -0.02em;
-        padding-bottom: max(8.333vw, 120px);
-        text-align: center;
-        &.type1{
-            font-size: max(1.25vw, 16px);
-            font-weight: 500;
-            line-height: 1.5;
-            letter-spacing: -0.02em;
-            text-align: left;
-            padding-bottom: 0;
-        }
-        &.type2{
-            width: 100%;
-            padding: 0 50px;
-            .sub_title{
-                font-size: max(1.25vw, 22px);
-                font-weight: 600;
-                line-height: 1.8;
-                letter-spacing: -0.02em;
-                text-align: left;
-                padding-bottom: 20px;
-            }
-            .description{
-                font-size: max(1.25vw, 16px);
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: left;
-                b{
-                    font-weight: 600;
-                }
-                .box{
-                    margin: 1rem 20px;
-                    background: #333;
-                    padding: 10px;
-                    color: #fff;
-                    font-size: 12px;
-                    line-height: 180%;
-                }
-            }
-        }
-    }
-    @media ${(props) => props.theme.device.mobile} {
-        padding-top: 10px;
-        .title{
-            padding: 0 0 10px;
-        }
-        .content{
-            font-size: 16px;
-            padding-bottom: 15px;
-            text-align: left;
-            &.type1{
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: left;
-                padding-bottom: 15px;
-            }
-            &.type2{
-                padding : 0;
-            }
-        }
-    }
 `;
 
 const ContentFour = () => {
   return (
     <Wrapper>
-        <div className="content type2">
-            <div className="sub_title">
-                반응형 코딩에 대한 생각
+      <TextGroup>
+            <div className="title">
+              본인의 성장이 팀의 성장
             </div>
             <div className="description">
-                웹 개발자에게는 반응형 코딩은 언제나 가장 힘든 부분입니다. Z플립과 같은 다양한 기기, 삼성브라우저, 사파리같은 다양한 브라우저들로 인해 웹 개발이 굉장히 힘들어지고 있습니다.
-                롯데 백화점 리뉴얼 당시 앱 조차도 웹 뷰로 제작 되기 때문에 고려해야 할 사항이 굉장히 많았습니다.<br/>
-                이러한 반응형 웹이 웹 개발자들을 고생시키지만 그로 인해 웹 개발자들은 파워를 얻는다고 생각합니다.<br/>
-                <br/>
-                롯데 백화점 리뉴얼 시에는 앱쪽의 화면의 css나 js가변처리가 초기시점에 잡히지 않는 경우들이 있었다. 
-                영역을 체크하는 함수의 시작 시점이 늦거나 css가 디바이스마다 다를 경우에 디버깅을 통해 해결해야 한다.<br/>
-                <br/>
-                우리는 구글 크롬에서 지원하는 <b>chrome://inspect/#devices</b> 와 <b>사파리</b>를 통해 모든 디바이스를 체크 할 수 있다.<br/>
-                <br></br>
-                PC 웹은 일정이상 비율이 줄어도 폰트와 스타일이 줄어 들지 않는 스타일링이 좋다고 생각합니다. 따라서 css를 rem과 고정 px를 통해 작성하고 max,min을 잡는 것이 중요하다고 생각합니다.<br/>
-                <div className="box">
-                    - 최소 최소값을 잡자. max(8.333vw, 120px);<br/>
-                    - 파이어폭스, 크롬, 엣지등 다양한 브라우저를 신경쓰자.
-                </div>
-                <br></br>
-                MOW, 앱과 같은 모바일 환경은 js를 통해 화변비율에 따른 가변처리를 먼저하고 css로 스타일링을 하는 것이 좋다고 생각합니다. con(30px) 이러한 방식은 디자이너가 정한 px를 개발자들이 쉽게 반영할 수 있습니다.
-                <div className="box">
-                    - js를 통한 가변처리를 하자. con(30px)<br/>
-                    - 스크롤, 주소창을 신경쓰자<br/>
-                    - ios, android에 따른 차이를 조심하자<br/>
-                    - Z폴더, Z플립등의 폰을 포기하지말고 최소한의 방식으로라도 고려하자<br/>
-                </div>
-                타블렛은 최대한 모바일 형식에 가깝게 하자.
+              2022년 마포구청 청년 일자리 사업단에서 근무할 때 프론트 3명과 리액트 스터디 주도해서 한 적이 있습니다. 방식은 (벨로퍼트 리액트) 강의 자료를 토대로 일주일에 두 번씩 실습한 코드를 서로 리뷰합니다. 또한 알게 된 점을 발표하고 서로 질의응답하는 시간을 가집니다. 이렇게 스터디를 해보면서 알게 된 점은 두 가지였습니다.
+              <br/><br/>
+              첫 번째는 학습 효과입니다. 발표를 해야 하는 책임감은 공부를 대충 할 수 없게 해주고 이해하지 못했던 부분들은 팀원들과 나누면서 알 수 있게 됩니다.
+              <br/>두 번째는 선택과 집중입니다. 리액트뿐만 아니라 웹에 대해서도 아직 부족한 사람들끼리 모였기 때문에 사람들은 같은 강의 자료를 봐도 관심사가 다르게 공부해 온다는 것입니다. 이것은 폭이 넓어져서 단점일 수도 있겠지만 저한테는 전부 공부할 수 있게 되어 오히려 좋았습니다.
+              <br/>
+              이렇게 스터디를 같이 진행한 팀원들과 구청에서 두 가지 프로젝트를 나누어 진행할 때 프론트단 일을 잘 수행할 수 있었습니다.
             </div>
-            
-        </div>
+            <div className="description">
+              더즈인터랙티브 회사를 다니면서도 주말에 three.js로 마리오 “개발자의 삶”이라는 프로젝트를 진행하였습니다. n년차를 주사위로 고르고 다음 페이지에서 n년차를 url파라미터로 받아서 마리오 캐릭터를 마우스로 움직이면서 개발자의 삶을 탐험하며 버섯을 3개 모으는 인터랙티브한 페이지입니다. 간단한 로직이었지만 좋은 기회로 패스트 캠퍼스에서 react-three-fiber 강의 제의를 받았습니다. 처음에는 부족한 제가 강의를 해도 되나 걱정이 많았습니다. 
+              <br/><br/>
+              그 걱정을 없애기 위해서 잘 모르는 부분을 공부하고 발표자료를 만들고 코드의 순서를 나누다 보니 더 좋은 개발자로 한걸음 나아갈 수있게 된것 같습니다. 그리고 알게된 지식들을 사람들에게 언제나 나누었습니다. 이러한 과정은 제가 회사를 다니면서 강의 준비를 하면서도 팀내에 긍정인 영향을 끼치게 하였습니다.
+            </div>
+        </TextGroup>
     </Wrapper>
   )
 };

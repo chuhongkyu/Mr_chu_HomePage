@@ -1,24 +1,27 @@
 export const aboutData = [
     {
       id: "0",
-      name: "간단한 소개",
+      name: "간단한 자기소개",
       active: true,
-      content: "dd"
     },
     {
       id: "1",
-      name: "마포구청",
+      name: "어떻게 하면 소통을 잘할 수 있나요?",
       active: false,
-      content: "dd"
     },
     {
       id: "2",
-      name: "성능 최적화",
+      name: "성능 최적화 경험",
       active: false,
     },
     {
       id: "3",
-      name: "반응형 코딩에 대한 생각",
+      name: "나의 성장 => 팀 성장",
       active: false,
-    }
+    },
+    {
+      id: "4",
+      name: "3D 개발: 나의 여정",
+      active: false,
+    },
   ]
