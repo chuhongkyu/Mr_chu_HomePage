@@ -32,7 +32,7 @@ export const routerInfo = [
                   element: <GitHub />,
               },
               {
-                  path: "gampe_app",
+                  path: "game_app",
                   element: <Others />,
               },
               {
