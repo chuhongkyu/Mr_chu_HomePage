@@ -10,7 +10,6 @@ import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { typing } from "atoms";
 import { Link } from "react-router-dom";
-import SearchKeyword from "./SearchKeyword";
 
 const Form = styled(motion.div)`
     margin-top: 20rem;
@@ -128,30 +127,35 @@ const SearchForm = () => {
         },500)
     }
 
+    const fetchData = async () => {
+        try {
+          const newItems = await getProjectList({ keyword: value });
+          if (newItems) {
+            setItems(newItems.project);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-              const newItems = await getProjectList({ keyword: value });
-              if (newItems) {
-                setItems(newItems.project);
-              }
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-        
-          fetchData();
+        fetchData();
     }, [value]);
+
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        fetchData();
+    }
     
     return(
-        <Form transition={{duration: 0.5, ease:"easeInOut"}}>
+        <Form transition={{duration: 0.5, ease:"easeInOut"}} onSubmit={onSubmit}>
             <SearchIcon/>
             <input 
                 onFocus={onHandleOpen}
                 onChange={onChange} 
                 onKeyUp={onHandleOpen}
                 onBlur={onHandleClose}
-                placeholder="키워드를 검색하세요. ex)리액트" 
+                placeholder="ex) 리액트" 
                 maxLength={15}
                 onKeyDown={onKeyDown}
                 type="text" />
