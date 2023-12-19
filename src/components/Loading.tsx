@@ -29,8 +29,8 @@ const Load = styled.div`
         margin: 8px;
         border-radius: 50%;
         animation: ${rotation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border: 3px solid rgb(46,142,214);
-        border-color:rgb(46,142,214)  transparent transparent transparent;
+        border: 3px solid rgb(76, 77, 77);
+        border-color:rgb(76, 77, 77)  transparent transparent transparent;
     }
     & div:nth-child(1) {
         animation-delay: -0.45s;
@@ -47,7 +47,7 @@ type LoadingProps = {
     point: string;
 };
 
-const Loading = ({point}:LoadingProps) =>{
+const Loading = () =>{
     return(
         <Load>
             <div></div>
@@ -57,9 +57,5 @@ const Loading = ({point}:LoadingProps) =>{
         </Load>
     )
 }
-
-Loading.defaultProps = {
-    point: 'rgb(46,142,214)'
-};
 
 export default Loading

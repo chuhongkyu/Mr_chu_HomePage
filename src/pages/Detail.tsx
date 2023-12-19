@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import "react-notion/src/styles.css";
 import "prismjs/themes/prism-tomorrow.css";
-import { NotionRenderer } from 'react-notion';
+import { BlockMapType, NotionRenderer } from 'react-notion';
+import Loading from "components/Loading";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,6 +29,15 @@ const Wrapper = styled.div`
   }
 `;
 
+const LoadingWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`
+
 const NotionWrapper = styled.div`
   max-width: 1024px;
   @media ${(props) => props.theme.device.tablet} {
@@ -40,7 +50,8 @@ const NotionWrapper = styled.div`
   }
 `;
 
-export const NotionPage = ({ notionData }:any) => {
+
+export const NotionPage = ( notionData : BlockMapType) => {
   return (
       <NotionRenderer blockMap={notionData} />
   );
@@ -50,7 +61,7 @@ export const NotionPage = ({ notionData }:any) => {
 const Detail = () => {
   const { id } = useParams();
 
-  const [projectDetail, setProjectDetail] = useState<any | null>(null);
+  const [projectDetail, setProjectDetail] = useState<BlockMapType | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,16 +77,20 @@ const Detail = () => {
     fetchData();
   }, [id]);
 
-  // useEffect(()=>{ console.log(projectDetail)},[projectDetail])
-
     return (
       <WindowModal bgColor="#fafafa">
         <Wrapper>
-        {projectDetail && (
-          <NotionWrapper >
-            <NotionRenderer blockMap={projectDetail} />
-          </NotionWrapper >
-        )}
+          {projectDetail ? (
+            <NotionWrapper >
+              <NotionRenderer blockMap={projectDetail} />
+            </NotionWrapper >
+          ) : 
+          (
+          <LoadingWrapper>
+            <Loading/>
+          </LoadingWrapper>
+          )
+          } 
         </Wrapper>
       </WindowModal>
     );

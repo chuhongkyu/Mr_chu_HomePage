@@ -30,7 +30,7 @@ const Form = styled(motion.div)`
         background-color: transparent;
         outline: none;
         font-size: 16px;
-        padding: 1px 42px;
+        padding: 1px 42px 1px 47px ;
         height: 42px;
         &:focus{
             outline: none;
@@ -53,7 +53,7 @@ const SearchIcon = styled(motion.span)`
     position: absolute;
     left: 18px;
     top: 11px;
-    background-image: url('/assets/img/search.png');
+    background-image: url('/assets/img/notion.png');
     @media ${(props) => props.theme.device.mobile} {
         left: initial;
         right: 10px;
