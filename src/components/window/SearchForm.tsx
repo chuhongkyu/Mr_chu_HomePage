@@ -10,6 +10,8 @@ import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { typing } from "atoms";
 import { Link } from "react-router-dom";
+import Loading from "webgl/Loading";
+import { useDebounce } from "utils/hooks";
 
 const Form = styled(motion.div)`
     margin-top: 20rem;
@@ -99,10 +101,11 @@ const Item = styled.div`
 
 
 const SearchForm = () => {
-    const [value, setValue] = useState<any>()
+    const [value, setValue] = useState<string>('')
     const [isOpen, setOpen] = useState<boolean>(false)
     const [items, setItems] = useState<IList[]>([])
     const [typingValue, setTyping] = useRecoilState(typing);
+    const debouncedSearchText = useDebounce(value, 500);
 
     const isMoible = useMediaQuery({
         query: '(min-width: 681px)'
@@ -129,7 +132,7 @@ const SearchForm = () => {
 
     const fetchData = async () => {
         try {
-          const newItems = await getProjectList({ keyword: value });
+          const newItems = await getProjectList({ keyword: debouncedSearchText });
           if (newItems) {
             setItems(newItems.project);
           }
@@ -139,13 +142,19 @@ const SearchForm = () => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, [value]);
+        if(debouncedSearchText.length > 0){
+            fetchData();
+        }
+    }, [debouncedSearchText]);
 
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         fetchData();
     }
+
+    useEffect(()=>{
+        fetchData();
+    },[])
     
     return(
         <Form transition={{duration: 0.5, ease:"easeInOut"}} onSubmit={onSubmit}>
@@ -173,7 +182,7 @@ const SearchForm = () => {
                     }}
                     transition={{ duration: 0.2 }}
                 >
-                    <Suspense fallback={null}>
+                    <Suspense fallback={<Loading/>}>
                     {/* <SearchKeyword/> */}
                     {items.length > 0 ? items?.map((item, i)=>{
                         if(i >= 5){
