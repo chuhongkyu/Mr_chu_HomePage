@@ -1,11 +1,9 @@
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Routes, Route, Outlet, useNavigate, useLocation } from "react-router-dom";
-import Home from "pages/Home";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Meta from "utils/Meta";
-import NotFound from "NotFound";
-import Index from "pages/Index";
-import { useEffect } from "react";
-import Webgl from "webgl/Webgl";
+import { lazy, useEffect } from "react";
+
+const LazyWebgl = lazy(() => import("webgl/Webgl"));
 
 
 function App() {
@@ -37,7 +35,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <Webgl/>
+      <LazyWebgl/>
       <Meta />
       <Outlet/>
     </HelmetProvider>
