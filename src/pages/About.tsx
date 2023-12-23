@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "components/about/Header";
 import { CaegoryItems, CategoryItem } from "components/about/CategoryItem";
 import ContentContainer from "components/about/ContentContainer";

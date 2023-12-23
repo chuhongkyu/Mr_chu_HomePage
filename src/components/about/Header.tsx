@@ -33,26 +33,6 @@ const Wrapper = styled(motion.div)`
   }
 `;
 
-
-const GoogleDrive = styled(motion.a)`
-    position: absolute;
-    right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    p {
-      font-size: 11px;
-    }
-    img {
-      width: 50px;
-      height: auto;
-    }
-  @media ${(props) => props.theme.device.tablet} {
-    display: none;
-  }
-`;
-
 interface IData {
   title: string;
   icon: boolean;

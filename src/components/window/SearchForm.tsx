@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, {  Suspense, useState } from "react";
+import React, {  Suspense, useCallback, useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { getProjectList } from "utils/api";
@@ -130,22 +130,23 @@ const SearchForm = () => {
         },500)
     }
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
-          const newItems = await getProjectList({ keyword: debouncedSearchText });
-          if (newItems) {
-            setItems(newItems.project);
-          }
+            const newItems = await getProjectList({ keyword: debouncedSearchText });
+            if (newItems) {
+                setItems(newItems.project);
+            }
         } catch (error) {
-          console.error('Error fetching data:', error);
+            console.error('Error fetching data:', error);
         }
-    };
+    }, [debouncedSearchText, setItems]);
+    
 
     useEffect(() => {
         if(debouncedSearchText.length > 0){
             fetchData();
         }
-    }, [debouncedSearchText]);
+    }, [debouncedSearchText, fetchData]);
 
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -154,7 +155,7 @@ const SearchForm = () => {
 
     useEffect(()=>{
         fetchData();
-    },[])
+    },[fetchData])
     
     return(
         <Form transition={{duration: 0.5, ease:"easeInOut"}} onSubmit={onSubmit}>

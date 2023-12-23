@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Parallax1 from "components/about/Parallax1";
 import { TextGroup } from "./ContentContainer";
 
 const Wrapper = styled(motion.div)`

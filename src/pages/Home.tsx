@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import WindowBar from "components/WindowBar";
-import { Outlet, useLocation, useOutlet } from "react-router-dom";
+import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 import { getParam } from "utils/helper";
 import { useEffect, useState } from "react";
