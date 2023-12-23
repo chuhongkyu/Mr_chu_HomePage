@@ -25,7 +25,7 @@ const getProjectList = ({ keyword }: IList = {}) => {
 };
 
 const getProjectDetail = async ({ id }: IDetail) => {
-    const url = `https://developed-heath-mr-chu.koyeb.app/api/get/projectDetail/${id}`;
+    const url = `https://notion-api.splitbee.io/v1/page/${id}`;
   
     try {
       const response = await fetch(url);

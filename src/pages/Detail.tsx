@@ -6,6 +6,7 @@ import "react-notion/src/styles.css";
 import "prismjs/themes/prism-tomorrow.css";
 import { BlockMapType, NotionRenderer } from 'react-notion';
 import Loading from "components/Loading";
+import { getProjectDetail } from "utils/api";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -66,8 +67,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://notion-api.splitbee.io/v1/page/${id}`);
-        const data = await response.json();
+        const data = await getProjectDetail({ id });
         setProjectDetail(data);
       } catch (error) {
         console.error('프로젝트 상세 정보를 불러오는 데 에러 발생:', error);

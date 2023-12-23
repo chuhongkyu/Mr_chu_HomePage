@@ -67,6 +67,7 @@ const AddAppBtn = ()=>{
         if(folder.length < 8) {
             setFolder([...folder, value])
         }
+        setPlus(true)
     }
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{

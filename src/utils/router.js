@@ -43,6 +43,10 @@ export const routerInfo = [
                  path: "detail/:id",
                  element: <Detail />,
               },
+              {
+                path: "*",
+                element: <Home />,
+              },
             ]
         },
       ]
