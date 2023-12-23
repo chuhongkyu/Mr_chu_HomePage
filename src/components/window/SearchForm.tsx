@@ -7,8 +7,6 @@ import { IList } from "utils/interface";
 import { ITheme } from "utils/theme";
 import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
-import { useRecoilState } from "recoil";
-import { typing } from "atoms";
 import { Link } from "react-router-dom";
 import Loading from "webgl/Loading";
 import { useDebounce } from "utils/hooks";
@@ -104,7 +102,6 @@ const SearchForm = () => {
     const [value, setValue] = useState<string>('')
     const [isOpen, setOpen] = useState<boolean>(false)
     const [items, setItems] = useState<IList[]>([])
-    const [typingValue, setTyping] = useRecoilState(typing);
     const debouncedSearchText = useDebounce(value, 500);
 
     const isMoible = useMediaQuery({
@@ -114,10 +111,6 @@ const SearchForm = () => {
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let data = e.target.value;
         setValue(data);
-    }
-
-    const onKeyDown = () => {
-        setTyping(!typingValue)
     }
 
     const onHandleOpen = () =>{
@@ -167,7 +160,6 @@ const SearchForm = () => {
                 onBlur={onHandleClose}
                 placeholder="ex) 리액트" 
                 maxLength={15}
-                onKeyDown={onKeyDown}
                 type="text" />
             
             <AnimatePresence initial={false}>
