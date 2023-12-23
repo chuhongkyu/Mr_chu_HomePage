@@ -18,7 +18,7 @@ const Grond = ()=> {
     return(
         <mesh ref={ref}>
             <planeGeometry args={[10,10]}/>
-            <meshStandardMaterial color='white' opacity={0} transparent/>
+            <meshBasicMaterial color='white' opacity={0} transparent/>
         </mesh>
     )
 }

@@ -171,7 +171,7 @@ const Mobil3DComponent = ({ text, textPosition, mat }) => {
 export function TextGroup() {
     const matcapTexture = useMemo(() => {
       const textureLoader = new TextureLoader();
-      const matcapTexture = textureLoader.load(`/assets/matcap/white.png`);
+      const matcapTexture = textureLoader.load(`/assets/matcap/white.webp`);
       return matcapTexture;
     }, []);
 
