@@ -1,0 +1,41 @@
+{
+  "glyphs": {
+    "M": {
+      "ha": 1184,
+      "x_min": 109,
+      "x_max": 1076,
+      "o": "m 255 982 l 586 174 l 598 174 l 929 982 l 1076 982 l 1076 0 l 960 0 l 960 742 l 951 742 l 646 0 l 537 0 l 232 742 l 224 742 l 224 0 l 109 0 l 109 982 l 255 982 z "
+    },
+    "r": {
+      "ha": 486,
+      "x_min": 94,
+      "x_max": 465,
+      "o": "m 94 736 l 206 736 l 206 624 l 214 624 q 287 715 235 681 q 404 749 339 749 q 465 746 438 749 l 465 628 q 437 633 458 631 q 395 636 415 636 q 301 614 343 636 q 235 552 259 591 q 210 464 210 513 l 210 0 l 94 0 l 94 736 z "
+    },
+    ".": {
+      "ha": 353,
+      "x_min": 90,
+      "x_max": 263,
+      "o": "m 176 -8 q 133 4 153 -8 q 101 37 113 16 q 90 80 90 57 q 101 123 90 103 q 133 155 113 144 q 176 167 153 167 q 220 155 199 167 q 252 123 240 144 q 263 80 263 103 q 252 37 263 57 q 220 4 240 16 q 176 -8 199 -8 z "
+    },
+    "C": {
+      "ha": 963,
+      "x_min": 71,
+      "x_max": 901,
+      "o": "m 779 673 q 725 786 765 739 q 627 857 685 833 q 505 882 570 882 q 343 836 415 882 q 230 703 271 791 q 189 491 189 614 q 230 279 189 368 q 343 146 271 191 q 505 100 415 100 q 627 125 570 100 q 724 196 684 149 q 779 308 765 243 l 901 308 q 827 137 883 210 q 688 25 772 64 q 505 -14 605 -14 q 280 48 378 -14 q 126 224 182 110 q 71 491 71 339 q 126 758 71 644 q 280 934 182 872 q 505 996 378 996 q 688 957 604 996 q 827 846 772 918 q 901 673 883 773 l 779 673 z "
+    },
+    "h": {
+      "ha": 781,
+      "x_min": 94,
+      "x_max": 688,
+      "o": "m 210 0 l 94 0 l 94 982 l 210 982 l 210 621 l 220 621 q 300 713 247 681 q 437 746 353 746 q 570 715 514 746 q 657 623 627 685 q 688 468 688 560 l 688 0 l 571 0 l 571 460 q 551 558 571 517 q 492 621 530 600 q 401 642 454 642 q 303 618 346 642 q 235 550 260 595 q 210 442 210 505 l 210 0 z "
+    },
+    "u": {
+      "ha": 768,
+      "x_min": 94,
+      "x_max": 674,
+      "o": "m 559 736 l 674 736 l 674 0 l 559 0 l 559 125 l 551 125 q 467 28 522 65 q 332 -9 412 -9 q 208 22 262 -9 q 124 115 155 53 q 94 269 94 178 l 94 736 l 210 736 l 210 277 q 231 186 210 225 q 288 125 251 146 q 370 103 324 103 q 458 125 415 103 q 530 193 502 148 q 559 302 559 239 l 559 736 z "
+    }
+  },
+  "familyName":"Pretendard Variable","ascender":1322,"descender":-335,"underlinePosition":-175,"underlineThickness":94,"boundingBox":{"yMin":-408,"xMin":-1013,"yMax":1473,"xMax":3703},"resolution":1000,"original_font_information":{"format":0,"copyright":"Copyright © 2022 Kil Hyung-jin","fontFamily":"Pretendard Variable","fontSubfamily":"Regular","uniqueID":"1.307;CTUS;PretendardVariable","fullName":"Pretendard Variable","version":"Version 1.307;Glyphs 3.2 (3192)","postScriptName":"PretendardVariable-Regular","trademark":"Pretendard is a trademark of Kil Hyung-jin; Inter UI and Inter is a trademark of rsms; Source is a trademark of Adobe in the United States and/or other countries.","manufacturer":"Kil Hyung-jin","designer":"Base glyphs from Inter by Rasmus Andersson; Hangul glyphs from Noto Sans CJK(Source Han Sans) by Jang Soo-young and Kang Joo-yeon, Sandoll Communications; Kana glyphs from M PLUS 1p by Coji Morishita, UNDERFOREST DESIGN; Combined and redesigned to Pretendard by Kil Hyung-jin.","manufacturerURL":"https://orioncactus.com/","designerURL":"https://orioncactus.com/","licence":"This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL","licenceURL":"http://scripts.sil.org/OFL","preferredFamily":"Pretendard Variable","preferredSubfamily":"Regular","unknown1":"PretendardVariable","unknown2":"Weight","unknown3":"Thin","unknown4":"PretendardVariable-Thin","unknown5":"ExtraLight","unknown6":"PretendardVariable-ExtraLight","unknown7":"Light","unknown8":"PretendardVariable-Light","unknown9":"Medium","unknown10":"PretendardVariable-Medium","unknown11":"SemiBold","unknown12":"PretendardVariable-SemiBold","unknown13":"Bold","unknown14":"PretendardVariable-Bold","unknown15":"ExtraBold","unknown16":"PretendardVariable-ExtraBold","unknown17":"Black","unknown18":"PretendardVariable-Black","unknown19":"Italic","unknown20":"Straight-sided six and nine","unknown21":"Open four","unknown22":"Vertically centered colon","unknown23":"Korean localization","unknown24":"High legibility","unknown25":"One storey a","unknown26":"Flat-top three","unknown27":"Medium symbols","unknown28":"Outlined symbols","unknown29":"Circle symbols","unknown30":"Square symbols","unknown31":"Filled symbols","unknown32":"Small symbols","unknown33":"Large symbols","unknown34":"Alternate one","unknown35":"Alternate one","unknown36":"Open four","unknown37":"Open four","unknown38":"Open six","unknown39":"Open six","unknown40":"Open nine","unknown41":"Open nine","unknown42":"Lower-case L with tail","unknown43":"Lower-case L with tail","unknown44":"Alternate German double s","unknown45":"Alternate German double s","unknown46":"Upper-case i with serif","unknown47":"Upper-case i with serif","unknown48":"Flat-top three","unknown49":"Flat-top three","unknown50":"Captital G with spur","unknown51":"Captital G with spur","unknown52":"Single-storey a","unknown53":"Single-storey a","unknown54":"Vertically centered ellipsis","unknown55":"Vertically centered ellipsis","unknown56":"High legibility one","unknown57":"High legibility one"},"cssFontWeight":"normal","cssFontStyle":"normal"
+}

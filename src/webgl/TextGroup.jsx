@@ -7,9 +7,9 @@ import { useMediaQuery } from "react-responsive";
 import { useRecoilValue } from "recoil";
 import { typing } from "atoms";
 
-const fontUrl = '/assets/fonts/Pretendard.json'
+const fontUrl = '/assets/fonts/Pretendard_MrChu.json'
 
-const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
+const Letter = ({ offset, offsetY, offsetZ, text, mat }) => {
   const { width: w, height: h } = useThree((state) => state.viewport);
   const typingValue = useRecoilValue(typing)
   const isDeskTop = useMediaQuery({
@@ -20,14 +20,8 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
     query: '(min-width: 681px)'
   })
 
-  const matcapTexture = useMemo(() => {
-    const textureLoader = new TextureLoader();
-    const matcapTexture = textureLoader.load(`/assets/matcap/white.png`);
-    return matcapTexture;
-  }, []);
-
   const [ref, api] = useBox(() => ({
-    mass,
+    mass: 10,
     position: [offset, offsetY, offsetZ],
     args: [text ? text.length * 0.2 : 0, 0.2, 0.1],
     onCollide: onCollider
@@ -58,7 +52,6 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
   return (
     <mesh ref={ref}>
       <Text3D
-        castShadow
         font={fontUrl} 
         color="white"
         size={isMobile ? w / 15 : 0.4}
@@ -67,17 +60,17 @@ const Letter = ({ offset, offsetY, offsetZ, mass = 1, text }) => {
         bevelEnabled
         bevelSize={isDeskTop ? 0.08 : 0.05}
         bevelThickness={isDeskTop ? 0.03 : 0.02}
-        height={isDeskTop ? 0.5 : 0.3} //두께
+        height={isDeskTop ? 0.5 : 0.3}
         letterSpacing={0.1}
       >
         {text}
-        <meshMatcapMaterial matcap={matcapTexture} />
+        <meshMatcapMaterial matcap={mat} />
       </Text3D>
     </mesh>
   );
 };
 
-const Text3DComponent = ({ text, textPosition, mass }) => {
+const Text3DComponent = ({ text, textPosition, mat }) => {
   const isDeskTop = useMediaQuery({
     query: '(min-width: 1281px)'
   })
@@ -102,7 +95,7 @@ const Text3DComponent = ({ text, textPosition, mass }) => {
                 offset={textPosition.x + idx * spacing.first}
                 offsetY={textPosition.y + idx}
                 offsetZ={textPosition.z}
-                mass={mass}
+                mat={mat}
                 text={letter}
               />
           )
@@ -113,7 +106,7 @@ const Text3DComponent = ({ text, textPosition, mass }) => {
                 offset={isDeskTop ? textPosition.x + idx * spacing.second : textPosition.x + idx * spacing.second - 0.7}
                 offsetY={textPosition.y + idx}
                 offsetZ={textPosition.z}
-                mass={mass}
+                mat={mat}
                 text={letter}
               />
           )
@@ -124,7 +117,7 @@ const Text3DComponent = ({ text, textPosition, mass }) => {
                 offset={textPosition.x + idx * spacing.third -0.5}
                 offsetY={textPosition.y + idx}
                 offsetZ={textPosition.z}
-                mass={mass}
+                mat={mat}
                 text={letter}
               />
           )
@@ -135,7 +128,7 @@ const Text3DComponent = ({ text, textPosition, mass }) => {
               offset={textPosition.x + idx * spacing.fourth}
               offsetY={textPosition.y + idx}
               offsetZ={textPosition.z}
-              mass={mass}
+              mat={mat}
               text={letter}
             />)
         }
@@ -144,7 +137,7 @@ const Text3DComponent = ({ text, textPosition, mass }) => {
   );
 };
 
-const Mobil3DComponent = ({ text, textPosition, mass }) => {
+const Mobil3DComponent = ({ text, textPosition, mat }) => {
   return (
     <group>
       {text.split('').map((letter, idx) => {
@@ -155,8 +148,8 @@ const Mobil3DComponent = ({ text, textPosition, mass }) => {
                 offset={textPosition.x + idx * 0.6}
                 offsetY={textPosition.y + idx}
                 offsetZ={textPosition.z}
-                mass={mass}
                 text={letter}
+                mat={mat}
               />
           )
         }else{
@@ -166,8 +159,8 @@ const Mobil3DComponent = ({ text, textPosition, mass }) => {
               offset={textPosition.x + idx * 0.5}
               offsetY={textPosition.y + idx}
               offsetZ={textPosition.z}
-              mass={mass}
               text={letter}
+              mat={mat}
             />)
         }
       })}
@@ -176,13 +169,19 @@ const Mobil3DComponent = ({ text, textPosition, mass }) => {
 };
 
 export function TextGroup() {
+    const matcapTexture = useMemo(() => {
+      const textureLoader = new TextureLoader();
+      const matcapTexture = textureLoader.load(`/assets/matcap/white.png`);
+      return matcapTexture;
+    }, []);
+
     const isMobile = useMediaQuery({
       query: '(min-width: 681px)'
     })
     return (
       <Center position={[0,7,0]}>
-       {isMobile ? <Text3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 4, z: 0 }} mass={10} /> :
-        <Mobil3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 3, z: 0 }} mass={10} />
+       {isMobile ? <Text3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 4, z: 0 }} mat={matcapTexture} /> :
+        <Mobil3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 3, z: 0 }} mat={matcapTexture} />
        }
       </Center>
     );
