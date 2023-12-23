@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${FontUrl}NotoSansKR400.woff2) format("woff2");
     font-weight: 400;
     font-style: normal;
+    font-display: swap; 
   }
 
   @font-face {
@@ -19,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${FontUrl}NotoSansKR500.woff2) format("woff2");
     font-weight: 500;
     font-style: normal;
+    font-display: swap; 
   }
 
   @font-face {
@@ -26,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${FontUrl}NotoSansKR700.woff2) format("woff2");
     font-weight: 700;
     font-style: normal;
+    font-display: swap; 
   }
 
   @font-face {
@@ -33,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${FontUrl}Montserrat-SemiBold.woff) format("woff");
     font-weight: 600;
     font-style: normal;
+    font-display: swap; 
   }
 
   body {
