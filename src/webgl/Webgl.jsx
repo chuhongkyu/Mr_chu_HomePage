@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import Scene from "./Scene"
-import { Physics } from "@react-three/cannon";
 import Loading from "./Loading";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
@@ -25,11 +24,10 @@ const Webgl = () => {
                 isMoible ? { position: [0,0, 11.5], fov: 45} : 
                 { position: [0,0, 10], fov: 45}
                 }>
-                <Physics broadphase="Naive" gravity={[0, -9.8, 0]} allowSleep>
+               
                     <Suspense fallback={<Loading/>}>
                         <Scene/>
                     </Suspense>
-                </Physics>
             </Canvas>
         </Wrapper>
     )

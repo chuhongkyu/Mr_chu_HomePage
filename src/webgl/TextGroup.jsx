@@ -1,26 +1,27 @@
-import { useMemo, useRef } from "react";
-import { useBox } from "@react-three/cannon";
+import { useMemo } from "react";
 import { Text3D } from "@react-three/drei";
 import { TextureLoader } from "three";
+import { motion } from "framer-motion-3d"
+import { useMediaQuery } from "react-responsive";
 
 const fontUrl = '/assets/fonts/Pretendard_MrChu.json'
 
-const Letter = ({ offset, offsetY, offsetZ, text, mat }) => {
+const Letter = ({ offsetX, offsetY, offsetZ, text, mat }) => {
 
-  const [ref] = useBox(() => ({
-    mass: 10,
-    position: [offset-2.8, offsetY, offsetZ],
-    args: [text ? text.length * 0.2 : 0, 0.2, 0.1],
-  }),useRef(null));
+  const isMoible = useMediaQuery({
+    query: '(min-width: 681px)'
+  })
 
   if (!text) {
     return null;
   }
 
   return (
-    <mesh ref={ref}>
+    <motion.mesh 
+      initial={{x: offsetX, y: offsetY, z:offsetZ}}
+      animate={isMoible ? {y: 2, transition:{ duration: 0.45}}: {y: 1, transition:{ duration: 0.5}}}
+      >
       <Text3D
-        position-x={-0.5}
         font={fontUrl} 
         color="white"
         size={1}
@@ -35,7 +36,7 @@ const Letter = ({ offset, offsetY, offsetZ, text, mat }) => {
         {text}
         <meshMatcapMaterial matcap={mat} />
       </Text3D>
-    </mesh>
+    </motion.mesh>
   );
 };
 
@@ -53,8 +54,8 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
           return(
             <Letter
                 key={idx}
-                offset={textPosition.x + idx * spacing.first}
-                offsetY={textPosition.y + idx}
+                offsetX={textPosition.x + idx * spacing.first}
+                offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
                 mat={mat}
                 text={letter}
@@ -64,8 +65,8 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
           return(
             <Letter
                 key={idx}
-                offset={textPosition.x + idx * spacing.second}
-                offsetY={textPosition.y + idx}
+                offsetX={textPosition.x + idx * spacing.second}
+                offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
                 mat={mat}
                 text={letter}
@@ -75,8 +76,8 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
           return(
             <Letter
                 key={idx}
-                offset={textPosition.x + idx * spacing.third -0.5}
-                offsetY={textPosition.y + idx}
+                offsetX={textPosition.x + idx * spacing.third -0.5}
+                offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
                 mat={mat}
                 text={letter}
@@ -86,8 +87,8 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
           return(
             <Letter
               key={idx}
-              offset={textPosition.x + idx * spacing.fourth}
-              offsetY={textPosition.y + idx}
+              offsetX={textPosition.x + idx * spacing.fourth}
+            offsetY={textPosition.y + idx/2}
               offsetZ={textPosition.z}
               mat={mat}
               text={letter}
@@ -106,7 +107,7 @@ const TextGroup = () => {
     }, []);
 
     return (
-      <Text3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 4, z: 0 }} mat={matcapTexture} />
+      <Text3DComponent text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={matcapTexture} />
     );
 }
 

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.88.11",
     "@react-three/fiber": "^8.15.10",
     "@testing-library/jest-dom": "^5.17.0",
@@ -20,6 +19,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "framer-motion": "^6.3.4",
+    "framer-motion-3d": "^10.16.16",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.0",
     "react-device-detect": "^2.2.3",

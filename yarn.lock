@@ -1572,11 +1572,6 @@
     "schema-utils" "^3.0.0"
     "source-map" "^0.7.3"
 
-"@pmndrs/cannon-worker-api@^2.4.0":
-  "integrity" "sha512-oJA1Bboc+WObksRaGDKJG0Wna9Q75xi1MdXVAZ9qXzBOyPsadmAnrmiKOEF0R8v/4zsuJElvscNZmyo3msbZjA=="
-  "resolved" "https://registry.npmjs.org/@pmndrs/cannon-worker-api/-/cannon-worker-api-2.4.0.tgz"
-  "version" "2.4.0"
-
 "@react-spring/animated@~9.6.1":
   "integrity" "sha512-ls/rJBrAqiAYozjLo5EPPLLOb1LM0lNVQcXODTC1SMtS6DbuBCPaKco5svFUQFMP2dso3O+qcC4k9FsKc0KxMQ=="
   "resolved" "https://registry.npmjs.org/@react-spring/animated/-/animated-9.6.1.tgz"
@@ -1622,15 +1617,6 @@
   "integrity" "sha512-POu8Mk0hIU3lRXB3bGIGe4VHIwwDsQyoD1F394OK7STTiX9w4dG3cTLljjYswkQN+hDSHRrj4O36kuVa7KPU8Q=="
   "resolved" "https://registry.npmjs.org/@react-spring/types/-/types-9.6.1.tgz"
   "version" "9.6.1"
-
-"@react-three/cannon@^6.6.0":
-  "integrity" "sha512-lP9rJoVHQi0w+dYF8FJAm2xr5eLfNEckb04j72kjqndUkuOPr26N4rSBhQbHl5b5N3tEnhQaIMungAvHkcY8/A=="
-  "resolved" "https://registry.npmjs.org/@react-three/cannon/-/cannon-6.6.0.tgz"
-  "version" "6.6.0"
-  dependencies:
-    "@pmndrs/cannon-worker-api" "^2.4.0"
-    "cannon-es" "^0.20.0"
-    "cannon-es-debugger" "^1.0.0"
 
 "@react-three/drei@^9.88.11":
   "integrity" "sha512-BEK8t/B0yf4E4iHZ84iD7wAFEazE4gPu2Kywo3UroMAaYg3rA7rOmQh0GOvhTV2+g5/AqS4KJcwOFVnlvBrS5Q=="
@@ -3920,16 +3906,6 @@
   "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001492.tgz"
   "version" "1.0.30001492"
 
-"cannon-es-debugger@^1.0.0":
-  "integrity" "sha512-sE9lDOBAYFKlh+0w+cvWKwUhJef8HYnUSVPWPL0jD15MAuVRQKno4QYZSGxgOoJkMR3mQqxL4bxys2b3RSWH8g=="
-  "resolved" "https://registry.npmjs.org/cannon-es-debugger/-/cannon-es-debugger-1.0.0.tgz"
-  "version" "1.0.0"
-
-"cannon-es@^0.20.0":
-  "integrity" "sha512-eZhWTZIkFOnMAJOgfXJa9+b3kVlvG+FX4mdkpePev/w/rP5V8NRquGyEozcjPfEoXUlb+p7d9SUcmDSn14prOA=="
-  "resolved" "https://registry.npmjs.org/cannon-es/-/cannon-es-0.20.0.tgz"
-  "version" "0.20.0"
-
 "case-sensitive-paths-webpack-plugin@^2.4.0":
   "integrity" "sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw=="
   "resolved" "https://registry.npmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz"
@@ -5796,6 +5772,23 @@
   "version" "0.2.1"
   dependencies:
     "map-cache" "^0.2.2"
+
+"framer-motion-3d@^10.16.16":
+  "integrity" "sha512-5yKU0V5MHmCf/2LDVFV8xiGjf7T4p8qxZe06DSkwCOc0ZmWARfiWRM8tsfz3XzInJ3cOI13RJb3RKtjyKjXXNg=="
+  "resolved" "https://registry.npmjs.org/framer-motion-3d/-/framer-motion-3d-10.16.16.tgz"
+  "version" "10.16.16"
+  dependencies:
+    "framer-motion" "^10.16.16"
+    "react-merge-refs" "^2.0.1"
+
+"framer-motion@^10.16.16":
+  "integrity" "sha512-je6j91rd7NmUX7L1XHouwJ4v3R+SO4umso2LUcgOct3rHZ0PajZ80ETYZTajzEXEl9DlKyzjyt4AvGQ+lrebOw=="
+  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-10.16.16.tgz"
+  "version" "10.16.16"
+  dependencies:
+    "tslib" "^2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
 
 "framer-motion@^6.3.4":
   "integrity" "sha512-FXHqpY23g0MhznXpAf94SyEmUqfw7KoLaCQqTKrjWZgQzMkjvfOgOVYKUA9Dlmys6XGn0qN+AMzjhFJ1N5bH+A=="
@@ -9322,6 +9315,11 @@
   "resolved" "https://registry.npmjs.org/react-merge-refs/-/react-merge-refs-1.1.0.tgz"
   "version" "1.1.0"
 
+"react-merge-refs@^2.0.1":
+  "integrity" "sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag=="
+  "resolved" "https://registry.npmjs.org/react-merge-refs/-/react-merge-refs-2.1.1.tgz"
+  "version" "2.1.1"
+
 "react-notion@^0.10.0":
   "integrity" "sha512-i5lVAxzSs7GnTpIbKtivPQWxGZiKCO5xmCmMJyn6F91y8X1IIJqnypkK+31F2acb1l1Qd8Yv0ktuvXwz9g49NQ=="
   "resolved" "https://registry.npmjs.org/react-notion/-/react-notion-0.10.0.tgz"
@@ -10869,7 +10867,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.0.3", "tslib@^2.1.0":
+"tslib@^2.0.3", "tslib@^2.1.0", "tslib@^2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"
