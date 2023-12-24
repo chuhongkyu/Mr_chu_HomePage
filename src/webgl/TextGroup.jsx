@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { useBox } from "@react-three/cannon";
 import { Text3D } from "@react-three/drei";
 import { TextureLoader } from "three";
@@ -11,7 +11,7 @@ const Letter = ({ offset, offsetY, offsetZ, text, mat }) => {
     mass: 10,
     position: [offset-2.8, offsetY, offsetZ],
     args: [text ? text.length * 0.2 : 0, 0.2, 0.1],
-  }));
+  }),useRef(null));
 
   if (!text) {
     return null;
