@@ -35,7 +35,7 @@ const Form = styled(motion.div)`
         }
     }
     @media ${(props) => props.theme.device.mobile} {
-        margin-top: 23rem;
+        margin-top: 15rem;
         width: 100%;
         input{
             padding: 1px 22px;

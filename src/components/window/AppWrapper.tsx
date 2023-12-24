@@ -8,8 +8,11 @@ import AddAppBtn from "./AddAppBtn";
 const AppContainer = styled.div`
   margin-top: 25rem;
   position: fixed;
-  @media ${(props) => props.theme.device.mobile} {
+  @media ${(props) => props.theme.device.tablet} {
     margin-top: 30rem;
+  }
+  @media ${(props) => props.theme.device.mobile} {
+    margin-top: 22rem;
   }
 `
 
