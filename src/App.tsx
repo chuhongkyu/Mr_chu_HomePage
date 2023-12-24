@@ -19,10 +19,10 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    if(location.pathname == '/'){
+    if(location.pathname === '/'){
       navigate("/home")
     }
-  }, [location]);
+  }, [location, navigate]);
 
   useEffect(() => {
     handleResize();

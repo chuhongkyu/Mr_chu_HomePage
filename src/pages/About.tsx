@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "components/about/Header";
 import { CaegoryItems, CategoryItem } from "components/about/CategoryItem";
 import ContentContainer from "components/about/ContentContainer";
@@ -113,18 +113,20 @@ const About = () => {
     }
   };
 
-  const autoChange = () => {
+  const autoChange = useCallback(() => {
     setCategory(
       category.map((el) => (el.id === currentSection + "" ? { ...el, active: true } : { ...el, active: false }))
     );
-  };
+  },[category, currentSection,]);
 
   useEffect(() => {
     setTitle(category[currentSection].name);
-    console.log(categoryRefs)
-  }, [category]);
+
+  }, [category, currentSection]);
 
   useEffect(() => {
+    const currentRef = rightContainerRef.current;
+
     function onHandlScroll() {
       const scrollPosition = rightContainerRef.current ? rightContainerRef.current.scrollTop + 500 : 0;
       const sectionPositions = categoryRefs.current.map((ref) => (ref ? ref.offsetTop : 0));
@@ -139,12 +141,12 @@ const About = () => {
       }
     }
 
-    rightContainerRef.current?.addEventListener("scroll", onHandlScroll);
+    currentRef?.addEventListener("scroll", onHandlScroll);
 
     return () => {
-      rightContainerRef.current?.removeEventListener("scroll", onHandlScroll);
+      currentRef?.removeEventListener("scroll", onHandlScroll);
     };
-  }, [currentSection]);
+  }, [currentSection, autoChange]);
 
   return (
     <WindowModal bgColor="white">
@@ -159,7 +161,7 @@ const About = () => {
           </CaegoryItems>
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
-          <Header title={title} icon={true} />
+          <Header title={title}/>
           <ContentContainer id={category[0].id} ref={(element)=>categoryRefs.current[0] = element}>
               <ContentOne/>
           </ContentContainer>

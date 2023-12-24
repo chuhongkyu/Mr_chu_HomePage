@@ -186,7 +186,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
 
   return (
     <App>
-      {title == 'github' ? 
+      {title === 'github' ? 
         <a 
         href="https://github.com/chuhongkyu"
         target="_blank"
@@ -195,7 +195,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
           <p className="font-app">{title}</p>
         </a>      
       :
-      <Link to={`/home/${pathUrl == 'unity' ? 'game_app' : pathUrl}`}>
+      <Link to={`/home/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
         {choosePage()}
         <p className="font-app">{title === "project" ? "Project Toy" : title.toUpperCase()}</p>
       </Link>}

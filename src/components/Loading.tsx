@@ -43,10 +43,6 @@ const Load = styled.div`
     }
 `
 
-type LoadingProps = {
-    point: string;
-};
-
 const Loading = () =>{
     return(
         <Load>

@@ -35,11 +35,10 @@ const Wrapper = styled(motion.div)`
 
 interface IData {
   title: string;
-  icon: boolean;
 }
 
 const Header = (props:IData) => {
-  const {title, icon} = props;
+  const {title } = props;
   return (
     <Wrapper>
         <div className="content">

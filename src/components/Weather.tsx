@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 const env = process.env;
@@ -11,7 +11,6 @@ interface ILocation {
     longitude: number;
   }
 }
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,51 +29,27 @@ const WeatherIcon = styled.img`
 `
 
 const Weather = () => {
-  // const [data, setData] = useState<IWeather>();
   const [icon, setIcon] = useState<string>();
 
-  const makeIcon = (type:string ) =>{
-    switch(type){
+  const makeIcon = useCallback((type: string) => {
+    switch (type) {
       case "Clear":
-        setIcon(type.toLowerCase())
-        break;
-      
       case "Clouds":
-        setIcon(type.toLowerCase())
-        break;
-      
       case "Rain":
-        setIcon(type.toLowerCase())
-        break;
-
       case "Snow":
-        setIcon(type.toLowerCase())
-        break;
-
       case "Mist":
-        setIcon(type.toLowerCase())
-        break;
-
       case "Drizzle":
-        setIcon(type.toLowerCase())
-        break;
-
       case "Thunderstorm":
-        setIcon(type.toLowerCase())
+        setIcon(type.toLowerCase());
         break;
 
       default:
-        setIcon("weather")
+        setIcon("weather");
         break;
     }
-  }
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
-    console.log(navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError))
   }, []);
 
-  function onGeoOk(position:ILocation) {
+  const onGeoOk = useCallback((position:ILocation) => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API}&units=metric`;
@@ -90,11 +65,16 @@ const Weather = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }
+  }, [makeIcon]);
 
-  function onGeoError() {
+  const onGeoError = useCallback(() => {
     alert("Can't find you. No weather for you.");
-  }
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
+    // console.log(navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError))
+  }, [onGeoOk, onGeoError]);
   
   return <Wrapper>{icon ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${icon}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
 };
