@@ -3,10 +3,11 @@ import WindowBar from "components/WindowBar";
 import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 import { getParam } from "utils/helper";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import AppWrapper from "components/window/AppWrapper";
 import { useMediaQuery } from "react-responsive";
 import SearchForm from "components/window/SearchForm";
+import Loading from "components/Loading";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -60,9 +61,11 @@ const Home = () => {
             <SearchForm/>
             <AppWrapper/>
           </Window>
-          <AnimatePresence initial={false}>
-            <AnimatedOutlet key={location.pathname} />
-          </AnimatePresence>
+          <Suspense fallback={<Loading/>}>
+            <AnimatePresence initial={false}>
+              <AnimatedOutlet key={location.pathname} />
+            </AnimatePresence>
+          </Suspense>
           {isMoible ? <WindowBar/> : null}
       </Wrapper>
   );

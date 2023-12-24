@@ -1,8 +1,10 @@
 import { HelmetProvider } from "react-helmet-async";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Meta from "utils/Meta";
-import { useEffect } from "react";
-import Webgl from "webgl/Webgl";
+import { lazy, useEffect } from "react";
+
+const LazyWebgl = lazy(() => import("webgl/Webgl"));
+
 
 function App() {
   const handleResize = () => {
@@ -33,7 +35,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <Webgl/>
+      <LazyWebgl/>
       <Meta />
       <Outlet/>
     </HelmetProvider>
