@@ -4,6 +4,7 @@ import { Scene } from "./Scene"
 import { Physics } from "@react-three/cannon";
 import Loading from "./Loading";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,9 +16,15 @@ const Wrapper = styled.div`
 
 
 const Webgl = () => {
+    const isMoible = useMediaQuery({
+        query: '(min-width: 681px)'
+    })
     return(
         <Wrapper>
-            <Canvas camera={{ position: [0,0, 10], fov: 45}}>
+            <Canvas camera={
+                isMoible ? { position: [0,0, 11.5], fov: 45} : 
+                { position: [0,0, 10], fov: 45}
+                }>
                 <Physics broadphase="Naive" gravity={[0, -9.8, 0]} allowSleep>
                     <Suspense fallback={<Loading/>}>
                         <Scene/>
