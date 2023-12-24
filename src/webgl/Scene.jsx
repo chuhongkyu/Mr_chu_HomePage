@@ -1,7 +1,7 @@
-import { TextGroup } from "./TextGroup";
+import TextGroup from "./TextGroup";
 import Ground from './Ground';
 
-function Scene() {
+const Scene = () => {
   return (
     <>
       <TextGroup/>
@@ -10,4 +10,4 @@ function Scene() {
   )
 }
 
-export { Scene };
+export default Scene;

@@ -98,7 +98,7 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
   );
 };
 
-export function TextGroup() {
+const TextGroup = () => {
     const matcapTexture = useMemo(() => {
       const textureLoader = new TextureLoader();
       const matcapTexture = textureLoader.load(`/assets/matcap/white.webp`);
@@ -109,3 +109,5 @@ export function TextGroup() {
       <Text3DComponent text="Mr.Chu" textPosition={{ x: 0, y: 4, z: 0 }} mat={matcapTexture} />
     );
 }
+
+export default TextGroup;

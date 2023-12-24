@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-
 const WeatherIcon = styled.img`
   width: 100%;
   height: 100%;

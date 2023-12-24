@@ -9,7 +9,6 @@ const rotation = keyframes`
   }
 `
 
-
 const Load = styled.div`
     display: inline-block;
     position: relative;

@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Scene } from "./Scene"
+import Scene from "./Scene"
 import { Physics } from "@react-three/cannon";
 import Loading from "./Loading";
 import styled from "styled-components";
