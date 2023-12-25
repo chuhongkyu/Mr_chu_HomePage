@@ -1,13 +1,13 @@
 import App from "App";
 import NotFound from "NotFound";
-import Detail from "pages/Detail";
 import Home from "pages/Home";
-import Others from "pages/Others";
 import Resume from "pages/Resume";
 import { lazy } from "react";
 
 const LazyProject = lazy(() => import('pages/Project'))
 const LazyAbout = lazy(() => import('pages/About'))
+const LazyOthers = lazy(() => import('pages/Others'))
+const LazyDetail = lazy(() => import('pages/Detail'))
 
 export const routerInfo = [
     {
@@ -30,7 +30,7 @@ export const routerInfo = [
               },
               {
                   path: "game_app",
-                  element: <Others />,
+                  element: <LazyOthers />,
               },
               {
                   path: "project",
@@ -38,7 +38,7 @@ export const routerInfo = [
               },
               {
                  path: "detail/:id",
-                 element: <Detail />,
+                 element: <LazyDetail />,
               },
               {
                 path: "*",

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import React, { Suspense } from "react";
-import Loading from "components/Loading";
+import Game1 from "components/others/Game1";
+import Game2 from "components/others/Game2";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -30,18 +30,13 @@ const OnePerson = styled.div`
   }
 `;
 
-const Game1 = React.lazy(()=> import ("components/others/Game1"))
-const Game2 = React.lazy(()=> import ("components/others/Game2"))
-
 const Others = () => {
   return (
     <WindowModal bgColor="white">
-      <Suspense fallback={<Loading/>}>
-        <OnePerson>
-          <Game1/>
-          <Game2/>
-        </OnePerson>
-      </Suspense>
+      <OnePerson>
+        <Game1/>
+        <Game2/>
+      </OnePerson>
     </WindowModal>
   );
 };
