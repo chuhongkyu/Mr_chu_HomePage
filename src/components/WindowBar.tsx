@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Calender from "./Calender";
 import Menu from "./Menu";
 import Weather from "./Weather";
+import Clock from "./Clock";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -101,19 +102,12 @@ function WindowBar() {
   const othersMatch = useMatch("/home/game_app");
   const projectMatch = useMatch("/home/project");
   const githubMatch = useMatch("/home/github");
-  const [time, setTime] = useState(new Date());
+
   const [open, setOpen] = useState(false);
 
   const onHandleCalender = () =>{
     setOpen(!open)
   }
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
 
   return (
     <>
@@ -133,8 +127,8 @@ function WindowBar() {
           {githubMatch && <OpenItem onClick={onExit}>GitHub</OpenItem>}
           {projectMatch && <OpenItem onClick={onExit}>Project</OpenItem>}
         </BarBox>
-        <DateBox>
-          <span className="current_time" onClick={onHandleCalender}>{time.toLocaleTimeString()}</span>
+        <DateBox onClick={onHandleCalender}>
+          <Clock/>
           <Weather />
         </DateBox>
       </Bar>
