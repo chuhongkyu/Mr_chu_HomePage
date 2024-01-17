@@ -6,7 +6,15 @@ import { useMediaQuery } from "react-responsive";
 
 const fontUrl = '/assets/fonts/Pretendard_MrChu.json'
 
-const Letter = ({ offsetX, offsetY, offsetZ, text, mat }) => {
+interface LetterProps {
+  offsetX: number;
+  offsetY: number;
+  offsetZ: number;
+  text: string;
+  mat: THREE.Texture;
+}
+
+const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
 
   const isMoible = useMediaQuery({
     query: '(min-width: 681px)'
@@ -23,10 +31,8 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }) => {
       >
       <Text3D
         font={fontUrl} 
-        color="white"
         size={1}
         curveSegments={24}
-        brevelSegments={1}
         bevelEnabled
         bevelSize={0.08}
         bevelThickness={0.03}
@@ -40,7 +46,13 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }) => {
   );
 };
 
-const Text3DComponent = ({ text, textPosition, mat }) => {
+interface Text3DComponentProps {
+  text: string;
+  textPosition: { x: number; y: number; z: number };
+  mat: THREE.Texture;
+}
+
+const Text3DComponent:React.FC<Text3DComponentProps>  = ({ text, textPosition, mat }) => {
   const spacing = {
     first: 1.2,
     second: 1.16,
@@ -53,7 +65,7 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
         if(letter === '.'){
           return(
             <Letter
-                key={idx}
+                key={letter+"text-key"}
                 offsetX={textPosition.x + idx * spacing.first}
                 offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
@@ -64,7 +76,7 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
         }else if(letter === 'u'){
           return(
             <Letter
-                key={idx}
+                key={letter+"text-key"}
                 offsetX={textPosition.x + idx * spacing.second}
                 offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
@@ -75,7 +87,7 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
         }else if(idx >= 3){
           return(
             <Letter
-                key={idx}
+                key={letter+"text-key"}
                 offsetX={textPosition.x + idx * spacing.third -0.5}
                 offsetY={textPosition.y + idx/2}
                 offsetZ={textPosition.z}
@@ -86,9 +98,9 @@ const Text3DComponent = ({ text, textPosition, mat }) => {
         }else{
           return(
             <Letter
-              key={idx}
+              key={letter+"text-key"}
               offsetX={textPosition.x + idx * spacing.fourth}
-            offsetY={textPosition.y + idx/2}
+              offsetY={textPosition.y + idx/2}
               offsetZ={textPosition.z}
               mat={mat}
               text={letter}
@@ -107,7 +119,7 @@ const TextGroup = () => {
     }, []);
 
     return (
-      <Text3DComponent text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={matcapTexture} />
+      <Text3DComponent key={"Text-KEY"} text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={matcapTexture} />
     );
 }
 
