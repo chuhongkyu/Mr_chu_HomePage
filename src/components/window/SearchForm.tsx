@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { getProjectList } from "utils/api";
 import { IList } from "utils/interface";
-import { ITheme } from "utils/theme";
 import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
@@ -15,12 +14,12 @@ const Form = styled(motion.div)`
     margin-top: 20rem;
     border-radius: 24px;
     width: max(40vw, 680px);
-    background-color:${(props:ITheme) => props.theme.white.lighter};
+    background-color:${(props) => props.theme.white.lighter};
     height: fit-content;
     position: relative;
     z-index: 3;
     overflow: hidden;
-    box-shadow: ${(props:ITheme) => props.theme.shadow};
+    box-shadow: ${(props) => props.theme.shadow};
     input{
         width: 100%;
         height: 100%;
@@ -62,7 +61,7 @@ const SearchPanel = styled(motion.div)`
     width: 100%;
     height: 40vh;
     padding: 10px 0;
-    background-color:${(props:ITheme) => props.theme.white.lighter};
+    background-color:${(props) => props.theme.white.lighter};
     @media ${(props) => props.theme.device.mobile} {
         padding: 10px 0;
     }
@@ -73,7 +72,7 @@ const Item = styled.div`
     font-size: 16px;
     line-height: 125%;
     padding: 0.8rem 42px;
-    background-color: ${(props:ITheme) => props.theme.white.lighter};
+    background-color: ${(props) => props.theme.white.lighter};
     a{
         display: flex;
         justify-content: space-between;
@@ -90,7 +89,7 @@ const Item = styled.div`
 
     }
     &:hover{
-        background-color: ${(props:ITheme) => props.theme.white.darker};
+        background-color: ${(props) => props.theme.white.darker};
     }
     @media ${(props) => props.theme.device.mobile} {
         padding: 0.8rem 22px;

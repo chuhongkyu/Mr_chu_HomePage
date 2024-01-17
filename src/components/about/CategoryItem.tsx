@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface CategoryItemProps {
-  isActive: boolean;
-}
-
 export const CategoryItems = styled.div`
   position: absolute;
   top: 20px;
