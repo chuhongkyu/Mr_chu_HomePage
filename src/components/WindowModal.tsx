@@ -3,10 +3,6 @@ import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 interface Props {
   first: string;
   second: string;
@@ -25,11 +21,11 @@ const Position = styled(motion.div)`
   justify-content: center;
 `;
 
-const Modal = styled(motion.div)`
-  width: ${(props: Props) => props.first};
-  height: ${(props: Props) => props.second};
+const Modal = styled(motion.div)<Props>`
+  width: ${(props) => props.first};
+  height: ${(props) => props.second};
   border-radius: 10px;
-  position: ${(props: Props) => props.third};
+  position: ${(props) => props.third};
   top: 0;
   left: 0;
   z-index: 5;

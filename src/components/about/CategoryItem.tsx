@@ -1,20 +1,32 @@
 import styled from "styled-components";
 
-interface Category {
-    isActive: boolean;
+interface CategoryItemProps {
+  isActive: boolean;
 }
 
-export const CaegoryItems = styled.div`
+export const CategoryItems = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
   z-index: 2;
+  .list{
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    color: #f8f8f8;
+    transition: 300ms ease-in-out;
+    &.active{
+      font-weight: 700;
+      color: black;
+      transition: 300ms ease-in-out;
+    }
+  }
 `
 
-export const CategoryItem = styled.div`
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: ${({ isActive }:Category) => (isActive ? 'bold' : 'normal')};
-  color: ${({ isActive }:Category) => (isActive ? 'black' : 'white')};
-`;
+export const CategoryItem = (props:any) => {
+  const { onClick, id, isActive, text } = props
+  return(
+    <div onClick={onClick} id={id} className={`list ${isActive ? "active" : null}`}>{text}</div>
+  )
+}

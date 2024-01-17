@@ -2,10 +2,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; 
-import { Autoplay } from "swiper";
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ParallaxContainer = styled.div`
   margin-top: max(1.6667vw, 32px);
@@ -89,7 +85,7 @@ const Parallax1 = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/mapoCharacter/"}
           >
-              <img src={env.PUBLIC_URL + "/assets/img/about/03.gif"} alt="Image_3"/>
+              <img src={"/assets/img/about/03.gif"} alt="Image_3"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>

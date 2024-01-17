@@ -3,9 +3,6 @@ import styled from "styled-components";
 import Parallax2 from "./Parallax2";
 import { TextGroup } from "./ContentContainer";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Wrapper = styled(motion.div)`
     width: 100%;
     display: flex;

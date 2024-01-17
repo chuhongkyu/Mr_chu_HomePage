@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 
 const App = styled(motion.div)`
-  /* border: 1px solid red; */
+  grid-column: span;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   a {
     display: flex;
     justify-self: center;

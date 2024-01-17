@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Container = styled(motion.div)`
   width: 300px;
   height: 100vh;
@@ -120,7 +117,7 @@ const Menu = () => {
             target="blank"
           >
             <img
-              src={env.PUBLIC_URL + "/assets/works/word-play.png"}
+              src={"/assets/works/word-play.png"}
               alt="말장난 게임"
             />
             <div>
@@ -133,7 +130,7 @@ const Menu = () => {
             target="blank"
           >
             <img
-              src={env.PUBLIC_URL + "/assets/works/match-landscape.png"}
+              src={"/assets/works/match-landscape.png"}
               alt="Match-fruits"
             />
             <div>
@@ -142,7 +139,7 @@ const Menu = () => {
             </div>
           </SpanItem>
           <SpanItem target="blank" href="https://chuhongkyu.github.io/interact_3D/">
-            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="mario" />
+            <img src={"/assets/img/about/01.png"} alt="mario" />
             <div>
               <h2>마리오 월드(개발자)</h2>
               <p>three.js, 3D </p>

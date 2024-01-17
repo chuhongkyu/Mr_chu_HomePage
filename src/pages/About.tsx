@@ -2,7 +2,7 @@ import styled from "styled-components";
 import WindowModal from "components/WindowModal";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "components/about/Header";
-import { CaegoryItems, CategoryItem } from "components/about/CategoryItem";
+import { CategoryItems, CategoryItem } from "components/about/CategoryItem";
 import ContentContainer from "components/about/ContentContainer";
 import { aboutData } from "utils/aboutData";
 import ContentOne from "components/about/ContentOne";
@@ -10,9 +10,6 @@ import ContentTwo from "components/about/ContentTwo";
 import ContentThree from "components/about/ContentThree";
 import ContentFour from "components/about/ContentFour";
 import ContentFive from "components/about/ContentFive";
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const MainContainer = styled.div`
   padding-top: 30px;
@@ -36,7 +33,7 @@ const MainContainer = styled.div`
 
 const LeftContainer = styled.div`
   width: 22%;
-  background: rgb(238,188,17);
+  background: rgba(238,188,17,0.8);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -152,13 +149,11 @@ const About = () => {
     <WindowModal bgColor="white">
       <MainContainer>
         <LeftContainer>
-          <CaegoryItems>
+          <CategoryItems>
             {category.map((item) => (
-              <CategoryItem onClick={onClick} key={item.id} id={item.id} isActive={item.active}>
-                {item.name}
-              </CategoryItem>
+              <CategoryItem onClick={onClick} key={item.id} id={item.id} text={item.name} isActive={item.active}/>
             ))}
-          </CaegoryItems>
+          </CategoryItems>
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
           <Header title={title}/>

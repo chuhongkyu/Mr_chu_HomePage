@@ -1,10 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { ITheme } from "utils/theme";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
-const FontUrl = `${env.PUBLIC_URL}/assets/fonts/`;
+const FontUrl = `/assets/fonts/`;
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -52,12 +48,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-moz-selection {
-    background: ${(props: ITheme) => props.theme.black.darker};
-    color: ${(props: ITheme) => props.theme.white.lighter};
+    background: ${(props) => props.theme.black.darker};
+    color: ${(props) => props.theme.white.lighter};
   }
   ::selection {
-    background: ${(props: ITheme) => props.theme.black.darker};
-    color: ${(props: ITheme) => props.theme.white.lighter};
+    background: ${(props) => props.theme.black.darker};
+    color: ${(props) => props.theme.white.lighter};
   }
 
   h1 {

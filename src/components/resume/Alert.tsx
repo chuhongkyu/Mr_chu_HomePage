@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Container = styled(motion.div)`
   height: 100px;
   border-radius: 5px;
@@ -40,7 +37,7 @@ const Alert = () => {
       exit={{ scale: 0 }}
     >
       <div>
-        <img src={env.PUBLIC_URL + "/assets/img/memo.png"} alt="memo" />
+        <img src={"/assets/img/memo.png"} alt="memo" />
         <p>이메일 복사 되었습니다.</p>
       </div>
     </Container>

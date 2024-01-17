@@ -1,17 +1,12 @@
 import { lazy, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react"; 
-import "swiper/css"; 
+import { Swiper, SwiperSlide} from "swiper/react"; 
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
 import { IWorksArray, worksData} from "utils/worksData";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { isMobile } from 'react-device-detect';
-import { Navigation } from "swiper";
 import { Suspense } from "react";
 import Loading from "components/Loading";
-
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 
 const Wrapper = styled(motion.div)`
@@ -30,6 +25,7 @@ const Wrapper = styled(motion.div)`
     }
     .swiper-button-prev, .swiper-button-next {
       position: absolute;
+      cursor: pointer;
       top: 50%;
       left: 10px;
       transform: translateY(-50%);
@@ -72,6 +68,7 @@ const LeftCard = styled(motion.a)`
       display: none;
     }
     @media ${(props) => props.theme.device.mobile} {
+
     }
 `;
 
@@ -198,26 +195,22 @@ function ProjectSwiper(){
     return(
       <Wrapper>
         <Swiper
-            modules={[Navigation]}
-            loop={true}
-            onSlideChange={() => {}}
-            navigation
+          modules={[Navigation]}
+          navigation
           >
-            
               {datas.map((data, index)=>{
               return(
                 <SwiperSlide 
                   key={data.id + index}>
-                  {isMobile ? null : 
-                  (<LeftCard  
+                  <LeftCard  
                       id={data.id + ""}
                       href={data.link}
                       target="_blank"
                     >  
                     <Suspense fallback={<Loading/>}>
-                      <LazyImgContainer imageUrl={env.PUBLIC_URL + data.img} alt={data.id + ""}/>
+                      <LazyImgContainer imageUrl={data.img} alt={data.id + ""}/>
                     </Suspense>
-                  </LeftCard>)}
+                  </LeftCard>
                   <RightCard>
                       <span className="badge">{data.company}</span>
                       <div className="card_title">

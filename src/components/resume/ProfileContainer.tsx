@@ -4,9 +4,6 @@ import Alert from "components/resume/Alert";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Wrapper = styled.div`
   position: relative;
   width: 25%;
@@ -77,7 +74,7 @@ const Face = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-image: url("${env.PUBLIC_URL}/assets/img/profile.jpg");
+  background-image: url("/assets/img/profile.jpg");
   background-position: center;
   background-size: cover;
   &:hover {

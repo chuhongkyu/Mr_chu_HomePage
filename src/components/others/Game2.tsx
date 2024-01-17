@@ -4,9 +4,6 @@ import {Swiper, SwiperSlide } from "swiper/react";
 import { stickers } from "utils/icons";
 import "swiper/css"; 
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Wrapper = styled.section`
     margin-top: max(6.6667vw, 32px);
     padding-bottom: max(6.6667vw, 32px);
@@ -139,7 +136,7 @@ const Game2 = () => {
                     </GameText>
                 </TextBox>
                 <a href="https://slimeinthedrawer.netlify.app" target="_blank" rel="noreferrer">
-                    <BigIcon style={{ backgroundImage: `url(${env.PUBLIC_URL}/assets/app02.png)`,}}/>
+                    <BigIcon style={{ backgroundImage: `url(/assets/app02.png)`,}}/>
                 </a>
             </Description>
           <Swiper 

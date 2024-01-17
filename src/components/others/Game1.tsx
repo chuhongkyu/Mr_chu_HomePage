@@ -2,10 +2,7 @@
 import styled from "styled-components";
 import {Swiper, SwiperSlide } from "swiper/react";
 import { drawers } from "utils/icons";
-import "swiper/css"; 
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
+import "swiper/css";
 
 const Wrapper = styled.section`
   .small {
@@ -133,7 +130,7 @@ const Game1 = () => {
             </h5>
             <Description>
               <a href="https://slimeinthedrawer.netlify.app" target="_blank" rel="noreferrer">
-                <BigIcon style={{ backgroundImage: `url(${env.PUBLIC_URL}/assets/app01.jpg)`,}}/>
+                <BigIcon style={{ backgroundImage: `url(/assets/app01.jpg)`,}}/>
               </a>
               <TextBox>
                 <h5>서랍속 슬라임</h5>

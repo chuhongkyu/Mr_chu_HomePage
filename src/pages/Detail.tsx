@@ -49,6 +49,9 @@ const NotionWrapper = styled.div`
     max-width: 680px;
     width: 100%;
   }
+  p,b,li,h1,h5{
+    font-family: 'Noto Sans KR', sans-serif;
+  }
 `;
 
 

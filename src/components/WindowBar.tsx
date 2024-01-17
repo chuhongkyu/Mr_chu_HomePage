@@ -7,9 +7,6 @@ import Menu from "./Menu";
 import Weather from "./Weather";
 import Clock from "./Clock";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Bar = styled(motion.div)`
   width: 100%;
   height: 40px;
@@ -116,9 +113,9 @@ function WindowBar() {
         <BarBox>
           <div className="main_icon" onClick={onHandleSlide}>
             <picture>
-              <source type="image/webp" srcSet={env.PUBLIC_URL + "/assets/img/mrchu.webp"}/>
-              <source type="image/jpeg" srcSet={env.PUBLIC_URL + "/assets/img/mrchu.jpeg"}/>
-              <img src={env.PUBLIC_URL + "/assets/img/mrchu.webp"} alt="3"/>
+              <source type="image/webp" srcSet={"/assets/img/mrchu.webp"}/>
+              <source type="image/jpeg" srcSet={"/assets/img/mrchu.jpeg"}/>
+              <img src={"/assets/img/mrchu.webp"} alt="3"/>
             </picture>
           </div>
           {resumeMatch && <OpenItem onClick={onExit}>Resume</OpenItem>}

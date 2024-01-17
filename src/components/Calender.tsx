@@ -13,6 +13,7 @@ const Wrapper = styled(motion.div)`
     color: ${(props) => props.theme.white.lighter};
     position: absolute;
     bottom: 41px;
+    z-index: 2;
     right: 0;
     @media ${(props) => props.theme.device.mobile} {
         width: 300px;

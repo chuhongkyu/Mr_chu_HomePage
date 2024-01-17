@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
-const API = process.env.REACT_APP_API_KEY;
+const API = import.meta.env.VITE_API_KEY;
 interface ILocation {
   coords : {
     latitude: number;
@@ -75,7 +72,7 @@ const Weather = () => {
     // console.log(navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError))
   }, [onGeoOk, onGeoError]);
   
-  return <Wrapper>{icon ? <WeatherIcon src={env.PUBLIC_URL + `/assets/weather/${icon}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
+  return <Wrapper>{icon ? <WeatherIcon src={`/assets/weather/${icon}.svg`} alt="weather" /> : "Weather.."}</Wrapper>;
 };
 
 export default Weather;

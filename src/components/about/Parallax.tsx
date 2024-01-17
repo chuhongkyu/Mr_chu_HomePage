@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react"; 
+import { Autoplay } from 'swiper/modules';
 import "swiper/css"; 
-import { Autoplay } from "swiper";
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const ParallaxContainer = styled.div`
   margin-top: max(1.6667vw, 32px);
@@ -63,7 +60,7 @@ const Parallax = () => {
         centeredSlides={true}
         loop={true}
         spaceBetween={20}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
         breakpoints={{
           // when window width is >= 768px
           1024: {
@@ -77,7 +74,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/interact_3D/"}
             >
-            <img src={env.PUBLIC_URL + "/assets/img/about/01.png"} alt="Image_1"/>
+            <img src={"/assets/img/about/01.png"} alt="Image_1"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -85,7 +82,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://mr-chu-car-web.netlify.app/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/img/about/04.png"} alt="Image_4"/>
+            <img src={"/assets/img/about/04.png"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -93,7 +90,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/mapoCharacter/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/works/buddies.gif"} alt="Image_3"/>
+            <img src={"/assets/works/buddies.gif"} alt="Image_3"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -101,7 +98,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://match-fruits-mrchu.vercel.app/"}
           >
-            <img src={env.PUBLIC_URL + "/assets/works/match-landscape.png"} alt="Image_4"/>
+            <img src={"/assets/works/match-landscape.png"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>

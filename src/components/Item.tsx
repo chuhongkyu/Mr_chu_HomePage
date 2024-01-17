@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -20,7 +17,7 @@ interface Iitem {
 const Item = ({ imgSrc, name, wSize }: Iitem) => {
   return (
     <Container>
-      <img style={{ width: wSize }} src={env.PUBLIC_URL + imgSrc} alt={name} />
+      <img style={{ width: wSize }} src={imgSrc} alt={name} />
     </Container>
   );
 };

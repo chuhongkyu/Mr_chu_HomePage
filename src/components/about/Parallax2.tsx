@@ -3,9 +3,6 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const ParallaxContainer = styled.div`
   margin-top: max(1.6667vw, 32px);
   overflow-x: hidden;
@@ -59,7 +56,6 @@ const Parallax2 = () => {
         slidesPerView={1}
         spaceBetween={20}
         breakpoints={{
-          // when window width is >= 768px
           1024: {
             slidesPerView: 3.2,
             spaceBetween:20,
@@ -69,25 +65,25 @@ const Parallax2 = () => {
         <SwiperSlide>
           <ParallaxImage
             >
-            <img src={env.PUBLIC_URL + "/assets/img/about/insights_01.png"} alt="insight_01"/>
+            <img src={"/assets/img/about/insights_01.png"} alt="insight_01"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
             >
-            <img src={env.PUBLIC_URL + "/assets/img/about/insights_02.png"} alt="insight_02"/>
+            <img src={"/assets/img/about/insights_02.png"} alt="insight_02"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
           >
-            <img src={env.PUBLIC_URL + "/assets/img/about/map_01.png"} alt="map01"/>
+            <img src={"/assets/img/about/map_01.png"} alt="map01"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
           >
-            <img src={env.PUBLIC_URL + "/assets/img/about/map_02.png"} alt="map02"/>
+            <img src={"/assets/img/about/map_02.png"} alt="map02"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>

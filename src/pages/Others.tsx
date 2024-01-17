@@ -3,9 +3,6 @@ import WindowModal from "components/WindowModal";
 import Game1 from "components/others/Game1";
 import Game2 from "components/others/Game2";
 
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
-
 const OnePerson = styled.div`
   width: 100%;
   padding: 70px 50px 0px 50px;

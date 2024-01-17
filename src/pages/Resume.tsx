@@ -1,13 +1,7 @@
 import styled from "styled-components";
-import ReactTooltip from "react-tooltip";
 import ProfileItem from "components/resume/ProfileItem";
 import WindowModal from "components/WindowModal";
 import ProfileContainer from "components/resume/ProfileContainer";
-import { ITheme } from "utils/theme";
-
-
-const env = process.env;
-env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const MainContainer = styled.div`
   width: 75%;
@@ -34,7 +28,7 @@ const MainContainer = styled.div`
     background: transparent /*스크롤바 뒷 배경 색상*/
   }
   h1{
-    font-family: ${(props:ITheme) => props.theme.fontFamily.Montserrat} ;
+    font-family: ${(props) => props.theme.fontFamily.Montserrat} ;
     margin-bottom: max(1.2500vw, 1.5px);
   }
   @media ${(props) => props.theme.device.mac} {
@@ -318,7 +312,6 @@ const Resume = () => {
           </ProfileItem>
         </ProfileGrid>
       </MainContainer>
-      <ReactTooltip />
     </WindowModal>
   );
 };

@@ -1,11 +1,10 @@
 import { appList } from "atoms";
-import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import AppLink from "components/window/AppLink";
 import AddAppBtn from "./AddAppBtn";
 
-const AppContainer = styled.div`
+const Wrapper = styled.div`
   margin-top: 25rem;
   position: fixed;
   @media ${(props) => props.theme.device.tablet} {
@@ -16,7 +15,7 @@ const AppContainer = styled.div`
   }
 `
 
-const Boards = styled.div`
+const AppContainer = styled.div`
   width: max(40vw, 680px);
   min-height: 14rem;
   font-family: "Montserrat", sans-serif;
@@ -29,50 +28,18 @@ const Boards = styled.div`
   }
 `;
 
-const Board = styled.div`
-    grid-column: span;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @media ${(props) => props.theme.device.tablet} {
-
-    }
-`;
-
 const AppWrapper = ()=> {
-    const [apps, setApp] = useRecoilState(appList);
-    const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
-        if (!destination) return;
-        setApp((oldApps) => {
-          const copyAppList = [...oldApps];
-          copyAppList.splice(source.index, 1);
-          copyAppList.splice(destination.index, 0, draggableId);
-          return copyAppList;
-        });
-    };
-    
+    const apps = useRecoilValue(appList);
     return(
-      <AppContainer>
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable" direction="horizontal">
-              {(magic) => (
-                <Boards ref={magic.innerRef} {...magic.droppableProps}>
-                  {apps.map((app, index) => (
-                    <Draggable key={app} draggableId={app} index={index}>
-                      {(magic) => (
-                        <Board ref={magic.innerRef} {...magic.dragHandleProps}{...magic.draggableProps}>
-                          <AppLink title={app} pathUrl={`${app}`} type={app} />
-                        </Board>
-                      )}
-                    </Draggable>
-                  ))}
-                  {magic.placeholder}
-                </Boards>
-              )}
-            </Droppable>
-        </DragDropContext>
+      <Wrapper>
+        <AppContainer>
+        {apps.map((app, index) => (
+          <AppLink key={index + "link-KEY"} title={app} pathUrl={`${app}`} type={app} />
+          ))
+        }
+        </AppContainer>
         <AddAppBtn/>
-      </AppContainer>
+      </Wrapper>
     )
 }
 
