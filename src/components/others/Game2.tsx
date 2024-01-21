@@ -109,7 +109,7 @@ const GameText = styled.div`
 const ScreenShot = styled.img`
   display: block;
   width: 100%;
-  height: max(15.6250vw, 300px);
+  height: 350px;
   @media ${(props) => props.theme.device.mobile} {
     height: 200px;
   }
@@ -123,17 +123,15 @@ const Game2 = () => {
                     <h2>스티커 슬라임</h2>
                     <div className="sub_title"><span className="green">캐쥬얼</span></div>
                     <div className="sub_title"><span>광고 포함 /</span><span>인앱 결제</span></div>
-                    <GameText>
-                        <p>
-                        기존에 유명한 '똥 피하기 게임'에서 아이디어를 얻은 게임입니다.
-                        캐릭터들을 스티커로 만들어 2.5D 느낌을 준 것이 특징입니다.
-                        캐릭터들마다 하늘에서 떨어지는 물체가 다르고 능력과 스킬이
-                        다릅니다. 게임을 하며 얻은 코인으로 캐릭터를 해금할 수 있습니다.
-                        물론 보상 광고를 통해 코인을 더 많이 획득할 수 있습니다. 많은
-                        유저들이 다운로드를 했으나 유지, 보수를 할 실력이 안되어
-                        유지하지 못했습니다.
-                        </p>
-                    </GameText>
+                    <p>
+                    기존에 유명한 '똥 피하기 게임'에서 아이디어를 얻은 게임입니다.
+                    캐릭터들을 스티커로 만들어 2.5D 느낌을 준 것이 특징입니다.
+                    캐릭터들마다 하늘에서 떨어지는 물체가 다르고 능력과 스킬이
+                    다릅니다. 게임을 하며 얻은 코인으로 캐릭터를 해금할 수 있습니다.
+                    물론 보상 광고를 통해 코인을 더 많이 획득할 수 있습니다. 많은
+                    유저들이 다운로드를 했으나 유지, 보수를 할 실력이 안되어
+                    유지하지 못했습니다.
+                    </p>
                 </TextBox>
                 <a href="https://slimeinthedrawer.netlify.app" target="_blank" rel="noreferrer">
                     <BigIcon style={{ backgroundImage: `url(/assets/app02.png)`,}}/>

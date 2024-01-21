@@ -46,7 +46,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    const state = getParam('test');
+    const state = getParam<boolean>('test');
     setCoach(state)
     if(coach){
       window.document.body.classList.add('coach');

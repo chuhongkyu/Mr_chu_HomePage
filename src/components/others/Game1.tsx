@@ -48,7 +48,7 @@ const TextBox = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
   h5 {
-    font-size: 32px;
+    font-size: 24px;
     margin-bottom: 12px;
   }
   .sub_title {
@@ -109,9 +109,6 @@ const BigIcon = styled.img`
   }
 `;
 
-const GameText = styled.div`
-`;
-
 const ScreenShot = styled.img`
   display: block;
   width: 100%;
@@ -136,19 +133,18 @@ const Game1 = () => {
                 <h5>서랍속 슬라임</h5>
                 <div className="sub_title"><span className="green">캐쥬얼</span></div>
                 <div className="sub_title"><span>광고 포함 /</span></div>
-                <GameText>
-                  <p>
-                    서랍속 슬라임은 레벨이 15까지 있는 단순한 게임입니다. 슬라임들이
-                    서로 부딪히지 않게 움직여 제한 시간을 버티면 클리어 입니다.
-                    슬라임 캐릭터 마다 움직임과 특징이 존재합니다. 구글 애드몹 보상
-                    광고를 통한 수익 방식을 가집니다.
-                  </p>
-                </GameText>
+                <p>
+                  서랍속 슬라임은 레벨이 15까지 있는 단순한 게임입니다. 슬라임들이
+                  서로 부딪히지 않게 움직여 제한 시간을 버티면 클리어 입니다.
+                  슬라임 캐릭터 마다 움직임과 특징이 존재합니다. 구글 애드몹 보상
+                  광고를 통한 수익 방식을 가집니다.
+                </p>
               </TextBox>
             </Description>
           <Swiper 
             slidesPerView={2.2}
             spaceBetween={10}
+            grabCursor
             breakpoints={{
               1024: {
                 slidesPerView: 5,

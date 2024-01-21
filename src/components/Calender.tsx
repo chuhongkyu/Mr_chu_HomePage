@@ -99,7 +99,13 @@ const Row = styled.div`
     }
 `
 
-const RenderHeader = ({ currentMonth, prevMonth, nextMonth }:any) => {
+interface IHeader {
+    currentMonth: Date;
+    prevMonth: () => void;
+    nextMonth: () => void;
+}
+
+const RenderHeader = ({ currentMonth, prevMonth, nextMonth }:IHeader) => {
     return (
         <Header>
             <div className="date-group">
@@ -130,7 +136,13 @@ const RenderDays = () => {
     return <Days>{days}</Days>;
 };
 
-const RenderCells = ({ currentMonth, selectedDate, onDateClick }:any) => {
+interface RenderCellsProps {
+    currentMonth: Date;
+    selectedDate: Date;
+    onDateClick: (date: Date) => void;
+}
+
+const RenderCells = ({ currentMonth, selectedDate, onDateClick }:RenderCellsProps) => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
@@ -196,7 +208,7 @@ const Calender = () => {
     const nextMonth = () => {
         setCurrentMonth(addMonths(currentMonth, 1));
     };
-    const onDateClick:any = (day:any) => {
+    const onDateClick = (day:Date) => {
         setSelectedDate(day);
     };
     return (

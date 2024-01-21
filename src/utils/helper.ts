@@ -1,6 +1,12 @@
-export const getParam = (key:any) => {
+export const getParam = <T>(key:string): T | null => {
     const querystring = window.location.search;
     const params = new URLSearchParams(querystring);
 
-    return params.get(key);
+    const value = params.get(key);
+
+    if (value === null) {
+        return null;
+    }
+
+    return value as unknown as T;
 };

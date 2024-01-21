@@ -20,7 +20,14 @@ export const CategoryItems = styled.div`
   }
 `
 
-export const CategoryItem = (props:any) => {
+interface IProps {
+  onClick: (e:React.MouseEvent<HTMLDivElement>)=> void;
+  id: string;
+  isActive: boolean;
+  text: string
+}
+
+export const CategoryItem = (props:IProps) => {
   const { onClick, id, isActive, text } = props
   return(
     <div onClick={onClick} id={id} className={`list ${isActive ? "active" : null}`}>{text}</div>
