@@ -157,7 +157,7 @@ const SearchForm = () => {
                 onChange={onChange} 
                 onKeyUp={onHandleOpen}
                 onBlur={onHandleClose}
-                placeholder="ex) 리액트" 
+                placeholder="실무 개발에서 느낀점, ex) 리액트, 다국어" 
                 maxLength={15}
                 type="text" />
             
