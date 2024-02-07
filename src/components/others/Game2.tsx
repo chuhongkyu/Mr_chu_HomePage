@@ -103,9 +103,6 @@ const BigIcon = styled.img`
   }
 `;
 
-const GameText = styled.div`
-`;
-
 const ScreenShot = styled.img`
   display: block;
   width: 100%;
