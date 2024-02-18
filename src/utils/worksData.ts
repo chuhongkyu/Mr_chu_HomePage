@@ -27,9 +27,9 @@ export const worksData = [
       주요 기능인 게시판은 사용자들이 다양한 OTT 서비스들을 비교하고 관련 이야기를 나눌 수 있는 공간입니다. 여기서 사용자들은 각자의 경험과 의견을 공유하며, OTT 서비스들에 대한 정보를 얻을 수 있습니다. 이를 통해 사용자들은 어떤 OTT 서비스가 자신에게 맞는지에 대한 판단을 도울 수 있습니다.
       We T는 NEXT.js를 활용하여 웹 인터페이스를 구성했고, 백엔드로는 MongoDB를 사용하여 데이터를 관리합니다. 또한 TypeScript를 사용하여 코드의 안정성과 가독성을 높였습니다. We T의 온라인 플랫폼은 아래 링크를 통해 접속할 수 있습니다.`
       ,
-    point: ["로그인", "회원가입", "게시판"],
+    point: ["Docker", "Git", "로그인", "회원가입", "게시판"],
     github: "",
-    link: "https://we-t-ott.vercel.app/",
+    link: "http://ott-we-t.com/",
     skills: ["NEXT.js", "MongoDB", "TS"],
     people: "풀스택 코딩",
     company: "개인 프로젝트"
