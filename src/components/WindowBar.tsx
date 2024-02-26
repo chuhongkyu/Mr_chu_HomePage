@@ -17,6 +17,7 @@ const Bar = styled(motion.div)`
   align-items: center;
   padding: 1px 10px 1px 0;
   position: fixed;
+  z-index: 5;
   bottom: 0;
   .main_icon{
     width: 40px;

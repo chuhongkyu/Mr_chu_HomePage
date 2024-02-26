@@ -8,6 +8,7 @@ const Container = styled(motion.div)`
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 4;
   transform-origin: bottom;
   padding-bottom: 40px;
   display: flex;
