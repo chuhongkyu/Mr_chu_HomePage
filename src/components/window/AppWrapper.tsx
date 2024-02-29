@@ -25,6 +25,11 @@ const AppContainer = styled.div`
     width: 100%;
     min-height: 20rem;
   }
+  @media screen and (max-width: 355px){
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 const AppWrapper = ()=> {

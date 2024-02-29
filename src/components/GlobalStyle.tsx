@@ -42,9 +42,18 @@ export const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
   }
-
-  html { 
-    font-size: max(var(--dynamic-font-size), 10px)
+  html {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 1440px){
+    html{
+      font-size: 13.5px;
+    }
+  }
+  @media screen and (max-width: 1074px){
+    html{
+      font-size: 10px;
+    }
   }
 
   ::-moz-selection {
