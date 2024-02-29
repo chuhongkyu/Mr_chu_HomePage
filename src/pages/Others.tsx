@@ -12,14 +12,14 @@ const OnePerson = styled.div`
     width: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background: #484848d5; /* 스크롤바의 색상 */
+    background: #484848d5;
     background-clip: padding-box;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 50px;
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent /*스크롤바 뒷 배경 색상*/
+    background: transparent;
   }
 
   @media ${(props) => props.theme.device.mobile} {

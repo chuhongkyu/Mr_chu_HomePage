@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import WindowBar from "components/WindowBar";
 import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
 import { getParam } from "utils/helper";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import AppWrapper from "components/window/AppWrapper";
 import { useMediaQuery } from "react-responsive";
 import SearchForm from "components/window/SearchForm";
@@ -37,10 +36,12 @@ const AnimatedOutlet = () => {
   return <>{outlet}</>;
 };
 
+const WindowBar = lazy(() => import('components/WindowBar'));
+
 const Home = () => {
   const [coach, setCoach] = useState<string|boolean|null>()
   const location  = useLocation()
-  const isMoible = useMediaQuery({
+  const isMobile = useMediaQuery({
     query: '(min-width: 681px)'
   })
 
@@ -66,7 +67,11 @@ const Home = () => {
               <AnimatedOutlet key={location.pathname} />
             </AnimatePresence>
           </Suspense>
-          {isMoible ? <WindowBar/> : null}
+          {isMobile ? (
+            <Suspense fallback={<div></div>}>
+              <WindowBar />
+            </Suspense>
+          ) : null}
       </Wrapper>
   );
 };

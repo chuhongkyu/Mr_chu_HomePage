@@ -64,6 +64,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .font-app{
+    font-display: swap;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     font-size: max(1vw, 14px);
     letter-spacing: -0.01em ;

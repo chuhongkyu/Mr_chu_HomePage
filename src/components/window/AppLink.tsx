@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 
 const App = styled(motion.div)`
-  grid-column: span;
+  grid-column: span 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,9 +16,8 @@ const App = styled(motion.div)`
       white-space: pre-line;
     }
   }
-  @media ${(props) => props.theme.device.tablet} {
-  }
   @media ${(props) => props.theme.device.mobile} {
+    width: 80px;
   }
 `;
 

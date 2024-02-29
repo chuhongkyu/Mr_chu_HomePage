@@ -18,7 +18,6 @@ const Wrapper = styled.div`
 const AppContainer = styled.div`
   width: max(40vw, 680px);
   min-height: 14rem;
-  font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 1fr 1fr;

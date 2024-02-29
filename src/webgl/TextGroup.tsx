@@ -1,6 +1,4 @@
-import { useMemo } from "react";
-import { Text3D } from "@react-three/drei";
-import { TextureLoader } from "three";
+import { Text3D, useTexture } from "@react-three/drei";
 import { motion } from "framer-motion-3d"
 import { useMediaQuery } from "react-responsive";
 
@@ -112,15 +110,10 @@ const Text3DComponent:React.FC<Text3DComponentProps>  = ({ text, textPosition, m
 };
 
 const TextGroup = () => {
-    const matcapTexture = useMemo(() => {
-      const textureLoader = new TextureLoader();
-      const matcapTexture = textureLoader.load(`/assets/matcap/white.webp`);
-      return matcapTexture;
-    }, []);
-
-    return (
-      <Text3DComponent key={"Text-KEY"} text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={matcapTexture} />
-    );
+  const texture = useTexture('/assets/matcap/white.webp')
+  return (
+    <Text3DComponent key={"Text-KEY"} text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={texture} />
+  );
 }
 
 export default TextGroup;
