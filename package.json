@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^9.99.4",
-    "@react-three/fiber": "^8.15.16",
+    "@react-three/drei": "^9.94.1",
+    "@react-three/fiber": "^8.15.14",
     "date-fns": "^3.2.0",
     "framer-motion": "^10.18.0",
     "framer-motion-3d": "^10.18.0",
@@ -24,7 +24,8 @@
     "react-router-dom": "^6.21.2",
     "recoil": "^0.7.7",
     "styled-components": "^6.1.8",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "three": "0.161.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
