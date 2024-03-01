@@ -9,14 +9,22 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules/three')) {
-            return;
+          if (id.includes('node_modules/@react-spring')) {
+            return 'react-spring';
           }
-          if (id.includes('node_modules')) {
-            const moduleName = id.split("node_modules/")?.pop()?.split("/")[0];
-            return `vendor/${moduleName}`;
+          if (id.includes('node_modules/three')) {
+            return 'three';
           }
         }
+
+
+
+        // manualChunks(id) {
+        //   if (id.includes('node_modules')) {
+        //     const moduleName = id.split("node_modules/")?.pop()?.split("/")[0];
+        //     return `vendor/${moduleName}`;
+        //   }
+        // }
       },
     },
   }
