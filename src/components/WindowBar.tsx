@@ -35,11 +35,13 @@ const Bar = styled(motion.div)`
       transition: 300ms opacity;
     }
     picture{
+      display: block;
       width: 30px;
       height: 30px;
       cursor: pointer;
     }
     img {
+      display: block;
       width: 30px;
       height: 30px;
       cursor: pointer;

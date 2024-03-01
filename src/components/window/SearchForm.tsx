@@ -53,7 +53,7 @@ const SearchIcon = styled(motion.span)`
     background-image: url('/assets/img/notion.webp');
     @media ${(props) => props.theme.device.mobile} {
         left: initial;
-        right: 10px;
+        right: 20px;
     }
 `
 
