@@ -18,7 +18,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
-    "react-icons": "^5.0.1",
     "react-notion": "^0.10.0",
     "react-responsive": "^9.0.2",
     "react-router-dom": "^6.21.2",

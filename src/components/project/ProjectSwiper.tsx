@@ -197,6 +197,7 @@ function ProjectSwiper(){
         <Swiper
           modules={[Navigation]}
           navigation
+          loop={true}
           >
               {datas.map((data, index)=>{
               return(

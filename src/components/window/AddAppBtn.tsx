@@ -1,4 +1,3 @@
-import { AiFillCloseCircle, AiOutlinePlus } from "react-icons/ai"
 import { motion } from "framer-motion";
 import styled from "styled-components"
 import { useState } from "react";
@@ -26,6 +25,12 @@ const Btn = styled(motion.div)`
         display: flex;
         justify-content: center;
         align-items: center;
+        img{
+            display: block;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+        }
     }
     .x-btn{
         padding: 1rem;
@@ -33,6 +38,12 @@ const Btn = styled(motion.div)`
         display: flex;
         justify-content: center;
         align-items: center;
+        img{
+            display: block;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+        }
     }
 `
 
@@ -79,14 +90,14 @@ const AddAppBtn = ()=>{
         <>
         {plus ?
             <Btn onClick={onClick}>
-                <span className="btn"><AiOutlinePlus /></span>
+                <span className="btn"><img src="/assets/img/plus.png" alt="plus"/></span>
             </Btn>
             : 
             <Btn>
                 <InputForm onSubmit={onSubmit}>
                     <input name="제목" type="text" placeholder="폴더명" minLength={1} maxLength={5} onChange={onChange} />
                 </InputForm>
-                <span className="x-btn"><AiFillCloseCircle onClick={onClick}/></span>
+                <span className="x-btn" onClick={onClick}><img src="/assets/img/plus.png" alt="plus"/></span>
             </Btn>
         }
         </>

@@ -15,8 +15,9 @@
 
 - Node.js
 - koyeb로 배포
-- (https://developed-heath-mr-chu.koyeb.app/)
+- (https://developed-heath-mr-chu.koyeb.app/api-docs/)
 - 검색기능 추가
+- Swagger UI 추가 2024/03/01
 
 ---
 

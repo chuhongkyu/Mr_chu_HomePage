@@ -29,6 +29,11 @@ const Bar = styled(motion.div)`
     padding-left: 10px;
     padding-right: 10px;
     background: #333;
+    transition: 300ms opacity;
+    &:hover {
+      opacity: 0.8;
+      transition: 300ms opacity;
+    }
     picture{
       width: 30px;
       height: 30px;
@@ -38,9 +43,6 @@ const Bar = styled(motion.div)`
       width: 30px;
       height: 30px;
       cursor: pointer;
-      &:hover {
-        transform: scale(1.1);
-      }
     }
   }
 `;

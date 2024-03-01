@@ -24,9 +24,6 @@ const Window = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 2rem;
-  @media ${(props) => props.theme.device.tablet} {
-
-  }
 `;
 
 const AnimatedOutlet = () => {
@@ -58,20 +55,20 @@ const Home = () => {
 
   return (
       <Wrapper>
-          <Window>
-            <SearchForm/>
-            <AppWrapper/>
-          </Window>
-          <Suspense fallback={<Loading/>}>
-            <AnimatePresence initial={false}>
-              <AnimatedOutlet key={location.pathname} />
-            </AnimatePresence>
+        <Window>
+          <SearchForm/>
+          <AppWrapper/>
+        </Window>
+        <Suspense fallback={<Loading/>}>
+          <AnimatePresence initial={false}>
+            <AnimatedOutlet key={location.pathname} />
+          </AnimatePresence>
+        </Suspense>
+        {isMobile ? (
+          <Suspense fallback={<div></div>}>
+            <WindowBar />
           </Suspense>
-          {isMobile ? (
-            <Suspense fallback={<div></div>}>
-              <WindowBar />
-            </Suspense>
-          ) : null}
+        ) : null}
       </Wrapper>
   );
 };

@@ -80,4 +80,29 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.01em ;
     font-weight: 600;
   }
+
+  .not-found{
+    width: 100%;
+    height: var(--100vh, 100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h5{
+      font-size: 32px;
+      letter-spacing: -0.05em;
+    }
+    a{
+      margin-top: 1rem;
+      border-radius: 25px;
+      background: #fff;
+      padding: 0.8rem 2rem 0.9rem;
+      font-size: 22px;
+      &:hover{
+        transition: 300ms;
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
 `;

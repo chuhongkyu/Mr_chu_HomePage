@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   }
 `;
 
-
 const Webgl = () => {
     const isMoible = useMediaQuery({
         query: '(min-width: 681px)'

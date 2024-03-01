@@ -13,15 +13,10 @@ export default defineConfig({
             return;
           }
           if (id.includes('node_modules')) {
-            return 'vendor';
+            const moduleName = id.split("node_modules/")?.pop()?.split("/")[0];
+            return `vendor/${moduleName}`;
           }
         }
-        // manualChunks: (id) => {
-        //   if (id.includes("node_modules")) {
-        //     const moduleName = id.split("node_modules/")?.pop()?.split("/")[0];
-        //     return `vendor/${moduleName}`;
-        //   }
-        // },
       },
     },
   }

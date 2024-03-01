@@ -2,7 +2,7 @@ import { motion, LayoutGroup} from "framer-motion";
 import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { AiOutlineClose, AiOutlineExpand } from "react-icons/ai";
+
 interface Props {
   first: string;
   second: string;
@@ -84,6 +84,11 @@ const TopNavBtn = styled(motion.div)`
 const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
   font-weight: 500;
+  padding: 3px;
+  svg{
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const YellowBtn = styled(TopNavBtn)`
@@ -95,6 +100,13 @@ const YellowBtn = styled(TopNavBtn)`
 
 const GreenBtn = styled(TopNavBtn)`
   background-color: rgb(23, 206, 95);
+  padding: 2.5px;
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   @media ${(props) => props.theme.device.tablet} {
     display: none;
   }
@@ -157,11 +169,14 @@ const WindowModal = ({
           >
             <TopNav whileHover={{background:"linear-gradient(to bottom, #e8e7e7 , #a9a7a7)"}}>
               <RedBtn onClick={onExit}>
-                <AiOutlineClose />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 20L20 4" stroke="black" strokeWidth="1.8"/>
+                <path d="M4 4L20 20" stroke="black" strokeWidth="1.8"/>
+                </svg>
               </RedBtn>
-              <YellowBtn></YellowBtn>
+              <YellowBtn onClick={onExit}></YellowBtn>
               <GreenBtn onClick={onHandleSize}>
-                <AiOutlineExpand />
+                <img src="/assets/img/window.png" alt="window"/>
               </GreenBtn>
             </TopNav>
             {children}

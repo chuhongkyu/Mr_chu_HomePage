@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { AiFillMail } from "react-icons/ai";
 import Alert from "components/resume/Alert";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -13,66 +12,41 @@ const Wrapper = styled.div`
   background-position: bottom center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  transition: 0.5s;
-  font-family: "Noto Sans KR", sans-serif;
-  .dummy {
-    width: 100%;
-    height: 70%;
-  }
-  .profile {
-    width: 100%;
-    height: 30%;
-    position: relative;
-    background-position: top;
-    background: linear-gradient(
-      to top,
-      rgb(255, 255, 255) 90%,
-      transparent 50%
-    );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: 0.5s;
-    border-bottom-left-radius: 10px;
-    &:hover {
-      transition: 0.5s;
-    }
-    h2 {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 4px;
-      margin-top: 15px;
-    }
-  }
   @media ${(props) => props.theme.device.mac} {
-    .profile {
-      h2 {
-        font-size: 20px;
-        font-weight: bold;
-        letter-spacing: 4px;
-        margin-top: 20px;
-      }
-    }
   }
   @media ${(props) => props.theme.device.tablet} {
-    display: none;
-    .profile {
-      h2 {
-        font-size: 15px;
-      }
-    }
-  }
-  @media ${(props) => props.theme.device.mobile} {
     display: none;
   }
 `;
 
+const DummyWrapper = styled.div`
+  width: 100%;
+  height: 65%;
+`
+
+const ProfileWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 35%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-family: "Noto Sans KR", sans-serif;
+  }
+`
+
 const Face = styled.div`
-  position: absolute;
-  top: -100px;
   width: 150px;
   height: 150px;
+  position: absolute;
+  top: -75px;
   border-radius: 50%;
   background-image: url("/assets/img/profile.jpg");
   background-position: center;
@@ -82,18 +56,17 @@ const Face = styled.div`
     transition: 0.5s;
   }
   @media ${(props) => props.theme.device.mac} {
-    top: -60px;
     width: 100px;
     height: 100px;
+    top: -50px;
   }
 `;
 
 const Contact = styled(motion.span)`
-  padding: 1.4rem 1.4rem;
+  padding: 1rem 1.5rem;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin: 20px 0;
   text-align: center;
   transition: 0.5s;
   background: linear-gradient(100deg, black 50%, white 50%);
@@ -105,17 +78,23 @@ const Contact = styled(motion.span)`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   font-weight: 500;
-  font-size: 1.2rem;
-  span {
-    margin-right: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @media ${(props) => props.theme.device.mac} {
-    padding: 5px 10px;
-  }
+  font-size: 16px;
 `;
+
+const MailIcon = styled.div`
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
 
 
 const ProfileContainer = () => {
@@ -133,22 +112,24 @@ const ProfileContainer = () => {
 
     return(
         <Wrapper>
-            <div className="dummy"></div>
-            <div className="profile">
+            <DummyWrapper/>
+            <ProfileWrapper>
                 <Face />
                 <h2>추홍규</h2>
                 {alert ? <Alert /> : null}
-                <Contact
-                    onClick={onCopyier}
-                    whileHover={{
+                <Contact 
+                  onClick={onCopyier}
+                  whileHover={{
                     backgroundPosition: "left bottom",
                     color: "white",
                     transition: { duration: 0.5, ease: "linear" },
-                    }}
+                  }}
                 >
-                    <span><AiFillMail /></span>Contact Me
+                  <MailIcon>
+                  <img src="/assets/img/mail.png" alt="mail"/>
+                  </MailIcon>Contact Me
                 </Contact>
-            </div>
+            </ProfileWrapper>
         </Wrapper>
     )
 }

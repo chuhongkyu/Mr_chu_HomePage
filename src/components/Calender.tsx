@@ -1,9 +1,8 @@
-import {useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { format, addMonths, subMonths } from 'date-fns';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays} from 'date-fns';
 import styled from 'styled-components';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
 const Wrapper = styled(motion.div)`
@@ -46,6 +45,21 @@ const Header = styled.div`
         justify-content: flex-start;
         align-items:center;
         gap: 20px;
+        span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            &.right{
+                transform: rotateZ(180deg);
+            }
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
     }
     @media ${(props) => props.theme.device.mobile} {
         .date-group{font-size: 15px;}
@@ -114,8 +128,12 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }:IHeader) => {
                 <span>{format(currentMonth, 'd')}<p>일</p></span>        
             </div>
             <div className="btn-group">
-                <AiOutlineArrowLeft onClick={prevMonth}>이전</AiOutlineArrowLeft>
-                <AiOutlineArrowRight onClick={nextMonth}>이후</AiOutlineArrowRight>
+                <span onClick={prevMonth}>
+                    <img src="/assets/icons/navbtn.svg" alt="left"/>
+                </span>
+                <span className="right" onClick={nextMonth}>
+                    <img src="/assets/icons/navbtn.svg" alt="right"/>
+                </span>
             </div>
         </Header>
     );

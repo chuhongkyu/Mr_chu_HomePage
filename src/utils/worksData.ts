@@ -80,20 +80,6 @@ export const worksData = [
     people: "프론트 엔드(1인 개발)",
     company: "마포구청"
   },
-  // {
-  //   id: 4,
-  //   name: "BMW",
-  //   date: "(2022.04.25 ~ )",
-  //   img: "/assets/works/bmw.gif",
-  //   description:
-  //     "리액트와 Three 라이브러리를 활용하여 BMW모델을 인터랙티브하게 감상할 수 있게 하였습니다. 차체, 창문, 바퀴 색을 직접 변경하며 감상할 수 있습니다",
-  //   point: ["모델 파츠 별로 색깔 변경 기능", "모델 회전"],
-  //   github: "https://github.com/chuhongkyu/bmw-car/",
-  //   link: "https://chuhongkyu.github.io/bmw-car/",
-  //   skills: ["React", "three 라이브러리", "Blender"],
-  //   people: "개인 프로젝트",
-  //   company: "개인 프로젝트"
-  // },
   {
     id: 5,
     name: "transparent-gradient",
