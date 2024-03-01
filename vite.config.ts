@@ -15,16 +15,10 @@ export default defineConfig({
           if (id.includes('node_modules/three')) {
             return 'three';
           }
+          if(id.includes('node_modules/date-fns')){
+            return 'date-fns'
+          }
         }
-
-
-
-        // manualChunks(id) {
-        //   if (id.includes('node_modules')) {
-        //     const moduleName = id.split("node_modules/")?.pop()?.split("/")[0];
-        //     return `vendor/${moduleName}`;
-        //   }
-        // }
       },
     },
   }

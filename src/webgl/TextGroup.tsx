@@ -1,4 +1,5 @@
 import { Text3D, useTexture } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { motion } from "framer-motion-3d"
 import { useMediaQuery } from "react-responsive";
 
@@ -13,7 +14,7 @@ interface LetterProps {
 }
 
 const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
-
+  const { invalidate } = useThree()
   const isMoible = useMediaQuery({
     query: '(min-width: 681px)'
   })
@@ -25,6 +26,7 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
   return (
     <motion.mesh 
       initial={{x: offsetX, y: offsetY, z:offsetZ}}
+      onAnimationStart={() => invalidate(5)}
       animate={isMoible ? {y: 2, transition:{ duration: 0.45}}: {y: 1, transition:{ duration: 0.5}}}
       >
       <Text3D

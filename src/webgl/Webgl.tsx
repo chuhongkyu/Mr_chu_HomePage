@@ -19,7 +19,7 @@ const Webgl = () => {
     })
     return(
         <Wrapper>
-            <Canvas camera={
+            <Canvas frameloop="demand" camera={
                 isMoible ? { position: [0,0, 11.5], fov: 45} : 
                 { position: [0,0, 10], fov: 45}
                 }>
