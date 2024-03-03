@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import Loading from "webgl/Loading";
 import { useDebounce } from "utils/hooks";
 
-const Form = styled(motion.div)`
+const Form = styled.div`
     margin-top: 20rem;
     border-radius: 24px;
     width: max(40vw, 680px);
@@ -85,9 +85,6 @@ const Item = styled.div`
             padding-right: 1rem;
         }
     }
-    p{
-
-    }
     &:hover{
         background-color: ${(props) => props.theme.white.darker};
     }
@@ -150,7 +147,7 @@ const SearchForm = () => {
     },[fetchData])
     
     return(
-        <Form transition={{duration: 0.5, ease:"easeInOut"}} onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit}>
             <SearchIcon/>
             <input 
                 onFocus={onHandleOpen}
