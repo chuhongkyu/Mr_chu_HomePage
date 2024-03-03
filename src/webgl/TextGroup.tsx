@@ -1,7 +1,7 @@
 import { Text3D, useTexture } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { motion } from "framer-motion-3d"
 import { useMediaQuery } from "react-responsive";
+import { useSpring, animated } from '@react-spring/three';
 
 const fontUrl = '/assets/fonts/Pretendard_MrChu.json'
 
@@ -15,7 +15,7 @@ interface LetterProps {
 
 const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
   const { invalidate } = useThree()
-  const isMoible = useMediaQuery({
+  const isMobile = useMediaQuery({
     query: '(min-width: 681px)'
   })
 
@@ -23,12 +23,15 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
     return null;
   }
 
+  const { position } = useSpring({
+    to: { position: [offsetX, isMobile ? 2 : 1, offsetZ] },
+    from: { position: [offsetX, offsetY, offsetZ] },
+    config: { duration: isMobile ? 450 : 500 },
+    onStart: () => invalidate(6),
+  });
+
   return (
-    <motion.mesh 
-      initial={{x: offsetX, y: offsetY, z:offsetZ}}
-      onAnimationStart={() => invalidate(5)}
-      animate={isMoible ? {y: 2, transition:{ duration: 0.45}}: {y: 1, transition:{ duration: 0.5}}}
-      >
+    <animated.mesh position={position.to((x, y, z) => [x, y, z])}>
       <Text3D
         font={fontUrl} 
         size={1}
@@ -42,7 +45,7 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
         {text}
         <meshMatcapMaterial matcap={mat} />
       </Text3D>
-    </motion.mesh>
+    </animated.mesh>
   );
 };
 
