@@ -19,7 +19,7 @@ const Bar = styled(motion.div)`
   position: fixed;
   z-index: 5;
   bottom: 0;
-  .main_icon{
+  .logo-icon{
     width: 40px;
     height: 100%;
     display: flex;
@@ -59,7 +59,7 @@ const DateBox = styled.div`
   /* width: 30%; */
   min-width: 180px;
   height: 100%;
-  .current_time{
+  .current-time{
     white-space: nowrap;
   }
 `;
@@ -116,7 +116,7 @@ function WindowBar() {
       {slide ? <Menu /> : null}
       <Bar initial={{y:50}} animate={{y: 0}} transition={{ease: "linear"}}>
         <BarBox>
-          <div className="main_icon" onClick={onHandleSlide}>
+          <div className="logo-icon" onClick={onHandleSlide}>
             <picture>
               <source type="image/webp" srcSet={"/assets/img/mrchu.webp"}/>
               <source type="image/jpeg" srcSet={"/assets/img/mrchu.jpeg"}/>

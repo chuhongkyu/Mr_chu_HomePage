@@ -4,14 +4,14 @@ const Clock = () => {
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
-        const id = setInterval(() => {
+        const time = setInterval(() => {
           setTime(new Date());
-        }, 1000);
-        return () => clearInterval(id);
+        }, 60000);
+        return () => clearInterval(time);
       }, []);
 
     return(
-        <span className="current_time">{time.toLocaleTimeString()}</span>
+        <span className="current-time">{time.toLocaleTimeString().slice(0, -3)}</span>
     )
 }
 
