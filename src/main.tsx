@@ -6,6 +6,7 @@ import { GlobalStyle } from "components/GlobalStyle";
 import 'index.css';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { routerInfo } from "utils/router"
+import RQProvider from 'components/RQProvider';
 
 const router = createBrowserRouter(routerInfo)
 
@@ -14,7 +15,9 @@ root.render(
   <RecoilRoot>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <RouterProvider router={router} />
+      <RQProvider>
+        <RouterProvider router={router} />
+      </RQProvider>
     </ThemeProvider>
   </RecoilRoot>
 );

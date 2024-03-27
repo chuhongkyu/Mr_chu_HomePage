@@ -1,15 +1,13 @@
-interface IList {
-    keyword?: string;
-}
-
 export interface IDetail {
     id?: string;
 }
 
-const getProjectList = ({ keyword }: IList = {}) => {
+const getProjectList = ({ queryKey }: any) => {
+    const [_key, debouncedValue] = queryKey
+
     let url = 'https://developed-heath-mr-chu.koyeb.app/api/notion/projectList';
-    if (keyword) {
-        url += `?keyword=${keyword}`;
+    if (debouncedValue) {
+        url += `?keyword=${debouncedValue}`;
     }
 
     return fetch(url)
