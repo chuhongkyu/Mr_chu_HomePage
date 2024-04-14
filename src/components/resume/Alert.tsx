@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Container = styled(motion.div)`
-  height: 100px;
+  padding: 15px 20px;
   border-radius: 5px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -20,8 +20,8 @@ const Container = styled(motion.div)`
     align-items: center;
   }
   img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
   }
   p {

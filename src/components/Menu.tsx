@@ -118,7 +118,7 @@ const Menu = () => {
             target="blank"
           >
             <img
-              src={"/assets/works/match-landscape.png"}
+              src={"/assets/works/match-landscape.jpg"}
               alt="Match-fruits"
             />
             <div>

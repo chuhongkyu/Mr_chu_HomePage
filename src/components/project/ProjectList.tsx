@@ -84,16 +84,26 @@ const RightContainer = styled.div`
             display: block;
             .mark{
                 width: 100%;
-                height: 120px;
+                height: 140px;
                 background: #5c5ca1;
                 border-radius: 6px;
-                border: solid 1px #f2f4f6;
+                border: 1px solid #aeaeae;
                 font-size: 22px;
                 font-weight: 600;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 color: #fff;
+                overflow: hidden;
+                img{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    &[alt="세대갈등해결게임"]{
+                        display: none;
+                    }
+                }
             }
 
             .text{

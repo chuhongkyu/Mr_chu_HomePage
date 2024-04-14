@@ -11,7 +11,9 @@ const ProjectItem = ({name, id, keywords, company }:IProps) => {
     return(
         <li>
             <Link to={`/home/detail/${id.replace(/-/g, '')}`}>
-                <article className="mark">{name.substring(0,1)}</article>
+                <article className="mark">
+                    <img src={`/assets/project/${name.split(' ').join('')}.jpg`} alt={name.split(' ').join('')}/>
+                </article>
                 <div className="text">
                     <h3>{name}</h3>
                     <div className="keywords">

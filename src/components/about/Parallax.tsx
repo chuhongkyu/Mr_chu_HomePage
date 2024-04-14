@@ -90,7 +90,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/mapoCharacter/"}
           >
-            <img src={"/assets/works/buddies.gif"} alt="Image_3"/>
+            <img src={"/assets/project/마포버디즈.jpg"} alt="Image_3"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -98,7 +98,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://match-fruits-mrchu.vercel.app/"}
           >
-            <img src={"/assets/works/match-landscape.png"} alt="Image_4"/>
+            <img src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>
