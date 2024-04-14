@@ -97,8 +97,8 @@ const About = () => {
   const [category, setCategory] = useState(aboutData);
   const [title, setTitle] = useState("간단한 소개");
 
-  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
+  const onClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
     const activeIndex = category.findIndex((el) => el.id === target.id);
     const targetRef = categoryRefs.current[activeIndex];
 

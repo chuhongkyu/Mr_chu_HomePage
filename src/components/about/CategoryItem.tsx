@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CategoryItems = styled.div`
+export const CategoryItems = styled.ul`
   position: absolute;
   top: 20px;
   left: 20px;
@@ -18,10 +18,16 @@ export const CategoryItems = styled.div`
       transition: 300ms ease-in-out;
     }
   }
+  @media screen and (max-width: 940px) {
+    .list{
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
 `
 
 interface IProps {
-  onClick: (e:React.MouseEvent<HTMLDivElement>)=> void;
+  onClick: (e:React.MouseEvent<HTMLElement>)=> void;
   id: string;
   isActive: boolean;
   text: string
@@ -30,6 +36,6 @@ interface IProps {
 export const CategoryItem = (props:IProps) => {
   const { onClick, id, isActive, text } = props
   return(
-    <div onClick={onClick} id={id} className={`list ${isActive ? "active" : null}`}>{text}</div>
+    <li onClick={onClick} id={id} className={`list ${isActive ? "active" : null}`}>{text}</li>
   )
 }

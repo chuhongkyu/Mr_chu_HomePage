@@ -114,19 +114,6 @@ const Menu = () => {
       <motion.div className="right_side" initial={{y: 120}} animate={{y: 0}} transition={{duration: 0.9}}>
         <div className="grid_tom">
           <SpanItem
-            href="https://word-play.vercel.app/"
-            target="blank"
-          >
-            <img
-              src={"/assets/works/word-play.png"}
-              alt="말장난 게임"
-            />
-            <div>
-              <h2>말장난 게임</h2>
-              <p>말장난 게임, Vercel 자동 배포</p>
-            </div>
-          </SpanItem>
-          <SpanItem
             href="https://match-fruits-mrchu.vercel.app/"
             target="blank"
           >

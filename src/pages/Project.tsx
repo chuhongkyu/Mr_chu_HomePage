@@ -1,23 +1,27 @@
 import styled from "styled-components";
 import WindowModal from "components/WindowModal";
-import ProjectSwiper from "components/project/ProjectSwiper";
+import ProjectList from "components/project/ProjectList";
+import { Suspense } from "react";
+import Loading from "components/Loading";
 
 const Wrapper = styled.div`
-  overflow: hidden;
   padding-top: 30px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar{
-    display: none;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
+
   @media ${(props) => props.theme.device.tablet} {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar{
-      display: none;
-    }
+    padding-top: 40px;
+    flex-direction: column;
   }
 `;
 
@@ -25,7 +29,9 @@ const Project = () => {
   return (
     <WindowModal bgColor="#fafafa">
       <Wrapper>
-        <ProjectSwiper/>
+        <Suspense fallback={<Loading/>}>
+          <ProjectList/>
+        </Suspense>
       </Wrapper>
     </WindowModal>
   );

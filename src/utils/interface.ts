@@ -8,3 +8,5 @@ export interface IList {
     platform : string[];
     kws : string[];
 }
+
+export interface IWorksArray extends Array<IList> {}

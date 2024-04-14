@@ -84,9 +84,9 @@ const Detail = () => {
       <WindowModal bgColor="#fafafa">
         <Wrapper>
           {projectDetail ? (
-            <NotionWrapper >
+            <NotionWrapper>
               <NotionRenderer blockMap={projectDetail} />
-            </NotionWrapper >
+            </NotionWrapper>
           ) : 
           (
           <LoadingWrapper>
