@@ -3,6 +3,7 @@ import NotFound from "NotFound";
 import Home from "pages/Home";
 import Resume from "pages/Resume";
 import { lazy } from "react";
+import { IDetail, getProjectDetail } from "./api";
 
 const LazyProject = lazy(() => import('pages/Project'))
 const LazyAbout = lazy(() => import('pages/About'))
@@ -39,6 +40,9 @@ export const routerInfo = [
               {
                  path: "detail/:id",
                  element: <LazyDetail />,
+                 loader: async ({ params }:{ params: IDetail}) => {
+                  return getProjectDetail(params)
+                },
               },
               {
                 path: "*",

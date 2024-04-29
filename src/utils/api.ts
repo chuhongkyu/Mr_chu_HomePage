@@ -22,7 +22,7 @@ const getProjectList = ({ queryKey }: any) => {
         });
 };
 
-const getProjectDetail = async ({ id }: IDetail) => {
+const getProjectDetail = async ({id}:IDetail) => {
     const url = `https://notion-api.splitbee.io/v1/page/${id}`;
   
     try {
