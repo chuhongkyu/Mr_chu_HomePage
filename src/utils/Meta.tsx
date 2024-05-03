@@ -10,7 +10,7 @@ const Meta = (props:IProps) => {
   const location = useLocation()
   const {title, description} = props
   const metaData = {
-    keywords: "추홍규, 프론트 엔드, Mr.chu, 포트폴리오, chu_hong_kyu",
+    keywords: "프론트 엔드, FE Developer, 웹 개발자, three.js",
     imgsrc:
       "https://raw.githubusercontent.com/chuhongkyu/Mr_chu_HomePage/main/public/assets/home.png",
     url: "https://mrchu.netlify.app",
@@ -19,13 +19,14 @@ const Meta = (props:IProps) => {
   const makeData = (path:string) => {
     if (path === "/home") {
       path = path.slice(1);
-    }else if(path === "/home/resume"){
-      path = path.slice(6);
+    }else{
+      path = path.replace(/^\/home/, '').slice(1);
     }
     return path;
   }
 
   const makeDescription = (desc:string) => {
+    console.log(desc)
     switch (desc) {
       case "home":
           desc = "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
@@ -40,7 +41,7 @@ const Meta = (props:IProps) => {
           desc = "유니티로 만든 1인개발 스티커슬라임, 서랍속 슬라임"
         break;
       case "project":
-          desc = "미스터추, 추홍규의 토이 프로젝트들을 확인 해보세요"
+          desc = "프로젝트 | 다양한 프로젝트 삼성, 롯데, 정관장, CASS"
         break;
       default:
           desc = "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
@@ -51,14 +52,14 @@ const Meta = (props:IProps) => {
 
   return (
     <Helmet>
-      <title>{makeData(location.pathname) ? "추홍규 FE 개발자 " + makeData(location.pathname) : title}</title>
+      <title>{makeData(location.pathname) ? "추홍규 FE 개발자 " + makeData(location.pathname).toUpperCase() : title}</title>
 
       <meta name="description" content={makeData(location.pathname) ? makeDescription(makeData(location.pathname)) : description} />
       <meta name="keywords" content={metaData.keywords} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={"추홍규 FE 개발자 " + makeData(location.pathname)} />
-      <meta property="og:site_name" content={"추홍규 FE 개발자 " + makeData(location.pathname)} />
+      <meta property="og:title" content={"추홍규 FE 개발자 " + makeData(location.pathname).toUpperCase()} />
+      <meta property="og:site_name" content={"추홍규 FE 개발자 " + makeData(location.pathname).toUpperCase()} />
       <meta property="og:description" content={makeData(location.pathname) ? makeDescription(makeData(location.pathname)) : description} />
       <meta property="og:image" content={metaData.imgsrc} />
       <meta property="og:url" content={metaData.url} />
@@ -74,7 +75,7 @@ const Meta = (props:IProps) => {
 
 Meta.defaultProps = {
   title: "home",
-  description: "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 마포구청, CASS, 롯데백화점, 정관장, 삼성액티브자산운용",
+  description: "추홍규 | 프론트 엔드의 홈페이지입니다.",
 }
 
 export default Meta;
