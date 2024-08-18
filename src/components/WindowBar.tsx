@@ -4,7 +4,6 @@ import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Calender from "./Calender";
 import Menu from "./Menu";
-import Weather from "./Weather";
 import Clock from "./Clock";
 
 const Bar = styled(motion.div)`
@@ -131,7 +130,6 @@ function WindowBar() {
         </BarBox>
         <DateBox onClick={onHandleCalender}>
           <Clock/>
-          <Weather />
         </DateBox>
       </Bar>
       {open ? <Calender/> : null}

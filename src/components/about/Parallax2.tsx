@@ -65,25 +65,25 @@ const Parallax2 = () => {
         <SwiperSlide>
           <ParallaxImage
             >
-            <img src={"/assets/img/about/insights_01.png"} alt="insight_01"/>
+            <img src={"/assets/img/about/insights_01.jpg"} alt="insight_01"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
             >
-            <img src={"/assets/img/about/insights_02.png"} alt="insight_02"/>
+            <img src={"/assets/img/about/insights_02.jpg"} alt="insight_02"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
           >
-            <img src={"/assets/img/about/map_01.png"} alt="map01"/>
+            <img src={"/assets/img/about/map_01.jpg"} alt="map01"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
           <ParallaxImage
           >
-            <img src={"/assets/img/about/map_02.png"} alt="map02"/>
+            <img src={"/assets/img/about/map_02.jpg"} alt="map02"/>
           </ParallaxImage>
         </SwiperSlide>
       </Swiper>

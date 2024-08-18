@@ -127,7 +127,7 @@ const Menu = () => {
             </div>
           </SpanItem>
           <SpanItem target="blank" href="https://chuhongkyu.github.io/interact_3D/">
-            <img src={"/assets/img/about/01.png"} alt="mario" />
+            <img src={"/assets/img/about/01.jpg"} alt="mario" />
             <div>
               <h2>마리오 월드(개발자)</h2>
               <p>three.js, 3D </p>

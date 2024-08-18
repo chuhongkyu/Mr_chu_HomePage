@@ -74,7 +74,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://chuhongkyu.github.io/interact_3D/"}
             >
-            <img src={"/assets/img/about/01.png"} alt="Image_1"/>
+            <img src={"/assets/img/about/01.jpg"} alt="Image_1"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
@@ -82,7 +82,7 @@ const Parallax = () => {
             target={"_blank"}
             href={"https://mr-chu-car-web.netlify.app/"}
           >
-            <img src={"/assets/img/about/04.png"} alt="Image_4"/>
+            <img src={"/assets/img/about/04.jpg"} alt="Image_4"/>
           </ParallaxImage>
         </SwiperSlide>
         <SwiperSlide>
