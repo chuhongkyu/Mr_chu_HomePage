@@ -37,7 +37,7 @@ export const TextGroup = styled(motion.div)`
     letter-spacing: -0.02em;
     padding: max(5.208vw, 80px) 0 30px;
   }
-  .sub_title{
+  .sub-title{
     font-size: max(1.25vw, 22px);
     font-weight: 500;
     line-height: 1.8;
@@ -56,6 +56,18 @@ export const TextGroup = styled(motion.div)`
       font-weight: 600;
       text-decoration: underline;
     }
+    .app-icon{
+      display: block;
+      width: auto;
+      height: auto;
+    }
+  }
+  .description-underline{
+    display: block;
+    border-left: 2px solid #000;
+    padding-left: 1rem;
+    text-decoration: underline;
+    color: #515151;
   }
   .content{
     font-size: max(1.25vw, 22px);

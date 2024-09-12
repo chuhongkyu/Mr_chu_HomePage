@@ -14,25 +14,32 @@ const Wrapper = styled(motion.div)`
     width: 30px;
     margin-right: 15px;
   }
+  .img-dark{
+    filter: brightness(0.4);
+    opacity: 0.8;
+  }
   h3 {
     font-size: 32px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
     font-family: "Montserrat", sans-serif;
+    border-bottom: 1.5px solid #acacacd0;
   }
   p {
     font-size: 25px;
     line-height: 135%;
   }
   @media ${(props) => props.theme.device.mac} {
-    padding: 20px 25px 30px 20px;
+    padding: 1.5rem 2rem;
     .icon {
       width: 25px;
       margin-right: 10px;
     }
     h3 {
       font-size: 25px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -53,6 +60,7 @@ const Wrapper = styled(motion.div)`
       font-weight: 500;
       display: flex;
       align-items: center;
+      
     }
     p {
       font-size: 15px;
@@ -75,17 +83,7 @@ const Wrapper = styled(motion.div)`
 `;
 
 const Container = styled.div`
-  margin-left: 45px;
   overflow-y: hidden;
-  @media ${(props) => props.theme.device.mac} {
-    margin-left: 40px;
-  }
-  @media ${(props) => props.theme.device.tablet} {
-    margin-left: 30px;
-  }
-  @media ${(props) => props.theme.device.mobile} {
-    margin-left: 20px;
-  }
 `;
 
 interface IWorks {

@@ -20,7 +20,7 @@ const ContentThree = () => {
                 성능 최적화
             </div>
             <div className="content type2">
-                <div className="sub_title">
+                <div className="sub-title">
                     L사 백화점 리뉴얼 운영/구축
                 </div>
                 <div className="description">
@@ -32,7 +32,7 @@ const ContentThree = () => {
                 </div>
             </div>
             <div className="content type2">
-                <div className="sub_title">
+                <div className="sub-title">
                     CASSCOOL 카스 쿨 
                 </div>
                 <div className="description">

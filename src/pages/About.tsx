@@ -1,94 +1,16 @@
-import styled from "styled-components";
 import WindowModal from "components/WindowModal";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "components/about/Header";
 import { CategoryItems, CategoryItem } from "components/about/CategoryItem";
 import ContentContainer from "components/about/ContentContainer";
-import { aboutData } from "utils/aboutData";
+import { aboutData } from "utils/categoryDatas";
 import ContentOne from "components/about/ContentOne";
 import ContentTwo from "components/about/ContentTwo";
 import ContentThree from "components/about/ContentThree";
 import ContentFour from "components/about/ContentFour";
 import ContentFive from "components/about/ContentFive";
+import { MainContainer, LeftContainer, RightContainer } from "style/TwoContainerStyle";
 
-const MainContainer = styled.div`
-  padding-top: 30px;
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-
-  @media ${(props) => props.theme.device.tablet} {
-    padding-top: 40px;
-  }
-`;
-
-const LeftContainer = styled.div`
-  width: 22%;
-  background: rgba(238,188,17,0.8);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  @media ${(props) => props.theme.device.tablet} {
-    display: none;
-  }
-  picture{
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-  }
-  img{
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-  }
-  &::after{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: linear-gradient(-50deg, transparent, rgba(238,188,17,0.5) );
-  }
-`;
-
-const RightContainer = styled.div`
-  width: 78%;
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: max(3.75vw, 32px);
-  &::-webkit-scrollbar{
-    width: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #484848d5; /* 스크롤바의 색상 */
-    background-clip: padding-box;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 50px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent /*스크롤바 뒷 배경 색상*/
-  }
-  @media ${(props) => props.theme.device.tablet} {
-    width: 100%;
-    padding: 0 20px;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    &::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera*/
-    }
-  }
-`;
 
 const About = () => {
   const [currentSection, setSection] = useState(0);
