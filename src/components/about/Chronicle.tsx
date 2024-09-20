@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Wrapper = styled.div`
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     position: relative;
     height: 2rem;
@@ -67,20 +68,29 @@ const Chronicle = () => {
                 <LineContainer>
                     <Point
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 1}}}>
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 4.5}}}
+                        >
                         <SmallPoint/>
-                        <p>뉴미디어아트<br/>(Processing JAVA)</p>
+                        <p>(주)아이리브</p>
                     </Point>
                     <Point
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 1.5}}}
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 3.8}}}
                     >
                         <SmallPoint/>
-                        <p>Unity 게임 개발<br/>(IOS, AOS) 배포</p>
+                        <p>패스트 캠퍼스 (r3f) 강사</p>
+                        
                     </Point>
                     <Point
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 2.2}}}
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 3}}}
+                    >
+                        <SmallPoint/>
+                        <p>(주)더즈 인터랙티브</p>
+                    </Point>
+                    <Point
+                        initial={{scale: 0}}
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 2.3}}}
                     >
                         <SmallPoint/>
                         <p>마포구청일자리지원과<br/>
@@ -88,25 +98,24 @@ const Chronicle = () => {
                     </Point>
                     <Point
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 2.9}}}
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 1.6}}}
                     >
                         <SmallPoint/>
-                        <p>더즈 인터렉티브</p>
+                        <p>Unity 게임 개발<br/>(IOS, AOS) 배포</p>
                     </Point>
                     <Point
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 3.5}}}
-                    >
+                        animate={{scale: 1, transition: {duration: 0.5, type: "spring", delay: 1}}}>
                         <SmallPoint/>
-                        <p>패스트 캠퍼스 (r3f) 강사</p>
+                        <p>뉴미디어아트<br/>(Processing JAVA)</p>
                     </Point>
                 </LineContainer>
                 <Line  
                     initial={{width: "0%"}}
-                    animate={{width: ["0%", "25%", "50%", "75%", "100%"], 
+                    animate={{width: ["0%", "20%", "40%", "60%", "80%", "100%"], 
                     transition: {
                         delay: 1,
-                        duration: 3,
+                        duration: 4,
                     }}}/>
             </Wrapper>
         )

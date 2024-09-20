@@ -62,6 +62,10 @@ export const TextGroup = styled(motion.div)`
       height: auto;
     }
   }
+  .content-group{
+    display: flex;
+    gap: 2rem;
+  }
   .description-underline{
     display: block;
     border-left: 2px solid #000;
@@ -80,6 +84,11 @@ export const TextGroup = styled(motion.div)`
     &.type2{
         width: 100%;  
     }
+  }
+  .img-content{
+    width: 300px;
+    height: auto;
+    object-fit: contain;
   }
 
   @media ${(props) => props.theme.device.mobile} {
@@ -102,6 +111,15 @@ export const TextGroup = styled(motion.div)`
         &.type2{
             padding : 0;
         }
+    }
+    .content-group{
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .img-content{
+      width: 300px;
+      height: auto;
     }
   }
 `

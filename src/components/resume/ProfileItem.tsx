@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
-  padding: 30px 40px 45px 30px;
+  padding: 1.8rem 2rem 2rem;
   background-color: white;
   border-radius: 15px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -31,7 +31,7 @@ const Wrapper = styled(motion.div)`
     line-height: 135%;
   }
   @media ${(props) => props.theme.device.mac} {
-    padding: 1.5rem 2rem;
+    padding: 1.8rem 2rem 2rem;
     .icon {
       width: 25px;
       margin-right: 10px;
