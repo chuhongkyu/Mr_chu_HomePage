@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Alert from "components/resume/Alert";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Wrapper = styled.div`
   position: relative;
@@ -30,15 +30,17 @@ const ProfileWrapper = styled.div`
   height: 35%;
   background-color: #fff;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   h2 {
-    margin-top: 25px;
+    margin-top: 85px;
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 4px;
     font-family: "Noto Sans KR", sans-serif;
+  }
+  @media ${(props) => props.theme.device.mac} {
+    h2 {margin-top: 65px;}
   }
 `
 
@@ -46,32 +48,25 @@ const Face = styled.div`
   width: 150px;
   height: 150px;
   position: absolute;
-  top: -75px;
+  transform: translateY(-50%);
   border-radius: 50%;
   background-image: url("/assets/img/profile.jpg");
   background-position: center;
   background-size: cover;
-  &:hover {
-    transform: translateY(-5px);
-    transition: 0.5s;
-  }
   @media ${(props) => props.theme.device.mac} {
     width: 100px;
     height: 100px;
-    top: -50px;
   }
 `;
 
 const Contact = styled(motion.span)`
-  padding: 1rem 1.5rem;
+  position: relative;
+  padding: 0.8rem 1.4rem;
   color: ${(props) => props.theme.black.darker};
   border-radius: 25px;
   margin: 20px 0;
   text-align: center;
-  transition: 0.5s;
-  background: linear-gradient(100deg, black 50%, white 50%);
-  background-size: 220% 100%;
-  background-position: right bottom;
+  background: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -86,8 +81,8 @@ const MailIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   img{
     display: block;
     width: 100%;
@@ -116,18 +111,18 @@ const ProfileContainer = () => {
             <ProfileWrapper>
                 <Face />
                 <h2>추홍규</h2>
-                {alert ? <Alert /> : null}
                 <Contact 
                   onClick={onCopyier}
                   whileHover={{
-                    backgroundPosition: "left bottom",
-                    color: "white",
-                    transition: { duration: 0.5, ease: "linear" },
+                    transition: { duration: 0.5, easings: "easeInOut" },
                   }}
                 >
+                  <AnimatePresence mode="wait">
+                    {alert ? <Alert /> : null}
+                  </AnimatePresence>
                   <MailIcon>
-                  <img src="/assets/img/mail.png" alt="mail"/>
-                  </MailIcon>Contact Me
+                    <img src="/assets/img/mail.png" alt="mail"/>
+                  </MailIcon>Contact me
                 </Contact>
             </ProfileWrapper>
         </Wrapper>

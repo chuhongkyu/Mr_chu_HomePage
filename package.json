@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@react-spring/three": "^9.7.3",
-    "@react-three/drei": "^9.99.5",
-    "@react-three/fiber": "^8.15.14",
+    "@react-three/drei": "^9.119.0",
+    "@react-three/fiber": "^8.17.10",
+    "three": "^0.170.0",
     "@tanstack/react-query": "^5.28.9",
     "date-fns": "^3.2.0",
     "framer-motion": "^10.18.0",
@@ -27,9 +28,9 @@
     "swiper": "^11.0.5"
   },
   "devDependencies": {
+    "@types/three": "^0.170.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@types/three": "^0.160.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.5.0",

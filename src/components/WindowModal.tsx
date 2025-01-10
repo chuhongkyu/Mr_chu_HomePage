@@ -64,8 +64,6 @@ const TopNavBtn = styled(motion.div)`
   height: 15px;
   border-radius: 50%;
   margin-right: 5px;
-  font-size: 9px;
-  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,17 +75,15 @@ const TopNavBtn = styled(motion.div)`
   @media ${(props) => props.theme.device.tablet} {
     width: 20px;
     height: 20px;
-    font-size: 11px;
   }
 `;
 
 const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
-  font-weight: 500;
-  padding: 3px;
   svg{
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 10px;
+    height: 10px;
   }
 `;
 
@@ -100,11 +96,14 @@ const YellowBtn = styled(TopNavBtn)`
 
 const GreenBtn = styled(TopNavBtn)`
   background-color: rgb(23, 206, 95);
-  padding: 2.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   img{
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 10px;
+    height: 10px;
     object-fit: cover;
   }
   @media ${(props) => props.theme.device.tablet} {

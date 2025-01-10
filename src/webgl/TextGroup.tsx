@@ -1,16 +1,17 @@
 import { Text3D, useTexture } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
-import { useSpring, animated } from '@react-spring/three';
+import { useSpring, animated } from "@react-spring/three";
+import { Texture } from "three";
 
-const fontUrl = '/assets/fonts/Pretendard_MrChu.json'
+const fontUrl = "/assets/fonts/Pretendard_MrChu.json"
 
 interface LetterProps {
   offsetX: number;
   offsetY: number;
   offsetZ: number;
   text: string;
-  mat: THREE.Texture;
+  mat: Texture;
 }
 
 const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
@@ -52,7 +53,7 @@ const Letter = ({ offsetX, offsetY, offsetZ, text, mat }:LetterProps) => {
 interface Text3DComponentProps {
   text: string;
   textPosition: { x: number; y: number; z: number };
-  mat: THREE.Texture;
+  mat: Texture;
 }
 
 const Text3DComponent:React.FC<Text3DComponentProps>  = ({ text, textPosition, mat }) => {
@@ -115,7 +116,7 @@ const Text3DComponent:React.FC<Text3DComponentProps>  = ({ text, textPosition, m
 };
 
 const TextGroup = () => {
-  const texture = useTexture('/assets/matcap/white.webp')
+  const texture = useTexture("/assets/matcap/white.webp")
   return (
     <Text3DComponent key={"Text-KEY"} text="Mr.Chu" textPosition={{ x: -3.2, y: 5, z: 0 }} mat={texture} />
   );
