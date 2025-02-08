@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import DummyChronicle from "./DummyChronicle";
 
 const Wrapper = styled.div`
     display: flex;
@@ -16,16 +17,18 @@ const LineContainer = styled(motion.ul)`
     width: 100%;
     padding: 0 1rem;
     position: absolute;
+    z-index: 4;
     height: 100%;
     top: 50%;
     transform: translateY(-50%);
 `;
 
 const Line = styled(motion.span)`
+    position: relative;
+    z-index: 3;
     display: block;
     margin: 0 2rem;
     width: 100%;
-    top: 50%;
     height: 5px;
     border-radius: 10px;
     background: rgb(249,197,30);
@@ -60,7 +63,7 @@ const SmallPoint = styled(motion.span)`
 
 const Chronicle = () => {
     const isMoible = useMediaQuery({
-        query: '(min-width: 681px)'
+        query: "(min-width: 681px)"
     })
     if(isMoible){
         return(
@@ -110,13 +113,15 @@ const Chronicle = () => {
                         <p>뉴미디어아트<br/>(Processing JAVA)</p>
                     </Point>
                 </LineContainer>
+                <DummyChronicle/>
                 <Line  
                     initial={{width: "0%"}}
                     animate={{width: ["0%", "20%", "40%", "60%", "80%", "100%"], 
                     transition: {
                         delay: 1,
                         duration: 4,
-                    }}}/>
+                }}}/>
+                
             </Wrapper>
         )
     }else{

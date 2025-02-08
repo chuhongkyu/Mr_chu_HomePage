@@ -48,10 +48,10 @@ const SearchForm = () => {
                 onChange={onChange} 
                 onKeyUp={onHandleOpen}
                 onBlur={onHandleClose}
-                placeholder="실무 개발에서 느낀점, ex) 리액트, 다국어" 
+                placeholder="ex) 삼성, Cass, 롯데" 
                 maxLength={15}
-                type="text" />
-            
+                type="text" 
+            />
             <AnimatePresence initial={false}>
                 {isOpen && (
                 <SearchPanel
