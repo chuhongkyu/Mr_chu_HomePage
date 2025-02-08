@@ -29,7 +29,7 @@ const Meta = (props:IProps) => {
     console.log(desc)
     switch (desc) {
       case "home":
-          desc = "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
+          desc = "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations.. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
         break;
       case "resume":
           desc = "이력서 | 마포구청, CASS 월드컵, 롯데백화점 리뉴얼, 정관장 kgc, CASS COOL"
@@ -44,7 +44,7 @@ const Meta = (props:IProps) => {
           desc = "프로젝트 | 다양한 프로젝트 삼성, 롯데, 정관장, CASS"
         break;
       default:
-          desc = "추홍규 | 프론트 엔드의 홈페이지입니다. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
+          desc = "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations.. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
         break;
     }
     return desc  
@@ -75,7 +75,7 @@ const Meta = (props:IProps) => {
 
 Meta.defaultProps = {
   title: "home",
-  description: "추홍규 | 프론트 엔드의 홈페이지입니다.",
+  description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations..",
 }
 
 export default Meta;

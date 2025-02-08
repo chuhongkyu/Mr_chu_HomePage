@@ -71,6 +71,9 @@ const ProfileGrid = styled.div`
     }
   }
   hr {
+    height:1px;
+    border:0;
+    background-color: #e2e2e2;
     margin: 10px 0px;
   }
   @media ${(props) => props.theme.device.mac} {

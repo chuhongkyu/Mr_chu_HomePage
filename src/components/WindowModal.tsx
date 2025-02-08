@@ -82,8 +82,8 @@ const RedBtn = styled(TopNavBtn)`
   background-color: rgb(239, 65, 42);
   svg{
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
   }
 `;
 
@@ -96,15 +96,18 @@ const YellowBtn = styled(TopNavBtn)`
 
 const GreenBtn = styled(TopNavBtn)`
   background-color: rgb(23, 206, 95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  img{
-    display: block;
-    width: 10px;
-    height: 10px;
-    object-fit: cover;
+  span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9px;
+    height: 9px;
+    img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
   }
   @media ${(props) => props.theme.device.tablet} {
     display: none;
@@ -175,7 +178,9 @@ const WindowModal = ({
               </RedBtn>
               <YellowBtn onClick={onExit}></YellowBtn>
               <GreenBtn onClick={onHandleSize}>
-                <img src="/assets/img/window.png" alt="window"/>
+                <span>
+                  <img src="/assets/img/window.png" alt="window"/>
+                </span>
               </GreenBtn>
             </TopNav>
             {children}

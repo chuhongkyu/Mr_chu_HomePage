@@ -36,9 +36,20 @@ const Resume = () => {
           </ProfileItem>
           <ProfileItem
             icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
-            title="구축 및 운영"
+            title="Built & Maintained"
             row={"span 2"}
           >
+            <div className="between">
+              <a href="https://genaimo.ailive.world/" target="_blank" rel="noreferrer noopener">
+                <p>
+                  Genaimo - 젠아이모
+                </p>
+              </a>
+              <p>아이리브</p>
+            </div>
+            {/* 끊음음 */}
+            <hr/>
+
             <div className="between">
               <a href="https://www.samsungactive.co.kr/main.do" target="_blank" rel="noreferrer noopener">
                 <p
@@ -101,6 +112,7 @@ const Resume = () => {
               >CASS 월드컵 프로젝트</p>
               <p>더즈 인터랙티브</p>
             </div>
+            {/* 끊음 */}
             <hr/>
             <div className="between">
               <p
