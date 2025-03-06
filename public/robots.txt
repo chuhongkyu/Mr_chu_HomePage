@@ -1,9 +1,0 @@
-Sitemap: https://mrchu.netlify.app/sitemap.xml
-User-agent: *
-Disallow:
-
-User-agent: Googlebot
-Disallow:
-
-User-agent: Yeti
-Allow:/

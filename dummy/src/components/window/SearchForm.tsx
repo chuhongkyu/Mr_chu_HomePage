@@ -6,7 +6,7 @@ import { IList } from "utils/interface";
 import Tools from "./Tools";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import Loading from "webgl/Loading";
+import Loading from "../../../../src/components/webgl/Loading";
 import { Form, Item, SearchIcon, SearchPanel } from "style/HomeStyle";
 import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "utils/hooks";
