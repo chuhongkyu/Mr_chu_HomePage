@@ -127,10 +127,11 @@ const Chronicle = () => {
     }else{
         return (
             <ul>
-                <li>Unity 게임 개발 (IOS, AOS)</li>
-                <li>마포구청 청년 일자리 사업단</li>
-                <li>더즈 인터렉티브</li>
+                <li>(주) 아이리브</li>
                 <li>패스트 캠퍼스 (r3f) 강사</li>
+                <li>더즈 인터렉티브</li>
+                <li>마포구청 청년 일자리 사업단</li>
+                <li>Unity 게임 개발 (IOS, AOS)</li>
             </ul>
         )
     }
