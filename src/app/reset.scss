@@ -50,3 +50,32 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+::-moz-selection,
+::selection {
+	background: #181818;
+	color: #2F2F2F;
+}
+
+html {
+    font-size: 18px;
+	line-height: 130%;
+}
+
+h1 {
+	display: block;
+	font-size: max(2.0833vw, 20px);
+	font-weight: 700;
+}
+
+@media screen and (max-width: 1440px){
+	html{
+		font-size: 13.5px;
+	}
+}
+
+@media screen and (max-width: 1074px){	
+	html{	  
+		font-size: 10px;	
+	}
+}

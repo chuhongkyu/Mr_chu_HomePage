@@ -1,10 +1,14 @@
 
-import styles from "@/style/page.module.scss";
+import CommonLayout from "@/components/common/CommonLayout";
+import RQProvider from "@/components/common/RQProvider";
+import FormContainer from "@/components/common/window/from/FormContainer";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      
-    </div>
+    <CommonLayout>
+      <RQProvider>
+        <FormContainer/>
+      </RQProvider>
+    </CommonLayout>
   );
 }

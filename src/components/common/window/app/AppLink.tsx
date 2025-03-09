@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import styled from "styled-components"
 
 const App = styled(motion.div)`
@@ -197,7 +197,7 @@ const AppLink = ({ title, type, pathUrl }: IApp) => {
           <p className="font-app">{title}</p>
         </a>      
       :
-      <Link to={`/home/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
+      <Link href={`/home/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
         {choosePage()}
         <p className="font-app">{title?.toUpperCase()}</p>
       </Link>}

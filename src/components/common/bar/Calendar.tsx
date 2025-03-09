@@ -2,116 +2,7 @@ import { useEffect, useState } from 'react';
 import { format, addMonths, subMonths } from 'date-fns';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays} from 'date-fns';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
-const Wrapper = styled(motion.div)`
-    width: 350px;
-    height: 400px;
-    background-color: rgba(34,34,34, 0.9);
-    color: ${(props) => props.theme.white.lighter};
-    position: absolute;
-    bottom: 41px;
-    z-index: 2;
-    right: 0;
-    @media ${(props) => props.theme.device.mobile} {
-        width: 300px;
-        height: 350px;
-    }
-`
-
-const Header = styled.div`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
-    padding: 20px;
-    border-bottom: 1px solid rgba(255,255,255, 0.2);
-    .date-group{
-        display: flex; 
-        justify-content: center; 
-        align-items:center; 
-        gap: 10px;
-        font-size: 18px;
-        span{display: flex; 
-        justify-content: center; 
-        align-items:center; }
-        p{margin-left: 3px;}
-    }
-    .btn-group{
-        display: flex;
-        justify-content: flex-start;
-        align-items:center;
-        gap: 20px;
-        span{
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            &.right{
-                transform: rotateZ(180deg);
-            }
-            img{
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-    }
-    @media ${(props) => props.theme.device.mobile} {
-        .date-group{font-size: 15px;}
-    }
-`
-
-const Days = styled.div`
-    width: 100%;
-    height: 40px;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-    margin: 10px 0;
-    font-weight: 600;
-    .day{
-        grid-column: span 1;
-        font-size: 15px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    @media ${(props) => props.theme.device.mobile} {
-        .day{font-size: 12px;}
-    }
-`
-
-const Body = styled.div`
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 50px);
-`
-
-const Row = styled.div`
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    .col{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 2px;
-        cursor: pointer;
-    }
-    .disabled{
-        opacity: 0.4;
-    }
-    .selected{
-        background-color: rgb(46,142,214);
-        border: 1px solid rgba(255,255,255, 0.2);
-    }
-`
+import { motion } from "motion/react";
 
 interface IHeader {
     currentMonth: Date;
@@ -121,21 +12,21 @@ interface IHeader {
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }:IHeader) => {
     return (
-        <Header>
-            <div className="date-group">
+        <div className={"header"}>
+            <div className={"date-group"}>
                 <span>{format(currentMonth, 'yyyy')}<p>년</p></span>
                 <span>{format(currentMonth, 'M')}<p>월</p></span>
                 <span>{format(currentMonth, 'd')}<p>일</p></span>        
             </div>
-            <div className="btn-group">
+            <div className={"btn-group"}>
                 <span onClick={prevMonth}>
                     <img src="/assets/icons/navbtn.svg" alt="left"/>
                 </span>
-                <span className="right" onClick={nextMonth}>
+                <span className={"right"} onClick={nextMonth}>
                     <img src="/assets/icons/navbtn.svg" alt="right"/>
                 </span>
             </div>
-        </Header>
+        </div>
     );
 };
 
@@ -151,7 +42,7 @@ const RenderDays = () => {
         );
     }
 
-    return <Days>{days}</Days>;
+    return <div className={"days"}>{days}</div>;
 };
 
 interface RenderCellsProps {
@@ -203,13 +94,16 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }:RenderCellsProp
             day = addDays(day, 1);
         }
         rows.push(
-            <Row key={day+ ""}>
+            <div 
+                key={day+ ""}
+                className={"rows"}
+            >
                 {days}
-            </Row>,
+            </div>,
         );
         days = [];
     }
-    return <Body>{rows}</Body>;
+    return <div className={"body"}>{rows}</div>;
 };
 
 const Calender = () => {
@@ -230,7 +124,9 @@ const Calender = () => {
         setSelectedDate(day);
     };
     return (
-        <Wrapper animate={{y: [100, 0], opacity:[0, 1], transition:{duration: 0.5}}}>
+        <motion.div 
+            className={"calendar"} 
+            animate={{y: [100, 0], opacity:[0, 1], transition:{duration: 0.5}}}>
             <RenderHeader
                 currentMonth={currentMonth}
                 prevMonth={prevMonth}
@@ -242,7 +138,7 @@ const Calender = () => {
                 selectedDate={selectedDate}
                 onDateClick={onDateClick}
             />
-        </Wrapper>
+        </motion.div>
     );
 };
 

@@ -1,4 +1,4 @@
-import { Badge } from "style/HomeStyle";
+import styles from "@/style/page.module.scss";
 
 export const determineBadgeColor = (text: string): string => {
     let color
@@ -44,9 +44,9 @@ const Tools = (props:{ text: string }) => {
     const { text } = props
 
     return(
-        <Badge style={{ background: determineBadgeColor(text) }}>
+        <div className={styles["badge"]} style={{ background: determineBadgeColor(text) }}>
             {text}
-        </Badge>
+        </div>
     )
 }
 

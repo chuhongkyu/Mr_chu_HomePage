@@ -1,16 +1,28 @@
 import Webgl from "@/components/webgl/Webgl";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./style.scss";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoSans = localFont({
+  src: [
+    {
+      path: "./fonts/NotoSansKR400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/NotoSansKR500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/NotoSansKR700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-noto-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${notoSans.variable}`}>
         {children}
         <Webgl/>
       </body>

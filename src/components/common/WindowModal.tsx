@@ -1,6 +1,6 @@
-import { motion, LayoutGroup} from "framer-motion";
+import { motion, LayoutGroup} from "motion/react";
+import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Position = styled(motion.div)`
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 40px);
   position: fixed;
   top: 0;
@@ -146,10 +146,10 @@ const WindowModal = ({
   position,
 }: IWindow) => {
   const [resize, setResize] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const onExit = () => {
-    navigate("/home");
+    router.push("/home");
   };
   const onHandleSize = () => {
     setResize(!resize);
