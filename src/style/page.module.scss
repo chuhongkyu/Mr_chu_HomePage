@@ -260,6 +260,21 @@ $bar-clock-width: 180px;
         display: grid;
         grid-template-columns: repeat(4,1fr);
         grid-template-rows: 1fr 1fr;
+        .app-item{
+            grid-column: span 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a {
+                display: flex;
+                justify-self: center;
+                align-items: center;
+                flex-direction: column;
+                p{
+                    white-space: pre-line;
+                }
+            }
+        }
     }
 }
 
@@ -331,6 +346,9 @@ $bar-clock-width: 180px;
         .app-wrapper{
             width: 100%;
             min-height: 20rem;
+            .app-item{
+                width: 80px;
+            }
         }
     }
 }

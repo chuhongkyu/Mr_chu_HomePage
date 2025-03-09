@@ -1,13 +1,14 @@
 "use client"
 
-import { useRecoilValue } from "recoil";
 import AppLink from "@/components/common/window/app/AppLink";
 import AddAppBtn from "./AddAppBtn";
 import { appList } from "@/app/utils/appList";
 import styles from "@/style/page.module.scss";
+import { useState } from "react";
 
 const AppWrapper = ()=> {
-    const apps = useRecoilValue(appList);
+    const [apps] = useState<string[]>(appList)
+    
     return(
       <div className={styles["app-container"]}>
         <div className={styles["app-wrapper"]}>
@@ -16,7 +17,7 @@ const AppWrapper = ()=> {
           ))
         }
         </div>
-        <AddAppBtn/>
+        {/* <AddAppBtn/> */}
       </div>
     )
 }

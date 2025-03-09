@@ -19,7 +19,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-responsive": "^10.0.1",
-    "recoil": "^0.7.7",
     "styled-components": "^6.1.15",
     "three": "^0.174.0"
   },

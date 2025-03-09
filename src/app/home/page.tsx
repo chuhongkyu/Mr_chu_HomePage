@@ -1,6 +1,7 @@
 
 import CommonLayout from "@/components/common/CommonLayout";
 import RQProvider from "@/components/common/RQProvider";
+import AppWrapper from "@/components/common/window/app/AppWrapper";
 import FormContainer from "@/components/common/window/from/FormContainer";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     <CommonLayout>
       <RQProvider>
         <FormContainer/>
+        <AppWrapper/>
       </RQProvider>
     </CommonLayout>
   );
