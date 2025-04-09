@@ -72,7 +72,7 @@ const Parallax = () => {
         <SwiperSlide>
           <ParallaxImage
             target={"_blank"}
-            href={"https://chuhongkyu.github.io/interact_3D/"}
+            href={"https://mario-dev-life.vercel.app/"}
             >
             <img src={"/assets/img/about/01.jpg"} alt="Image_1"/>
           </ParallaxImage>

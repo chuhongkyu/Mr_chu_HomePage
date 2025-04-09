@@ -126,7 +126,7 @@ const Menu = () => {
               <p>NEXT.js, 카드 맞추기 게임</p>
             </div>
           </SpanItem>
-          <SpanItem target="blank" href="https://chuhongkyu.github.io/interact_3D/">
+          <SpanItem target="blank" href="https://mario-dev-life.vercel.app/">
             <img src={"/assets/img/about/01.jpg"} alt="mario" />
             <div>
               <h2>마리오 월드(개발자)</h2>

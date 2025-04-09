@@ -26,7 +26,7 @@ const Meta = (props:IProps) => {
   }
 
   const makeDescription = (desc:string) => {
-    console.log(desc)
+
     switch (desc) {
       case "home":
           desc = "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations.. 한국화 전공에서 개발자로 전향한 그의 이력을 확인 할 수 있습니다. 컴퓨터 화면과 같은 홈페이지를 감상해 보세요."
