@@ -1,4 +1,4 @@
-import { Badge } from "style/HomeStyle";
+import styles from "@/style/page.module.scss";
 import { determineBadgeColor } from "./Tools";
 
 export const keywords = [
@@ -47,7 +47,9 @@ interface IProps {
 
 const KeywordBtn = ({ name, value }:IProps) => {
     return(
-        <Badge style={{ background: determineBadgeColor(name) }}>
+        <div 
+            className={styles["badge"]} 
+            style={{ background: determineBadgeColor(name) }}>
             <input
                 type="checkbox"
                 id={name}
@@ -55,7 +57,7 @@ const KeywordBtn = ({ name, value }:IProps) => {
                 value={value}
             />
             <label htmlFor={name}>{value}</label>
-        </Badge>
+        </div>
     )
 }
 

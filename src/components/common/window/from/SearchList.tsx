@@ -2,7 +2,7 @@ import { motion } from "motion/react"
 import Loading from "../../Loading"
 import { Suspense } from "react"
 import { useMediaQuery } from "react-responsive"
-import { IList } from "@/app/utils/interface";
+import { IList } from "@/utils/interface";
 import styles from "@/style/page.module.scss";
 import Item from "./Item";
 import Link from "next/link";
