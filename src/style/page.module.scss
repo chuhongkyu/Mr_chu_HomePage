@@ -2,8 +2,14 @@ $window-bar-color: rgb(34,34,34);
 $bar-item: rgba(255,255,255,0.5);
 $bar-clock-width: 180px;
 
+$container-d-width: 420px;
+$container-m-width: 320px;
+
 .page{
     width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .bar-container{
@@ -252,16 +258,44 @@ $bar-clock-width: 180px;
 }
 
 .app-container{
-    margin-top: 25rem;
-    position: fixed;
+    margin: 0 auto;
+    max-width: $container-d-width;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
     .app-wrapper{
-        width: max(40vw, 680px);
-        min-height: 14rem;
-        display: grid;
-        grid-template-columns: repeat(4,1fr);
-        grid-template-rows: 1fr 1fr;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: auto;
+        max-width: $container-d-width;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 20px;
+        gap: 20px;
         .app-item{
-            grid-column: span 1;
+            width: 64px;
+            height: 64px;
+            // border: 1px solid #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -271,9 +305,41 @@ $bar-clock-width: 180px;
                 align-items: center;
                 flex-direction: column;
                 p{
+                    font-size: 14px;
+                    font-weight: 500;
                     white-space: pre-line;
+                    color: #333;
                 }
             }
+        }
+    }
+}
+
+.app-widget-container{
+    position: fixed;
+    max-width: $container-d-width;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    height: 80px;
+    bottom: 5px;
+    z-index: 2;
+    .item-wrapper{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .itme-wrapper-dim{
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     }
 }
@@ -303,12 +369,10 @@ $bar-clock-width: 180px;
             padding: 1px 22px;
         }
     }
-    .app-container{
-        margin-top: 30rem;
-    }
 }
 
-@media screen and (max-width: 680px) {
+
+@media screen and (max-width: 768px) {
     .form-container{
         .form-icon{
             left: initial;
@@ -317,37 +381,6 @@ $bar-clock-width: 180px;
         .form-search-panel{
             .search-list{
                 padding: 0.8rem 22px;
-            }
-        }
-    }
-    .app-container{
-        margin-top: 22rem;
-        .app-wrapper{
-            width: 100%;
-            min-height: 20rem;
-        }
-    }
-}
-
-@media screen and (max-width: 680px) {
-    .form-container{
-        .form-icon{
-            left: initial;
-            right: 20px;
-        }
-        .form-search-panel{
-            .search-list{
-                padding: 0.8rem 22px;
-            }
-        }
-    }
-    .app-container{
-        margin-top: 22rem;
-        .app-wrapper{
-            width: 100%;
-            min-height: 20rem;
-            .app-item{
-                width: 80px;
             }
         }
     }

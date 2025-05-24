@@ -69,7 +69,7 @@ const AppLink = ({ title, color, type, pathUrl }: IApp) => {
           <p className="font-app">{title}</p>
         </a>      
       :
-      <Link href={`/home/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
+      <Link href={`/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
         {choosePage()}
         <p className="font-app">{title}</p>
       </Link>}

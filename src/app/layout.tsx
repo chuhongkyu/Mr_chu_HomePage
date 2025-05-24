@@ -1,7 +1,8 @@
-import Webgl from "@/components/webgl/Webgl";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./style.scss";
+import CommonLayout from "@/components/common/CommonLayout";
 
 const notoSans = localFont({
   src: [
@@ -38,8 +39,9 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
-        {children}
-        <Webgl/>
+        <CommonLayout>
+          {children}
+        </CommonLayout>
       </body>
     </html>
   );

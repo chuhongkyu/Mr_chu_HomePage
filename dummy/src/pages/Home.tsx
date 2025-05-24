@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"
-import { getParam } from "utils/helper";
+import { getParam } from "@/utils/helper";
 import { Suspense, lazy, useEffect, useState } from "react";
-import AppWrapper from "components/window/AppWrapper";
+import AppWrapper from "@/components/common/window/app/AppWrapper";
 import { useMediaQuery } from "react-responsive";
-import SearchForm from "components/window/SearchForm";
-import Loading from "components/Loading";
+import Loading from "@/components/common/Loading";
 
 const Wrapper = styled.div`
   position: fixed;
