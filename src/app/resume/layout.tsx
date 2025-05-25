@@ -7,7 +7,7 @@ const Layout = ({
   }) => {
     return (
         <ModalLayout text="Resume">
-            {children}
+          {children}
         </ModalLayout>
     );
   }

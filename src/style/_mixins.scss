@@ -1,0 +1,18 @@
+@mixin user-drag-none {
+    -webkit-user-drag: none; // Safari
+    -khtml-user-drag: none;   // Konqueror
+    -moz-user-drag: none;     // Firefox
+    -o-user-drag: none;       // Opera
+    user-drag: none;          // W3C
+    user-select: none;
+}
+
+
+@mixin ellipsis($line: 1) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}

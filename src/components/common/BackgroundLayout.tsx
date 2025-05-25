@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react';
+"use client";
+
+import { useEffect, useRef } from "react";
 
 const BackgroundLayout = () => {
     const interBubbleRef = useRef<HTMLDivElement>(null);
@@ -15,16 +17,28 @@ const BackgroundLayout = () => {
             if (!interBubbleRef.current) return;
             
             const { curX, curY, tgX, tgY } = positionRef.current;
-            positionRef.current.curX += (tgX - curX) / 20;
-            positionRef.current.curY += (tgY - curY) / 20;
+            const newX = curX + (tgX - curX) / 20;
+            const newY = curY + (tgY - curY) / 20;
             
-            interBubbleRef.current.style.transform = `translate(${Math.round(positionRef.current.curX)}px, ${Math.round(positionRef.current.curY)}px)`;
+            if (Math.abs(newX - curX) > 0.1 || Math.abs(newY - curY) > 0.1) {
+                positionRef.current.curX = newX;
+                positionRef.current.curY = newY;
+                interBubbleRef.current.style.transform = `translate3d(${Math.round(newX)}px, ${Math.round(newY)}px, 0)`;
+            }
+            
             animationFrameRef.current = requestAnimationFrame(move);
         };
 
         const handleMouseMove = (event: MouseEvent) => {
-            positionRef.current.tgX = event.clientX;
-            positionRef.current.tgY = event.clientY;
+            const distance = Math.sqrt(
+                Math.pow(event.clientX - positionRef.current.tgX, 2) +
+                Math.pow(event.clientY - positionRef.current.tgY, 2)
+            );
+            
+            if (distance > 5) {
+                positionRef.current.tgX = event.clientX;
+                positionRef.current.tgY = event.clientY;
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);

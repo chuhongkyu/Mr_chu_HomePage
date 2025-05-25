@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./style.scss";
-import CommonLayout from "@/components/common/CommonLayout";
+import BackgroundLayout from "@/components/common/BackgroundLayout";
 
 const notoSans = localFont({
   src: [
@@ -39,9 +39,10 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
-        <CommonLayout>
+        <main>
           {children}
-        </CommonLayout>
+        </main>
+        <BackgroundLayout/>
       </body>
     </html>
   );

@@ -71,11 +71,7 @@ const About = () => {
     <WindowModal bgColor="white">
       <MainContainer>
         <LeftContainer>
-          <CategoryItems>
-            {category.map((item) => (
-              <CategoryItem onClick={onClick} key={item.id} id={item.id} text={item.name} isActive={item.active}/>
-            ))}
-          </CategoryItems>
+          
         </LeftContainer>
         <RightContainer ref={rightContainerRef}>
           <Header title={title}/>
