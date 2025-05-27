@@ -15,10 +15,12 @@ const AppWrapper = ()=> {
           {apps.map((app, index) => (
             <AppLink 
               key={index + "link-KEY"} 
-              title={app.label} 
+              type={app.type}
+              imgSrc={app.imgSrc}
+              label={app.label} 
               color={app.color}
-              pathUrl={`${app.name}`} 
-              type={app.name}
+              link={app.link} 
+              name={app.name}
               />
             ))
           }

@@ -1,5 +1,5 @@
 import styles from "@/style/sub-page.module.scss";
-import { TextGroup } from "./ContentContainer";
+import { TextGroup } from "@/components/common/page/container/ContentContainer";
 
 const ContentTwo = () => {
   return (

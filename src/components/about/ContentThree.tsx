@@ -1,4 +1,4 @@
-import { TextGroup } from "./ContentContainer";
+import { TextGroup } from "../common/page/container/ContentContainer";
 import Parallax2 from "./Parallax2";
 import styles from "@/style/sub-page.module.scss";
 

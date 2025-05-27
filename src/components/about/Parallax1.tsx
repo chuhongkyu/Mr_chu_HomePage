@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from 'swiper/modules';
+import { Autoplay } from "swiper/modules";
 import "swiper/css"; 
 import styles from "@/style/sub-page.module.scss";
 

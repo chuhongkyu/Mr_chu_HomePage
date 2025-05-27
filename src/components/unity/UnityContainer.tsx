@@ -4,23 +4,21 @@ import ModalLeftContainer from "@/components/common/page/layout/ModalLeftContain
 import Category from "@/components/common/page/container/CategoryItem";
 import ModalRightContainer from "@/components/common/page/layout/ModalRightContainer";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { aboutData } from "@/utils/categoryDatas";
+import { aboutData, gameData } from "@/utils/categoryDatas";
 import styles from "@/style/sub-page.module.scss";
 import Header from "@/components/common/page/container/Header";
 import ContentContainer from "@/components/common/page/container/ContentContainer";
-import ContentOne from "@/components/about/ContentOne";
-import ContentTwo from "@/components/about/ContentTwo";
-import ContentThree from "@/components/about/ContentThree";
-import ContentFour from "@/components/about/ContentFour";
-import ContentFive from "@/components/about/ContentFive";
+import ContentOne from "./ContentOne";
+import ContentTwo from "./ContentTwo";
+import ContentThree from "./ContentThree";
 
 
-const AboutContainer = () => {
+const UnityContainer = () => {
     const [currentSection, setSection] = useState(0);
     const rightContainerRef = useRef<HTMLDivElement>(null);
     const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const [category, setCategory] = useState(aboutData);
-    const [title, setTitle] = useState("간단한 소개");
+    const [category, setCategory] = useState(gameData);
+    const [title, setTitle] = useState("1인 개발 여정");
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
         const target = e.target as HTMLElement;
@@ -77,8 +75,7 @@ const AboutContainer = () => {
     return (
         <>
             <ModalLeftContainer>
-                
-                <div className={styles["about-left-container"]}>
+                <div className={styles["unity-left-container"]}>
                     <Category>
                         {category.map((item) => (
                             <Category.Item onClick={onClick} key={item.id} id={item.id} text={item.name} isActive={item.active}/>
@@ -96,8 +93,6 @@ const AboutContainer = () => {
                         {index === 0 && <ContentOne />}
                         {index === 1 && <ContentTwo />}
                         {index === 2 && <ContentThree />}
-                        {index === 3 && <ContentFour />}
-                        {index === 4 && <ContentFive />}
                     </ContentContainer>
                 ))}
             </ModalRightContainer>
@@ -105,4 +100,4 @@ const AboutContainer = () => {
     )
 }
 
-export default AboutContainer;
+export default UnityContainer;

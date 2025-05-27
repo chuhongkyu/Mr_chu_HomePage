@@ -1,5 +1,5 @@
-import { TextGroup } from "./ContentContainer";
-import Chronicle from "./Chronicle";
+import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import Chronicle from "@/components/about/Chronicle";
 import styles from "@/style/sub-page.module.scss";
 
 const ContentOne = () => {

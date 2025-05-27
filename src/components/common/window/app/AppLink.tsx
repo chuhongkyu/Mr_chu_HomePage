@@ -2,13 +2,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import styles from "@/style/page.module.scss";
 import GithubIcon from "./GithubIcon";
-
-interface IApp {
-  title: string;
-  type: string;
-  color: string;
-  pathUrl: string;
-}
+import { AppItem } from "./AppContext";
 
 interface AppIconProps {
   color: string;
@@ -41,26 +35,28 @@ const AppIcon = ({ color }: AppIconProps) => (
   </motion.svg>
 );
 
-const AppIconWrapper = ({ type, color }: { type: string; color: string }) => {
-  return type === "github" ? <GithubIcon /> : <AppIcon color={color} />;
+const AppIconWrapper = ({ type, imgSrc, label, color }: { type: string; imgSrc?: string; label: string; color: string }) => {
+  if(type === "icon") return <GithubIcon />;
+  if(type === "folder") return <AppIcon color={color} />
+  if(type === "img") return <img src={imgSrc} alt={label} />
 };
 
-const AppLink = ({ title, color, type, pathUrl }: IApp) => {
+const AppLink = ({type, label, name, color, link, imgSrc}: AppItem) => {
   return (
     <motion.div className={styles["app-item"]}>
-      {title === 'github' ? (
+      {name === 'github' ? (
         <a 
           href="https://github.com/chuhongkyu"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <AppIconWrapper type={type} color={color} />
-          <p className={styles["font-app"]}>{title}</p>
+          <AppIconWrapper type={type} imgSrc={imgSrc} label={label} color={color} />
+          <p className={styles["font-app"]}>{label}</p>
         </a>      
       ) : (
-        <Link href={`/${pathUrl === 'unity' ? 'game_app' : pathUrl}`}>
-          <AppIconWrapper type={type} color={color} />
-          <p className={styles["font-app"]}>{title}</p>
+        <Link href={`${link}`}>
+          <AppIconWrapper type={type} imgSrc={imgSrc} label={label} color={color} />
+          <p className={styles["font-app"]}>{label}</p>
         </Link>
       )}
     </motion.div>

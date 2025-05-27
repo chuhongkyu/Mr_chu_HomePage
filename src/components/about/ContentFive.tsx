@@ -1,6 +1,5 @@
-
-import { TextGroup } from "./ContentContainer";
-import Parallax from "./Parallax";
+import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import Parallax from "@/components/about/Parallax";
 import styles from "@/style/sub-page.module.scss";
 
 const ContentFive = () => {
