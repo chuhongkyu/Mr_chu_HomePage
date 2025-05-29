@@ -40,5 +40,21 @@ const getProjectDetail = async ({id}:IDetail) => {
     }
 };
 
-export { getProjectList, getProjectDetail };
+const getAllProjectList = async () => {
+    const url = 'https://developed-heath-mr-chu.koyeb.app/api/notion/pageIds';
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('프로젝트 리스트 정보를 불러오는 데 실패했습니다.');
+        }
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('에러:', error);
+        return null;
+    }
+}
+
+export { getProjectList, getProjectDetail, getAllProjectList };
   

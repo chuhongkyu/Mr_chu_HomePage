@@ -2,7 +2,6 @@
 
 import AppLink from "@/components/common/window/app/AppLink";
 import AddAppBtn from "./AddAppBtn";
-import { appList } from "@/utils/appList";
 import styles from "@/style/page.module.scss";
 import { useAppContext } from "./AppContext";
 
