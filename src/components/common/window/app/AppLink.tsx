@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import styles from "@/style/page.module.scss";
 import GithubIcon from "./GithubIcon";
-import { AppItem } from "./AppContext";
+import { AppItem } from "./AppType";
 
 interface AppIconProps {
   color: string;

@@ -292,9 +292,10 @@ $blur: blur(10px);
         width: 100%;
         height: auto;
         max-width: $container-d-width;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-auto-flow: row;
         border-radius: 20px;
         overflow: hidden;
         padding: 20px;
@@ -350,14 +351,14 @@ $blur: blur(10px);
     height: 80px;
     bottom: 5px;
     z-index: 2;
-    .item-wrapper{
+    .widget-wrapper{
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
-        .itme-wrapper-dim{
+        .widget-wrapper-dim{
             width: 100%;
             height: 100%;
             background: $blur-color;
@@ -366,6 +367,9 @@ $blur: blur(10px);
             position: absolute;
             top: 0;
             left: 0;
+        }
+        .item-wrapper{
+
         }
     }
 }

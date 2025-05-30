@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^9.0.4",
     "@reduxjs/toolkit": "^2.8.2",
