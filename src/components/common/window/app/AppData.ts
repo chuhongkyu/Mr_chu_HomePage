@@ -3,7 +3,6 @@ import { AppItem } from "./AppType";
 const initialApps: AppItem[] = [
     { type: "folder", label: "Resume", name: "resume", color: "rgb(224,64,47)", link: "/resume" },
     { type: "folder", label: "About", name: "about", color: "rgb(238,188,17)", link: "/about" },
-    { type: "icon", label: "GitHub", name: "github", color: "rgb(0,0,0)", link: "https://github.com/jonghyeon-kim" },
    
     { type: "folder", label: "Unity", name: "unity", color: "rgb(121, 120, 120)", link: "/unity" },
   
@@ -13,7 +12,8 @@ const initialApps: AppItem[] = [
 ];
 
 const widgetApps: AppItem[] = [
-    { type: "img", imgSrc: "/assets/icons.png", label: "링크드인", name: "링크드인", color: "rgb(46,142,214)", link: "www.linkedin.com/in/hong-kyu-chu-a38b9a249" },
+    { type: "img", imgSrc: "/assets/icons/linkedin.svg", label: "링크드인", name: "링크드인", color: "rgb(46,142,214)", outlink: "https://www.linkedin.com/in/hong-kyu-chu-a38b9a249" },
+    { type: "img", imgSrc: "/assets/icons/github.svg", label: "깃허브", name: "깃허브", color: "rgb(0,0,0)", outlink: "https://github.com/chuhongkyu" },
 ]
   
 

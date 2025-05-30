@@ -4,6 +4,7 @@ export interface AppItem {
     label: string;
     name: string;
     color: string;
-    link: string;
+    outlink?: string;
+    link?: string;
     imgSrc?: string;
 };

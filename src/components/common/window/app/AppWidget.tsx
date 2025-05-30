@@ -18,6 +18,7 @@ const AppWidget = () => {
                             label={app.label} 
                             color={app.color}
                             link={app.link} 
+                            outlink={app.outlink}
                             name={app.name}
                         />
                     ))}

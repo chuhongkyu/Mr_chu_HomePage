@@ -18,7 +18,8 @@ const AppWrapper = ()=> {
               imgSrc={app.imgSrc}
               label={app.label} 
               color={app.color}
-              link={app.link} 
+              link={app?.link} 
+              outlink={app?.outlink}
               name={app.name}
               />
             ))

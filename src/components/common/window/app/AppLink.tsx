@@ -41,23 +41,20 @@ const AppIconWrapper = ({ type, imgSrc, label, color }: { type: string; imgSrc?:
   if(type === "img") return <img src={imgSrc} alt={label} />
 };
 
-const AppLink = ({type, label, name, color, link, imgSrc}: AppItem) => {
+const AppLink = ({type, label, name, color, link, imgSrc, outlink}: AppItem) => {
   return (
     <motion.div className={styles["app-item"]}>
-      {name === 'github' ? (
-        <a 
-          href="https://github.com/chuhongkyu"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <AppIconWrapper type={type} imgSrc={imgSrc} label={label} color={color} />
-          <p className={styles["font-app"]}>{label}</p>
-        </a>      
-      ) : (
+      {link && (
         <Link href={`${link}`}>
           <AppIconWrapper type={type} imgSrc={imgSrc} label={label} color={color} />
           <p className={styles["font-app"]}>{label}</p>
         </Link>
+      )}
+      {outlink && (
+        <a href={`${outlink}`} target="_blank" rel="noopener noreferrer">
+          <AppIconWrapper type={type} imgSrc={imgSrc} label={label} color={color} />
+          <p className={styles["font-app"]}>{label}</p>
+        </a>
       )}
     </motion.div>
   );
