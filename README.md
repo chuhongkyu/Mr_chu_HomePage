@@ -1,3 +1,14 @@
+# 2025/05/31 vercel 배포로 변경
+
+https://mr-chu-home-page-ng5k.vercel.app/
+
+- next.js 프레임 워크로 리팩토링
+- styled-components => SCSS로 점진적 변경 작업
+- 호스팅 netlify => vercel로 이전
+- 합성 컴포넌트 구조로 가보자!
+- 전역값 관리 => Redux Toolkit으로 
+
+
 # 2024/01/18 vite 프레임워크로 변경
 - Vite 추가
 
