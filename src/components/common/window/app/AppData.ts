@@ -28,8 +28,8 @@ const cloum4Apps: AppItem[] = [
 
 
 const widgetApps: AppItem[] = [
-    { type: "img", imgSrc: "/assets/icons/linkedin.svg", label: "링크드인", name: "링크드인", color: "rgb(46,142,214)", outlink: "https://www.linkedin.com/in/hong-kyu-chu-a38b9a249" },
-    { type: "img", imgSrc: "/assets/icons/github.svg", label: "깃허브", name: "깃허브", color: "rgb(0,0,0)", outlink: "https://github.com/chuhongkyu" },
+    { type: "img", imgSrc: "/assets/icons/linkedin.svg", className: "white-square-bg", label: "링크드인", name: "링크드인", color: "rgb(46,142,214)", outlink: "https://www.linkedin.com/in/hong-kyu-chu-a38b9a249" },
+    { type: "img", imgSrc: "/assets/icons/github.svg", className: "white-circle-bg", label: "깃허브", name: "깃허브", color: "rgb(0,0,0)", outlink: "https://github.com/chuhongkyu" },
     { type: "img", imgSrc: "/assets/icons/instagram.svg", label: "Instagram", name: "Instagram", color: "rgb(0,0,0)", outlink: "https://github.com/chuhongkyu" },
 ]
   

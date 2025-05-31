@@ -8,9 +8,12 @@ $bar-clock-width: 180px;
 $container-d-width: 420px;
 $container-m-width: 320px;
 
+$blur-border: 1px solid rgba(255, 255, 255, 0.4);
 $blur-color: rgba(255, 255, 255, 0.4);
 $blur-color-2: rgba(0, 0, 0, 0.3);
 $blur: blur(10px);
+
+$bg-button: 2;
 
 .page{
     width: 100%;
@@ -286,8 +289,9 @@ $blur: blur(10px);
     position: relative;
     overflow: hidden;
     border-radius: 20px;
-    &::after{
+    &::before{
         content: "";
+        display: block;
         width: 100%;
         height: 100%;
         background: $blur-color;
@@ -297,6 +301,8 @@ $blur: blur(10px);
         z-index: 1;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
     }
     .app-areas{
         width: 100%;
@@ -306,10 +312,11 @@ $blur: blur(10px);
         flex-direction: column;
         padding: 20px;
         border-radius: 20px;
-    }
-    .app-wrapper{
+        border: $blur-border;
         position: relative;
         z-index: 2;
+    }
+    .app-wrapper{
         display: flex;
         flex-wrap: wrap;
         overflow: hidden;
@@ -342,8 +349,11 @@ $blur: blur(10px);
             backdrop-filter: $blur;
             -webkit-backdrop-filter: $blur;
             position: absolute;
+            border: $blur-border;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
         }
         .item-wrapper{
             position: relative;
@@ -382,6 +392,14 @@ $blur: blur(10px);
                     margin-bottom: 0;
                     border: none;
                     user-select: none;
+                    &.white-square-bg{
+                        background: #fff;
+                        border-radius: 8px;
+                    }
+                    &.white-circle-bg{
+                        background: #fff;
+                        border-radius: 50%;
+                    }
                 }
                 .font-app{
                     display: none;
@@ -396,7 +414,11 @@ $blur: blur(10px);
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             border-left: 1px solid #000;
+            .app-item{
+                margin-left: 18px;
+            }
         }
     }
 }
@@ -461,7 +483,7 @@ $blur: blur(10px);
     position: absolute;
     bottom: 10px;
     right: 10px;
-    z-index: 1;
+    z-index: $bg-button;
     font-size: 12px;
     .toggle-checkbox{
         display: none;
@@ -537,6 +559,9 @@ $blur: blur(10px);
         input[type="text"]{
             padding: 1px 22px;
         }
+    }
+    .bg-toggle-container{
+        display: none;
     }
 }
 
