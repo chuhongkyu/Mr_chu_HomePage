@@ -5,6 +5,7 @@ import AppLink from "./AppLink";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
 import { widgetApps } from "./AppData";
+import { motion } from "motion/react";
 
 const AppWidget = () => {
     const [apps, setApps] = useState(widgetApps);
@@ -29,7 +30,11 @@ const AppWidget = () => {
     }
 
     return (
-        <div className={styles["app-widget-container"]}>
+        <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 , ease: "easeInOut" }}
+            className={styles["app-widget-container"]}>
             <div className={styles["widget-wrapper"]}>
                 <div className={styles["widget-wrapper-dim"]}></div>
                 <DragDropContext onDragEnd={onDragEnd}>
@@ -76,7 +81,7 @@ const AppWidget = () => {
                     </Droppable>
                 </DragDropContext>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

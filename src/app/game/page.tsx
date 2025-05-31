@@ -1,4 +1,4 @@
-import UnityContainer from "@/components/unity/UnityContainer";
+import UnityContainer from "@/components/game/UnityContainer";
 
 const UnityPage = () => {
     return (

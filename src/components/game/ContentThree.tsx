@@ -1,26 +1,16 @@
-import { TextGroup } from "components/about/ContentContainer";
-import { motion } from "framer-motion";
-import styled from "styled-components";
-
-const Wrapper = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-`;
+import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import styles from "@/style/sub-page.module.scss";
 
 const ContentThree = () => {
   return (
-    <Wrapper>
+    <div className={styles["content"]}>
         <TextGroup>
             <h3 className="title">
               플랫폼들의 정책
             </h3>
             <h4 className="sub-title">App Tracking Transparency</h4>
             <div className="content-group">
-              <img className="img-content" src="/assets/others_img/tracking.jpg" alt="tracking"/>
+              <img className="img-content" src="/assets/game/tracking.jpg" alt="tracking"/>
               <div className="description">
                 <p>
                   애플은 2021년 iOS 업데이트를 통해, 앱이 사용자에게 '앱 추적 허용' 여부를 묻는 팝업을 반드시 표시하도록 요구했습니다. 
@@ -35,7 +25,7 @@ const ContentThree = () => {
             </div>
             
         </TextGroup>
-    </Wrapper>
+    </div>
   )
 };
 

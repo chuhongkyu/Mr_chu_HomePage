@@ -18,12 +18,7 @@ const AppIcon = ({ color }: AppIconProps) => (
   >
     <g id="surface983695">
       <motion.path
-        initial={{ pathLength: 0, fill: color }}
-        whileInView={{
-          pathLength: 1,
-          fill: color,
-          transition: { duration: 2 },
-        }}
+        initial={{ pathLength: 1, fill: color }}
         whileHover={{
           y: -5,
           transition: { duration: 0.3, type: "spring" },
@@ -34,23 +29,23 @@ const AppIcon = ({ color }: AppIconProps) => (
   </motion.svg>
 );
 
-const AppIconWrapper = ({ type, imgSrc, style, label, color }: { type: string; imgSrc?: string; style?: React.CSSProperties, label: string; color: string }) => {
+const AppIconWrapper = ({ type, imgSrc, className, label, color }: { type: string; imgSrc?: string; className?:string; label: string; color: string }) => {
   if(type === "folder") return <AppIcon color={color} />
-  if(type === "img") return <img src={imgSrc} alt={label} style={style} />
+  if(type === "img") return <img src={imgSrc} alt={label} className={styles[className || ""]} />
 };
 
-const AppLink = ({type, label, style, name, color, link, imgSrc, outlink}: AppItem) => {
+const AppLink = ({type, label, className, name, color, link, imgSrc, outlink}: AppItem) => {
   return (
     <motion.div className={styles["app-item"]}>
       {link && (
         <Link href={`${link}`}>
-          <AppIconWrapper type={type} style={style} imgSrc={imgSrc} label={label} color={color} />
+          <AppIconWrapper type={type} className={className} imgSrc={imgSrc} label={label} color={color} />
           <p className={styles["font-app"]}>{label}</p>
         </Link>
       )}
       {outlink && (
         <a href={`${outlink}`} target="_blank" rel="noopener noreferrer">
-          <AppIconWrapper type={type} style={style} imgSrc={imgSrc} label={label} color={color} />
+          <AppIconWrapper type={type} className={className} imgSrc={imgSrc} label={label} color={color} />
           <p className={styles["font-app"]}>{label}</p>
         </a>
       )}

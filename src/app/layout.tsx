@@ -1,9 +1,10 @@
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./style.scss";
-import BackgroundLayout from "@/components/common/BackgroundLayout";
 import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
+import BackgroundController from "@/components/common/window/background/BackgroundController";
+import BgToggleButton from "@/components/common/window/BgToggleButton";
+import { ReduxProvider } from '@/components/providers/ReduxProvider';
 
 const notoSans = localFont({
   src: [
@@ -40,11 +41,14 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
-        <section className="main">
-          {children}
-          <AppWidgetClient/>
-        </section>
-        {/* <BackgroundLayout/> */}
+        <ReduxProvider>
+          <section className="main">
+            {children}
+            <AppWidgetClient/>
+            <BgToggleButton/>
+          </section>
+          <BackgroundController/>
+        </ReduxProvider>
       </body>
     </html>
   );

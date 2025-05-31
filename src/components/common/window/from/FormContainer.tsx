@@ -5,11 +5,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@/utils/hooks";
-import { IList } from "@/utils/interface";
+
 import { getProjectList } from "@/utils/api";
 import styles from "@/style/page.module.scss";
-// import SearchList from "./SearchList";
 import dynamic from "next/dynamic";
+import { IList } from "./SearchType";
 
 const SearchList = dynamic(() => import("./SearchList"), {
   ssr: false,

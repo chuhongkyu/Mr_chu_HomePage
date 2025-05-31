@@ -2,56 +2,108 @@
 
 import { createContext, useContext, useReducer, ReactNode } from "react";
 import { AppItem } from "./AppType";
-import { initialApps } from "./AppData";
+import { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps } from "./AppData";
 
+type Area = {
+    id: string;
+    apps: AppItem[];
+};
 
-// 액션 타입 정의 수정
 type Action = 
-  | { type: "ADD_APP"; payload: AppItem }
-  | { type: "REORDER_APPS"; payload: { sourceIndex: number; destinationIndex: number } }
-  | { type: "SET_APPS"; payload: AppItem[] };
+  | { type: "ADD_APP"; payload: { areaId: string; app: AppItem } }
+  | { type: "MOVE_APP"; payload: { 
+      sourceAreaId: string; 
+      destinationAreaId: string;
+      sourceIndex: number; 
+      destinationIndex: number 
+    }}
+  | { type: "SET_APPS"; payload: { areaId: string; apps: AppItem[] } };
 
 
-// 리듀서 함수 수정
-const appReducer = (state: AppItem[], action: Action): AppItem[] => {
-  switch (action.type) {
-    case "ADD_APP":
-      return [...state, action.payload];
-    case "SET_APPS":
-      return action.payload;
-    case "REORDER_APPS":
-      const { sourceIndex, destinationIndex } = action.payload;
-      const result = Array.from(state);
-      const [removed] = result.splice(sourceIndex, 1);
-      result.splice(destinationIndex, 0, removed);
-      return result;
-    default:
-      return state;
-  }
+const initialAreas: Area[] = [
+    { id: "area1", apps: cloum1Apps },
+    { id: "area2", apps: cloum2Apps },
+    { id: "area3", apps: cloum3Apps },
+    { id: "area4", apps: cloum4Apps }
+];
+
+// 리듀서 함수
+const appReducer = (state: Area[], action: Action): Area[] => {
+    switch (action.type) {
+        case "ADD_APP": {
+            return state.map(area => 
+                area.id === action.payload.areaId 
+                    ? { ...area, apps: [...area.apps, action.payload.app] }
+                    : area
+            );
+        }
+        case "MOVE_APP": {
+            const { sourceAreaId, destinationAreaId, sourceIndex, destinationIndex } = action.payload;
+            
+            // 같은 영역 내에서 이동하는 경우
+            if (sourceAreaId === destinationAreaId) {
+                return state.map(area => {
+                    if (area.id === sourceAreaId) {
+                        const newApps = Array.from(area.apps);
+                        const [removed] = newApps.splice(sourceIndex, 1);
+                        newApps.splice(destinationIndex, 0, removed);
+                        return { ...area, apps: newApps };
+                    }
+                    return area;
+                });
+            }
+            
+            // 다른 영역으로 이동하는 경우
+            return state.map(area => {
+                if (area.id === sourceAreaId) {
+                    const newApps = Array.from(area.apps);
+                    const [removed] = newApps.splice(sourceIndex, 1);
+                    return { ...area, apps: newApps };
+                }
+                if (area.id === destinationAreaId) {
+                    const sourceArea = state.find(a => a.id === sourceAreaId);
+                    if (!sourceArea) return area;
+                    const newApps = Array.from(area.apps);
+                    newApps.splice(destinationIndex, 0, sourceArea.apps[sourceIndex]);
+                    return { ...area, apps: newApps };
+                }
+                return area;
+            });
+        }
+        case "SET_APPS": {
+            return state.map(area => 
+                area.id === action.payload.areaId 
+                    ? { ...area, apps: action.payload.apps }
+                    : area
+            );
+        }
+        default:
+            return state;
+    }
 };
 
 // Context 생성
 const AppContext = createContext<{
-  apps: AppItem[];
-  dispatch: React.Dispatch<Action>;
+    areas: Area[];
+    dispatch: React.Dispatch<Action>;
 } | null>(null);
 
 // Provider 컴포넌트
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [apps, dispatch] = useReducer(appReducer, initialApps);
+    const [areas, dispatch] = useReducer(appReducer, initialAreas);
 
-  return (
-    <AppContext.Provider value={{ apps, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  );
+    return (
+        <AppContext.Provider value={{ areas, dispatch }}>
+            {children}
+        </AppContext.Provider>
+    );
 };
 
-// Context를 쉽게 사용하기 위한 커스텀 훅
+// Context 사용을 위한 Hook
 export const useAppContext = () => {
-  const context = useContext(AppContext);
-  if (!context) {
-    throw new Error("useAppContext must be used within an AppProvider");
-  }
-  return context;
+    const context = useContext(AppContext);
+    if (!context) {
+        throw new Error("useAppContext must be used within an AppProvider");
+    }
+    return context;
 };

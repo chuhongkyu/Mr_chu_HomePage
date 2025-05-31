@@ -1,6 +1,5 @@
-@import "./_variables.scss";
-@import "./_mixins.scss";
-
+@use "./_variables" as *;
+@use "./_mixins" as *;
 
 .scroll-wrapper{
   width: 100%;
@@ -22,8 +21,11 @@
     max-width: 680px;
     width: 100%;
   }
-  
   p, b, li, h1, h5 {
     font-family: 'Noto Sans KR', sans-serif;
+  }
+  blockquote{
+    font-size: 14px;
+    color: #333;
   }
 }

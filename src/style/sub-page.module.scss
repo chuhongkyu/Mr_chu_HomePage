@@ -1,5 +1,5 @@
-@import "./_variables.scss";
-@import "./_mixins.scss";
+@use "./_variables" as *;
+@use "./_mixins" as *;
 
 $modal-top-nav-height: 32px;
 $modal-top-nav-z-index: 9;
@@ -29,8 +29,6 @@ $modal-top-nav-z-index: 9;
             width: 100%;
             height: $modal-top-nav-height;
             background: #2C2C2C;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
             padding: 0px 5px 0px 10px;
             display: flex;
             align-items: center;

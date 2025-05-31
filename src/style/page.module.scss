@@ -1,6 +1,5 @@
-@import "./_variables.scss";
-@import "./_mixins.scss";
-
+@use "./_variables" as *;
+@use "./_mixins" as *;
 
 $window-bar-color: rgb(34,34,34);
 $bar-item: rgba(255,255,255,0.5);
@@ -10,6 +9,7 @@ $container-d-width: 420px;
 $container-m-width: 320px;
 
 $blur-color: rgba(255, 255, 255, 0.4);
+$blur-color-2: rgba(0, 0, 0, 0.3);
 $blur: blur(10px);
 
 .page{
@@ -286,32 +286,35 @@ $blur: blur(10px);
         top: 0;
         left: 0;
     }
-    .app-wrapper{
-        position: relative;
-        z-index: 2;
+    .app-areas{
         width: 100%;
         height: auto;
         max-width: $container-d-width;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        grid-auto-flow: row;
-        border-radius: 20px;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
         padding: 20px;
-        gap: 0 20px;
+        border-radius: 20px;
+    }
+    .app-wrapper{
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        .drag-item{
+            &:not(:last-of-type){
+                margin-right: 8px;
+            }
+        }
     }
 }
 
 .app-widget-container{
-    position: fixed;
     max-width: $container-d-width;
     border-radius: 20px;
     overflow: hidden;
     width: 100%;
     height: 70px;
-    bottom: 5px;
-    z-index: 2;
     .widget-wrapper{
         width: 100%;
         height: 100%;
@@ -319,6 +322,7 @@ $blur: blur(10px);
         justify-content: center;
         align-items: center;
         position: relative;
+        padding: 0 20px;
         .widget-wrapper-dim{
             width: 100%;
             height: 100%;
@@ -337,7 +341,6 @@ $blur: blur(10px);
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 0px 40px;
             .drag-item{
                 display: block;
                 &:not(:last-of-type){
@@ -379,17 +382,31 @@ $blur: blur(10px);
 }
 
 .app-item{
-    width: 80px;
-    height: 100px;
-    // border: 1px solid #000;
+    width: 89px;
+    height: 95px;
     display: flex;
     justify-content: center;
+    &:hover{
+        a{
+            .font-app{
+                transition: 300ms ease-in-out;
+                color: #000;
+            }
+        }
+        
+    }
     a {
         width: 100%;
         display: flex;
         align-items: center;
         flex-direction: column;
         position: relative;
+        .square{
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            border: none;
+        }
         img{
             display: block;
             width: 50px;
@@ -415,10 +432,67 @@ $blur: blur(10px);
             color: #333;
             text-align: center;
             @include ellipsis(2);
+            transition: 300ms ease-in-out;
         }
     }
 }
 
+.bg-toggle-container{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+    font-size: 12px;
+    .toggle-checkbox{
+        display: none;
+    }
+    .bg-toggle-button{
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: fit-content;
+        border: 3px solid rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        &::before{
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 0%;
+            border-radius:20px;
+            background: white;
+            transition: all 0.3s;
+        }
+        div {
+            padding: 4px 14px;
+            text-align: center;
+            z-index: 1;
+        }
+    }
+    .toggle-checkbox:checked + .bg-toggle-button::before {
+        left: 50%;
+    }
+    .toggle-checkbox:checked + .bg-toggle-button div:first-child{
+        color: white;
+        transition: color 0.3s;
+    }
+    .toggle-checkbox:checked + .bg-toggle-button div:last-child{
+        color: #343434;
+        transition: color 0.3s;
+    }
+    .toggle-checkbox + .bg-toggle-button div:first-child{
+        color: #343434;
+        transition: color 0.3s;
+    }
+    .toggle-checkbox + .bg-toggle-button div:last-child{
+        color: white;
+        transition: color 0.3s;
+    }
+}
 
 @media screen and (max-width: 1440px) {
     
@@ -459,15 +533,42 @@ $blur: blur(10px);
             }
         }
     }
+    .app-widget-container{
+        .widget-wrapper{
+            .item-wrapper{
+                .app-item{
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+    .app-item{
+        width: 60px;
+        height: 71px;
+        a {
+            .square{
+                width: 32px;
+                height: 32px;
+            }
+            img{
+                display: block;
+                width: 40px;
+                height: 32px;
+            }
+            svg{
+                width: 40px;
+                height: 40px;
+            }
+            .font-app{
+                max-width: 60px;
+                font-size: 12px;
+            }
+        }
+    }
 }
 
 
 @media screen and (max-width: 355px) {
-    .app-container{
-        .app-wrapper{
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    }
+
 }

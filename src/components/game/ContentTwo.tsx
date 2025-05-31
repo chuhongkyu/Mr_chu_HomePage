@@ -15,7 +15,7 @@ const ContentTwo = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://play.google.com/store/apps/details?id=com.Mr.chu.StickerSlime&hl=ko">
-                <img width={120} height={120} src="/assets/others_img/main_icon.png" alt="sitckerslime"/>
+                <img width={120} height={120} src="/assets/game/sticker_slime_logo.png" alt="sitckerslime"/>
               </a>
               <div className="sub-title">
                 기획 단계
