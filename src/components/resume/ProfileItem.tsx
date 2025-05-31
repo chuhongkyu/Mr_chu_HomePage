@@ -20,7 +20,7 @@ function ProfileItem({ title, children, icon, column, row }: IWorks) {
       whileHover={{ y: -3 }}
     >
       <h3 className={styles["item-title"]}>
-        <Image className={styles.icon} src={icon} alt={title} />
+        <Image width={20} height={20} className={styles.icon} src={icon} alt={title} />
         {title}
       </h3>
       <ul className={styles.content}>{children}</ul>

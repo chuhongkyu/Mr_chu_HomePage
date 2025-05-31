@@ -1,5 +1,6 @@
 import { TextGroup } from "@/components/common/page/container/ContentContainer";
 import styles from "@/style/sub-page.module.scss";
+import Image from "next/image";
 
 const ContentTwo = () => {
   return (
@@ -15,7 +16,7 @@ const ContentTwo = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://play.google.com/store/apps/details?id=com.Mr.chu.StickerSlime&hl=ko">
-                <img width={120} height={120} src="/assets/game/sticker_slime_logo.png" alt="sitckerslime"/>
+                <Image width={120} height={120} src="/assets/game/sticker_slime_logo.png" alt="sitckerslime"/>
               </a>
               <div className="sub-title">
                 기획 단계

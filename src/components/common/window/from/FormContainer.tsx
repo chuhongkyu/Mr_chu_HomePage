@@ -41,23 +41,25 @@ const FormContainer = () => {
     },[data])
     
     return(
-        <form className={styles["form-container"]}>
-            <span className={styles["form-icon"]}/>
-            <input  
-                onFocus={onHandleOpen}
-                onChange={onChange} 
-                onKeyUp={onHandleOpen}
-                onBlur={onHandleClose}
-                placeholder="ex) 삼성, Cass, 롯데" 
-                maxLength={15}
-                type="text" 
-            />
-            <AnimatePresence mode="wait" initial={false}>
-                {isOpen && (
-                    <SearchList isPending={isPending} list={list} error={error}/>
-                )}
-            </AnimatePresence>
-        </form>
+        <div className={styles["form-container-dim"]}>
+            <form className={styles["form-container"]}>
+                <span className={styles["form-icon"]}/>
+                <input  
+                    onFocus={onHandleOpen}
+                    onChange={onChange} 
+                    onKeyUp={onHandleOpen}
+                    onBlur={onHandleClose}
+                    placeholder="ex) 삼성, Cass, 롯데" 
+                    maxLength={15}
+                    type="text" 
+                />
+                <AnimatePresence mode="wait" initial={false}>
+                    {isOpen && (
+                        <SearchList isPending={isPending} list={list} error={error}/>
+                    )}
+                </AnimatePresence>
+            </form>
+        </div>
     )
 }
 

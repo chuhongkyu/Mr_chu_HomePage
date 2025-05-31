@@ -28,7 +28,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image src={"/assets/img/about/insights_01.jpg"} alt="insight_01"/>
+            <Image fill src={"/assets/img/about/insights_01.jpg"} alt="insight_01"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -37,7 +37,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image src={"/assets/img/about/insights_02.jpg"} alt="insight_02"/>
+            <Image fill src={"/assets/img/about/insights_02.jpg"} alt="insight_02"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -46,7 +46,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image src={"/assets/img/about/map_01.jpg"} alt="map01"/>
+            <Image fill src={"/assets/img/about/map_01.jpg"} alt="map01"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -55,7 +55,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image src={"/assets/img/about/map_02.jpg"} alt="map02"/>
+            <Image fill src={"/assets/img/about/map_02.jpg"} alt="map02"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

@@ -30,7 +30,7 @@ const Parallax1 = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <Image src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image_1"/>
+            <Image fill src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image_1"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -39,7 +39,7 @@ const Parallax1 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image_2"/>
+            <Image fill src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image_2"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -50,7 +50,7 @@ const Parallax1 = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <Image src={"/assets/img/about/03.gif"} alt="Image_3"/>
+            <Image fill src={"/assets/img/about/03.gif"} alt="Image_3"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

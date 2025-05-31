@@ -30,7 +30,7 @@ const Parallax = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/interact_3D/"
           >
-            <Image src={"/assets/img/about/01.jpg"} alt="Image_1"/>
+            <Image fill src={"/assets/img/about/01.jpg"} alt="Image_1"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -41,7 +41,7 @@ const Parallax = () => {
             target="_blank"
             href="https://mr-chu-car-web.netlify.app/"
           >
-            <Image  src={"/assets/img/about/04.jpg"} alt="Image_4"/>
+            <Image fill src={"/assets/img/about/04.jpg"} alt="Image_4"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -52,7 +52,7 @@ const Parallax = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <Image src={"/assets/project/마포버디즈.jpg"} alt="Image_3"/>
+            <Image fill src={"/assets/project/마포버디즈.jpg"} alt="Image_3"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -63,7 +63,7 @@ const Parallax = () => {
             target="_blank"
             href="https://match-fruits-mrchu.vercel.app/"
           >
-            <Image src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
+            <Image fill src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>
