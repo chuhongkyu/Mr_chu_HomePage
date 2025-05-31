@@ -4,7 +4,7 @@ import ModalLeftContainer from "@/components/common/page/layout/ModalLeftContain
 import Category from "@/components/common/page/container/CategoryItem";
 import ModalRightContainer from "@/components/common/page/layout/ModalRightContainer";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { aboutData, gameData } from "@/utils/categoryDatas";
+import { gameData } from "@/utils/categoryDatas";
 import styles from "@/style/sub-page.module.scss";
 import Header from "@/components/common/page/container/Header";
 import ContentContainer from "@/components/common/page/container/ContentContainer";

@@ -1,5 +1,5 @@
-@import "./reset.scss";
-@import "./background.scss";
+@use "./reset.scss";
+@use "./background.scss";
 
 :root {
     --color-bg1: rgb(108, 0, 162);
