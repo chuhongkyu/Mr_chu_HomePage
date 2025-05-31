@@ -120,3 +120,26 @@ body{
     }
     
 }
+
+.copyied-tooltip{
+    position: absolute;
+    bottom: 100%;
+    background-color: #fff;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    svg{
+        display: block;
+        
+    }
+    p{
+        margin-left: 8px;
+        display: block;
+    }
+}

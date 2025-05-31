@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
 import { widgetApps } from "./AppData";
 import { motion } from "motion/react";
+import MailApp from "./MailApp";
 
 const AppWidget = () => {
     const [apps, setApps] = useState(widgetApps);
@@ -80,6 +81,7 @@ const AppWidget = () => {
                         )}
                     </Droppable>
                 </DragDropContext>
+                <MailApp/>
             </div>
         </motion.div>
     );
