@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import "swiper/css"; 
 import styles from "@/style/sub-page.module.scss";
+import Image from "next/image";
 
 const Parallax2 = () => {
   return (
@@ -27,7 +28,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img src={"/assets/img/about/insights_01.jpg"} alt="insight_01"/>
+            <Image src={"/assets/img/about/insights_01.jpg"} alt="insight_01"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -36,7 +37,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img src={"/assets/img/about/insights_02.jpg"} alt="insight_02"/>
+            <Image src={"/assets/img/about/insights_02.jpg"} alt="insight_02"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -45,7 +46,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img src={"/assets/img/about/map_01.jpg"} alt="map01"/>
+            <Image src={"/assets/img/about/map_01.jpg"} alt="map01"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -54,7 +55,7 @@ const Parallax2 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img src={"/assets/img/about/map_02.jpg"} alt="map02"/>
+            <Image src={"/assets/img/about/map_02.jpg"} alt="map02"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

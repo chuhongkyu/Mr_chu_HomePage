@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import "swiper/css"; 
 import styles from "@/style/sub-page.module.scss";
+import Image from "next/image";
 
 const Parallax = () => {
   return (
@@ -29,7 +30,7 @@ const Parallax = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/interact_3D/"
           >
-            <img src={"/assets/img/about/01.jpg"} alt="Image_1"/>
+            <Image src={"/assets/img/about/01.jpg"} alt="Image_1"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -40,7 +41,7 @@ const Parallax = () => {
             target="_blank"
             href="https://mr-chu-car-web.netlify.app/"
           >
-            <img src={"/assets/img/about/04.jpg"} alt="Image_4"/>
+            <Image  src={"/assets/img/about/04.jpg"} alt="Image_4"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -51,7 +52,7 @@ const Parallax = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <img src={"/assets/project/마포버디즈.jpg"} alt="Image_3"/>
+            <Image src={"/assets/project/마포버디즈.jpg"} alt="Image_3"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -62,7 +63,7 @@ const Parallax = () => {
             target="_blank"
             href="https://match-fruits-mrchu.vercel.app/"
           >
-            <img src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
+            <Image src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

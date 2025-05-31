@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css"; 
 import styles from "@/style/sub-page.module.scss";
+import Image from "next/image";
 
 const Parallax1 = () => {
   return (
@@ -29,7 +30,7 @@ const Parallax1 = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image_1"/>
+            <Image src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(1).jpg?raw=true"} alt="Image_1"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -38,7 +39,7 @@ const Parallax1 = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image_2"/>
+            <Image src={"https://github.com/chuhongkyu/mapoCharacter/blob/main/public/assets/readme/01%20(2).jpg?raw=true"} alt="Image_2"/>
           </motion.a>
         </SwiperSlide>
         <SwiperSlide>
@@ -49,7 +50,7 @@ const Parallax1 = () => {
             target="_blank"
             href="https://chuhongkyu.github.io/mapoCharacter/"
           >
-            <img src={"/assets/img/about/03.gif"} alt="Image_3"/>
+            <Image src={"/assets/img/about/03.gif"} alt="Image_3"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

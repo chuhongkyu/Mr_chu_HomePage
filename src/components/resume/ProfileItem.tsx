@@ -2,6 +2,7 @@
 import { motion } from "motion/react";
 import { ReactNode } from "react";
 import styles from "@/style/sub-page.module.scss";
+import Image from "next/image";
 
 interface IWorks {
   children: ReactNode;
@@ -19,7 +20,7 @@ function ProfileItem({ title, children, icon, column, row }: IWorks) {
       whileHover={{ y: -3 }}
     >
       <h3 className={styles["item-title"]}>
-        <img className={styles.icon} src={icon} alt={title} />
+        <Image className={styles.icon} src={icon} alt={title} />
         {title}
       </h3>
       <ul className={styles.content}>{children}</ul>
