@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./style.scss";
 import BackgroundLayout from "@/components/common/BackgroundLayout";
-import AppWidget from "@/components/common/window/app/AppWidget";
+import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
 
 const notoSans = localFont({
   src: [
@@ -42,9 +42,9 @@ export default function RootLayout({
       <body className={`${notoSans.variable}`}>
         <section className="main">
           {children}
-          <AppWidget/>
+          <AppWidgetClient/>
         </section>
-        <BackgroundLayout/>
+        {/* <BackgroundLayout/> */}
       </body>
     </html>
   );

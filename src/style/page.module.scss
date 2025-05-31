@@ -337,9 +337,15 @@ $blur: blur(10px);
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 10px 20px;
+            padding: 0px 40px;
+            .drag-item{
+                display: block;
+                &:not(:last-of-type){
+                    margin-right: 20px;
+                }
+            }
             .app-item{
-                width: 60px;
+                width: 40px;
                 height: 40px;
                 // border: 1px solid #000;
                 display: flex;
@@ -403,6 +409,7 @@ $blur: blur(10px);
             max-width: 70px;
             display: block;
             font-size: 14px;
+            line-height: 115%;
             font-weight: 500;
             white-space: pre-line;
             color: #333;

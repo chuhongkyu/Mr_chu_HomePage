@@ -3,11 +3,16 @@
 import styles from "@/style/page.module.scss";
 import AppLink from "./AppLink";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { widgetApps } from "./AppData";
 
 const AppWidget = () => {
     const [apps, setApps] = useState(widgetApps);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const onDragEnd = (result: any) => {
         if (!result.destination) return;
@@ -18,6 +23,10 @@ const AppWidget = () => {
         
         setApps(items);
     };
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <div className={styles["app-widget-container"]}>
@@ -46,7 +55,7 @@ const AppWidget = () => {
                                                     ...provided.draggableProps.style,
                                                     opacity: snapshot.isDragging ? 0.9 : 1,
                                                 }}
-                                                
+                                                className={styles["drag-item"]}
                                             >
                                                 <AppLink 
                                                     type={app.type}
@@ -68,7 +77,7 @@ const AppWidget = () => {
                 </DragDropContext>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default AppWidget;

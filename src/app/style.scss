@@ -23,6 +23,7 @@ body{
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+    background-color: var(--color-bg1);
     font-family: var(--font-noto-sans), sans-serif;
     color: $font-base-color;
 }
