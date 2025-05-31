@@ -1,7 +1,7 @@
 
 import RQProvider from "@/components/common/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
-import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoadet";
+import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
 // import AppWrapper from "@/components/common/window/app/AppWrapper";
 
 const IndexPage = () => {
