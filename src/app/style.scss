@@ -23,7 +23,7 @@ body{
     align-items: center;
     flex-direction: column;
     overflow: hidden;
-    background-color: var(--color-bg2);
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
     font-family: var(--font-noto-sans), sans-serif;
     color: $font-base-color;
 }
@@ -141,5 +141,11 @@ body{
     p{
         margin-left: 8px;
         display: block;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .main{
+        padding: 2rem 1rem 0.4rem 1rem;
     }
 }

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mr-chu-home-page-ng5k.vercel.app/
+
+# Sitemaps
+Sitemap: https://mr-chu-home-page-ng5k.vercel.app/sitemap.xml

@@ -13,6 +13,9 @@ $blur-color: rgba(255, 255, 255, 0.4);
 $blur-color-2: rgba(0, 0, 0, 0.3);
 $blur: blur(10px);
 
+$tab-title-color: rgba(255, 255, 255, 0.6);
+$tab-title-color-hover: rgba(0, 0, 0, 1);
+
 $bg-button: 2;
 
 .page{
@@ -283,10 +286,8 @@ $bg-button: 2;
     margin: 0 auto;
     max-width: $container-d-width;
     width: 100%;
-    height: 420px;
-    display: flex;
-    justify-content: center;
     position: relative;
+    height: 460px;
     overflow: hidden;
     border-radius: 20px;
     &::before{
@@ -294,6 +295,7 @@ $bg-button: 2;
         display: block;
         width: 100%;
         height: 100%;
+        border-radius: 20px;
         background: $blur-color;
         backdrop-filter: $blur;
         -webkit-backdrop-filter: $blur;
@@ -304,28 +306,56 @@ $bg-button: 2;
         right: 0;
         bottom: 0;
     }
-    .app-areas{
-        width: 100%;
-        height: auto;
-        max-width: $container-d-width;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        border-radius: 20px;
-        border: $blur-border;
+    .app-areas-wrapper{
         position: relative;
         z-index: 2;
-    }
-    .app-wrapper{
-        display: flex;
-        flex-wrap: wrap;
-        overflow: hidden;
-        .drag-item{
-            &:not(:last-of-type){
-                margin-right: 8px;
+        width: 100%;
+        height: 100%;
+        border: $blur-border;
+        border-radius: 20px;
+        .app-header{
+            width: 100%;
+            height: 32px;
+            padding: 0 20px;
+            border-bottom: 1px solid $blur-color;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            h5{
+                margin-left: 4px;
+                line-height: 130%;
+                font-size: 14px;
+                font-weight: 500;
+                color: $tab-title-color;
+                transition: 300ms ease-in-out;
+                &:hover{
+                    color: $tab-title-color-hover;
+                    transition: 300ms ease-in-out;
+                }
+            }
+        }
+        .app-areas{
+            max-width: $container-d-width;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            position: relative;
+            z-index: 2;
+            padding: 20px 12px 20px;
+            .app-wrapper{
+                position: relative;
+                z-index: 2;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                overflow: hidden;
+                .drag-item{
+                    &:not(:last-of-type){
+                        margin-right: 8px;
+                    }
+                }
             }
         }
     }
+    
 }
 
 .app-widget-container{
@@ -383,15 +413,13 @@ $bg-button: 2;
                 position: relative;
                 width: 100%;
                 height: 100%;
-                img{
-                    display: block;
+                .app-img-wrapper{
                     width: 100%;
                     height: 100%;
                     border-radius: 0;
                     margin-top: 0;
                     margin-bottom: 0;
                     border: none;
-                    user-select: none;
                     &.white-square-bg{
                         background: #fff;
                         border-radius: 8px;
@@ -400,6 +428,13 @@ $bg-button: 2;
                         background: #fff;
                         border-radius: 50%;
                     }
+                }
+                img{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    @include user-drag-none;
                 }
                 .font-app{
                     display: none;
@@ -415,7 +450,7 @@ $bg-button: 2;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border-left: 1px solid #000;
+            border-left: 1px solid #333;
             .app-item{
                 margin-left: 18px;
             }
@@ -424,7 +459,7 @@ $bg-button: 2;
 }
 
 .app-item{
-    width: 89px;
+    width: 88px;
     height: 95px;
     display: flex;
     justify-content: center;
@@ -443,21 +478,27 @@ $bg-button: 2;
         align-items: center;
         flex-direction: column;
         position: relative;
-        .square{
-            width: 42px;
-            height: 42px;
-            border-radius: 6px;
-            border: none;
-        }
-        img{
-            display: block;
+        .app-img-wrapper{
+            overflow: hidden;
+            position: relative;
             width: 50px;
             height: 40px;
             border-radius: 4px;
             margin-top: 5px;
             margin-bottom: 5px;
             border: 1px solid #000;
-            user-select: none;
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+                user-select: none;
+            }
+            &.square{
+                width: 42px;
+                height: 42px;
+                border-radius: 6px;
+                border: none;
+            }
         }
         svg{
             display: block;
@@ -578,8 +619,13 @@ $bg-button: 2;
             }
         }
     }
+}
+
+
+@media screen and (max-width: 468px) {
     .app-widget-container{
         .widget-wrapper{
+            height: auto;
             .item-wrapper{
                 .app-item{
                     width: 32px;
@@ -589,31 +635,59 @@ $bg-button: 2;
         }
     }
     .app-item{
-        width: 60px;
-        height: 71px;
+        width: 78px;
+        height: 87px;
+        &:hover{
+            a{
+                .font-app{
+                    color: #fff;
+                }
+            }
+        }
         a {
-            .square{
-                width: 32px;
-                height: 32px;
-            }
-            img{
-                display: block;
-                width: 40px;
-                height: 32px;
-            }
-            svg{
-                width: 40px;
-                height: 40px;
-            }
+            // .app-img-wrapper{
+            //     width: 40px;
+            //     height: 32px;
+            //     &.square{
+            //         width: 32px;
+            //         height: 32px;
+            //     }   
+            // }
+            // svg{
+            //     width: 40px;
+            //     height: 40px;
+            // }
             .font-app{
                 max-width: 60px;
                 font-size: 12px;
+                font-weight: 400;
+                color: #ececec;
             }
         }
     }
-}
-
-
-@media screen and (max-width: 355px) {
-
+    .app-container{
+        height: auto;
+        &::before{
+            display: none;
+        }
+        .app-areas-wrapper{
+            border: none;
+            .app-header{
+                display: none;
+                border: none;
+            }
+            .app-areas{
+                border: none;
+                padding: 0;
+                height: auto;
+                .app-wrapper{
+                    .drag-item{
+                        &:not(:last-of-type){
+                            margin-right: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

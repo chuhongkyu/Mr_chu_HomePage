@@ -63,7 +63,7 @@ const Parallax = () => {
             target="_blank"
             href="https://match-fruits-mrchu.vercel.app/"
           >
-            <Image fill src={"/assets/works/match-landscape.jpg"} alt="Image_4"/>
+            <Image fill src={"/assets/project/match-landscape.jpg"} alt="Image_4"/>
           </motion.a>
         </SwiperSlide>
       </Swiper>

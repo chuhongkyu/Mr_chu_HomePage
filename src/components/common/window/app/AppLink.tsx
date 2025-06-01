@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import styles from "@/style/page.module.scss";
 import { AppItem } from "./AppType";
+import Image from "next/image";
 
 interface AppIconProps {
   color: string;
@@ -31,7 +32,11 @@ const AppIcon = ({ color }: AppIconProps) => (
 
 const AppIconWrapper = ({ type, imgSrc, className, label, color }: { type: string; imgSrc?: string; className?:string; label: string; color: string }) => {
   if(type === "folder") return <AppIcon color={color} />
-  if(type === "img") return <img src={imgSrc} alt={label} className={styles[className || ""]} />
+  if(type === "img") return (
+    <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
+      <Image fill src={imgSrc || ""} alt={label} className={styles[className || ""]}/>
+    </div>
+   )
 };
 
 const AppLink = ({type, label, className, name, color, link, imgSrc, outlink}: AppItem) => {

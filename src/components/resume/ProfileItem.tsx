@@ -8,11 +8,11 @@ interface IWorks {
   children: ReactNode;
   title: string;
   icon: string;
-  column: string | number;
-  row: string;
+  column?: string | number;
+  row?: string;
 }
 
-function ProfileItem({ title, children, icon, column, row }: IWorks) {
+function ProfileItem({ title, children, icon, column = "span 1", row = "span 1" }: IWorks) {
   return (
     <motion.div
       className={styles["item-wrapper"]}
@@ -27,10 +27,5 @@ function ProfileItem({ title, children, icon, column, row }: IWorks) {
     </motion.div>
   );
 }
-
-ProfileItem.defaultProps = {
-  column: "span 1",
-  row: "span 1",
-};
 
 export default ProfileItem;

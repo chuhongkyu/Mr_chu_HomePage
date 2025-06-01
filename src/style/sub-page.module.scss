@@ -236,6 +236,7 @@ $modal-top-nav-z-index: 9;
         }
       
         @media (max-width: 768px) {
+          
           .icon {
             width: 20px;
             margin-right: 8px;
@@ -244,6 +245,9 @@ $modal-top-nav-z-index: 9;
             font-size: 12px;
           }
         }
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
     }
 }
 

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./style.scss";
 import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
@@ -8,7 +7,6 @@ import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import RQProvider from "@/components/common/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
-
 
 const notoSans = localFont({
   src: [
@@ -31,11 +29,6 @@ const notoSans = localFont({
   variable: "--font-noto-sans",
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "FE MR.CHU",
-  description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations.",
-};
 
 export default function RootLayout({
   children,

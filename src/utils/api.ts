@@ -40,6 +40,7 @@ const getProjectDetail = async ({id}:IDetail) => {
     }
 };
 
+//ssg 때문에 25.05.30 전체 ID LIST 함수 추가함.
 const getAllProjectList = async () => {
     const url = 'https://developed-heath-mr-chu.koyeb.app/api/notion/pageIds';
     try {
