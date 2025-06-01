@@ -7,6 +7,7 @@ import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import RQProvider from "@/components/providers/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
+import FormContainer from "@/components/common/window/searchFrom/FormContainer";
 
 const notoSans = localFont({
   src: [

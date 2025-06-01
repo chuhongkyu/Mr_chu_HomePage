@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://mr-chu-home-page-ng5k.vercel.app/',
+  siteUrl: process.env.SITE_URL || 'https://mr-chu-home-page.vercel.app/',
   generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: 'daily',
