@@ -8,6 +8,8 @@ import RQProvider from "@/components/providers/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
 import FormContainer from "@/components/common/window/searchFrom/FormContainer";
+import RootLayout from "@/components/common/RootLayout";
+import KeyboardShortcuts from "@/components/common/KeyboardShortcuts";
 
 const notoSans = localFont({
   src: [
@@ -31,7 +33,7 @@ const notoSans = localFont({
   display: "swap",
 });
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -40,9 +42,10 @@ export default function RootLayout({
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
         <ReduxProvider>
-          <section className="main">
+          <RootLayout>
             <RQProvider>
-              {/* <FormContainer/> */}
+              <FormContainer/>
+              <KeyboardShortcuts/>
               <AppProvider>
                 <AppWrapperClientLoader/>
               </AppProvider>
@@ -50,7 +53,7 @@ export default function RootLayout({
             {children}
             <AppWidgetClient/>
             <BgToggleButton/>
-          </section>
+          </RootLayout>
           <BackgroundController/>
         </ReduxProvider>
       </body>

@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -8,18 +8,23 @@ import { useDebounce } from "@/utils/hooks";
 
 import { getProjectList } from "@/utils/api";
 import styles from "@/style/page.module.scss";
-import dynamic from "next/dynamic";
-import { IList } from "./SearchType";
 
-const SearchList = dynamic(() => import("./SearchList"), {
-  ssr: false,
-});
+import { IList } from "./SearchType";
+import SearchList from "./SearchList";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from '@/store/store';
+import { setSearchWindow } from "@/store/searchWindowSlice";
 
 const FormContainer = () => {
+    const isSearchWindowVisible = useSelector((state: RootState) => state.searchWindow.isSearchWindowVisible);
+    const dispatch = useDispatch()
+
     const [value, setValue] = useState<string>('')
     const [isOpen, setOpen] = useState<boolean>(false)
     const [list, setList] = useState<IList[]>([])
     const debouncedValue = useDebounce(value, 300);
+    const [isMounted, setIsMounted] = useState(false);
 
     const { isPending, data, error } = useQuery({ queryKey: ['list', debouncedValue], queryFn: getProjectList})
 
@@ -39,27 +44,49 @@ const FormContainer = () => {
     useEffect(()=>{
         setList(data?.project)
     },[data])
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
+
+    const onHandeleDimClose = () => {
+        dispatch(setSearchWindow(false))
+    }
     
     return(
-        <div className={styles["form-container-dim"]}>
-            <form className={styles["form-container"]}>
-                <span className={styles["form-icon"]}/>
-                <input  
-                    onFocus={onHandleOpen}
-                    onChange={onChange} 
-                    onKeyUp={onHandleOpen}
-                    onBlur={onHandleClose}
-                    placeholder="ex) 삼성, Cass, 롯데" 
-                    maxLength={15}
-                    type="text" 
-                />
-                <AnimatePresence mode="wait" initial={false}>
-                    {isOpen && (
-                        <SearchList isPending={isPending} list={list} error={error}/>
-                    )}
-                </AnimatePresence>
-            </form>
-        </div>
+        <AnimatePresence mode="wait" initial={false}>
+            {isSearchWindowVisible && (
+                <motion.section
+                    initial={{ opacity: 0, }}
+                    animate={{ opacity: 1,}}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    exit={{ opacity: 0,}}
+                    className={styles["form-section"]}>
+                    <form className={styles["form-container"]}>
+                        <span className={styles["form-icon"]}/>
+                        <input  
+                            onFocus={onHandleOpen}
+                            onChange={onChange} 
+                            onKeyUp={onHandleOpen}
+                            onBlur={onHandleClose}
+                            placeholder="ex) 삼성, Cass, 롯데" 
+                            maxLength={15}
+                            type="text" 
+                        />
+                        <AnimatePresence mode="wait" initial={false}>
+                            {isOpen && (
+                                <SearchList isPending={isPending} list={list} error={error}/>
+                            )}
+                        </AnimatePresence>
+                    </form>
+                    <div className={styles["form-container-dim"]} onClick={onHandeleDimClose}/>
+                </motion.section>
+            )}
+        </AnimatePresence>
     )
 }
 
