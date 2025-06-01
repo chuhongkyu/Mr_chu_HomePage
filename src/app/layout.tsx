@@ -4,7 +4,7 @@ import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
 import BackgroundController from "@/components/common/window/background/BackgroundController";
 import BgToggleButton from "@/components/common/window/BgToggleButton";
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
-import RQProvider from "@/components/common/RQProvider";
+import RQProvider from "@/components/providers/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
 
