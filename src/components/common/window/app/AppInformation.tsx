@@ -21,7 +21,7 @@ const AppInformation = () => {
                     <li>
                         <Image src="/assets/icons/command.svg" alt="command" width={20} height={20}/>
                         <Image src="/assets/icons/plus.svg" alt="plus" width={20} height={20}/>
-                        <span className={styles["space-bar"]}>Space bar</span>
+                        <span className={styles["space-bar"]}>K</span>
                     </li>
                     <li>
                         <span className={styles["slash"]}>/</span>
@@ -29,7 +29,7 @@ const AppInformation = () => {
                     <li>
                     <span className={styles["ctrl"]}>Ctrl</span>
                         <Image src="/assets/icons/plus.svg" alt="plus" width={20} height={20}/>
-                        <span className={styles["space-bar"]}>Space bar</span>
+                        <span className={styles["space-bar"]}>K</span>
                     </li>
                     <li>
                         

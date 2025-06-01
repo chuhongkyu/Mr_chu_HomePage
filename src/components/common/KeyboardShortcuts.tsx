@@ -9,7 +9,7 @@ const KeyboardShortcuts = () => {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if ((event.metaKey || event.ctrlKey) && event.code.toLowerCase() === 'space') {
+            if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
                 event.preventDefault();
                 dispatch(toggleSearchWindow());
             }
@@ -22,7 +22,7 @@ const KeyboardShortcuts = () => {
         };
     }, [dispatch]);
 
-  return null;
+    return null;
 };
 
 export default KeyboardShortcuts; 
