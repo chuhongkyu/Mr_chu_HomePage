@@ -14,14 +14,14 @@ const AppInformation = () => {
         <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 , ease: "easeInOut" }}
+            transition={{ duration: 0.5 , ease: "easeInOut", delay: 0.2 }}
             className={styles["app-information"]}>
             <div className={styles["app-information-wrapper"]} onClick={onHandeOpenSearchWindow}    >
                 <ul>
                     <li>
-                        <Image src="/assets/icons/command.svg" alt="command" width={20} height={20}/>
+                        <Image src="/assets/icons/command.svg" alt="command" width={18} height={18}/>
                         <Image src="/assets/icons/plus.svg" alt="plus" width={20} height={20}/>
-                        <span className={styles["space-bar"]}>K</span>
+                        <span className={styles["k-key"]}>K</span>
                     </li>
                     <li>
                         <span className={styles["slash"]}>/</span>
@@ -29,7 +29,7 @@ const AppInformation = () => {
                     <li>
                     <span className={styles["ctrl"]}>Ctrl</span>
                         <Image src="/assets/icons/plus.svg" alt="plus" width={20} height={20}/>
-                        <span className={styles["space-bar"]}>K</span>
+                        <span className={styles["k-key"]}>K</span>
                     </li>
                     <li>
                         

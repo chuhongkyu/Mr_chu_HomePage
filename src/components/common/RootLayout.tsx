@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import RQProvider from "@/components/providers/RQProvider";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
@@ -9,6 +9,7 @@ import KeyboardShortcuts from "@/components/common/KeyboardShortcuts";
 import AppInformation from "@/components/common/window/app/AppInformation";
 import BgToggleButton from "@/components/common/window/BgToggleButton";
 import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
+import Loading from './Loading';
 
 
 export default function RootLayout({
@@ -32,19 +33,26 @@ export default function RootLayout({
 
   return (
     <section className="main">
-      <div className="top">
-        <RQProvider>
-          <FormContainer/>
-          <KeyboardShortcuts/>
-          <AppProvider>
-            <AppWrapperClientLoader/>
-          </AppProvider>
-        </RQProvider>
-        {children}
-        <AppInformation/>
-      </div>
-      <AppWidgetClient/>
-      <BgToggleButton/>
+      
+      <Suspense fallback={
+        <div className="loading-container">
+          <Loading/>
+        </div>
+      }>
+        <AppProvider>
+            <div className="top">
+              <RQProvider>
+                <FormContainer/>
+                <KeyboardShortcuts/>
+                <AppWrapperClientLoader/>
+              </RQProvider>
+              {children}
+              <AppInformation/>
+            </div>
+            <AppWidgetClient/>
+        </AppProvider>
+        <BgToggleButton/>
+      </Suspense>
     </section>
   );
 }

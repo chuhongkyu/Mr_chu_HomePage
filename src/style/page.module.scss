@@ -407,7 +407,7 @@ $bg-button: 2;
                     color: #fff;
                 }
 
-                .space-bar,
+                .k-key,
                 .ctrl{
                     display: flex;
                     align-items: center;
@@ -419,6 +419,14 @@ $bg-button: 2;
                     line-height: 130%;
                     border-radius: 6px;
                     border: 1px solid $blur-color;
+                }
+                .k-key{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 26px;
+                    border-radius: 4px;
+                    padding: 4px;
                 }
             }
         }
