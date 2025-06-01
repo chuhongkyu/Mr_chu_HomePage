@@ -20,7 +20,7 @@ interface IPanelProps{
 }
 
 function SearchList({isPending, list, error}:IPanelProps) {
-    const isMoible = useMediaQuery({query: '(min-width: 681px)'})
+    const isMoible = useMediaQuery({query: '(min-width: 768px)'})
     const dispatch = useDispatch()
 
     const handleNavigation = () => {
