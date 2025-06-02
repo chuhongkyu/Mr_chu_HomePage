@@ -3,7 +3,7 @@ import "./style.scss";
 import BackgroundController from "@/components/common/window/background/BackgroundController";
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import RootLayout from "@/components/common/RootLayout";
-
+import { rootMetadata } from "./metadata";
 
 const notoSans = localFont({
   src: [

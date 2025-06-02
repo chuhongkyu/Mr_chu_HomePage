@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const rootMetadata: Metadata = {
   title: "FE MR.CHU",
   description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation. Transforming AI-generated motion data into dynamic skeleton-based animations.",
   openGraph: {

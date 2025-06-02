@@ -1,12 +1,62 @@
-# 2025/05/31 vercel 배포로 변경
+# 🔄 2025/05/31 리팩토링
+배포 주소
+- https://mr-chu-home-page.vercel.app/
 
-https://mr-chu-home-page.vercel.app/
+## ✨ 주요 변경 사항 요약
+- 기존 프로젝트를 Next.js 프레임워크로 리팩토링
+- 호스팅 플랫폼: Netlify → Vercel로 이전
+- 합성 컴포넌트 패턴 도입 (특히 모달 구조에서 시도)
+- 스타일링 방식: styled-components → SCSS로 점진적 마이그레이션
+- 전역 상태 관리: atom → Redux Toolkit 도입
 
-- next.js 프레임 워크로 리팩토링
-- styled-components => SCSS로 점진적 변경 작업
-- 호스팅 netlify => vercel로 이전
-- 합성 컴포넌트 구조로 가보자!
-- 전역값 관리 => Redux Toolkit으로 
+## 🍀 왜 Next.js를 도입했는가?
+
+이전까지 저는 **CSR** 방식으로만 프로젝트를 진행하며, 부족한 SEO를 보완하기 위해 여러 시도를 해왔습니다.
+
+예를 들어, **더미 페이지를 만들어 검색엔진에 노출되도록 유도한 뒤, 실제 콘텐츠 페이지로 리다이렉트**하는 방식으로 우회적인 SEO 최적화를 시도하기도 했습니다.
+
+하지만 시간이 지날수록 프로젝트에 담기는 경험 글과 콘텐츠 양이 늘어났고, 대부분의 글은 **Notion에 작성한 뒤 이를 동적으로 불러오는 구조**로 발전했습니다. 이로 인해 기존의 CSR 방식만으로는 한계가 명확했고, 제 글이 조금 더 검색엔진에 노출 될 수 있게 하는데에 욕구가 커져갔습니다.
+
+이러한 문제를 간단하게 해결하기 위해 선택한 것이 바로 **Next.js**였습니다. Next는 프레임 워크라서 동적 데이터를 정적으로 사전 렌더링(SSG)할 수 있는 기능을 제공하여, 콘텐츠가 검색엔진에 잘 노출되도록 만들 수 있습니다.
+
+이전에는 page router 기반에서 getStaticProps, getStaticPaths를 사용했지만, app router 구조에서는 이를 대신해 `generateStaticParams()` 를 활용하여 정적 페이지를 생성하고 있습니다.
+
+또한, 과거에는 sitemap 생성을 위해 next-sitemap 라이브러리를 사용했지만, 최근에는 Next.js 자체적으로 제공하는 `generateSitemaps()` 기능을 활용할 수 있어 훨씬 간단하게 SEO 설정을 관리할 수 있게 되었습니다.
+
+> 📌 generateSitemaps()는 Next.js 14부터 정식 도입되었으며, app 디렉토리 구조에서 metadata API와 함께 작동해 별도 설정 없이 자동으로 sitemap.xml을 생성해줍니다.
+>
+## ✅ 합성 컴포넌트 패턴 도입
+최근에 알게 된 합성 컴포넌트(Compound Components) 패턴이 구조적으로 깔끔하고 확장성이 높아 보여 모달 컴포넌트에서 시도해봤습니다.
+
+```
+ModalStyle.Nav = ModalTopNav;
+ModalStyle.Content = ModalContent;
+
+export default ModalStyle;
+
+<ModalProvider>
+   <ModalStyle>
+      <ModalStyle.Nav>{text}</ModalStyle.Nav>
+      {children}
+   </ModalStyle>
+</ModalProvider>
+```
+
+## 🎨 스타일링 & 상태 관리 방식 변경의 이유
+이번 리팩토링 과정에서 스타일링 방식과 전역 상태 관리 방식도 최근 트렌드에 맞춰 점진적으로 변경하고 있습니다.
+
+스타일링: styled-components → SCSS
+
+상태 관리: atom 기반 → Redux Toolkit
+
+두 가지 모두 현재는 업계에서 점점 덜 사용되는 추세이기 때문에 변경을 결정하게 되었습니다.
+
+💅 styled-components → SCSS
+styled-components는 한때 매우 인기 있었지만, 최근에는 CSS Modules, SCSS, Tailwind CSS 등 더 가볍고 단순한 스타일링 방식들이 주로 사용되고 있습니다. 특히 Next.js에서는 별다른 설정 없이 SCSS를 사용할 수 있어 마이그레이션이 간편했고, 개인적으로도 SCSS가 더 익숙하고 빠르게 작업할 수 있어 전환을 결정했습니다.
+
+🔄 atom → Redux Toolkit
+atom을 초기에는 사용 했지만, 해당 라이브러리의 핵심 개발팀이 해체되었고 이번 리팩토링에서는 Redux Toolkit을 한 번 정식으로 다시 써보며 구조적으로 정리하고자 했습니다.
+
 
 
 # 2024/01/18 vite 프레임워크로 변경
