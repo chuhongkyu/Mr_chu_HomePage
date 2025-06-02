@@ -1,7 +1,11 @@
+"use client"
+
 import { motion } from "motion/react"
-import Loading from "../../Loading"
+import Loading from "@/components/common/Loading"
 import { Suspense } from "react"
 import { useMediaQuery } from "react-responsive"
+import { useDispatch } from "react-redux"
+import { setSearchWindow } from "@/store/searchWindowSlice"
 
 import styles from "@/style/page.module.scss";
 import Item from "./Item";
@@ -16,7 +20,12 @@ interface IPanelProps{
 }
 
 function SearchList({isPending, list, error}:IPanelProps) {
-    const isMoible = useMediaQuery({query: '(min-width: 681px)'})
+    const isMoible = useMediaQuery({query: '(min-width: 768px)'})
+    const dispatch = useDispatch()
+
+    const handleNavigation = () => {
+        dispatch(setSearchWindow(false))
+    }
 
     return (
         <motion.div
@@ -39,7 +48,7 @@ function SearchList({isPending, list, error}:IPanelProps) {
                     }else{
                         return(
                             <Item key={i + "key_List"}>
-                                <Link href={`/home/detail/${item.id.replace(/-/g, '')}`}>
+                                <Link href={`/project/${item.id.replace(/-/g, '')}`} onClick={handleNavigation}>
                                     <b>
                                         <p>{item.projectName.length >= 10 ? item.projectName.substring(0,10) +'...' : item.projectName }</p>
                                         {isMoible ? (

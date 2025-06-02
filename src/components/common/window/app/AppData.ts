@@ -12,9 +12,9 @@ const cloum2Apps: AppItem[] = [
 ];
 
 const cloum3Apps: AppItem[] = [
-    { type: "img", imgSrc: "/assets/project/삼성액티브자산운용.jpg", label: "삼성액티브자산운용", name: "삼성액티브자산운용", color: "rgb(46,142,214)", link: "/project/f3994247d75c4d7fa97801c5b537a80e" },
-    { type: "img", imgSrc: "/assets/project/롯데백화점리뉴얼.jpg", label: "롯데백화점리뉴얼", name: "롯데백화점리뉴얼", color: "rgb(46,142,214)", link: "/project/24c135b5b0e44e77bf8e1f3c998bda2c" },
-    { type: "img", imgSrc: "/assets/project/CassCool.jpg", label: "Cass Cool", name: "Cass Cool", color: "rgb(46,142,214)", link: "/project/2089060f0a0f4b42b8f3f9c433584c35" },
+    { type: "img", imgSrc: "/assets/app/삼성액티브자산운용.jpg", label: "삼성액티브자산운용", name: "삼성액티브자산운용", color: "rgb(46,142,214)", link: "/project/f3994247d75c4d7fa97801c5b537a80e" },
+    { type: "img", imgSrc: "/assets/app/롯데백화점리뉴얼.jpg", label: "롯데백화점리뉴얼", name: "롯데백화점리뉴얼", color: "rgb(46,142,214)", link: "/project/24c135b5b0e44e77bf8e1f3c998bda2c" },
+    { type: "img", imgSrc: "/assets/app/CassCool.jpg", label: "Cass Cool", name: "Cass Cool", color: "rgb(46,142,214)", link: "/project/2089060f0a0f4b42b8f3f9c433584c35" },
 ];
 
 const cloum4Apps: AppItem[] = [

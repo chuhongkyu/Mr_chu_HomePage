@@ -1,12 +1,9 @@
 import localFont from "next/font/local";
 import "./style.scss";
-import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
 import BackgroundController from "@/components/common/window/background/BackgroundController";
-import BgToggleButton from "@/components/common/window/BgToggleButton";
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
-import RQProvider from "@/components/providers/RQProvider";
-import { AppProvider } from "@/components/common/window/app/AppContext";
-import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
+import RootLayout from "@/components/common/RootLayout";
+
 
 const notoSans = localFont({
   src: [
@@ -30,7 +27,7 @@ const notoSans = localFont({
   display: "swap",
 });
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -39,17 +36,11 @@ export default function RootLayout({
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
         <ReduxProvider>
-          <section className="main">
-            <RQProvider>
-              {/* <FormContainer/> */}
-              <AppProvider>
-                <AppWrapperClientLoader/>
-              </AppProvider>
-            </RQProvider>
+          <RootLayout>
+            
             {children}
-            <AppWidgetClient/>
-            <BgToggleButton/>
-          </section>
+            
+          </RootLayout>
           <BackgroundController/>
         </ReduxProvider>
       </body>

@@ -13,7 +13,7 @@ const CHRONICLE_LIST = [
 ];
 
 const Chronicle = () => {
-  const isMobile = useMediaQuery({ query: "(min-width: 681px)" });
+  const isMobile = useMediaQuery({ query: "(min-width: 768px)" });
   if (isMobile) {
     return (
       <div className={styles["chronicle-wrapper"]}>

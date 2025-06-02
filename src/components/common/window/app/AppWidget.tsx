@@ -7,11 +7,15 @@ import { useState, useEffect } from "react";
 import { widgetApps } from "./AppData";
 import { motion } from "motion/react";
 import MailApp from "./MailApp";
+import { AppItem } from "./AppType";
+import { usePathname } from "next/navigation";
 
 const AppWidget = () => {
     const [apps, setApps] = useState(widgetApps);
     const [isMounted, setIsMounted] = useState(false);
 
+    const pathname = usePathname();
+    
     useEffect(() => {
         setIsMounted(true);
     }, []);
@@ -26,15 +30,34 @@ const AppWidget = () => {
         setApps(items);
     };
 
-    if (!isMounted) {
-        return null;
-    }
+    const addNewApp = (newApp: AppItem) => {
+        setApps(prevApps => [...prevApps, newApp]);
+    };
+
+    useEffect(() => {
+        if (pathname !== "/") {
+            if (pathname.includes("/resume")) {
+                addNewApp({ type: "folder", label: "Resume", name: "resume", color: "rgb(224,64,47)", link: "/resume" });
+            } else if (pathname.includes("/about")) {
+                addNewApp({ type: "folder", label: "About", name: "about", color: "rgb(238,188,17)", link: "/about" })
+            } else if (pathname.includes("/game")) {
+                addNewApp({ type: "img", imgSrc: "/assets/game/sticker_slime_logo.png", className: "square", label: "1인 개발", name: "game", color: "rgb(121, 120, 120)", link: "/game" })
+            } else if (pathname.includes("/project")) {
+                addNewApp({ type: "img", label: "Project", name: "project", color: "rgb(46,142,214)", link: pathname })
+            }
+        }else{
+            setApps(widgetApps);
+        }
+    }, [pathname]);
+
+
+    if (!isMounted) return null;
 
     return (
         <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 , ease: "easeInOut" }}
+            transition={{ duration: 0.5 , ease: "easeInOut", delay: 0.3 }}
             className={styles["app-widget-container"]}>
             <div className={styles["widget-wrapper"]}>
                 <div className={styles["widget-wrapper-dim"]}></div>

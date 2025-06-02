@@ -34,7 +34,7 @@ const AppIconWrapper = ({ type, imgSrc, className, label, color }: { type: strin
   if(type === "folder") return <AppIcon color={color} />
   if(type === "img") return (
     <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
-      <Image fill src={imgSrc || ""} alt={label} className={styles[className || ""]}/>
+      <Image fill sizes="100%" src={imgSrc || ""} alt={label} className={styles[className || ""]}/>
     </div>
    )
 };

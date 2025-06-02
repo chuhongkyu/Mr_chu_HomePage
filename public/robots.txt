@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://mr-chu-home-page-ng5k.vercel.app/
+Host: https://mr-chu-home-page.vercel.app/
 
 # Sitemaps
-Sitemap: https://mr-chu-home-page-ng5k.vercel.app/sitemap.xml
+Sitemap: https://mr-chu-home-page.vercel.app/sitemap.xml

@@ -6,7 +6,7 @@ import { RootState } from '@/store/store';
 import { useMediaQuery } from "react-responsive";
 
 function BackgroundController() {
-    const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const isBackground = useSelector((state: RootState) => state.background.isBackground);
 
     if (!isBackground) return null;
