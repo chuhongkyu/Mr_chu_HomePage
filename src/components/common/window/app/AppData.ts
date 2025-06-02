@@ -18,6 +18,7 @@ const cloum3Apps: AppItem[] = [
 ];
 
 const cloum4Apps: AppItem[] = [
+    { type: "folder", label: "README", name: "README", color: "rgb(46,142,214)", link: "/project/206c588db9e980b1986fc4b451b5a224" },
     { type: "img", imgSrc: "/assets/project/주차연습.jpg", label: "주차연습\n게임", name: "주차연습게임", color: "rgb(46,142,214)", link: "/project/926be7c4f8f34b1e8a2f008d8febf8d6" },
 ];
 

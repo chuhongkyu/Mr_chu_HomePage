@@ -30,11 +30,11 @@ const AppIcon = ({ color }: AppIconProps) => (
   </motion.svg>
 );
 
-const AppIconWrapper = ({ type, imgSrc, className, label, color }: { type: string; imgSrc?: string; className?:string; label: string; color: string }) => {
+const AppIconWrapper = ({ type, imgSrc = "", className = "", label, color }: { type: string; imgSrc?: string; className?:string; label: string; color: string }) => {
   if(type === "folder") return <AppIcon color={color} />
   if(type === "img") return (
     <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
-      <Image fill sizes="100%" src={imgSrc || ""} alt={label} className={styles[className || ""]}/>
+      <Image fill sizes="100%" src={imgSrc} alt={label} className={styles[className]}/>
     </div>
    )
 };

@@ -3,7 +3,30 @@ import "./style.scss";
 import BackgroundController from "@/components/common/window/background/BackgroundController";
 import { ReduxProvider } from '@/components/providers/ReduxProvider';
 import RootLayout from "@/components/common/RootLayout";
-import { rootMetadata } from "./metadata";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FE | MR.CHU",
+  description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+  openGraph: {
+    title: "FE | MR.CHU",
+    description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FE MR.CHU",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FE | MR.CHU",
+    description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    images: ["/assets/og-image.png"],
+  },
+}; 
 
 const notoSans = localFont({
   src: [
