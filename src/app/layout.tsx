@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
     images: [
       {
-        url: "/assets/og-image.png",
+        url: "/assets/og_img_default.jpg",
         width: 1200,
         height: 630,
         alt: "FE MR.CHU",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FE | MR.CHU",
     description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
-    images: ["/assets/og-image.png"],
+    images: ["/assets/og_img_default.jpg"],
   },
 }; 
 
