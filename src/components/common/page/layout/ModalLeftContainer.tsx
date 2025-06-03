@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
 import styles from "@/style/sub-page.module.scss";
+import { WithChildren } from "@/types/global";
 
-const ModalLeftContainer = ({children}: {children: ReactNode}) => {
+const ModalLeftContainer = ({children}: WithChildren) => {
     return(
       <li className={styles["modal-left-container"]}>
         {children}

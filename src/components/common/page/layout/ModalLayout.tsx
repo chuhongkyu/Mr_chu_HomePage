@@ -1,16 +1,13 @@
 "use client"
 
-import { ReactNode } from "react";
 import ModalStyle from "./ModalStyle";
 import { ModalProvider } from "./ModalProvider";
+import { IModalStyle } from "./ModalType";
 
 const ModalLayout = ({
     children,
     text,
-}: {
-    children: ReactNode,
-    text: string,
-}) => {
+}: IModalStyle) => {
     return(
         <ModalProvider>
             <ModalStyle>

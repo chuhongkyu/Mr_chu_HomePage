@@ -1,7 +1,8 @@
 import { ReactNode, forwardRef } from "react"
 import styles from "@/style/sub-page.module.scss";
+import { IModalRightContainer } from "./ModalType";
 
-const ModalRightContainer = forwardRef<HTMLDivElement, {header?: ReactNode, children: ReactNode, scroll?: boolean}>(({header, children, scroll}, ref) => {
+const ModalRightContainer = forwardRef<HTMLDivElement, IModalRightContainer>(({header, children, scroll}, ref) => {
     return(
       <li className={styles["modal-right-container"]}>
         {header}

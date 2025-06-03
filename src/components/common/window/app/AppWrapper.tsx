@@ -5,8 +5,10 @@ import styles from "@/style/page.module.scss";
 import { useAppContext } from "./AppContext";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { motion } from "motion/react";
+import { WithChildren } from "@/types/global";
 
-const AppHeader = ({children}: {children: React.ReactNode}) => {
+
+const AppHeader = ({children}: WithChildren) => {
     return (
         <div className={styles["app-header"]}>
             {children}

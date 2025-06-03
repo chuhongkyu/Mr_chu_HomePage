@@ -10,13 +10,12 @@ import AppInformation from "@/components/common/window/app/AppInformation";
 import BgToggleButton from "@/components/common/window/BgToggleButton";
 import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
 import Loading from './Loading';
+import { WithChildren } from '@/types/global';
 
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: WithChildren) {
   useEffect(() => {
     const setHeight = () => {
       const height = window.innerHeight;

@@ -1,14 +1,10 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import styles from "@/style/page.module.scss";
-import { AppItem } from "./AppType";
+import { AppIconWrapperProps, AppItem } from "./AppType";
 import Image from "next/image";
 
-interface AppIconProps {
-  color: string;
-}
-
-const AppIcon = ({ color }: AppIconProps) => (
+const AppIcon = ({ color }: { color: string }) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 90 90"
@@ -30,13 +26,18 @@ const AppIcon = ({ color }: AppIconProps) => (
   </motion.svg>
 );
 
-const AppIconWrapper = ({ type, imgSrc = "", className = "", label, color }: { type: string; imgSrc?: string; className?:string; label: string; color: string }) => {
+const AppIconWrapper = ({ type, imgSrc = "", className = "", label, color }: AppIconWrapperProps) => {
   if(type === "folder") return <AppIcon color={color} />
-  if(type === "img") return (
-    <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
-      <Image fill sizes="100%" src={imgSrc} alt={label} className={styles[className]}/>
-    </div>
-   )
+  if(type === "img") {
+    if (!imgSrc) return null;
+    
+    return (
+      <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
+        <Image fill sizes="100%" src={imgSrc} alt={label} className={styles[className]}/>
+      </div>
+    )
+  }
+  return null; 
 };
 
 const AppLink = ({type, label, className, name, color, link, imgSrc, outlink}: AppItem) => {

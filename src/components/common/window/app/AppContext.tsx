@@ -1,34 +1,24 @@
 "use client";
 
 import { createContext, useContext, useReducer, ReactNode } from "react";
-import { AppItem } from "./AppType";
+import { AppItem, AppMoveAction, Area } from "./AppType";
 import { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps } from "./AppData";
-
-type Area = {
-    id: string;
-    apps: AppItem[];
-};
-
-type Action = 
-  | { type: "ADD_APP"; payload: { areaId: string; app: AppItem } }
-  | { type: "MOVE_APP"; payload: { 
-      sourceAreaId: string; 
-      destinationAreaId: string;
-      sourceIndex: number; 
-      destinationIndex: number 
-    }}
-  | { type: "SET_APPS"; payload: { areaId: string; apps: AppItem[] } };
+import { WithChildren } from "@/types/global";
 
 
 const initialAreas: Area[] = [
+    // 나를 소개하는 쪽 및 정적 페이지
     { id: "area1", apps: cloum1Apps },
+    // 스타트업 프로젝트
     { id: "area2", apps: cloum2Apps },
+    // 더즈떄 했던 고객사 프로젝트
     { id: "area3", apps: cloum3Apps },
+    // 개인 프로젝트, 포트폴리오 류
     { id: "area4", apps: cloum4Apps }
 ];
 
 // 리듀서 함수
-const appReducer = (state: Area[], action: Action): Area[] => {
+const appReducer = (state: Area[], action: AppMoveAction): Area[] => {
     switch (action.type) {
         case "ADD_APP": {
             return state.map(area => 
@@ -82,14 +72,14 @@ const appReducer = (state: Area[], action: Action): Area[] => {
     }
 };
 
-// Context 생성
+
 const AppContext = createContext<{
     areas: Area[];
-    dispatch: React.Dispatch<Action>;
+    dispatch: React.Dispatch<AppMoveAction>;
 } | null>(null);
 
-// Provider 컴포넌트
-export const AppProvider = ({ children }: { children: ReactNode }) => {
+
+export const AppProvider = ({ children }: WithChildren) => {
     const [areas, dispatch] = useReducer(appReducer, initialAreas);
 
     return (

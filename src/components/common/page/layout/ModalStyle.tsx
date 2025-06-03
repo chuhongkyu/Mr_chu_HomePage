@@ -1,9 +1,10 @@
 import { motion, LayoutGroup} from "motion/react";
-import { ReactNode } from "react";
 import styles from "@/style/sub-page.module.scss";
 import { useModal } from "./ModalProvider";
+import { WithChildren } from "@/types/global";
+import { ModalVariant } from "./ModalAnimation";
 
-const ModalTopNav = ({children}: {children: ReactNode}) => {
+const ModalTopNav = ({children}: WithChildren) => {
   const { onHandleSize, onExit } = useModal();
   return(
     <nav className={styles["window-modal-top-nav"]}>
@@ -23,7 +24,7 @@ const ModalTopNav = ({children}: {children: ReactNode}) => {
   )
 }
 
-const ModalContent = ({children}: {children: ReactNode}) => {
+const ModalContent = ({children}: WithChildren) => {
   return(
     <div className={styles["window-modal-scroll-wrapper"]}>
       {children}
@@ -31,29 +32,9 @@ const ModalContent = ({children}: {children: ReactNode}) => {
   )
 }
 
-const ModalVariant = {
-  inital: {
-    opacity: 0,
-    scale: 0,
-  },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, type: "spring" },
-  },
-  exit: {
-    scale: 0,
-    transition: { duration: 0.5, type: "spring" },
-  },
-};
-
-interface IWindow {
-  children: ReactNode;
-}
-
 const ModalStyle = ({
   children,
-}: IWindow) => {
+}: WithChildren) => {
   const { resize } = useModal();
 
   return (
