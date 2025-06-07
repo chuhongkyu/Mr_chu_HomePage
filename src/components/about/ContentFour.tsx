@@ -1,13 +1,13 @@
 import styles from "@/style/sub-page.module.scss";
-import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import TextGroup from "@/components/common/page/container/TextGroup";
 
 const ContentFour = () => {
   return (
     <div className={styles["content"]}>
       <TextGroup>
-            <div className="title">
+            <h4 className="title">
               본인의 성장이 팀의 성장
-            </div>
+            </h4>
             <div className="description">
               2022년 마포구청 청년 일자리 사업단에서 근무할 때 프론트 3명과 리액트 스터디 주도해서 한 적이 있습니다. 방식은 (벨로퍼트 리액트) 강의 자료를 토대로 일주일에 두 번씩 실습한 코드를 서로 리뷰합니다. 또한 알게 된 점을 발표하고 서로 질의응답하는 시간을 가집니다. 이렇게 스터디를 해보면서 알게 된 점은 두 가지였습니다.
               <br/><br/>

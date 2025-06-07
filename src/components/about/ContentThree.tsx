@@ -1,4 +1,4 @@
-import { TextGroup } from "../common/page/container/ContentContainer";
+import TextGroup from "@/components/common/page/container/TextGroup";
 import Parallax2 from "./Parallax2";
 import styles from "@/style/sub-page.module.scss";
 
@@ -6,13 +6,13 @@ const ContentThree = () => {
   return (
     <div className={styles["content"]}>
         <TextGroup>
-            <div className="title">
+            <h4 className="title">
                 성능 최적화
-            </div>
+            </h4>
             <div className="content type2">
-                <div className="sub-title">
+                <h5 className="sub-title">
                     L사 백화점 리뉴얼 운영/구축
-                </div>
+                </h5>
                 <div className="description">
                     실무에서 성능 향상 요구를 받은 것은 L사 백화점 운영때 였습니다.<br/>
                     구축 당시 webpack을 통해 js와 css파일을 압축한 적이 있었지만 아직도 메인의 초기 진입 속도는 매우 느렸습니다.
@@ -22,9 +22,9 @@ const ContentThree = () => {
                 </div>
             </div>
             <div className="content type2">
-                <div className="sub-title">
+                <h5 className="sub-title">
                     CASSCOOL 카스 쿨 
-                </div>
+                </h5>
                 <div className="description">
                     카스 쿨 프로젝트에서는 네이버 지도에 많은 양의 마크를 세워야 했습니다. 대량의 마크를 세워야 하기 때문에 지도는 버벅거리는 현상이 발생 했습니다.
                     지도에서 화면에 보여지는 위치에만 그리는 방법을 사용하였지만 그것만으로는 부족했습니다.<br/><br/>

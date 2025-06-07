@@ -1,29 +1,26 @@
-import { ReactNode } from "react";
 import styles from "@/style/sub-page.module.scss";
+import { motion } from "motion/react";
+import { WithChildren } from "@/types/global";
+import { ItemProps } from "./ContainerType";
+import AnimatedText from "./AnimatedText";
 
-interface CategoryItemProps {
-  children: ReactNode;
-}
-
-interface ItemProps {
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
-  id: string;
-  isActive: boolean;
-  text: string;
-}
-
-const Category = ({ children }: CategoryItemProps) => {
-  return <ul className={styles["category-items"]}>{children}</ul>;
+const Category = ({ children }: WithChildren) => {
+  return (
+    <ul
+      className={styles["category-list"]}>
+        {children}
+      </ul>
+    );
 };
 
 const Item = ({ onClick, id, isActive, text }: ItemProps) => {
   return (
-    <li 
+    <li
+      id={id}
       onClick={onClick} 
-      id={id} 
       className={`${styles["item"]} ${isActive ? styles["active"] : ""}`}
     >
-      {text}
+      <AnimatedText text={text} el="p" />
     </li>
   );
 };

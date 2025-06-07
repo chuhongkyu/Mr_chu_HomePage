@@ -1,4 +1,4 @@
-import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import TextGroup from "@/components/common/page/container/TextGroup";
 import styles from "@/style/sub-page.module.scss";
 import Image from "next/image";
 

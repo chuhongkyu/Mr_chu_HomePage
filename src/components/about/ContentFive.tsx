@@ -1,4 +1,4 @@
-import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import TextGroup from "@/components/common/page/container/TextGroup";
 import Parallax from "@/components/about/Parallax";
 import styles from "@/style/sub-page.module.scss";
 
@@ -6,9 +6,9 @@ const ContentFive = () => {
   return (
     <div className={styles["content"]}>
         <TextGroup>
-            <div className="title">
+            <h4 className="title">
                 3D 개발: 나의 여정
-            </div>
+            </h4>
             <div className="content type2">
                 <div className="description">
                     저는 현대 미술 작업 활동을 할때 모델링과 3D 프린터를 다루기도 했습니다.

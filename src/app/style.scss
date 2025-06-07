@@ -83,6 +83,7 @@ body{
         transform: rotate(320deg);
     }
 }
+
 .loading-container{
     display: flex;
     justify-content: center;
@@ -148,11 +149,120 @@ body{
     }
 }
 
+.text-group{
+    // padding: 0 50px;
+    .title{
+        font-size: max(1.6667vw, 32px);
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        padding: max(5.208vw, 80px) 0 30px;
+    }
+    .sub-title{
+        font-size: max(1.25vw, 22px);
+        font-weight: 500;
+        line-height: 1.8;
+        letter-spacing: -0.02em;
+        padding-bottom: 20px;
+    }
+    .description{
+        font-size: max(1.25vw, 16px);
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        text-align: left;
+        margin-bottom: 20px;
+        color: #333333;
+        b{
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .app-icon{
+            display: block;
+            width: auto;
+            height: auto;
+        }
+    }
+    .content-group{
+        display: flex;
+        gap: 2rem;
+    }
+    .description-underline{
+        display: block;
+        border-left: 2px solid #000;
+        padding-left: 1rem;
+        text-decoration: underline;
+        color: #515151;
+    }
+    .content{
+        font-size: max(1.25vw, 22px);
+        font-weight: 500;
+        line-height: 1.8;
+        letter-spacing: -0.02em;
+        &:not(:last-of-type){
+            padding-bottom: max(1.28vw, 30px);
+        }
+        &.type2{
+            width: 100%;  
+        }
+    }
+    .img-content{
+        width: 300px;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+.aria-hidden{
+    display: none;
+}
+
+.animated-text-wrapper{
+    white-space: pre-wrap;
+    // display: inline-block;
+    pointer-events: none;
+    .animated-text{
+        display: inline-block;
+    }
+}
+
 @media screen and (max-width: 768px) {
     body, .main{
         height: var(--mobile-height);
     }
+    .text-group{
+        padding: 10px 0 0;
+        .title{
+          padding: 30px 0 20px;
+        }
+        .content{
+            font-size: 16px;
+            padding-bottom: 15px;
+            text-align: left;
+            &.type1{
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.5;
+                letter-spacing: -0.02em;
+                text-align: left;
+                padding-bottom: 15px;
+            }
+            &.type2{
+                padding : 0;
+            }
+        }
+        .content-group{
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+        .img-content{
+          width: 300px;
+          height: auto;
+        }
+    }
 }
+
 @media screen and (max-width: 468px) {
     .main{
         padding: 2rem 1rem 0.4rem 1rem;

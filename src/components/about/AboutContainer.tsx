@@ -77,7 +77,6 @@ const AboutContainer = () => {
     return (
         <>
             <ModalLeftContainer>
-                
                 <div className={styles["about-left-container"]}>
                     <Category>
                         {category.map((item) => (

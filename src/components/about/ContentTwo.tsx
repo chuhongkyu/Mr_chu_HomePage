@@ -1,13 +1,13 @@
 import styles from "@/style/sub-page.module.scss";
-import { TextGroup } from "@/components/common/page/container/ContentContainer";
+import TextGroup from "@/components/common/page/container/TextGroup";
 
 const ContentTwo = () => {
   return (
     <div className={styles["content"]}>
         <TextGroup>
-            <div className="title">
+            <h4 className="title">
               어떻게 하면 소통을 잘할 수 있나요?
-            </div>
+            </h4>
             <div className="description">
               아무래도 웹에이전시에 다녔던 저는 여러 고객사의 다양한 유형의 기획자, 디자이너분들과 소통을 한 경험이 많습니다. 그때마다 저는 소통이 잘 되는 사람으로 평가되는 것 같습니다. 하지만 누군가 저에게 &apos;어떻게 하면 소통을 잘할 수 있나요?&apos; 라고 물어본다면 어떻게 대답해야 할지 고민이 됩니다.
               그래서 질문에 대답하기 위해서 소통 관련 인프콘 컨퍼런스, it 서적 등을 참고하며 어떻게 하면 소통을 잘할 수 있는가?에 대해 고민해 봤습니다.<br/><br/>
