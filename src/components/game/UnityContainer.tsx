@@ -21,8 +21,8 @@ const UnityContainer = () => {
     const [title, setTitle] = useState("1인 개발 여정");
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
-        const target = e.target as HTMLElement;
-        const activeIndex = category.findIndex((el) => el.id === target.id);
+        const id = e.currentTarget.id;
+        const activeIndex = category.findIndex((el) => el.id === id);
         const targetRef = categoryRefs.current[activeIndex];
 
         if (targetRef && rightContainerRef.current) {
@@ -47,17 +47,17 @@ const UnityContainer = () => {
         const currentRef = rightContainerRef.current;
 
         function onHandlScroll() {
-        const scrollPosition = rightContainerRef.current ? rightContainerRef.current.scrollTop + 440 : 0;
-        const sectionPositions = categoryRefs.current.map((ref) => (ref ? ref.offsetTop : 0));
+            const scrollPosition = rightContainerRef.current ? rightContainerRef.current.scrollTop + 440 : 0;
+            const sectionPositions = categoryRefs.current.map((ref) => (ref ? ref.offsetTop : 0));
 
-        for (let i = 0; i < sectionPositions.length; i++) {
-            const nextIndex = i + 1;
-            if (scrollPosition >= sectionPositions[i] && scrollPosition < (sectionPositions[nextIndex] || Infinity)) {
-            setSection(i);
-            autoChange();
-            break;
+            for (let i = 0; i < sectionPositions.length; i++) {
+                const nextIndex = i + 1;
+                if (scrollPosition >= sectionPositions[i] && scrollPosition < (sectionPositions[nextIndex] || Infinity)) {
+                    setSection(i);
+                    autoChange();
+                    break;
+                }
             }
-        }
         }
 
         currentRef?.addEventListener("scroll", onHandlScroll);

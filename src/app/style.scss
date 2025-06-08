@@ -149,6 +149,24 @@ body{
     }
 }
 
+.content-container{
+    margin-bottom: 20px;
+    padding: 0 max(1.5625vw, 20px);
+    ul{
+        li{
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+            position: relative;
+            color: #333333;
+            &:not(:last-of-type){
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
 .text-group{
     // padding: 0 50px;
     .title{
@@ -260,6 +278,9 @@ body{
           width: 300px;
           height: auto;
         }
+    }
+    .content-container{
+        padding: 0;
     }
 }
 

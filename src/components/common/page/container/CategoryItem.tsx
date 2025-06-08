@@ -49,7 +49,7 @@ const Item = ({ onClick, id, isActive, text }: ItemProps) => {
       onClick={onClick} 
       className={`${styles["item"]} ${isActive ? styles["active"] : ""}`}
     >
-      <AnimatedText text={text} el="p" />
+      <p>{text}</p>
     </motion.li>
   );
 };

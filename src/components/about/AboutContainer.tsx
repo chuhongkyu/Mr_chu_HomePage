@@ -23,15 +23,15 @@ const AboutContainer = () => {
     const [title, setTitle] = useState("간단한 소개");
 
     const onClick = (e: React.MouseEvent<HTMLElement>) => {
-        const target = e.target as HTMLElement;
-        const activeIndex = category.findIndex((el) => el.id === target.id);
+        const id = e.currentTarget.id;
+        const activeIndex = category.findIndex((el) => el.id === id);
         const targetRef = categoryRefs.current[activeIndex];
 
         if (targetRef && rightContainerRef.current) {
-        rightContainerRef.current.scrollTo({
-            top: targetRef ? targetRef.offsetTop - 100 : 0,
-            behavior: "smooth",
-        });
+            rightContainerRef.current.scrollTo({
+                top: targetRef ? targetRef.offsetTop - 100 : 0,
+                behavior: "smooth",
+            });
         }
     };
 
