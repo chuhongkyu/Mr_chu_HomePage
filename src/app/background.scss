@@ -165,6 +165,7 @@
 
 @media screen and (max-width: 768px) {
   .gradient-bg-container{
+    display: none;
     height: var(--mobile-height);
   }
 }

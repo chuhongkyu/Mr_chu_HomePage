@@ -10,11 +10,13 @@ interface AnimatedTextProps {
 }
 
 const wrapperVariants = {
-    hidden: {},
+    hidden:  { opacity: 0 },
     visible: {
-      transition: {
-        staggerChildren: 0.05,
-      },
+        opacity: 1,
+        transition: {
+            duration: 0.3,
+            staggerChildren: 0.05,
+        },
     },
 };
 

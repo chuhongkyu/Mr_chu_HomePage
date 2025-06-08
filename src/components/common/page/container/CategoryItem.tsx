@@ -4,24 +4,49 @@ import { WithChildren } from "@/types/global";
 import { ItemProps } from "./ContainerType";
 import AnimatedText from "./AnimatedText";
 
+const listVariants = {
+  hidden: {
+  },
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 5,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 const Category = ({ children }: WithChildren) => {
   return (
-    <ul
+    <motion.ul
+      variants={listVariants}
+      initial="hidden"
+      animate="visible"
       className={styles["category-list"]}>
         {children}
-      </ul>
+      </motion.ul>
     );
 };
 
 const Item = ({ onClick, id, isActive, text }: ItemProps) => {
   return (
-    <li
+    <motion.li
+      variants={itemVariants}
       id={id}
       onClick={onClick} 
       className={`${styles["item"]} ${isActive ? styles["active"] : ""}`}
     >
       <AnimatedText text={text} el="p" />
-    </li>
+    </motion.li>
   );
 };
 

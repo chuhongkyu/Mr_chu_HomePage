@@ -23,8 +23,8 @@ const BgToggleButton = () => {
                 onChange={handleToggle}
             />
             <label htmlFor="toggle" className={styles["bg-toggle-button"]}>
-                <div>ON</div> 
-                <div>OFF</div>
+                <div>OFF</div> 
+                <div>ON</div>
             </label>
         </div>
     )
