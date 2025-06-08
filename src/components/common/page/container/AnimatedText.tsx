@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
+import { itemVariants, textWrapperVariants } from "./AnimatedVariants";
 
-type ElementType = "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "b";
+type ElementType = "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "b" ;
 
 interface AnimatedTextProps {
     text?: string;
@@ -9,29 +10,10 @@ interface AnimatedTextProps {
     className?: string;
 }
 
-const wrapperVariants = {
-    hidden:  { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            duration: 0.3,
-            staggerChildren: 0.05,
-        },
-    },
-};
-
-const variants = {
-    hidden: { opacity: 0, y: 5 },
-    visible: { opacity: 1, y: 0, 
-        transition: {
-        duration: 0.3
-    } },
-};
-
 const AnimatedCharacter = ({ char, index }: { char: string; index: number }) => (
     <motion.span 
         key={index} 
-        variants={variants}
+        variants={itemVariants}
     >
         {char}
     </motion.span>
@@ -46,7 +28,7 @@ const AnimatedTextContent = ({ text }: { text: string }) => (
 );
 
 const AnimatedHtmlContent = ({ html }: { html: string }) => (
-    <div dangerouslySetInnerHTML={{ __html: html }} />
+    <motion.div variants={itemVariants} dangerouslySetInnerHTML={{ __html: html }} />
 );
 
 const AnimatedText = ({
@@ -61,12 +43,14 @@ const AnimatedText = ({
         <AnimatedTextContent text={text} />
     ) : null;
 
+
     return (
-        <ElementType className={`${className} animated-text-wrapper`}>
+        <ElementType
+            className={`${className} animated-text-wrapper`}>
             <span className="aria-hidden">{text || html}</span>
             <motion.span
                 className="animated-text"
-                variants={wrapperVariants}
+                variants={textWrapperVariants}
                 initial="hidden"
                 animate="visible"
             >

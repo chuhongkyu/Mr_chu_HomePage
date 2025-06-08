@@ -1,15 +1,17 @@
 import TextGroup from "@/components/common/page/container/TextGroup";
 import Parallax2 from "./Parallax2";
 import styles from "@/style/sub-page.module.scss";
+import AnimatedWrapper from "@/components/common/page/container/AnimatedWrapper";
+import AnimatedText from "@/components/common/page/container/AnimatedText";
 
 const ContentThree = () => {
   return (
     <div className={styles["content"]}>
         <TextGroup>
-            <h4 className="title">
-                성능 최적화
-            </h4>
-            <div className="content type2">
+            <AnimatedWrapper>
+                <AnimatedText text="성능 최적화" el="h4" className="title"/>
+            </AnimatedWrapper>
+            <AnimatedWrapper className="content type2">
                 <h5 className="sub-title">
                     L사 백화점 리뉴얼 운영/구축
                 </h5>
@@ -20,8 +22,8 @@ const ContentThree = () => {
                     그래서 PageSpeed Insights를 활용하여 성능을 체크하고 성능을 개선을 하게 되었습니다. 픽쳐 태그를 활용하여 이미지를 webp 파일로 변경하고 폰트 파일을 최적화 하여 woff2로 변경하였습니다. 또한 불필요한 코드들을 없애는 방식으로 개선해 갔습니다.
                     결국 아래 그림 처럼 성능을 70프로로 달성하게 되었습니다.
                 </div>
-            </div>
-            <div className="content type2">
+            </AnimatedWrapper>
+            <AnimatedWrapper className="content type2">
                 <h5 className="sub-title">
                     CASSCOOL 카스 쿨 
                 </h5>
@@ -33,7 +35,7 @@ const ContentThree = () => {
                     이 방법을 기획자와 팀장님께 제한하였고 네이버 지도 깃허브를 통해서 관련 js 파일을 확인하고 프로젝트에 적용시켰습니다.
                     이로 인해 지도의 버벅거림이 사라지고 카스 쿨 이벤트를 하는 매장을 찾으려는 사용자들에게 좋은 사용자 경험을 선사할 수 있게 되었습니다.
                 </div>
-            </div>
+            </AnimatedWrapper>
         </TextGroup>
         <Parallax2/>
     </div>

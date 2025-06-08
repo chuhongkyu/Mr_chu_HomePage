@@ -1,10 +1,21 @@
 import { WithChildren } from "@/types/global";
+import { motion } from "motion/react";
+import { containerVariants} from "./AnimatedVariants";
 
 const TextGroup = ({children}: WithChildren) => {
   return (
-    <div className="text-group">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{
+        once: true,
+        amount: 0.5,
+      }}
+      className="text-group"
+    >
         {children}
-    </div>
+    </motion.div>
   )
 }
 
