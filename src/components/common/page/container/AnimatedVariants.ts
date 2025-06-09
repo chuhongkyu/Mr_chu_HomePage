@@ -3,8 +3,8 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            duration: 0.3,
-            staggerChildren: 0.5,
+            duration: 0.1,
+            // staggerChildren: 0.5,
         },
     },
 };
@@ -15,6 +15,17 @@ const wrapperVariants = {
         opacity: 1,
         transition: {
             duration: 0.3,
+        },
+    },
+};
+
+const resumeWrapperVariants = {
+    hidden:  { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 0.3,
+            staggerChildren: 0.1,
         },
     },
 };
@@ -39,4 +50,4 @@ const itemVariants = {
 };
 
 
-export {containerVariants, wrapperVariants, textWrapperVariants, itemVariants };
+export {containerVariants, wrapperVariants,resumeWrapperVariants, textWrapperVariants, itemVariants };
