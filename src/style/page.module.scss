@@ -298,8 +298,7 @@ $bg-button: 2;
 
 .app-container{
     margin: 0 auto;
-    max-width: $container-d-width;
-    width: 100%;
+    width: $container-d-width;
     position: relative;
     height: 454px;
     overflow: hidden;
@@ -349,12 +348,13 @@ $bg-button: 2;
             }
         }
         .app-areas{
-            max-width: $container-d-width;
+            width: 100%;
             display: grid;
             grid-template-rows: repeat(4, 1fr);
             position: relative;
             z-index: 2;
             padding: 20px 12px 20px;
+            gap: 12px;
             .app-wrapper{
                 position: relative;
                 z-index: 2;
@@ -362,6 +362,9 @@ $bg-button: 2;
                 grid-template-columns: repeat(4, 1fr);
                 overflow: hidden;
                 .drag-item{
+                    grid-column: span 1;
+                    max-width: 88px;
+                    width: 100%;
                     &:not(:last-of-type){
                         margin-right: 8px;
                     }
@@ -453,9 +456,8 @@ $bg-button: 2;
 }
 
 .app-widget-container{
-    max-width: $container-d-width;
+    width: $container-d-width;
     border-radius: 20px;
-    width: 100%;
     height: 70px;
     .widget-wrapper{
         width: 100%;
@@ -488,13 +490,17 @@ $bg-button: 2;
             justify-content: flex-start;
             align-items: center;
             .drag-item{
+                width: 40px;
+                height: 40px;
                 display: block;
                 margin-right: 20px;
             }
         }
         .app-item{
-            width: 40px;
-            height: 40px;
+            width: 100%;
+            height: 100%;
+            // width: 40px;
+            // height: 40px;
             // border: 1px solid #000;
             display: flex;
             justify-content: center;
@@ -553,8 +559,8 @@ $bg-button: 2;
 }
 
 .app-item{
-    width: 88px;
-    height: 95px;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     &:hover{
@@ -700,6 +706,20 @@ $bg-button: 2;
     .app-information{
         display: none;
     }
+    .app-container{
+        width: $container-m-width;
+        // width: 100%;
+        .app-areas-wrapper{
+            .app-areas{
+                gap: 8px;
+            }
+        }
+    }
+    .app-widget-container{
+        width: $container-m-width;
+        // width: 100%;
+    }
+
 }
 
 
@@ -735,8 +755,6 @@ $bg-button: 2;
         }
     }
     .app-item{
-        width: 78px;
-        height: 90px;
         &:hover{
             a{
                 .font-app{
@@ -745,18 +763,6 @@ $bg-button: 2;
             }
         }
         a {
-            // .app-img-wrapper{
-            //     width: 40px;
-            //     height: 32px;
-            //     &.square{
-            //         width: 32px;
-            //         height: 32px;
-            //     }   
-            // }
-            // svg{
-            //     width: 40px;
-            //     height: 40px;
-            // }
             .font-app{
                 max-width: 60px;
                 font-size: 12px;
