@@ -2,6 +2,7 @@ import Loading from '@/components/common/Loading';
 import { getProjectDetail } from '@/utils/api';
 import { NotionRenderer } from 'react-notion';
 import styles from '@/style/detail-page.module.scss';
+import NotionList from '@/components/common/NotionList';
 
 type Props = {
   params: Promise<{ id: string }>
@@ -20,6 +21,7 @@ export default async function ProjectDetail({ params, searchParams }: Props) {
   return (
     <div className={styles["notion-wrapper"]}>
       <NotionRenderer blockMap={projectData} />
+      <NotionList />
     </div>
   );
 }

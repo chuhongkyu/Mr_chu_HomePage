@@ -12,9 +12,43 @@
   max-width: 710px;
   margin: 0 auto;
   padding: 50px 0;
+  position: relative;
+  .notion-list{
+    position: absolute;
+    top: 50px;
+    left: calc(100% + 20px);
+    width: 200px;
+    height: auto;
+    z-index: 1;
+    color: #333;
+    background: rgba(0, 0, 0, 0.10);
+    border-radius: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+    li{
+      display: block;
+      h2{
+        font-size: 18px;
+        font-weight: 500;
+        display: block;
+      }
+      margin-bottom: 0.1em;
+      font-size: 16px;
+      font-weight: 500;
+      &:first-child{
+        margin-bottom: 0.2em;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
   @media (max-width: 768px) {
     padding: 0;
     width: 100%;
+    .notion-list{
+      display: none;
+    }
   }
   
   @media (max-width: 680px) {
