@@ -19,9 +19,11 @@ export default async function ProjectDetail({ params, searchParams }: Props) {
   }
 
   return (
-    <div className={styles["notion-wrapper"]}>
-      <NotionRenderer blockMap={projectData} />
+    <>
+      <div className={styles["notion-wrapper"]}>
+        <NotionRenderer blockMap={projectData} />
+      </div>
       <NotionList />
-    </div>
+    </>
   );
 }

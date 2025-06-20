@@ -51,7 +51,7 @@ const NotionList = () => {
             animate={{ opacity: 1,}}
             transition={{ duration: 0.5 }}
             className={`${styles["notion-list"]} notion-list-column`}>
-            <li><h2>List</h2></li>
+            <li><h2>목차</h2></li>
             {headings.map((heading) => (
                 <li key={heading.id} className="notion-text">
                     <a 
@@ -62,7 +62,7 @@ const NotionList = () => {
                         }}
                         className="notion-list-link"
                     >
-                        <p>{heading.text.substring(0, 12)}...</p>
+                        <p>{heading.text}</p>
                     </a>
                 </li>
             ))}

@@ -6,7 +6,7 @@ const ModalRightContainer = forwardRef<HTMLDivElement, IModalRightContainer>(({h
     return(
       <li className={styles["modal-right-container"]}>
         {header}
-        <div ref={ref} className={`${styles["window-modal-scroll-wrapper"]} ${scroll ? styles["scroll"] : ""}`}>
+        <div ref={ref} className={`${styles["window-modal-scroll-wrapper"]} ${scroll ? styles["scroll"] : ""} scroll-list-wrapper`}>
           {children}
         </div>
       </li>
