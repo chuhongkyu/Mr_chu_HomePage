@@ -30,7 +30,12 @@ const FormContainer = () => {
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let value = e.target.value;
+        value = value.replace(/[^가-힣a-zA-Z0-9\s]/g, '');
         setValue(value);
+    }
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
     }
 
     const onHandleOpen = () => setOpen(true)
@@ -66,7 +71,7 @@ const FormContainer = () => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     exit={{ opacity: 0,}}
                     className={styles["form-section"]}>
-                    <form className={styles["form-container"]}>
+                    <form className={styles["form-container"]} onSubmit={handleSubmit}>
                         <span className={styles["form-icon"]}/>
                         <input  
                             onFocus={onHandleOpen}
