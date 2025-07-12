@@ -26,17 +26,18 @@ const getProjectDetail = async ({id}:IDetail) => {
     const url = `https://notion-api.splitbee.io/v1/page/${id}`;
   
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('프로젝트 상세 정보를 불러오는 데 실패했습니다.');
-      }
-  
-      const data = await response.json();
-      return data;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('프로젝트 상세 정보를 불러오는 데 실패했습니다.');
+        }
+    
+        const data = await response.json();
+        // console.log('data',data);
+        return data;
 
     } catch (error) {
-      console.error('에러:', error);
-      return null;
+        console.error('에러:', error);
+        return null;
     }
 };
 

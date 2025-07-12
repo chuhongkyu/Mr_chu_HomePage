@@ -12,7 +12,10 @@ type Props = {
 export default async function ProjectDetail({ params, searchParams }: Props) {
   const resolvedParams = await params;
   
-  const projectData = await getProjectDetail({ id: resolvedParams.id });
+  const projectData = await getProjectDetail(
+    { 
+      id: resolvedParams.id
+    });
 
   if (!projectData) {
     return <Loading/>
