@@ -9,4 +9,9 @@ export interface IList {
     kws : string[];
 }
 
+export type ProjectListResponse = {
+    project: IList[];
+};
+
+
 export interface IWorksArray extends Array<IList> {}

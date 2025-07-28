@@ -9,12 +9,13 @@ import { useDebounce } from "@/utils/hooks";
 import { getProjectList } from "@/utils/api";
 import styles from "@/style/page.module.scss";
 
-import { IList } from "./SearchType";
+import { IList, ProjectListResponse } from "./SearchType";
 import SearchList from "./SearchList";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from '@/store/store';
 import { setSearchWindow } from "@/store/searchWindowSlice";
+import type { QueryFunctionContext } from "@tanstack/react-query";
 
 const FormContainer = () => {
     const isSearchWindowVisible = useSelector((state: RootState) => state.searchWindow.isSearchWindowVisible);
@@ -26,7 +27,10 @@ const FormContainer = () => {
     const debouncedValue = useDebounce(value, 300);
     const [isMounted, setIsMounted] = useState(false);
 
-    const { isPending, data, error } = useQuery({ queryKey: ['list', debouncedValue], queryFn: getProjectList})
+    const { data, isPending, error } = useQuery<ProjectListResponse | null>({
+        queryKey: ['list', debouncedValue],
+        queryFn: getProjectList,
+    });
 
     const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         let value = e.target.value;
@@ -47,7 +51,9 @@ const FormContainer = () => {
     }
     
     useEffect(()=>{
-        setList(data?.project)
+        if(data){
+            setList(data?.project)
+        }
     },[data])
 
     useEffect(() => {

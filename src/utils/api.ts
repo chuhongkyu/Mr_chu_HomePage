@@ -1,26 +1,28 @@
+import { IList, ProjectListResponse } from "@/components/common/window/searchFrom/SearchType";
+import type { QueryFunctionContext } from "@tanstack/react-query";
+
 export interface IDetail {
     id?: string;
 }
 
-const getProjectList = ({ queryKey }: any) => {
-    const [_key, debouncedValue] = queryKey
 
+// React Query가 queryFn을 실행하면서 context를 넘깁니다.
+// context.queryKey에는 [string, string?] 형태로 쿼리 키가 들어옵니다.
+const getProjectList = async (
+  context: QueryFunctionContext<readonly unknown[]>
+): Promise<ProjectListResponse | null> => {
+    const [_key, debouncedValue] = context.queryKey as [string, string?];
+  
     let url = 'https://developed-heath-mr-chu.koyeb.app/api/notion/projectList';
     if (debouncedValue) {
         url += `?keyword=${debouncedValue}`;
     }
 
-    return fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log(data);
-            return data;
-        })
-        .catch((error) => {
-            console.log('error', error);
-            return null;
-        });
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("프로젝트 리스트를 가져오지 못했습니다.");
+    return response.json();
 };
+
 
 const getProjectDetail = async ({id}:IDetail) => {
     const url = `https://notion-api.splitbee.io/v1/page/${id}`;
