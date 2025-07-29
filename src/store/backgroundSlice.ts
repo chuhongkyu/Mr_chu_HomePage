@@ -5,7 +5,7 @@ interface BackgroundState {
 }
 
 const initialState: BackgroundState = {
-  isBackground: true,
+  isBackground: false,
 };
 
 const backgroundSlice = createSlice({

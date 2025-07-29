@@ -2,9 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
+const INACTIVITY_TIMEOUT_MS = 2000;
+
 const BackgroundLayout = () => {
     const interBubbleRef = useRef<HTMLDivElement>(null);
     const animationFrameRef = useRef<number>(0);
+    const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const isMovingRef = useRef(false);
     const positionRef = useRef({
         curX: 0,
         curY: 0,
@@ -12,42 +16,61 @@ const BackgroundLayout = () => {
         tgY: 0
     });
 
-    useEffect(() => {
-        const move = () => {
-            if (!interBubbleRef.current) return;
-            
-            const { curX, curY, tgX, tgY } = positionRef.current;
-            const newX = curX + (tgX - curX) / 20;
-            const newY = curY + (tgY - curY) / 20;
-            
-            if (Math.abs(newX - curX) > 0.1 || Math.abs(newY - curY) > 0.1) {
-                positionRef.current.curX = newX;
-                positionRef.current.curY = newY;
-                interBubbleRef.current.style.transform = `translate3d(${Math.round(newX)}px, ${Math.round(newY)}px, 0)`;
-            }
-            
-            animationFrameRef.current = requestAnimationFrame(move);
-        };
+    // move 함수 분리
+    const move = () => {
+        if (!interBubbleRef.current) return;
 
+        const { curX, curY, tgX, tgY } = positionRef.current;
+        const newX = curX + (tgX - curX) / 20;
+        const newY = curY + (tgY - curY) / 20;
+
+        if (Math.abs(newX - curX) > 0.1 || Math.abs(newY - curY) > 0.1) {
+            positionRef.current.curX = newX;
+            positionRef.current.curY = newY;
+            interBubbleRef.current.style.transform = `translate3d(${Math.round(newX)}px, ${Math.round(newY)}px, 0)`;
+            animationFrameRef.current = requestAnimationFrame(move);
+        } else {
+            isMovingRef.current = false;
+        }
+    };
+
+    useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
             const distance = Math.sqrt(
                 Math.pow(event.clientX - positionRef.current.tgX, 2) +
                 Math.pow(event.clientY - positionRef.current.tgY, 2)
             );
-            
+
             if (distance > 5) {
                 positionRef.current.tgX = event.clientX;
                 positionRef.current.tgY = event.clientY;
+
+                if (!isMovingRef.current) {
+                    isMovingRef.current = true;
+                    move();
+                }
+
+                if (inactivityTimeoutRef.current) {
+                    clearTimeout(inactivityTimeoutRef.current);
+                }
+                inactivityTimeoutRef.current = setTimeout(() => {
+                    if (animationFrameRef.current) {
+                        cancelAnimationFrame(animationFrameRef.current);
+                        isMovingRef.current = false;
+                    }
+                }, INACTIVITY_TIMEOUT_MS);
             }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        move();
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
+            }
+            if (inactivityTimeoutRef.current) {
+                clearTimeout(inactivityTimeoutRef.current);
             }
         };
     }, []);
