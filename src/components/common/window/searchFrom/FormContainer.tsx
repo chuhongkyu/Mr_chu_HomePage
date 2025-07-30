@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useDebounce } from "@/utils/hooks";
+import { useDebounce } from "@/hooks/useDebounce";
 
 import { getProjectList } from "@/utils/api";
 import styles from "@/style/page.module.scss";
@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from '@/store/store';
 import { setSearchWindow } from "@/store/searchWindowSlice";
-import type { QueryFunctionContext } from "@tanstack/react-query";
+
 
 const FormContainer = () => {
     const isSearchWindowVisible = useSelector((state: RootState) => state.searchWindow.isSearchWindowVisible);

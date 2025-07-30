@@ -6,27 +6,27 @@ import NotionList from '@/components/common/NotionList';
 
 type Props = {
   params: Promise<{ id: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default async function ProjectDetail({ params, searchParams }: Props) {
+export const revalidate = 604800;
+
+export default async function ProjectDetail({ params }: Props) {
   const resolvedParams = await params;
   
-  const projectData = await getProjectDetail(
-    { 
-      id: resolvedParams.id
-    });
+  const projectData = await getProjectDetail({ 
+    id: resolvedParams.id
+  });
 
   if (!projectData) {
-    return <Loading/>
+    return <Loading/>;
   }
 
   return (
-    <>
+    <div className={styles["project-detail-container"]}>
       <div className={styles["notion-wrapper"]}>
         <NotionRenderer blockMap={projectData} />
       </div>
       <NotionList />
-    </>
+    </div>
   );
 }
