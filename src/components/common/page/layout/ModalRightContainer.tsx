@@ -1,15 +1,22 @@
-import { ReactNode, forwardRef } from "react"
-import styles from "@/style/sub-page.module.scss";
+import { forwardRef, ReactNode } from "react";
+
 import { IModalRightContainer } from "./ModalType";
 
-const ModalRightContainer = forwardRef<HTMLDivElement, IModalRightContainer>(({header, children, scroll}, ref) => {
-    return(
+import styles from "@/style/sub-page.module.scss";
+
+const ModalRightContainer = forwardRef<HTMLDivElement, IModalRightContainer>(
+  ({ header, children, scroll }, ref) => {
+    return (
       <li className={styles["modal-right-container"]}>
         {header}
-        <div ref={ref} className={`${styles["window-modal-scroll-wrapper"]} ${scroll ? styles["scroll"] : ""} scroll-list-wrapper`}>
+        <div
+          ref={ref}
+          className={`${styles["window-modal-scroll-wrapper"]} ${scroll ? styles["scroll"] : ""} scroll-list-wrapper`}
+        >
           {children}
         </div>
       </li>
-    )
-})
+    );
+  }
+);
 export default ModalRightContainer;

@@ -1,8 +1,10 @@
-import { motion } from "motion/react";
-import Link from "next/link";
-import styles from "@/style/page.module.scss";
-import { AppIconWrapperProps, AppItem } from "./AppType";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
+
+import { AppIconWrapperProps, AppItem } from "./AppType";
+
+import styles from "@/style/page.module.scss";
 
 const AppIcon = ({ color }: { color: string }) => (
   <motion.svg
@@ -26,32 +28,69 @@ const AppIcon = ({ color }: { color: string }) => (
   </motion.svg>
 );
 
-const AppIconWrapper = ({ type, imgSrc = "", className = "", label, color }: AppIconWrapperProps) => {
-  if(type === "folder") return <AppIcon color={color} />
-  if(type === "img") {
+const AppIconWrapper = ({
+  type,
+  imgSrc = "",
+  className = "",
+  label,
+  color,
+}: AppIconWrapperProps) => {
+  if (type === "folder") return <AppIcon color={color} />;
+  if (type === "img") {
     if (!imgSrc) return null;
-    
+
     return (
-      <div className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}>
-        <Image fill sizes="100%" src={imgSrc} alt={label} className={styles[className]}/>
+      <div
+        className={[styles["app-img-wrapper"], styles[className || ""]].join(
+          " "
+        )}
+      >
+        <Image
+          fill
+          sizes="100%"
+          src={imgSrc}
+          alt={label}
+          className={styles[className]}
+        />
       </div>
-    )
+    );
   }
-  return null; 
+  return null;
 };
 
-const AppLink = ({type, label, className, name, color, link, imgSrc, outlink}: AppItem) => {
+const AppLink = ({
+  type,
+  label,
+  className,
+  name,
+  color,
+  link,
+  imgSrc,
+  outlink,
+}: AppItem) => {
   return (
     <motion.div className={styles["app-item"]}>
       {link && (
         <Link href={`${link}`}>
-          <AppIconWrapper type={type} className={className} imgSrc={imgSrc} label={label} color={color} />
+          <AppIconWrapper
+            type={type}
+            className={className}
+            imgSrc={imgSrc}
+            label={label}
+            color={color}
+          />
           <p className={styles["font-app"]}>{label}</p>
         </Link>
       )}
       {outlink && (
         <a href={`${outlink}`} target="_blank" rel="noopener noreferrer">
-          <AppIconWrapper type={type} className={className} imgSrc={imgSrc} label={label} color={color} />
+          <AppIconWrapper
+            type={type}
+            className={className}
+            imgSrc={imgSrc}
+            label={label}
+            color={color}
+          />
           <p className={styles["font-app"]}>{label}</p>
         </a>
       )}

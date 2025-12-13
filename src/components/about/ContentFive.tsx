@@ -1,8 +1,9 @@
-import TextGroup from "@/components/common/page/container/TextGroup";
 import Parallax from "@/components/about/Parallax";
-import styles from "@/style/sub-page.module.scss";
-import AnimatedWrapper from "@/components/common/page/container/AnimatedWrapper";
 import AnimatedText from "@/components/common/page/container/AnimatedText";
+import AnimatedWrapper from "@/components/common/page/container/AnimatedWrapper";
+import TextGroup from "@/components/common/page/container/TextGroup";
+
+import styles from "@/style/sub-page.module.scss";
 
 const ContentFive = () => {
   return (

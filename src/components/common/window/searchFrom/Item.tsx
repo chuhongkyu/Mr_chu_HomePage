@@ -1,11 +1,11 @@
-import { ReactNode } from "react"
-import styles from "@/style/page.module.scss";
+import { ReactNode } from "react";
+
 import { WithChildren } from "@/types/global";
 
-function Item({children}:WithChildren) {
-    return (
-        <div className={styles["item"]}>{children}</div>
-    )
+import styles from "@/style/page.module.scss";
+
+function Item({ children }: WithChildren) {
+  return <div className={styles["item"]}>{children}</div>;
 }
 
-export default Item
+export default Item;

@@ -2,13 +2,8 @@
 
 import styles from "@/style/sub-page.module.scss";
 
-
 const ProfileContainer = () => {
-    return(
-        <div className={styles["profile-container"]}>
-          
-        </div>
-    )
-}
+  return <div className={styles["profile-container"]}></div>;
+};
 
-export default ProfileContainer
+export default ProfileContainer;

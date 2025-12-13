@@ -1,18 +1,19 @@
-import { WithChildren } from "@/types/global";
 import { ReactNode } from "react";
 
+import { WithChildren } from "@/types/global";
+
 export interface IModalStyle extends WithChildren {
-    text: string;
+  text: string;
 }
 
 export interface ModalContextType {
-    resize: boolean;
-    onHandleSize: () => void;
-    onExit: () => void;
+  resize: boolean;
+  onHandleSize: () => void;
+  onExit: () => void;
 }
 
 export interface IModalRightContainer {
-    header?: ReactNode;
-    children: ReactNode;
-    scroll?: boolean;
+  header?: ReactNode;
+  children: ReactNode;
+  scroll?: boolean;
 }

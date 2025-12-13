@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "@/style/detail-page.module.scss";
 import { motion } from "motion/react";
+
+import styles from "@/style/detail-page.module.scss";
 
 const NotionList = () => {
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);

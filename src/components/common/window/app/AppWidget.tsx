@@ -1,14 +1,16 @@
 "use client";
 
-import styles from "@/style/page.module.scss";
-import AppLink from "./AppLink";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import { useState, useEffect } from "react";
-import { widgetApps } from "./AppData";
-import { motion } from "motion/react";
-import MailApp from "./MailApp";
-import { AppItem } from "./AppType";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { motion } from "motion/react";
+
+import { widgetApps } from "./AppData";
+import AppLink from "./AppLink";
+import { AppItem } from "./AppType";
+import MailApp from "./MailApp";
+
+import styles from "@/style/page.module.scss";
 
 const AppWidget = () => {
   const [apps, setApps] = useState(widgetApps);

@@ -1,7 +1,8 @@
-import styles from "@/style/sub-page.module.scss";
-import TextGroup from "@/components/common/page/container/TextGroup";
-import AnimatedWrapper from "@/components/common/page/container/AnimatedWrapper";
 import AnimatedText from "@/components/common/page/container/AnimatedText";
+import AnimatedWrapper from "@/components/common/page/container/AnimatedWrapper";
+import TextGroup from "@/components/common/page/container/TextGroup";
+
+import styles from "@/style/sub-page.module.scss";
 
 const ContentFour = () => {
   return (

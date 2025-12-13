@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface BackgroundState {
   isBackground: boolean;
@@ -9,7 +9,7 @@ const initialState: BackgroundState = {
 };
 
 const backgroundSlice = createSlice({
-  name: 'background',
+  name: "background",
   initialState,
   reducers: {
     toggleBackground: (state) => {

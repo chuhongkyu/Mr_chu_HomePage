@@ -1,9 +1,11 @@
 "use client";
-import { motion } from "motion/react";
 import { ReactNode } from "react";
-import styles from "@/style/sub-page.module.scss";
 import Image from "next/image";
+import { motion } from "motion/react";
+
 import { itemVariants } from "../common/page/container/AnimatedVariants";
+
+import styles from "@/style/sub-page.module.scss";
 
 interface IWorks {
   children: ReactNode;
@@ -13,7 +15,13 @@ interface IWorks {
   row?: string;
 }
 
-function ProfileItem({ title, children, icon, column = "span 1", row = "span 1" }: IWorks) {
+function ProfileItem({
+  title,
+  children,
+  icon,
+  column = "span 1",
+  row = "span 1",
+}: IWorks) {
   return (
     <motion.div
       className={styles["item-wrapper"]}
@@ -22,7 +30,13 @@ function ProfileItem({ title, children, icon, column = "span 1", row = "span 1" 
       whileHover={{ y: -3 }}
     >
       <h3 className={styles["item-title"]}>
-        <Image width={20} height={20} className={styles.icon} src={icon} alt={title} />
+        <Image
+          width={20}
+          height={20}
+          className={styles.icon}
+          src={icon}
+          alt={title}
+        />
         {title}
       </h3>
       <ul className={styles.content}>{children}</ul>

@@ -1,9 +1,10 @@
+import type { QueryFunctionContext } from "@tanstack/react-query";
+import { NotionAPI } from "notion-client";
+
 import {
   IList,
   ProjectListResponse,
 } from "@/components/common/window/searchFrom/SearchType";
-import type { QueryFunctionContext } from "@tanstack/react-query";
-import { NotionAPI } from "notion-client";
 
 export interface IDetail {
   id?: string;
@@ -59,4 +60,4 @@ const getAllProjectList = async () => {
   }
 };
 
-export { getProjectList, getProjectDetail, getAllProjectList };
+export { getAllProjectList, getProjectDetail, getProjectList };

@@ -1,8 +1,10 @@
-import TextGroup from "@/components/common/page/container/TextGroup";
 import Chronicle from "@/components/about/Chronicle";
-import styles from "@/style/sub-page.module.scss";
 import AnimatedText from "@/components/common/page/container/AnimatedText";
+import TextGroup from "@/components/common/page/container/TextGroup";
+
 import AnimatedWrapper from "../common/page/container/AnimatedWrapper";
+
+import styles from "@/style/sub-page.module.scss";
 
 const ContentOne = () => {
     return (

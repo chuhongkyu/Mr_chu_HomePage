@@ -1,8 +1,11 @@
-import styles from "@/style/sub-page.module.scss";
 import { motion } from "motion/react";
+
 import { WithChildren } from "@/types/global";
-import { ItemProps } from "./ContainerType";
+
 import AnimatedText from "./AnimatedText";
+import { ItemProps } from "./ContainerType";
+
+import styles from "@/style/sub-page.module.scss";
 
 const listVariants = {
   hidden: {
@@ -35,10 +38,11 @@ const Category = ({ children }: WithChildren) => {
       variants={listVariants}
       initial="hidden"
       animate="visible"
-      className={styles["category-list"]}>
-        {children}
-      </motion.ul>
-    );
+      className={styles["category-list"]}
+    >
+      {children}
+    </motion.ul>
+  );
 };
 
 const Item = ({ onClick, id, isActive, text }: ItemProps) => {
@@ -46,7 +50,7 @@ const Item = ({ onClick, id, isActive, text }: ItemProps) => {
     <motion.li
       variants={itemVariants}
       id={id}
-      onClick={onClick} 
+      onClick={onClick}
       className={`${styles["item"]} ${isActive ? styles["active"] : ""}`}
     >
       <p>{text}</p>

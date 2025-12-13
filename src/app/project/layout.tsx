@@ -1,8 +1,10 @@
-import ModalLayout from "@/components/common/page/layout/ModalLayout";
-import styles from "@/style/detail-page.module.scss";
-import "react-notion-x/src/styles.css";
-import "prismjs/themes/prism-tomorrow.css";
 import { Metadata } from "next";
+
+import ModalLayout from "@/components/common/page/layout/ModalLayout";
+
+import "prismjs/themes/prism-tomorrow.css";
+import "react-notion-x/src/styles.css";
+import styles from "@/style/detail-page.module.scss";
 
 const title = "Project | MR.CHU";
 const description =

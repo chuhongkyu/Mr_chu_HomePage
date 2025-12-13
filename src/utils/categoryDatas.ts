@@ -24,8 +24,7 @@ export const aboutData = [
     name: "3D 개발: 나의 여정",
     active: false,
   },
-]
-
+];
 
 export const gameData = [
   {
@@ -43,4 +42,4 @@ export const gameData = [
     name: "플랫폼 정책",
     active: false,
   },
-]
+];

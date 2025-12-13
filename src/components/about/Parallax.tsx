@@ -1,9 +1,11 @@
-import { motion } from "motion/react";
-import { Swiper, SwiperSlide } from "swiper/react"; 
-import { Autoplay } from 'swiper/modules';
-import "swiper/css"; 
-import styles from "@/style/sub-page.module.scss";
 import Image from "next/image";
+import { motion } from "motion/react";
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react"; 
+
+import styles from "@/style/sub-page.module.scss";
+
+import "swiper/css"; 
 
 const Parallax = () => {
   return (

@@ -1,7 +1,9 @@
 "use client";
-import ProfileItem from "@/components/resume/ProfileItem";
 import { motion } from "motion/react";
+
 import { resumeWrapperVariants } from "@/components/common/page/container/AnimatedVariants";
+import ProfileItem from "@/components/resume/ProfileItem";
+
 import styles from "@/style/sub-page.module.scss";
 
 const CareerContainer = () => {

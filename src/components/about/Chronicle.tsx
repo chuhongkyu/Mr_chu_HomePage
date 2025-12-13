@@ -1,7 +1,9 @@
-import styles from "@/style/sub-page.module.scss";
-import { motion } from "motion/react";
 import { useMediaQuery } from "react-responsive";
+import { motion } from "motion/react";
+
 import DummyChronicle from "./DummyChronicle";
+
+import styles from "@/style/sub-page.module.scss";
 
 const CHRONICLE_LIST = [
   { label: "(주)아이리브", delay: 4.5 },

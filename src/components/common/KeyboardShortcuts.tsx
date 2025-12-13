@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import { toggleSearchWindow } from "@/store/searchWindowSlice";
 
 const KeyboardShortcuts = () => {

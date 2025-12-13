@@ -1,7 +1,7 @@
 import { cloneElement, isValidElement, ReactElement } from "react";
 
 interface IconProps {
-  svg: ReactElement;
+  svg: ReactElement<any>;
   className?: string;
   width?: number | string;
   height?: number | string;
@@ -13,20 +13,21 @@ const Icon = ({ svg, className, width, height, style }: IconProps) => {
     return null;
   }
 
+  const svgProps = svg.props as Record<string, any>;
+
   // className 병합
-  const mergedClassName = [svg.props.className, className]
+  const mergedClassName = [svgProps.className, className]
     .filter(Boolean)
     .join(" ");
 
   // SVG 요소를 복제하여 props를 전달
   return cloneElement(svg, {
-    ...svg.props,
+    ...svgProps,
     className: mergedClassName || undefined,
-    width: width ?? svg.props.width,
-    height: height ?? svg.props.height,
-    style: { ...svg.props.style, ...style },
-  });
+    width: width ?? svgProps.width,
+    height: height ?? svgProps.height,
+    style: { ...svgProps.style, ...style },
+  } as any);
 };
 
 export default Icon;
-

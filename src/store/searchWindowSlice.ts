@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SearchWindowState {
   isSearchWindowVisible: boolean;
@@ -9,7 +9,7 @@ const initialState: SearchWindowState = {
 };
 
 const searchWindowSlice = createSlice({
-  name: 'searchWindow',
+  name: "searchWindow",
   initialState,
   reducers: {
     toggleSearchWindow: (state) => {
@@ -21,5 +21,6 @@ const searchWindowSlice = createSlice({
   },
 });
 
-export const { toggleSearchWindow, setSearchWindow } = searchWindowSlice.actions;
-export default searchWindowSlice.reducer; 
+export const { toggleSearchWindow, setSearchWindow } =
+  searchWindowSlice.actions;
+export default searchWindowSlice.reducer;

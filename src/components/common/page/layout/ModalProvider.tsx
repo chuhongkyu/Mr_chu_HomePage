@@ -1,10 +1,11 @@
+"use client";
 
-"use client"
+import React, { createContext, useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import { useRouter } from 'next/navigation';
-import React, { createContext, useContext, useState } from 'react';
-import { ModalContextType } from './ModalType';
-import { WithChildren } from '@/types/global';
+import { WithChildren } from "@/types/global";
+
+import { ModalContextType } from "./ModalType";
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
@@ -25,7 +26,7 @@ export const ModalProvider: React.FC<WithChildren> = ({ children }) => {
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (context === undefined) {
-    throw new Error('useModal must be used within a ModalProvider');
+    throw new Error("useModal must be used within a ModalProvider");
   }
   return context;
 };

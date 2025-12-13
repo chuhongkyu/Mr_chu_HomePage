@@ -2,6 +2,7 @@ import ModalLeftContainer from "@/components/common/page/layout/ModalLeftContain
 import ModalRightContainer from "@/components/common/page/layout/ModalRightContainer";
 import CareerContainer from "@/components/resume/CareerContainer";
 import ProfileContainer from "@/components/resume/ProfileContainer";
+
 import styles from "@/style/sub-page.module.scss";
 
 const ResumePage = () => {

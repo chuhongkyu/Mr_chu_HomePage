@@ -1,10 +1,12 @@
-import { setSearchWindow } from "@/store/searchWindowSlice";
-import styles from "@/style/page.module.scss";
-import { motion } from "motion/react";
 import { useDispatch } from "react-redux";
+import { motion } from "motion/react";
+
 import Icon from "@/components/common/Icon";
 import CommandIcon from "@/components/common/icons/CommandIcon";
 import PlusIcon from "@/components/common/icons/PlusIcon";
+import { setSearchWindow } from "@/store/searchWindowSlice";
+
+import styles from "@/style/page.module.scss";
 
 const AppInformation = () => {
   const dispatch = useDispatch();

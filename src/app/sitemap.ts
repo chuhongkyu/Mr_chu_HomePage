@@ -1,5 +1,6 @@
-import { getAllProjectList } from "@/utils/api";
 import { MetadataRoute } from "next";
+
+import { getAllProjectList } from "@/utils/api";
 
 const BASE_URL = "https://mr-chu-home-page.vercel.app";
 

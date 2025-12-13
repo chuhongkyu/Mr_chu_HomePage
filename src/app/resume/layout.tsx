@@ -1,5 +1,6 @@
-import ModalLayout from "@/components/common/page/layout/ModalLayout";
 import { Metadata } from "next";
+
+import ModalLayout from "@/components/common/page/layout/ModalLayout";
 
 const description =
   "MR.CHU’s resume featuring roles at Ailive, DOSE Interactive, and Mapo-gu, with project highlights like Samsung, Lotte, KGC, and CASS. Also teaches creative frontend development at Fast Campus.";
