@@ -1,10 +1,5 @@
-
-
 const IndexPage = () => {
-  return(
-    <>
-    </>
-    )
-}
+  return <></>;
+};
 
 export default IndexPage;

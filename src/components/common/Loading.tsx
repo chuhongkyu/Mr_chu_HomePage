@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-const Loading = () =>{
-    return(
-        <div className="loader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    )
-}
+const Loading = () => {
+  return (
+    <div className="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+};
 
-export default Loading
+export default Loading;

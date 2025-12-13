@@ -1,16 +1,19 @@
-import localFont from "next/font/local";
-import "./style.scss";
-import BackgroundController from "@/components/common/window/background/BackgroundController";
-import { ReduxProvider } from '@/components/providers/ReduxProvider';
-import RootLayout from "@/components/common/RootLayout";
 import { Metadata } from "next";
+import localFont from "next/font/local";
+
+import RootLayout from "@/components/common/RootLayout";
+import { ReduxProvider } from "@/components/providers/ReduxProvider";
+
+import "./style.scss";
 
 export const metadata: Metadata = {
   title: "FE | MR.CHU",
-  description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+  description:
+    "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
   openGraph: {
     title: "FE | MR.CHU",
-    description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    description:
+      "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
     images: [
       {
         url: "/assets/og_img_default.jpg",
@@ -23,10 +26,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FE | MR.CHU",
-    description: "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    description:
+      "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
     images: ["/assets/og_img_default.jpg"],
   },
-}; 
+};
 
 const notoSans = localFont({
   src: [
@@ -59,12 +63,7 @@ export default function Layout({
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
         <ReduxProvider>
-          <RootLayout>
-            
-            {children}
-            
-          </RootLayout>
-          <BackgroundController/>
+          <RootLayout>{children}</RootLayout>
         </ReduxProvider>
       </body>
     </html>
