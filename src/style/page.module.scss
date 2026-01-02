@@ -530,10 +530,8 @@ $bg-button: 2;
           margin-bottom: 0;
           border: none;
           overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-          transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
+          box-shadow: none;
+          transition: transform 0.2s ease;
           &.white-square-bg {
             background: #fff;
             border-radius: 10px;
@@ -556,11 +554,6 @@ $bg-button: 2;
         }
         .font-app {
           display: none;
-        }
-        &:hover {
-          .app-img-wrapper {
-            transform: translateY(-2px);
-          }
         }
       }
     }
@@ -625,12 +618,6 @@ $bg-button: 2;
         display: block;
         width: 40px;
         height: 40px;
-      }
-    }
-
-    &:hover {
-      .app-img-wrapper {
-        transform: translateY(-2px);
       }
     }
     .font-app {

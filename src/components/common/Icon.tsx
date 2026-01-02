@@ -1,7 +1,7 @@
-import { cloneElement, isValidElement, ReactElement } from "react";
+import { cloneElement, isValidElement, ReactElement, SVGProps } from "react";
 
 interface IconProps {
-  svg: ReactElement<any>;
+  svg: ReactElement<SVGProps<SVGSVGElement>>;
   className?: string;
   width?: number | string;
   height?: number | string;
@@ -13,21 +13,19 @@ const Icon = ({ svg, className, width, height, style }: IconProps) => {
     return null;
   }
 
-  const svgProps = svg.props as Record<string, any>;
+  const svgProps = svg.props as SVGProps<SVGSVGElement>;
 
-  // className 병합
   const mergedClassName = [svgProps.className, className]
     .filter(Boolean)
     .join(" ");
 
-  // SVG 요소를 복제하여 props를 전달
   return cloneElement(svg, {
     ...svgProps,
     className: mergedClassName || undefined,
     width: width ?? svgProps.width,
     height: height ?? svgProps.height,
     style: { ...svgProps.style, ...style },
-  } as any);
+  });
 };
 
 export default Icon;

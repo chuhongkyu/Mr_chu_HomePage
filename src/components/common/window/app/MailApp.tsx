@@ -27,6 +27,7 @@ function MailApp() {
             alt="mail"
             width={42}
             height={42}
+            priority
           />
         </button>
       </motion.div>

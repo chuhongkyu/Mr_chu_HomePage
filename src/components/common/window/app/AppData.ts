@@ -121,14 +121,6 @@ const widgetApps: AppItem[] = [
     color: "rgb(0,0,0)",
     outlink: "https://github.com/chuhongkyu",
   },
-  {
-    type: "img",
-    imgSrc: "/assets/icons/instagram.svg",
-    label: "Instagram",
-    name: "Instagram",
-    color: "rgb(0,0,0)",
-    outlink: "https://github.com/chuhongkyu",
-  },
 ];
 
 export { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps, widgetApps };
