@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "pr": "node script/create.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
@@ -18,10 +19,10 @@
     "date-fns": "^4.1.0",
     "motion": "^12.4.10",
     "next": "15.2.8",
+    "notion-client": "^7.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-notion-x": "^7.7.1",
-    "notion-client": "^7.7.1",
     "react-redux": "^9.2.0",
     "react-responsive": "^10.0.1",
     "styled-components": "^6.1.15",
@@ -29,13 +30,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@octokit/rest": "^22.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/styled-components": "^5.1.34",
+    "chalk": "^5.6.2",
     "eslint": "^9",
     "eslint-config-next": "15.2.8",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "inquirer": "^13.2.0",
     "prettier": "^3.6.2",
     "sass": "^1.85.1",
     "typescript": "^5"
