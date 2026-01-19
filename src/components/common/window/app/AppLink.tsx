@@ -31,13 +31,16 @@ const AppIconWrapper = ({
   label,
   color,
 }: AppIconWrapperProps) => {
+  const hasImage = Boolean(imgSrc);
+  const fallbackColor = color || "#000";
+
   return (
     <div
       className={[styles["app-img-wrapper"], styles[className || ""]].join(" ")}
     >
       {type === "folder" ? (
-        <AppIcon color={color} />
-      ) : (
+        <AppIcon color={fallbackColor} />
+      ) : hasImage ? (
         <Image
           fill
           sizes="100%"
@@ -45,6 +48,8 @@ const AppIconWrapper = ({
           alt={label}
           className={styles[className]}
         />
+      ) : (
+        <AppIcon color={fallbackColor} />
       )}
     </div>
   );

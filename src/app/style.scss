@@ -1,4 +1,6 @@
 @use "./reset.scss";
+@use "../style/_font" as *;
+@use "../style/_variables" as *;
 
 :root {
   --color-bg1: #eae8e2;
@@ -116,18 +118,18 @@ body {
 }
 
 .copyied-tooltip {
-  position: absolute;
-  bottom: 100%;
-  background-color: #fff;
-  color: #000;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 130%;
-  z-index: 5;
-  display: flex;
-  align-items: center;
+  @include t4-medium;
+  & {
+    position: absolute;
+    z-index: 5;
+    bottom: 100%;
+    background-color: #fff;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+  } 
   svg {
     display: block;
   }
@@ -142,10 +144,6 @@ body {
   padding: 0 max(1.5625vw, 20px);
   ul {
     li {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.5;
-      letter-spacing: -0.02em;
       position: relative;
       color: #333333;
       &:not(:last-of-type) {
@@ -180,8 +178,10 @@ body {
     margin-bottom: 20px;
     color: #333333;
     b {
-      font-weight: 600;
-      text-decoration: underline;
+      @include t5-semibold;
+      & {
+        text-decoration: underline;
+      }
     }
     .app-icon {
       display: block;
@@ -247,12 +247,13 @@ body {
       padding-bottom: 15px;
       text-align: left;
       &.type1 {
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1.5;
-        letter-spacing: -0.02em;
-        text-align: left;
-        padding-bottom: 15px;
+        @include t4-medium;
+        & {
+          line-height: 1.5;
+          letter-spacing: -0.02em;
+          text-align: left;
+          padding-bottom: 15px;
+        }
       }
       &.type2 {
         padding: 0;

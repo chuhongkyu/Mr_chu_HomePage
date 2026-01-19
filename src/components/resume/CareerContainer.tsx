@@ -75,7 +75,7 @@ const CareerContainer = () => {
       >
         <li>
           <a
-            href="https://genaimo.ailive.world/"
+            href="https://www.daangn.com/kr/group/%EB%8B%B9%EA%B7%BC%EC%9D%B4%EB%84%A4-%EC%9C%A0%EC%A0%80-%EB%AA%A8%EC%97%AC%EB%9D%BC-1d9k92dxan78/"
             target="_blank"
             rel="noreferrer noopener"
           >

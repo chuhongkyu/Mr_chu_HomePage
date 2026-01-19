@@ -1,5 +1,6 @@
 @use "./_variables" as *;
 @use "./_mixins" as *;
+@use "./_font" as *;
 
 $window-bar-color: rgb(34, 34, 34);
 $bar-item: rgba(255, 255, 255, 0.5);
@@ -81,7 +82,7 @@ $bg-button: 2;
       align-items: center;
       padding: 0px 10px;
       transition: 300ms ease-in-out;
-      font-weight: 600;
+      @include t4-semibold;
       &:hover {
         transition: 300ms ease-in-out;
       }
@@ -92,7 +93,6 @@ $bg-button: 2;
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
-    font-size: 15px;
     cursor: pointer;
     min-width: $bar-clock-width;
     height: 100%;
@@ -130,9 +130,11 @@ $bg-button: 2;
         height: auto;
       }
       p {
-        font-size: 11px;
-        color: white;
-        text-align: center;
+        @include t8-medium;
+        & {
+          color: $font-base-white;
+          text-align: center;
+        }
       }
     }
   }
@@ -140,11 +142,11 @@ $bg-button: 2;
     width: 100%;
     padding-bottom: 40px;
     overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
       display: none;
     }
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
     .grid {
       width: 100%;
       display: grid;
@@ -173,15 +175,17 @@ $bg-button: 2;
           width: 100%;
           text-align: center;
           background-color: rgb(4, 10, 10);
-          color: white;
+          color: $font-base-white;
           padding: 1rem 0;
           h2 {
-            font-size: 20px;
+            @include t2-medium;
           }
           p {
-            display: block;
-            margin-top: 0.8rem;
-            font-size: 10px;
+            @include t9-medium;
+            & {
+              display: block;
+              margin-top: 0.8rem;
+            }
           }
         }
         &:hover {
@@ -246,11 +250,12 @@ $bg-button: 2;
     padding: 10px 0;
     background-color: #fff;
     .item {
-      width: 100%;
-      font-size: 16px;
-      line-height: 125%;
-      padding: 0.8rem 42px;
-      color: #2f2f2f;
+      @include t4-regular;
+      & {
+        width: 100%;
+        padding: 0.8rem 42px;
+        color: #2f2f2f;
+      }
       a {
         display: flex;
         justify-content: space-between;
@@ -259,8 +264,10 @@ $bg-button: 2;
       b {
         display: flex;
         p {
-          font-weight: 500;
-          padding-right: 1rem;
+          @include t4-medium;
+          & {
+            padding-right: 1rem;
+          }
         }
       }
       &:hover {
@@ -268,31 +275,31 @@ $bg-button: 2;
       }
     }
     .badge {
-      padding: 0.1rem 0.6rem 0.18rem;
-      border-radius: 25px;
-      font-size: 13px;
-      line-height: 130%;
-      color: #fff;
-      background: rgb(46, 142, 214);
+      @include t6-medium;
+      & {
+        color: #fff;
+        background: rgb(46, 142, 214);
+        padding: 0.1rem 0.6rem 0.18rem;
+        border-radius: 25px;
+      }
       input[type="checkbox"] {
         display: none;
       }
       label {
         cursor: pointer;
       }
-      input[type="checkbox"]:checked + label {
-      }
     }
   }
   input[type="text"] {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 16px;
-    padding: 1px 42px 1px 47px;
-    height: 42px;
+    @include t4-regular;
+    & {
+      width: 100%;
+      border: none;
+      background-color: transparent;
+      outline: none;
+      padding: 1px 42px 1px 47px;
+      height: 42px;
+    }
     &:focus {
       outline: none;
     }
@@ -337,12 +344,13 @@ $bg-button: 2;
       justify-content: flex-start;
       align-items: center;
       h5 {
-        margin-left: 4px;
-        line-height: 130%;
-        font-size: 14px;
-        font-weight: 500;
-        color: $font-base-color;
-        transition: 300ms ease-in-out;
+        @include t5-medium;
+        &{
+          margin-left: 4px;
+          line-height: 130%;
+          color: $font-base-color;
+          transition: 300ms ease-in-out;
+        }
         &:hover {
           color: $font-base-color;
           transition: 300ms ease-in-out;
@@ -415,10 +423,11 @@ $bg-button: 2;
           }
         }
         .slash {
-          font-size: 18px;
-          font-weight: 500;
-          line-height: 130%;
-          color: $font-base-color;
+          @include t3-medium;
+          & {
+            line-height: 130%;
+            color: $font-base-color;
+          }
         }
 
         .k-key,
@@ -427,12 +436,13 @@ $bg-button: 2;
           align-items: center;
           justify-content: center;
           padding: 4px 10px;
-          font-size: 12px;
-          color: $font-base-color;
-          font-weight: 500;
-          line-height: 135%;
-          border-radius: 6px;
-          border: 1px solid $window-bar-color;
+          @include t7-medium;
+          & {
+            color: $font-base-color;
+            line-height: 135%;
+            border-radius: 6px;
+            border: 1px solid $window-bar-color;
+          }
         }
         .k-key {
           display: flex;
@@ -621,15 +631,15 @@ $bg-button: 2;
       }
     }
     .font-app {
-      max-width: 70px;
-      display: block;
-      font-size: 14px;
-      line-height: 135%;
-      font-weight: 500;
-      white-space: pre-line;
-      text-align: center;
-      @include ellipsis(2);
-      transition: 300ms ease-in-out;
+      @include t5-medium;
+      & {
+        white-space: pre-line;
+        text-align: center;
+        max-width: 70px;
+        display: block;
+        transition: 300ms ease-in-out;
+        @include ellipsis(2);
+      }
     }
   }
 }
@@ -651,9 +661,11 @@ $bg-button: 2;
     border: 3px solid rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    @include t7-bold;
+    & {
+      color: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -674,19 +686,19 @@ $bg-button: 2;
     left: 50%;
   }
   .toggle-checkbox:checked + .bg-toggle-button div:first-child {
-    color: white;
+    color: $font-base-white;
     transition: color 0.3s;
   }
   .toggle-checkbox:checked + .bg-toggle-button div:last-child {
-    color: #343434;
+    color: $font-light-black-color;
     transition: color 0.3s;
   }
   .toggle-checkbox + .bg-toggle-button div:first-child {
-    color: #343434;
+    color: $font-light-black-color;
     transition: color 0.3s;
   }
   .toggle-checkbox + .bg-toggle-button div:last-child {
-    color: white;
+    color: $font-base-white;
     transition: color 0.3s;
   }
 }
@@ -702,7 +714,7 @@ $bg-button: 2;
         .grid-item {
           div {
             h2 {
-              font-size: 16px;
+              @include t4-medium;
             }
           }
         }
@@ -781,7 +793,7 @@ $bg-button: 2;
     a {
       .font-app {
         max-width: 60px;
-        font-size: 12px;
+        @include t7-medium;
       }
     }
   }

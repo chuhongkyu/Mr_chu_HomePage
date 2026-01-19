@@ -1,5 +1,6 @@
 @use "./_variables" as *;
 @use "./_mixins" as *;
+@use "./_font" as *;
 
 $modal-top-nav-height: 32px;
 $modal-top-nav-height-mobile: 30px;
@@ -78,10 +79,11 @@ $modal-top-nav-z-index: 9;
       .window-modal-top-nav-title {
         margin-left: 1rem;
         h3 {
-          text-align: center;
-          font-size: 14px;
-          font-weight: 500;
-          color: #e4e4e4;
+          @include t5-medium;
+          & {
+            text-align: center;
+            color: #e4e4e4;
+          }
         }
       }
     }
@@ -92,34 +94,27 @@ $modal-top-nav-z-index: 9;
         width: 100%;
         height: 100%;
         padding: 20px;
-        background: linear-gradient(
-          0deg,
-          rgba(34, 193, 195, 1) 0%,
-          rgba(253, 187, 45, 1) 100%
-        );
+        background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
       }
       .unity-left-container {
         width: 100%;
         height: 100%;
         padding: 20px;
-        background: linear-gradient(
-          0deg,
-          rgba(34, 97, 85, 1) 0%,
-          rgba(194, 204, 204, 1) 100%
-        );
+        background: linear-gradient(0deg, rgba(34, 97, 85, 1) 0%, rgba(194, 204, 204, 1) 100%);
       }
       .category-list {
         .item {
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 16px;
-          font-weight: 700;
-          color: #f8f8f8;
-          // transition: 300ms ease-in-out;
+          @include t4-bold;
+          & {
+            margin-bottom: 12px;
+            cursor: pointer;
+            color: #f8f8f8;
+          }
           &.active {
-            font-weight: 700;
-            color: black;
-            // transition: 300ms ease-in-out;
+            @include t4-bold;
+            & {
+              color: black;
+            }
           }
         }
       }
@@ -155,13 +150,6 @@ $modal-top-nav-z-index: 9;
         position: -webkit-sticky;
         top: 0px;
         z-index: 2;
-        .content {
-          // width: 100%;
-          // display: flex;
-          // justify-content: center;
-          // align-items: center;
-          // text-align: center;
-        }
       }
     }
   }
@@ -175,7 +163,7 @@ $modal-top-nav-z-index: 9;
     width: 100%;
     height: 100%;
     padding: 1.4rem 0 2rem;
-    background-color: white;
+    background-color: $bg-static-white;
     border-radius: 15px;
     box-shadow:
       rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -204,53 +192,17 @@ $modal-top-nav-z-index: 9;
       display: flex;
     }
     h3 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      font-family: "Montserrat", sans-serif;
-      border-bottom: 1px solid #e2e2e2;
-      display: flex;
-      align-items: center;
-      padding: 0 1.4rem 0.8rem;
+      @include t1-montserrat-semibold;
+      & {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #e2e2e2;
+        display: flex;
+        align-items: center;
+        padding: 0 1.4rem 0.8rem;
+      }
     }
-
     p {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 135%;
-    }
-
-    @media (max-width: 1440px) {
-      h3 {
-        font-size: 22px;
-      }
-      p {
-        font-size: 16px;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .icon {
-        width: 20px;
-        margin-right: 8px;
-      }
-      h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-      p {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .icon {
-        width: 20px;
-        margin-right: 8px;
-      }
-      p {
-        font-size: 12px;
-      }
+      @include t3-medium;
     }
   }
   @media (max-width: 768px) {
@@ -262,9 +214,7 @@ $modal-top-nav-z-index: 9;
   position: relative;
   width: 100%;
   height: 100%;
-  background-image:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent),
-    url("/assets/img/profile_bg.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent), url("/assets/img/profile_bg.jpg");
   background-size: cover;
   background-position: bottom center;
 }

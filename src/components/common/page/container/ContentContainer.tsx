@@ -9,7 +9,7 @@ const ContentContainer = React.forwardRef<
   const { id, children } = props;
 
   return (
-    <div className="content-container" id={id} ref={ref}>
+    <div className="content-container t5-meduim" id={id} ref={ref}>
       {children}
     </div>
   );

@@ -1,0 +1,490 @@
+@use "./_variables" as *;
+
+// Font Families
+$font-noto-sans: var(--font-noto-sans), "Noto Sans KR", sans-serif;
+$font-montserrat: "Montserrat", sans-serif;
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Typography Scale (Material Design inspired)
+// t1: Display/Headline 1 (largest)
+// t2: Headline 2
+// t3: Headline 3/Title
+// t4: Body
+// t5: Caption/Label (smallest)
+
+// Typography Mixins
+@mixin t1-bold {
+  font-family: $font-noto-sans;
+  font-size: 24px;
+  font-weight: $font-weight-bold;
+  line-height: 130%;
+
+  @media (max-width: 1440px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t1-semibold {
+  font-family: $font-noto-sans;
+  font-size: 24px;
+  font-weight: $font-weight-semibold;
+  line-height: 130%;
+
+  @media (max-width: 1440px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t1-medium {
+  font-family: $font-noto-sans;
+  font-size: 24px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+
+  @media (max-width: 1440px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t2-bold {
+  font-family: $font-noto-sans;
+  font-size: 20px;
+  font-weight: $font-weight-bold;
+  line-height: 130%;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t2-semibold {
+  font-family: $font-noto-sans;
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  line-height: 130%;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t2-medium {
+  font-family: $font-noto-sans;
+  font-size: 20px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+@mixin t3-bold {
+  font-family: $font-noto-sans;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  line-height: 135%;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t3-semibold {
+  font-family: $font-noto-sans;
+  font-size: 18px;
+  font-weight: $font-weight-semibold;
+  line-height: 135%;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t3-medium {
+  font-family: $font-noto-sans;
+  font-size: 18px;
+  font-weight: $font-weight-medium;
+  line-height: 135%;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t4-bold {
+  font-family: $font-noto-sans;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t4-semibold {
+  font-family: $font-noto-sans;
+  font-size: 16px;
+  font-weight: $font-weight-semibold;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t4-medium {
+  font-family: $font-noto-sans;
+  font-size: 16px;
+  font-weight: $font-weight-medium;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t4-regular {
+  font-family: $font-noto-sans;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+@mixin t5-bold {
+  font-family: $font-noto-sans;
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+@mixin t5-semibold {
+  font-family: $font-noto-sans;
+  font-size: 14px;
+  font-weight: $font-weight-semibold;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+@mixin t5-medium {
+  font-family: $font-noto-sans;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+@mixin t5-regular {
+  font-family: $font-noto-sans;
+  font-size: 14px;
+  font-weight: $font-weight-regular;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+@mixin t6-bold {
+  font-family: $font-noto-sans;
+  font-size: 13px;
+  font-weight: $font-weight-bold;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t6-medium {
+  font-family: $font-noto-sans;
+  font-size: 13px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t6-regular {
+  font-family: $font-noto-sans;
+  font-size: 13px;
+  font-weight: $font-weight-regular;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t7-bold {
+  font-family: $font-noto-sans;
+  font-size: 12px;
+  font-weight: $font-weight-bold;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t7-medium {
+  font-family: $font-noto-sans;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t7-regular {
+  font-family: $font-noto-sans;
+  font-size: 12px;
+  font-weight: $font-weight-regular;
+  line-height: 135%;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+@mixin t8-medium {
+  font-family: $font-noto-sans;
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+@mixin t8-regular {
+  font-family: $font-noto-sans;
+  font-size: 11px;
+  font-weight: $font-weight-regular;
+  line-height: 130%;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+@mixin t9-medium {
+  font-family: $font-noto-sans;
+  font-size: 10px;
+  font-weight: $font-weight-medium;
+  line-height: 130%;
+}
+
+@mixin t9-regular {
+  font-family: $font-noto-sans;
+  font-size: 10px;
+  font-weight: $font-weight-regular;
+  line-height: 130%;
+}
+
+// Montserrat Typography (for special cases)
+@mixin t1-montserrat-semibold {
+  font-family: $font-montserrat;
+  font-size: 24px;
+  font-weight: $font-weight-semibold;
+  line-height: 130%;
+
+  @media (max-width: 1440px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+// Utility Classes (for direct use in HTML/JSX)
+.t1-bold {
+  @include t1-bold;
+}
+
+.t1-semibold {
+  @include t1-semibold;
+}
+
+.t1-medium {
+  @include t1-medium;
+}
+
+.t2-bold {
+  @include t2-bold;
+}
+
+.t2-semibold {
+  @include t2-semibold;
+}
+
+.t2-medium {
+  @include t2-medium;
+}
+
+.t3-bold {
+  @include t3-bold;
+}
+
+.t3-semibold {
+  @include t3-semibold;
+}
+
+.t3-medium {
+  @include t3-medium;
+}
+
+.t4-bold {
+  @include t4-bold;
+}
+
+.t4-semibold {
+  @include t4-semibold;
+}
+
+.t4-medium {
+  @include t4-medium;
+}
+
+.t4-regular {
+  @include t4-regular;
+}
+
+.t5-bold {
+  @include t5-bold;
+}
+
+.t5-semibold {
+  @include t5-semibold;
+}
+
+.t5-medium {
+  @include t5-medium;
+}
+
+.t5-regular {
+  @include t5-regular;
+}
+
+.t6-bold {
+  @include t6-bold;
+}
+
+.t6-medium {
+  @include t6-medium;
+}
+
+.t6-regular {
+  @include t6-regular;
+}
+
+.t7-bold {
+  @include t7-bold;
+}
+
+.t7-medium {
+  @include t7-medium;
+}
+
+.t7-regular {
+  @include t7-regular;
+}
+
+.t8-medium {
+  @include t8-medium;
+}
+
+.t8-regular {
+  @include t8-regular;
+}
+
+.t9-medium {
+  @include t9-medium;
+}
+
+.t9-regular {
+  @include t9-regular;
+}
+
+.t1-montserrat-semibold {
+  @include t1-montserrat-semibold;
+}
