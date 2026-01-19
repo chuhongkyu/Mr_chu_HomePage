@@ -170,6 +170,20 @@ const createGitClient = () => {
       }
     },
 
+    getCommitsBetween: (base, head) => {
+      try {
+        const logs = execGit(
+          `git log ${base}..${head} --oneline --no-decorate`
+        )
+        return logs
+          .split('\n')
+          .filter(Boolean)
+          .map((line) => line.replace(/^[0-9a-f]+\\s+/, ''))
+      } catch {
+        return []
+      }
+    },
+
     pushWithProgress: async (branch, isUpdate) => {
       const message = isUpdate
         ? 'remote에 최신 커밋 push하는 중'
@@ -208,7 +222,21 @@ const main = async () => {
 
     console.log(chalk.blue(`\n현재 브랜치: ${currentBranch}\n`))
 
-    // 1. Prefix 선택
+    // 1. Base 브랜치 선택 (dev -> main release 지원)
+    const { targetBase } = await inquirer.prompt({
+      type: 'select',
+      name: 'targetBase',
+      message: 'PR 대상(base) 브랜치를 선택하세요:',
+      choices: [
+        { name: `dev (${CONFIG.branches.develop})`, value: CONFIG.branches.develop },
+        { name: `main (${CONFIG.branches.main})`, value: CONFIG.branches.main },
+      ],
+      default: CONFIG.branches.develop,
+    })
+
+    const isReleaseToMain = targetBase === CONFIG.branches.main
+
+    // 2. Prefix 선택
     const { task } = await inquirer.prompt({
       type: 'select',
       name: 'task',
@@ -220,19 +248,23 @@ const main = async () => {
       default: CONFIG.tasks[0].value,
     })
 
-    // 2. 라벨 선택
-    const { label } = await inquirer.prompt({
-      type: 'select',
-      name: 'label',
-      message: '라벨을 선택하세요:',
-      choices: CONFIG.labels.map((l) => ({
-        name: l.label,
-        value: l.value,
-      })),
-      default: CONFIG.labels[0].value,
-    })
+    // 3. 라벨 선택 (release to main이면 생략)
+    let label = ''
+    if (!isReleaseToMain) {
+      const labelAnswer = await inquirer.prompt({
+        type: 'select',
+        name: 'label',
+        message: '라벨을 선택하세요:',
+        choices: CONFIG.labels.map((l) => ({
+          name: l.label,
+          value: l.value,
+        })),
+        default: CONFIG.labels[0].value,
+      })
+      label = labelAnswer.label
+    }
 
-    // 3. 커밋명 입력 (마지막 커밋 메시지에서 prefix 제거한 것을 기본값으로)
+    // 4. 커밋명 입력 (마지막 커밋 메시지에서 prefix 제거한 것을 기본값으로)
     const lastCommitMessage = git.getLastCommitMessage()
     const { commitMessage } = await inquirer.prompt({
       type: 'input',
@@ -247,15 +279,26 @@ const main = async () => {
       },
     })
 
-    // PR 제목 생성: {prefix}: {커밋명}
-    const prTitle = `${task}: ${commitMessage.trim()}`
-    const prBody = CONFIG.pr.templates.feature()
+    // PR 제목/본문 생성
+    const prTitle = isReleaseToMain
+      ? `${CONFIG.pr.titles.release}: ${commitMessage.trim()}`
+      : `${task}: ${commitMessage.trim()}`
+
+    const commitsForRelease = isReleaseToMain
+      ? git.getCommitsBetween(CONFIG.branches.main, currentBranch)
+      : []
+
+    const prBody = isReleaseToMain
+      ? CONFIG.pr.templates.release(commitsForRelease)
+      : CONFIG.pr.templates.feature()
 
     console.log(chalk.green(`\nPR 제목: ${prTitle}`))
-    console.log(chalk.green(`라벨: ${label}`))
-    console.log(chalk.green(`브랜치: ${currentBranch} -> ${CONFIG.branches.develop}\n`))
+    if (label) console.log(chalk.green(`라벨: ${label}`))
+    console.log(
+      chalk.green(`브랜치: ${currentBranch} -> ${targetBase}\n`)
+    )
 
-    // 4. 확인
+    // 5. 확인
     const { confirm } = await inquirer.prompt({
       type: 'confirm',
       name: 'confirm',
@@ -268,14 +311,14 @@ const main = async () => {
       process.exit(0)
     }
 
-    // 5. 브랜치가 remote에 없으면 push
+    // 6. 브랜치가 remote에 없으면 push
     const remoteBranchExists = git.checkRemoteBranchExists(currentBranch)
     if (!remoteBranchExists) {
       console.log(chalk.yellow(`\n브랜치 ${currentBranch}를 remote에 push합니다...\n`))
       await git.pushWithProgress(currentBranch, false)
     }
 
-    // 6. GitHub CLI로 PR 생성 (토큰 불필요)
+    // 7. GitHub CLI로 PR 생성 (토큰 불필요)
     console.log(chalk.blue('\nPR을 생성하는 중...\n'))
 
     try {
@@ -288,7 +331,8 @@ const main = async () => {
       fs.writeFileSync(tempFile, prBody)
 
       // GitHub CLI로 PR 생성
-      const prCommand = `gh pr create --title "${prTitle}" --body-file "${tempFile}" --base ${CONFIG.branches.develop} --head ${currentBranch} --label "${label}"`
+      const labelArg = label ? ` --label "${label}"` : ''
+      const prCommand = `gh pr create --title "${prTitle}" --body-file "${tempFile}" --base ${targetBase} --head ${currentBranch}${labelArg}`
       
       const prUrl = execSync(prCommand, { encoding: 'utf-8' }).trim()
 
