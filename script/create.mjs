@@ -53,21 +53,6 @@ const pipe =
  * ====================================================== */
 
 const CONFIG = {
-  labels: [
-    { value: '🍀UXI', label: '🍀ux/ui UX/UI' },
-    { value: '🍀HOME', label: '🍀home 홈 화면' },
-    { value: '🍀RESUME', label: '🍀resume 이력서' },
-    { value: '🍀ABOUT', label: '🍀about 소개' },
-    { value: '🍀PROJECT', label: '🍀project 프로젝트' },
-    { value: '🍀GAME', label: '🍀game 게임' },
-    { value: '🍀SEO', label: '🍀seo SEO 최적화' },
-    { value: '🍀PERF', label: '🍀perf 성능 개선' },
-    { value: '🍀INFRA', label: '🍀infra 인프라/배포' },
-    { value: '🍀CONTENT', label: '🍀content 콘텐츠' },
-    { value: '🍀BUG', label: '🍀bug 버그 수정' },
-    { value: '🍀REFACTOR', label: '🍀refactor 리팩토링' },
-  ],
-
   tasks: [
     { value: 'feat', label: 'feat 새로운 기능' },
     { value: 'fix', label: 'fix 버그 수정' },
@@ -248,22 +233,6 @@ const main = async () => {
       default: CONFIG.tasks[0].value,
     })
 
-    // 3. 라벨 선택 (release to main이면 생략)
-    let label = ''
-    if (!isReleaseToMain) {
-      const labelAnswer = await inquirer.prompt({
-        type: 'select',
-        name: 'label',
-        message: '라벨을 선택하세요:',
-        choices: CONFIG.labels.map((l) => ({
-          name: l.label,
-          value: l.value,
-        })),
-        default: CONFIG.labels[0].value,
-      })
-      label = labelAnswer.label
-    }
-
     // 4. 커밋명 입력 (마지막 커밋 메시지에서 prefix 제거한 것을 기본값으로)
     const lastCommitMessage = git.getLastCommitMessage()
     const { commitMessage } = await inquirer.prompt({
@@ -293,7 +262,6 @@ const main = async () => {
       : CONFIG.pr.templates.feature()
 
     console.log(chalk.green(`\nPR 제목: ${prTitle}`))
-    if (label) console.log(chalk.green(`라벨: ${label}`))
     console.log(
       chalk.green(`브랜치: ${currentBranch} -> ${targetBase}\n`)
     )
@@ -331,8 +299,8 @@ const main = async () => {
       fs.writeFileSync(tempFile, prBody)
 
       // GitHub CLI로 PR 생성
-      const labelArg = label ? ` --label "${label}"` : ''
-      const prCommand = `gh pr create --title "${prTitle}" --body-file "${tempFile}" --base ${targetBase} --head ${currentBranch}${labelArg}`
+      const prCommand = `gh pr create --title "${prTitle}" --body-file "${tempFile}" --base ${targetBase} --head ${currentBranch}`
+
       
       const prUrl = execSync(prCommand, { encoding: 'utf-8' }).trim()
 
