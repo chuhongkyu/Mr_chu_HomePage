@@ -10,6 +10,18 @@ export const metadata: Metadata = {
   title: "FE | MR.CHU",
   description:
     "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+  keywords: [
+    "MR.CHU",
+    "추홍규",
+    "프론트엔드 개발자",
+    "Frontend Developer",
+    "Creative Developer",
+    "Three.js",
+    "WebGL",
+    "3D 인터랙션",
+    "당근이네",
+    "당근마켓 당근이네",
+  ],
   openGraph: {
     title: "FE | MR.CHU",
     description:
