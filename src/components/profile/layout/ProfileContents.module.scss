@@ -1,0 +1,14 @@
+.contents {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 20px 16px;
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-surface);
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 var(--color-bg-surface-shadow);
+    color: var(--color-font-base);
+  }
+}

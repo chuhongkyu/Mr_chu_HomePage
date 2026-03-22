@@ -1,0 +1,178 @@
+.sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg-surface);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 20;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  &.open {
+    transform: translateY(0);
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────────────
+
+.header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+  top: 16;
+  left: 16;
+}
+
+.undoRedo {
+  display: flex;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-font-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+
+  &:hover:not(:disabled) {
+    color: var(--color-font-base);
+    border-color: var(--color-font-muted);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Item grid ───────────────────────────────────────────────────────
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 8px 16px 12px;
+  overflow-x: auto;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.itemBox {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s;
+
+  &.placed {
+    border-color: var(--item-color, #5b8dd9);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.itemSwatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: #5b8dd9;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.itemLabel {
+  font-size: 11px;
+  color: var(--color-font-muted);
+  white-space: nowrap;
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────
+
+.footer {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 16px;
+}
+
+.cancelButton {
+  flex: 0 0 auto;
+  min-width: 90px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background: var(--color-border);
+  color: var(--color-font-base);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.confirmButton {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background: #5b8dd9;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

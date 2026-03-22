@@ -12,6 +12,7 @@ import RQProvider from "@/components/providers/RQProvider";
 import { WithChildren } from "@/types/global";
 
 import Loading from "./Loading";
+import ProfileContainer from "@/components/profile/ProfileContainer";
 
 export default function RootLayout({ children }: WithChildren) {
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function RootLayout({ children }: WithChildren) {
           </div>
         }
       >
-        <AppProvider>
+        {/* <AppProvider>
           <div className="top">
             <RQProvider>
               <FormContainer />
@@ -51,7 +52,9 @@ export default function RootLayout({ children }: WithChildren) {
             <AppInformation />
           </div>
           <AppWidgetClient />
-        </AppProvider>
+      
+        </AppProvider> */}
+        <ProfileContainer />
       </Suspense>
     </section>
   );
