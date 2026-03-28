@@ -5,15 +5,10 @@
   right: 0;
   background: var(--color-bg-surface);
   border-radius: 16px 16px 0 0;
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
   z-index: 20;
+  padding-top: 16px;
   padding-bottom: env(safe-area-inset-bottom, 0px);
-
-  &.open {
-    transform: translateY(0);
-  }
 }
 
 // ─── Header ──────────────────────────────────────────────────────────
@@ -42,11 +37,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
-  background: transparent;
+  background: var(--color-bg-surface);
   color: var(--color-font-muted);
   cursor: pointer;
   transition:
@@ -129,6 +124,7 @@
 }
 
 .itemLabel {
+  display: none;
   font-size: 11px;
   color: var(--color-font-muted);
   white-space: nowrap;

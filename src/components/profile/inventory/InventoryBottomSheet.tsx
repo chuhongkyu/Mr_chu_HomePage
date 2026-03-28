@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { PROFILE_ITEMS } from "@/components/profile/constants/profileItems";
 import {
@@ -41,67 +42,75 @@ const InventoryBottomSheet = () => {
     }
   };
 
-  if (!isOpen) return;
-
   return (
-    <>
-      {/* Header row */}
-      <div className={styles.header}>
-        <div className={styles.undoRedo}>
-          <button
-            className={styles.iconButton}
-            onClick={undo}
-            disabled={!canUndo}
-            aria-label="undo"
-          >
-            <UndoIcon />
-          </button>
-          <button
-            className={styles.iconButton}
-            onClick={redo}
-            disabled={!canRedo}
-            aria-label="redo"
-          >
-            <RedoIcon />
-          </button>
-        </div>
-      </div>
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Header row */}
+          <div className={styles.header}>
+            <div className={styles.undoRedo}>
+              <button
+                className={styles.iconButton}
+                onClick={undo}
+                disabled={!canUndo}
+                aria-label="undo"
+              >
+                <UndoIcon />
+              </button>
+              <button
+                className={styles.iconButton}
+                onClick={redo}
+                disabled={!canRedo}
+                aria-label="redo"
+              >
+                <RedoIcon />
+              </button>
+            </div>
+          </div>
 
-      <div className={`${styles.sheet} ${isOpen ? styles.open : ""}`}>
-        {/* Item grid */}
-        <div className={styles.itemGrid}>
-          {PROFILE_ITEMS.map((item) => {
-            const count = placedCountMap[item.code]?.length ?? 0;
-            return (
-              <InventoryItemCard
-                key={item.code}
-                code={item.code}
-                label={item.label}
-                color={item.color}
-                count={count}
-                onClick={() => handleItemClick(item.code)}
-              />
-            );
-          })}
-        </div>
+          <motion.div
+            className={styles.sheet}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ ease: [0.32, 0.72, 0, 1], duration: 0.4 }}
+          >
+            {/* Item grid */}
+            <div className={styles.itemGrid}>
+              {PROFILE_ITEMS.map((item) => {
+                const count = placedCountMap[item.code]?.length ?? 0;
+                return (
+                  <InventoryItemCard
+                    key={item.code}
+                    code={item.code}
+                    label={item.label}
+                    color={item.color}
+                    count={count}
+                    onClick={() => handleItemClick(item.code)}
+                  />
+                );
+              })}
+            </div>
 
-        {/* Footer buttons */}
-        <div className={styles.footer}>
-          <button
-            className={styles.cancelButton}
-            onClick={() => closeInventory(false)}
-          >
-            Cancel
-          </button>
-          <button
-            className={styles.confirmButton}
-            onClick={() => closeInventory(true)}
-          >
-            Done
-          </button>
-        </div>
-      </div>
-    </>
+            {/* Footer buttons */}
+            <div className={styles.footer}>
+              <button
+                className={styles.cancelButton}
+                onClick={() => closeInventory(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className={styles.confirmButton}
+                onClick={() => closeInventory(true)}
+              >
+                Done
+              </button>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 };
 

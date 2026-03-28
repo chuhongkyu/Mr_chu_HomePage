@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
+    "@microlink/react": "^5.5.24",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "@reduxjs/toolkit": "^2.8.2",
@@ -29,7 +30,7 @@
     "react-redux": "^9.2.0",
     "react-responsive": "^10.0.1",
     "styled-components": "^6.1.15",
-    "swiper": "^11.2.8",
+    "swiper": "^11.2.10",
     "three": "^0.182.0",
     "zustand": "^5.0.10"
   },
