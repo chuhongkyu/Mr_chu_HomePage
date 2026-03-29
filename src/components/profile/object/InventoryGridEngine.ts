@@ -8,10 +8,10 @@ export type GridConfig = {
 };
 
 export const INVENTORY_GRID: GridConfig = {
-  cols: 8,
-  rows: 8,
-  cellSize: 1,
-  originWorld: [0, 0, 0],
+  cols: 12,
+  rows: 12,
+  cellSize: 4,
+  originWorld: [-24, 0, -24],
 };
 
 // ─── Utils ──────────────────────────────────────────────────────────
@@ -104,12 +104,12 @@ export const findFirstAvailablePosition = (
 ): { gridX: number; gridY: number } | null => {
   for (let gridY = 0; gridY + h <= config.rows; gridY++) {
     for (let gridX = 0; gridX + w <= config.cols; gridX++) {
-      const candidate: PlacedItem = { id: '__temp__', gridX, gridY, w, h }
-      if (canPlace(existing, candidate, config)) return { gridX, gridY }
+      const candidate: PlacedItem = { id: "__temp__", gridX, gridY, w, h };
+      if (canPlace(existing, candidate, config)) return { gridX, gridY };
     }
   }
-  return null
-}
+  return null;
+};
 
 // ─── Camera Targets ─────────────────────────────────────────────────
 

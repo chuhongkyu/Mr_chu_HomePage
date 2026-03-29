@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 
 import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
-import { INVENTORY_GRID } from "@/components/profile/inventory/InventoryGridEngine";
+import { INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
 
 import { profileDragScreenPosition } from "./dragScreenPosition";
 

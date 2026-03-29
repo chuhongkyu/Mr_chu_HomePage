@@ -2,16 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
+import {
+  OrbitControls,
+  OrthographicCamera,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import * as THREE from "three";
 
-import { GRID_CENTER } from "@/components/profile/inventory/InventoryGridEngine";
+import { GRID_CENTER } from "@/components/profile/object/InventoryGridEngine";
 import { useInventoryStore } from "@/components/profile/store/useInventoryStore";
 import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
 
 const [cx, cy, cz] = GRID_CENTER;
 
-const PERSPECTIVE_POSITION = new THREE.Vector3(cx + 15, 15, cz + 15);
+const PERSPECTIVE_POSITION = new THREE.Vector3(cx + 15, 18, cz + 15);
 const PERSPECTIVE_INVENTORY_POSITION = new THREE.Vector3(cx + 20, 22, cz + 20);
 const ISOMETRIC_POSITION = new THREE.Vector3(cx + 16, 16, cz + 16);
 const ISO_ZOOM = 70;

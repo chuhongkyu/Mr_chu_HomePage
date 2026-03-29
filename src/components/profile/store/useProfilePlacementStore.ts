@@ -2,11 +2,11 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 
-import { PROFILE_ITEM_MAP } from "@/components/profile/constants/profileItems";
+import { PROFILE_ITEM_MAP } from "@/components/profile/object/profileItems";
 import {
   canPlace,
   findFirstAvailablePosition,
-} from "@/components/profile/inventory/InventoryGridEngine";
+} from "@/components/profile/object/InventoryGridEngine";
 
 // ─── Types ────────────────────────────────────────────────────────────
 

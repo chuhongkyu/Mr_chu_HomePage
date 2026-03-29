@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PROFILE_ITEM_MAP } from '@/components/profile/constants/profileItems'
+import { PROFILE_ITEM_MAP } from '@/components/profile/object/profileItems'
 import { useProfilePlacementStore } from '@/components/profile/store/useProfilePlacementStore'
 
 import { profileDragScreenPosition } from './dragScreenPosition'

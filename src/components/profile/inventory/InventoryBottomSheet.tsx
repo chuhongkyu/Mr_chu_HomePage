@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { PROFILE_ITEMS } from "@/components/profile/constants/profileItems";
+import { PROFILE_ITEMS } from "@/components/profile/object/profileItems";
 import {
   useProfileActivePlacedObjects,
   useProfileCanRedo,

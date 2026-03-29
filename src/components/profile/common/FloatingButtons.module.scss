@@ -1,6 +1,6 @@
 .wrapper {
   position: absolute;
-  top: 16px;
+  top: calc(52px + 16px);
   right: 16px;
   display: flex;
   flex-direction: column;

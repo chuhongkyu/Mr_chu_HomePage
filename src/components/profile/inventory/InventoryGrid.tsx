@@ -1,6 +1,6 @@
 import { Line } from "@react-three/drei";
 
-import { INVENTORY_GRID } from "./InventoryGridEngine";
+import { INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
 
 const { cols, rows, cellSize } = INVENTORY_GRID;
 
@@ -13,7 +13,7 @@ const BORDER_COLOR = "#a7a7a7";
 
 const InventoryGrid = () => {
   return (
-    <group>
+    <group visible={false}>
       {/* Floor plate */}
       <mesh position={[W / 2, -0.06, H / 2]} receiveShadow>
         <boxGeometry args={[W + 0.2, 0.1, H + 0.2]} />
