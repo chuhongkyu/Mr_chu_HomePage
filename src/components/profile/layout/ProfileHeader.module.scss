@@ -1,84 +1,74 @@
+@use "@/style/typography" as *;
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 52px;
-  padding: 0 16px 0 0;
+  padding: 0 16px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 5;
+
+  background: color-mix(in srgb, var(--color-bg-base) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.swiper {
-  width: 100%;
-}
-
-.slide {
-  width: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .navItem {
+  @include ty(t4, medium, true);
+
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
-  gap: 4px;
-  padding: 4px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-font-sub, #94a3b8);
-  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--color-font-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s;
   white-space: nowrap;
-  transition: color 0.15s;
 
   &:hover {
     color: var(--color-font-base);
+    background: color-mix(in srgb, var(--color-font-base) 8%, transparent);
   }
 
   &.active {
     color: var(--color-font-base);
+    background: color-mix(in srgb, var(--color-font-base) 10%, transparent);
   }
-}
-
-.title {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #94a3b8;
-  text-transform: uppercase;
 }
 
 .coinBadge {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: var(--color-bg-surface);
+  background: color-mix(in srgb, var(--color-bg-surface) 80%, transparent);
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: 8px 12px;
+  padding: 6px 12px;
+  flex-shrink: 0;
 }
 
 .coinIcon {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
 }
 
 .coinCount {
-  font-size: 14px;
-  font-weight: 700;
+  @include ty(t4, bold, true);
   color: var(--color-font-base);
-}
-
-.coinMax {
-  font-size: 12px;
-  opacity: 0.4;
 }

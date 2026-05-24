@@ -1,18 +1,19 @@
 .contents {
+  position: fixed;
   width: 100%;
-  height: 100%;
+  bottom: 0;
 }
 
 .swiper {
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 24px;
 
   :global(.swiper-wrapper) {
     align-items: flex-start;
   }
 
   :global(.swiper-pagination) {
-    bottom: 0;
+    bottom: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,4 +49,3 @@
 .slide {
   height: auto !important;
 }
-

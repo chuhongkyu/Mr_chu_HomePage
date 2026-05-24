@@ -55,8 +55,7 @@ const LinkedInPopup = ({ postId, onClose }: Props) => {
         {/* 상단 뒤로가기 */}
         <div className={styles.header}>
           <button className={styles.backButton} onClick={onClose}>
-            <ChevronLeft size={20} />
-            <span>뒤로</span>
+            <ChevronLeft size={24} />
           </button>
         </div>
 

@@ -1,6 +1,7 @@
 @use "./_variables" as *;
 @use "./_mixins" as *;
 @use "./_font" as *;
+@use "./typography" as *;
 
 $modal-top-nav-height: 32px;
 $modal-top-nav-height-mobile: 30px;
@@ -79,11 +80,9 @@ $modal-top-nav-z-index: 9;
       .window-modal-top-nav-title {
         margin-left: 1rem;
         h3 {
-          @include t5-medium;
-          & {
-            text-align: center;
-            color: #e4e4e4;
-          }
+          @include ty(t4, medium, true);
+          text-align: center;
+          color: #e4e4e4;
         }
       }
     }
@@ -104,17 +103,13 @@ $modal-top-nav-z-index: 9;
       }
       .category-list {
         .item {
-          @include t4-bold;
-          & {
-            margin-bottom: 12px;
-            cursor: pointer;
-            color: #f8f8f8;
-          }
+          @include ty(t5, bold, true);
+          margin-bottom: 12px;
+          cursor: pointer;
+          color: #f8f8f8;
+
           &.active {
-            @include t4-bold;
-            & {
-              color: black;
-            }
+            color: black;
           }
         }
       }
@@ -192,17 +187,16 @@ $modal-top-nav-z-index: 9;
       display: flex;
     }
     h3 {
-      @include t1-montserrat-semibold;
-      & {
-        margin-bottom: 15px;
-        border-bottom: 1px solid #e2e2e2;
-        display: flex;
-        align-items: center;
-        padding: 0 1.4rem 0.8rem;
-      }
+      @include ty(t9, bold, true);
+      font-family: "Montserrat", sans-serif;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e2e2e2;
+      display: flex;
+      align-items: center;
+      padding: 0 1.4rem 0.8rem;
     }
     p {
-      @include t3-medium;
+      @include ty(t6, medium);
     }
   }
   @media (max-width: 768px) {
@@ -259,6 +253,7 @@ $modal-top-nav-z-index: 9;
     border-radius: 50%;
     border: 2px solid rgb(249, 197, 30);
     p {
+      @include ty(t2, medium, true);
       position: absolute;
       display: block;
       width: 12rem;

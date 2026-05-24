@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import {
@@ -28,42 +28,44 @@ const fragmentShader = /* glsl */ `
 const LERP = 0.05;
 
 export const Background = () => {
-  const matRef = useRef<THREE.ShaderMaterial>(null);
+  // useMemo로 uniform 객체를 딱 한 번만 생성 → re-render마다 R3F가 교체하지 않음
+  const uniforms = useMemo(
+    () => ({
+      colorTop: { value: new THREE.Color(DEFAULT_THEME.colorTop) },
+      colorBottom: { value: new THREE.Color(DEFAULT_THEME.colorBottom) },
+    }),
+    []
+  );
 
-  const curTop = useRef(new THREE.Color(DEFAULT_THEME.colorTop));
-  const curBottom = useRef(new THREE.Color(DEFAULT_THEME.colorBottom));
   const tgtTop = useRef(new THREE.Color(DEFAULT_THEME.colorTop));
   const tgtBottom = useRef(new THREE.Color(DEFAULT_THEME.colorBottom));
 
-  // useFrame 클로저 문제 우회: store를 직접 구독
   useEffect(() => {
+    const initial = usePlayerStore.getState().theme;
+    tgtTop.current.set(initial.colorTop);
+    tgtBottom.current.set(initial.colorBottom);
+
     return usePlayerStore.subscribe((state) => {
       tgtTop.current.set(state.theme.colorTop);
       tgtBottom.current.set(state.theme.colorBottom);
     });
   }, []);
 
+  // uniforms.colorTop.value 를 직접 lerp → Three.js가 항상 같은 Color 객체를 읽음
   useFrame(() => {
-    if (!matRef.current) return;
-    curTop.current.lerp(tgtTop.current, LERP);
-    curBottom.current.lerp(tgtBottom.current, LERP);
-    matRef.current.uniforms.colorTop.value.copy(curTop.current);
-    matRef.current.uniforms.colorBottom.value.copy(curBottom.current);
+    uniforms.colorTop.value.lerp(tgtTop.current, LERP);
+    uniforms.colorBottom.value.lerp(tgtBottom.current, LERP);
   });
 
   return (
     <mesh renderOrder={-1} frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
-        ref={matRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         depthTest={false}
         depthWrite={false}
-        uniforms={{
-          colorTop: { value: curTop.current.clone() },
-          colorBottom: { value: curBottom.current.clone() },
-        }}
+        uniforms={uniforms}
       />
     </mesh>
   );
