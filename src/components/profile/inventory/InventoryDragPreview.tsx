@@ -1,6 +1,9 @@
-import { PROFILE_ITEM_MAP } from "@/components/profile/object/profileItems";
-import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
+import * as THREE from "three";
+import { Suspense, useMemo } from "react";
 
+import { PROFILE_ITEM_MAP } from "@/components/profile/object/profileItems";
+import { PROFILE_ITEM_COMPONENT_REGISTRY } from "@/components/profile/object/profileItemComponentRegistry";
+import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
 import { gridItemCenter, INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
 
 const { cellSize } = INVENTORY_GRID;
@@ -20,15 +23,46 @@ const InventoryDragPreview = () => {
     itemDef.w,
     itemDef.h
   );
-  const color = dragState.isValidPlacement ? itemDef.color : "#ef4444";
+
+  const w = itemDef.w * cellSize - 0.4;
+  const h = itemDef.h * cellSize - 0.4;
+  const lineColor = dragState.isValidPlacement ? "#22c55e" : "#ef4444";
+  const renderer = PROFILE_ITEM_COMPONENT_REGISTRY[itemDef.code];
 
   return (
-    <mesh position={[cx, itemDef.height / 2, cz]}>
-      <boxGeometry
-        args={[itemDef.w * cellSize - 0.4, itemDef.height, itemDef.h * cellSize - 0.4]}
-      />
-      <meshStandardMaterial color={color} transparent opacity={0.6} />
-    </mesh>
+    <group position={[cx, 0, cz]}>
+      <Suspense fallback={null}>
+        {renderer ? renderer(itemDef) : (
+          <mesh position={[0, itemDef.height / 2, 0]}>
+            <boxGeometry args={[w, itemDef.height, h]} />
+            <meshStandardMaterial color={itemDef.color} roughness={0.4} metalness={0.3} />
+          </mesh>
+        )}
+      </Suspense>
+      <PreviewBox cy={itemDef.height / 2} w={w} height={itemDef.height} h={h} lineColor={lineColor} />
+    </group>
+  );
+};
+
+type PreviewBoxProps = {
+  cy: number;
+  w: number; height: number; h: number;
+  lineColor: string;
+};
+
+const PreviewBox = ({ cy, w, height, h, lineColor }: PreviewBoxProps) => {
+  const boxGeo = useMemo(() => new THREE.BoxGeometry(w, height, h), [w, height, h]);
+  const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
+
+  return (
+    <group position={[0, cy, 0]}>
+      <mesh geometry={boxGeo}>
+        <meshBasicMaterial transparent opacity={0.1} color={lineColor} depthWrite={false} />
+      </mesh>
+      <lineSegments geometry={edgesGeo}>
+        <lineBasicMaterial color={lineColor} />
+      </lineSegments>
+    </group>
   );
 };
 

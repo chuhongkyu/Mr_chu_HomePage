@@ -17,13 +17,36 @@ const PostCard = ({ post, onClick }: Props) => {
   return (
     <button className={styles.card} onClick={onClick}>
       <div className={styles.imageWrap}>
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className={styles.image}
-          sizes="100px"
-        />
+        {post.subImage ? (
+          <>
+            <div className={styles.imageHalf}>
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className={styles.image}
+                sizes="100px"
+              />
+            </div>
+            <div className={styles.imageHalf}>
+              <Image
+                src={post.subImage}
+                alt={post.title}
+                fill
+                className={styles.image}
+                sizes="100px"
+              />
+            </div>
+          </>
+        ) : (
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className={styles.image}
+            sizes="100px"
+          />
+        )}
       </div>
 
       <div className={styles.body}>
@@ -31,10 +54,12 @@ const PostCard = ({ post, onClick }: Props) => {
         {post.description && (
           <p className={styles.desc}>{post.description}</p>
         )}
-        <span className={styles.source}>
-          <ExternalLink size={10} />
-          linkedin.com
-        </span>
+        {post.url && (
+          <span className={styles.source}>
+            <ExternalLink size={10} />
+            linkedin.com
+          </span>
+        )}
       </div>
 
       {viewed && <span className={styles.viewedBadge}>✓</span>}

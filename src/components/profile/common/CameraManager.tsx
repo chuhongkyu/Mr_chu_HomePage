@@ -1,96 +1,58 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import {
-  OrbitControls,
-  OrthographicCamera,
-  PerspectiveCamera,
-} from "@react-three/drei";
-import * as THREE from "three";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
+import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+import { CAMERA } from "@/components/profile/constants/sceneConfig";
 
-import { GRID_CENTER } from "@/components/profile/object/InventoryGridEngine";
-import { useInventoryStore } from "@/components/profile/store/useInventoryStore";
-import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
+const CameraManager = () => {
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+  const slideIndex = usePlayerStore((s) => s.slideIndex);
 
-const [cx, cy, cz] = GRID_CENTER;
-
-const PERSPECTIVE_POSITION = new THREE.Vector3(cx + 15, 18, cz + 15);
-const PERSPECTIVE_INVENTORY_POSITION = new THREE.Vector3(cx + 20, 22, cz + 20);
-const ISOMETRIC_POSITION = new THREE.Vector3(cx + 16, 16, cz + 16);
-const ISO_ZOOM = 70;
-const ISO_INVENTORY_ZOOM = 52;
-const LERP = 0.06;
-
-// ─── Lerp Animator (R3F useFrame) ────────────────────────────────────
-const CameraAnimator = () => {
-  const { camera } = useThree();
-  const cameraMode = useInventoryStore((s) => s.cameraMode);
-  const isInventoryOpen = useProfilePlacementStore((s) => s.isInventoryOpen);
-
-  const targetPos = useRef(new THREE.Vector3());
-  const targetZoom = useRef(ISO_ZOOM);
-
+  const slideIndexRef = useRef(slideIndex);
   useEffect(() => {
-    if (cameraMode === "perspective") {
-      targetPos.current.copy(
-        isInventoryOpen ? PERSPECTIVE_INVENTORY_POSITION : PERSPECTIVE_POSITION
-      );
-    } else {
-      targetPos.current.copy(ISOMETRIC_POSITION);
-      targetZoom.current = isInventoryOpen ? ISO_INVENTORY_ZOOM : ISO_ZOOM;
-    }
-  }, [cameraMode, isInventoryOpen]);
+    slideIndexRef.current = slideIndex;
+  }, [slideIndex]);
 
   useFrame(() => {
-    camera.position.lerp(targetPos.current, LERP);
+    const ctrl = controlsRef.current as any;
+    if (!ctrl) return;
+    if (typeof ctrl.getAzimuthalAngle !== "function") return;
+    if (typeof ctrl.setAzimuthalAngle !== "function") return;
 
-    if (cameraMode === "isometric") {
-      const ortho = camera as THREE.OrthographicCamera;
-      ortho.zoom = THREE.MathUtils.lerp(ortho.zoom, targetZoom.current, LERP);
-      ortho.updateProjectionMatrix();
-    }
+    const offset =
+      SLIDE_CONFIGS[slideIndexRef.current]?.camera?.azimuthOffset ?? 0;
+    const target = CAMERA.initialAzimuth + offset;
+
+    const current = ctrl.getAzimuthalAngle();
+    const diff = target - current;
+    if (Math.abs(diff) < 0.001) return;
+
+    ctrl.setAzimuthalAngle(current + diff * CAMERA.azimuthLerpFactor);
   });
-
-  return null;
-};
-
-// ─── Camera Manager ───────────────────────────────────────────────────
-const CameraManager = () => {
-  const cameraMode = useInventoryStore((s) => s.cameraMode);
-  const isInventoryOpen = useProfilePlacementStore((s) => s.isInventoryOpen);
 
   return (
     <>
-      {cameraMode === "perspective" ? (
-        <PerspectiveCamera
-          makeDefault
-          fov={30}
-          position={PERSPECTIVE_POSITION.toArray()}
-          near={0.1}
-          far={200}
-        />
-      ) : (
-        <OrthographicCamera
-          makeDefault
-          zoom={ISO_ZOOM}
-          position={ISOMETRIC_POSITION.toArray()}
-          near={0.1}
-          far={500}
-        />
-      )}
-
-      <CameraAnimator />
-
+      <PerspectiveCamera
+        makeDefault
+        fov={CAMERA.fov}
+        position={CAMERA.position}
+        near={CAMERA.near}
+        far={CAMERA.far}
+      />
       <OrbitControls
-        target={[cx, cy + 4, cz]}
-        enablePan
-        enableZoom={!isInventoryOpen}
-        enableRotate={cameraMode === "perspective" && !isInventoryOpen}
-        minDistance={12}
-        maxDistance={30}
-        minZoom={10}
-        maxZoom={100}
+        ref={controlsRef}
+        target={CAMERA.target}
+        enablePan={false}
+        enableZoom
+        enableRotate
+        minDistance={CAMERA.minDistance}
+        maxDistance={CAMERA.maxDistance}
+        minPolarAngle={CAMERA.minPolarAngle}
+        maxPolarAngle={CAMERA.maxPolarAngle}
         makeDefault
       />
     </>

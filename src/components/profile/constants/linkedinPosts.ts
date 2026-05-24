@@ -3,7 +3,8 @@ export type Post = {
   title: string;
   description: string;
   image: string;
-  url: string;
+  subImage?: string;
+  url?: string;
 };
 
 export const LINKEDIN_POSTS: Post[] = [
@@ -21,5 +22,12 @@ export const LINKEDIN_POSTS: Post[] = [
       "센프란시스코에서의 GDC 참가 경험과 현장의 인사이트, 그리고 직접 만든 서비스를 고객들에게 소개하고 영업한 기록",
     image: "/assets/og/post2.jpg",
     url: "https://www.linkedin.com/posts/hong-kyu-chu-a38b9a249_gdc-activity-7310031891129143297-gZ7g",
+  },
+  {
+    id: "karrot",
+    title: "당근이네",
+    description:
+      "당근마켓, 당근이네에서 Software Engineer (Frontend) 포지션으로 근무. React · TypeScript 기반 프론트엔드 개발, 사용자 경험 개선 및 서비스 기능 개발에 참여.",
+    image: "/assets/img/karrot.webp",
   },
 ];

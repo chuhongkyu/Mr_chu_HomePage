@@ -12,10 +12,12 @@ import {
 } from "@/components/profile/constants/linkedinPosts";
 import PostCard from "@/components/profile/common/PostCard";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
+import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import styles from "./ProfileContents.module.scss";
 
 const ProfileContents = () => {
   const [activePost, setActivePost] = useState<Post | null>(null);
+  const setSlideIndex = usePlayerStore((s) => s.setSlideIndex);
 
   return (
     <section className={styles.contents}>
@@ -28,6 +30,9 @@ const ProfileContents = () => {
         slidesOffsetAfter={16}
         breakpoints={{
           1024: { slidesPerView: 1.8 },
+        }}
+        onSlideChange={(swiper) => {
+          setSlideIndex(swiper.activeIndex);
         }}
         className={styles.swiper}
       >

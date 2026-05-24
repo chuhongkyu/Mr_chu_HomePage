@@ -3,9 +3,13 @@ import { Text } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 
 import { PROFILE_ITEM_MAP } from "@/components/profile/object/profileItems";
+import { PROFILE_ITEM_COMPONENT_REGISTRY } from "@/components/profile/object/profileItemComponentRegistry";
 import type { PlacedProfileObject } from "@/components/profile/store/useProfilePlacementStore";
 import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
-import { gridItemCenter, INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
+import {
+  gridItemCenter,
+  INVENTORY_GRID,
+} from "@/components/profile/object/InventoryGridEngine";
 
 import { profileDragScreenPosition } from "./dragScreenPosition";
 
@@ -27,7 +31,12 @@ const InventoryItem = ({ item }: Props) => {
   const itemDef = PROFILE_ITEM_MAP[item.code];
   if (!itemDef) return null;
 
-  const [cx, , cz] = gridItemCenter(item.gridX, item.gridY, itemDef.w, itemDef.h);
+  const [cx, , cz] = gridItemCenter(
+    item.gridX,
+    item.gridY,
+    itemDef.w,
+    itemDef.h
+  );
   const isBeingDragged =
     dragState?.source === "scene" && dragState?.sourceObjectId === item.id;
 
@@ -85,21 +94,32 @@ const InventoryItem = ({ item }: Props) => {
     [isEditMode, item.code, item.id, startDrag, endDrag, cancelDrag]
   );
 
+  const renderer = PROFILE_ITEM_COMPONENT_REGISTRY[item.code];
+
   return (
-    <group position={[cx, 0, cz]} visible={!isBeingDragged}>
-      <mesh
-        position={[0, itemDef.height / 2, 0]}
-        castShadow
-        receiveShadow
-        onPointerDown={isEditMode ? onPointerDown : undefined}
-      >
-        <boxGeometry args={[itemDef.w * cellSize - GAP, itemDef.height, itemDef.h * cellSize - GAP]} />
-        <meshStandardMaterial
-          color={itemDef.color}
-          roughness={0.4}
-          metalness={0.3}
-        />
-      </mesh>
+    <group
+      position={[cx, 0, cz]}
+      visible={!isBeingDragged}
+      onPointerDown={isEditMode ? onPointerDown : undefined}
+    >
+      {renderer ? (
+        renderer(itemDef)
+      ) : (
+        <mesh position={[0, itemDef.height / 2, 0]} castShadow receiveShadow>
+          <boxGeometry
+            args={[
+              itemDef.w * cellSize - GAP,
+              itemDef.height,
+              itemDef.h * cellSize - GAP,
+            ]}
+          />
+          <meshStandardMaterial
+            color={itemDef.color}
+            roughness={0.4}
+            metalness={0.3}
+          />
+        </mesh>
+      )}
 
       <Text
         position={[0, itemDef.height + 0.1, 0]}

@@ -10,8 +10,8 @@ export type GridConfig = {
 export const INVENTORY_GRID: GridConfig = {
   cols: 12,
   rows: 12,
-  cellSize: 4,
-  originWorld: [-24, 0, -24],
+  cellSize: 2,
+  originWorld: [0, 0, 0],
 };
 
 // ─── Utils ──────────────────────────────────────────────────────────

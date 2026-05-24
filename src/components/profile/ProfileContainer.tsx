@@ -4,11 +4,7 @@ import dynamic from "next/dynamic";
 
 import ProfileContents from "@/components/profile/layout/ProfileContents";
 import ProfileHeader from "@/components/profile/layout/ProfileHeader";
-
 import styles from "./ProfileContainer.module.scss";
-import InventoryBottomSheet from "./inventory/InventoryBottomSheet";
-import { ProfileDragDropManager } from "./inventory/ProfileDragDropManager";
-import FloatingButtons from "./common/FloatingButtons";
 
 const Scene = dynamic(() => import("@/components/profile/Scene"), {
   ssr: false,
@@ -17,20 +13,16 @@ const Scene = dynamic(() => import("@/components/profile/Scene"), {
 const ProfileContainer = () => {
   return (
     <div className={styles.container}>
-      <ProfileDragDropManager>
-        <ProfileHeader />
-        <div className={styles.body}>
-          <FloatingButtons />
-          <div className={styles.scene}>
-            <Scene />
-          </div>
-
-          <div className={styles.contents}>
-            <ProfileContents />
-          </div>
-          <InventoryBottomSheet />
+      <ProfileHeader />
+      <div className={styles.body}>
+        <div className={styles.scene}>
+          <Scene />
         </div>
-      </ProfileDragDropManager>
+
+        <div className={styles.contents}>
+          <ProfileContents />
+        </div>
+      </div>
     </div>
   );
 };

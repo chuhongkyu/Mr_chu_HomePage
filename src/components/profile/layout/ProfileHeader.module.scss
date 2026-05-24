@@ -4,12 +4,49 @@
   justify-content: space-between;
   width: 100%;
   height: 52px;
-  padding: 0 20px;
+  padding: 0 16px 0 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
+}
+
+.nav {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.slide {
+  width: auto !important;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-font-sub, #94a3b8);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+
+  &:hover {
+    color: var(--color-font-base);
+  }
+
+  &.active {
+    color: var(--color-font-base);
+  }
 }
 
 .title {
@@ -27,7 +64,7 @@
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: 4px 12px;
+  padding: 8px 12px;
 }
 
 .coinIcon {

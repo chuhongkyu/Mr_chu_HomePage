@@ -8,19 +8,12 @@ const [ox, , oz] = originWorld;
 const W = cols * cellSize;
 const H = rows * cellSize;
 
-const FLOOR_COLOR = "#111827";
 const LINE_COLOR = "#fafafa";
-const BORDER_COLOR = "#a7a7a7";
+const BORDER_COLOR = "#fafafa";
 
 const InventoryGrid = () => {
   return (
     <group>
-      {/* Floor plate */}
-      <mesh position={[ox + W / 2, -0.06, oz + H / 2]} receiveShadow>
-        <boxGeometry args={[W + 0.2, 0.1, H + 0.2]} />
-        <meshBasicMaterial color={FLOOR_COLOR} transparent opacity={0.1} />
-      </mesh>
-
       {/* Vertical lines */}
       {Array.from({ length: cols + 1 }, (_, i) => (
         <Line

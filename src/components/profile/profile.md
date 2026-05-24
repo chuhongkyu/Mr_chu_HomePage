@@ -1,5 +1,7 @@
 # Profile – Inventory System
 
+> 이야기 시스템(NavBar 스토리 / 하단 배너) 구조는 [stories.md](./stories.md) 참고
+
 ## 규칙
 - 스타일: SCSS modules (`.module.scss`) 사용, styled-components 사용 금지
 - import 경로: `@/components/...` 형식 사용
@@ -16,9 +18,11 @@ profile/
 │   ├── CameraManager.tsx              # Perspective / Isometric + OrbitControls + lerp
 │   ├── Lights.tsx                     # ambient + directional (target [0,0,0])
 │   └── FloatingButtons.tsx            # 카메라 토글 + 인벤토리 열기
-├── object/                            # 데이터 / 그리드 엔진
+├── object/                            # 데이터 / 그리드 엔진 / 3D 오브젝트
 │   ├── profileItems.ts                # 아이템 정의 (code, label, color, w, h, height)
-│   └── InventoryGridEngine.ts         # 그리드 config + 좌표 변환 + 충돌 계산
+│   ├── profileItemComponentRegistry.tsx  # code → 3D 컴포넌트 매핑
+│   ├── InventoryGridEngine.ts         # 그리드 config + 좌표 변환 + 충돌 계산
+│   └── IceCube.tsx                    # 얼음큐브 (boxGeometry + matcap)
 ├── inventory/
 │   ├── InventoryGrid.tsx              # 그리드 바닥 + 셀 라인 렌더링
 │   ├── InventoryItem.tsx              # 3D 박스 메쉬 + label + scene 드래그
@@ -72,11 +76,41 @@ profile/
 
 ## 아이템 추가
 
-`src/components/profile/object/profileItems.ts`에 추가:
-
+### 1. `profileItems.ts`에 메타데이터 등록
 ```ts
-{ code: 'newitem', label: 'New Item', color: '#hex', w: 1, h: 1, height: 4.0 }
+{ code: 'myItem', label: '이름', color: '#hex', w: 1, h: 1, height: 4.0 }
+```
+- `w`, `h`: 그리드 셀 단위 (충돌 계산용)
+- `height`: world unit
+- `color`: UI 썸네일 + generic box fallback 색상
+
+### 2. `object/MyItem.tsx` 컴포넌트 생성 (커스텀 머티리얼 사용 시)
+```tsx
+const MyItem = ({ w, h, height }: Props) => {
+  const matcap = useTexture("/assets/matcap/xxx.jpg");
+  return (
+    <mesh position={[0, height / 2, 0]} castShadow receiveShadow>
+      <boxGeometry args={[w * cellSize - GAP, height, h * cellSize - GAP]} />
+      <meshMatcapMaterial matcap={matcap} />
+    </mesh>
+  );
+};
 ```
 
-- `w`, `h`: 그리드 셀 단위
-- `height`: world unit (cellSize 고려해서 설정)
+### 3. `profileItemComponentRegistry.tsx`에 등록
+```ts
+myItem: (def) => <MyItem w={def.w} h={def.h} height={def.height} />,
+```
+- 등록하지 않으면 `InventoryItem`이 generic box (meshStandardMaterial + color)로 폴백
+
+## 현재 아이템 목록
+
+| code | 이름 | 렌더 방식 |
+|------|------|-----------|
+| iceCube | 얼음큐브 | matcap (`ice.jpg`) |
+| bench | 벤치 | generic box |
+| plant | 식물 | generic box |
+| lamp | 램프 | generic box |
+| table | 테이블 | generic box |
+| rock | 돌 | generic box |
+| barrel | 배럴 | generic box |

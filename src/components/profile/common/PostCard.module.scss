@@ -27,6 +27,14 @@
   border-radius: 8px;
   overflow: hidden;
   background: var(--color-bg-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageHalf {
+  position: relative;
+  width: 100%;
+  flex: 1;
 }
 
 .image {
