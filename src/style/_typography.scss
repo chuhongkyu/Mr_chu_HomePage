@@ -1,21 +1,82 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Typography Design Tokens
-// t1(11px) → t10(26px) — 숫자가 클수록 크다
-// ─────────────────────────────────────────────────────────────────────────────
+@use "sass:map";
 
-// ── Font Size (rem) ──────────────────────────────────────────────────────────
-$font-size-t1: 0.6875rem; // 11px
-$font-size-t2: 0.75rem; // 12px
-$font-size-t3: 0.8125rem; // 13px
-$font-size-t4: 0.875rem; // 14px
-$font-size-t5: 1rem; // 16px
-$font-size-t6: 1.125rem; // 18px
-$font-size-t7: 1.25rem; // 20px
-$font-size-t8: 1.375rem; // 22px
-$font-size-t9: 1.5rem; // 24px
-$font-size-t10: 1.625rem; // 26px
+// ── maps ─────────────────────────────
 
-// ── Font Size (static px — 폰트 스케일링 무시) ───────────────────────────────
+$font-size-map: (
+  t1: $font-size-t1,
+  t2: $font-size-t2,
+  t3: $font-size-t3,
+  t4: $font-size-t4,
+  t5: $font-size-t5,
+  t6: $font-size-t6,
+  t7: $font-size-t7,
+  t8: $font-size-t8,
+  t9: $font-size-t9,
+  t10: $font-size-t10,
+);
+
+$font-size-static-map: (
+  t1: $font-size-t1-static,
+  t2: $font-size-t2-static,
+  t3: $font-size-t3-static,
+  t4: $font-size-t4-static,
+  t5: $font-size-t5-static,
+  t6: $font-size-t6-static,
+  t7: $font-size-t7-static,
+  t8: $font-size-t8-static,
+  t9: $font-size-t9-static,
+  t10: $font-size-t10-static,
+);
+
+$line-height-map: (
+  t1: $line-height-t1,
+  t2: $line-height-t2,
+  t3: $line-height-t3,
+  t4: $line-height-t4,
+  t5: $line-height-t5,
+  t6: $line-height-t6,
+  t7: $line-height-t7,
+  t8: $line-height-t8,
+  t9: $line-height-t8,
+  t10: $line-height-t8,
+);
+
+$font-weight-map: (
+  regular: $fw-regular,
+  medium: $fw-medium,
+  bold: $fw-bold,
+);
+
+// ── mixin ─────────────────────────────
+
+@mixin ty($size, $weight: regular, $static: false) {
+  @if $static {
+    font-size: map.get($font-size-static-map, $size);
+  } @else {
+    font-size: map.get($font-size-map, $size);
+  }
+
+  line-height: map.get($line-height-map, $size);
+
+  font-weight: map.get($font-weight-map, $weight);
+}
+@use "sass:map";
+
+// ── Font Size ───────────────────────
+
+$font-size-t1: 0.6875rem;
+$font-size-t2: 0.75rem;
+$font-size-t3: 0.8125rem;
+$font-size-t4: 0.875rem;
+$font-size-t5: 1rem;
+$font-size-t6: 1.125rem;
+$font-size-t7: 1.25rem;
+$font-size-t8: 1.375rem;
+$font-size-t9: 1.5rem;
+$font-size-t10: 1.625rem;
+
+// ── Static Font Size ────────────────
+
 $font-size-t1-static: 11px;
 $font-size-t2-static: 12px;
 $font-size-t3-static: 13px;
@@ -27,84 +88,19 @@ $font-size-t8-static: 22px;
 $font-size-t9-static: 24px;
 $font-size-t10-static: 26px;
 
-// ── Line Height ──────────────────────────────────────────────────────────────
-$line-height-t1: 0.9375rem; // 15px
-$line-height-t2: 1rem; // 16px
-$line-height-t3: 1.125rem; // 18px
-$line-height-t4: 1.1875rem; // 19px
-$line-height-t5: 1.375rem; // 22px
-$line-height-t6: 1.5rem; // 24px
-$line-height-t7: 1.6875rem; // 27px
-$line-height-t8: 1.875rem; // 30px
+// ── Line Height ─────────────────────
 
-// ── Font Weight ──────────────────────────────────────────────────────────────
+$line-height-t1: 0.9375rem;
+$line-height-t2: 1rem;
+$line-height-t3: 1.125rem;
+$line-height-t4: 1.1875rem;
+$line-height-t5: 1.375rem;
+$line-height-t6: 1.5rem;
+$line-height-t7: 1.6875rem;
+$line-height-t8: 1.875rem;
+
+// ── Font Weight ─────────────────────
+
 $fw-regular: 400;
 $fw-medium: 500;
 $fw-bold: 700;
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Typography Mixins — @include ty(크기, 두께)
-// 예: @include ty(t4, medium)  →  14px / 19px / 500
-// ─────────────────────────────────────────────────────────────────────────────
-
-@mixin ty($size, $weight: regular, $static: false) {
-  @if $static {
-    font-size: map-get(
-      (
-        t1: $font-size-t1-static,
-        t2: $font-size-t2-static,
-        t3: $font-size-t3-static,
-        t4: $font-size-t4-static,
-        t5: $font-size-t5-static,
-        t6: $font-size-t6-static,
-        t7: $font-size-t7-static,
-        t8: $font-size-t8-static,
-        t9: $font-size-t9-static,
-        t10: $font-size-t10-static,
-      ),
-      $size
-    );
-  } @else {
-    font-size: map-get(
-      (
-        t1: $font-size-t1,
-        t2: $font-size-t2,
-        t3: $font-size-t3,
-        t4: $font-size-t4,
-        t5: $font-size-t5,
-        t6: $font-size-t6,
-        t7: $font-size-t7,
-        t8: $font-size-t8,
-        t9: $font-size-t9,
-        t10: $font-size-t10,
-      ),
-      $size
-    );
-  }
-
-  line-height: map-get(
-    (
-      t1: $line-height-t1,
-      t2: $line-height-t2,
-      t3: $line-height-t3,
-      t4: $line-height-t4,
-      t5: $line-height-t5,
-      t6: $line-height-t6,
-      t7: $line-height-t7,
-      t8: $line-height-t8,
-      // t9, t10은 line-height 토큰 미정 — t8 유지
-      t9: $line-height-t8,
-      t10: $line-height-t8,
-    ),
-    $size
-  );
-
-  font-weight: map-get(
-    (
-      regular: $fw-regular,
-      medium: $fw-medium,
-      bold: $fw-bold,
-    ),
-    $weight
-  );
-}
