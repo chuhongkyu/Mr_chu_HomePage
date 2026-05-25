@@ -1,11 +1,30 @@
 @use "./reset.scss";
 @use "../style/_font" as *;
 @use "../style/_variables" as *;
+@use "../style/_typography" as *;
 
 :root {
   --color-bg1: #eae8e2;
+  --main-bg-color: linear-gradient(to bottom, #f2f0eb, #eae8e2);
   --white: rgb(0, 0, 0);
   --black: rgb(255, 255, 255);
+
+  // ─── Theme tokens ──────────────────────────────────
+  --color-font-base: #000000;
+  --color-font-muted: #333333;
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-shadow: rgba(0, 0, 0, 0.1);
+  --color-border: #e2e8f0;
+}
+
+[data-theme="dark"] {
+  --color-font-base: #f1f5f9;
+  --color-font-muted: #94a3b8;
+  --color-bg-base: #0f172a;
+  --color-bg-surface: #1e293b;
+  --color-bg-surface-shadow: rgba(0, 0, 0, 0.4);
+  --color-border: #334155;
 }
 
 body {
@@ -16,7 +35,7 @@ body {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  background: var(--color-bg1);
+  background: var(--main-bg-color);
   font-family: var(--font-noto-sans), sans-serif;
   color: $font-base-color;
   position: relative;
@@ -31,7 +50,6 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 2rem 2rem 0.4rem 2rem;
 }
 
 .not-found-container {
@@ -129,7 +147,7 @@ body {
     border-radius: 6px;
     display: flex;
     align-items: center;
-  } 
+  }
   svg {
     display: block;
   }
@@ -141,7 +159,6 @@ body {
 
 .content-container {
   margin-bottom: 20px;
-  padding: 0 max(1.5625vw, 20px);
   ul {
     li {
       position: relative;
@@ -154,34 +171,23 @@ body {
 }
 
 .text-group {
-  // padding: 0 50px;
   .title {
-    font-size: max(1.6667vw, 32px);
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: -0.02em;
+    @include ty(t10, medium, true);
     padding: max(5.208vw, 80px) 0 30px;
   }
   .sub-title {
-    font-size: max(1.25vw, 22px);
-    font-weight: 500;
-    line-height: 1.8;
-    letter-spacing: -0.02em;
+    @include ty(t8, medium, true);
     padding-bottom: 20px;
   }
   .description {
-    font-size: max(1.25vw, 16px);
-    font-weight: 500;
+    @include ty(t5, medium, true);
     line-height: 1.5;
     letter-spacing: -0.01em;
     text-align: left;
     margin-bottom: 20px;
     color: #333333;
     b {
-      @include t5-semibold;
-      & {
-        text-decoration: underline;
-      }
+      @include ty(t5, bold, true);
     }
     .app-icon {
       display: block;
@@ -201,8 +207,7 @@ body {
     color: #515151;
   }
   .content {
-    font-size: max(1.25vw, 22px);
-    font-weight: 500;
+    @include ty(t8, medium, true);
     line-height: 1.8;
     letter-spacing: -0.02em;
     &:not(:last-of-type) {
@@ -243,17 +248,15 @@ body {
       padding: 30px 0 20px;
     }
     .content {
-      font-size: 16px;
+      @include ty(t5, medium, true);
       padding-bottom: 15px;
       text-align: left;
       &.type1 {
-        @include t4-medium;
-        & {
-          line-height: 1.5;
-          letter-spacing: -0.02em;
-          text-align: left;
-          padding-bottom: 15px;
-        }
+        @include ty(t5, medium, true);
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        text-align: left;
+        padding-bottom: 15px;
       }
       &.type2 {
         padding: 0;
@@ -271,11 +274,5 @@ body {
   }
   .content-container {
     padding: 0;
-  }
-}
-
-@media screen and (max-width: 468px) {
-  .main {
-    padding: 2rem 0 0.4rem;
   }
 }

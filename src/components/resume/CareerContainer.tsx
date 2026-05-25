@@ -17,6 +17,7 @@ const CareerContainer = () => {
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4bc.svg"
         title="Jobs"
+        column="1 / -1"
       >
         <li>
           <p>당근 마켓 (프론트 엔드)</p>
@@ -71,7 +72,7 @@ const CareerContainer = () => {
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"
         title="Built & Maintained"
-        row={"span 2"}
+        column="1 / -1"
       >
         <li>
           <a
@@ -150,23 +151,7 @@ const CareerContainer = () => {
               data-text-color="black"
               data-background-color="orange"
             >
-              롯데백화점 리뉴얼 [MOW][PCW]
-            </p>
-          </a>
-          <p>더즈 인터랙티브</p>
-        </li>
-        <li>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.innov.lottecoupon&hl=ko&gl=US"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <p
-              data-tip="JS"
-              data-text-color="black"
-              data-background-color="orange"
-            >
-              롯데백화점 리뉴얼 앱 [AOS,IOS]
+              롯데백화점 리뉴얼 (웹,앱)
             </p>
           </a>
           <p>더즈 인터랙티브</p>
@@ -236,6 +221,7 @@ const CareerContainer = () => {
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/26cf-fe0f.svg"
         title="Preferred Tools"
+        column="1 / -1"
       >
         <li>
           <span>

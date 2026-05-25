@@ -1,4 +1,4 @@
-import AnimatedText from "./AnimatedText";
+import AnimatedText from "@/components/common/page/container/AnimatedText";
 
 const Header = ({ title }: { title: string }) => {
   return (

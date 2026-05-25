@@ -1,6 +1,6 @@
 import Loading from "@/components/common/Loading";
-import NotionList from "@/components/common/NotionList";
 import NotionContent from "@/components/project/NotionContent";
+import ProjectDetailShell from "@/components/project/ProjectDetailShell";
 import { getProjectDetail } from "@/utils/api";
 
 import styles from "@/style/detail-page.module.scss";
@@ -11,23 +11,20 @@ type Props = {
 
 export const revalidate = 604800;
 
-export default async function ProjectDetail({ params }: Props) {
-  const resolvedParams = await params;
+export default async function ProjectDetailPage({ params }: Props) {
+  const { id } = await params;
 
   const projectData = await getProjectDetail({
-    id: resolvedParams.id,
+    id: id,
   });
 
-  if (!projectData) {
-    return <Loading />;
-  }
+  if (!projectData) return <Loading />;
 
   return (
-    <div className={styles["project-detail-container"]}>
+    <ProjectDetailShell id={id}>
       <div className={styles["notion-wrapper"]}>
         <NotionContent recordMap={projectData} />
       </div>
-      <NotionList />
-    </div>
+    </ProjectDetailShell>
   );
 }

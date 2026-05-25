@@ -8,22 +8,36 @@ import styles from "@/style/sub-page.module.scss";
 const ContentFive = () => {
   return (
     <div className={styles["content"]}>
-        <TextGroup>
-            <AnimatedWrapper>
-                <AnimatedText text="3D 개발: 나의 여정" el="h4" className="title"/>
-            </AnimatedWrapper>
-            <AnimatedWrapper className="content type2">
-                <div className="description">
-                    저는 현대 미술 작업 활동을 할때 모델링과 3D 프린터를 다루기도 했습니다.
-                    덕분에 예술대학 학생들에게 3D 프린터 강의를 한 경험이 있습니다.<br/>
-                    또한 Unity를 활용하여 iOS와 Android 플랫폼에 3D 게임을 출시 했던 경험 있습니다.<br/>
-                    그래서 웹 개발자로서 전환 이후에도 취미로 three.js 작업을 해오고 있었습니다. 그러던 와중에 온라인 강의 플랫폼에서 강사 제의가 왔고 3D 개발의 즐거움을 학생들에게 나눌 수 있게 되었습니다.
-                </div>
-            </AnimatedWrapper>
-        </TextGroup>
-        <Parallax/>
+      <TextGroup>
+        <AnimatedWrapper>
+          <AnimatedText text="3D 개발: 나의 여정" el="h4" className="title" />
+        </AnimatedWrapper>
+
+        <AnimatedWrapper className="content type2">
+          <div className="description">
+            저는 지금도 웹에서 <b>3D 개발</b>을 계속하고 있어요.
+            <br />
+            단순히 기술 자체보다, 사용자들이 직접 상호작용하고 몰입할 수 있는
+            경험을 만드는 과정에 가장 큰 즐거움을 느껴요.
+            <br />
+            <br />
+            최근에는 <b>‘당근이네’ 서비스</b>에서 Three.js 기반 인터랙션과
+            사용자 경험을 실제 서비스에 녹여내며 많은 사용자들이 사용하는 제품을
+            만들어가고 있어요.
+            <br />
+            웹에서도 충분히 새로운 경험과 공간감을 전달할 수 있다고 믿고 있고,
+            앞으로도 이런 인터랙티브한 제품들을 계속 만들고 싶어요.
+            <br />
+            <br />
+            만약 이러한 경험과 방향성이 필요한 곳이 있다면 언제든 편하게 연락
+            주세요 :)
+          </div>
+        </AnimatedWrapper>
+      </TextGroup>
+
+      <Parallax />
     </div>
-  )
+  );
 };
 
 export default ContentFive;

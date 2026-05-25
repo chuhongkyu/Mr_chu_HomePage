@@ -1,8 +1,8 @@
 "use client";
 
-import { ModalProvider } from "./ModalProvider";
-import ModalStyle from "./ModalStyle";
-import { IModalStyle } from "./ModalType";
+import { ModalProvider } from "@/components/common/page/layout/ModalProvider";
+import ModalStyle from "@/components/common/page/layout/ModalStyle";
+import { IModalStyle } from "@/components/common/page/layout/ModalType";
 
 const ModalLayout = ({ children, text }: IModalStyle) => {
   return (

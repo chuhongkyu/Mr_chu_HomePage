@@ -1,0 +1,83 @@
+@use "@/style/variables" as *;
+@use "@/style/typography" as *;
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 52px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+
+  background: color-mix(in srgb, var(--color-bg-base) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $max-width;
+  padding: 0 16px;
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+}
+
+.navItem {
+  @include ty(t4, medium, true);
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--color-font-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--color-font-base);
+    background: color-mix(in srgb, var(--color-font-base) 8%, transparent);
+  }
+
+  &.active {
+    color: var(--color-font-base);
+    background: color-mix(in srgb, var(--color-font-base) 10%, transparent);
+  }
+}
+
+.coinBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: color-mix(in srgb, var(--color-bg-surface) 80%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+
+.coinIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.coinCount {
+  @include ty(t4, bold, true);
+  color: var(--color-font-base);
+}

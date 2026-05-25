@@ -7,13 +7,12 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "motion/react";
 
+import SearchList from "@/components/common/window/searchFrom/SearchList";
+import { IList, ProjectListResponse } from "@/components/common/window/searchFrom/SearchType";
 import { useDebounce } from "@/hooks/useDebounce";
 import { setSearchWindow } from "@/store/searchWindowSlice";
 import { RootState } from "@/store/store";
 import { getProjectList } from "@/utils/api";
-
-import SearchList from "./SearchList";
-import { IList, ProjectListResponse } from "./SearchType";
 
 import styles from "@/style/page.module.scss";
 

@@ -1,10 +1,7 @@
 import { Metadata } from "next";
 
-import ModalLayout from "@/components/common/page/layout/ModalLayout";
-
 import "prismjs/themes/prism-tomorrow.css";
 import "react-notion-x/src/styles.css";
-import styles from "@/style/detail-page.module.scss";
 
 const title = "Project | MR.CHU";
 const description =
@@ -17,14 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: title,
     description: description,
-    images: [
-      {
-        url: image,
-        width: 1200,
-        height: 630,
-        alt: "FE MR.CHU",
-      },
-    ],
+    images: [{ url: image, width: 1200, height: 630, alt: "FE MR.CHU" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,11 +25,7 @@ export const metadata: Metadata = {
 };
 
 const ProjectLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ModalLayout text="Project">
-      <div className={styles["scroll-wrapper"]}>{children}</div>
-    </ModalLayout>
-  );
+  return <>{children}</>;
 };
 
 export default ProjectLayout;

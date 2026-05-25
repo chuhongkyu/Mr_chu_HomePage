@@ -1,21 +1,16 @@
-import ModalLeftContainer from "@/components/common/page/layout/ModalLeftContainer";
-import ModalRightContainer from "@/components/common/page/layout/ModalRightContainer";
-import CareerContainer from "@/components/resume/CareerContainer";
-import ProfileContainer from "@/components/resume/ProfileContainer";
+"use client";
 
-import styles from "@/style/sub-page.module.scss";
+import { useRouter } from "next/navigation";
+
+import BottomSheet from "@/components/profile/common/BottomSheet";
+import CareerContainer from "@/components/resume/CareerContainer";
 
 const ResumePage = () => {
+  const router = useRouter();
   return (
-    <>
-      <ModalLeftContainer>
-        <ProfileContainer />
-      </ModalLeftContainer>
-      <ModalRightContainer>
-        <h1 className={styles["title"]}>✏️ RESUME</h1>
-        <CareerContainer />
-      </ModalRightContainer>
-    </>
+    <BottomSheet isOpen={true} onClose={() => router.push("/")}>
+      <CareerContainer />
+    </BottomSheet>
   );
 };
 
