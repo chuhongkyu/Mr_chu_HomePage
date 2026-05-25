@@ -1,11 +1,10 @@
-import "prismjs/themes/prism-tomorrow.css";
-import "react-notion-x/src/styles.css";
-
 import Loading from "@/components/common/Loading";
 import NotionContent from "@/components/project/NotionContent";
 import ProjectDetailShell from "@/components/project/ProjectDetailShell";
 import { getProjectDetail } from "@/utils/api";
 
+import "prismjs/themes/prism-tomorrow.css";
+import "react-notion-x/src/styles.css";
 import styles from "@/style/detail-page.module.scss";
 
 type Props = {
