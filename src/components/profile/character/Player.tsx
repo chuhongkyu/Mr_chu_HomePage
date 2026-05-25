@@ -6,6 +6,7 @@ import { SkeletonUtils } from "three-stdlib";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
 import { LightningRing } from "@/components/profile/common/LightningRing";
+import { JumpTrailEffect } from "@/components/profile/common/JumpTrailEffect";
 
 type ActionName = "angry" | "idle" | "jump" | "t-pose";
 
@@ -156,18 +157,31 @@ export const Player = ({ position }: Props) => {
     <>
       <Suspense fallback={null}>
         {slideEffects.map((effect) => {
-          if (effect.type !== "lightning") return null;
-          const bone = nodes[effect.boneKey] as THREE.Bone | undefined;
-          if (!bone) return null;
-          return (
-            <LightningRing
-              key={effect.boneKey}
-              bone={bone}
-              radius={effect.radius}
-              color={effect.color}
-              visible={isAngry}
-            />
-          );
+          if (effect.type === "lightning") {
+            const bone = nodes[effect.boneKey] as THREE.Bone | undefined;
+            if (!bone) return null;
+            return (
+              <LightningRing
+                key={`lightning-${effect.boneKey}`}
+                bone={bone}
+                radius={effect.radius}
+                color={effect.color}
+                visible={isAngry}
+              />
+            );
+          }
+
+          if (effect.type === "jumpTrail") {
+            return (
+              <JumpTrailEffect
+                key={`jumpTrail-${effect.boneKey}`}
+                playerPosition={position}
+                color={effect.color}
+              />
+            );
+          }
+
+          return null;
         })}
       </Suspense>
       <group position={position} dispose={null}>

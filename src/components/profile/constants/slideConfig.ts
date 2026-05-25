@@ -21,7 +21,13 @@ export type LightningEffect = {
   color?: string | number;
 };
 
-export type SlideEffect = LightningEffect;
+export type JumpTrailEffect = {
+  type: "jumpTrail";
+  boneKey: BoneKey;
+  color?: string | number;
+};
+
+export type SlideEffect = LightningEffect | JumpTrailEffect;
 
 export type SlideCamera = {
   azimuthOffset?: number; // 초기 azimuth 기준 라디안 오프셋 (음수 = 오른쪽)
@@ -47,7 +53,7 @@ export const SLIDE_CONFIGS: SlideConfig[] = [
     animation: "jump",
     theme: { colorTop: "#ddeeff", colorBottom: "#2a4a6a" },
     camera: { azimuthOffset: 0.65 },
-    effects: [],
+    effects: [{ type: "jumpTrail", boneKey: "spine001", color: 0xff9900 }],
   },
   // 2 - 당근마켓
   {

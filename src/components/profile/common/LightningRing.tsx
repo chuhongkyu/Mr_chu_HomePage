@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -15,19 +15,13 @@ export const LightningRing = ({
   radius = 0.15,
   color = "#ff5500",
 }: LightningRingProps) => {
-  const groupRef = useRef<THREE.Group>(null);
-
-  // 생성한 glow sprite png
   const texture = useLoader(THREE.TextureLoader, "/assets/textures/glow.png");
 
-  useEffect(() => {
-    texture.wrapS = THREE.ClampToEdgeWrapping;
-    texture.wrapT = THREE.ClampToEdgeWrapping;
-    texture.colorSpace = THREE.SRGBColorSpace;
-  }, [texture]);
+  const group = useMemo(() => {
+    const g = new THREE.Group();
+    g.scale.setScalar(50); // counteract model's 0.02 scale → 1 unit = 1 world unit
 
-  const material = useMemo(() => {
-    return new THREE.SpriteMaterial({
+    const mat = new THREE.SpriteMaterial({
       map: texture,
       color,
       transparent: true,
@@ -35,59 +29,71 @@ export const LightningRing = ({
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
-  }, [texture, color]);
+
+    const inner = new THREE.Sprite(mat);
+    inner.scale.set(radius * 4, radius * 4, 1);
+    g.add(inner);
+
+    const outer = new THREE.Sprite(mat.clone());
+    (outer.material as THREE.SpriteMaterial).opacity = 0.45;
+    outer.scale.set(radius * 6, radius * 6, 1);
+    g.add(outer);
+
+    const ring1 = new THREE.Mesh(
+      new THREE.TorusGeometry(radius * 1.8, 0.01, 8, 32),
+      new THREE.MeshBasicMaterial({
+        color,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
+    );
+    ring1.rotation.x = Math.PI / 2;
+    g.add(ring1);
+
+    const ring2 = new THREE.Mesh(
+      new THREE.TorusGeometry(radius * 2.3, 0.008, 8, 32),
+      new THREE.MeshBasicMaterial({
+        color,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
+    );
+    ring2.rotation.y = Math.PI / 2;
+    g.add(ring2);
+
+    return g;
+  }, [texture, color, radius]);
+
+  // Attach to bone — automatically follows skeletal animation
+  useEffect(() => {
+    bone.add(group);
+    return () => {
+      bone.remove(group);
+      group.traverse((child) => {
+        if (child instanceof THREE.Mesh || child instanceof THREE.Sprite) {
+          (child as THREE.Mesh).geometry?.dispose();
+          ((child as THREE.Mesh).material as THREE.Material)?.dispose();
+        }
+      });
+    };
+  }, [bone, group]);
+
+  useEffect(() => {
+    group.visible = visible;
+  }, [group, visible]);
 
   useFrame(({ clock }) => {
-    if (!visible || !groupRef.current) return;
-
+    if (!visible) return;
     const t = clock.elapsedTime;
-
-    bone.updateWorldMatrix(true, false);
-
-    groupRef.current.position.setFromMatrixPosition(bone.matrixWorld);
-
-    groupRef.current.rotation.x += 0.01;
-    groupRef.current.rotation.y += 0.015;
-    groupRef.current.rotation.z += 0.02;
-
-    const s = 1 + Math.sin(t * 6) * 0.08;
-
-    groupRef.current.scale.setScalar(s);
+    group.rotation.x += 0.01;
+    group.rotation.y += 0.015;
+    group.rotation.z += 0.02;
+    group.scale.setScalar(50 * (1 + Math.sin(t * 6) * 0.08));
   });
 
-  return (
-    <group ref={groupRef} visible={visible}>
-      {/* 메인 glow */}
-      <sprite material={material} scale={[radius * 4, radius * 4, 1]} />
-
-      {/* 바깥 glow */}
-      <sprite material={material} scale={[radius * 6, radius * 6, 1]} />
-
-      {/* 회전 링 */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[radius * 1.8, 0.01, 8, 32]} />
-
-        <meshBasicMaterial
-          color={color}
-          transparent
-          opacity={0.8}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </mesh>
-
-      {/* 반대 회전 링 */}
-      <mesh rotation={[0, Math.PI / 2, 0]}>
-        <torusGeometry args={[radius * 2.3, 0.008, 8, 32]} />
-
-        <meshBasicMaterial
-          color={color}
-          transparent
-          opacity={0.5}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </mesh>
-    </group>
-  );
+  return null;
 };
