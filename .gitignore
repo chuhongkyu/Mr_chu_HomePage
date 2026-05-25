@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scss compiler artifacts (generated from .module.scss, not source)
+*.module.css
+*.module.css.map

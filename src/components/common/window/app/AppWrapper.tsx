@@ -3,10 +3,9 @@
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { motion } from "motion/react";
 
+import { useAppContext } from "@/components/common/window/app/AppContext";
 import AppLink from "@/components/common/window/app/AppLink";
 import { WithChildren } from "@/types/global";
-
-import { useAppContext } from "./AppContext";
 
 import styles from "@/style/page.module.scss";
 

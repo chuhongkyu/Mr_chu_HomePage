@@ -130,7 +130,7 @@ $bg-button: 2;
         height: auto;
       }
       p {
-        @include t8-medium;
+        @include t4-medium;
         & {
           color: $font-base-white;
           text-align: center;
@@ -181,7 +181,7 @@ $bg-button: 2;
             @include t2-medium;
           }
           p {
-            @include t9-medium;
+            @include t4-medium;
             & {
               display: block;
               margin-top: 0.8rem;
@@ -275,7 +275,7 @@ $bg-button: 2;
       }
     }
     .badge {
-      @include t6-medium;
+      @include t4-medium;
       & {
         color: #fff;
         background: rgb(46, 142, 214);
@@ -344,7 +344,7 @@ $bg-button: 2;
       justify-content: flex-start;
       align-items: center;
       h5 {
-        @include t5-medium;
+        @include t4-medium;
         &{
           margin-left: 4px;
           line-height: 130%;
@@ -436,7 +436,7 @@ $bg-button: 2;
           align-items: center;
           justify-content: center;
           padding: 4px 10px;
-          @include t7-medium;
+          @include t4-medium;
           & {
             color: $font-base-color;
             line-height: 135%;
@@ -631,7 +631,7 @@ $bg-button: 2;
       }
     }
     .font-app {
-      @include t5-medium;
+      @include t4-medium;
       & {
         white-space: pre-line;
         text-align: center;
@@ -661,7 +661,7 @@ $bg-button: 2;
     border: 3px solid rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.3);
-    @include t7-bold;
+    @include t4-bold;
     & {
       color: rgba(0, 0, 0, 0.3);
       cursor: pointer;
@@ -793,7 +793,7 @@ $bg-button: 2;
     a {
       .font-app {
         max-width: 60px;
-        @include t7-medium;
+        @include t4-medium;
       }
     }
   }

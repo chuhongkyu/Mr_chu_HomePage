@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cameraToggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: rgba(17, 24, 39, 0.8);
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    border-color: #5b8dd9;
+    color: #5b8dd9;
+  }
+
+  &.active {
+    border-color: #5b8dd9;
+    background: rgba(91, 141, 217, 0.15);
+    color: #5b8dd9;
+  }
+}

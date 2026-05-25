@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-import { AppIconWrapperProps, AppItem } from "./AppType";
+import { AppIconWrapperProps, AppItem } from "@/components/common/window/app/AppType";
 
 import styles from "@/style/page.module.scss";
 

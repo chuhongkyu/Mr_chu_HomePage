@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
 
+import { containerVariants } from "@/components/common/page/container/AnimatedVariants";
 import { WithChildren } from "@/types/global";
-
-import { containerVariants } from "./AnimatedVariants";
 
 const TextGroup = ({ children }: WithChildren) => {
   return (

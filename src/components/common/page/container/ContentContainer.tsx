@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IContentContainerProps } from "./ContainerType";
+import { IContentContainerProps } from "@/components/common/page/container/ContainerType";
 
 const ContentContainer = React.forwardRef<
   HTMLDivElement,

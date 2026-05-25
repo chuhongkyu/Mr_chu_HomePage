@@ -16,4 +16,5 @@ export interface IModalRightContainer {
   header?: ReactNode;
   children: ReactNode;
   scroll?: boolean;
+  fullWidth?: boolean;
 }

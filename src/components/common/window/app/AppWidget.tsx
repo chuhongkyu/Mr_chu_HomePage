@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { motion } from "motion/react";
 
-import { widgetApps } from "./AppData";
-import AppLink from "./AppLink";
-import { AppItem } from "./AppType";
-import MailApp from "./MailApp";
+import { widgetApps } from "@/components/common/window/app/AppData";
+import AppLink from "@/components/common/window/app/AppLink";
+import { AppItem } from "@/components/common/window/app/AppType";
+import MailApp from "@/components/common/window/app/MailApp";
 
 import styles from "@/style/page.module.scss";
 

@@ -2,10 +2,9 @@
 
 import { createContext, ReactNode, useContext, useReducer } from "react";
 
+import { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps } from "@/components/common/window/app/AppData";
+import { AppItem, AppMoveAction, Area } from "@/components/common/window/app/AppType";
 import { WithChildren } from "@/types/global";
-
-import { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps } from "./AppData";
-import { AppItem, AppMoveAction, Area } from "./AppType";
 
 const initialAreas: Area[] = [
   // 나를 소개하는 쪽 및 정적 페이지
