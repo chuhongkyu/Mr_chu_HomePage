@@ -10,11 +10,13 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  variant?: "full" | "half";
+  showCloseButton?: boolean;
 };
 
 const SPRING = { type: "spring", damping: 32, stiffness: 320 } as const;
 
-const BottomSheet = ({ isOpen, onClose, children }: Props) => {
+const BottomSheet = ({ isOpen, onClose, children, variant = "full", showCloseButton = false }: Props) => {
   const dragControls = useDragControls();
   const y = useMotionValue(0);
   const [visible, setVisible] = useState(false);
@@ -60,7 +62,7 @@ const BottomSheet = ({ isOpen, onClose, children }: Props) => {
       />
 
       <motion.div
-        className={styles.sheet}
+        className={variant === "half" ? styles.sheetHalf : styles.sheet}
         style={{ y }}
         drag="y"
         dragControls={dragControls}
@@ -76,9 +78,11 @@ const BottomSheet = ({ isOpen, onClose, children }: Props) => {
           <div className={styles.handle} />
         </div>
 
-        <button className={styles.closeBtn} onClick={closeSheet} aria-label="닫기">
-          <X size={20} />
-        </button>
+        {showCloseButton && (
+          <button className={styles.closeBtn} onClick={closeSheet} aria-label="닫기">
+            <X size={20} />
+          </button>
+        )}
 
         <div className={styles.content}>{children}</div>
       </motion.div>

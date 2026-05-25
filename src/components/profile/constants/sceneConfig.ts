@@ -16,7 +16,7 @@ export const CAMERA = {
     number,
     number,
   ],
-  target: [cx, 1, cz] as [number, number, number],
+  target: [cx, 1.5, cz] as [number, number, number],
 
   // atan2(offsetX, offsetZ) — OrbitControls 초기화 타이밍 없이 미리 계산
   initialAzimuth: Math.atan2(CAM_OFFSET_X, CAM_OFFSET_Z),

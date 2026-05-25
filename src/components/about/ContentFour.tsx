@@ -40,8 +40,8 @@ const ContentFour = () => {
 
         <AnimatedWrapper className="description">
           이후 더즈인터랙티브에 다니면서도 주말마다 Three.js 기반의
-          <b>&lsquo;개발자의 삶&rsquo;</b>이라는 3D 인터랙티브 프로젝트를 개인적으로
-          제작했어요.
+          <b>&lsquo;개발자의 삶&rsquo;</b>이라는 3D 인터랙티브 프로젝트를
+          개인적으로 제작했어요.
           <br />
           n년차 개발자를 선택한 뒤 마리오 캐릭터를 직접 움직이며 개발자의 삶을
           탐험하는 콘텐츠였고, 이 프로젝트를 계기로 패스트캠퍼스에서

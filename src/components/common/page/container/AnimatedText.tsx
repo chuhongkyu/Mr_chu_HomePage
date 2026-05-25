@@ -1,6 +1,9 @@
 import { motion } from "motion/react";
 
-import { itemVariants, textWrapperVariants } from "@/components/common/page/container/AnimatedVariants";
+import {
+  itemVariants,
+  textWrapperVariants,
+} from "@/components/common/page/container/AnimatedVariants";
 
 type ElementType = "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "b";
 

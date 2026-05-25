@@ -127,7 +127,7 @@ export const Player = ({ position }: Props) => {
         vertexShader: outlineVertexShader,
         fragmentShader: outlineFragmentShader,
         uniforms: {
-          outlineWidth: { value: 0.05 },
+          outlineWidth: { value: 0.007 },
         },
         side: THREE.BackSide,
       }),
@@ -220,16 +220,18 @@ export const Player = ({ position }: Props) => {
             {MESH_NAMES.map((name) => (
               <React.Fragment key={name}>
                 <skinnedMesh
+                  renderOrder={0}
+                  name={`${name}_outline`}
+                  geometry={nodes[name].geometry}
+                  material={outlineMaterial}
+                  skeleton={nodes[name].skeleton}
+                />
+                <skinnedMesh
+                  renderOrder={1}
                   receiveShadow
                   name={name}
                   geometry={nodes[name].geometry}
                   material={toonMaterial}
-                  skeleton={nodes[name].skeleton}
-                />
-                <skinnedMesh
-                  name={`${name}_outline`}
-                  geometry={nodes[name].geometry}
-                  material={outlineMaterial}
                   skeleton={nodes[name].skeleton}
                 />
               </React.Fragment>
