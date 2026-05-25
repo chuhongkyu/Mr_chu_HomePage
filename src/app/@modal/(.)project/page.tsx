@@ -8,7 +8,7 @@ import ProjectListSheet from "@/components/project/ProjectListSheet";
 export default function ProjectListModal() {
   const router = useRouter();
   return (
-    <BottomSheet isOpen={true} onClose={() => router.back()}>
+    <BottomSheet isOpen={true} onClose={() => router.back()} variant="half">
       <ProjectListSheet />
     </BottomSheet>
   );

@@ -12,7 +12,11 @@ void main() {
 
   vec4 worldPos = modelMatrix * vec4(transformed, 1.0);
   vec3 worldNormal = normalize(mat3(modelMatrix) * objectNormal);
-  worldPos.xyz += worldNormal * outlineWidth;
 
-  gl_Position = projectionMatrix * viewMatrix * worldPos;
+  // clip-space 팽창: 거리·각도에 상관없이 균일한 화면 두께
+  vec4 clipPos = projectionMatrix * viewMatrix * worldPos;
+  vec4 clipNormal = projectionMatrix * viewMatrix * vec4(worldNormal, 0.0);
+  clipPos.xy += normalize(clipNormal.xy) * outlineWidth * clipPos.w;
+
+  gl_Position = clipPos;
 }

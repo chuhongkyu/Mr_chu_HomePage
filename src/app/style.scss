@@ -12,15 +12,18 @@
   // ─── Theme tokens ──────────────────────────────────
   --color-font-base: #000000;
   --color-font-muted: #333333;
+  --color-font-invert: #f1f5f9;
   --color-bg-base: #ffffff;
   --color-bg-surface: #ffffff;
   --color-bg-surface-shadow: rgba(0, 0, 0, 0.1);
   --color-border: #e2e8f0;
+  --color-chip-active: #2a3038;
 }
 
 [data-theme="dark"] {
   --color-font-base: #f1f5f9;
   --color-font-muted: #94a3b8;
+  --color-font-invert: #000000;
   --color-bg-base: #0f172a;
   --color-bg-surface: #1e293b;
   --color-bg-surface-shadow: rgba(0, 0, 0, 0.4);
@@ -172,6 +175,7 @@ body {
 
 .text-group {
   .title {
+    display: block;
     @include ty(t10, medium, true);
     padding: max(5.208vw, 80px) 0 30px;
   }
