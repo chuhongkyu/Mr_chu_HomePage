@@ -67,7 +67,7 @@ export const SLIDE_CONFIGS: SlideConfig[] = [
   // 2 - 당근마켓
   {
     animation: "angry",
-    theme: { color: "#f29333" },
+    theme: { color: "#fcc038" },
     camera: {},
     effects: [
       { type: "lightning", boneKey: "spine001", radius: 0.35, color: 0xff4400 },

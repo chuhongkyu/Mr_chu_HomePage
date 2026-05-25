@@ -12,8 +12,9 @@ export type JumpTrailEffectProps = {
 const N_SPARKS = 12;
 const CIRCLE_R = 1.4;
 const SPARK_LEN = 1.2;
-const TUBE_R = 0.03;
+const TUBE_R = 0.05;
 const DURATION = 0.45;
+const SPARK_DURATIONS = [0.45, 1.2, 0.8] as const;
 
 export const JumpTrailEffect = ({
   playerPosition = [0, 0, 0],
@@ -24,11 +25,11 @@ export const JumpTrailEffect = ({
 
   const timerRef = useRef(-1);
   const startPos = useRef(new THREE.Vector3());
+  const sparkDurationsRef = useRef<number[]>(Array(N_SPARKS).fill(DURATION));
 
   const { rootGroup, circleMat, sparkMeshes, sparkMats } = useMemo(() => {
     const group = new THREE.Group();
 
-    // 원 라인 (thin 1px - circle은 1px로 충분)
     const circlePts = Array.from({ length: 65 }, (_, i) => {
       const a = (i / 64) * Math.PI * 2;
       return new THREE.Vector3(
@@ -48,7 +49,6 @@ export const JumpTrailEffect = ({
       new THREE.Line(new THREE.BufferGeometry().setFromPoints(circlePts), cMat)
     );
 
-    // 스파크: TubeGeometry로 굵기 구현
     const meshes: THREE.Mesh[] = [];
     const mats: THREE.MeshBasicMaterial[] = [];
     for (let i = 0; i < N_SPARKS; i++) {
@@ -59,7 +59,7 @@ export const JumpTrailEffect = ({
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
-      // 초기엔 빈 geometry — trigger 시 TubeGeometry로 교체
+
       const mesh = new THREE.Mesh(new THREE.BufferGeometry(), mat);
       group.add(mesh);
       meshes.push(mesh);
@@ -81,12 +81,15 @@ export const JumpTrailEffect = ({
       rootGroup.position.copy(startPos.current);
 
       const baseAngle = Math.random() * Math.PI * 2;
-      // 8개 중 2개를 롱 스파크로 고정
+
       const longIndices = new Set<number>();
       while (longIndices.size < 2)
         longIndices.add(Math.floor(Math.random() * N_SPARKS));
 
       for (let i = 0; i < N_SPARKS; i++) {
+        sparkDurationsRef.current[i] =
+          SPARK_DURATIONS[Math.floor(Math.random() * SPARK_DURATIONS.length)];
+
         const angle = baseAngle + (i / N_SPARKS) * Math.PI * 2;
         const tilt = angle + (Math.random() - 0.5) * 0.5;
         const radial = new THREE.Vector3(Math.cos(tilt), 0, Math.sin(tilt));
@@ -100,7 +103,6 @@ export const JumpTrailEffect = ({
 
         const len = SPARK_LEN * (0.6 + Math.random() * 0.8);
 
-        // 세그먼트 위치도 랜덤 (균등 간격 아님)
         const t1 = 0.2 + Math.random() * 0.2;
         const t2 = t1 + 0.2 + Math.random() * 0.25;
         const t3 = t2 + 0.15 + Math.random() * 0.2;
@@ -109,7 +111,7 @@ export const JumpTrailEffect = ({
         const b1 = (Math.random() - 0.5) * 0.55;
         const b2 = (Math.random() - 0.5) * 0.45;
         const b3 = (Math.random() - 0.5) * 0.3;
-        // 롱 스파크 2개는 y가 훨씬 높이 올라감
+
         const y1 = isLong
           ? 1.8 + Math.random() * 1.2
           : (Math.random() - 0.25) * 1.1;
@@ -145,13 +147,12 @@ export const JumpTrailEffect = ({
           ),
         ];
 
-        // TubeGeometry 교체
         sparkMeshes[i].geometry.dispose();
         sparkMeshes[i].geometry = new THREE.TubeGeometry(
           new THREE.CatmullRomCurve3(pts),
-          12, // tubular segments
+          12,
           TUBE_R,
-          5, // radial segments
+          5,
           false
         );
       }
@@ -173,9 +174,14 @@ export const JumpTrailEffect = ({
       return;
     }
 
-    const fade = Math.pow(1 - t / DURATION, 1.5);
-    circleMat.opacity = fade * 0.65;
-    sparkMats.forEach((m) => (m.opacity = fade * 0.95));
+    const circleFade = Math.pow(1 - t / DURATION, 1.5);
+    circleMat.opacity = circleFade * 0.65;
+
+    sparkMats.forEach((m, i) => {
+      const dur = sparkDurationsRef.current[i];
+      const fade = t >= dur ? 0 : Math.pow(1 - t / dur, 1.5);
+      m.opacity = fade * 0.95;
+    });
   });
 
   useEffect(() => {

@@ -11,11 +11,11 @@ const [cx, , cz] = GRID_CENTER;
 // 화면 좌 → 우 (카메라가 -X 방향을 바라보므로 Z축이 화면 좌우)
 const CURVE = new THREE.CatmullRomCurve3(
   [
-    new THREE.Vector3(cx - 2, 4.0, cz + 4),
-    new THREE.Vector3(cx - 3, 3.5, cz + 1.5),
-    new THREE.Vector3(cx - 3, 3.0, cz + 0),
-    new THREE.Vector3(cx - 3, 3.5, cz - 1.5),
-    new THREE.Vector3(cx - 2, 4.0, cz - 4),
+    new THREE.Vector3(cx - 2, 5.0, cz + 4),
+    new THREE.Vector3(cx - 3, 4.5, cz + 1.5),
+    new THREE.Vector3(cx - 3, 4.0, cz + 0),
+    new THREE.Vector3(cx - 3, 4.5, cz - 1.5),
+    new THREE.Vector3(cx - 2, 5.0, cz - 4),
   ],
   false,
   "catmullrom",
