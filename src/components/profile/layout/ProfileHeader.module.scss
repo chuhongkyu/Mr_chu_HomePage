@@ -71,8 +71,10 @@
 }
 
 .coinIcon {
-  font-size: 13px;
-  line-height: 1;
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .coinCount {

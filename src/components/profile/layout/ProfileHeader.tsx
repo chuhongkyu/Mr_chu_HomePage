@@ -9,6 +9,7 @@ import styles from "@/components/profile/layout/ProfileHeader.module.scss";
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/project", label: "Project" },
   { href: "/game", label: "앱개발" },
   { href: "/resume", label: "Resume" },
 ];
@@ -33,7 +34,7 @@ const ProfileHeader = () => {
           ))}
         </div>
         <div className={styles.coinBadge}>
-          <span className={styles.coinIcon}>🪙</span>
+          <img src="/assets/icons/coin.svg" alt="coin" className={styles.coinIcon} />
           <span className={styles.coinCount}>{coins}</span>
         </div>
       </nav>

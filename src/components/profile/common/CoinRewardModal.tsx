@@ -36,13 +36,13 @@ const CoinRewardModal = ({ show, amount = 1, onClose }: Props) => {
             exit={{ scale: 0.8, y: -10, opacity: 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 28 }}
           >
-            <motion.span
+            <motion.img
+              src="/assets/icons/coin.svg"
+              alt="coin"
               className={styles.coin}
               animate={{ rotate: [0, -15, 15, -10, 10, 0] }}
               transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              🪙
-            </motion.span>
+            />
             <p className={styles.label}>+{amount} Coin</p>
             <p className={styles.sub}>나를 알아봐줘서 고마워요!</p>
           </motion.div>

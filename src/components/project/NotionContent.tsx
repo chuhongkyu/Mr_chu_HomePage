@@ -3,6 +3,8 @@
 import { NotionRenderer } from "react-notion-x";
 import type { ExtendedRecordMap } from "notion-types";
 
+import "react-notion-x/src/styles.css";
+
 type NotionContentProps = {
   recordMap: ExtendedRecordMap;
 };

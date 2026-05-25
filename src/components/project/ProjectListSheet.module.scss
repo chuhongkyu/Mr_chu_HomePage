@@ -1,0 +1,143 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0 20px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-font-base);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-font-muted);
+  margin-top: 4px;
+  letter-spacing: -0.01em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    background: rgba(34, 193, 195, 0.04);
+    border-color: rgba(34, 193, 195, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+.coinSlot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 19px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  &.earned {
+    border-color: #f4c430;
+    background: rgba(244, 196, 48, 0.12);
+    img {
+      filter: initial;
+      opacity: 1;
+    }
+  }
+  img {
+    filter: grayscale(100);
+    opacity: 0.5;
+  }
+}
+
+.coinImg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-font-base);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.company {
+  font-size: 12px;
+  color: var(--color-font-muted);
+  margin-top: 3px;
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  color: var(--color-border);
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+
+  .item:hover & {
+    color: rgba(34, 193, 195, 0.7);
+  }
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton {
+  height: 72px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, var(--color-border) 0%, var(--color-bg-surface) 50%, var(--color-border) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

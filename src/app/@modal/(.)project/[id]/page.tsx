@@ -1,3 +1,6 @@
+import "prismjs/themes/prism-tomorrow.css";
+import "react-notion-x/src/styles.css";
+
 import Loading from "@/components/common/Loading";
 import NotionContent from "@/components/project/NotionContent";
 import ProjectDetailShell from "@/components/project/ProjectDetailShell";
@@ -9,21 +12,16 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export const revalidate = 604800;
-
-export default async function ProjectDetailPage({ params }: Props) {
+export default async function ProjectDetailIntercepted({ params }: Props) {
   const { id } = await params;
+  const projbectData = await getProjectDetail({ id });
 
-  const projectData = await getProjectDetail({
-    id: id,
-  });
-
-  if (!projectData) return <Loading />;
+  if (!projbectData) return <Loading />;
 
   return (
     <ProjectDetailShell id={id}>
       <div className={styles["notion-wrapper"]}>
-        <NotionContent recordMap={projectData} />
+        <NotionContent recordMap={projbectData} />
       </div>
     </ProjectDetailShell>
   );
