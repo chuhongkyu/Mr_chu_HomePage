@@ -1,4 +1,4 @@
-import { determineBadgeColor } from "./Tools";
+import { determineBadgeColor } from "@/components/common/window/searchFrom/Tools";
 
 import styles from "@/style/page.module.scss";
 

@@ -1,4 +1,4 @@
-import { AppItem } from "./AppType";
+import { AppItem } from "@/components/common/window/app/AppType";
 
 const cloum1Apps: AppItem[] = [
   {

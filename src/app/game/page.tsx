@@ -1,9 +1,17 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import UnityContainer from "@/components/game/UnityContainer";
+import BottomSheet from "@/components/profile/common/BottomSheet";
 
-const UnityPage = () => {
-    return (
-        <UnityContainer/>
-    )
-}
+const GamePage = () => {
+  const router = useRouter();
+  return (
+    <BottomSheet isOpen={true} onClose={() => router.push("/")}>
+      <UnityContainer />
+    </BottomSheet>
+  );
+};
 
-export default UnityPage;
+export default GamePage;

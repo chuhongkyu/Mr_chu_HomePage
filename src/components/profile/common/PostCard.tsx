@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
+
 import type { Post } from "@/components/profile/constants/linkedinPosts";
-import styles from "./PostCard.module.scss";
+import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
+
+import styles from "@/components/profile/common/PostCard.module.scss";
 
 type Props = {
   post: Post;

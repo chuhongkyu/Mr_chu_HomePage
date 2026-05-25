@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 
 export type JumpTrailEffectProps = {
@@ -8,7 +9,7 @@ export type JumpTrailEffectProps = {
   color?: THREE.ColorRepresentation;
 };
 
-const N_SPARKS = 8;
+const N_SPARKS = 12;
 const CIRCLE_R = 1.4;
 const SPARK_LEN = 1.2;
 const TUBE_R = 0.03;
@@ -82,7 +83,8 @@ export const JumpTrailEffect = ({
       const baseAngle = Math.random() * Math.PI * 2;
       // 8개 중 2개를 롱 스파크로 고정
       const longIndices = new Set<number>();
-      while (longIndices.size < 2) longIndices.add(Math.floor(Math.random() * N_SPARKS));
+      while (longIndices.size < 2)
+        longIndices.add(Math.floor(Math.random() * N_SPARKS));
 
       for (let i = 0; i < N_SPARKS; i++) {
         const angle = baseAngle + (i / N_SPARKS) * Math.PI * 2;
@@ -108,9 +110,15 @@ export const JumpTrailEffect = ({
         const b2 = (Math.random() - 0.5) * 0.45;
         const b3 = (Math.random() - 0.5) * 0.3;
         // 롱 스파크 2개는 y가 훨씬 높이 올라감
-        const y1 = isLong ? 1.8 + Math.random() * 1.2 : (Math.random() - 0.25) * 1.1;
-        const y2 = isLong ? 1.0 + Math.random() * 0.8 : (Math.random() - 0.4) * 0.9;
-        const y3 = isLong ? 0.3 + Math.random() * 0.5 : (Math.random() - 0.5) * 0.5;
+        const y1 = isLong
+          ? 1.8 + Math.random() * 1.2
+          : (Math.random() - 0.25) * 1.1;
+        const y2 = isLong
+          ? 1.0 + Math.random() * 0.8
+          : (Math.random() - 0.4) * 0.9;
+        const y3 = isLong
+          ? 0.3 + Math.random() * 0.5
+          : (Math.random() - 0.5) * 0.5;
         const yEnd = (Math.random() - 0.4) * 0.4;
 
         const pts = [

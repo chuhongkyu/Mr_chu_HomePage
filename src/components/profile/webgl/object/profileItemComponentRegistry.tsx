@@ -1,8 +1,8 @@
 import React from "react";
 
-import type { ProfileItemDef } from "./profileItems";
-import IceCube from "./IceCube";
-import { Cluster } from "./Cluster";
+import { Cluster } from "@/components/profile/webgl/object/Cluster";
+import IceCube from "@/components/profile/webgl/object/IceCube";
+import type { ProfileItemDef } from "@/components/profile/webgl/object/profileItems";
 
 export type ItemRenderer = (def: ProfileItemDef) => React.ReactElement;
 

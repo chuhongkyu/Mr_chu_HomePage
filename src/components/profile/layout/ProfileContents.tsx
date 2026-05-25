@@ -2,20 +2,23 @@
 
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
+import PostCard from "@/components/profile/common/PostCard";
 import {
   LINKEDIN_POSTS,
   type Post,
 } from "@/components/profile/constants/linkedinPosts";
-import PostCard from "@/components/profile/common/PostCard";
-import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
-import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
-import styles from "./ProfileContents.module.scss";
+import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
+
+import styles from "@/components/profile/layout/ProfileContents.module.scss";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const getUrlSlideIndex = () => {
   if (typeof window === "undefined") return 0;
@@ -39,7 +42,7 @@ const ProfileContents = () => {
           slidesOffsetBefore={16}
           slidesOffsetAfter={16}
           breakpoints={{
-            1024: { slidesPerView: 1.8 },
+            1024: { slidesPerView: 1.8, slidesOffsetAfter: 600 },
           }}
           onSwiper={(swiper: SwiperType) => {
             const idx = getUrlSlideIndex();

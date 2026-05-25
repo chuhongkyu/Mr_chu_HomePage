@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
-import { useCoinStore } from "@/components/profile/store/useCoinStore";
-import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import { ChevronLeft } from "lucide-react";
-import styles from "./LinkedInPopup.module.scss";
+import { motion } from "motion/react";
+
+import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
+import { useCoinStore } from "@/components/profile/store/useCoinStore";
+import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
+
+import styles from "@/components/profile/common/LinkedInPopup.module.scss";
 
 type Props = {
   postId: string;
@@ -45,6 +47,12 @@ const LinkedInPopup = ({ postId, onClose }: Props) => {
 
   return (
     <>
+      <motion.div
+        className={styles.backdrop}
+        style={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        onClick={onClose}
+      />
       <motion.div
         className={styles.overlay}
         initial={{ y: "100%" }}

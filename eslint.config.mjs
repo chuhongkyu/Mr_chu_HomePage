@@ -2,6 +2,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import noRelativeImportPaths from "eslint-plugin-no-relative-import-paths";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,6 +16,7 @@ const eslintConfig = [
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
+      "no-relative-import-paths": noRelativeImportPaths,
     },
     rules: {
       "simple-import-sort/imports": [
@@ -34,6 +36,10 @@ const eslintConfig = [
         },
       ],
       "simple-import-sort/exports": "error",
+      "no-relative-import-paths/no-relative-import-paths": [
+        "error",
+        { allowSameFolder: false, rootDir: "src", prefix: "@" },
+      ],
       // 현재 발생하는 오류들 비활성화
       "jsx-a11y/alt-text": "off", // img alt 속성 관련
       "react/display-name": "off", // 컴포넌트 display name 관련

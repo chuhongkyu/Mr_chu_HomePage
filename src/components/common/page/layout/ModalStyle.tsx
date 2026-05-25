@@ -1,9 +1,8 @@
 import { LayoutGroup, motion } from "motion/react";
 
+import { ModalVariant } from "@/components/common/page/layout/ModalAnimation";
+import { useModal } from "@/components/common/page/layout/ModalProvider";
 import { WithChildren } from "@/types/global";
-
-import { ModalVariant } from "./ModalAnimation";
-import { useModal } from "./ModalProvider";
 
 import styles from "@/style/sub-page.module.scss";
 

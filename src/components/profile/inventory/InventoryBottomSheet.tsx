@@ -1,16 +1,16 @@
 import React from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { PROFILE_ITEMS } from "@/components/profile/object/profileItems";
+import { useProfileDragDropManager } from "@/components/profile/inventory/ProfileDragDropManager";
 import {
   useProfileActivePlacedObjects,
   useProfileCanRedo,
   useProfileCanUndo,
   useProfilePlacementStore,
 } from "@/components/profile/store/useProfilePlacementStore";
+import { PROFILE_ITEMS } from "@/components/profile/webgl/object/profileItems";
 
-import { useProfileDragDropManager } from "./ProfileDragDropManager";
-import styles from "./InventoryBottomSheet.module.scss";
+import styles from "@/components/profile/inventory/InventoryBottomSheet.module.scss";
 
 const InventoryBottomSheet = () => {
   const isOpen = useProfilePlacementStore((s) => s.isInventoryOpen);

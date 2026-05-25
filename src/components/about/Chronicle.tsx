@@ -1,17 +1,17 @@
 import { useMediaQuery } from "react-responsive";
 import { motion } from "motion/react";
 
-import DummyChronicle from "./DummyChronicle";
+import DummyChronicle from "@/components/about/DummyChronicle";
 
 import styles from "@/style/sub-page.module.scss";
 
 const CHRONICLE_LIST = [
-  { label: "당근마켓", delay: 4.5 },
-  { label: "(주)아이리브", delay: 3.8 },
-  { label: "패스트 캠퍼스 (r3f) 강사", delay: 3 },
-  { label: "(주)더즈 인터랙티브", delay: 2.3 },
+  { label: "당근마켓<br/>당근이네", delay: 4.5 },
+  { label: "(주)아이리브<br/>젠아이모", delay: 3.8 },
+  { label: "패스트 캠퍼스<br/>R3f 강사", delay: 3 },
+  { label: "(주)더즈인터랙티브", delay: 2.3 },
   { label: "마포구청일자리지원과<br/>(웹,앱개발)", delay: 1.6 },
-  { label: "Unity 게임 개발<br/>(IOS, AOS) 배포", delay: 1 },
+  { label: "모바일 게임 앱<br/>(스티커 슬라임)", delay: 1 },
 ];
 
 const Chronicle = () => {

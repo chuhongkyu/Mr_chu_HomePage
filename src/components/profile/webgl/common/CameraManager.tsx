@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
-import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
+import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 
 const CameraManager = () => {
   const controlsRef = useRef<OrbitControlsImpl>(null);

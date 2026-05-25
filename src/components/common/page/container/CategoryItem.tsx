@@ -1,9 +1,8 @@
 import { motion } from "motion/react";
 
+import AnimatedText from "@/components/common/page/container/AnimatedText";
+import { ItemProps } from "@/components/common/page/container/ContainerType";
 import { WithChildren } from "@/types/global";
-
-import AnimatedText from "./AnimatedText";
-import { ItemProps } from "./ContainerType";
 
 import styles from "@/style/sub-page.module.scss";
 

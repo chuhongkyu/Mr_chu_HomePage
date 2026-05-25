@@ -1,6 +1,6 @@
 import { Line } from "@react-three/drei";
 
-import { INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
+import { INVENTORY_GRID } from "@/components/profile/webgl/object/InventoryGridEngine";
 
 const { cols, rows, cellSize, originWorld } = INVENTORY_GRID;
 const [ox, , oz] = originWorld;

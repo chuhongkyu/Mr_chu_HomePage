@@ -1,12 +1,15 @@
-import * as THREE from "three";
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
-import { useGraph } from "@react-three/fiber";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useAnimations,useGLTF } from "@react-three/drei";
+import { useFrame,useGraph } from "@react-three/fiber";
+import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
-import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
+
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
-import { LightningRing } from "@/components/profile/common/LightningRing";
-import { JumpTrailEffect } from "@/components/profile/common/JumpTrailEffect";
+import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
+import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
+import { JumpTrailEffect } from "@/components/profile/webgl/common/JumpTrailEffect";
+import { LightningRing } from "@/components/profile/webgl/common/LightningRing";
+import { HatOnHead } from "@/components/profile/webgl/object/HatOnHead";
 
 type ActionName = "angry" | "idle" | "jump" | "t-pose";
 
@@ -35,6 +38,7 @@ type StickmanNodes = {
     spine001: THREE.Bone;
     calfR001: THREE.Bone;
     calfL001: THREE.Bone;
+    head: THREE.Bone;
   };
   materials: Record<string, THREE.Material>;
 };
@@ -54,32 +58,8 @@ const MESH_NAMES = [
   "mesh_upperarmR",
 ] as const;
 
-const outlineVertexShader = /* glsl */ `
-  #include <common>
-  #include <skinning_pars_vertex>
-  uniform float outlineWidth;
-
-  void main() {
-    vec3 objectNormal = normal;
-    vec3 transformed = position;
-
-    #include <skinbase_vertex>
-    #include <skinnormal_vertex>
-    #include <skinning_vertex>
-
-    vec4 worldPos = modelMatrix * vec4(transformed, 1.0);
-    vec3 worldNormal = normalize(mat3(modelMatrix) * objectNormal);
-    worldPos.xyz += worldNormal * outlineWidth;
-
-    gl_Position = projectionMatrix * viewMatrix * worldPos;
-  }
-`;
-
-const outlineFragmentShader = /* glsl */ `
-  void main() {
-    gl_FragColor = vec4(0.08, 0.08, 0.08, 1.0);
-  }
-`;
+import outlineFragmentShader from "@/shaders/outline.frag.glsl";
+import outlineVertexShader from "@/shaders/outlineSkinned.vert.glsl";
 
 type Props = {
   position?: [number, number, number];
@@ -94,11 +74,52 @@ export const Player = ({ position }: Props) => {
   const slideIndex = usePlayerStore((s) => s.slideIndex);
   const animation = usePlayerStore((s) => s.animation);
   const setAnimation = usePlayerStore((s) => s.setAnimation);
+  const viewed = usePostViewStore((s) => s.viewed);
+  const currentSlide = SLIDE_CONFIGS[slideIndex];
+  const showHat =
+    currentSlide?.reward === "hat" &&
+    !!currentSlide.postId &&
+    (viewed[currentSlide.postId] ?? false);
 
-  const toonMaterial = useMemo(
-    () => new THREE.MeshToonMaterial({ color: new THREE.Color("#f5f0eb") }),
-    []
+  const DEFAULT_CHAR_COLOR = "#f5f0eb";
+  const DEFAULT_EMISSIVE = "#000000";
+
+  const toonMaterial = useMemo(() => {
+    const idx = usePlayerStore.getState().slideIndex;
+    const initialColor =
+      SLIDE_CONFIGS[idx]?.characterColor ?? DEFAULT_CHAR_COLOR;
+    const initialEmissive =
+      SLIDE_CONFIGS[idx]?.characterEmissive ?? DEFAULT_EMISSIVE;
+    return new THREE.MeshToonMaterial({
+      color: new THREE.Color(initialColor),
+      emissive: new THREE.Color(initialEmissive),
+    });
+  }, []);
+
+  const targetCharColor = useRef(
+    new THREE.Color(
+      SLIDE_CONFIGS[usePlayerStore.getState().slideIndex]?.characterColor ??
+        DEFAULT_CHAR_COLOR
+    )
   );
+  const targetEmissive = useRef(
+    new THREE.Color(
+      SLIDE_CONFIGS[usePlayerStore.getState().slideIndex]?.characterEmissive ??
+        DEFAULT_EMISSIVE
+    )
+  );
+
+  useEffect(() => {
+    const c = SLIDE_CONFIGS[slideIndex]?.characterColor ?? DEFAULT_CHAR_COLOR;
+    const e = SLIDE_CONFIGS[slideIndex]?.characterEmissive ?? DEFAULT_EMISSIVE;
+    targetCharColor.current.set(c);
+    targetEmissive.current.set(e);
+  }, [slideIndex]);
+
+  useFrame(() => {
+    toonMaterial.color.lerp(targetCharColor.current, 0.06);
+    toonMaterial.emissive.lerp(targetEmissive.current, 0.06);
+  });
 
   const outlineMaterial = useMemo(
     () =>
@@ -194,6 +215,7 @@ export const Player = ({ position }: Props) => {
               <primitive object={nodes.spine001} />
               <primitive object={nodes.calfR001} />
               <primitive object={nodes.calfL001} />
+              {showHat && nodes.head && <HatOnHead headBone={nodes.head} />}
             </group>
             {MESH_NAMES.map((name) => (
               <React.Fragment key={name}>

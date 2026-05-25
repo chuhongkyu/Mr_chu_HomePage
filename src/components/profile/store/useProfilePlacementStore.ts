@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
-import { PROFILE_ITEM_MAP } from "@/components/profile/object/profileItems";
 import {
   canPlace,
   findFirstAvailablePosition,
-} from "@/components/profile/object/InventoryGridEngine";
+} from "@/components/profile/webgl/object/InventoryGridEngine";
+import { PROFILE_ITEM_MAP } from "@/components/profile/webgl/object/profileItems";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -48,9 +48,8 @@ const toPlacedItems = (objs: PlacedProfileObject[]): PlacedItem[] =>
 
 const MAX_HISTORY = 20;
 
-const getActive = (s: {
-  pendingObjects: PlacedProfileObject[];
-}) => s.pendingObjects;
+const getActive = (s: { pendingObjects: PlacedProfileObject[] }) =>
+  s.pendingObjects;
 
 const pushHistory = (s: {
   pendingObjects: PlacedProfileObject[];
@@ -68,8 +67,8 @@ const pushHistory = (s: {
 // ─── Store ────────────────────────────────────────────────────────────
 
 type State = {
-  placedObjects: PlacedProfileObject[];     // persisted to localStorage
-  pendingObjects: PlacedProfileObject[];    // always an array, used for rendering
+  placedObjects: PlacedProfileObject[]; // persisted to localStorage
+  pendingObjects: PlacedProfileObject[]; // always an array, used for rendering
   cancelSnapshot: PlacedProfileObject[] | null;
   isInventoryOpen: boolean;
   isEditMode: boolean;
@@ -105,7 +104,7 @@ export const useProfilePlacementStore = create<State & Actions>()(
   persist(
     immer((set) => ({
       placedObjects: [],
-      pendingObjects: [],   // initialized from placedObjects via onRehydrateStorage
+      pendingObjects: [], // initialized from placedObjects via onRehydrateStorage
       cancelSnapshot: null,
       isInventoryOpen: false,
       isEditMode: false,
@@ -155,7 +154,12 @@ export const useProfilePlacementStore = create<State & Actions>()(
           };
           if (!canPlace(toPlacedItems(s.pendingObjects), candidate)) return;
           pushHistory(s);
-          s.pendingObjects.push({ id: crypto.randomUUID(), code, gridX, gridY });
+          s.pendingObjects.push({
+            id: crypto.randomUUID(),
+            code,
+            gridX,
+            gridY,
+          });
           placed = true;
         });
         return placed;

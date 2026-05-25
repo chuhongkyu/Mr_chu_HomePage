@@ -1,8 +1,9 @@
 import { create } from "zustand";
+
 import {
-  SLIDE_CONFIGS,
   type PlayerAnimation,
   type SceneTheme,
+  SLIDE_CONFIGS,
 } from "@/components/profile/constants/slideConfig";
 
 export type { PlayerAnimation, SceneTheme };

@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
 
+import { wrapperVariants } from "@/components/common/page/container/AnimatedVariants";
 import { WithChildren } from "@/types/global";
-
-import { wrapperVariants } from "./AnimatedVariants";
 
 const AnimatedWrapper = ({
   children,

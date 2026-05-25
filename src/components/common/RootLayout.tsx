@@ -3,18 +3,17 @@
 import { Suspense, useEffect } from "react";
 
 import KeyboardShortcuts from "@/components/common/KeyboardShortcuts";
+import Loading from "@/components/common/Loading";
 import { AppProvider } from "@/components/common/window/app/AppContext";
 import AppInformation from "@/components/common/window/app/AppInformation";
 import AppWidgetClient from "@/components/common/window/app/AppWidgetClient";
 import AppWrapperClientLoader from "@/components/common/window/app/AppWrapperClientLoader";
 import FormContainer from "@/components/common/window/searchFrom/FormContainer";
+import ProfileContainer from "@/components/profile/ProfileContainer";
 import RQProvider from "@/components/providers/RQProvider";
 import { WithChildren } from "@/types/global";
 
-import Loading from "./Loading";
-import ProfileContainer from "@/components/profile/ProfileContainer";
-
-export default function RootLayout({ children }: WithChildren) {
+export default function RootLayout({ children, modal }: WithChildren & { modal?: React.ReactNode }) {
   useEffect(() => {
     const setHeight = () => {
       const height = window.innerHeight;
@@ -55,6 +54,8 @@ export default function RootLayout({ children }: WithChildren) {
       
         </AppProvider> */}
         <ProfileContainer />
+        {children}
+        {modal}
       </Suspense>
     </section>
   );

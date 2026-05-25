@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import styles from "./CoinRewardModal.module.scss";
+import { AnimatePresence,motion } from "motion/react";
+
+import styles from "@/components/profile/common/CoinRewardModal.module.scss";
 
 type Props = {
   show: boolean;

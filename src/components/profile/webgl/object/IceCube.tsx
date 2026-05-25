@@ -1,7 +1,7 @@
 import { RoundedBox } from "@react-three/drei";
 import { useTexture } from "@react-three/drei";
 
-import { INVENTORY_GRID } from "./InventoryGridEngine";
+import { INVENTORY_GRID } from "@/components/profile/webgl/object/InventoryGridEngine";
 
 const { cellSize } = INVENTORY_GRID;
 const GAP = 0.4;

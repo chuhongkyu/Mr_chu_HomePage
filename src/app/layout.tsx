@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import RootLayout from "@/components/common/RootLayout";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
 
-import "./style.scss";
+import "@/app/style.scss";
 
 export const metadata: Metadata = {
   title: "FE | MR.CHU",
@@ -68,14 +68,16 @@ const notoSans = localFont({
 
 export default function Layout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
         <ReduxProvider>
-          <RootLayout>{children}</RootLayout>
+          <RootLayout modal={modal}>{children}</RootLayout>
         </ReduxProvider>
       </body>
     </html>

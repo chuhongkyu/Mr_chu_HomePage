@@ -19,7 +19,7 @@ export const LightningRing = ({
 
   const group = useMemo(() => {
     const g = new THREE.Group();
-    g.scale.setScalar(50); // counteract model's 0.02 scale → 1 unit = 1 world unit
+    g.scale.setScalar(50);
 
     const mat = new THREE.SpriteMaterial({
       map: texture,
@@ -68,7 +68,6 @@ export const LightningRing = ({
     return g;
   }, [texture, color, radius]);
 
-  // Attach to bone — automatically follows skeletal animation
   useEffect(() => {
     bone.add(group);
     return () => {

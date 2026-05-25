@@ -1,8 +1,10 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname,useRouter } from "next/navigation";
+
 import { useCoinStore } from "@/components/profile/store/useCoinStore";
-import styles from "./ProfileHeader.module.scss";
+
+import styles from "@/components/profile/layout/ProfileHeader.module.scss";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -19,21 +21,22 @@ const ProfileHeader = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        {NAV_ITEMS.map(({ href, label }) => (
-          <button
-            key={href}
-            className={`${styles.navItem} ${pathname === href ? styles.active : ""}`}
-            onClick={() => router.push(href)}
-          >
-            {label}
-          </button>
-        ))}
+        <div className={styles["nav-wrapper"]}>
+          {NAV_ITEMS.map(({ href, label }) => (
+            <button
+              key={href}
+              className={`${styles.navItem} ${pathname === href ? styles.active : ""}`}
+              onClick={() => router.push(href)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <div className={styles.coinBadge}>
+          <span className={styles.coinIcon}>🪙</span>
+          <span className={styles.coinCount}>{coins}</span>
+        </div>
       </nav>
-
-      <div className={styles.coinBadge}>
-        <span className={styles.coinIcon}>🪙</span>
-        <span className={styles.coinCount}>{coins}</span>
-      </div>
     </header>
   );
 };

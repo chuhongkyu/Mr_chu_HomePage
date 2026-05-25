@@ -1,3 +1,4 @@
+@use "@/style/variables" as *;
 @use "@/style/typography" as *;
 
 .backdrop {
@@ -70,5 +71,5 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
-  padding: 16px;
+  padding: 16px max(1.5625vw, 20px);
 }

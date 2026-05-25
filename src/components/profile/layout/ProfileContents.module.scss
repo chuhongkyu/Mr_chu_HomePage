@@ -1,10 +1,15 @@
 .contents {
   position: fixed;
   width: 100%;
+  display: flex;
+  justify-content: center;
   bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .swiper {
+  max-width: $max-width;
   width: 100%;
   padding-bottom: 24px;
 

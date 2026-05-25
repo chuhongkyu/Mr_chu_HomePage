@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
           loaders: ["@svgr/webpack"],
           as: "*.js",
         },
+        "*.glsl": {
+          loaders: ["raw-loader"],
+          as: "*.js",
+        },
       },
     },
   },
@@ -52,6 +56,11 @@ const nextConfig: NextConfig = {
     if (fileLoaderRule) {
       fileLoaderRule.exclude = /\.svg$/i;
     }
+
+    config.module.rules.push({
+      test: /\.glsl$/,
+      use: "raw-loader",
+    });
 
     return config;
   },

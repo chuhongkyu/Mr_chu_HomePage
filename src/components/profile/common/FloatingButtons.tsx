@@ -1,7 +1,9 @@
+import { Camera } from "lucide-react";
+
 import { useInventoryStore } from "@/components/profile/store/useInventoryStore";
 import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
+
 import styles from "@/components/profile/common/FloatingButtons.module.scss";
-import { Camera } from "lucide-react";
 
 const InventoryIcon = ({ size = 18 }: { size?: number }) => (
   <svg

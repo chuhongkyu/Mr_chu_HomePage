@@ -1,10 +1,9 @@
-import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 
+import { profileDragScreenPosition } from "@/components/profile/inventory/dragScreenPosition";
 import { useProfilePlacementStore } from "@/components/profile/store/useProfilePlacementStore";
-import { INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
-
-import { profileDragScreenPosition } from "./dragScreenPosition";
+import { INVENTORY_GRID } from "@/components/profile/webgl/object/InventoryGridEngine";
 
 const FLOOR_PLANE = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 const tempVec2 = new THREE.Vector2();

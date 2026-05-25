@@ -3,9 +3,8 @@
 import React, { createContext, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { ModalContextType } from "@/components/common/page/layout/ModalType";
 import { WithChildren } from "@/types/global";
-
-import { ModalContextType } from "./ModalType";
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 

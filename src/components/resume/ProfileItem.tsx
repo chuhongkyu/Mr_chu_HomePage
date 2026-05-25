@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 
-import { itemVariants } from "../common/page/container/AnimatedVariants";
+import { itemVariants } from "@/components/common/page/container/AnimatedVariants";
 
 import styles from "@/style/sub-page.module.scss";
 

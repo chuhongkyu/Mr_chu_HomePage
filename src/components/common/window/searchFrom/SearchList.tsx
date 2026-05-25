@@ -7,11 +7,10 @@ import Link from "next/link";
 import { motion } from "motion/react";
 
 import Loading from "@/components/common/Loading";
+import Item from "@/components/common/window/searchFrom/Item";
+import { IList } from "@/components/common/window/searchFrom/SearchType";
+import Tools from "@/components/common/window/searchFrom/Tools";
 import { setSearchWindow } from "@/store/searchWindowSlice";
-
-import Item from "./Item";
-import { IList } from "./SearchType";
-import Tools from "./Tools";
 
 import styles from "@/style/page.module.scss";
 

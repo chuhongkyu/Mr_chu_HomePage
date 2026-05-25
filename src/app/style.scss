@@ -159,7 +159,6 @@ body {
 
 .content-container {
   margin-bottom: 20px;
-  padding: 0 max(1.5625vw, 20px);
   ul {
     li {
       position: relative;
@@ -172,29 +171,23 @@ body {
 }
 
 .text-group {
-  // padding: 0 50px;
   .title {
-    @include ty(t10, medium);
-    line-height: 1.5;
-    letter-spacing: -0.02em;
+    @include ty(t10, medium, true);
     padding: max(5.208vw, 80px) 0 30px;
   }
   .sub-title {
-    @include ty(t8, medium);
-    line-height: 1.8;
-    letter-spacing: -0.02em;
+    @include ty(t8, medium, true);
     padding-bottom: 20px;
   }
   .description {
-    @include ty(t5, medium);
+    @include ty(t5, medium, true);
     line-height: 1.5;
     letter-spacing: -0.01em;
     text-align: left;
     margin-bottom: 20px;
     color: #333333;
     b {
-      @include ty(t4, bold);
-      text-decoration: underline;
+      @include ty(t5, bold, true);
     }
     .app-icon {
       display: block;
@@ -214,7 +207,7 @@ body {
     color: #515151;
   }
   .content {
-    @include ty(t8, medium);
+    @include ty(t8, medium, true);
     line-height: 1.8;
     letter-spacing: -0.02em;
     &:not(:last-of-type) {
@@ -255,11 +248,11 @@ body {
       padding: 30px 0 20px;
     }
     .content {
-      @include ty(t5, medium);
+      @include ty(t5, medium, true);
       padding-bottom: 15px;
       text-align: left;
       &.type1 {
-        @include ty(t5, medium);
+        @include ty(t5, medium, true);
         line-height: 1.5;
         letter-spacing: -0.02em;
         text-align: left;
@@ -281,10 +274,5 @@ body {
   }
   .content-container {
     padding: 0;
-  }
-}
-
-@media screen and (max-width: 468px) {
-  .main {
   }
 }

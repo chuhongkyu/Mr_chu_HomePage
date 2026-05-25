@@ -1,27 +1,22 @@
 export const aboutData = [
   {
     id: "0",
-    name: "간단한 자기소개",
+    name: "자기소개",
     active: true,
   },
   {
     id: "1",
-    name: "어떻게 하면 소통을 잘할 수 있나요?",
+    name: "소통",
     active: false,
   },
   {
     id: "2",
-    name: "성능 최적화 경험",
+    name: "본인의 성장",
     active: false,
   },
   {
     id: "3",
-    name: "나의 성장 => 팀 성장",
-    active: false,
-  },
-  {
-    id: "4",
-    name: "3D 개발: 나의 여정",
+    name: "나의 여정",
     active: false,
   },
 ];

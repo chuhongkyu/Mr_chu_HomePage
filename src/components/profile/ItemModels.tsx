@@ -1,9 +1,10 @@
 import { Suspense } from "react";
+
 import InventoryItem from "@/components/profile/inventory/InventoryItem";
-import { PROFILE_ITEMS } from "@/components/profile/object/profileItems";
-import { PROFILE_ITEM_COMPONENT_REGISTRY } from "@/components/profile/object/profileItemComponentRegistry";
-import { INVENTORY_GRID } from "@/components/profile/object/InventoryGridEngine";
 import { useProfileActivePlacedObjects } from "@/components/profile/store/useProfilePlacementStore";
+import { INVENTORY_GRID } from "@/components/profile/webgl/object/InventoryGridEngine";
+import { PROFILE_ITEM_COMPONENT_REGISTRY } from "@/components/profile/webgl/object/profileItemComponentRegistry";
+import { PROFILE_ITEMS } from "@/components/profile/webgl/object/profileItems";
 
 const { cellSize } = INVENTORY_GRID;
 

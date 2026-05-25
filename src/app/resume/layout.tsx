@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 
-import ModalLayout from "@/components/common/page/layout/ModalLayout";
-
 const description =
-  "MR.CHU’s resume featuring roles at Ailive, DOSE Interactive, and Mapo-gu, with project highlights like Samsung, Lotte, KGC, and CASS. Also teaches creative frontend development at Fast Campus.";
+  "MR.CHU's resume featuring roles at Ailive, DOSE Interactive, and Mapo-gu, with project highlights like Samsung, Lotte, KGC, and CASS. Also teaches creative frontend development at Fast Campus.";
 
 export const metadata: Metadata = {
   title: "Resume | MR.CHU",
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <ModalLayout text="Resume">{children}</ModalLayout>;
+  return <>{children}</>;
 };
 
 export default Layout;

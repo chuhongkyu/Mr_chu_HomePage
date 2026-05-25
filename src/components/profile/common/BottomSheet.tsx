@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useDragControls, useMotionValue, animate } from "motion/react";
 import { X } from "lucide-react";
-import styles from "./BottomSheet.module.scss";
+import { animate,motion, useDragControls, useMotionValue } from "motion/react";
+
+import styles from "@/components/profile/common/BottomSheet.module.scss";
 
 type Props = {
   isOpen: boolean;
