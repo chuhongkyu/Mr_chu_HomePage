@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
-import { useAnimations,useGLTF } from "@react-three/drei";
-import { useFrame,useGraph } from "@react-three/fiber";
+import { useAnimations, useGLTF } from "@react-three/drei";
+import { useFrame, useGraph } from "@react-three/fiber";
 import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
 
@@ -215,7 +215,9 @@ export const Player = ({ position }: Props) => {
               <primitive object={nodes.spine001} />
               <primitive object={nodes.calfR001} />
               <primitive object={nodes.calfL001} />
-              {showHat && nodes.head && <HatOnHead headBone={nodes.head} />}
+              {showHat && nodes.head && (
+                <HatOnHead headBone={nodes.head} hatName="tophat" />
+              )}
             </group>
             {MESH_NAMES.map((name) => (
               <React.Fragment key={name}>

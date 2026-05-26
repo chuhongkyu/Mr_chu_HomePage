@@ -2,13 +2,14 @@ import { useEffect, useMemo } from "react";
 import { createPortal } from "@react-three/fiber";
 import * as THREE from "three";
 
-import { Hat } from "@/components/profile/webgl/object/Hat";
+import { Hats, HatName } from "@/components/profile/webgl/object/Hats";
 
 type Props = {
   headBone: THREE.Bone;
+  hatName: HatName;
 };
 
-export const HatOnHead = ({ headBone }: Props) => {
+export const HatOnHead = ({ headBone, hatName }: Props) => {
   const group = useMemo(() => {
     const g = new THREE.Group();
     g.scale.setScalar(10);
@@ -23,5 +24,5 @@ export const HatOnHead = ({ headBone }: Props) => {
     };
   }, [headBone, group]);
 
-  return createPortal(<Hat />, group);
+  return createPortal(<Hats hatName={hatName} />, group);
 };
