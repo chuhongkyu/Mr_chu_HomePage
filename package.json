@@ -9,7 +9,8 @@
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "pr": "node script/create.mjs"
+    "pr": "node script/create.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
@@ -49,7 +50,9 @@
     "eslint-config-next": "15.2.8",
     "eslint-plugin-no-relative-import-paths": "^1.6.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
     "inquirer": "^13.2.0",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.6.2",
     "raw-loader": "^4.0.2",
     "sass": "^1.85.1",
