@@ -1,6 +1,6 @@
-import * as THREE from "three";
 import React, { useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
 import outlineFrag from "@/shaders/outline.frag.glsl";

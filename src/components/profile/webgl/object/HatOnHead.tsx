@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { createPortal } from "@react-three/fiber";
 import * as THREE from "three";
 
-import { Hats, HatName } from "@/components/profile/webgl/object/Hats";
+import { HatName, Hats } from "@/components/profile/webgl/object/Hats";
 
 type Props = {
   headBone: THREE.Bone;
