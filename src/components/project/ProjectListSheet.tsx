@@ -58,8 +58,8 @@ const ProjectListSheet = () => {
                 />
               </div>
               <div className={styles.info}>
-                <p className={styles.name}>{p.projectName}</p>
-                <p className={styles.company}>{p.company}</p>
+                <div className={styles.name}>{p.projectName}</div>
+                <div className={styles.company}>{p.company}</div>
               </div>
               <ChevronRight size={18} className={styles.chevron} />
             </li>

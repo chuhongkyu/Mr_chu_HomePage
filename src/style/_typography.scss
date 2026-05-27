@@ -30,16 +30,18 @@ $font-size-t8-static: 22px;
 $font-size-t9-static: 24px;
 $font-size-t10-static: 26px;
 
-// ── Line Height ─────────────────────────────────────────────
+// ── Line Height (unitless — relative to font-size) ──────────
 
-$line-height-t1: 0.9375rem; // 15px
-$line-height-t2: 1rem; // 16px
-$line-height-t3: 1.125rem; // 18px
-$line-height-t4: 1.1875rem; // 19px
-$line-height-t5: 1.375rem; // 22px
-$line-height-t6: 1.5rem; // 24px
-$line-height-t7: 1.6875rem; // 27px
-$line-height-t8: 1.875rem; // 30px
+$line-height-t1: 1.36; // 15/11
+$line-height-t2: 1.33; // 16/12
+$line-height-t3: 1.38; // 18/13
+$line-height-t4: 1.36; // 19/14
+$line-height-t5: 1.38; // 22/16
+$line-height-t6: 1.33; // 24/18
+$line-height-t7: 1.35; // 27/20
+$line-height-t8: 1.36; // 30/22
+$line-height-t9: 1.25; // 30/24
+$line-height-t10: 1.15; // 30/26
 
 // ── Font Weight ─────────────────────────────────────────────
 
@@ -86,8 +88,8 @@ $line-height-map: (
   t6: $line-height-t6,
   t7: $line-height-t7,
   t8: $line-height-t8,
-  t9: $line-height-t8,
-  t10: $line-height-t8,
+  t9: $line-height-t9,
+  t10: $line-height-t10,
 );
 
 $font-weight-map: (

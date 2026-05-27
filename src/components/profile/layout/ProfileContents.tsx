@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
+import posthog from "posthog-js";
 import type { Swiper as SwiperType } from "swiper";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -52,6 +53,10 @@ const ProfileContents = () => {
           onSlideChange={(swiper: SwiperType) => {
             const index = swiper.activeIndex;
             setSlideIndex(index);
+            posthog.capture("swipe_slide", {
+              slide_index: index,
+              animation: SLIDE_CONFIGS[index]?.animation,
+            });
             if (window.location.pathname === "/") {
               const url = new URL(window.location.href);
               url.searchParams.set("swiper", String(index));

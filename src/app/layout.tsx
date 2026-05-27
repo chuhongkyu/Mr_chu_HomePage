@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import localFont from "next/font/local";
 
 import RootLayout from "@/components/common/RootLayout";
+import { PostHogProvider } from "@/components/providers/PostHogProvider";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
 
 import "@/app/style.scss";
@@ -76,9 +77,11 @@ export default function Layout({
   return (
     <html lang="kr">
       <body className={`${notoSans.variable}`}>
-        <ReduxProvider>
-          <RootLayout modal={modal}>{children}</RootLayout>
-        </ReduxProvider>
+        <PostHogProvider>
+          <ReduxProvider>
+            <RootLayout modal={modal}>{children}</RootLayout>
+          </ReduxProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
