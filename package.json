@@ -26,6 +26,7 @@
     "motion": "^12.4.10",
     "next": "15.2.8",
     "notion-client": "^7.7.1",
+    "posthog-js": "^1.376.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-notion-x": "^7.10.0",

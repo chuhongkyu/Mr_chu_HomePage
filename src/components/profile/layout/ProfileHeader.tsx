@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import posthog from "posthog-js";
 
 import { useCoinStore } from "@/components/profile/store/useCoinStore";
 
@@ -39,7 +40,10 @@ const ProfileHeader = () => {
             <button
               key={href}
               className={`${styles.navItem} ${pathname === href ? styles.active : ""}`}
-              onClick={() => router.push(href)}
+              onClick={() => {
+                posthog.capture("nav_click", { page: href === "/" ? "Home" : label });
+                router.push(href);
+              }}
               aria-label={href === "/" ? "Home" : undefined}
             >
               {href === "/" ? <HomeIcon /> : label}
