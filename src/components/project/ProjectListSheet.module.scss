@@ -1,3 +1,5 @@
+@use "@/style/typography" as *;
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -6,14 +8,13 @@
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 700;
+  @include ty(t8, bold, true);
   letter-spacing: -0.03em;
   color: var(--color-font-base);
 }
 
 .subtitle {
-  font-size: 13px;
+  @include ty(t3, regular, true);
   color: var(--color-font-muted);
   margin-top: 4px;
   letter-spacing: -0.01em;
@@ -93,17 +94,16 @@
 }
 
 .name {
-  font-size: 15px;
-  font-weight: 600;
+  @include ty(t5, bold, true);
   color: var(--color-font-base);
   letter-spacing: -0.02em;
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: hidden;
   text-overflow: ellipsis;
 }
 
 .company {
-  font-size: 12px;
+  @include ty(t2, regular, true);
   color: var(--color-font-muted);
   margin-top: 3px;
   letter-spacing: -0.01em;

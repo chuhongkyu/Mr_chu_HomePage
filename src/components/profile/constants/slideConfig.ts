@@ -1,4 +1,10 @@
-export type PlayerAnimation = "angry" | "idle" | "jump" | "t-pose";
+export type PlayerAnimation =
+  | "angry"
+  | "idle"
+  | "jump"
+  | "t-pose"
+  | "running"
+  | "thinking";
 
 export type SceneTheme = {
   color: string;
