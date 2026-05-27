@@ -4,14 +4,17 @@ import { useFrame, useGraph } from "@react-three/fiber";
 import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
 
-import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+import {
+  PlayerAnimation,
+  SLIDE_CONFIGS,
+} from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 import { JumpTrailEffect } from "@/components/profile/webgl/common/JumpTrailEffect";
 import { LightningRing } from "@/components/profile/webgl/common/LightningRing";
 import { HatOnHead } from "@/components/profile/webgl/object/HatOnHead";
 
-type ActionName = "angry" | "idle" | "jump" | "t-pose";
+export type ActionName = PlayerAnimation;
 
 const LOOP_ONCE: Partial<Record<ActionName, true>> = { jump: true };
 
