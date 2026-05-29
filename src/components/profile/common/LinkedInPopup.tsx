@@ -103,6 +103,7 @@ const LinkedInPopup = ({ post, onClose }: Props) => {
               className={styles.iframe}
               frameBorder="0"
               allowFullScreen
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
             />
           ) : (
             <div className={styles.externalWrap}>
