@@ -10,10 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import PostCard from "@/components/profile/common/PostCard";
-import {
-  type Post,
-  POSTS,
-} from "@/components/profile/constants/posts";
+import { type Post, POSTS } from "@/components/profile/constants/posts";
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
 import { useCoinStore } from "@/components/profile/store/useCoinStore";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
@@ -75,9 +72,9 @@ const ProfileContents = () => {
           modules={[Pagination]}
           pagination={{ clickable: true }}
           spaceBetween={8}
-          slidesPerView={1.1}
-          slidesOffsetBefore={16}
-          slidesOffsetAfter={16}
+          slidesPerView={1.15}
+          slidesOffsetBefore={24}
+          slidesOffsetAfter={24}
           breakpoints={{
             1024: { slidesPerView: 1.8, slidesOffsetAfter: 600 },
           }}

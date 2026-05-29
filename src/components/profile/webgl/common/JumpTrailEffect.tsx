@@ -9,12 +9,30 @@ export type JumpTrailEffectProps = {
   color?: THREE.ColorRepresentation;
 };
 
-const N_SPARKS = 12;
+const N_SPARKS = 14;
 const CIRCLE_R = 1.4;
-const SPARK_LEN = 1.2;
-const TUBE_R = 0.05;
+const SPARK_LEN = 1.6;
+const TUBE_R = 0.04;
 const DURATION = 0.45;
 const SPARK_DURATIONS = [0.45, 1.2, 0.8] as const;
+
+const buildLightningPts = (
+  a: THREE.Vector3,
+  b: THREE.Vector3,
+  depth: number,
+  disp: number
+): THREE.Vector3[] => {
+  if (depth === 0) return [a, b];
+  const t = 0.4 + Math.random() * 0.2;
+  const mid = a.clone().lerp(b, t);
+  const dir = b.clone().sub(a);
+  const perp = new THREE.Vector3(-dir.z, 0, dir.x).normalize();
+  mid.addScaledVector(perp, (Math.random() - 0.5) * disp);
+  mid.y += (Math.random() - 0.3) * disp * 0.8;
+  const left = buildLightningPts(a, mid, depth - 1, disp * 0.55);
+  const right = buildLightningPts(mid, b, depth - 1, disp * 0.55);
+  return [...left, ...right.slice(1)];
+};
 
 export const JumpTrailEffect = ({
   playerPosition = [0, 0, 0],
@@ -102,57 +120,27 @@ export const JumpTrailEffect = ({
         );
 
         const len = SPARK_LEN * (0.6 + Math.random() * 0.8);
-
-        const t1 = 0.2 + Math.random() * 0.2;
-        const t2 = t1 + 0.2 + Math.random() * 0.25;
-        const t3 = t2 + 0.15 + Math.random() * 0.2;
-
         const isLong = longIndices.has(i);
-        const b1 = (Math.random() - 0.5) * 0.55;
-        const b2 = (Math.random() - 0.5) * 0.45;
-        const b3 = (Math.random() - 0.5) * 0.3;
 
-        const y1 = isLong
-          ? 1.8 + Math.random() * 1.2
-          : (Math.random() - 0.25) * 1.1;
-        const y2 = isLong
-          ? 1.0 + Math.random() * 0.8
-          : (Math.random() - 0.4) * 0.9;
-        const y3 = isLong
-          ? 0.3 + Math.random() * 0.5
-          : (Math.random() - 0.5) * 0.5;
-        const yEnd = (Math.random() - 0.4) * 0.4;
+        const end = new THREE.Vector3(
+          origin.x + radial.x * len,
+          isLong ? 2.2 + Math.random() * 1.0 : (Math.random() - 0.3) * 1.2,
+          origin.z + radial.z * len
+        );
 
-        const pts = [
-          origin.clone(),
-          new THREE.Vector3(
-            origin.x + radial.x * len * t1 + perp.x * b1,
-            y1,
-            origin.z + radial.z * len * t1 + perp.z * b1
-          ),
-          new THREE.Vector3(
-            origin.x + radial.x * len * t2 + perp.x * b2,
-            y2,
-            origin.z + radial.z * len * t2 + perp.z * b2
-          ),
-          new THREE.Vector3(
-            origin.x + radial.x * len * t3 + perp.x * b3,
-            y3,
-            origin.z + radial.z * len * t3 + perp.z * b3
-          ),
-          new THREE.Vector3(
-            origin.x + radial.x * len,
-            yEnd,
-            origin.z + radial.z * len
-          ),
-        ];
+        const zigzag = buildLightningPts(origin.clone(), end, 3, len * 0.45);
+
+        const path = new THREE.CurvePath<THREE.Vector3>();
+        for (let j = 0; j < zigzag.length - 1; j++) {
+          path.add(new THREE.LineCurve3(zigzag[j], zigzag[j + 1]));
+        }
 
         sparkMeshes[i].geometry.dispose();
         sparkMeshes[i].geometry = new THREE.TubeGeometry(
-          new THREE.CatmullRomCurve3(pts),
-          12,
+          path,
+          (zigzag.length - 1) * 2,
           TUBE_R,
-          5,
+          4,
           false
         );
       }
