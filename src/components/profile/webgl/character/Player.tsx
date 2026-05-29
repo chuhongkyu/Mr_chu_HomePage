@@ -131,18 +131,6 @@ export const Player = ({ position }: Props) => {
   useFrame((_, delta) => {
     toonMaterial.color.lerp(targetCharColor.current, 0.06);
     toonMaterial.emissive.lerp(targetEmissive.current, 0.06);
-
-    const cur = animationRef.current;
-    if (cur === "brush") {
-      brushTimerRef.current += delta;
-      if (brushTimerRef.current >= nextBrush01Ref.current) {
-        brushTimerRef.current = 0;
-        nextBrush01Ref.current = 5;
-        setAnimation("brush01");
-      }
-    } else if (cur !== "brush01") {
-      brushTimerRef.current = 0;
-    }
   });
 
   const outlineMaterial = useMemo(
@@ -163,8 +151,11 @@ export const Player = ({ position }: Props) => {
     animationRef.current = animation;
   }, [animation]);
 
-  const brushTimerRef = useRef(0);
-  const nextBrush01Ref = useRef(3 + Math.random() * 5);
+  useEffect(() => {
+    if (animation !== "brush") return;
+    const id = setTimeout(() => setAnimation("brush01"), 5000);
+    return () => clearTimeout(id);
+  }, [animation, setAnimation]);
 
   useEffect(() => {
     if (!actions[animation]) return;
