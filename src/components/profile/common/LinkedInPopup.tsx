@@ -22,11 +22,7 @@ type EmbedMode = "iframe" | "external";
 
 const getEmbedMode = (url?: string): EmbedMode => {
   if (!url) return "external";
-  if (
-    url.includes("linkedin.com") ||
-    url.includes("facebook.com") ||
-    url.includes("notion.site")
-  )
+  if (url.includes("linkedin.com") || url.includes("facebook.com"))
     return "iframe";
   return "external";
 };

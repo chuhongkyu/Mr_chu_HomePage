@@ -18,7 +18,7 @@ const MAX_STROKES = 3;
 
 const buildGeo = () => {
   const numPts = 2 + Math.floor(Math.random() * 5); // 5~9개 랜덤
-  const length = 10 + Math.random() * 4;
+  const length = 11 + Math.random() * 4;
   const angle = Math.random() * Math.PI;
   const dir = new THREE.Vector2(Math.cos(angle), Math.sin(angle));
   const perp = new THREE.Vector2(-dir.y, dir.x);
