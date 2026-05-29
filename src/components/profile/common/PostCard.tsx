@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
-import type { Post } from "@/components/profile/constants/linkedinPosts";
+import type { Post } from "@/components/profile/constants/posts";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 
 import styles from "@/components/profile/common/PostCard.module.scss";
@@ -59,7 +59,7 @@ const PostCard = ({ post, onClick }: Props) => {
         {post.url && (
           <span className={styles.source}>
             <ExternalLink size={10} />
-            linkedin.com
+            {new URL(post.url).hostname.replace("www.", "")}
           </span>
         )}
       </div>

@@ -29,25 +29,17 @@
     width: 6px;
     height: 6px;
     border-radius: 999px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: #000;
     opacity: 1;
     transition:
       width 0.2s,
       background-color 0.2s;
     margin: 0 !important;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
   }
 
   :global(.swiper-pagination-bullet-active) {
     width: 18px;
-    background-color: #222;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: #fff;
-    }
+    background-color: #fff;
   }
 }
 

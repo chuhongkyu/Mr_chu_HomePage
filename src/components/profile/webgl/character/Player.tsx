@@ -12,11 +12,19 @@ import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 import { JumpTrailEffect } from "@/components/profile/webgl/common/JumpTrailEffect";
 import { LightningRing } from "@/components/profile/webgl/common/LightningRing";
+import { BrushStick } from "@/components/profile/webgl/object/BrushStick";
 import { HatOnHead } from "@/components/profile/webgl/object/HatOnHead";
 
 export type ActionName = PlayerAnimation;
 
-const LOOP_ONCE: Partial<Record<ActionName, true>> = { jump: true };
+const LOOP_ONCE: Partial<Record<ActionName, true>> = {
+  jump: true,
+  brush01: true,
+};
+const LOOP_ONCE_RETURN: Partial<Record<ActionName, ActionName>> = {
+  jump: "idle",
+  brush01: "brush",
+};
 
 interface GLTFAction extends THREE.AnimationClip {
   name: ActionName;
@@ -38,6 +46,7 @@ type StickmanNodes = {
     thighL001: THREE.Bone;
     forearmL001: THREE.Bone;
     forearmR001?: THREE.Bone;
+    forearmR004?: THREE.Bone;
     spine001: THREE.Bone;
     calfR001: THREE.Bone;
     calfL001: THREE.Bone;
@@ -119,9 +128,21 @@ export const Player = ({ position }: Props) => {
     targetEmissive.current.set(e);
   }, [slideIndex]);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     toonMaterial.color.lerp(targetCharColor.current, 0.06);
     toonMaterial.emissive.lerp(targetEmissive.current, 0.06);
+
+    const cur = animationRef.current;
+    if (cur === "brush") {
+      brushTimerRef.current += delta;
+      if (brushTimerRef.current >= nextBrush01Ref.current) {
+        brushTimerRef.current = 0;
+        nextBrush01Ref.current = 5;
+        setAnimation("brush01");
+      }
+    } else if (cur !== "brush01") {
+      brushTimerRef.current = 0;
+    }
   });
 
   const outlineMaterial = useMemo(
@@ -141,6 +162,9 @@ export const Player = ({ position }: Props) => {
   useEffect(() => {
     animationRef.current = animation;
   }, [animation]);
+
+  const brushTimerRef = useRef(0);
+  const nextBrush01Ref = useRef(3 + Math.random() * 5);
 
   useEffect(() => {
     if (!actions[animation]) return;
@@ -167,7 +191,7 @@ export const Player = ({ position }: Props) => {
       const clipName = finished.getClip().name as ActionName;
       // animationRef로 현재 state 확인 - jump fadeOut 중 "angry"로 이미 전환됐으면 idle로 덮어쓰지 않음
       if (LOOP_ONCE[clipName] && animationRef.current === clipName) {
-        setAnimation("idle");
+        setAnimation(LOOP_ONCE_RETURN[clipName] ?? "idle");
       }
     };
     mixer.addEventListener("finished", onFinished);
@@ -176,6 +200,8 @@ export const Player = ({ position }: Props) => {
 
   const slideEffects = SLIDE_CONFIGS[slideIndex]?.effects ?? [];
   const isAngry = animation === "angry";
+  const isBrush = animation === "brush" || animation === "brush01";
+  const handBoneR = nodes.forearmR004;
 
   return (
     <>
@@ -221,6 +247,7 @@ export const Player = ({ position }: Props) => {
               {showHat && nodes.head && (
                 <HatOnHead headBone={nodes.head} hatName="tophat" />
               )}
+              {isBrush && handBoneR && <BrushStick handBone={handBoneR} />}
             </group>
             {MESH_NAMES.map((name) => (
               <React.Fragment key={name}>
