@@ -88,6 +88,7 @@ const LinkedInPopup = ({ post, onClose }: Props) => {
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
+        onClick={(e) => e.stopPropagation()}
         transition={{ ease: [0.32, 0.72, 0, 1], duration: 0.4 }}
       >
         <div className={styles.header}>
