@@ -7,6 +7,7 @@ import type { Swiper as SwiperType } from "swiper";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import PostCard from "@/components/profile/common/PostCard";
 import {
@@ -14,7 +15,9 @@ import {
   POSTS,
 } from "@/components/profile/constants/posts";
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+import { useCoinStore } from "@/components/profile/store/useCoinStore";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
+import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 
 import styles from "@/components/profile/layout/ProfileContents.module.scss";
 
@@ -30,7 +33,40 @@ const getUrlSlideIndex = () => {
 
 const ProfileContents = () => {
   const [activePost, setActivePost] = useState<Post | null>(null);
+  const [showReward, setShowReward] = useState(false);
   const setSlideIndex = usePlayerStore((s) => s.setSlideIndex);
+  const { viewed, markViewed } = usePostViewStore();
+  const earn = useCoinStore((s) => s.earn);
+
+  const handlePostClick = (post: Post) => {
+    if (post.url?.includes("notion.site")) {
+      window.open(post.url, "_blank");
+
+      if (!viewed[post.id]) {
+        let triggered = false;
+        const reward = () => {
+          if (triggered) return;
+          triggered = true;
+          document.removeEventListener("visibilitychange", onVisibility);
+          window.removeEventListener("focus", onFocus);
+          markViewed(post.id);
+          earn(1);
+          setShowReward(true);
+        };
+        const onVisibility = () => {
+          if (document.visibilityState === "visible") reward();
+        };
+        const onFocus = () => reward();
+
+        setTimeout(() => {
+          document.addEventListener("visibilitychange", onVisibility);
+          window.addEventListener("focus", onFocus, { once: true });
+        }, 500);
+      }
+      return;
+    }
+    setActivePost(post);
+  };
 
   return (
     <>
@@ -67,7 +103,7 @@ const ProfileContents = () => {
         >
           {POSTS.map((post) => (
             <SwiperSlide key={post.id} className={styles.slide}>
-              <PostCard post={post} onClick={() => setActivePost(post)} />
+              <PostCard post={post} onClick={() => handlePostClick(post)} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -80,6 +116,11 @@ const ProfileContents = () => {
           />
         )}
       </AnimatePresence>
+      <CoinRewardModal
+        show={showReward}
+        amount={1}
+        onClose={() => setShowReward(false)}
+      />
     </>
   );
 };
