@@ -11,7 +11,7 @@ const TextGroup = ({ children }: WithChildren) => {
       whileInView="visible"
       viewport={{
         once: true,
-        amount: 0.5,
+        amount: 0.2,
       }}
       className="text-group"
     >

@@ -10,9 +10,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import PostCard from "@/components/profile/common/PostCard";
 import {
-  LINKEDIN_POSTS,
   type Post,
-} from "@/components/profile/constants/linkedinPosts";
+  POSTS,
+} from "@/components/profile/constants/posts";
 import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 
@@ -65,7 +65,7 @@ const ProfileContents = () => {
           }}
           className={styles.swiper}
         >
-          {LINKEDIN_POSTS.map((post) => (
+          {POSTS.map((post) => (
             <SwiperSlide key={post.id} className={styles.slide}>
               <PostCard post={post} onClick={() => setActivePost(post)} />
             </SwiperSlide>
@@ -75,7 +75,7 @@ const ProfileContents = () => {
       <AnimatePresence>
         {activePost && (
           <LinkedInPopup
-            postId={activePost.id}
+            post={activePost}
             onClose={() => setActivePost(null)}
           />
         )}

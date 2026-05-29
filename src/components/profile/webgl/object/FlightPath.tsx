@@ -2,9 +2,12 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { GRID_CENTER } from "@/components/profile/webgl/object/InventoryGridEngine";
 import { PaperAirplane } from "@/components/profile/webgl/object/PaperAirplane";
+
+const GDC_INDEX = SLIDE_CONFIGS.findIndex((s) => s.postId === "7310031891129143297");
 
 const [cx, , cz] = GRID_CENTER;
 
@@ -57,7 +60,7 @@ const dashGroup = (() => {
 
 export const FlightPath = () => {
   const slideIndex = usePlayerStore((s) => s.slideIndex);
-  const show = slideIndex === 1;
+  const show = slideIndex === GDC_INDEX;
 
   const airplaneRef = useRef<THREE.Group>(null);
   const tRef = useRef(0);

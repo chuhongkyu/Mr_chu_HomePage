@@ -4,7 +4,9 @@ export type PlayerAnimation =
   | "jump"
   | "t-pose"
   | "running"
-  | "thinking";
+  | "thinking"
+  | "brush"
+  | "brush01";
 
 export type SceneTheme = {
   color: string;
@@ -52,7 +54,17 @@ export type SlideConfig = {
 };
 
 export const SLIDE_CONFIGS: SlideConfig[] = [
-  // 0 - 패캠
+  // 0 - 한국화 미디어 아트 (brush)
+  {
+    animation: "brush",
+    theme: { color: "#ffffff" },
+    camera: { azimuthOffset: 0.75 },
+    effects: [],
+    characterColor: "#ffffff",
+    characterEmissive: "#c8c0b8",
+    postId: "artme_brush",
+  },
+  // 1 - 패캠
   {
     animation: "idle",
     theme: { color: "#c9c1b4" },
@@ -61,7 +73,7 @@ export const SLIDE_CONFIGS: SlideConfig[] = [
     postId: "7122521989285625856",
     reward: "hat",
   },
-  // 1 - GDC
+  // 2 - GDC
   {
     animation: "jump",
     theme: { color: "#33ccf2" },
@@ -69,8 +81,9 @@ export const SLIDE_CONFIGS: SlideConfig[] = [
     effects: [{ type: "jumpTrail", boneKey: "spine001", color: 0xff9900 }],
     characterColor: "#b8d4f8",
     characterEmissive: "#4a90d9",
+    postId: "7310031891129143297",
   },
-  // 2 - 당근마켓
+  // 3 - 당근마켓
   {
     animation: "angry",
     theme: { color: "#fcc038" },

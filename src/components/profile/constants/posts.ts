@@ -7,7 +7,15 @@ export type Post = {
   url?: string;
 };
 
-export const LINKEDIN_POSTS: Post[] = [
+export const POSTS: Post[] = [
+  {
+    id: "artme_brush",
+    title: "현대 미술",
+    description:
+      "추홍규 @chu_hong_kyu, <샤갈>, 2020, 장지에 수비안료, 85x125cm #KEAs2021 #KEAs2021선정작가",
+    image: "/assets/og/post00.png",
+    url: "https://sprout-decision-ec5.notion.site/36fc588db9e980b5b3a7fd407fc3984c?pvs=73",
+  },
   {
     id: "7122521989285625856",
     title: "더 쉽고 편하게 만드는 3D 인터랙티브 웹 개발",
