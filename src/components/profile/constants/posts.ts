@@ -9,14 +9,6 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
-    id: "artme_brush",
-    title: "현대 미술",
-    description:
-      "추홍규 @chu_hong_kyu, <샤갈>, 2020, 장지에 수비안료, 85x125cm #KEAs2021 #KEAs2021선정작가",
-    image: "/assets/og/post00.png",
-    url: "https://sprout-decision-ec5.notion.site/36fc588db9e980b5b3a7fd407fc3984c?pvs=73",
-  },
-  {
     id: "7122521989285625856",
     title: "더 쉽고 편하게 만드는 3D 인터랙티브 웹 개발",
     description: "구현부터 최적화까지",
@@ -37,5 +29,13 @@ export const POSTS: Post[] = [
     description:
       "당근마켓, 당근이네에서 Software Engineer (Frontend) 포지션으로 근무. React · TypeScript 기반 프론트엔드 개발, 사용자 경험 개선 및 서비스 기능 개발에 참여.",
     image: "/assets/img/karrot.webp",
+  },
+  {
+    id: "artme_brush",
+    title: "현대 미술",
+    description:
+      "추홍규 @chu_hong_kyu, <샤갈>, 2020, 장지에 수비안료, 85x125cm #KEAs2021 #KEAs2021선정작가",
+    image: "/assets/og/post00.png",
+    url: "https://sprout-decision-ec5.notion.site/36fc588db9e980b5b3a7fd407fc3984c?pvs=73",
   },
 ];

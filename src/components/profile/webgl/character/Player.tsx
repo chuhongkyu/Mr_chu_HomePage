@@ -5,8 +5,8 @@ import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
 
 import {
+  getSlideConfig,
   PlayerAnimation,
-  SLIDE_CONFIGS,
 } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
@@ -84,10 +84,11 @@ export const Player = ({ position }: Props) => {
   const { nodes } = useGraph(clone) as unknown as StickmanNodes;
   const { actions, mixer } = useAnimations(animations, group);
   const slideIndex = usePlayerStore((s) => s.slideIndex);
+  const currentPostId = usePlayerStore((s) => s.currentPostId);
   const animation = usePlayerStore((s) => s.animation);
   const setAnimation = usePlayerStore((s) => s.setAnimation);
   const viewed = usePostViewStore((s) => s.viewed);
-  const currentSlide = SLIDE_CONFIGS[slideIndex];
+  const currentSlide = getSlideConfig(currentPostId);
   const showHat =
     currentSlide?.reward === "hat" &&
     !!currentSlide.postId &&
@@ -97,11 +98,9 @@ export const Player = ({ position }: Props) => {
   const DEFAULT_EMISSIVE = "#000000";
 
   const toonMaterial = useMemo(() => {
-    const idx = usePlayerStore.getState().slideIndex;
-    const initialColor =
-      SLIDE_CONFIGS[idx]?.characterColor ?? DEFAULT_CHAR_COLOR;
-    const initialEmissive =
-      SLIDE_CONFIGS[idx]?.characterEmissive ?? DEFAULT_EMISSIVE;
+    const config = getSlideConfig(usePlayerStore.getState().currentPostId);
+    const initialColor = config?.characterColor ?? DEFAULT_CHAR_COLOR;
+    const initialEmissive = config?.characterEmissive ?? DEFAULT_EMISSIVE;
     return new THREE.MeshToonMaterial({
       color: new THREE.Color(initialColor),
       emissive: new THREE.Color(initialEmissive),
@@ -110,23 +109,22 @@ export const Player = ({ position }: Props) => {
 
   const targetCharColor = useRef(
     new THREE.Color(
-      SLIDE_CONFIGS[usePlayerStore.getState().slideIndex]?.characterColor ??
+      getSlideConfig(usePlayerStore.getState().currentPostId)?.characterColor ??
         DEFAULT_CHAR_COLOR
     )
   );
   const targetEmissive = useRef(
     new THREE.Color(
-      SLIDE_CONFIGS[usePlayerStore.getState().slideIndex]?.characterEmissive ??
+      getSlideConfig(usePlayerStore.getState().currentPostId)?.characterEmissive ??
         DEFAULT_EMISSIVE
     )
   );
 
   useEffect(() => {
-    const c = SLIDE_CONFIGS[slideIndex]?.characterColor ?? DEFAULT_CHAR_COLOR;
-    const e = SLIDE_CONFIGS[slideIndex]?.characterEmissive ?? DEFAULT_EMISSIVE;
-    targetCharColor.current.set(c);
-    targetEmissive.current.set(e);
-  }, [slideIndex]);
+    const config = getSlideConfig(currentPostId);
+    targetCharColor.current.set(config?.characterColor ?? DEFAULT_CHAR_COLOR);
+    targetEmissive.current.set(config?.characterEmissive ?? DEFAULT_EMISSIVE);
+  }, [currentPostId]);
 
   useFrame((_, delta) => {
     toonMaterial.color.lerp(targetCharColor.current, 0.06);
@@ -189,7 +187,7 @@ export const Player = ({ position }: Props) => {
     return () => mixer.removeEventListener("finished", onFinished);
   }, [mixer, setAnimation]);
 
-  const slideEffects = SLIDE_CONFIGS[slideIndex]?.effects ?? [];
+  const slideEffects = getSlideConfig(currentPostId)?.effects ?? [];
   const isAngry = animation === "angry";
   const isBrush = animation === "brush" || animation === "brush01";
   const handBoneR = nodes.forearmR004;
