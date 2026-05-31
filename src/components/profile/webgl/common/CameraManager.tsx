@@ -6,17 +6,17 @@ import { useFrame } from "@react-three/fiber";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
-import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
+import { getSlideConfig } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 
 const CameraManager = () => {
   const controlsRef = useRef<OrbitControlsImpl>(null);
-  const slideIndex = usePlayerStore((s) => s.slideIndex);
+  const currentPostId = usePlayerStore((s) => s.currentPostId);
 
-  const slideIndexRef = useRef(slideIndex);
+  const currentPostIdRef = useRef(currentPostId);
   useEffect(() => {
-    slideIndexRef.current = slideIndex;
-  }, [slideIndex]);
+    currentPostIdRef.current = currentPostId;
+  }, [currentPostId]);
 
   useFrame(() => {
     const ctrl = controlsRef.current as any;
@@ -25,7 +25,7 @@ const CameraManager = () => {
     if (typeof ctrl.setAzimuthalAngle !== "function") return;
 
     const offset =
-      SLIDE_CONFIGS[slideIndexRef.current]?.camera?.azimuthOffset ?? 0;
+      getSlideConfig(currentPostIdRef.current)?.camera?.azimuthOffset ?? 0;
     const target = CAMERA.initialAzimuth + offset;
 
     const current = ctrl.getAzimuthalAngle();

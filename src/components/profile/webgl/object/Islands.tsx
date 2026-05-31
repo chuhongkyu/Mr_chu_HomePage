@@ -131,9 +131,8 @@ const IslandMesh = ({ def }: IslandMeshProps) => {
 // ── Islands ──────────────────────────────────────────────────────────────────
 
 export const Islands = () => {
-  const slideIndex = usePlayerStore((s) => s.slideIndex);
-  const animation = usePlayerStore((s) => s.animation);
-  const show = slideIndex === 1 && animation === "idle";
+  const currentPostId = usePlayerStore((s) => s.currentPostId);
+  const show = currentPostId === "7122521989285625856";
 
   if (!show) return null;
 

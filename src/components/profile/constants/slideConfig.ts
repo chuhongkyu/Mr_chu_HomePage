@@ -54,16 +54,6 @@ export type SlideConfig = {
 };
 
 export const SLIDE_CONFIGS: SlideConfig[] = [
-  // 0 - 한국화 미디어 아트 (brush)
-  {
-    animation: "brush",
-    theme: { color: "#ffffff" },
-    camera: { azimuthOffset: 0.75 },
-    effects: [],
-    characterColor: "#ffffff",
-    characterEmissive: "#c8c0b8",
-    postId: "artme_brush",
-  },
   // 1 - 패캠
   {
     animation: "idle",
@@ -100,5 +90,19 @@ export const SLIDE_CONFIGS: SlideConfig[] = [
     ],
     characterColor: "#FF6F0F",
     characterEmissive: "#f29333",
+    postId: "karrot",
+  },
+  // 0 - 한국화 미디어 아트 (brush)
+  {
+    animation: "brush",
+    theme: { color: "#ffffff" },
+    camera: { azimuthOffset: 0.75 },
+    effects: [],
+    characterColor: "#ffffff",
+    characterEmissive: "#c8c0b8",
+    postId: "artme_brush",
   },
 ];
+
+export const getSlideConfig = (postId: string): SlideConfig =>
+  SLIDE_CONFIGS.find((c) => c.postId === postId) ?? SLIDE_CONFIGS[0];

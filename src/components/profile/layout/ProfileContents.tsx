@@ -11,7 +11,6 @@ import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import PostCard from "@/components/profile/common/PostCard";
 import { type Post, POSTS } from "@/components/profile/constants/posts";
-import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
 import { useCoinStore } from "@/components/profile/store/useCoinStore";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
@@ -25,7 +24,7 @@ const getUrlSlideIndex = () => {
   if (typeof window === "undefined") return 0;
   const raw = new URLSearchParams(window.location.search).get("swiper");
   const idx = parseInt(raw ?? "0", 10);
-  return Math.min(Math.max(isNaN(idx) ? 0 : idx, 0), SLIDE_CONFIGS.length - 1);
+  return Math.min(Math.max(isNaN(idx) ? 0 : idx, 0), POSTS.length - 1);
 };
 
 const ProfileContents = () => {
@@ -81,14 +80,14 @@ const ProfileContents = () => {
           onSwiper={(swiper: SwiperType) => {
             const idx = getUrlSlideIndex();
             if (idx !== 0) swiper.slideTo(idx, 0);
-            setSlideIndex(idx);
+            setSlideIndex(idx, POSTS[idx].id);
           }}
           onSlideChange={(swiper: SwiperType) => {
             const index = swiper.activeIndex;
-            setSlideIndex(index);
+            setSlideIndex(index, POSTS[index].id);
             posthog.capture("swipe_slide", {
               slide_index: index,
-              animation: SLIDE_CONFIGS[index]?.animation,
+              post_id: POSTS[index]?.id,
             });
             if (window.location.pathname === "/") {
               const url = new URL(window.location.href);
