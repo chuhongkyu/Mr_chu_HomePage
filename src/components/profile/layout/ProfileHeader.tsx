@@ -41,7 +41,9 @@ const ProfileHeader = () => {
               key={href}
               className={`${styles.navItem} ${pathname === href ? styles.active : ""}`}
               onClick={() => {
-                posthog.capture("nav_click", { page: href === "/" ? "Home" : label });
+                posthog.capture("nav_click", {
+                  page: href === "/" ? "Home" : label,
+                });
                 router.push(href);
               }}
               aria-label={href === "/" ? "Home" : undefined}
@@ -49,14 +51,14 @@ const ProfileHeader = () => {
               {href === "/" ? <HomeIcon /> : label}
             </button>
           ))}
-        </div>
-        <div className={styles.coinBadge}>
-          <img
-            src="/assets/icons/coin.svg"
-            alt="coin"
-            className={styles.coinIcon}
-          />
-          <span className={styles.coinCount}>{coins}</span>
+          <div className={styles.coinBadge}>
+            <img
+              src="/assets/icons/coin.svg"
+              alt="coin"
+              className={styles.coinIcon}
+            />
+            <span className={styles.coinCount}>{coins}</span>
+          </div>
         </div>
       </nav>
     </header>

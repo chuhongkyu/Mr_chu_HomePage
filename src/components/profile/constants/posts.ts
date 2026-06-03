@@ -17,7 +17,7 @@ export const POSTS: Post[] = [
   },
   {
     id: "7310031891129143297",
-    title: "GDC",
+    title: "직접 만든 AI 서비스로 GDC 세계 무대에 서다",
     description:
       "센프란시스코에서의 GDC 참가 경험과 현장의 인사이트, 그리고 직접 만든 서비스를 고객들에게 소개하고 영업한 기록",
     image: "/assets/og/post2.jpg",
@@ -25,9 +25,9 @@ export const POSTS: Post[] = [
   },
   {
     id: "karrot",
-    title: "당근이네",
+    title: "당근이네, Software Engineer (Frontend)",
     description:
-      "당근마켓, 당근이네에서 Software Engineer (Frontend) 포지션으로 근무. React · TypeScript 기반 프론트엔드 개발, 사용자 경험 개선 및 서비스 기능 개발에 참여.",
+      "당근마켓, Software Engineer 포지션으로 근무.\n 기획부터 개발까지",
     image: "/assets/img/karrot.webp",
   },
   {
