@@ -1,0 +1,120 @@
+{
+  "$description": "Color tokens. DTCG format — Figma Variables 와 1:1 대응. $extensions.mode.dark 는 Figma Variables 의 Dark 모드에 해당한다.",
+
+  "gray": {
+    "$description": "중립 회색 램프. 사이트 전반의 텍스트/배경/보더 기본.",
+    "0": { "$type": "color", "$value": "#ffffff" },
+    "50": { "$type": "color", "$value": "#f8f8f8" },
+    "100": { "$type": "color", "$value": "#f5f5f5" },
+    "200": { "$type": "color", "$value": "#e8e8e8" },
+    "300": { "$type": "color", "$value": "#d4d4d4" },
+    "400": { "$type": "color", "$value": "#a3a3a3" },
+    "500": { "$type": "color", "$value": "#777777" },
+    "600": { "$type": "color", "$value": "#515151" },
+    "700": { "$type": "color", "$value": "#333333" },
+    "800": { "$type": "color", "$value": "#2c2c2c" },
+    "900": { "$type": "color", "$value": "#222222" },
+    "950": { "$type": "color", "$value": "#181818" },
+    "1000": { "$type": "color", "$value": "#000000" }
+  },
+
+  "slate": {
+    "$description": "차가운 중립 램프. 라이트/다크 테마 시맨틱 레이어 전용.",
+    "100": { "$type": "color", "$value": "#f1f5f9" },
+    "200": { "$type": "color", "$value": "#e2e8f0" },
+    "400": { "$type": "color", "$value": "#94a3b8" },
+    "700": { "$type": "color", "$value": "#334155" },
+    "800": { "$type": "color", "$value": "#1e293b" },
+    "900": { "$type": "color", "$value": "#0f172a" }
+  },
+
+  "brand": {
+    "$description": "프로필 씬의 액센트 블루.",
+    "500": { "$type": "color", "$value": "#5b8dd9" }
+  },
+
+  "sand": {
+    "$description": "메인 배경 그라디언트의 따뜻한 베이지.",
+    "50": { "$type": "color", "$value": "#f2f0eb" },
+    "100": { "$type": "color", "$value": "#eae8e2" }
+  },
+
+  "amber": {
+    "500": { "$type": "color", "$value": "#f4c430" }
+  },
+
+  "ink": {
+    "$description": "칩/뱃지용 짙은 청록빛 먹색.",
+    "800": { "$type": "color", "$value": "#2a3038" }
+  },
+
+  "alpha": {
+    "$description": "그림자/오버레이용 반투명 토큰.",
+    "black": {
+      "5": { "$type": "color", "$value": "rgba(0, 0, 0, 0.05)" },
+      "10": { "$type": "color", "$value": "rgba(0, 0, 0, 0.1)" },
+      "24": { "$type": "color", "$value": "rgba(0, 0, 0, 0.24)" },
+      "30": { "$type": "color", "$value": "rgba(0, 0, 0, 0.3)" },
+      "40": { "$type": "color", "$value": "rgba(0, 0, 0, 0.4)" },
+      "50": { "$type": "color", "$value": "rgba(0, 0, 0, 0.5)" },
+      "60": { "$type": "color", "$value": "rgba(0, 0, 0, 0.6)" },
+      "80": { "$type": "color", "$value": "rgba(0, 0, 0, 0.8)" }
+    },
+    "white": {
+      "20": { "$type": "color", "$value": "rgba(255, 255, 255, 0.2)" },
+      "30": { "$type": "color", "$value": "rgba(255, 255, 255, 0.3)" },
+      "40": { "$type": "color", "$value": "rgba(255, 255, 255, 0.4)" },
+      "50": { "$type": "color", "$value": "rgba(255, 255, 255, 0.5)" },
+      "60": { "$type": "color", "$value": "rgba(255, 255, 255, 0.6)" }
+    },
+    "brand": {
+      "15": { "$type": "color", "$value": "rgba(91, 141, 217, 0.15)" }
+    }
+  },
+
+  "semantic": {
+    "$description": "역할 기반 토큰. CSS custom property 로 출력되며 dark 모드를 가진다.",
+    "font": {
+      "base": {
+        "$type": "color",
+        "$value": "{gray.1000}",
+        "$extensions": { "mode": { "dark": "{slate.100}" } }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{gray.700}",
+        "$extensions": { "mode": { "dark": "{slate.400}" } }
+      },
+      "invert": {
+        "$type": "color",
+        "$value": "{slate.100}",
+        "$extensions": { "mode": { "dark": "{gray.1000}" } }
+      }
+    },
+    "bg": {
+      "base": {
+        "$type": "color",
+        "$value": "{gray.0}",
+        "$extensions": { "mode": { "dark": "{slate.900}" } }
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "{gray.0}",
+        "$extensions": { "mode": { "dark": "{slate.800}" } }
+      }
+    },
+    "bg-surface-shadow": {
+      "$type": "color",
+      "$value": "{alpha.black.10}",
+      "$extensions": { "mode": { "dark": "{alpha.black.40}" } }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{slate.200}",
+      "$extensions": { "mode": { "dark": "{slate.700}" } }
+    },
+    "chip-active": { "$type": "color", "$value": "{ink.800}" },
+    "bg1": { "$type": "color", "$value": "{sand.100}" },
+    "bg2": { "$type": "color", "$value": "{sand.50}" }
+  }
+}

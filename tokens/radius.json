@@ -1,0 +1,13 @@
+{
+  "$description": "Border radius scale. 20px(카드)와 pill(999px)이 이 사이트의 지배적인 형태 언어다.",
+  "none": { "$type": "dimension", "$value": "0px" },
+  "xs": { "$type": "dimension", "$value": "4px" },
+  "sm": { "$type": "dimension", "$value": "6px" },
+  "md": { "$type": "dimension", "$value": "8px" },
+  "lg": { "$type": "dimension", "$value": "12px" },
+  "xl": { "$type": "dimension", "$value": "16px" },
+  "2xl": { "$type": "dimension", "$value": "20px" },
+  "3xl": { "$type": "dimension", "$value": "24px" },
+  "pill": { "$type": "dimension", "$value": "999px" },
+  "full": { "$type": "dimension", "$value": "50%" }
+}

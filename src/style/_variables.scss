@@ -1,11 +1,14 @@
+@use "./tokens.generated" as *;
+// 레이아웃 상수. 색상은 tokens/color.json → _tokens.generated.scss 를 쓴다.
 $max-width: 1024px;
-
-$font-base-color: #000;
-$font-base-white: #fff;
-$font-light-black-color: #333333;
 
 $window-bar-height: 40px;
 $window-bar-index: 5;
 
-$bg-static-white: #fff;
-$chip-color: #2a3038;
+// ── 레거시 색상 별칭 ─────────────────────────────────────────
+// 신규 코드에서는 $color-* 토큰을 직접 사용할 것.
+$font-base-color: $color-gray-1000;
+$font-base-white: $color-gray-0;
+$font-light-black-color: $color-gray-700;
+$bg-static-white: $color-gray-0;
+$chip-color: $color-ink-800;
