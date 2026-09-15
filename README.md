@@ -1,165 +1,215 @@
-# 🔄 2025/05/31 리팩토링
-배포 주소
-- https://mr-chu-home-page.vercel.app/
+# MR.CHU — Design Engineering System
 
-## ✨ 주요 변경 사항 요약
-- 기존 프로젝트를 Next.js 프레임워크로 리팩토링
-- 호스팅 플랫폼: Netlify → Vercel로 이전
-- 합성 컴포넌트 패턴 도입 (특히 모달 구조에서 시도)
-- 스타일링 방식: styled-components → SCSS로 점진적 마이그레이션
-- 전역 상태 관리: atom → Redux Toolkit 도입
+> "I built my portfolio as a design engineering system."
 
-## 🍀 왜 Next.js를 도입했는가?
+프로젝트 나열형 포트폴리오에서 **"나는 이런 방식으로 디자인하고, 만들고, 시스템화한다"** 를 증명하는
+포트폴리오로 전환합니다. 문서로 설명하는 게 아니라, **이 사이트 자체가 그 시스템의 결과물**입니다.
 
-이전까지 저는 **CSR** 방식으로만 프로젝트를 진행하며, 부족한 SEO를 보완하기 위해 여러 시도를 해왔습니다.
+- 배포: https://mr-chu-home-page.vercel.app/
+- 변경 이력(리팩토링 히스토리): [docs/HISTORY.md](./docs/HISTORY.md)
 
-예를 들어, **더미 페이지를 만들어 검색엔진에 노출되도록 유도한 뒤, 실제 콘텐츠 페이지로 리다이렉트**하는 방식으로 우회적인 SEO 최적화를 시도하기도 했습니다.
+---
 
-하지만 시간이 지날수록 프로젝트에 담기는 경험 글과 콘텐츠 양이 늘어났고, 대부분의 글은 **Notion에 작성한 뒤 이를 동적으로 불러오는 구조**로 발전했습니다. 이로 인해 기존의 CSR 방식만으로는 한계가 명확했고, 제 글이 조금 더 검색엔진에 노출 될 수 있게 하는데에 욕구가 커져갔습니다.
-
-이러한 문제를 간단하게 해결하기 위해 선택한 것이 바로 **Next.js**였습니다. Next는 프레임 워크라서 동적 데이터를 정적으로 사전 렌더링(SSG)할 수 있는 기능을 제공하여, 콘텐츠가 검색엔진에 잘 노출되도록 만들 수 있습니다.
-
-이전에는 page router 기반에서 getStaticProps, getStaticPaths를 사용했지만, app router 구조에서는 이를 대신해 `generateStaticParams()` 를 활용하여 정적 페이지를 생성하고 있습니다.
-
-또한, 과거에는 sitemap 생성을 위해 next-sitemap 라이브러리를 사용했지만, 최근에는 Next.js 자체적으로 제공하는 `generateSitemaps()` 기능을 활용할 수 있어 훨씬 간단하게 SEO 설정을 관리할 수 있게 되었습니다.
-
-> 📌 generateSitemaps()는 Next.js 14부터 정식 도입되었으며, app 디렉토리 구조에서 metadata API와 함께 작동해 별도 설정 없이 자동으로 sitemap.xml을 생성해줍니다.
->
-## ✅ 합성 컴포넌트 패턴 도입
-최근에 알게 된 합성 컴포넌트(Compound Components) 패턴이 구조적으로 깔끔하고 확장성이 높아 보여 모달 컴포넌트에서 시도해봤습니다.
+## 🔗 Pipeline
 
 ```
-ModalStyle.Nav = ModalTopNav;
-ModalStyle.Content = ModalContent;
-
-export default ModalStyle;
-
-<ModalProvider>
-   <ModalStyle>
-      <ModalStyle.Nav>{text}</ModalStyle.Nav>
-      {children}
-   </ModalStyle>
-</ModalProvider>
+Figma
+  ↓  Design Tokens (variables → SCSS/TS)
+React Components
+  ↓
+Storybook
+  ↓
+3D Components (R3F / Three.js)
+  ↓
+Blender Scenes / Assets (.glb)
+  ↓
+Production Portfolio (Vercel)
 ```
 
-## 🎨 스타일링 & 상태 관리 방식 변경의 이유
-이번 리팩토링 과정에서 스타일링 방식과 전역 상태 관리 방식도 최근 트렌드에 맞춰 점진적으로 변경하고 있습니다.
+한 줄 요약: **Figma에서 만든 디자인을 실제 코드 시스템으로 연결할 수 있다.**
+Figma 전문 디자이너임을 증명하는 게 아니라, **연결하는 사람**임을 보여주는 것이 목표.
 
-스타일링: styled-components → SCSS
+### 비중 (의도적으로 이렇게 배분)
 
-상태 관리: atom 기반 → Redux Toolkit
-
-두 가지 모두 현재는 업계에서 점점 덜 사용되는 추세이기 때문에 변경을 결정하게 되었습니다.
-
-💅 styled-components → SCSS
-styled-components는 한때 매우 인기 있었지만, 최근에는 CSS Modules, SCSS, Tailwind CSS 등 더 가볍고 단순한 스타일링 방식들이 주로 사용되고 있습니다. 특히 Next.js에서는 별다른 설정 없이 SCSS를 사용할 수 있어 마이그레이션이 간편했고, 개인적으로도 SCSS가 더 익숙하고 빠르게 작업할 수 있어 전환을 결정했습니다.
-
-🔄 atom → Redux Toolkit
-atom을 초기에는 사용 했지만, 해당 라이브러리의 핵심 개발팀이 해체되었고 이번 리팩토링에서는 Redux Toolkit을 한 번 정식으로 다시 써보며 구조적으로 정리하고자 했습니다.
-
-
-
-# 2024/01/18 vite 프레임워크로 변경
-- Vite 추가
-
-# 2023/11/16 Notion API로 변경
-
-문제 발생 
-- 매번 홈페이지를 관리하기에 부담을 느낌
-- 노션 데이터 베이스 api 활용하기로함.
-- api/get/projectList => api/notion/projectList 변경
-- 프론트에서 page id로 노션에 page 블록 데이터를 얻고 그것을 마크다운으로 받아 리액트에서 보여줌
-
-----
-
-# 2023/11/10 백엔드 구축
-
-- Node.js
-- koyeb로 배포
-- (https://developed-heath-mr-chu.koyeb.app/api-docs/)
-- 검색기능 추가
-- Swagger UI 추가 2024/03/01
+| 영역               | 비중 |
+| ------------------ | ---- |
+| Code               | 40%  |
+| 3D                 | 25%  |
+| Storybook / System | 15%  |
+| Figma              | 20%  |
 
 ---
 
+## 🗺️ 최종 사이트 구조
 
-# 2023/06/03 넷틀리파이 배포로 변경
+```
+MR.CHU — Design Engineer
+Frontend × Design × 3D
 
-- https://mrchu.netlify.app/
-- 네이버 사이트맵 추가
-
----
-
-# 2022/10/20 포트폴리오 타입스크립트로 변경
-
-- 취직후 SEO가 너무 중요하다 생각하여 리액트에 무엇을 더 할지 고민중
-- react-snap 추가
-- 구글 사이트맵 추가
-- robots.txt 추가
-
----
-
-# 2022/05/28 포트폴리오 홈페이지를 리액트로 변경해보기
-
-- react 활용
-- http://chuhongkyu.github.io/Mr_chu_HomePage
+01  Design System        Figma · Design Tokens · Components · Storybook   [ Figma ↔ Code ]
+02  3D Component System  Three.js · R3F · drei                            [ Storybook ]
+                         Carrot / Character / Plant / Scene / Animation
+03  Blender              Models · Materials · Scenes · Animations          [ Blender → GLB → R3F ]
+04  Shader Lab           GLSL · Noise · Distortion · Dissolve · Lighting
+05  Interactive Projects 당근이네 · Genaimo · Unity · ...
+06  About                Fine Art → Frontend → 3D → Design Engineering
+```
 
 ---
 
-# 2021/09/25
+## 📍 현재 상태
 
-- html/css/js로만 만든 포트폴리오 홈페이지
+### 토큰 파이프라인 (Phase 1 완료)
 
----
+```
+tokens/*.json                 ← 단일 소스. DTCG 포맷이라 Figma Variables 와 1:1
+   │  npm run tokens
+   ├─ src/style/_tokens.generated.scss   $color-* / $space-* / $radius-*
+   ├─ src/style/_theme.generated.scss    :root · [data-theme="dark"]
+   └─ src/style/tokens.generated.ts      R3F · Storybook 에서 쓰는 TS 객체
+```
 
-## home 화면
+- **DTCG(Design Tokens Community Group) 포맷**을 쓴다. Figma Variables 를 플러그인으로
+  export 하면 나오는 그 포맷이라, 나중에 Figma 쪽을 붙일 때 변환 레이어가 필요 없다.
+- 시맨틱 토큰의 `$extensions.mode.dark` 는 **Figma Variables 의 Mode** 에 대응한다.
+- SCSS 변수 파일과 `:root` 규칙 파일을 분리한다. 전자는 `next.config` 의 `additionalData`
+  로 모든 SCSS 에 주입되므로, 규칙이 섞여 있으면 CSS module 마다 `:root` 가 중복 출력된다.
+- 하드코딩 색상 **80건을 전부 토큰으로 치환**했다. SCSS 에 남은 raw hex 는 0건.
 
-<img style="width: 500px; height: auto;" src="https://github.com/chuhongkyu/Mr_chu_HomePage/blob/main/public/assets/home.png?raw=true" alt="페이지"/>
+### 이미 갖춰진 것
 
-- 인터랙티브한 강점을 보여주기 위한 포트폴리오.
-  지금까지 해온 프로젝트들을 감상하실 수 있습니다.
+- Next.js 15 (App Router) · TypeScript · SCSS · Vercel
+- R3F / drei / postprocessing 기반 3D 프로필 씬 (`src/components/profile/webgl/`)
+- Draco 압축 `.glb` 에셋 11개 (`public/assets/models/`)
+- 직접 작성한 GLSL 셰이더 (`src/shaders/` — background, outline, skinned outline)
+- Typography 토큰 (`src/style/_typography.scss`)
+- Notion 기반 프로젝트 콘텐츠, 합성 컴포넌트 패턴 모달
 
----
+### 아직 없는 것
 
-- 화면 구성
-  - Enter
-  - Home
-   - RESUME
-   - ABOUT
-   - GITHUB
-   - PROJECT (프로젝트)
-   - OTHERS
-
----
-
-- 라이브러리
-  - Recoil
-  - bnd
-  - style-components
-  - framer-motion
-  - react-tooltip
-  - react-icons
-  - react-router-sitemap
-  - react-snap
-
----
-
-- 관람 법
-  - Enter 화면에서 글자, icon 눌러서 접속
-  - Folder 순서 드래그 드롭으로 변경 가능
-  - 창 축소 해보면서 감상.
+- Figma 파일 자체 (토큰 이름만 먼저 맞춰둔 상태)
+- UI 컴포넌트 스토리 (Button / Input / Card / Modal)
+- Shader Lab 페이지
+- Blender → GLB 파이프라인 문서
 
 ---
 
-- SEO 향상법
-- react-helmet
+## 🛠 명령어
+
+| 명령                      | 설명                                                        |
+| ------------------------- | ----------------------------------------------------------- |
+| `npm run tokens`          | `tokens/*.json` → SCSS · TS 생성 (dev/build 앞에 자동 실행) |
+| `npm run dev`             | Next 개발 서버                                              |
+| `npm run storybook`       | Storybook (:6006)                                           |
+| `npm run build-storybook` | Storybook 정적 빌드                                         |
+
+> Node 22.19.0 (`.nvmrc`). Storybook 10 이 22.12+ 를 요구한다.
 
 ---
 
-리액트가 렌더링 되는 경우는 state,props가 변경되었을 떄
+## ✅ 작업 로드맵
 
-- 함수형 컴포넌트는 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.
-- 컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다.
-- 함수가 실행될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.
-- 컴포넌트는 자신의 state가 변경되거나, 부모에게서 받는 props가 변경되었을 때마다 리렌더링 된다.
-- 심지어 하위 컴포넌트에 최적화 설정을 해주지 않으면 부모에게서 받는 props가 변경되지 않았더라도 리렌더링 되는게 기본이다.
+한 번에 하나씩. 각 Phase는 독립적으로 배포 가능한 단위로 끊습니다.
+
+### Phase 0 — 기반 정리 ✅
+
+- [x] 이 README 작성, 기존 변경 이력은 `docs/HISTORY.md` 로 분리
+- [x] styled-components 제거 — 실사용처는 죽은 컴포넌트 1개뿐이었다
+      (`SearchKeyword.tsx`. `ThemeProvider` 가 없어 렌더되면 깨지는 상태였고,
+      SCSS 로 다시 쓴 `KeywordBtn.tsx` 가 이미 존재했다)
+- [x] `.nvmrc` 고정 (22.19.0)
+
+### Phase 1 — Design Tokens ✅
+
+- [x] 하드코딩 색상 전수 조사 → 고유값 40여 개 확인
+- [x] `tokens/color.json` · `space.json` · `radius.json` 작성 (DTCG 포맷)
+- [x] `script/build-tokens.mjs` — 별칭 해석 + 순환 참조 검출 + SCSS/TS 생성
+- [x] `_variables.scss` 의 레거시 색상 변수를 토큰 별칭으로 전환
+- [x] SCSS 전역의 raw hex / rgba 를 토큰으로 치환 (80건, 잔여 0건)
+- [x] `tokens.generated.ts` — R3F 와 Storybook 이 같은 값을 쓴다
+- [ ] Figma 무료 플랜에서 같은 이름의 Variables 생성 → 링크 확보
+
+> 색상값이 바뀐 건 3개뿐이다. `#111111→#181818`, `#2f2f2f→#2c2c2c`, `#e4e4e4→#e8e8e8`.
+> 모두 램프 정리를 위한 통합이고 육안으로 구분되지 않는 차이다. 나머지는 완전히 동일하다.
+
+### Phase 2 — Storybook (UI)
+
+- [x] Storybook 10 + `@storybook/nextjs` 셋업
+- [x] `next.config` 의 SCSS 토큰 주입 · SVGR · GLSL raw-loader 를 Storybook 에도 연결
+- [x] 툴바 Theme 스위처 — `[data-theme]` 를 토글해 토큰의 dark 모드를 확인
+- [x] **Design System / Tokens** 스토리 — `tokens.generated.ts` 를 순회해 그리므로
+      JSON 원본과 절대 어긋나지 않는다
+- [ ] `Button` (primary / secondary / ghost / icon × size)
+- [ ] `Input`, `Card`, `Modal`, `Toast`, `Tooltip`
+- [ ] Storybook 정적 빌드 공개 배포
+
+### Phase 3 — 3D Component System ⭐ 차별점
+
+- [x] `ModelStage` — 조명·환경·카메라를 props 로 노출하는 R3F 스테이지
+      (조명 기본값은 프로덕션 `Lights` 와 동일)
+- [x] `Bounds` 자동 프레이밍 — 스토리마다 `scale` 을 손으로 맞추지 않는다.
+      이 저장소의 GLB 자연 크기는 0.4(종이비행기) ~ 193(스틱맨) 으로 제각각이라
+      고정 배율이 의미가 없다. `Center top` 이 모델 밑면을 y=0 에 앉히고,
+      그리드·접지그림자 크기도 모델 폭에 비례시킨다
+- [x] `Hat` 스토리 — Default / OutlineOnly / Row.
+      back-face 쉐이더 아웃라인을 조명 0에서 확인할 수 있다
+- [x] `Cluster` 스토리 — `emissiveColor` 를 디자인 토큰에서 직접 주입
+- [x] `PaperAirplane` 스토리
+- [ ] `Player` (SkinnedMesh + 애니메이션) 스토리 — `animation` prop 표준화 필요
+- [ ] `Islands`, `InkStrokes`, `FlightPath` 승격
+- [ ] `scale` / `rotation` / `animation` props 네이밍 통일
+
+```tsx
+<ModelStage ambientIntensity={0} keyLightIntensity={0}>
+  <Hat />
+</ModelStage>
+```
+
+> ⚠️ `HatOnHead` 의 `scale.setScalar(10)` 을 스테이지로 가져오면 안 된다.
+> 그건 모자를 키우는 값이 아니라 192 단위짜리 스틱맨 리그의 본 좌표계에
+> 맞추는 보정값이라, 캐릭터 밖에서는 의미가 없다.
+
+### Phase 4 — Blender Asset Pipeline
+
+목표: "Blender 할 줄 알아요" 페이지 ❌ → **파이프라인을 실제로 보여주기** ⭕
+
+```
+Blender (Scene / Model / Material / Animation)
+  ↓  export
+.glb
+  ↓  Draco / gltf-transform
+Optimization
+  ↓
+Three.js / R3F
+  ↓
+React Component  →  Storybook  →  Portfolio
+```
+
+- [ ] 캐릭터 하나를 골라 전체 단계를 문서화 (before/after 폴리곤·용량 수치 포함)
+- [ ] 최적화 스크립트를 `script/` 에 커밋 (재현 가능하게)
+- [ ] 각 단계 스크린샷 + 최종 인터랙티브 결과를 한 페이지에 배치
+
+### Phase 5 — Shader Lab
+
+목표: 거대한 그래픽스 ❌ → 작고 명확한 셰이더 카탈로그 ⭕
+
+- [ ] `Gradient`, `Noise`, `Dissolve`, `Distortion`, `Glow`, `Water`
+- [ ] 각각 `GLSL → Three.js → React Component` 로 래핑
+- [ ] uniform 을 Storybook controls 로 노출
+- [ ] 기존 `src/shaders/` 의 outline 셰이더도 카탈로그에 편입
+
+### Phase 6 — 사이트 재구성
+
+- [ ] 01~06 섹션 구조로 네비게이션 재편
+- [ ] 각 섹션에서 Figma / Storybook / GitHub 로 연결되는 링크 배치
+- [ ] About: Fine Art → Frontend → 3D → Design Engineering 서사 정리
+- [ ] Vercel 배포 및 OG 이미지 갱신
+
+---
+
+## 📐 원칙
+
+1. **문서가 아니라 동작하는 결과물로 증명한다.** 스크린샷보다 조작 가능한 스토리.
+2. **없는 경험을 억지로 채우지 않는다.** 이미 가진 R3F·GLSL·실서비스 경험을 시스템화한다.
+3. **Figma를 크게 잡지 않는다.** 연결 고리 역할이면 충분하다.
+4. **한 프로젝트 안에서 증명한다.** Three.js, Blender, GLSL 을 별개 데모로 흩뿌리지 않는다.

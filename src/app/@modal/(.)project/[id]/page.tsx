@@ -1,4 +1,3 @@
-import Loading from "@/components/common/Loading";
 import NotionContent from "@/components/project/NotionContent";
 import ProjectDetailShell from "@/components/project/ProjectDetailShell";
 import { getProjectDetail } from "@/utils/api";
@@ -14,8 +13,6 @@ type Props = {
 export default async function ProjectDetailIntercepted({ params }: Props) {
   const { id } = await params;
   const projbectData = await getProjectDetail({ id });
-
-  if (!projbectData) return <Loading />;
 
   return (
     <ProjectDetailShell id={id}>
