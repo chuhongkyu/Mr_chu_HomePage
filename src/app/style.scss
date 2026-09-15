@@ -2,32 +2,16 @@
 @use "../style/_font" as *;
 @use "../style/_variables" as *;
 @use "../style/_typography" as *;
+// :root / [data-theme="dark"] 는 tokens/color.json 에서 생성된다.
+@use "../style/_theme.generated" as *;
 
 :root {
-  --color-bg1: #eae8e2;
-  --main-bg-color: linear-gradient(to bottom, #f2f0eb, #eae8e2);
-  --white: rgb(0, 0, 0);
-  --black: rgb(255, 255, 255);
-
-  // ─── Theme tokens ──────────────────────────────────
-  --color-font-base: #000000;
-  --color-font-muted: #333333;
-  --color-font-invert: #f1f5f9;
-  --color-bg-base: #ffffff;
-  --color-bg-surface: #ffffff;
-  --color-bg-surface-shadow: rgba(0, 0, 0, 0.1);
-  --color-border: #e2e8f0;
-  --color-chip-active: #2a3038;
-}
-
-[data-theme="dark"] {
-  --color-font-base: #f1f5f9;
-  --color-font-muted: #94a3b8;
-  --color-font-invert: #000000;
-  --color-bg-base: #0f172a;
-  --color-bg-surface: #1e293b;
-  --color-bg-surface-shadow: rgba(0, 0, 0, 0.4);
-  --color-border: #334155;
+  // 그라디언트는 단일 색이 아니므로 토큰을 조합해 여기서 만든다.
+  --main-bg-color: linear-gradient(
+    to bottom,
+    var(--color-bg2),
+    var(--color-bg1)
+  );
 }
 
 body {
@@ -69,7 +53,7 @@ body {
   width: 100%;
   height: 100dvh;
   background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: $color-gray-0;
   h1 {
     display: block;
     margin-bottom: 16px;
@@ -79,9 +63,9 @@ body {
   a {
     display: block;
     padding: 12px 20px;
-    background-color: #000;
+    background-color: $color-gray-1000;
     border-radius: 24px;
-    color: #fff;
+    color: $color-gray-0;
     font-size: 22px;
     line-height: 130%;
     text-decoration: none;
@@ -144,8 +128,8 @@ body {
     position: absolute;
     z-index: 5;
     bottom: 100%;
-    background-color: #fff;
-    color: #000;
+    background-color: $color-gray-0;
+    color: $color-gray-1000;
     padding: 6px 12px;
     border-radius: 6px;
     display: flex;
@@ -165,7 +149,7 @@ body {
   ul {
     li {
       position: relative;
-      color: #333333;
+      color: $color-gray-700;
       &:not(:last-of-type) {
         margin-bottom: 5px;
       }
@@ -189,7 +173,7 @@ body {
     letter-spacing: -0.01em;
     text-align: left;
     margin-bottom: 20px;
-    color: #333333;
+    color: $color-gray-700;
     b {
       @include ty(t5, bold, true);
     }
@@ -205,10 +189,10 @@ body {
   }
   .description-underline {
     display: block;
-    border-left: 2px solid #000;
+    border-left: 2px solid $color-gray-1000;
     padding-left: 1rem;
     text-decoration: underline;
-    color: #515151;
+    color: $color-gray-600;
   }
   .content {
     @include ty(t8, medium, true);

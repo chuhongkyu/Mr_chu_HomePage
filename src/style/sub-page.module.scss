@@ -24,15 +24,15 @@ $modal-top-nav-z-index: 9;
     position: relative;
     box-shadow:
       rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    background: #fff;
+      $color-alpha-black-30 0px 3px 7px -3px;
+    background: $color-gray-0;
     padding-top: $modal-top-nav-height;
     display: flex;
     overflow: hidden;
     .window-modal-top-nav {
       width: 100%;
       height: $modal-top-nav-height;
-      background: #2c2c2c;
+      background: $color-gray-800;
       padding: 0px 5px 0px 10px;
       display: flex;
       align-items: center;
@@ -82,7 +82,7 @@ $modal-top-nav-z-index: 9;
         h3 {
           @include ty(t5, medium, true);
           text-align: center;
-          color: #e4e4e4;
+          color: $color-gray-200;
         }
       }
     }
@@ -106,7 +106,7 @@ $modal-top-nav-z-index: 9;
           @include ty(t5, bold, true);
           margin-bottom: 12px;
           cursor: pointer;
-          color: #f8f8f8;
+          color: $color-gray-50;
 
           &.active {
             color: black;
@@ -142,7 +142,7 @@ $modal-top-nav-z-index: 9;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #fff;
+        background: $color-gray-0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.16);
         position: sticky;
         position: -webkit-sticky;
@@ -181,7 +181,7 @@ $modal-top-nav-z-index: 9;
   padding: 12px 0px;
   display: flex;
   align-items: center;
-  background: #fff;
+  background: $color-gray-0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -200,9 +200,9 @@ $modal-top-nav-z-index: 9;
   flex-shrink: 0;
   padding: 7px 16px;
   border-radius: 100px;
-  border: 1.5px solid #e8e8e8;
-  background: #f5f5f5;
-  color: #777;
+  border: 1.5px solid $color-gray-200;
+  background: $color-gray-100;
+  color: $color-gray-500;
   cursor: pointer;
   transition: all 0.18s ease;
   white-space: nowrap;
@@ -210,11 +210,11 @@ $modal-top-nav-z-index: 9;
   letter-spacing: -0.01em;
 
   &:hover {
-    border-color: rgba(0, 0, 0, 0.5);
+    border-color: $color-alpha-black-50;
   }
 
   &.chip-active {
-    border-color: rgba(0, 0, 0, 0.5);
+    border-color: $color-alpha-black-50;
     background: var(--color-chip-active);
     color: var(--color-font-invert);
   }
@@ -228,10 +228,10 @@ $modal-top-nav-z-index: 9;
   gap: 14px;
 
   .item-wrapper {
-    background: #fff;
+    background: $color-gray-0;
     border-radius: 18px;
     border: 1px solid rgba(0, 0, 0, 0.07);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 12px $color-alpha-black-5;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -253,7 +253,7 @@ $modal-top-nav-z-index: 9;
       align-items: center;
       gap: 8px;
       padding: 18px 20px 14px;
-      color: #111;
+      color: $color-gray-950;
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       letter-spacing: -0.01em;
     }
@@ -282,7 +282,7 @@ $modal-top-nav-z-index: 9;
         p {
           @include ty(t5, regular, true);
           line-height: 1.55;
-          color: #222;
+          color: $color-gray-900;
 
           &:last-child {
             @include ty(t5, regular, true);
@@ -292,7 +292,7 @@ $modal-top-nav-z-index: 9;
         }
 
         a p {
-          color: #222;
+          color: $color-gray-900;
         }
 
         span {
@@ -309,7 +309,7 @@ $modal-top-nav-z-index: 9;
 
       hr {
         border: none;
-        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        border-top: 1px dashed $color-alpha-black-10;
         margin: 6px 0;
       }
     }
@@ -329,7 +329,7 @@ $modal-top-nav-z-index: 9;
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent), url("/assets/img/profile_bg.jpg");
+  background-image: linear-gradient(to bottom, $color-alpha-black-60, transparent), url("/assets/img/profile_bg.jpg");
   background-size: cover;
   background-position: bottom center;
 }
@@ -463,7 +463,7 @@ $modal-top-nav-z-index: 9;
       position: absolute;
       top: 0;
       left: 0;
-      background: rgba(0, 0, 0, 0.05);
+      background: $color-alpha-black-5;
       content: "";
       width: 100%;
       height: 100%;

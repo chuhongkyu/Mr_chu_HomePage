@@ -1,4 +1,6 @@
-export const ModalVariant = {
+import type { Variants } from "motion/react";
+
+export const ModalVariant: Variants = {
   inital: {
     opacity: 0,
     scale: 0,

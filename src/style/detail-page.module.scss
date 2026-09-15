@@ -33,7 +33,7 @@
   blockquote {
     @include t4-regular;
     & {
-      color: #333;
+      color: $color-gray-700;
     }
   }
   ol {
@@ -61,7 +61,7 @@
   width: 200px;
   height: auto;
   z-index: 1;
-  color: #333;
+  color: $color-gray-700;
   background: rgb(246, 246, 246);
   border-radius: 8px;
   padding: 16px 14px;

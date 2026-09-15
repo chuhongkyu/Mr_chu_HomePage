@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-const path = require("path");
+import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -20,11 +20,12 @@ const nextConfig: NextConfig = {
   },
 
   sassOptions: {
-    includePaths: [
-      path.join(__dirname, "src/style"),
-      path.join(__dirname, "styles"),
-    ],
+    // includePaths 는 레거시 Sass API, loadPaths 는 모던 API 용 키다.
+    // Next 는 전자를, Storybook 의 sass-loader 는 후자를 읽으므로 둘 다 선언한다.
+    includePaths: [path.join(__dirname, "src/style")],
+    loadPaths: [path.join(__dirname, "src/style")],
     additionalData: `
+      @use "tokens.generated" as *;
       @use "variables" as *;
       @use "mixins" as *;
     `,

@@ -25,13 +25,13 @@
     background 0.15s ease;
 
   &:hover {
-    border-color: #5b8dd9;
-    color: #5b8dd9;
+    border-color: $color-brand-500;
+    color: $color-brand-500;
   }
 
   &.active {
-    border-color: #5b8dd9;
-    background: rgba(91, 141, 217, 0.15);
-    color: #5b8dd9;
+    border-color: $color-brand-500;
+    background: $color-alpha-brand-15;
+    color: $color-brand-500;
   }
 }

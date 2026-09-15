@@ -29,7 +29,7 @@
     width: 6px;
     height: 6px;
     border-radius: 999px;
-    background-color: #000;
+    background-color: $color-gray-1000;
     opacity: 1;
     transition:
       width 0.2s,
@@ -39,7 +39,7 @@
 
   :global(.swiper-pagination-bullet-active) {
     width: 18px;
-    background-color: #fff;
+    background-color: $color-gray-0;
   }
 }
 

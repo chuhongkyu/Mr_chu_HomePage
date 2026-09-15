@@ -1,3 +1,4 @@
+@use "../style/tokens.generated" as *;
 html,
 body,
 div,
@@ -139,8 +140,8 @@ table {
 
 ::-moz-selection,
 ::selection {
-  background: #181818;
-  color: #2f2f2f;
+  background: $color-gray-950;
+  color: $color-gray-800;
 }
 
 html {

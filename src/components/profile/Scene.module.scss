@@ -10,9 +10,9 @@
   right: 16px;
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid #334155;
+  border: 1px solid $color-slate-700;
   background: rgba(17, 24, 39, 0.8);
-  color: #94a3b8;
+  color: $color-slate-400;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -21,13 +21,13 @@
   z-index: 10;
 
   &:hover {
-    border-color: #5b8dd9;
-    color: #5b8dd9;
+    border-color: $color-brand-500;
+    color: $color-brand-500;
   }
 
   &.active {
-    border-color: #5b8dd9;
-    background: rgba(91, 141, 217, 0.15);
-    color: #5b8dd9;
+    border-color: $color-brand-500;
+    background: $color-alpha-brand-15;
+    color: $color-brand-500;
   }
 }

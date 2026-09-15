@@ -69,7 +69,7 @@
     background 0.2s ease;
 
   &.earned {
-    border-color: #f4c430;
+    border-color: $color-amber-500;
     background: rgba(244, 196, 48, 0.12);
     img {
       filter: initial;
