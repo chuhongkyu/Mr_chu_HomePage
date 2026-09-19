@@ -50,6 +50,21 @@ if (!Array.isArray(ids) || ids.length === 0) {
   throw new Error("pageIds 가 비어 있다. 백엔드를 확인할 것.");
 }
 
+// 씬이 직접 여는 글은 백엔드 목록과 무관하게 반드시 있어야 한다. 목록에서
+// 빠지면 이 디렉터리를 비울 때 같이 사라지고, 씬에서 "자세히 보기" 를 눌러야
+// 비로소 404 로 드러난다.
+const projects = fs.readFileSync(
+  path.join(ROOT, "src/components/profile/constants/projects.ts"),
+  "utf8"
+);
+const required = [...projects.matchAll(/articleId: "([^"]+)"/g)].map((m) => m[1]);
+const missing = required.filter((id) => !ids.includes(id));
+if (missing.length > 0) {
+  throw new Error(
+    `PROJECTS 의 articleId 가 pageIds 에 없다: ${missing.join(", ")}`
+  );
+}
+
 fs.rmSync(OUT_DIR, { recursive: true, force: true });
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
