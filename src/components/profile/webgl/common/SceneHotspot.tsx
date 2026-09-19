@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Html } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -9,9 +10,20 @@ import HotspotMarker, {
   type HotspotMarkerProps,
   type HotspotPlacement,
 } from "@/components/profile/common/HotspotMarker";
+import { layer } from "@/style/tokens.generated";
+
+import styles from "@/components/profile/webgl/common/SceneHotspot.module.scss";
 
 /** 화면 아래쪽 어디부터를 "아래"로 볼지. 0.5 면 화면 절반. */
 const LOWER_HALF = 0.42;
+
+/**
+ * 이보다 좁으면 카드를 화면 한가운데 띄운다.
+ *
+ * 카드가 268px 인데, 앵커가 화면 가운데쯤 있어도 좌우 어느 쪽으로 펴든
+ * 가장자리를 넘는다. 방향을 바꿔 봐야 반대쪽이 잘릴 뿐이다.
+ */
+const CENTER_CARD_MAX_WIDTH = 768;
 
 export type SceneHotspotProps = Omit<
   HotspotMarkerProps,
@@ -36,6 +48,7 @@ export type SceneHotspotProps = Omit<
 export const SceneHotspot = ({
   position,
   placement = "auto",
+  onMore,
   ...marker
 }: SceneHotspotProps) => {
   const anchorRef = useRef<THREE.Group>(null);
@@ -50,6 +63,17 @@ export const SceneHotspot = ({
 
   const camera = useThree((state) => state.camera);
 
+  /**
+   * 좁은 화면인지.
+   *
+   * `IntersectionObserver` 로 "실제로 잘렸는지"를 보는 방법도 있지만, 그건
+   * 잘린 뒤에야 알려 준다. 카드가 한 번 잘못 뜬 다음 튀어 옮겨 간다.
+   * 넓이는 그릴 때 이미 알 수 있으므로 미리 정한다.
+   */
+  const centered = useMediaQuery({
+    query: `(max-width: ${CENTER_CARD_MAX_WIDTH}px)`,
+  });
+
   const toggle = useCallback(() => {
     // 열기 직전에만 방향을 정한다. 열려 있는 동안 카드가 튀지 않게.
     if (!open && placement === "auto" && anchorRef.current) {
@@ -62,13 +86,35 @@ export const SceneHotspot = ({
     setOpen((prev) => !prev);
   }, [open, placement, camera]);
 
+  /**
+   * "자세히 보기"는 카드를 닫고 넘긴다.
+   *
+   * 열어 둔 채로 시트를 띄우면 배경막이 두 겹으로 깔리고, 시트를 닫았을 때
+   * 카드가 그대로 남아 있어 어디까지 되돌아간 건지 흐려진다.
+   */
+  const openMore = useMemo(
+    () =>
+      onMore
+        ? () => {
+            setOpen(false);
+            onMore();
+          }
+        : undefined,
+    [onMore]
+  );
+
   // 카드 밖을 누르거나 Esc 를 누르면 닫힌다.
   // 다른 핫스팟을 누르면 이쪽이 닫히고 저쪽이 열리므로, 한 번에 하나만 열린다.
   useEffect(() => {
     if (!open) return;
 
     const onPointerDown = (event: PointerEvent) => {
-      if (markerRef.current?.contains(event.target as Node)) return;
+      const target = event.target as Node;
+      if (markerRef.current?.contains(target)) return;
+      // 가운데 띄운 카드는 앵커 DOM 밖(body)에 있다. 표시로 알아본다.
+      if (target instanceof Element && target.closest("[data-hotspot-card]")) {
+        return;
+      }
       setOpen(false);
     };
     const onKeyDown = (event: KeyboardEvent) => {
@@ -87,11 +133,13 @@ export const SceneHotspot = ({
     <group ref={anchorRef} position={position}>
       {/* BottomSheet 가 배경막 10, 시트 11 을 쓴다.
           그보다 낮게 둬야 모달이 열렸을 때 점·선이 위로 뚫고 올라오지 않는다. */}
-      <Html zIndexRange={[9, 0]} style={{ pointerEvents: "none" }}>
-        <div ref={markerRef} style={{ pointerEvents: "auto" }}>
+      <Html zIndexRange={[layer["scene-html"], 0]} className={styles.layer}>
+        <div ref={markerRef} className={styles.marker}>
           <HotspotMarker
             {...marker}
+            onMore={openMore}
             placement={placement === "auto" ? resolved : placement}
+            centered={centered}
             open={open}
             onToggle={toggle}
           />

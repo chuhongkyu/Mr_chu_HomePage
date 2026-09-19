@@ -1,8 +1,12 @@
+@use "system" as *;
+
 .body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: $space-8 $space-8 $space-24;
+  // 좌우 여백은 BottomSheet(4px) + react-notion-x(16px) 로 충분하다.
+  // 여기서 또 주면 세 겹이 된다. 아래만 스크롤 끝 여유로 남긴다.
+  padding: 0 0 $space-24;
 }
 
 .center {

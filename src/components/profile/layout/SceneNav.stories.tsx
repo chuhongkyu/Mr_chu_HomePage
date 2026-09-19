@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import SceneNav from "@/components/profile/layout/SceneNav";
-import { color } from "@/style/tokens.generated";
+
+import styles from "@/components/profile/layout/SceneNav.stories.module.scss";
 
 /**
  * 씬 사이를 오가는 내비.
@@ -19,18 +20,7 @@ const meta = {
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          position: "relative",
-          height: 320,
-          background: `
-            repeating-linear-gradient(45deg,
-              ${color.daangn.garden} 0 24px,
-              ${color.daangn.fleamarket} 24px 48px,
-              ${color.daangn.room} 48px 72px)
-          `,
-        }}
-      >
+      <div className={styles.stage}>
         <Story />
       </div>
     ),
@@ -40,4 +30,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: { onOpenLink: () => {} },
+};

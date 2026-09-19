@@ -55,6 +55,17 @@ $color-semantic-chip-active: #2a3038;
 $color-semantic-bg1: #eae8e2;
 $color-semantic-bg2: #f2f0eb;
 
+// ── layer ───────────────────────────────────────────────────
+$layer-scene-html: 3;
+$layer-header: 5;
+$layer-nav: 6;
+$layer-hotspot-card: 8;
+$layer-sheet-backdrop: 10;
+$layer-sheet: 11;
+$layer-sheet-close: 20;
+$layer-popup: 100;
+$layer-toast: 200;
+
 // ── radius ──────────────────────────────────────────────────
 $radius-none: 0px;
 $radius-xs: 4px;

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X } from "lucide-react";
 import { animate,motion, useDragControls, useMotionValue } from "motion/react";
+
+import CloseButton from "@/components/profile/common/CloseButton";
 
 import styles from "@/components/profile/common/BottomSheet.module.scss";
 
@@ -79,9 +80,7 @@ const BottomSheet = ({ isOpen, onClose, children, variant = "full", showCloseBut
         </div>
 
         {showCloseButton && (
-          <button className={styles.closeBtn} onClick={closeSheet} aria-label="닫기">
-            <X size={20} />
-          </button>
+          <CloseButton className={styles.closeBtn} onClick={closeSheet} />
         )}
 
         <div className={styles.content}>{children}</div>

@@ -6,6 +6,8 @@ import HotspotMarker, {
 } from "@/components/profile/common/HotspotMarker";
 import { color } from "@/style/tokens.generated";
 
+import styles from "@/components/profile/common/HotspotMarker.stories.module.scss";
+
 /**
  * 당근 경험 씬의 구역 핫스팟.
  *
@@ -47,17 +49,14 @@ const Interactive = (args: HotspotMarkerProps) => {
   const up = args.placement === "up";
   const left = args.direction === "left";
 
+  const stage = [
+    styles.stage,
+    up ? styles.alignBottom : styles.alignTop,
+    left ? styles.alignRight : styles.alignLeft,
+  ].join(" ");
+
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: up ? "flex-end" : "flex-start",
-        justifyContent: left ? "flex-end" : "flex-start",
-        minHeight: 460,
-        padding: 60,
-        background: color.daangn.backdrop,
-      }}
-    >
+    <div className={stage}>
       <HotspotMarker
         {...args}
         open={open}

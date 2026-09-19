@@ -4,9 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
-import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import type { Post } from "@/components/profile/constants/posts";
-import { useCoinStore } from "@/components/profile/store/useCoinStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 
 import styles from "@/components/profile/common/LinkedInPopup.module.scss";
@@ -15,6 +13,13 @@ type Props = {
   post: Post;
   onClose: () => void;
 };
+
+/**
+ * 다 읽었다고 볼 때까지의 초.
+ *
+ * 예전에는 이 카운트가 끝나면 코인을 줬다. 보상은 씬 쪽으로 옮겼다
+ * (`useSceneClearStore`). 여기서는 읽음 표시만 남긴다.
+ */
 
 const COUNTDOWN = 5;
 
@@ -43,11 +48,9 @@ const getEmbedSrc = (post: { id: string; url?: string }): string => {
 
 const LinkedInPopup = ({ post, onClose }: Props) => {
   const { viewed, markViewed } = usePostViewStore();
-  const earn = useCoinStore((s) => s.earn);
   const alreadyViewed = viewed[post.id] ?? false;
 
   const [count, setCount] = useState(alreadyViewed ? 0 : COUNTDOWN);
-  const [showReward, setShowReward] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const embedMode = getEmbedMode(post.url);
@@ -60,8 +63,6 @@ const LinkedInPopup = ({ post, onClose }: Props) => {
         if (prev <= 1) {
           clearInterval(timerRef.current!);
           markViewed(post.id);
-          earn(1);
-          setShowReward(true);
           return 0;
         }
         return prev - 1;
@@ -69,7 +70,7 @@ const LinkedInPopup = ({ post, onClose }: Props) => {
     }, 1000);
 
     return () => clearInterval(timerRef.current!);
-  }, [post.id, alreadyViewed, markViewed, earn]);
+  }, [post.id, alreadyViewed, markViewed]);
 
   return (
     <>
@@ -136,16 +137,10 @@ const LinkedInPopup = ({ post, onClose }: Props) => {
           </div>
         )}
 
-        {(alreadyViewed || count === 0) && !showReward && (
+        {(alreadyViewed || count === 0) && (
           <div className={styles.viewed}>✓ 읽음</div>
         )}
       </motion.div>
-
-      <CoinRewardModal
-        show={showReward}
-        amount={1}
-        onClose={() => setShowReward(false)}
-      />
     </>
   );
 };

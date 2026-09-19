@@ -83,6 +83,18 @@ export const color = {
   }
 } as const;
 
+export const layer = {
+  "scene-html": 3,
+  "header": 5,
+  "nav": 6,
+  "hotspot-card": 8,
+  "sheet-backdrop": 10,
+  "sheet": 11,
+  "sheet-close": 20,
+  "popup": 100,
+  "toast": 200
+} as const;
+
 export const radius = {
   "none": "0px",
   "xs": "4px",

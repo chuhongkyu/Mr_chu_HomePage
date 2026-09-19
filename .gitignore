@@ -49,3 +49,6 @@ storybook-static
 
 # notion 스냅샷은 커밋한다 (빌드·런타임이 Notion 에 의존하지 않도록)
 !public/notion/*.json
+
+# 검증용 빌드 (dev 서버의 .next 를 건드리지 않기 위해)
+.next-check

@@ -11,6 +11,9 @@
  * 규칙이 섞여 있으면 CSS module 마다 :root 블록이 중복 출력된다.
  *
  * 생성물은 커밋한다. 수정은 반드시 tokens/*.json 에서.
+ *
+ * `--watch` 를 주면 tokens/ 를 지켜보다 바뀔 때마다 다시 생성한다.
+ * dev 서버와 같이 돌리면 토큰을 고쳐도 서버를 재시작할 필요가 없다.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -50,17 +53,18 @@ function resolve(ref, flat, seen = new Set()) {
   return resolve(target.value, flat, new Set([...seen, key]));
 }
 
-const files = fs
+const build = () => {
+  const files = fs
   .readdirSync(TOKENS_DIR)
   .filter((f) => f.endsWith(".json"))
   .sort();
 
-const scssLines = [BANNER];
-const tsGroups = [];
-let cssVars = [];
-let cssVarsDark = [];
+  const scssLines = [BANNER];
+  const tsGroups = [];
+  let cssVars = [];
+  let cssVarsDark = [];
 
-for (const file of files) {
+  for (const file of files) {
   const ns = path.basename(file, ".json"); // color | space | radius
   const tree = JSON.parse(fs.readFileSync(path.join(TOKENS_DIR, file), "utf8"));
   const flat = flatten(tree);
@@ -83,21 +87,21 @@ for (const file of files) {
     }
   }
   tsGroups.push([ns, tsEntries]);
-}
+  }
 
-fs.writeFileSync(
+  fs.writeFileSync(
   path.join(STYLE_DIR, "_tokens.generated.scss"),
   scssLines.join("")
-);
+  );
 
-const theme =
+  const theme =
   BANNER +
   `\n:root {\n${cssVars.join("")}}\n\n[data-theme="dark"] {\n${cssVarsDark.join("")}}\n`;
 
-fs.writeFileSync(path.join(STYLE_DIR, "_theme.generated.scss"), theme);
+  fs.writeFileSync(path.join(STYLE_DIR, "_theme.generated.scss"), theme);
 
-/** 평탄한 "a.b.c" 키 목록을 중첩 객체 리터럴로 되돌린다. */
-function nest(entries) {
+  /** 평탄한 "a.b.c" 키 목록을 중첩 객체 리터럴로 되돌린다. */
+  function nest(entries) {
   const root = {};
   for (const [key, value] of entries) {
     const parts = key.split(".");
@@ -106,9 +110,9 @@ function nest(entries) {
     cursor[parts.at(-1)] = value;
   }
   return root;
-}
+  }
 
-const ts =
+  const ts =
   BANNER +
   tsGroups
     .map(
@@ -118,7 +122,28 @@ const ts =
     .join("\n") +
   `\nexport type ColorToken = typeof color;\n`;
 
-fs.writeFileSync(path.join(STYLE_DIR, "tokens.generated.ts"), ts);
+  fs.writeFileSync(path.join(STYLE_DIR, "tokens.generated.ts"), ts);
 
-const total = tsGroups.reduce((sum, [, entries]) => sum + entries.length, 0);
-console.log(`✓ ${total}개 토큰 생성 (${files.join(", ")})`);
+  const total = tsGroups.reduce((sum, [, entries]) => sum + entries.length, 0);
+  console.log(`✓ ${total}개 토큰 생성 (${files.join(", ")})`);
+};
+
+build();
+
+if (process.argv.includes("--watch")) {
+  // 저장 한 번에 이벤트가 여러 번 온다. 살짝 모아서 한 번만 다시 만든다.
+  let timer;
+  fs.watch(TOKENS_DIR, (_event, filename) => {
+    if (!filename?.endsWith(".json")) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      try {
+        build();
+      } catch (error) {
+        // 편집 중간 상태라 JSON 이 깨져 있을 수 있다. 죽지 않고 다음 저장을 기다린다.
+        console.error(`✗ ${error.message}`);
+      }
+    }, 80);
+  });
+  console.log("… tokens/ 감시 중");
+}

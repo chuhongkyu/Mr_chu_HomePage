@@ -1,0 +1,7 @@
+@use "system" as *;
+
+// 실제 씬과 같은 배경. 칩의 유리 질감이 배경에 따라 달라 보인다.
+.stage {
+  padding: $space-16;
+  background: $color-daangn-backdrop;
+}

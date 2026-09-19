@@ -1,4 +1,4 @@
-@use "@/style/variables" as *;
+@use "system" as *;
 
 // 바 배경 없이 씬 위에 얹힌다.
 // 클릭은 통과시켜서 헤더 영역에서도 씬을 돌릴 수 있게 한다.
@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: $layer-header;
   display: flex;
   justify-content: center;
   padding: 16px;

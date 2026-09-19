@@ -1,9 +1,13 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useGraph } from "@react-three/fiber";
 import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
 
+import { MOTION_EFFECTS } from "@/components/profile/constants/motionEffects";
+import { JumpTrailEffect } from "@/components/profile/webgl/common/JumpTrailEffect";
+import { LightningRing } from "@/components/profile/webgl/common/LightningRing";
+import { BrushStick } from "@/components/profile/webgl/object/BrushStick";
 import outlineFragmentShader from "@/shaders/outline.frag.glsl";
 import outlineVertexShader from "@/shaders/outlineSkinned.vert.glsl";
 
@@ -39,6 +43,13 @@ const PLAY_ONCE: Partial<Record<MotionName, true>> = {
 
 const FADE = 0.3;
 
+/**
+ * 바닥 이펙트가 만들어질 때 기준으로 삼은 캐릭터 스케일.
+ * `JumpTrailEffect` 의 원 반지름·스파크 길이가 이 크기의 캐릭터(키 약 3.9)에
+ * 맞춰 월드 단위로 적혀 있다.
+ */
+const EFFECT_REFERENCE_SCALE = 0.02;
+
 const MESH_NAMES = [
   "mesh_head",
   "mesh_spine",
@@ -69,6 +80,8 @@ export type MotionCharacterProps = {
    * 캐릭터가 화면에서 작아지면 상대적으로 두꺼워 보이므로 같이 줄인다.
    */
   outlineWidth?: number;
+  /** 동작에 딸린 이펙트를 함께 그릴지. */
+  effects?: boolean;
 };
 
 /**
@@ -88,6 +101,7 @@ export const MotionCharacter = ({
   position = [0, 0, 0],
   scale = 0.02,
   outlineWidth = 0.005,
+  effects = true,
 }: MotionCharacterProps) => {
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(STICKMAN_MODEL_PATH);
@@ -159,8 +173,51 @@ export const MotionCharacter = ({
     };
   }, [toonMaterial, outlineMaterial]);
 
+  // 이펙트는 뼈에 붙거나 바닥에 떨어진다. 어떤 동작에 무엇이 붙는지는
+  // constants/motionEffects 한 곳에만 적혀 있다.
+  const motionEffects = effects ? (MOTION_EFFECTS[motion] ?? []) : [];
+
+  // 뼈에 붙는 이펙트(번개·붓)는 뼈의 월드 스케일을 타고 알아서 커진다.
+  // 바닥 이펙트만 월드 단위로 짜여 있어서 캐릭터 크기에 맞춰 줘야 한다.
+  const effectScale = scale / EFFECT_REFERENCE_SCALE;
+
   return (
     <group position={position} dispose={null}>
+      {/* 이펙트만의 경계. 안에서 무언가 로딩을 시작해도 바깥 씬은 그대로 있는다.
+          경계가 없으면 씬 전체가 fallback 으로 바뀌었다 돌아오며 깜빡인다. */}
+      <Suspense fallback={null}>
+        {motionEffects.map((effect, index) => {
+          if (effect.type === "lightning") {
+            const bone = nodes[effect.bone];
+            if (!bone) return null;
+            return (
+              <LightningRing
+                key={`lightning-${effect.bone}-${index}`}
+                bone={bone}
+                radius={effect.radius}
+                color={effect.color}
+              />
+            );
+          }
+
+          if (effect.type === "jumpTrail") {
+            return (
+              // 이 그룹 자체가 이미 `position` 만큼 옮겨져 있다.
+              // 여기에 playerPosition 까지 주면 두 번 이동해 엉뚱한 데서 터진다.
+              // 로컬 원점(= 캐릭터 발밑)이 곧 착지 지점이다.
+              <group key={`jumpTrail-${index}`} scale={effectScale}>
+                <JumpTrailEffect color={effect.color} active />
+              </group>
+            );
+          }
+
+          // 붓은 오른손 뼈에 들린다. 리그에 따라 이름이 다를 수 있어 둘 다 본다.
+          const handBone = nodes.forearmR004 ?? nodes.forearmR001;
+          if (!handBone) return null;
+          return <BrushStick key={`brush-${index}`} handBone={handBone} />;
+        })}
+      </Suspense>
+
       <group ref={group}>
         <group scale={scale} rotation={[0, Math.PI / 2, 0]}>
           <group>

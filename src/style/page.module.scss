@@ -1,5 +1,4 @@
-@use "./_variables" as *;
-@use "./_mixins" as *;
+@use "system" as *;
 @use "./_font" as *;
 
 $window-bar-color: rgb(34, 34, 34);

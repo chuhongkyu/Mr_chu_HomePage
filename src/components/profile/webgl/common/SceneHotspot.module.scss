@@ -1,0 +1,10 @@
+// drei 의 Html 은 감싸는 컨테이너가 캔버스 전체를 덮는다.
+// 그대로 두면 빈 영역이 클릭을 먹어서 씬을 못 돌린다.
+// 컨테이너는 통과시키고 마커에서만 다시 받는다.
+.layer {
+  pointer-events: none;
+}
+
+.marker {
+  pointer-events: auto;
+}

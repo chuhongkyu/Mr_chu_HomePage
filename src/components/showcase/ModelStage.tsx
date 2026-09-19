@@ -14,6 +14,8 @@ import { Canvas } from "@react-three/fiber";
 
 import { color } from "@/style/tokens.generated";
 
+import styles from "@/components/showcase/ModelStage.module.scss";
+
 export interface ModelStageProps {
   children: ReactNode;
   /** 씬의 기본 밝기. 프로덕션 Scene 과 같은 0.4 가 기본값. */
@@ -78,7 +80,10 @@ export function ModelStage({
   );
 
   return (
-    <div style={{ width: "100%", height: "100vh", background }}>
+    <div
+      className={styles.stage}
+      style={{ "--stage-background": background } as React.CSSProperties}
+    >
       <Canvas shadows dpr={[1, 2]}>
         {/* Canvas 의 camera prop 은 마운트 시점에만 반영된다.
             Storybook 컨트롤로 거리를 돌려 보려면 컴포넌트 카메라여야 한다. */}

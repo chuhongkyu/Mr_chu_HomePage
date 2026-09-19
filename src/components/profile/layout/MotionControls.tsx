@@ -17,21 +17,22 @@ const LABELS: Record<(typeof MOTIONS)[number], string> = {
 };
 
 /**
- * 캐릭터 밑에 가로로 눕는 모션 버튼들.
+ * 캐릭터 발밑에 놓이는 모션 칩.
  *
- * 캐릭터는 캔버스 안, 버튼은 캔버스 밖이라 `useMotionStore` 로 잇는다.
+ * 3D 좌표에 붙일 수 있도록 순수 DOM 으로만 두었다. 위치는 감싸는
+ * `Html` 이 정하고, 여기서는 칩 배열만 그린다.
  */
 export const MotionControls = () => {
   const motion = useMotionStore((s) => s.motion);
   const play = useMotionStore((s) => s.play);
 
   return (
-    <div className={styles.controls} role="group" aria-label="캐릭터 동작">
+    <div className={styles.chips} role="group" aria-label="캐릭터 동작">
       {MOTIONS.map((name) => (
         <button
           key={name}
           type="button"
-          className={`${styles.button} ${motion === name ? styles.active : ""}`}
+          className={`${styles.chip} ${motion === name ? styles.active : ""}`}
           onClick={() => play(name)}
           aria-pressed={motion === name}
         >

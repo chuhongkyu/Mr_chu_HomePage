@@ -1,15 +1,32 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { Canvas } from "@react-three/fiber";
 
 import ArticleSheet from "@/components/profile/common/ArticleSheet";
+import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
+import { POSTS } from "@/components/profile/constants/posts";
 import SceneNav from "@/components/profile/layout/SceneNav";
+import { useMotionStore } from "@/components/profile/store/useMotionStore";
+import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
 import { useCurrentScene } from "@/components/profile/store/useSceneStore";
+import Background from "@/components/profile/webgl/common/Background";
 import CameraManager from "@/components/profile/webgl/common/CameraManager";
 import Lights from "@/components/profile/webgl/common/Lights";
+import { usePanelEditing } from "@/components/profile/webgl/debug/usePanelEditing";
 
 import styles from "@/components/profile/Scene.module.scss";
+
+/**
+ * 판 배치 편집기의 조작판. 캔버스 밖에 떠야 해서 여기서 그린다.
+ * 캔버스 안(`drei/Html`)에 두면 drei 가 wrapper 에 transform 을 걸고,
+ * transform 이 containing block 을 만들어 `position: fixed` 를 가둔다.
+ */
+const PanelEditorDock = dynamic(
+  () => import("@/components/profile/webgl/debug/PanelEditorDock"),
+  { ssr: false }
+);
 
 /** 열린 글을 URL 에 남기는 쿼리 키. */
 const STORY_PARAM = "story";
@@ -36,8 +53,9 @@ const writeStoryParam = (id: string | null, mode: "push" | "replace") => {
  */
 const Scene = () => {
   const scene = useCurrentScene();
+  const [linkedInPostId, setLinkedInPostId] = useState<string | null>(null);
   // R3F 에는 intrinsic <scene> 이 있어서 <scene.Content /> 는 헷갈린다. 풀어서 쓴다.
-  const { Content, Overlay } = scene;
+  const { Content } = scene;
   const [articleOpen, setArticleOpen] = useState(false);
 
   // 주소가 곧 상태다. 직접 들어와도, 뒤로가기를 눌러도 같은 경로로 처리된다.
@@ -61,19 +79,58 @@ const Scene = () => {
     setArticleOpen(true);
   }, [scene.articleId]);
 
+  /**
+   * 내비 카드를 눌렀을 때. 씬마다 데려가는 곳이 다르다.
+   *   article — 노션 스냅샷을 시트로 (주소에 ?story= 가 남는다)
+   *   post    — 그 포스트를 팝업으로
+   */
+  const play = useMotionStore((s) => s.play);
+
+  const openLink = useCallback(() => {
+    if (!scene.link) return;
+    // 카드를 누르면 캐릭터가 먼저 반응한다. 이 동작이 씬을 클리어한다.
+    if (scene.linkMotion) play(scene.linkMotion);
+    if (scene.link.open === "post") {
+      setLinkedInPostId(scene.link.postId);
+      return;
+    }
+    openArticle();
+  }, [scene.link, scene.linkMotion, play, openArticle]);
+
   const closeArticle = useCallback(() => {
     // 닫기는 기록을 늘리지 않는다.
     writeStoryParam(null, "replace");
     setArticleOpen(false);
   }, []);
 
+  const editingPanels = usePanelEditing();
+
+  // 클리어한 씬은 배경을 바꿔 연다. `Background` 가 색도 그라데이션도
+  // 옮겨 가며 칠하므로, 값만 갈아 끼우면 전환이 저절로 이어진다.
+  const cleared = useSceneClearStore((s) => s.cleared[scene.id] ?? false);
+  const showCleared = cleared && Boolean(scene.clearedBackdrop);
+  const backdrop = showCleared ? scene.clearedBackdrop! : scene.backdrop;
+  const backdropGradient = showCleared || scene.backdropGradient;
+
+  const linkedInPost = linkedInPostId
+    ? POSTS.find((post) => post.id === linkedInPostId)
+    : undefined;
+
   return (
-    <div className={styles.container}>
+    // 핫스팟 카드가 여기로 포털된다. body 로 내보내면 `.main`(z-index 2)
+    // 바깥으로 나가서, 시트(11)가 `.main` 안에 갇힌 사이 카드만 위로 뚫고
+    // 올라온다. 시트와 같은 쌓임 맥락에 있어야 층 토큰이 의도대로 먹는다.
+    <div className={styles.container} data-scene-root>
       <Canvas shadows dpr={[1, 2]}>
         <Lights />
 
-        {/* 2D UI 와 같은 단색. three 의 클리어 컬러라 톤매핑을 타지 않는다. */}
-        <color attach="background" args={[scene.backdrop]} />
+        {/* 첫 프레임과 셰이더가 붙기 전을 위한 클리어 컬러.
+            평소에는 아래 `Background` 가 화면을 덮어 보이지 않는다. */}
+        <color attach="background" args={[backdrop]} />
+
+        {/* 단색 씬도 이걸 거친다. 색이 툭 바뀌지 않고 옮겨 가야 하기 때문이다.
+            모양을 낼지 말지만 씬이 정한다. */}
+        <Background color={backdrop} gradient={backdropGradient} />
 
         <Suspense fallback={null}>
           <CameraManager />
@@ -83,14 +140,22 @@ const Scene = () => {
         </Suspense>
       </Canvas>
 
-      {Overlay && <Overlay />}
-      <SceneNav />
+      <SceneNav onOpenLink={openLink} />
+
+      {editingPanels && <PanelEditorDock />}
 
       {scene.articleId && (
         <ArticleSheet
           id={scene.articleId}
           isOpen={articleOpen}
           onClose={closeArticle}
+        />
+      )}
+
+      {linkedInPost && (
+        <LinkedInPopup
+          post={linkedInPost}
+          onClose={() => setLinkedInPostId(null)}
         />
       )}
     </div>

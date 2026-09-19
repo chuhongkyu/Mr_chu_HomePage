@@ -12,9 +12,10 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 import {
   CAMERA,
+  DEFAULT_ELEVATION,
   elevationToPolar,
-  ISO_ELEVATION,
   orbitPosition,
+  perspectiveDistance,
 } from "@/components/profile/constants/sceneConfig";
 import { getSlideConfig } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
@@ -39,14 +40,26 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
   const viewportHeight = useThree((state) => state.size.height);
   const scene = useCurrentScene();
   const viewHeight = scene.viewHeight ?? CAMERA.orthoViewHeight;
+
+  // 투영 방식은 씬이 정한다. prop 은 남겨두되 씬 값이 우선이다.
+  const isOrthographic = (scene.projection ?? mode) === "orthographic";
   const orthoZoom = viewportHeight / viewHeight;
 
-  // 앙각도 씬마다 다를 수 있다. 높이면 더 위에서 내려다본다.
-  const elevation = scene.elevation ?? ISO_ELEVATION;
+  // 앙각도 씬마다 다를 수 있다. 높이면 더 위에서, 음수면 아래에서 올려다본다.
+  const elevation = scene.elevation ?? DEFAULT_ELEVATION;
   const polar = elevationToPolar(elevation);
+
+  // 원근에서는 거리가 곧 화각이라 담을 높이에서 역산한다.
+  // 직교는 거리와 크기가 무관하므로 기본 거리를 그대로 쓴다.
+  const perspectiveDist = perspectiveDistance(viewHeight, CAMERA.fov);
   const cameraPosition = useMemo(
-    () => orbitPosition(CAMERA.target, elevation),
-    [elevation]
+    () =>
+      orbitPosition(
+        CAMERA.target,
+        elevation,
+        isOrthographic ? undefined : perspectiveDist
+      ),
+    [elevation, isOrthographic, perspectiveDist]
   );
 
   const [panMin, panMax, clamped] = useMemo(() => {
@@ -102,8 +115,6 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
     }
   });
 
-  const isOrthographic = mode === "orthographic";
-
   return (
     <>
       {isOrthographic ? (
@@ -155,10 +166,12 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
               maxPolarAngle: polar,
             }
           : {
-              minDistance: CAMERA.minDistance,
-              maxDistance: CAMERA.maxDistance,
-              minPolarAngle: CAMERA.minPolarAngle,
-              maxPolarAngle: CAMERA.maxPolarAngle,
+              // 확대 금지. 시작 거리보다 가까이 오지 못하게 막는다.
+              minDistance: perspectiveDist,
+              maxDistance: perspectiveDist * 1.8,
+              // 직교와 마찬가지로 시점 각도를 잠근다.
+              minPolarAngle: polar,
+              maxPolarAngle: polar,
             })}
         makeDefault
       />

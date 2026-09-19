@@ -20,10 +20,16 @@ const PERSPECTIVE_DISTANCE = Math.hypot(
 // ── 아이소메트릭 ────────────────────────────────────────────
 // 정등각(true isometric)은 카메라 방향 벡터가 (1,1,1)/√3 인 각도다.
 //   방위각 45°, 지평선 위 35.2644°
-const ISO_AZIMUTH = Math.PI / 4;
+/** 방위각. 씬의 판을 카메라와 마주 보게 돌릴 때도 쓴다. */
+export const ISO_AZIMUTH = Math.PI / 4;
 
-/** 기본 앙각(도). 지평선 위로 이만큼 올라가서 내려다본다. */
-export const ISO_ELEVATION = 35.2644;
+/**
+ * 기본 앙각(도). 지평선 위로 이만큼 올라가서 내려다본다.
+ *
+ * 정등각(true isometric)은 35.2644° 지만 그보다 조금 더 위에서 본다.
+ * 모든 씬이 같은 각을 쓰므로, 씬마다 따로 적지 말고 이 값을 고친다.
+ */
+export const DEFAULT_ELEVATION = 42;
 
 // 직교 카메라는 거리가 크기와 무관하다. 클리핑 여유만 보고 넉넉히 둔다.
 const ISO_DISTANCE = 60;
@@ -32,21 +38,31 @@ const ISO_DISTANCE = 60;
 export const elevationToPolar = (elevation: number) =>
   Math.PI / 2 - (elevation * Math.PI) / 180;
 
-/** 앙각에 맞는 카메라 위치. 방위각은 45° 로 고정한다. */
+/**
+ * 앙각에 맞는 카메라 위치. 방위각은 45° 로 고정한다.
+ *
+ * 직교에서는 거리가 크기와 무관해서 기본값(클리핑 여유)을 쓰면 되지만,
+ * 원근에서는 거리가 곧 화각이라 담고 싶은 높이에서 역산해 넘겨야 한다.
+ */
 export const orbitPosition = (
   target: readonly [number, number, number],
-  elevation: number
+  elevation: number,
+  distance: number = ISO_DISTANCE
 ): [number, number, number] => {
   const polar = elevationToPolar(elevation);
   return [
-    target[0] + Math.sin(polar) * Math.sin(ISO_AZIMUTH) * ISO_DISTANCE,
-    target[1] + Math.cos(polar) * ISO_DISTANCE,
-    target[2] + Math.sin(polar) * Math.cos(ISO_AZIMUTH) * ISO_DISTANCE,
+    target[0] + Math.sin(polar) * Math.sin(ISO_AZIMUTH) * distance,
+    target[1] + Math.cos(polar) * distance,
+    target[2] + Math.sin(polar) * Math.cos(ISO_AZIMUTH) * distance,
   ];
 };
 
+/** 원근 카메라가 `viewHeight` 만큼 담으려면 떨어져야 하는 거리. */
+export const perspectiveDistance = (viewHeight: number, fov: number) =>
+  viewHeight / 2 / Math.tan(((fov / 2) * Math.PI) / 180);
+
 export const CAMERA = {
-  fov: 40,
+  fov: 30,
   near: 0.1,
   far: 200,
 
@@ -56,7 +72,6 @@ export const CAMERA = {
     number,
   ],
   target: TARGET,
-
 
   // atan2(offsetX, offsetZ) — OrbitControls 초기화 타이밍 없이 미리 계산
   // 오프셋이 X/Z 같은 값이라 ISO_AZIMUTH(45°)와 일치한다.

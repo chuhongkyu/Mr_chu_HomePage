@@ -1,59 +1,63 @@
-// 캐릭터 밑에 가로로 눕는 모션 버튼들.
-// 씬 내비와 같은 리퀴드 글래스를 쓰되, 내비보다 위쪽에 자리한다.
+@use "system" as *;
 
-.controls {
-  position: absolute;
-  left: 50%;
-  bottom: 88px;
-  transform: translateX(-50%);
-  z-index: 6;
+// 캐릭터 발밑 바닥에 눕는 칩.
+// `Html transform` 이 바닥 평면으로 눕히고 카메라 방위각에 맞춰 돌린다.
+// 그래서 여기서는 위치를 잡지 않는다. 줄 배치와 칩 생김새만 책임진다.
+//
+// 씬 내비와 달리 배경 판을 깔지 않는다. 칩 하나하나가 떠 있어야
+// 바닥 격자가 비쳐 보이고 캐릭터에 붙어 있다는 느낌이 난다.
 
+.chips {
+  // Html 컨테이너는 클릭을 통과시키고 여기서만 받는다.
+  pointer-events: auto;
   display: flex;
+  // 두 줄로 접는다. 7개를 한 줄로 늘어놓으면 캐릭터보다 훨씬 넓어진다.
+  flex-wrap: wrap;
   align-items: center;
-  gap: $space-2;
-  max-width: calc(100% - #{$space-16});
-  padding: $space-3;
-  border-radius: $radius-pill;
-  overflow-x: auto;
-
-  background: color-mix(in srgb, $color-gray-0 42%, transparent);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid color-mix(in srgb, $color-gray-0 55%, transparent);
-  box-shadow:
-    0 8px 32px $color-alpha-black-24,
-    inset 0 1px 1px color-mix(in srgb, $color-gray-0 70%, transparent);
-
-  // 가로 스크롤이 필요한 좁은 화면에서 스크롤바가 유리를 깨지 않게.
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  justify-content: center;
+  // 세로를 가로보다 넉넉히. 두 줄이 붙어 있으면 한 덩어리로 읽힌다.
+  // 가로 간격은 그대로 둬야 4 + 3 으로 갈리는 지점이 안 바뀐다.
+  gap: $space-6 $space-3;
+  // 줄을 어디서 끊을지는 이 폭이 정한다. 개수를 코드로 세지 않고 wrap 에 맡긴다.
+  // 24px 칩 기준 4개는 들어가고(약 410px) 5개는 넘쳐서(약 526px) 4 + 3 이 된다.
+  // 글자 크기를 올리면 이 폭도 같이 올려야 갈림이 안 깨진다.
+  // (`Html transform` 이 DOM 을 1/40 로 줄여 그리므로 월드 크기 = 폭 ÷ 40)
+  //   460px ÷ 40 = 월드 11.5 유닛 (캐릭터 키가 11.6)
+  width: 460px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.button {
-  @include ty(t3, bold, true);
+.chip {
+  // 3D 바닥에 누워서 앙각만큼 눌려 보이므로 화면 UI 보다 크게 잡는다.
+  @include ty(t9, bold, true);
 
   flex: none;
-  padding: $space-3 $space-6;
-  border: 0;
+  padding: $space-5 $space-10;
   border-radius: $radius-pill;
-  background: transparent;
-  color: var(--color-font-muted);
+  border: 1px solid color-mix(in srgb, $color-gray-0 55%, transparent);
+  background: color-mix(in srgb, $color-gray-0 42%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  color: var(--color-font-base);
   cursor: pointer;
   white-space: nowrap;
+  box-shadow:
+    0 2px 10px $color-alpha-black-24,
+    inset 0 1px 1px color-mix(in srgb, $color-gray-0 70%, transparent);
   transition:
     background 0.15s ease,
-    color 0.15s ease;
+    color 0.15s ease,
+    border-color 0.15s ease;
 
   &:hover {
-    background: color-mix(in srgb, $color-gray-0 60%, transparent);
-    color: var(--color-font-base);
+    background: color-mix(in srgb, $color-gray-0 65%, transparent);
   }
 
   // 지금 재생 중인 동작.
   &.active {
     background: var(--color-font-base);
+    border-color: var(--color-font-base);
     color: var(--color-bg-base);
   }
 }

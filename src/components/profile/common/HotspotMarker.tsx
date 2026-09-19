@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import IconChevronRightRegular from "@seed-design/react-icon/lib/IconChevronRightRegular";
-import IconCloseRegular from "@seed-design/react-icon/lib/IconCloseRegular";
 import { AnimatePresence, motion } from "motion/react";
+
+import CloseButton from "@/components/profile/common/CloseButton";
 
 import styles from "@/components/profile/common/HotspotMarker.module.scss";
 
@@ -31,6 +34,15 @@ export type HotspotMarkerProps = {
   direction?: "right" | "left";
   /** 카드가 펴지는 세로 방향. 화면 아래쪽 앵커는 "up" 이라야 안 잘린다. */
   placement?: HotspotPlacement;
+  /**
+   * 카드를 앵커 옆이 아니라 화면 한가운데 띄운다.
+   *
+   * 좁은 화면에서는 앵커 어디에 붙여도 268px 카드가 가장자리를 넘는다.
+   * 이때는 `Html` 밖(body)으로 내보내야 한다. drei 가 래퍼에 transform 을
+   * 걸어 두는데, transform 은 containing block 을 만들어 안쪽의
+   * `position: fixed` 를 가두기 때문이다.
+   */
+  centered?: boolean;
   open: boolean;
   onToggle: () => void;
 };
@@ -55,12 +67,106 @@ export const HotspotMarker = ({
   lineLength = 64,
   direction = "right",
   placement = "down",
+  centered = false,
   open,
   onToggle,
 }: HotspotMarkerProps) => {
+  /**
+   * 가운데 카드를 내보낼 자리.
+   *
+   * `document.body` 가 아니다. 이 앱은 `.main` 이 z-index 를 갖고 있어 자기
+   * 쌓임 맥락을 만든다. body 로 내보내면 그 바깥에 서게 되어, 안쪽의
+   * 바텀시트가 아무리 높은 z-index 를 써도 카드가 그 위로 올라온다.
+   */
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPortalTarget(
+      document.querySelector<HTMLElement>("[data-scene-root]") ?? document.body
+    );
+  }, []);
+
   const panelClass = `${styles.panel} ${
     placement === "up" ? styles.placeUp : styles.placeDown
   }`;
+
+  const cardBody = (
+    <>
+      <div className={styles.cardHead}>
+        <span className={styles.badge}>{index}</span>
+        <h3 className={styles.title}>{label}</h3>
+        <CloseButton size="sm" onClick={onToggle} label={`${label} 닫기`} />
+      </div>
+      <img className={styles.media} src={media} alt={mediaAlt ?? label} />
+
+      {description && <p className={styles.description}>{description}</p>}
+
+      {onMore && (
+        <button type="button" className={styles.more} onClick={onMore}>
+          자세히 보기
+          <span aria-hidden>→</span>
+        </button>
+      )}
+    </>
+  );
+
+  /** 앵커 옆에 펴지는 카드. 라인 줄에 붙은 모서리를 축으로 자란다. */
+  const anchoredCard = (
+    <motion.div
+      key="card"
+      className={styles.card}
+      style={{
+        transformOrigin: `${placement === "up" ? "bottom" : "top"} ${
+          direction === "left" ? "right" : "left"
+        }`,
+        // 라인이 카드 맨 끝 모서리에 닿으면 얹혀만 있는 것처럼 보인다.
+        // 카드를 제 높이의 20% 만큼 밀어 라인이 안쪽에 꽂히게 한다.
+        // motion 이 scale 과 같은 transform 으로 합성하므로 충돌하지 않는다.
+        y: placement === "up" ? CARD_SHIFT : `-${CARD_SHIFT}`,
+      }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ type: "spring", stiffness: 280, damping: 26 }}
+    >
+      {cardBody}
+    </motion.div>
+  );
+
+  /**
+   * 화면 한가운데 뜨는 카드. `Html` 바깥(body)으로 내보낸다.
+   *
+   * `data-hotspot-card` 는 바깥 클릭 판정에 쓰인다. 이 카드는 앵커 DOM
+   * 밖에 있어서, 표시가 없으면 카드를 누르는 순간 바깥으로 보고 닫아 버린다.
+   */
+  const centeredCard = !portalTarget
+    ? null
+    : createPortal(
+        <AnimatePresence>
+          {open && (
+            <div className={styles.centerLayer} data-hotspot-card>
+                <motion.div
+                  className={styles.centerBackdrop}
+                  onClick={onToggle}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+                <motion.div
+                  className={`${styles.card} ${styles.centered}`}
+                  style={{ "--accent": accent } as React.CSSProperties}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ type: "spring", stiffness: 280, damping: 26 }}
+                >
+                  {cardBody}
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
+        );
 
   return (
     <div
@@ -84,55 +190,9 @@ export const HotspotMarker = ({
 
       <div className={panelClass}>
         <AnimatePresence initial={false} mode="wait">
-          {open ? (
-            <motion.div
-              key="card"
-              className={styles.card}
-              style={{
-                // 라인 줄에 붙은 모서리를 축으로 펴진다.
-                transformOrigin: `${placement === "up" ? "bottom" : "top"} ${
-                  direction === "left" ? "right" : "left"
-                }`,
-                // 라인이 카드 맨 끝 모서리에 닿으면 얹혀만 있는 것처럼 보인다.
-                // 카드를 제 높이의 20% 만큼 밀어 라인이 안쪽에 꽂히게 한다.
-                // motion 이 scale 과 같은 transform 으로 합성하므로 충돌하지 않는다.
-                y: placement === "up" ? CARD_SHIFT : `-${CARD_SHIFT}`,
-              }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 280, damping: 26 }}
-            >
-              <div className={styles.cardHead}>
-                <span className={styles.badge}>{index}</span>
-                <h3 className={styles.title}>{label}</h3>
-                <button
-                  type="button"
-                  className={styles.close}
-                  onClick={onToggle}
-                  aria-label={`${label} 닫기`}
-                >
-                  ×
-                </button>
-              </div>
-              <img
-                className={styles.media}
-                src={media}
-                alt={mediaAlt ?? label}
-              />
-
-              {description && (
-                <p className={styles.description}>{description}</p>
-              )}
-
-              {onMore && (
-                <button type="button" className={styles.more} onClick={onMore}>
-                  자세히 보기
-                  <span aria-hidden>→</span>
-                </button>
-              )}
-            </motion.div>
-          ) : (
+          {open && !centered ? (
+            anchoredCard
+          ) : open ? null : (
             <motion.button
               key="label"
               type="button"
@@ -148,6 +208,8 @@ export const HotspotMarker = ({
           )}
         </AnimatePresence>
       </div>
+
+      {centered && centeredCard}
     </div>
   );
 };

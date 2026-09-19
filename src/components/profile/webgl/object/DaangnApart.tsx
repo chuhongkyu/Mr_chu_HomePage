@@ -6,30 +6,40 @@ import * as THREE from "three";
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
 import { useCurrentScene } from "@/components/profile/store/useSceneStore";
 
-export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.png";
-export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.png";
+export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.jpg";
+export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
 
-/** 두 이미지 모두 832 × 1290. */
-const TEXTURE_ASPECT = 832 / 1290;
+/**
+ * 두 그림 다 가로로 넓은 판에 다시 담았다. 세로로 길던 원본은 가로가 넓은
+ * 화면에서 좌우가 비었다.
+ *
+ * 비율이 미묘하게 달라서 상수를 따로 둔다. 한쪽 값을 다른 쪽에 쓰면
+ * 그림이 늘어난다.
+ */
+const CLOSE_ASPECT = 1024 / 657;
+const WIDE_ASPECT = 1296 / 832;
 
 /**
  * 이미지에서 건물(채색 영역)이 차지하는 세로 비율과 그 중심 위치.
  * 두 이미지의 건물을 같은 지점에 겹치기 위해 픽셀에서 직접 측정한 값이다.
  * 나머지 영역은 전부 회색조라 채도로 깔끔하게 분리된다.
  */
-const CLOSE_SUBJECT_CENTER = 0.5035;
-const WIDE_SUBJECT_CENTER = 0.4837;
+const CLOSE_SUBJECT_CENTER = 0.5046;
+const WIDE_SUBJECT_CENTER = 0.4893;
 
 export const DEFAULT_CLOSE_HEIGHT = 22;
 
 /**
- * 근경 이미지의 구역별 중심. 색조로 분리해 픽셀에서 직접 잰 값이다.
- * (u, v) 는 이미지 좌상단 기준 0~1.
+ * 근경 이미지의 구역별 중심. (u, v) 는 이미지 좌상단 기준 0~1.
+ *
+ * 처음엔 세로로 긴 그림에서 색조로 분리해 픽셀에서 직접 쟀다. 가로로 넓은
+ * 판으로 옮기면서는 같은 그림이라는 점을 이용해, 두 그림의 채색 영역
+ * 경계를 재고 그 비율로 옮겼다(가로 ×0.405, 세로 ×0.981).
  */
 export const CLOSE_ZONE_UV = {
-  garden: [0.5421, 0.1907],
-  room: [0.5733, 0.414],
-  fleamarket: [0.5144, 0.8628],
+  garden: [0.5159, 0.2005],
+  room: [0.5285, 0.4196],
+  fleamarket: [0.5046, 0.8599],
 } as const;
 
 /**
@@ -44,7 +54,7 @@ export const closeImagePoint = (
   v: number,
   { height = DEFAULT_CLOSE_HEIGHT, offsetY = 0 } = {}
 ): [number, number, number] => [
-  (u - 0.5) * height * TEXTURE_ASPECT,
+  (u - 0.5) * height * CLOSE_ASPECT,
   (CLOSE_SUBJECT_CENTER - 0.5) * height + (0.5 - v) * height + offsetY,
   0.02,
 ];
@@ -54,8 +64,14 @@ export type DaangnApartProps = {
   closeHeight?: number;
   /**
    * 줌 아웃 상태에서 보이는 도시 전경.
-   * 화면 세로(최대 축소 시 40)보다 크게 잡으면 위아래가 잘리는 대신
-   * 가로로 더 넓게 보인다. 세로가 긴 그림이라 가로를 채우려면 잘림을 감수해야 한다.
+   *
+   * 40 이 최대 축소 시 화면 세로(`viewHeight` 22 ÷ `zoomOutRatio` 0.55)다.
+   * 이 그림은 여백 없이 가장자리까지 도시가 차 있어서, 화면을 못 덮으면
+   * 그림 끝이 선으로 드러난다. 그래서 40 아래로는 내리지 않는다.
+   *
+   * 올리면 더 넓은 화면까지 덮지만 건물이 커진다. 45.6 이면 근경(19.4)과
+   * 같아져 축소한 느낌이 사라지고, 52 면 오히려 더 커진다. 40 은 화면을
+   * 덮으면서 건물이 작아 보이는(17.0) 유일한 구간이다.
    */
   wideHeight?: number;
   /**
@@ -90,12 +106,13 @@ const smoothstep = (edge0: number, edge1: number, x: number) => {
  * 이미 투영이 끝난 그림이라 평면을 3D 로 기울이면 투영이 두 번 먹어 깨진다.
  * 그래서 `Billboard` 로 항상 카메라를 향하게 두고 그려진 각도를 그대로 쓴다.
  *
- * 세로가 긴 그림이라 가로로 넓은 화면에서는 좌우가 남는다.
- * 그 여백은 배경색(`daangn.backdrop`)이 그림 배경과 같아서 이어져 보인다.
+ * 둘 다 가로로 넓은 판이라 4:3 까지는 화면을 채운다. 그보다 넓은 화면에서
+ * 남는 좌우는 근경 쪽은 그림 배경이 배경색(`daangn.backdrop`)과 같아 이어져
+ * 보이고, 도시 전경 쪽은 그림 끝이 드러난다.
  */
 export const DaangnApart = ({
   closeHeight = DEFAULT_CLOSE_HEIGHT,
-  wideHeight = 52,
+  wideHeight = 40,
   fadeStart = 0.7,
   fadeEnd = 0.9,
   position = [0, 0, 0],
@@ -125,11 +142,11 @@ export const DaangnApart = ({
   const wideOffsetY = (0.5 - WIDE_SUBJECT_CENTER) * wideHeight * -1;
 
   const closeSize = useMemo(
-    () => [closeHeight * TEXTURE_ASPECT, closeHeight] as [number, number],
+    () => [closeHeight * CLOSE_ASPECT, closeHeight] as [number, number],
     [closeHeight]
   );
   const wideSize = useMemo(
-    () => [wideHeight * TEXTURE_ASPECT, wideHeight] as [number, number],
+    () => [wideHeight * WIDE_ASPECT, wideHeight] as [number, number],
     [wideHeight]
   );
 

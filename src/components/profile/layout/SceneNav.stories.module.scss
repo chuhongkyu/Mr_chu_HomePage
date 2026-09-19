@@ -1,0 +1,14 @@
+@use "system" as *;
+
+// 리퀴드 글래스는 뒤가 비쳐야 보인다.
+// 무늬를 깔아야 blur 와 saturate 가 실제로 일하는 게 눈에 들어온다.
+.stage {
+  position: relative;
+  height: 320px;
+  background: repeating-linear-gradient(
+    45deg,
+    $color-daangn-garden 0 24px,
+    $color-daangn-fleamarket 24px 48px,
+    $color-daangn-room 48px 72px
+  );
+}
