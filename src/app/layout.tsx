@@ -45,25 +45,27 @@ export const metadata: Metadata = {
   },
 };
 
-const notoSans = localFont({
+// 디자인 토큰이 쓰는 weight 는 regular / medium / bold 셋뿐이라 그것만 싣는다.
+// 한글 서브셋 woff2 로 weight 당 약 260KB.
+const pretendard = localFont({
   src: [
     {
-      path: "./fonts/NotoSansKR400.woff2",
+      path: "./fonts/Pretendard-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/NotoSansKR500.woff2",
+      path: "./fonts/Pretendard-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./fonts/NotoSansKR700.woff2",
+      path: "./fonts/Pretendard-Bold.woff2",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-noto-sans",
+  variable: "--font-pretendard",
   display: "swap",
 });
 
@@ -76,7 +78,7 @@ export default function Layout({
 }>) {
   return (
     <html lang="kr">
-      <body className={`${notoSans.variable}`}>
+      <body className={`${pretendard.variable}`}>
         <PostHogProvider>
           <ReduxProvider>
             <RootLayout modal={modal}>{children}</RootLayout>

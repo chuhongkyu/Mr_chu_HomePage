@@ -1,7 +1,9 @@
 @use "./_variables" as *;
 
 // Font Families
-$font-noto-sans: var(--font-noto-sans), "Noto Sans KR", sans-serif;
+// 기본 본문 폰트. layout.tsx 의 next/font 가 --font-pretendard 를 심는다.
+$font-pretendard: var(--font-pretendard), "Pretendard", -apple-system,
+  BlinkMacSystemFont, system-ui, sans-serif;
 $font-montserrat: "Montserrat", sans-serif;
 
 // Font Weights
@@ -17,7 +19,7 @@ $font-weight-bold: 700;
 // ── t1 ───────────────────────────────────────────────────────────────────────
 
 @mixin t1-bold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 24px;
   font-weight: $font-weight-bold;
   line-height: 130%;
@@ -28,7 +30,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t1-semibold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 24px;
   font-weight: $font-weight-semibold;
   line-height: 130%;
@@ -39,7 +41,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t1-medium {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 24px;
   font-weight: $font-weight-medium;
   line-height: 130%;
@@ -52,7 +54,7 @@ $font-weight-bold: 700;
 // ── t2 ───────────────────────────────────────────────────────────────────────
 
 @mixin t2-bold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 20px;
   font-weight: $font-weight-bold;
   line-height: 130%;
@@ -62,7 +64,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t2-semibold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 20px;
   font-weight: $font-weight-semibold;
   line-height: 130%;
@@ -72,7 +74,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t2-medium {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 20px;
   font-weight: $font-weight-medium;
   line-height: 130%;
@@ -84,7 +86,7 @@ $font-weight-bold: 700;
 // ── t3 ───────────────────────────────────────────────────────────────────────
 
 @mixin t3-bold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 18px;
   font-weight: $font-weight-bold;
   line-height: 135%;
@@ -93,7 +95,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t3-semibold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 18px;
   font-weight: $font-weight-semibold;
   line-height: 135%;
@@ -102,7 +104,7 @@ $font-weight-bold: 700;
 }
 
 @mixin t3-medium {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 18px;
   font-weight: $font-weight-medium;
   line-height: 135%;
@@ -113,28 +115,28 @@ $font-weight-bold: 700;
 // ── t4 (최소 16px) ───────────────────────────────────────────────────────────
 
 @mixin t4-bold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 16px;
   font-weight: $font-weight-bold;
   line-height: 135%;
 }
 
 @mixin t4-semibold {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 16px;
   font-weight: $font-weight-semibold;
   line-height: 135%;
 }
 
 @mixin t4-medium {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 16px;
   font-weight: $font-weight-medium;
   line-height: 135%;
 }
 
 @mixin t4-regular {
-  font-family: $font-noto-sans;
+  font-family: $font-pretendard;
   font-size: 16px;
   font-weight: $font-weight-regular;
   line-height: 135%;

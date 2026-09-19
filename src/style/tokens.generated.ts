@@ -27,6 +27,12 @@ export const color = {
   "brand": {
     "500": "#5b8dd9"
   },
+  "daangn": {
+    "garden": "#319769",
+    "room": "#c75a50",
+    "fleamarket": "#a8801a",
+    "backdrop": "#e1e1e1"
+  },
   "sand": {
     "50": "#f2f0eb",
     "100": "#eae8e2"

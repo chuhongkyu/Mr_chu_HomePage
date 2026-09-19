@@ -103,7 +103,8 @@ tokens/*.json                 ← 단일 소스. DTCG 포맷이라 Figma Variabl
 | `npm run storybook`       | Storybook (:6006)                                           |
 | `npm run build-storybook` | Storybook 정적 빌드                                         |
 
-> Node 22.19.0 (`.nvmrc`). Storybook 10 이 22.12+ 를 요구한다.
+> Storybook 10 은 Node 22.12+ 를 요구한다. `script/with-node.sh` 가
+> `.nvmrc`(22.19.0)의 버전으로 알아서 전환하므로 `nvm use` 를 먼저 칠 필요는 없다.
 
 ---
 
@@ -155,7 +156,24 @@ tokens/*.json                 ← 단일 소스. DTCG 포맷이라 Figma Variabl
       back-face 쉐이더 아웃라인을 조명 0에서 확인할 수 있다
 - [x] `Cluster` 스토리 — `emissiveColor` 를 디자인 토큰에서 직접 주입
 - [x] `PaperAirplane` 스토리
-- [ ] `Player` (SkinnedMesh + 애니메이션) 스토리 — `animation` prop 표준화 필요
+- [x] `RainbowEnergyParticles` — 무지개색 스프라이트가 솟아오르는 에너지 파티클
+- [x] `SeedParticles` — 원둘레에 선 스프라이트가 시간차를 두고 이동하는 파티클.
+      `travelHeight` 를 음수로 주면 떨어진다
+- [x] `particles.ts` — 두 이펙트가 공유하는 이징·페이드 곡선·머티리얼 팩토리.
+      참고한 원본(당근이네)은 파티클마다 gsap 타임라인을 만들지만, 이 저장소는
+      gsap 을 의존성에 두지 않으므로 `useFrame` 에서 이징을 직접 계산한다
+      (`JumpTrailEffect` · `LightningRing` 과 같은 방식)
+- [x] `Seed` — Blender 에서 구운 `seed.glb` (Draco + WebP). gltfjsx 출력을
+      경로·타입·스케일 규약만 손봐서 썼다. `radius` 는 모델 반높이(0.951) 기준이라
+      중심을 y=radius 에 두면 바닥이 y=0 에 닿는다
+- [x] `SeedPlanting` — 첫 장면 진입 연출.
+      씨앗이 파티클 꼬리를 달고 내려와 착지 스쿼시를 거쳐 흙에 박힌다.
+      시퀀스 타이밍은 gsap 타임라인이 잡고(`fallEase` 로 낙하 느낌 조절),
+      파티클 자체의 반복은 계속 `useFrame` 이 돌린다.
+      `onPlanted` 콜백이 미션 클리어 시 꽃 피우기 연출을 붙일 자리다
+- [ ] 미션 클리어 → 씨앗이 꽃으로 자라는 연출
+- [ ] `Player` (SkinnedMesh + 애니메이션) 스토리 — `animation` prop 표준화 필요.
+      캐릭터는 ailive 케이스 전용이라 첫 장면(`Scene.tsx`)에서는 빠져 있다
 - [ ] `Islands`, `InkStrokes`, `FlightPath` 승격
 - [ ] `scale` / `rotation` / `animation` props 네이밍 통일
 

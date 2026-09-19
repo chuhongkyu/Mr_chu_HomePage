@@ -1,0 +1,59 @@
+// 캐릭터 밑에 가로로 눕는 모션 버튼들.
+// 씬 내비와 같은 리퀴드 글래스를 쓰되, 내비보다 위쪽에 자리한다.
+
+.controls {
+  position: absolute;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  max-width: calc(100% - #{$space-16});
+  padding: $space-3;
+  border-radius: $radius-pill;
+  overflow-x: auto;
+
+  background: color-mix(in srgb, $color-gray-0 42%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid color-mix(in srgb, $color-gray-0 55%, transparent);
+  box-shadow:
+    0 8px 32px $color-alpha-black-24,
+    inset 0 1px 1px color-mix(in srgb, $color-gray-0 70%, transparent);
+
+  // 가로 스크롤이 필요한 좁은 화면에서 스크롤바가 유리를 깨지 않게.
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.button {
+  @include ty(t3, bold, true);
+
+  flex: none;
+  padding: $space-3 $space-6;
+  border: 0;
+  border-radius: $radius-pill;
+  background: transparent;
+  color: var(--color-font-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    background: color-mix(in srgb, $color-gray-0 60%, transparent);
+    color: var(--color-font-base);
+  }
+
+  // 지금 재생 중인 동작.
+  &.active {
+    background: var(--color-font-base);
+    color: var(--color-bg-base);
+  }
+}

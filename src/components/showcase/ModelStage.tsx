@@ -8,6 +8,7 @@ import {
   Environment,
   Grid,
   OrbitControls,
+  PerspectiveCamera,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
@@ -78,7 +79,11 @@ export function ModelStage({
 
   return (
     <div style={{ width: "100%", height: "100vh", background }}>
-      <Canvas shadows dpr={[1, 2]} camera={{ position: cameraPosition, fov }}>
+      <Canvas shadows dpr={[1, 2]}>
+        {/* Canvas 의 camera prop 은 마운트 시점에만 반영된다.
+            Storybook 컨트롤로 거리를 돌려 보려면 컴포넌트 카메라여야 한다. */}
+        <PerspectiveCamera makeDefault position={cameraPosition} fov={fov} />
+
         <ambientLight intensity={ambientIntensity} />
         <directionalLight
           position={[15, 15, 0]}

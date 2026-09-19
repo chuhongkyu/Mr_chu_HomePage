@@ -1,0 +1,14 @@
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: $space-8 $space-8 $space-24;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  color: var(--color-font-muted);
+}

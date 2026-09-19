@@ -1,0 +1,25 @@
+// 현재 보고 있는 씬을 알려주는 표식.
+// 헤더의 둥근 알약 버튼들과 구분되도록 각진 사각형으로 둔다.
+.badge {
+  @include ty(t3, bold, true);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: $radius-sm;
+  background: color-mix(in srgb, var(--color-bg-surface) 70%, transparent);
+  color: var(--color-font-base);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+// 씬마다 색이 다를 수 있어 --accent 로 받는다. 안 주면 표식 없이 글자만.
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--accent);
+}

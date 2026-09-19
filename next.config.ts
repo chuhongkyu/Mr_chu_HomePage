@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
     loadPaths: [path.join(__dirname, "src/style")],
     additionalData: `
       @use "tokens.generated" as *;
+      @use "typography" as *;
       @use "variables" as *;
       @use "mixins" as *;
     `,

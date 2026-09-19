@@ -46,3 +46,6 @@ next-env.d.ts
 
 # storybook
 storybook-static
+
+# notion 스냅샷은 커밋한다 (빌드·런타임이 Notion 에 의존하지 않도록)
+!public/notion/*.json

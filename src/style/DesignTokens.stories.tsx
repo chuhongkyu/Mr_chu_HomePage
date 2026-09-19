@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 const page: React.CSSProperties = {
   padding: 32,
-  fontFamily: "var(--font-noto-sans), sans-serif",
+  fontFamily: "var(--font-pretendard), sans-serif",
   color: "var(--color-font-base)",
   background: "var(--color-bg-base)",
   minHeight: "100vh",
