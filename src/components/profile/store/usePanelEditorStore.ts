@@ -15,12 +15,11 @@ type PanelEditorStore = {
 };
 
 /**
- * 배치 편집기가 만지는 판 목록. 개발용이다.
+ * 배치 편집기가 만지는 판 목록. 개발용.
  *
- * 조작 UI 는 캔버스 밖 DOM, 판과 기즈모는 캔버스 안이라 둘을 잇는 지점이
- * 필요하다. UI 를 캔버스 안(`drei/Html`)에 두면 drei 가 wrapper 에 transform
- * 을 걸고, transform 은 containing block 을 만들어서 그 안의 `position: fixed`
- * 가 화면에 붙지 못한다. 그래서 UI 를 밖으로 뺐다.
+ * 조작 UI 는 캔버스 밖, 판과 기즈모는 캔버스 안이라 둘을 잇는 지점이 필요하다.
+ * UI 를 `drei/Html` 안에 두면 drei 가 건 transform 이 containing block 을
+ * 만들어 `position: fixed` 를 가둔다.
  */
 export const usePanelEditorStore = create<PanelEditorStore>((set) => ({
   panels: FASTCAMPUS_PANELS,

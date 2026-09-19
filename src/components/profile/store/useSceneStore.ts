@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { SCENES } from "@/components/profile/constants/scenes";
+import { PROJECTS } from "@/components/profile/constants/projects";
 
 type SceneStore = {
   index: number;
@@ -18,10 +18,11 @@ type SceneStore = {
 export const useSceneStore = create<SceneStore>((set) => ({
   index: 0,
   goTo: (index) =>
-    set({ index: Math.min(Math.max(index, 0), SCENES.length - 1) }),
-  next: () => set((s) => ({ index: Math.min(s.index + 1, SCENES.length - 1) })),
+    set({ index: Math.min(Math.max(index, 0), PROJECTS.length - 1) }),
+  next: () => set((s) => ({ index: Math.min(s.index + 1, PROJECTS.length - 1) })),
   prev: () => set((s) => ({ index: Math.max(s.index - 1, 0) })),
 }));
 
 /** 컴포넌트에서 매번 인덱스를 풀지 않도록. */
-export const useCurrentScene = () => SCENES[useSceneStore((s) => s.index)];
+export const useCurrentProject = () =>
+  PROJECTS[useSceneStore((s) => s.index)];

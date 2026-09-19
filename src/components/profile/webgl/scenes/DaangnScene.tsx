@@ -1,5 +1,5 @@
+import type { ProjectContentProps } from "@/components/profile/constants/projects";
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
-import type { SceneContentProps } from "@/components/profile/constants/scenes";
 import { SceneHotspot } from "@/components/profile/webgl/common/SceneHotspot";
 import {
   CLOSE_ZONE_UV,
@@ -14,7 +14,7 @@ import { color } from "@/style/tokens.generated";
  *
  * 핫스팟 좌표는 그림 위 UV 라 이미지가 바뀌면 `CLOSE_ZONE_UV` 만 다시 재면 된다.
  */
-export const DaangnScene = ({ onOpenArticle }: SceneContentProps) => {
+export const DaangnScene = ({ onOpenArticle }: ProjectContentProps) => {
   return (
     // 화면 가운데에 오도록 카메라 target 에 맞춘다.
     <DaangnApart position={[...CAMERA.target]}>

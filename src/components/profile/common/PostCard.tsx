@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
-import type { Post } from "@/components/profile/constants/posts";
+import type { Project } from "@/components/profile/constants/projects";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 
 import styles from "@/components/profile/common/PostCard.module.scss";
 
 type Props = {
-  post: Post;
+  post: Project;
   onClick: () => void;
 };
 

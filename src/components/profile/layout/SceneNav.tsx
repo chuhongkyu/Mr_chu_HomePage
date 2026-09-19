@@ -3,8 +3,7 @@
 import IconChevronLeftRegular from "@seed-design/react-icon/lib/IconChevronLeftRegular";
 import IconChevronRightRegular from "@seed-design/react-icon/lib/IconChevronRightRegular";
 
-import { POSTS } from "@/components/profile/constants/posts";
-import { SCENES } from "@/components/profile/constants/scenes";
+import { PROJECTS } from "@/components/profile/constants/projects";
 import SceneNavLink from "@/components/profile/layout/SceneNavLink";
 import { useSceneStore } from "@/components/profile/store/useSceneStore";
 
@@ -26,12 +25,9 @@ export const SceneNav = ({ onOpenLink }: SceneNavProps) => {
   const next = useSceneStore((s) => s.next);
   const prev = useSceneStore((s) => s.prev);
 
-  const scene = SCENES[index];
+  const project = PROJECTS[index];
   const hasPrev = index > 0;
-  const hasNext = index < SCENES.length - 1;
-  const linkPost = scene.link
-    ? POSTS.find((post) => post.id === scene.link?.postId)
-    : undefined;
+  const hasNext = index < PROJECTS.length - 1;
 
   return (
     <nav className={styles.nav} aria-label="씬 이동">
@@ -48,8 +44,8 @@ export const SceneNav = ({ onOpenLink }: SceneNavProps) => {
 
         {/* 남는 폭을 다 먹어서 화살표가 양 끝에 붙고, 안쪽은 가운데 정렬된다. */}
         <span className={styles.title}>
-          <span className={styles.label}>{scene.label}</span>
-          <span className={styles.year}>{scene.year}</span>
+          <span className={styles.label}>{project.label}</span>
+          <span className={styles.year}>{project.year}</span>
         </span>
 
         <button
@@ -63,7 +59,7 @@ export const SceneNav = ({ onOpenLink }: SceneNavProps) => {
         </button>
       </div>
 
-      {linkPost && <SceneNavLink post={linkPost} onClick={onOpenLink} />}
+      <SceneNavLink project={project} onClick={onOpenLink} />
     </nav>
   );
 };

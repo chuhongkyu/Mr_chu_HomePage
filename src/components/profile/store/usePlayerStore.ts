@@ -9,7 +9,7 @@ import {
 
 export type { PlayerAnimation, SceneTheme };
 
-const DEFAULT_POST_ID = "7122521989285625856"; // POSTS[0] = 패캠
+const DEFAULT_POST_ID = "7122521989285625856"; // PROJECTS 의 패캠
 
 export const SLIDE_THEMES = SLIDE_CONFIGS.map((c) => c.theme);
 export const DEFAULT_THEME = getSlideConfig(DEFAULT_POST_ID).theme;

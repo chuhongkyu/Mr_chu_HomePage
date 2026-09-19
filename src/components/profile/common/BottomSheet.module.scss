@@ -75,7 +75,11 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
-  // 좌우는 4px 만. 안쪽 콘텐츠가 자기 여백을 갖는다.
-  // react-notion-x 가 이미 min(16px, 8vw) 를 넣어서 합쳐 20px 가 된다.
+  padding: 16px;
+}
+
+// 안쪽 콘텐츠가 이미 자기 좌우 여백을 갖는 경우. react-notion-x 가
+// min(16px, 8vw) 를 넣으므로 여기서 16px 을 더 주면 합쳐 32px 이 된다.
+.contentFlush {
   padding: 16px 4px;
 }

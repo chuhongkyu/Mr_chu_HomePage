@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
-import type { Post } from "@/components/profile/constants/posts";
+import type { Project } from "@/components/profile/constants/projects";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
 
 import styles from "@/components/profile/common/LinkedInPopup.module.scss";
 
 type Props = {
-  post: Post;
+  post: Project;
   onClose: () => void;
 };
 
@@ -32,10 +32,20 @@ const getEmbedMode = (url?: string): EmbedMode => {
   return "external";
 };
 
+/**
+ * 링크드인 임베드는 글의 activity ID 를 요구한다. 항목의 `id` 를 쓰면 안 된다.
+ * 예전에는 그 둘이 우연히 같았지만, 지금 `id` 는 `genaimo` 같은 씬 이름이다.
+ */
+const linkedInActivityId = (url: string) => url.match(/activity-(\d+)/)?.[1];
+
 const getEmbedSrc = (post: { id: string; url?: string }): string => {
   if (!post.url) return "";
-  if (post.url.includes("linkedin.com"))
-    return `https://www.linkedin.com/embed/feed/update/urn:li:activity:${post.id}`;
+  if (post.url.includes("linkedin.com")) {
+    const activity = linkedInActivityId(post.url);
+    return activity
+      ? `https://www.linkedin.com/embed/feed/update/urn:li:activity:${activity}`
+      : "";
+  }
   if (post.url.includes("facebook.com"))
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(post.url)}&show_text=false`;
   if (post.url.includes("notion.site")) {

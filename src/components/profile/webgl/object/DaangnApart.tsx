@@ -4,7 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
-import { useCurrentScene } from "@/components/profile/store/useSceneStore";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 
 export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.jpg";
 export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
@@ -132,7 +132,7 @@ export const DaangnApart = ({
 
   const size = useThree((state) => state.size);
   // 카메라와 같은 기준을 봐야 크로스페이드 구간이 어긋나지 않는다.
-  const viewHeight = useCurrentScene().viewHeight ?? CAMERA.orthoViewHeight;
+  const viewHeight = useCurrentProject().viewHeight ?? CAMERA.orthoViewHeight;
 
   /**
    * 그림 중심을 얼마나 옮겨야 건물 중심이 앵커에 오는지.

@@ -6,11 +6,11 @@ import { Canvas } from "@react-three/fiber";
 
 import ArticleSheet from "@/components/profile/common/ArticleSheet";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
-import { POSTS } from "@/components/profile/constants/posts";
+import { PROJECTS } from "@/components/profile/constants/projects";
 import SceneNav from "@/components/profile/layout/SceneNav";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
-import { useCurrentScene } from "@/components/profile/store/useSceneStore";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 import Background from "@/components/profile/webgl/common/Background";
 import CameraManager from "@/components/profile/webgl/common/CameraManager";
 import Lights from "@/components/profile/webgl/common/Lights";
@@ -48,14 +48,14 @@ const writeStoryParam = (id: string | null, mode: "push" | "replace") => {
 /**
  * 씬 껍데기.
  *
- * 무엇을 그릴지는 전부 `constants/scenes` 의 레지스트리가 정한다.
+ * 무엇을 그릴지는 전부 `constants/projects` 의 레지스트리가 정한다.
  * 여기서는 캔버스·카메라·조명 같은 공통분모와, 캔버스 밖 DOM(내비·시트)만 맡는다.
  */
 const Scene = () => {
-  const scene = useCurrentScene();
-  const [linkedInPostId, setLinkedInPostId] = useState<string | null>(null);
-  // R3F 에는 intrinsic <scene> 이 있어서 <scene.Content /> 는 헷갈린다. 풀어서 쓴다.
-  const { Content } = scene;
+  const project = useCurrentProject();
+  const [openPostId, setOpenPostId] = useState<string | null>(null);
+  // R3F 에는 intrinsic <scene> 이 있어서 <project.Content /> 는 헷갈린다. 풀어서 쓴다.
+  const { Content } = project;
   const [articleOpen, setArticleOpen] = useState(false);
 
   // 주소가 곧 상태다. 직접 들어와도, 뒤로가기를 눌러도 같은 경로로 처리된다.
@@ -64,38 +64,39 @@ const Scene = () => {
       const param = new URLSearchParams(window.location.search).get(
         STORY_PARAM
       );
-      setArticleOpen(!!scene.articleId && param === scene.articleId);
+      setArticleOpen(!!project.articleId && param === project.articleId);
     };
 
     sync();
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
-  }, [scene.articleId]);
+  }, [project.articleId]);
 
   const openArticle = useCallback(() => {
-    if (!scene.articleId) return;
+    if (!project.articleId) return;
     // 새 기록을 쌓아서 뒤로가기로 닫을 수 있게 한다.
-    writeStoryParam(scene.articleId, "push");
+    writeStoryParam(project.articleId, "push");
     setArticleOpen(true);
-  }, [scene.articleId]);
+  }, [project.articleId]);
 
   /**
-   * 내비 카드를 눌렀을 때. 씬마다 데려가는 곳이 다르다.
-   *   article — 노션 스냅샷을 시트로 (주소에 ?story= 가 남는다)
-   *   post    — 그 포스트를 팝업으로
+   * 내비 카드를 눌렀을 때.
+   *
+   * 무엇을 열지는 `url` 유무가 정한다. 원문이 있으면 팝업으로 띄우고,
+   * 없으면 노션 스냅샷을 시트로 연다(주소에 ?story= 가 남는다).
    */
   const play = useMotionStore((s) => s.play);
 
   const openLink = useCallback(() => {
-    if (!scene.link) return;
     // 카드를 누르면 캐릭터가 먼저 반응한다. 이 동작이 씬을 클리어한다.
-    if (scene.linkMotion) play(scene.linkMotion);
-    if (scene.link.open === "post") {
-      setLinkedInPostId(scene.link.postId);
+    if (project.linkMotion) play(project.linkMotion);
+
+    if (project.url) {
+      setOpenPostId(project.id);
       return;
     }
     openArticle();
-  }, [scene.link, scene.linkMotion, play, openArticle]);
+  }, [project.url, project.id, project.linkMotion, play, openArticle]);
 
   const closeArticle = useCallback(() => {
     // 닫기는 기록을 늘리지 않는다.
@@ -107,13 +108,13 @@ const Scene = () => {
 
   // 클리어한 씬은 배경을 바꿔 연다. `Background` 가 색도 그라데이션도
   // 옮겨 가며 칠하므로, 값만 갈아 끼우면 전환이 저절로 이어진다.
-  const cleared = useSceneClearStore((s) => s.cleared[scene.id] ?? false);
-  const showCleared = cleared && Boolean(scene.clearedBackdrop);
-  const backdrop = showCleared ? scene.clearedBackdrop! : scene.backdrop;
-  const backdropGradient = showCleared || scene.backdropGradient;
+  const cleared = useSceneClearStore((s) => s.cleared[project.id] ?? false);
+  const showCleared = cleared && Boolean(project.clearedBackdrop);
+  const backdrop = showCleared ? project.clearedBackdrop! : project.backdrop;
+  const backdropGradient = showCleared || project.backdropGradient;
 
-  const linkedInPost = linkedInPostId
-    ? POSTS.find((post) => post.id === linkedInPostId)
+  const openPost = openPostId
+    ? PROJECTS.find((item) => item.id === openPostId)
     : undefined;
 
   return (
@@ -136,7 +137,7 @@ const Scene = () => {
           <CameraManager />
           {/* 씬이 바뀌면 이전 오브제는 통째로 언마운트된다.
               key 를 주지 않으면 같은 자리의 컴포넌트로 취급돼 상태가 샌다. */}
-          <Content key={scene.id} onOpenArticle={openArticle} />
+          <Content key={project.id} onOpenArticle={openArticle} />
         </Suspense>
       </Canvas>
 
@@ -144,18 +145,18 @@ const Scene = () => {
 
       {editingPanels && <PanelEditorDock />}
 
-      {scene.articleId && (
+      {project.articleId && (
         <ArticleSheet
-          id={scene.articleId}
+          id={project.articleId}
           isOpen={articleOpen}
           onClose={closeArticle}
         />
       )}
 
-      {linkedInPost && (
+      {openPost && (
         <LinkedInPopup
-          post={linkedInPost}
-          onClose={() => setLinkedInPostId(null)}
+          post={openPost}
+          onClose={() => setOpenPostId(null)}
         />
       )}
     </div>

@@ -55,7 +55,7 @@ export const ArticleSheet = ({ id, isOpen, onClose }: ArticleSheetProps) => {
   if (!isOpen) return null;
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={onClose} showCloseButton>
+    <BottomSheet isOpen={isOpen} onClose={onClose} showCloseButton flush>
       <div className={styles.body}>
         {recordMap && <NotionContent recordMap={recordMap} />}
         {!recordMap && !failed && (

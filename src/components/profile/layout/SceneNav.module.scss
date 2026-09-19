@@ -6,7 +6,7 @@
 .nav {
   position: absolute;
   left: 50%;
-  bottom: 24px;
+  bottom: 16px;
   transform: translateX(-50%);
   z-index: $layer-nav;
 
@@ -14,9 +14,7 @@
   // 위에 화살표·라벨, 아래에 링크 카드.
   flex-direction: column;
   gap: $space-3;
-  // 고정 폭을 두지 않는다. 268px 로 묶어 두니 카드 안 글 영역이 184px 밖에
-  // 안 남아 제목도 설명도 줄줄이 잘렸다. 좁은 화면에서는 화면을 따라 줄고,
-  // 넓은 화면에서는 이 이상 늘리지 않는다.
+  // 268px 로 묶으면 카드 안 글 영역이 184px 밖에 안 남아 줄줄이 잘린다.
   width: min(360px, calc(100vw - #{$space-6} * 2));
   padding: $space-2;
   // 알약이 아니라 둥근 사각형. 안에 카드가 들어가서 알약은 어색하다.

@@ -13,29 +13,18 @@ import {
 } from "@/components/profile/webgl/common/glassPanelTexture";
 import { color } from "@/style/tokens.generated";
 
-/** 내용물을 유리 앞면에서 이만큼 띄운다. 겹치면 z-파이팅으로 지글거린다. */
+/** 겹치면 z-파이팅으로 지글거린다. */
 const CONTENT_LIFT = 0.01;
 
-/** 좌우로 가를 때 이미지가 먹을 수 있는 최대 가로 비율. */
 const SPLIT_MAX_IMAGE = 0.42;
-
-/** 위아래로 가를 때 이미지가 먹는 세로 비율. */
 const SPLIT_STRIP = 0.5;
-
-/** 이미지와 글 사이 여백(월드 유닛). */
 const SPLIT_GAP = 0.32;
 
 type Rect = { width: number; height: number; x: number; y: number };
 
 /**
- * 이미지와 글을 한 판에 나눠 담을 때 각자의 자리.
- *
  * 좌우로 가르면 이미지를 정사각으로 둔다. 원본 비율대로 두면 판마다 그림
- * 모양이 달라져서 여러 판을 세웠을 때 줄이 어긋나 보인다.
- *
- * 위아래로 가르면 판 폭을 꽉 채운 가로 띠로 둔다. 이쪽은 어차피 폭이
- * 고정이라 모양이 흔들릴 일이 없고, 길게 누운 편이 띠처럼 읽힌다.
- * 원본보다 납작해지는 만큼 위아래가 잘려 나간다.
+ * 모양이 달라져 여러 판을 세웠을 때 줄이 어긋난다.
  */
 const splitLayout = (
   side: "left" | "right" | "top" | "bottom",
@@ -86,10 +75,7 @@ const splitLayout = (
 export type GlassPanelContent =
   | { kind: "image"; src: string }
   | { kind: "text"; eyebrow?: string; title?: string; body?: string }
-  /**
-   * 이미지와 글을 한 판에. `imageSide` 는 이미지가 붙는 쪽이다.
-   * 좌우면 정사각, 위아래면 판 폭을 꽉 채운 가로 띠가 된다. 기본은 왼쪽.
-   */
+  /** 좌우면 정사각, 위아래면 판 폭을 꽉 채운 가로 띠. */
   | {
       kind: "split";
       src: string;
@@ -102,44 +88,29 @@ export type GlassPanelContent =
 export type GlassPanelProps = {
   width?: number;
   height?: number;
-  /** 판의 두께. 베벨이 여기에 더 붙는다. */
+  /** 베벨이 여기에 더 붙는다. */
   thickness?: number;
   radius?: number;
   /** 보더로 읽히는 깎인 띠의 폭. */
   bevel?: number;
-  /** 내용물과 판 가장자리 사이의 여백. 보더를 가리지 않게 띄운다. */
   inset?: number;
 
-  /** 유리 몸통 색. */
   tint?: THREE.ColorRepresentation;
-  /** 가장자리에 도는 빛의 색. */
   rimColor?: THREE.ColorRepresentation;
-  /** 정면에서 본 불투명도. 가장자리는 프레넬이 따로 올린다. */
+  /** 정면 기준. 가장자리는 프레넬이 따로 올린다. */
   opacity?: number;
   rimPower?: number;
   rimStrength?: number;
   sheen?: number;
 
-  /** 채울 것. 없으면 빈 유리판이다. */
   content?: GlassPanelContent;
-  /**
-   * 글자 크기(월드 유닛). 판 크기에 비례시키지 않는다. 비례시키면 작은
-   * 판의 글씨만 작아져서, 나란히 놓았을 때 위계가 없는데도 있는 것처럼
-   * 읽힌다. 대신 씬이 담는 넓이가 달라지면 여기서 맞춘다.
-   */
+  /** 월드 유닛. 판 크기에 비례시키지 마라 — 없는 위계가 생긴 것처럼 읽힌다. */
   titleSize?: number;
   bodySize?: number;
-  /** 글과 판 사이 여백(월드 유닛). */
   textPadding?: number;
-  /** 켜면 제자리에서 천천히 떠다닌다. */
   float?: boolean;
 
   position?: [number, number, number];
-  /**
-   * `THREE.Euler` 를 받는다. 카메라를 정면으로 보게 하려면 회전 순서가
-   * 중요해서, 순서를 지정할 수 없는 [x, y, z] 튜플만으로는 부족하다.
-   * 사정은 `FastcampusScene` 의 `facing` 에 적어 뒀다.
-   */
   rotation?: THREE.Euler | [number, number, number];
   /** 내용물을 직접 넣고 싶을 때. `content` 대신 쓴다. */
   children?: ReactNode;
@@ -161,8 +132,8 @@ const PanelImage = ({
 }) => {
   const loaded = useTexture(src);
 
-  // 원본을 그대로 만지면 안 된다. `useTexture` 는 URL 로 캐시해서, 같은
-  // 이미지를 쓰는 다른 패널과 UV 잘라내기가 서로 덮어쓴다.
+  // `useTexture` 는 URL 로 캐시한다. 원본을 만지면 같은 이미지를 쓰는
+  // 다른 판과 UV 잘라내기가 서로 덮어쓴다.
   const texture = useMemo(() => {
     const clone = loaded.clone();
     coverTexture(clone, width, height);
@@ -232,7 +203,7 @@ const PanelText = ({
     };
 
     paint();
-    // 웹폰트가 늦게 붙으면 첫 그림은 대체 폰트로 나간다. 준비되면 다시 굽는다.
+    // 웹폰트가 늦게 붙으면 첫 그림이 대체 폰트로 나간다.
     document.fonts?.ready.then(paint).catch(() => {});
 
     return () => {
@@ -313,8 +284,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
   const contentWidth = Math.max(width - inset * 2, 0.1);
   const contentHeight = Math.max(height - inset * 2, 0.1);
 
-  // 내용물은 앞면보다 앞에 세운다. 유리가 깊이를 쓰지 않으므로, 앞에 두면
-  // 글과 이미지가 유리 톤을 타지 않고 또렷하게 읽힌다.
+  // 유리가 깊이를 쓰지 않으므로, 앞에 둬야 글과 이미지가 유리 톤을 안 탄다.
   const contentZ = panelDepth(thickness, bevel) / 2 + CONTENT_LIFT;
 
   const split =
@@ -362,8 +332,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
   if (!float) return panel;
 
   return (
-    // 돌리지 않는다(rotationIntensity 0). 판을 월드 축에 맞춰 세운 씬에서는
-    // 조금만 돌아도 줄이 어긋나 보인다. 위아래로 흔들리기만 한다.
+    // rotationIntensity 0. 월드 축에 맞춰 세운 씬이라 조금만 돌아도 줄이 어긋난다.
     <Float speed={1.2} rotationIntensity={0} floatIntensity={0.4}>
       {panel}
     </Float>

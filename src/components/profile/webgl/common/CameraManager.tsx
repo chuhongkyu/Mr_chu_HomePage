@@ -19,7 +19,7 @@ import {
 } from "@/components/profile/constants/sceneConfig";
 import { getSlideConfig } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
-import { useCurrentScene } from "@/components/profile/store/useSceneStore";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 
 export type CameraMode = "orthographic" | "perspective";
 
@@ -38,7 +38,7 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
   // 고정값으로 두면 화면이 커질수록 담기는 월드 양이 늘어난다.
   // 담을 높이는 씬마다 다를 수 있다.
   const viewportHeight = useThree((state) => state.size.height);
-  const scene = useCurrentScene();
+  const scene = useCurrentProject();
   const viewHeight = scene.viewHeight ?? CAMERA.orthoViewHeight;
 
   // 투영 방식은 씬이 정한다. prop 은 남겨두되 씬 값이 우선이다.
