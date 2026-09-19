@@ -2,11 +2,16 @@ import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
-
 export type JumpTrailEffectProps = {
   playerPosition?: [number, number, number];
   color?: THREE.ColorRepresentation;
+  /**
+   * 켜지는 순간 한 번 터진다.
+   *
+   * 예전에는 이 컴포넌트가 직접 `usePlayerStore` 를 읽어서 "jump" 일 때만
+   * 동작했다. 그러면 같은 이펙트를 다른 맥락에서 못 쓴다. 판단은 밖에서 한다.
+   */
+  active?: boolean;
 };
 
 const N_SPARKS = 14;
@@ -37,8 +42,8 @@ const buildLightningPts = (
 export const JumpTrailEffect = ({
   playerPosition = [0, 0, 0],
   color = 0xff9900,
+  active = false,
 }: JumpTrailEffectProps) => {
-  const animation = usePlayerStore((s) => s.animation);
   const threeColor = useMemo(() => new THREE.Color(color), [color]);
 
   const timerRef = useRef(-1);
@@ -93,7 +98,7 @@ export const JumpTrailEffect = ({
   }, [threeColor]);
 
   useEffect(() => {
-    if (animation !== "jump") return;
+    if (!active) return;
     const id = setTimeout(() => {
       startPos.current.set(playerPosition[0], 0, playerPosition[2]);
       rootGroup.position.copy(startPos.current);
@@ -148,7 +153,7 @@ export const JumpTrailEffect = ({
       timerRef.current = 0;
     }, 1600);
     return () => clearTimeout(id);
-  }, [animation, playerPosition, rootGroup, sparkMeshes]);
+  }, [active, playerPosition, rootGroup, sparkMeshes]);
 
   useFrame((_, delta) => {
     if (timerRef.current < 0) return;

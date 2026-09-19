@@ -1,7 +1,5 @@
-@use "./_variables" as *;
-@use "./_mixins" as *;
+@use "system" as *;
 @use "./_font" as *;
-@use "./typography" as *;
 
 $modal-top-nav-height: 32px;
 $modal-top-nav-height-mobile: 30px;

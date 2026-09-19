@@ -1,0 +1,6 @@
+// 스토리북 전용 스테이지. 배경색은 스토리마다 달라서 CSS 변수로 받는다.
+.stage {
+  width: 100%;
+  height: 100vh;
+  background: var(--stage-background);
+}

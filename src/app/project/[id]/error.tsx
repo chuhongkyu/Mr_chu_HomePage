@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import styles from "@/app/project/[id]/error.module.scss";
+
 /**
  * 프로젝트 상세 렌더링이 실패했을 때의 화면.
  *
@@ -24,43 +26,13 @@ export default function ProjectDetailError({
   }, [error]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 12,
-        minHeight: "60vh",
-        padding: 24,
-        textAlign: "center",
-        color: "var(--color-font-base)",
-      }}
-    >
-      <h2 style={{ fontSize: 16, margin: 0 }}>
-        프로젝트를 불러오지 못했습니다
-      </h2>
-      <p style={{ fontSize: 13, color: "var(--color-font-muted)", margin: 0 }}>
-        {error.message}
-      </p>
+    <div className={styles.container}>
+      <h2 className={styles.title}>프로젝트를 불러오지 못했습니다</h2>
+      <p className={styles.message}>{error.message}</p>
       {error.digest && (
-        <code style={{ fontSize: 11, color: "var(--color-font-muted)" }}>
-          digest: {error.digest}
-        </code>
+        <code className={styles.digest}>digest: {error.digest}</code>
       )}
-      <button
-        type="button"
-        onClick={reset}
-        style={{
-          marginTop: 8,
-          padding: "8px 16px",
-          borderRadius: 999,
-          border: "1px solid var(--color-border)",
-          background: "var(--color-bg-surface)",
-          color: "var(--color-font-base)",
-          cursor: "pointer",
-        }}
-      >
+      <button type="button" className={styles.retry} onClick={reset}>
         다시 시도
       </button>
     </div>

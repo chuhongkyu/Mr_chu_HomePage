@@ -1,0 +1,45 @@
+name: Notion 스냅샷 동기화
+
+# 노션 글은 빌드에도 런타임에도 불러오지 않는다. `public/notion/*.json` 에
+# 구워 커밋한 것만 읽는다. notion-client 가 app.notion.com 을 긁는 비공식
+# API 라, 요청 시점에 호출하면 막혔을 때 페이지가 통째로 죽기 때문이다.
+#
+# 그 대가로 글을 고쳐도 저절로 반영되지 않는다. 빌드에 붙이지 않는 이유도
+# 같다 — 노션이 막히면 배포가 실패해선 안 된다.
+
+on:
+  schedule:
+    # 매월 1일 00:00 UTC = 09:00 KST. 평소에는 손으로 돌리고, 이건 잊었을 때를
+    # 받아 주는 그물이다.
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run notion:sync
+
+      - name: 바뀐 게 있으면 커밋
+        run: |
+          if git diff --quiet public/notion; then
+            echo "바뀐 글 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/notion
+          git commit -m "chore: 노션 최신화"
+          git push

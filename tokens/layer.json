@@ -1,0 +1,42 @@
+{
+  "$description": "쌓임 순서. 흩어진 z-index 때문에 씬 안의 DOM 이 내비 위로 올라오는 사고가 반복돼 한곳으로 모았다.",
+  "scene-html": {
+    "$type": "number",
+    "$value": 3,
+    "$description": "캔버스 위에 띄우는 DOM. 핫스팟·모션 칩·아이콘. 어떤 UI 보다도 아래."
+  },
+  "header": {
+    "$type": "number",
+    "$value": 5
+  },
+  "nav": {
+    "$type": "number",
+    "$value": 6
+  },
+  "hotspot-card": {
+    "$type": "number",
+    "$value": 8,
+    "$description": "좁은 화면에서 화면 한가운데 띄우는 핫스팟 카드. 내비(6)보다 위에, 시트 배경막(10)보다 아래에 둔다. 시트를 열면 카드가 덮여야 한다."
+  },
+  "sheet-backdrop": {
+    "$type": "number",
+    "$value": 10
+  },
+  "sheet": {
+    "$type": "number",
+    "$value": 11
+  },
+  "sheet-close": {
+    "$type": "number",
+    "$value": 20,
+    "$description": "시트 안 닫기 버튼. 시트가 자기 쌓임 맥락을 만들므로 이 값은 시트 내부에서만 겨룬다. 본문에 z-index 를 쓴 요소가 있어도 버튼이 덮이지 않게 넉넉히 띄웠다."
+  },
+  "popup": {
+    "$type": "number",
+    "$value": 100
+  },
+  "toast": {
+    "$type": "number",
+    "$value": 200
+  }
+}

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X } from "lucide-react";
 import { animate,motion, useDragControls, useMotionValue } from "motion/react";
+
+import CloseButton from "@/components/profile/common/CloseButton";
 
 import styles from "@/components/profile/common/BottomSheet.module.scss";
 
@@ -12,11 +13,23 @@ type Props = {
   children: React.ReactNode;
   variant?: "full" | "half";
   showCloseButton?: boolean;
+  /**
+   * 안쪽 콘텐츠가 이미 자기 좌우 여백을 갖는지. 켜면 시트가 좌우를 거의
+   * 비운다. 노션 글처럼 렌더러가 여백을 넣는 경우에만.
+   */
+  flush?: boolean;
 };
 
 const SPRING = { type: "spring", damping: 32, stiffness: 320 } as const;
 
-const BottomSheet = ({ isOpen, onClose, children, variant = "full", showCloseButton = false }: Props) => {
+const BottomSheet = ({
+  isOpen,
+  onClose,
+  children,
+  variant = "full",
+  showCloseButton = false,
+  flush = false,
+}: Props) => {
   const dragControls = useDragControls();
   const y = useMotionValue(0);
   const [visible, setVisible] = useState(false);
@@ -79,12 +92,14 @@ const BottomSheet = ({ isOpen, onClose, children, variant = "full", showCloseBut
         </div>
 
         {showCloseButton && (
-          <button className={styles.closeBtn} onClick={closeSheet} aria-label="닫기">
-            <X size={20} />
-          </button>
+          <CloseButton className={styles.closeBtn} onClick={closeSheet} />
         )}
 
-        <div className={styles.content}>{children}</div>
+        <div
+          className={`${styles.content} ${flush ? styles.contentFlush : ""}`}
+        >
+          {children}
+        </div>
       </motion.div>
     </>
   );

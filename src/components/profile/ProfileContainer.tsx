@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-import ProfileContents from "@/components/profile/layout/ProfileContents";
 import ProfileHeader from "@/components/profile/layout/ProfileHeader";
 
 import styles from "@/components/profile/ProfileContainer.module.scss";
@@ -20,7 +19,8 @@ const ProfileContainer = () => {
           <Scene />
         </div>
       </div>
-      <ProfileContents />
+      {/* 당근 경험 씬으로 재구성하는 동안 아래 슬라이드는 내려둔다.
+          컴포넌트는 layout/ProfileContents.tsx 에 그대로 있다. */}
     </div>
   );
 };

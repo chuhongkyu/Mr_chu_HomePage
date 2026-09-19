@@ -7,7 +7,7 @@ const BASE_URL = "https://mr-chu-home-page.vercel.app";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allProjects = await getAllProjectList();
     
-    const mainPages = [
+    const mainPages: MetadataRoute.Sitemap = [
         {
             url: BASE_URL,
             lastModified: new Date(),
@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     ];
 
-    const projectPages = allProjects.pageIds.map((projectId: string) => ({
+    const projectPages: MetadataRoute.Sitemap = allProjects.pageIds.map((projectId: string) => ({
         url: `${BASE_URL}/project/${projectId}`,
         lastModified: new Date(),
         changeFrequency: 'daily',

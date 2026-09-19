@@ -7,11 +7,12 @@ const Lights = () => {
 
   return (
     <>
+      <Environment preset="forest" />
       <ambientLight intensity={0.4} />
       <directionalLight
         ref={lightRef}
         position={[15, 15, 0]}
-        intensity={2}
+        intensity={1}
         castShadow
         shadow-camera-top={80}
         shadow-camera-bottom={-80}

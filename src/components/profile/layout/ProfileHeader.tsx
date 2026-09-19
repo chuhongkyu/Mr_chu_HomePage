@@ -1,66 +1,25 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import posthog from "posthog-js";
-
-import { useCoinStore } from "@/components/profile/store/useCoinStore";
+import HeaderMenu from "@/components/profile/layout/HeaderMenu";
+import SceneBadge from "@/components/profile/layout/SceneBadge";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 
 import styles from "@/components/profile/layout/ProfileHeader.module.scss";
 
-const HomeIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-  </svg>
-);
-
-const NAV_ITEMS = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/resume", label: "Resume" },
-  { href: "/project", label: "Project" },
-  { href: "/game", label: "App" },
-];
-
+/**
+ * 홈 화면 상단.
+ *
+ * 이름(`label`)은 하단 내비가 맡는다. 여기는 그 시기에 하려는 이야기다.
+ */
 const ProfileHeader = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const { coins } = useCoinStore();
+  const project = useCurrentProject();
 
   return (
     <header className={styles.header}>
-      <nav className={styles.nav}>
-        <div className={styles["nav-wrapper"]}>
-          {NAV_ITEMS.map(({ href, label }) => (
-            <button
-              key={href}
-              className={`${styles.navItem} ${pathname === href ? styles.active : ""}`}
-              onClick={() => {
-                posthog.capture("nav_click", {
-                  page: href === "/" ? "Home" : label,
-                });
-                router.push(href);
-              }}
-              aria-label={href === "/" ? "Home" : undefined}
-            >
-              {href === "/" ? <HomeIcon /> : label}
-            </button>
-          ))}
-          <div className={styles.coinBadge}>
-            <img
-              src="/assets/icons/coin.svg"
-              alt="coin"
-              className={styles.coinIcon}
-            />
-            <span className={styles.coinCount}>{coins}</span>
-          </div>
-        </div>
-      </nav>
+      <div className={styles.inner}>
+        <HeaderMenu />
+        <SceneBadge label={project.headline} />
+      </div>
     </header>
   );
 };

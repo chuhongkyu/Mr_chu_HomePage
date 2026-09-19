@@ -2,6 +2,8 @@ import { useEffect, useMemo } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
+const GLOW_TEXTURE = "/assets/textures/glow.png";
+
 export type LightningRingProps = {
   bone: THREE.Bone;
   visible?: boolean;
@@ -15,7 +17,7 @@ export const LightningRing = ({
   radius = 0.15,
   color = "#ff5500",
 }: LightningRingProps) => {
-  const texture = useLoader(THREE.TextureLoader, "/assets/textures/glow.png");
+  const texture = useLoader(THREE.TextureLoader, GLOW_TEXTURE);
 
   const group = useMemo(() => {
     const g = new THREE.Group();
@@ -96,3 +98,7 @@ export const LightningRing = ({
 
   return null;
 };
+
+// 미리 받아둔다. 이펙트가 붙는 순간 로딩이 시작되면 useLoader 가 서스펜드하고,
+// 감싸고 있던 Suspense 경계가 통째로 fallback 으로 바뀌어 씬이 깜빡인다.
+useLoader.preload(THREE.TextureLoader, GLOW_TEXTURE);

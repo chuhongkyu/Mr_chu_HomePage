@@ -1,5 +1,5 @@
 import type { QueryFunctionContext } from "@tanstack/react-query";
-import { NotionAPI } from "notion-client";
+import type { ExtendedRecordMap } from "notion-types";
 
 import {
   IList,
@@ -27,82 +27,41 @@ const getProjectList = async (
   return response.json();
 };
 
-const NOTION_RETRIES = 3;
+/**
+ * 프로젝트 상세(Notion recordMap).
+ *
+ * 요청 시점에 Notion 을 호출하지 않는다. `npm run notion:sync` 로 받아둔
+ * 스냅샷(`public/notion/<id>.json`)을 읽는다.
+ *
+ * notion-client 는 app.notion.com 을 긁는 비공식 API 라, 요청마다 호출하면
+ * 배포 환경에서 막혔을 때 페이지가 통째로 죽는다. 실제로 그렇게 프로젝트
+ * 상세 14개가 전부 스피너만 돌고 있었다. 이제 빌드도 런타임도 Notion 에
+ * 의존하지 않는다.
+ */
+const getProjectDetail = async ({ id }: IDetail): Promise<ExtendedRecordMap> => {
+  if (!id) throw new Error("프로젝트 ID가 없습니다.");
 
-/** ofetch 는 에러에 status/data 를 달아준다. 원인 판별에 필요하니 다 꺼낸다. */
-const describeFetchError = (error: unknown) => {
-  const e = error as {
-    name?: string;
-    message?: string;
-    status?: number;
-    statusCode?: number;
-    code?: string;
-    cause?: unknown;
-    data?: unknown;
-  };
-  const status = e?.status ?? e?.statusCode;
-  return {
-    name: e?.name,
-    message: e?.message,
-    status,
-    code: e?.code,
-    cause: e?.cause ? String(e.cause) : undefined,
-    data: typeof e?.data === "string" ? e.data.slice(0, 300) : e?.data,
-    // 401/403/429 면 Notion 쪽 차단, ECONNRESET/ETIMEDOUT 이면 네트워크 문제다.
-    summary: status ? `HTTP ${status}` : (e?.code ?? e?.name ?? "unknown"),
-  };
+  try {
+    // 정적 import 로 두면 15개가 전부 번들에 들어간다. 필요한 것만 읽는다.
+    const snapshot = await import(`../../public/notion/${id}.json`);
+    return (snapshot.default ?? snapshot) as ExtendedRecordMap;
+  } catch {
+    throw new Error(
+      `Notion 스냅샷이 없습니다 (id=${id}). ` +
+        "새로 추가한 글이면 `npm run notion:sync` 를 돌리고 커밋할 것."
+    );
+  }
 };
 
 /**
- * notion-client 는 app.notion.com/api/v3 를 긁는 비공식 API 라 간헐적으로 실패한다.
+ * SSG 대상 ID 목록.
  *
- * 절대 null 을 돌려주지 않는다. 호출부가 null 을 `<Loading />` 으로 렌더하면
- * 실패가 무한 로딩으로 위장되고, 그 화면이 200 OK 로 나간다. 실제로 그렇게
- * 프로덕션의 프로젝트 페이지 14개가 전부 스피너만 돌고 있었다.
- * 실패는 던져서 빌드 로그·함수 로그·에러 바운더리에 드러나게 한다.
+ * 스냅샷과 같은 목록을 써야 한다. 백엔드에서 매번 받아오면 스냅샷에 없는
+ * ID 가 정적 경로로 잡혀 빌드가 깨진다.
  */
-const getProjectDetail = async ({ id }: IDetail) => {
-  if (!id) throw new Error("프로젝트 ID가 없습니다.");
-
-  const attempts: ReturnType<typeof describeFetchError>[] = [];
-
-  for (let attempt = 1; attempt <= NOTION_RETRIES; attempt++) {
-    try {
-      return await new NotionAPI().getPage(id);
-    } catch (error) {
-      attempts.push(describeFetchError(error));
-      if (attempt < NOTION_RETRIES) {
-        await new Promise((resolve) => setTimeout(resolve, attempt * 500));
-      }
-    }
-  }
-
-  console.error(
-    "[getProjectDetail] Notion 호출 실패",
-    JSON.stringify({ id, region: process.env.VERCEL_REGION, attempts })
-  );
-
-  throw new Error(
-    `Notion 페이지를 불러오지 못했습니다 (id=${id}, ${NOTION_RETRIES}회 시도) — ` +
-      attempts.map((a, i) => `${i + 1}차: ${a.summary}`).join(", ")
-  );
-};
-
-//ssg 때문에 25.05.30 전체 ID LIST 함수 추가함.
-const getAllProjectList = async () => {
-  const url = "https://developed-heath-mr-chu.koyeb.app/api/notion/pageIds";
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("프로젝트 리스트 정보를 불러오는 데 실패했습니다.");
-    }
-    const data = await response.json();
-    // console.log(data);
-    return data;
-  } catch (error) {
-    console.error("에러:", error);
-    return null;
-  }
+const getAllProjectList = async (): Promise<{ pageIds: string[] }> => {
+  const index = await import("../../public/notion/index.json");
+  return { pageIds: (index.default ?? index).ids };
 };
 
 export { getAllProjectList, getProjectDetail, getProjectList };
