@@ -1,0 +1,44 @@
+@use "system" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-6;
+  min-height: 60vh;
+  padding: $space-12;
+  text-align: center;
+  color: var(--color-font-base);
+}
+
+.title {
+  @include ty(t5, bold, true);
+  margin: 0;
+}
+
+.message {
+  @include ty(t3, regular, true);
+  margin: 0;
+  color: var(--color-font-muted);
+}
+
+.digest {
+  @include ty(t1, regular, true);
+  color: var(--color-font-muted);
+}
+
+.retry {
+  @include ty(t3, bold, true);
+  margin-top: $space-4;
+  padding: $space-4 $space-8;
+  border: 1px solid var(--color-border);
+  border-radius: $radius-pill;
+  background: var(--color-bg-surface);
+  color: var(--color-font-base);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-bg-base);
+  }
+}

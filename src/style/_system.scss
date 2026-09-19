@@ -1,0 +1,16 @@
+// 디자인 시스템 단일 진입점.
+//
+// 소비하는 쪽은 이 한 줄만 쓴다:
+//   @use "system" as *;
+//
+// 경로를 적지 않는 이유는 `sassOptions.loadPaths` 에 src/style 이 들어 있어서다.
+// `@/style/...` 별칭은 Next 의 webpack resolver 에만 있어서 Storybook 에서 깨진다.
+//
+// CSS 규칙이 있는 파일은 여기에 넣지 않는다. 모듈마다 한 번씩 출력되기 때문이다.
+//   _font.scss            유틸 클래스 14개
+//   _theme.generated.scss :root / [data-theme]
+// 이 둘은 필요한 파일에서 직접 @use 한다.
+@forward "tokens.generated";
+@forward "typography";
+@forward "variables";
+@forward "mixins";

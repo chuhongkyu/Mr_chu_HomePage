@@ -1,0 +1,91 @@
+@use "system" as *;
+
+// 씬 사이를 오가는 내비.
+// 3D 위에 얹히므로 배경을 비치게 두고, 흐릿하게 굴절시켜 유리처럼 보이게 한다.
+
+.nav {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: $layer-nav;
+
+  display: flex;
+  // 위에 화살표·라벨, 아래에 링크 카드.
+  flex-direction: column;
+  gap: $space-3;
+  // 268px 로 묶으면 카드 안 글 영역이 184px 밖에 안 남아 줄줄이 잘린다.
+  width: min(360px, calc(100vw - #{$space-6} * 2));
+  padding: $space-2;
+  // 알약이 아니라 둥근 사각형. 안에 카드가 들어가서 알약은 어색하다.
+  border-radius: $radius-2xl;
+
+  // ── 리퀴드 글래스 ──────────────────────────────────────
+  // 뒤를 흐리고 채도를 올려야 유리 너머로 보이는 느낌이 난다.
+  background: color-mix(in srgb, $color-gray-0 42%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid color-mix(in srgb, $color-gray-0 55%, transparent);
+  // 바깥 그림자로 띄우고, 위쪽 안쪽 하이라이트로 두께를 만든다.
+  box-shadow:
+    0 8px 32px $color-alpha-black-24,
+    inset 0 1px 1px color-mix(in srgb, $color-gray-0 70%, transparent);
+}
+
+// 화살표와 라벨이 놓이는 줄.
+.row {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-full;
+  background: transparent;
+  color: var(--color-font-base);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, $color-gray-0 60%, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.28;
+    cursor: default;
+  }
+}
+
+// 라벨과 연도를 한 덩어리로 묶어 가운데 정렬한다.
+// 이 블록이 남는 폭을 다 먹어야 화살표가 양 끝에 붙는다.
+// 예전에 몇/몇 카운터가 이 블록 바깥 오른쪽에 있었는데,
+// 그만큼 중심이 왼쪽으로 밀려서 대칭이 깨졌다. 연도가 그 역할을 대신한다.
+.title {
+  flex: 1;
+  min-width: 0;
+  padding: 0 $space-2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.label {
+  @include ty(t2, bold, true);
+  color: var(--color-font-base);
+}
+
+.year {
+  @include ty(t1, regular, true);
+
+  margin-left: $space-2;
+  color: var(--color-font-muted);
+  font-variant-numeric: tabular-nums;
+}

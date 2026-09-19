@@ -31,7 +31,7 @@ const ProjectDetailShell = ({ id, children, closeHref }: Props) => {
   };
 
   return (
-    <BottomSheet isOpen={true} onClose={handleClose}>
+    <BottomSheet isOpen={true} onClose={handleClose} flush>
       {children}
     </BottomSheet>
   );

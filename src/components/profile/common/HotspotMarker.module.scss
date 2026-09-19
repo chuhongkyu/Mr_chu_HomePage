@@ -1,0 +1,246 @@
+@use "system" as *;
+
+// 앵커 점을 원점(0,0)으로 두고 전부 절대 배치한다.
+// 흐름 배치로 두면 카드가 열릴 때 점 위치가 밀려서, 화면 가장자리에서
+// 카드가 잘리는지 판단할 기준이 사라진다.
+//
+// 액센트 색은 핫스팟마다 다르므로 --accent 로 주입받는다.
+
+$dot-size: 11px;
+$line-height: 3px;
+$row-height: 25px;
+
+.marker {
+  position: relative;
+  width: 0;
+  height: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+// ── 점 + 라인 (클릭 영역) ────────────────────────────────
+// 라벨뿐 아니라 여기를 눌러도 여닫힌다.
+.connector {
+  position: absolute;
+  top: calc($row-height / -2);
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: $row-height;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  .left & {
+    left: auto;
+    right: 0;
+    flex-direction: row-reverse;
+  }
+}
+
+.dot {
+  position: relative;
+  flex: none;
+  width: $dot-size;
+  height: $dot-size;
+  // 점의 중심이 앵커에 오도록 절반만큼 당긴다.
+  margin-left: calc($dot-size / -2);
+  border-radius: $radius-full;
+  background: var(--accent);
+  // 액센트를 흰 테로 한 번 더 감싼다. 어떤 배경 위에서도 점이 떠 보인다.
+  box-shadow:
+    0 0 0 3px $color-gray-0,
+    0 1px 5px $color-alpha-black-24;
+
+  .left & {
+    margin-left: 0;
+    margin-right: calc($dot-size / -2);
+  }
+
+  // 계속 번지는 파문. 라인을 흐르는 흰 빛과 같은 주기다.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-full;
+    background: var(--accent);
+    animation: pulse 1.6s ease-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+// 액센트 실선 위로 흰 빛이 라벨 쪽으로 계속 흘러간다.
+.line {
+  position: relative;
+  flex: none;
+  width: var(--line-length, 64px);
+  height: $line-height;
+  background: var(--accent);
+
+}
+
+
+// ── 라벨 / 카드 ──────────────────────────────────────────
+// 라인 끝에서 시작한다. 세로는 place-* 클래스가 정한다.
+.panel {
+  position: absolute;
+  left: calc(var(--line-length, 64px) + #{calc($dot-size / 2)});
+
+  .left & {
+    left: auto;
+    right: calc(var(--line-length, 64px) + #{calc($dot-size / 2)});
+  }
+}
+
+// 아래로 편다. 카드 윗변이 라인 줄에 맞는다.
+.placeDown {
+  top: calc($row-height / -2);
+}
+
+// 위로 편다. 카드 아랫변이 라인 줄에 맞는다.
+// 앵커가 화면 아래쪽일 때 이걸 써야 카드가 잘리지 않는다.
+.placeUp {
+  bottom: calc($row-height / -2);
+}
+
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: $row-height;
+  padding: 0 $space-6;
+  border: 0;
+  border-radius: $radius-pill;
+  background: var(--accent);
+  color: $color-gray-0;
+  font-size: $font-size-t3-static;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px $color-alpha-black-24;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+}
+
+.card {
+  width: 268px;
+  padding: $space-4;
+  border: 2px solid var(--accent);
+  border-radius: $radius-2xl;
+  background: $color-gray-0;
+  box-shadow: 0 8px 24px $color-alpha-black-24;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-bottom: $space-4;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: $radius-full;
+  background: var(--accent);
+  color: $color-gray-0;
+  font-size: $font-size-t2-static;
+  font-weight: 700;
+}
+
+.title {
+  flex: 1;
+  margin: 0;
+  color: $color-gray-900;
+  font-size: $font-size-t5-static;
+  font-weight: 700;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  border-radius: $radius-lg;
+  background: $color-gray-100;
+}
+
+.description {
+  margin: $space-4 0 0;
+  color: $color-gray-700;
+  font-size: $font-size-t3-static;
+  line-height: 1.5;
+  // 카드가 좁아 줄바꿈이 필요하다. 마커 전체의 nowrap 을 여기서 푼다.
+  white-space: normal;
+}
+
+// 글 전체로 넘어가는 문. 씬에서 나가는 유일한 경로라 눈에 띄어야 한다.
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  width: 100%;
+  margin-top: $space-4;
+  padding: $space-4 $space-6;
+  border-radius: $radius-lg;
+  background: var(--accent);
+  color: $color-gray-0;
+  font-size: $font-size-t3-static;
+  font-weight: 700;
+  font-family: inherit;
+  text-align: left;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot::after {
+    animation: none;
+  }
+}
+
+// ── 좁은 화면: 카드를 화면 한가운데 ──────────────────────────
+//
+// 카드는 평소 `Html` 안, 즉 drei 가 3D 좌표에 맞춰 transform 을 건 래퍼
+// 안에 산다. transform 은 containing block 을 만들어서 그 안의
+// `position: fixed` 가 화면까지 빠져나오지 못한다. 그래서 가운데로 띄울
+// 때는 카드만 body 로 내보낸다.
+.centerLayer {
+  position: fixed;
+  inset: 0;
+  z-index: $layer-hotspot-card;
+  display: grid;
+  place-items: center;
+  padding: $space-5;
+}
+
+.centerBackdrop {
+  position: absolute;
+  inset: 0;
+  background: $color-alpha-black-40;
+}
+
+.centered {
+  position: relative;
+  width: min(300px, 100%);
+}

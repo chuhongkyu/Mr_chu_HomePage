@@ -18,3 +18,4 @@ coverage
 # design token 생성물
 src/style/*.generated.scss
 src/style/tokens.generated.ts
+public/notion/

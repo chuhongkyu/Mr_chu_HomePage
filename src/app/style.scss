@@ -1,7 +1,6 @@
+@use "system" as *;
 @use "./reset.scss";
 @use "../style/_font" as *;
-@use "../style/_variables" as *;
-@use "../style/_typography" as *;
 // :root / [data-theme="dark"] 는 tokens/color.json 에서 생성된다.
 @use "../style/_theme.generated" as *;
 
@@ -23,7 +22,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   background: var(--main-bg-color);
-  font-family: var(--font-noto-sans), sans-serif;
+  font-family: var(--font-pretendard), sans-serif;
   color: $font-base-color;
   position: relative;
 }

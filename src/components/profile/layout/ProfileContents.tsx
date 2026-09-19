@@ -10,7 +10,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CoinRewardModal from "@/components/profile/common/CoinRewardModal";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import PostCard from "@/components/profile/common/PostCard";
-import { type Post, POSTS } from "@/components/profile/constants/posts";
+import {
+  type Project,
+  PROJECTS,
+} from "@/components/profile/constants/projects";
 import { useCoinStore } from "@/components/profile/store/useCoinStore";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { usePostViewStore } from "@/components/profile/store/usePostViewStore";
@@ -24,17 +27,17 @@ const getUrlSlideIndex = () => {
   if (typeof window === "undefined") return 0;
   const raw = new URLSearchParams(window.location.search).get("swiper");
   const idx = parseInt(raw ?? "0", 10);
-  return Math.min(Math.max(isNaN(idx) ? 0 : idx, 0), POSTS.length - 1);
+  return Math.min(Math.max(isNaN(idx) ? 0 : idx, 0), PROJECTS.length - 1);
 };
 
 const ProfileContents = () => {
-  const [activePost, setActivePost] = useState<Post | null>(null);
+  const [activePost, setActivePost] = useState<Project | null>(null);
   const [showReward, setShowReward] = useState(false);
   const setSlideIndex = usePlayerStore((s) => s.setSlideIndex);
   const { viewed, markViewed } = usePostViewStore();
   const earn = useCoinStore((s) => s.earn);
 
-  const handlePostClick = (post: Post) => {
+  const handlePostClick = (post: Project) => {
     if (post.url?.includes("notion.site")) {
       window.open(post.url, "_blank");
 
@@ -80,14 +83,14 @@ const ProfileContents = () => {
           onSwiper={(swiper: SwiperType) => {
             const idx = getUrlSlideIndex();
             if (idx !== 0) swiper.slideTo(idx, 0);
-            setSlideIndex(idx, POSTS[idx].id);
+            setSlideIndex(idx, PROJECTS[idx].id);
           }}
           onSlideChange={(swiper: SwiperType) => {
             const index = swiper.activeIndex;
-            setSlideIndex(index, POSTS[index].id);
+            setSlideIndex(index, PROJECTS[index].id);
             posthog.capture("swipe_slide", {
               slide_index: index,
-              post_id: POSTS[index]?.id,
+              post_id: PROJECTS[index]?.id,
             });
             if (window.location.pathname === "/") {
               const url = new URL(window.location.href);
@@ -97,7 +100,7 @@ const ProfileContents = () => {
           }}
           className={styles.swiper}
         >
-          {POSTS.map((post) => (
+          {PROJECTS.map((post) => (
             <SwiperSlide key={post.id} className={styles.slide}>
               <PostCard post={post} onClick={() => handlePostClick(post)} />
             </SwiperSlide>

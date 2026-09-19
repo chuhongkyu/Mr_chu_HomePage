@@ -1,0 +1,33 @@
+@use "system" as *;
+
+/**
+ * 맨 아이콘만 두면 뒤에 무엇이 오느냐에 따라 묻힌다. 흰 카드 위에서도,
+ * 사진 위에서도 같게 보이도록 채운 원 안에 흰 아이콘을 넣는다.
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-full;
+  background: $color-gray-900;
+  color: $color-gray-0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-gray-700;
+  }
+
+  &[data-size="sm"] {
+    width: 24px;
+    height: 24px;
+  }
+
+  &[data-size="md"] {
+    width: 32px;
+    height: 32px;
+  }
+}

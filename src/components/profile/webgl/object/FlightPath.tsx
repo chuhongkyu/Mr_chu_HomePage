@@ -1,94 +1,118 @@
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-import { SLIDE_CONFIGS } from "@/components/profile/constants/slideConfig";
-import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
-import { GRID_CENTER } from "@/components/profile/webgl/object/InventoryGridEngine";
 import { PaperAirplane } from "@/components/profile/webgl/object/PaperAirplane";
 
-const GDC_INDEX = SLIDE_CONFIGS.findIndex((s) => s.postId === "7310031891129143297");
+/** 경로 전체를 1 로 봤을 때. */
+const DASH_LENGTH = 0.025;
 
-const [cx, , cz] = GRID_CENTER;
+/** 모델이 +Z 를 앞으로 본다. */
+const FORWARD = new THREE.Vector3(0, 0, 1);
 
-// 화면 좌 → 우 (카메라가 -X 방향을 바라보므로 Z축이 화면 좌우)
-const CURVE = new THREE.CatmullRomCurve3(
-  [
-    new THREE.Vector3(cx - 2, 5.0, cz + 4),
-    new THREE.Vector3(cx - 3, 4.5, cz + 1.5),
-    new THREE.Vector3(cx - 3, 4.0, cz + 0),
-    new THREE.Vector3(cx - 3, 4.5, cz - 1.5),
-    new THREE.Vector3(cx - 2, 5.0, cz - 4),
-  ],
-  false,
-  "catmullrom",
-  0.5
-);
+export type FlightPathProps = {
+  /** 월드 좌표. */
+  points: readonly (readonly [number, number, number])[];
+  active?: boolean;
+  color?: string;
+  dashes?: number;
+  /** 한 바퀴(초). */
+  seconds?: number;
+  scale?: number;
+};
 
-const SPEED = 0.04;
-const _forward = new THREE.Vector3(0, 0, 1);
+/**
+ * 종이비행기가 흰 점선을 따라 도는 연출.
+ *
+ * 선을 하나의 긴 관으로 잇지 마라. 점선이라야 지나간 자취로 읽히고,
+ * 이으면 그냥 테두리가 된다.
+ */
+export const FlightPath = ({
+  points,
+  active = true,
+  color = "#ffffff",
+  dashes = 26,
+  seconds = 9,
+  scale = 2.5,
+}: FlightPathProps) => {
+  const curve = useMemo(
+    () =>
+      new THREE.CatmullRomCurve3(
+        points.map(([x, y, z]) => new THREE.Vector3(x, y, z)),
+        // 닫아야 끝에서 처음으로 튀지 않는다.
+        true,
+        "catmullrom",
+        0.5
+      ),
+    [points]
+  );
 
-// 굵은 점선: TubeGeometry 대시 세그먼트
-const dashGroup = (() => {
-  const group = new THREE.Group();
-  const mat = new THREE.MeshBasicMaterial({
-    color: "#ffffff",
-    transparent: true,
-    opacity: 0.5,
-  });
-  const N = 22;
-  const DASH_T = 0.025; // 대시 길이 (t 단위)
+  // 점선 전부가 나눠 쓴다. 버릴 때도 한 번만.
+  const material = useMemo(
+    () =>
+      new THREE.MeshBasicMaterial({
+        color,
+        transparent: true,
+        opacity: 0.5,
+        depthWrite: false,
+      }),
+    [color]
+  );
 
-  for (let i = 0; i < N; i++) {
-    const t0 = i / N;
-    const t1 = t0 + DASH_T;
-    const pts: THREE.Vector3[] = [];
-    for (let j = 0; j <= 6; j++) {
-      pts.push(CURVE.getPoint(t0 + (t1 - t0) * (j / 6)));
+  const dashGroup = useMemo(() => {
+    const group = new THREE.Group();
+
+    for (let i = 0; i < dashes; i += 1) {
+      const start = i / dashes;
+      const segment = new THREE.CatmullRomCurve3(
+        Array.from({ length: 7 }, (_, j) =>
+          curve.getPoint((start + DASH_LENGTH * (j / 6)) % 1)
+        )
+      );
+      group.add(
+        new THREE.Mesh(new THREE.TubeGeometry(segment, 6, 0.04, 6, false), material)
+      );
     }
-    const geo = new THREE.TubeGeometry(
-      new THREE.CatmullRomCurve3(pts),
-      6,
-      0.04,
-      6,
-      false
+
+    return group;
+  }, [curve, dashes, material]);
+
+  useEffect(
+    () => () => {
+      dashGroup.children.forEach((child) => {
+        if (child instanceof THREE.Mesh) child.geometry.dispose();
+      });
+    },
+    [dashGroup]
+  );
+
+  useEffect(() => () => material.dispose(), [material]);
+
+  const airplane = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!active || !airplane.current) return;
+
+    const t = (clock.elapsedTime / seconds) % 1;
+    airplane.current.position.copy(curve.getPoint(t));
+    airplane.current.quaternion.setFromUnitVectors(
+      FORWARD,
+      curve.getTangent(t).normalize()
     );
-    group.add(new THREE.Mesh(geo, mat));
-  }
-  return group;
-})();
-
-export const FlightPath = () => {
-  const slideIndex = usePlayerStore((s) => s.slideIndex);
-  const show = slideIndex === GDC_INDEX;
-
-  const airplaneRef = useRef<THREE.Group>(null);
-  const tRef = useRef(0);
-
-  useFrame((_, delta) => {
-    if (!show || !airplaneRef.current) return;
-
-    tRef.current = (tRef.current + delta * SPEED) % 1;
-    const t = tRef.current;
-
-    const pos = CURVE.getPoint(t);
-    const tangent = CURVE.getTangent(t).normalize();
-
-    airplaneRef.current.position.copy(pos);
-    airplaneRef.current.quaternion.setFromUnitVectors(_forward, tangent);
   });
 
-  if (!show) return null;
+  if (!active) return null;
 
   return (
     <>
-      {/* 점선 경로 */}
       <primitive object={dashGroup} />
 
-      {/* 종이 비행기 — rotation으로 모델 방향 보정 */}
-      <group ref={airplaneRef}>
-        <PaperAirplane scale={2.5} rotation={[Math.PI, 0, 0]} />
+      {/* 모델이 뒤집혀 있다. */}
+      <group ref={airplane}>
+        <PaperAirplane scale={scale} rotation={[Math.PI, 0, 0]} />
       </group>
     </>
   );
 };
+
+export default FlightPath;

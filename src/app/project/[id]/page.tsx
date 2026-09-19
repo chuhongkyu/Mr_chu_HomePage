@@ -10,6 +10,9 @@ type Props = {
 
 export const revalidate = 604800;
 
+// 스냅샷에 없는 ID 는 404. 런타임에 Notion 을 찾아가지 않는다.
+export const dynamicParams = false;
+
 // Next 는 page/layout 에서 export 된 generateStaticParams 만 인식한다.
 // 별도 파일에 두기만 하면 호출되지 않아 라우트가 통째로 동적 렌더링된다.
 export { generateStaticParams } from "@/app/project/[id]/generateStaticParams";

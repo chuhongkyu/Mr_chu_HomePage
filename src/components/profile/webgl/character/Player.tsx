@@ -216,6 +216,7 @@ export const Player = ({ position }: Props) => {
                 key={`jumpTrail-${effect.boneKey}`}
                 playerPosition={position}
                 color={effect.color}
+                active={animation === "jump"}
               />
             );
           }

@@ -22,6 +22,10 @@ $color-slate-700: #334155;
 $color-slate-800: #1e293b;
 $color-slate-900: #0f172a;
 $color-brand-500: #5b8dd9;
+$color-daangn-garden: #319769;
+$color-daangn-room: #c75a50;
+$color-daangn-fleamarket: #a8801a;
+$color-daangn-backdrop: #e1e1e1;
 $color-sand-50: #f2f0eb;
 $color-sand-100: #eae8e2;
 $color-amber-500: #f4c430;
@@ -50,6 +54,17 @@ $color-semantic-border: #e2e8f0;
 $color-semantic-chip-active: #2a3038;
 $color-semantic-bg1: #eae8e2;
 $color-semantic-bg2: #f2f0eb;
+
+// ── layer ───────────────────────────────────────────────────
+$layer-scene-html: 3;
+$layer-header: 5;
+$layer-nav: 6;
+$layer-hotspot-card: 8;
+$layer-sheet-backdrop: 10;
+$layer-sheet: 11;
+$layer-sheet-close: 20;
+$layer-popup: 100;
+$layer-toast: 200;
 
 // ── radius ──────────────────────────────────────────────────
 $radius-none: 0px;

@@ -1,10 +1,9 @@
-@use "@/style/variables" as *;
-@use "@/style/typography" as *;
+@use "system" as *;
 
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: $layer-sheet-backdrop;
   background: $color-alpha-black-40;
 }
 
@@ -13,7 +12,7 @@
   margin: 0 auto;
   position: fixed;
   inset: 30px 0 0;
-  z-index: 11;
+  z-index: $layer-sheet;
   display: flex;
   flex-direction: column;
   background: var(--color-bg-base);
@@ -31,7 +30,7 @@
   left: 0;
   right: 0;
   height: 60vh;
-  z-index: 11;
+  z-index: $layer-sheet;
   display: flex;
   flex-direction: column;
   background: var(--color-bg-base);
@@ -66,21 +65,8 @@
   position: absolute;
   top: 8px;
   right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  color: var(--color-font-base);
-  cursor: pointer;
-  transition: background 0.15s;
-
-  &:hover {
-    background: var(--color-border);
-  }
+  // 시트 본문에 z-index 를 쓴 요소가 있어도 버튼이 덮이지 않게 띄운다.
+  z-index: $layer-sheet-close;
 }
 
 .content {
@@ -89,5 +75,11 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
-  padding: 16px max(1.5625vw, 20px);
+  padding: 16px;
+}
+
+// 안쪽 콘텐츠가 이미 자기 좌우 여백을 갖는 경우. react-notion-x 가
+// min(16px, 8vw) 를 넣으므로 여기서 16px 을 더 주면 합쳐 32px 이 된다.
+.contentFlush {
+  padding: 16px 4px;
 }

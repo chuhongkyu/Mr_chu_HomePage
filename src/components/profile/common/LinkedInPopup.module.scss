@@ -1,9 +1,9 @@
-@use "@/style/variables" as *;
+@use "system" as *;
 
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 99;
+  z-index: $layer-popup;
   background: $color-alpha-black-40;
 }
 
@@ -15,7 +15,7 @@
   right: 0;
   max-width: $max-width;
   margin: 0 auto;
-  z-index: 100;
+  z-index: $layer-popup;
   background: var(--color-bg-base);
   display: flex;
   flex-direction: column;

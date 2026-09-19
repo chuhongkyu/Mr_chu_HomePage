@@ -138,20 +138,18 @@ const createGitClient = () => {
     getLocalCommitHash: () =>
       execGit('git rev-parse HEAD'),
 
-    getRemoteCommitHash: (branch) => {
+    /**
+     * remote 의 브랜치 SHA. 없으면 null.
+     *
+     * `git ls-remote` 는 브랜치가 없어도 종료 코드 0 을 낸다. 출력만 비어
+     * 있다. try/catch 로 가르면 항상 "있다" 가 되어 push 를 건너뛴다.
+     */
+    getRemoteBranchSha: (branch) => {
       try {
-        return execGit(`git rev-parse origin/${branch}`)
+        const line = execGit(`git ls-remote --heads origin ${branch}`)
+        return line ? line.split('\t')[0] : null
       } catch {
         return null
-      }
-    },
-
-    checkRemoteBranchExists: (branch) => {
-      try {
-        execGit(`git ls-remote --heads origin ${branch}`)
-        return true
-      } catch {
-        return false
       }
     },
 
@@ -163,7 +161,7 @@ const createGitClient = () => {
         return logs
           .split('\n')
           .filter(Boolean)
-          .map((line) => line.replace(/^[0-9a-f]+\\s+/, ''))
+          .map((line) => line.replace(/^[0-9a-f]+\s+/, ''))
       } catch {
         return []
       }
@@ -279,11 +277,21 @@ const main = async () => {
       process.exit(0)
     }
 
-    // 6. 브랜치가 remote에 없으면 push
-    const remoteBranchExists = git.checkRemoteBranchExists(currentBranch)
-    if (!remoteBranchExists) {
-      console.log(chalk.yellow(`\n브랜치 ${currentBranch}를 remote에 push합니다...\n`))
+    // 6. remote 에 없거나, 있어도 로컬이 앞서 있으면 push
+    //
+    // 브랜치만 올려 두고 커밋을 안 밀면 PR 은 만들어지지만 내용이 비어 있다.
+    // 둘 다 여기서 막는다.
+    const remoteSha = git.getRemoteBranchSha(currentBranch)
+    const localSha = git.getLocalCommitHash()
+
+    if (!remoteSha) {
+      console.log(
+        chalk.yellow(`\n브랜치 ${currentBranch}를 remote에 push합니다...\n`)
+      )
       await git.pushWithProgress(currentBranch, false)
+    } else if (remoteSha !== localSha) {
+      console.log(chalk.yellow(`\n밀지 않은 커밋이 있습니다. push합니다...\n`))
+      await git.pushWithProgress(currentBranch, true)
     }
 
     // 7. GitHub CLI로 PR 생성 (토큰 불필요)
