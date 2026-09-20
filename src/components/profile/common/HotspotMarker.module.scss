@@ -95,9 +95,7 @@ $row-height: 25px;
   width: var(--line-length, 64px);
   height: $line-height;
   background: var(--accent);
-
 }
-
 
 // ── 라벨 / 카드 ──────────────────────────────────────────
 // 라인 끝에서 시작한다. 세로는 place-* 클래스가 정한다.
@@ -112,16 +110,35 @@ $row-height: 25px;
 }
 
 // 아래로 편다. 카드 윗변이 라인 줄에 맞는다.
+// 라벨과 카드가 바뀌는 동안 잠깐 함께 있는다. 흐름 배치로 두면 둘이 세로로
+// 쌓였다가 라벨이 빠지는 순간 카드가 라벨 높이만큼 위로 올라간다.
+.panel > * {
+  position: absolute;
+  left: 0;
+
+  .left & {
+    left: auto;
+    right: 0;
+  }
+}
+
 .placeDown {
   top: calc($row-height / -2);
+
+  > * {
+    top: 0;
+  }
 }
 
 // 위로 편다. 카드 아랫변이 라인 줄에 맞는다.
 // 앵커가 화면 아래쪽일 때 이걸 써야 카드가 잘리지 않는다.
 .placeUp {
   bottom: calc($row-height / -2);
-}
 
+  > * {
+    bottom: 0;
+  }
+}
 
 .label {
   display: inline-flex;
@@ -184,6 +201,10 @@ $row-height: 25px;
 .media {
   display: block;
   width: 100%;
+  // 세 GIF 모두 1:1. 비워 두면 로드 전 높이가 0 이라 카드가 나중에 늘어나고,
+  // 그 도중이면 열리는 모션이 다시 튕긴다.
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: $radius-lg;
   background: $color-gray-100;
 }

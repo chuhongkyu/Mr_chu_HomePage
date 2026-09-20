@@ -26,6 +26,12 @@
 .side {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: $space-5;
+
+  // 오른쪽 묶음은 오른끝에, 왼쪽 묶음은 왼끝에 붙는다.
+  align-items: flex-end;
+
+  &:first-child {
+    align-items: flex-start;
+  }
 }

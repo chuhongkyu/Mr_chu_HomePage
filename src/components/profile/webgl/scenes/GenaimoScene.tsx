@@ -7,6 +7,7 @@ import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
 import {
   MotionCharacter,
+  type MotionName,
   STICKMAN_MODEL_HEIGHT,
 } from "@/components/profile/webgl/character/MotionCharacter";
 import { GridFloor } from "@/components/profile/webgl/common/GridFloor";
@@ -60,6 +61,7 @@ const PLATFORMS = [
       [-4, -6],
       [-11.5, -6],
     ],
+    axes: { handed: "L", x: "+x", y: "+y", z: "-z" },
     delay: 0,
   },
   {
@@ -73,6 +75,7 @@ const PLATFORMS = [
       [-4, 0.5],
       [-8.7, 0.5],
     ],
+    axes: { handed: "L", x: "-z", y: "+x", z: "+y" },
     delay: 0.5,
   },
   {
@@ -89,13 +92,14 @@ const PLATFORMS = [
       [-1, -7],
       [-1, -10.2],
     ],
+    axes: { handed: "R", x: "+x", y: "-z", z: "+y" },
     delay: 1,
   },
   {
     id: "webgl",
     label: "WebGL",
-    color: "#9B1C1C",
-    clearedColor: "#9B1C1C",
+    color: "#1D4ED8",
+    clearedColor: "#12347A",
     path: [
       [0, 0],
       [0, -5],
@@ -104,19 +108,21 @@ const PLATFORMS = [
       [-7, -9],
       [-7, -11.7],
     ],
+    axes: { handed: "R", x: "+x", y: "+y", z: "+z" },
     delay: 1.5,
   },
   {
     id: "roblox",
     label: "Roblox",
-    color: "#C1261C",
-    clearedColor: "#A81F16",
+    color: "#6B2FB5",
+    clearedColor: "#4C1D95",
     path: [
       [0, 0],
       [0, 5],
       [-1, 5],
       [-1, 8.7],
     ],
+    axes: { handed: "R", x: "+x", y: "+y", z: "+z" },
     delay: 2,
   },
 ] as const;
@@ -134,6 +140,19 @@ const PLATFORMS = [
  * padding·radius 까지 같이 늘어나 디자인이 흐트러진다.
  * 그래서 SCSS 에서 실제 크기(520px = 월드 13 유닛)로 그린다.
  */
+/**
+ * 동작에 따라 캐릭터 색이 바뀐다. 적지 않은 동작은 기본색.
+ * 클리어해서 배경이 하늘색이 되면 그 기본색이 흰색으로 바뀐다.
+ */
+const MOTION_COLOR: Partial<Record<MotionName, string>> = {
+  running: "#1F1F1F",
+  angry: "#D92D20",
+  jump: "#FFFFFF",
+  brush: "#FFFFFF",
+};
+
+const CLEARED_COLOR = "#FFFFFF";
+
 /** `scenes.ts` 의 id 와 같아야 한다. */
 const SCENE_ID = "genaimo";
 
@@ -179,6 +198,7 @@ export const GenaimoScene = () => {
       <GridFloor position={CHARACTER_POSITION} />
       <MotionCharacter
         motion={motion}
+        color={MOTION_COLOR[motion] ?? (cleared ? CLEARED_COLOR : undefined)}
         onMotionEnd={rest}
         scale={SCALE}
         position={CHARACTER_POSITION}
@@ -186,16 +206,19 @@ export const GenaimoScene = () => {
 
       {/* 선은 캐릭터 발밑에서 출발한다. 격자와 같은 원점을 쓴다. */}
       <group position={CHARACTER_POSITION}>
-        {PLATFORMS.map(({ id, label, color, clearedColor, path, delay }, index) => (
-          <ExportTrace
-            key={id}
-            label={label}
-            color={cleared ? clearedColor : color}
-            path={path}
-            delay={delay}
-            fadeDelay={TRACE_DELAY + index * TRACE_STAGGER}
-          />
-        ))}
+        {PLATFORMS.map(
+          ({ id, label, color, clearedColor, path, axes, delay }, index) => (
+            <ExportTrace
+              key={id}
+              label={label}
+              color={cleared ? clearedColor : color}
+              path={path}
+              axes={axes}
+              delay={delay}
+              fadeDelay={TRACE_DELAY + index * TRACE_STAGGER}
+            />
+          )
+        )}
       </group>
 
       {/* 바닥에 눕힌 칩.

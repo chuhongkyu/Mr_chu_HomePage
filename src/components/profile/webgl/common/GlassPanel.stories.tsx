@@ -82,7 +82,3 @@ export const ThickBorder: Story = {
   args: { width: 6, height: 4, thickness: 0.3, bevel: 0.18, radius: 0.5 },
 };
 
-/** 제자리에서 천천히 떠다닌다. 씬에 여러 장 띄울 때 쓴다. */
-export const Floating: Story = {
-  args: { width: 6, height: 4, float: true },
-};

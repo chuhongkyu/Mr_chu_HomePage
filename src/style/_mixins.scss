@@ -1,3 +1,33 @@
+@use "tokens.generated" as *;
+
+/**
+ * 리퀴드 글래스 표면.
+ *
+ * 3D 위에 얹히는 UI 는 배경을 비쳐야 떠 있는 것으로 읽힌다. 흐리기만 하면
+ * 뿌옇기만 해서, 채도를 같이 올려야 유리 너머로 보이는 느낌이 난다.
+ *
+ * @param $opacity 바탕을 얼마나 채울지. 글이 얹히면 높여야 읽힌다.
+ * @param $blur    뒤를 흐리는 정도.
+ * @param $border  테두리 색. 3D 위에 직접 뜨는 것은 반투명 흰 테가 낫다.
+ */
+@mixin glass(
+  $opacity: 70%,
+  $blur: 12px,
+  $border: var(--color-border)
+) {
+  background: color-mix(in srgb, var(--color-bg-surface) $opacity, transparent);
+  backdrop-filter: blur($blur) saturate(180%);
+  -webkit-backdrop-filter: blur($blur) saturate(180%);
+  border: 1px solid $border;
+}
+
+/** 바깥 그림자로 띄우고, 위쪽 안쪽 하이라이트로 두께를 만든다. */
+@mixin glass-raised {
+  box-shadow:
+    0 8px 32px $color-alpha-black-24,
+    inset 0 1px 1px color-mix(in srgb, var(--color-bg-surface) 70%, transparent);
+}
+
 @mixin user-drag-none {
   -webkit-user-drag: none; // Safari
   -khtml-user-drag: none; // Konqueror

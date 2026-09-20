@@ -45,7 +45,7 @@ const FADE = 0.3;
 
 /** 클립 원본이 느린 것만 올린다. 적지 않으면 1배속. */
 const CLIP_SPEED: Partial<Record<MotionName, number>> = {
-  running: 1.4,
+  running: 2,
 };
 
 /**
