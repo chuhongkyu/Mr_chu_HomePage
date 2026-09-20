@@ -5,6 +5,7 @@ import Link from "next/link";
 import { IconDocumentLine } from "@karrotmarket/react-monochrome-icon";
 
 import type { ProjectLink } from "@/components/profile/constants/projects";
+import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/layout/FloatingLinks.module.scss";
 
@@ -24,7 +25,12 @@ export const FloatingLinks = ({ links }: FloatingLinksProps) => {
   return (
     <div className={styles.list}>
       {links.map(({ label, href, icon }) => (
-        <Link key={href} href={href} className={styles.item}>
+        <Link
+          key={href}
+          href={href}
+          className={styles.item}
+          onClick={() => track("outbound_clicked", { href, source: "floating_link" })}
+        >
           <span className={styles.icon}>
             {icon ? (
               <Image

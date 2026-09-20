@@ -14,6 +14,7 @@ import { GridFloor } from "@/components/profile/webgl/common/GridFloor";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
 import { layer } from "@/style/tokens.generated";
+import { track } from "@/utils/analytics";
 
 const SCALE = 0.06;
 
@@ -187,7 +188,13 @@ export const GenaimoScene = () => {
    * 재생하므로 방아쇠를 두 군데 달지 않고 동작 하나만 지켜본다.
    */
   useEffect(() => {
-    if (motion === "jump") toggle(SCENE_ID);
+    if (motion !== "jump") return;
+    toggle(SCENE_ID);
+    track("scene_cleared", {
+      project_id: SCENE_ID,
+      // 토글이라 끄는 경우도 있다.
+      cleared: !useSceneClearStore.getState().cleared[SCENE_ID],
+    });
   }, [motion, toggle]);
 
   return (

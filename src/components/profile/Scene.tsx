@@ -18,6 +18,7 @@ import Background from "@/components/profile/webgl/common/Background";
 import CameraManager from "@/components/profile/webgl/common/CameraManager";
 import Lights from "@/components/profile/webgl/common/Lights";
 import { usePanelEditing } from "@/components/profile/webgl/debug/usePanelEditing";
+import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/Scene.module.scss";
 
@@ -75,14 +76,18 @@ const Scene = () => {
     sync();
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
-  }, [project.articleId]);
+  }, [project.articleId, project.id]);
 
   const openArticle = useCallback(() => {
     if (!project.articleId) return;
     // 새 기록을 쌓아서 뒤로가기로 닫을 수 있게 한다.
     writeStoryParam(project.articleId, "push");
     setArticleOpen(true);
-  }, [project.articleId]);
+    track("article_opened", {
+      article_id: project.articleId,
+      project_id: project.id,
+    });
+  }, [project.articleId, project.id]);
 
   /**
    * 내비 카드를 눌렀을 때.
@@ -98,6 +103,7 @@ const Scene = () => {
 
     if (project.url) {
       setOpenPostId(project.id);
+      track("post_opened", { project_id: project.id, url: project.url });
       return;
     }
     openArticle();
