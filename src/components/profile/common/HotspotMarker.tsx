@@ -9,8 +9,7 @@ import CloseButton from "@/components/profile/common/CloseButton";
 
 import styles from "@/components/profile/common/HotspotMarker.module.scss";
 
-/** 라인이 카드 모서리가 아니라 안쪽에 꽂히도록 미는 양. 카드 높이 기준. */
-const CARD_SHIFT = "20%";
+const CARD_SHIFT = 18;
 
 const OPEN = { type: "spring", stiffness: 420, damping: 34 } as const;
 const LABEL_OUT = { duration: 0.12, ease: "easeOut" } as const;
@@ -122,14 +121,11 @@ export const HotspotMarker = ({
         transformOrigin: `${placement === "up" ? "bottom" : "top"} ${
           direction === "left" ? "right" : "left"
         }`,
-        // 라인이 카드 맨 끝 모서리에 닿으면 얹혀만 있는 것처럼 보인다.
-        // 카드를 제 높이의 20% 만큼 밀어 라인이 안쪽에 꽂히게 한다.
-        // motion 이 scale 과 같은 transform 으로 합성하므로 충돌하지 않는다.
-        y: placement === "up" ? CARD_SHIFT : `-${CARD_SHIFT}`,
+        y: placement === "up" ? CARD_SHIFT : -CARD_SHIFT,
       }}
-      initial={{ opacity: 0, scale: 0.6 }}
+      initial={{ opacity: 0, scale: 0.88 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.6 }}
+      exit={{ opacity: 0, scale: 0.88 }}
       transition={OPEN}
     >
       {cardBody}
@@ -148,28 +144,28 @@ export const HotspotMarker = ({
         <AnimatePresence>
           {open && (
             <div className={styles.centerLayer} data-hotspot-card>
-                <motion.div
-                  className={styles.centerBackdrop}
-                  onClick={onToggle}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                />
-                <motion.div
-                  className={`${styles.card} ${styles.centered}`}
-                  style={{ "--accent": accent } as React.CSSProperties}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ type: "spring", stiffness: 280, damping: 26 }}
-                >
-                  {cardBody}
-                </motion.div>
-              </div>
-            )}
-          </AnimatePresence>,
-          document.body
-        );
+              <motion.div
+                className={styles.centerBackdrop}
+                onClick={onToggle}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+              <motion.div
+                className={`${styles.card} ${styles.centered}`}
+                style={{ "--accent": accent } as React.CSSProperties}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 280, damping: 26 }}
+              >
+                {cardBody}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      );
 
   return (
     <div

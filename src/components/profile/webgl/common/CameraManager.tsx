@@ -20,6 +20,10 @@ import {
 import { getSlideConfig } from "@/components/profile/constants/slideConfig";
 import { usePlayerStore } from "@/components/profile/store/usePlayerStore";
 import { useCurrentProject } from "@/components/profile/store/useSceneStore";
+import {
+  useZoomStore,
+  ZOOM_EPSILON,
+} from "@/components/profile/store/useZoomStore";
 
 export type CameraMode = "orthographic" | "perspective";
 
@@ -33,6 +37,7 @@ type Props = {
 
 const CameraManager = ({ mode = "orthographic" }: Props) => {
   const controlsRef = useRef<OrbitControlsImpl>(null);
+  const camera = useThree((state) => state.camera);
 
   // 직교 zoom 을 캔버스 높이에서 역산한다.
   // 고정값으로 두면 화면이 커질수록 담기는 월드 양이 늘어난다.
@@ -85,7 +90,32 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
     currentPostIdRef.current = currentPostId;
   }, [currentPostId]);
 
+  /**
+   * 슬라이더와 카메라를 잇는다.
+   *
+   * 슬라이더가 값을 바꾸면 한 프레임 카메라에 반영하고 곧바로 주도권을
+   * 되돌린다. 그동안은 휠·핀치가 만든 차이를 슬라이더에 보고한다.
+   * 같은 값이면 아무것도 하지 않는다. 그 문턱이 없으면 둘이 서로를 밀며 떨린다.
+   */
   useFrame(() => {
+    if (isOrthographic) {
+      const ortho = camera as THREE.OrthographicCamera;
+      const actual = ortho.zoom / orthoZoom;
+      const wanted = useZoomStore.getState().ratio;
+
+      if (Math.abs(actual - wanted) > ZOOM_EPSILON) {
+        if (useZoomStore.getState().source === "slider") {
+          ortho.zoom = orthoZoom * wanted;
+          ortho.updateProjectionMatrix();
+          // 반영이 끝났으면 주도권을 돌려준다. 그대로 두면 이후 휠·핀치가
+          // 만든 차이를 매 프레임 슬라이더 값으로 되돌려 먹히지 않는다.
+          useZoomStore.setState({ source: "camera" });
+        } else {
+          useZoomStore.getState().report(actual);
+        }
+      }
+    }
+
     const ctrl = controlsRef.current as any;
     if (!ctrl) return;
     if (typeof ctrl.getAzimuthalAngle !== "function") return;

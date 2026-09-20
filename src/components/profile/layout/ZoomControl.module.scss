@@ -1,0 +1,112 @@
+@use "system" as *;
+
+$track-width: 4px;
+$thumb-size: 14px;
+$slider-height: 62px;
+
+.control {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-2;
+  @include glass;
+  border-radius: $radius-sm;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-xs;
+  background: transparent;
+  color: var(--color-font-base);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--color-bg-base);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+// 세로 슬라이더. 브라우저 기본 모양을 지우고 직접 그린다. 그대로 두면
+// 크롬·파이어폭스·사파리가 제각각인 손잡이를 그린다.
+//
+// 채움과 손잡이는 `--color-font-muted`(#333333). 브랜드 색이 정해지면
+// 그걸로 바꾼다. 순수 검정(`--color-font-base`)은 너무 딱딱하다.
+//
+// 채워진 만큼을 보여 주려고 `--fill` 을 인라인으로 받는다. 세로 range 는
+// 트랙에 그라데이션을 거는 것 말고는 진행도를 칠할 방법이 없다.
+.slider {
+  appearance: none;
+  -webkit-appearance: none;
+  writing-mode: vertical-lr;
+  direction: rtl;
+
+  width: $thumb-size;
+  height: $slider-height;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-font-base);
+    outline-offset: 2px;
+    border-radius: $radius-xs;
+  }
+}
+
+@mixin track {
+  width: $track-width;
+  height: 100%;
+  border-radius: $radius-pill;
+  background: linear-gradient(
+    to top,
+    var(--color-font-muted) 0 var(--fill, 50%),
+    var(--color-border) var(--fill, 50%) 100%
+  );
+}
+
+@mixin thumb {
+  width: $thumb-size;
+  height: $thumb-size;
+  border: 2px solid var(--color-font-muted);
+  border-radius: $radius-full;
+  background: var(--color-bg-surface);
+  box-shadow: 0 1px 4px $color-alpha-black-24;
+  cursor: grab;
+}
+
+.slider::-webkit-slider-runnable-track {
+  @include track;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  @include thumb;
+
+  // 트랙이 4px 이고 손잡이가 14px 이라 가운데로 당겨야 한다.
+  margin-left: calc(($track-width - $thumb-size) / 2);
+}
+
+.slider::-moz-range-track {
+  @include track;
+}
+
+.slider::-moz-range-thumb {
+  @include thumb;
+}
+
+.slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}

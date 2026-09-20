@@ -108,6 +108,8 @@ export type Placement = {
   width: number;
   height: number;
   content?: GlassPanelContent;
+  /** 주면 판을 눌러 새 탭으로 연다. */
+  href?: string;
   titleSize?: number;
   bodySize?: number;
 };
@@ -142,6 +144,7 @@ export const FASTCAMPUS_PANELS: Placement[] = [
     width: 6,
     height: 3.85,
     content: { kind: "image", src: `${IMG}/03.png` },
+    href: "https://mr-chu-car-web.netlify.app",
   },
   {
     id: "main-left",
@@ -157,6 +160,7 @@ export const FASTCAMPUS_PANELS: Placement[] = [
     height: 6.8,
     titleSize: 0.4,
     bodySize: 0.5,
+    href: "https://fastcampus.co.kr/story_article_interactive",
     content: {
       kind: "split",
       src: `${IMG}/01.png`,
@@ -190,8 +194,11 @@ export const FASTCAMPUS_PANELS: Placement[] = [
   {
     id: "back-right",
     at: [7, 7.6, -14],
-    width: 5.2,
-    height: 2.6,
+    // (1722×1344 → 1.281) 폭 9 가 상한이다. 더 키우면 세로가 화면을 넘는다.
+    width: 9,
+    height: 7.02,
+    content: { kind: "image", src: "/assets/img/about/mario_02.jpg" },
+    href: "https://mario-dev-life.vercel.app/",
   },
   {
     id: "edge-left",

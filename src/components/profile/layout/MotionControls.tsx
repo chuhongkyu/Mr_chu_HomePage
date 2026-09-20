@@ -17,6 +17,18 @@ const LABELS: Record<(typeof MOTIONS)[number], string> = {
 };
 
 /**
+ * 칩으로 내보내지 않는 동작.
+ *
+ * `MOTIONS` 에서 빼면 레거시 슬라이드(`Player`, `slideConfig`)의 타입이 깨진다.
+ * 거기서는 계속 쓰이므로 여기서만 거른다.
+ */
+const HIDDEN: Partial<Record<(typeof MOTIONS)[number], true>> = {
+  brush01: true,
+};
+
+const CHIPS = MOTIONS.filter((name) => !HIDDEN[name]);
+
+/**
  * 캐릭터 발밑에 놓이는 모션 칩.
  *
  * 3D 좌표에 붙일 수 있도록 순수 DOM 으로만 두었다. 위치는 감싸는
@@ -28,7 +40,7 @@ export const MotionControls = () => {
 
   return (
     <div className={styles.chips} role="group" aria-label="캐릭터 동작">
-      {MOTIONS.map((name) => (
+      {CHIPS.map((name) => (
         <button
           key={name}
           type="button"

@@ -16,12 +16,9 @@
   align-items: center;
   gap: $space-3;
   padding: $space-3 $space-5 $space-3 $space-4;
-  border: 1px solid var(--color-border);
+  @include glass($opacity: 82%);
   // 헤더의 메뉴 버튼·상태 뱃지와 같은 값. 셋이 한 벌로 읽혀야 한다.
   border-radius: $radius-sm;
-  background: color-mix(in srgb, var(--color-bg-surface) 82%, transparent);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
   color: var(--color-font-base);
   text-decoration: none;
   white-space: nowrap;

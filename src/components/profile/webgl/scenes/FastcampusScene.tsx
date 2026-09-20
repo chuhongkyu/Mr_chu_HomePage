@@ -108,10 +108,10 @@ export const FastcampusScene = () => {
             width={panel.width}
             height={panel.height}
             content={panel.content}
+            href={panel.href}
             titleSize={panel.titleSize}
             bodySize={panel.bodySize}
             // 편집 중에는 띄우지 않는다. 판이 흔들리면 기즈모와 어긋난다.
-            float={!editing}
           />
         );
       })}
