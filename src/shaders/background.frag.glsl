@@ -6,7 +6,13 @@ uniform float aspect;
 uniform float gradient;
 
 const float TOP_GAIN = 1.55;
-const float BOTTOM_GAIN = 0.45;
+const float BOTTOM_GAIN = 0.28;
+
+/**
+ * 어두워지는 곡선. 낮출수록 아래쪽 어둠이 위로 넓게 퍼진다.
+ * 2.5 로 두면 맨 아래 끝에서만 진해져서 위아래 차이가 안 느껴진다.
+ */
+const float BOTTOM_CURVE = 1.6;
 
 /** 가장 밝은 채널이 넘지 못할 선. 넘으면 흰색으로 뭉개진다. */
 const float HEADROOM = 0.96;
@@ -22,7 +28,7 @@ void main() {
   vec3 bottomColor = color * BOTTOM_GAIN;
 
   float topBlend = pow(vUv.y, 3.5);
-  float bottomBlend = pow(1.0 - vUv.y, 2.5);
+  float bottomBlend = pow(1.0 - vUv.y, BOTTOM_CURVE);
   vec3 shaped = mix(mix(color, bottomColor, bottomBlend), topColor, topBlend);
 
   vec2 toGlow = (vUv - vec2(0.5, 0.62)) * vec2(aspect, 1.0);

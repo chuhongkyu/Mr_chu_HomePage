@@ -1,5 +1,7 @@
 import { forwardRef, ReactNode, Suspense, useEffect, useMemo, useState } from "react";
-import { Float, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
+import type { ThreeEvent } from "@react-three/fiber";
+import gsap from "gsap";
 import * as THREE from "three";
 
 import {
@@ -19,6 +21,10 @@ const CONTENT_LIFT = 0.01;
 const SPLIT_MAX_IMAGE = 0.42;
 const SPLIT_STRIP = 0.5;
 const SPLIT_GAP = 0.32;
+
+/** 마우스를 올렸을 때 유리가 진해지는 양. */
+const HOVER_OPACITY = 0.14;
+const HOVER_SECONDS = 0.22;
 
 type Rect = { width: number; height: number; x: number; y: number };
 
@@ -108,7 +114,8 @@ export type GlassPanelProps = {
   titleSize?: number;
   bodySize?: number;
   textPadding?: number;
-  float?: boolean;
+  /** 주면 판 전체가 눌린다. 새 탭으로 연다. */
+  href?: string;
 
   position?: [number, number, number];
   rotation?: THREE.Euler | [number, number, number];
@@ -253,7 +260,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
   titleSize = 0.46,
   bodySize = 0.3,
   textPadding = 0.28,
-  float = false,
+  href,
   position,
   rotation,
   children,
@@ -292,8 +299,46 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
       ? splitLayout(content.imageSide ?? "left", contentWidth, contentHeight)
       : null;
 
+  const open = href
+    ? (event: ThreeEvent<MouseEvent>) => {
+        event.stopPropagation();
+        window.open(href, "_blank", "noopener,noreferrer");
+      }
+    : undefined;
+
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    const value = material.uniforms.uOpacity;
+    const tween = gsap.to(value, {
+      value: hovered ? opacity + HOVER_OPACITY : opacity,
+      duration: HOVER_SECONDS,
+      ease: "power2.out",
+    });
+    return () => {
+      tween.kill();
+    };
+  }, [hovered, material, opacity]);
+
+  const enter = () => {
+    setHovered(true);
+    if (href) document.body.style.cursor = "pointer";
+  };
+
+  const leave = () => {
+    setHovered(false);
+    if (href) document.body.style.cursor = "";
+  };
+
   const panel = (
-    <group ref={ref} position={position} rotation={rotation}>
+    <group
+      ref={ref}
+      position={position}
+      rotation={rotation}
+      onClick={open}
+      onPointerOver={enter}
+      onPointerOut={leave}
+    >
       <mesh geometry={geometry} material={material} />
 
       <group position={[0, 0, contentZ]}>
@@ -329,14 +374,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
     </group>
   );
 
-  if (!float) return panel;
-
-  return (
-    // rotationIntensity 0. 월드 축에 맞춰 세운 씬이라 조금만 돌아도 줄이 어긋난다.
-    <Float speed={1.2} rotationIntensity={0} floatIntensity={0.4}>
-      {panel}
-    </Float>
-  );
+  return panel;
 });
 
 GlassPanel.displayName = "GlassPanel";

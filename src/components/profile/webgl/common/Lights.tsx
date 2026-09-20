@@ -8,7 +8,7 @@ const Lights = () => {
   return (
     <>
       <Environment preset="forest" />
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.6} />
       <directionalLight
         ref={lightRef}
         position={[15, 15, 0]}

@@ -60,6 +60,8 @@ export type Project = {
   linkMotion?: MotionName;
   /** 헤더 문구 아래에 세로로 쌓이는 바로가기. */
   links?: ProjectLink[];
+  /** 줌 조절기를 띄운다. 직교 씬에서만 뜻이 있다. */
+  zoomControl?: boolean;
 };
 
 const DEFAULT_BACKDROP = color.daangn.backdrop;
@@ -81,6 +83,7 @@ export const PROJECTS: Project[] = [
     backdrop: DEFAULT_BACKDROP,
     Content: DaangnScene,
     articleId: "3dfc588d-b9e9-807e-b97c-fa8174f39e28",
+    zoomControl: true,
   },
   {
     id: "genaimo",

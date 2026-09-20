@@ -20,16 +20,12 @@
   // 알약이 아니라 둥근 사각형. 안에 카드가 들어가서 알약은 어색하다.
   border-radius: $radius-2xl;
 
-  // ── 리퀴드 글래스 ──────────────────────────────────────
-  // 뒤를 흐리고 채도를 올려야 유리 너머로 보이는 느낌이 난다.
-  background: color-mix(in srgb, $color-gray-0 42%, transparent);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid color-mix(in srgb, $color-gray-0 55%, transparent);
-  // 바깥 그림자로 띄우고, 위쪽 안쪽 하이라이트로 두께를 만든다.
-  box-shadow:
-    0 8px 32px $color-alpha-black-24,
-    inset 0 1px 1px color-mix(in srgb, $color-gray-0 70%, transparent);
+  @include glass(
+    $opacity: 42%,
+    $blur: 16px,
+    $border: color-mix(in srgb, $color-gray-0 55%, transparent)
+  );
+  @include glass-raised;
 
   animation: nav-rise 0.35s ease-out 0.25s both;
 }

@@ -5,13 +5,26 @@ import gsap from "gsap";
 import * as THREE from "three";
 import type { Line2 } from "three-stdlib";
 
-import { drawLabel, type LabelTexture } from "@/components/profile/webgl/common/canvasText";
+import {
+  type AxisBadge,
+  type AxisSystem,
+  drawAxisBadge,
+} from "@/components/profile/webgl/common/axisBadge";
+import {
+  drawLabel,
+  type LabelTexture,
+} from "@/components/profile/webgl/common/canvasText";
+import { color as palette } from "@/style/tokens.generated";
 
 /** 격자와 같은 높이면 지글거린다. */
 const LIFT = 0.02;
 
 const LABEL_LIFT = 0.04;
 const LABEL_GAP = 0.8;
+
+/** 축 표식 한 변(월드 유닛)과 글자와의 틈. */
+const BADGE_SIZE = 1.9;
+const BADGE_GAP = 0.35;
 const PULSE_SECONDS = 2.6;
 const LINE_OPACITY = 0.9;
 const FADE_SECONDS = 0.8;
@@ -22,6 +35,8 @@ export type ExportTraceProps = {
   label: string;
   color: string;
   labelSize?: number;
+  /** 이 플랫폼의 좌표계. 주면 글자 위에 축 표식이 뜬다. */
+  axes?: AxisSystem;
   delay?: number;
   fadeDelay?: number;
 };
@@ -37,6 +52,7 @@ export const ExportTrace = ({
   label,
   color,
   labelSize = 0.85,
+  axes,
   delay = 0,
   fadeDelay = 0,
 }: ExportTraceProps) => {
@@ -58,6 +74,7 @@ export const ExportTrace = ({
   const pulse = useRef<THREE.Mesh>(null);
   const line = useRef<Line2>(null);
   const labelMaterial = useRef<THREE.MeshBasicMaterial>(null);
+  const badgeMaterial = useRef<THREE.MeshBasicMaterial>(null);
 
   /** 리액트 상태로 두지 마라. 쓰는 곳이 전부 three 재질이라 헛 렌더만 난다. */
   const appear = useRef({ v: 0 });
@@ -83,6 +100,12 @@ export const ExportTrace = ({
     if (labelMaterial.current) labelMaterial.current.opacity = shown;
     if (pulse.current) pulse.current.scale.setScalar(shown);
 
+    // 축 표식은 선·글자가 반쯤 올라온 뒤에 따라 붙는다. 같이 뜨면 아직
+    // 아무것도 없는 자리에 표식만 먼저 떠 있다.
+    if (badgeMaterial.current) {
+      badgeMaterial.current.opacity = Math.max(0, shown * 2 - 1);
+    }
+
     if (!pulse.current || total === 0) return;
 
     const t =
@@ -97,6 +120,17 @@ export const ExportTrace = ({
   });
 
   const [labelTexture, setLabelTexture] = useState<LabelTexture | null>(null);
+  const [badge, setBadge] = useState<AxisBadge | null>(null);
+
+  useEffect(() => {
+    if (!axes) return;
+    const next = drawAxisBadge(axes, BADGE_SIZE, palette.alpha.black[60]);
+    if (!next) return;
+    setBadge(next);
+    return () => {
+      next.texture.dispose();
+    };
+  }, [axes]);
 
   useEffect(() => {
     let current: LabelTexture | null = null;
@@ -129,9 +163,13 @@ export const ExportTrace = ({
     const end = points[points.length - 1];
     if (!labelTexture || points.length < 2) return end;
 
-    const dir = end.clone().sub(points[points.length - 2]).normalize();
+    const dir = end
+      .clone()
+      .sub(points[points.length - 2])
+      .normalize();
     const extent =
-      Math.abs(dir.x) * labelTexture.width + Math.abs(dir.z) * labelTexture.height;
+      Math.abs(dir.x) * labelTexture.width +
+      Math.abs(dir.z) * labelTexture.height;
 
     return end.clone().addScaledVector(dir, LABEL_GAP + extent / 2);
   }, [points, labelTexture]);
@@ -151,6 +189,32 @@ export const ExportTrace = ({
         <sphereGeometry args={[0.14, 12, 8]} />
         <meshBasicMaterial color={color} toneMapped={false} />
       </mesh>
+
+      {badge && labelTexture && (
+        <mesh
+          // 글자는 월드 +X 로 눕는다. 그 판의 위쪽은 월드 -Z 다.
+          position={[
+            labelPosition.x,
+            LABEL_LIFT,
+            labelPosition.z -
+              labelTexture.height / 2 -
+              BADGE_GAP -
+              badge.size / 2,
+          ]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          renderOrder={1}
+        >
+          <planeGeometry args={[badge.size, badge.size]} />
+          <meshBasicMaterial
+            ref={badgeMaterial}
+            map={badge.texture}
+            transparent
+            opacity={0}
+            depthWrite={false}
+            toneMapped={false}
+          />
+        </mesh>
+      )}
 
       {labelTexture && (
         <mesh
