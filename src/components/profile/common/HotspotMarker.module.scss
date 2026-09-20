@@ -58,6 +58,14 @@ $row-height: 25px;
     margin-right: calc($dot-size / -2);
   }
 
+  // 부모에 `overflow` 를 걸면 넓힌 범위가 잘려 나간다.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: $radius-full;
+  }
+
   // 계속 번지는 파문. 라인을 흐르는 흰 빛과 같은 주기다.
   &::after {
     content: "";
