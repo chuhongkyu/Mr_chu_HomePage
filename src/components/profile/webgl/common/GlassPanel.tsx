@@ -14,6 +14,7 @@ import {
   drawPanelText,
 } from "@/components/profile/webgl/common/glassPanelTexture";
 import { color } from "@/style/tokens.generated";
+import { track } from "@/utils/analytics";
 
 /** 겹치면 z-파이팅으로 지글거린다. */
 const CONTENT_LIFT = 0.01;
@@ -302,6 +303,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
   const open = href
     ? (event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
+        track("outbound_clicked", { href, source: "glass_panel" });
         window.open(href, "_blank", "noopener,noreferrer");
       }
     : undefined;

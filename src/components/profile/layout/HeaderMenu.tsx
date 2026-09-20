@@ -8,6 +8,8 @@ import {
   IconPersonLine,
 } from "@karrotmarket/react-monochrome-icon";
 
+import { track } from "@/utils/analytics";
+
 import styles from "@/components/profile/layout/HeaderMenu.module.scss";
 
 /**
@@ -61,7 +63,10 @@ export const HeaderMenu = () => {
               key={href}
               href={href}
               className={styles.item}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                track("menu_navigated", { href, label });
+                setOpen(false);
+              }}
             >
               <Icon size={16} className={styles.icon} />
               {label}
