@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { create } from "zustand";
 
 import { PROJECTS } from "@/components/profile/constants/projects";
+import { track } from "@/utils/analytics";
 
 type SceneStore = {
   index: number;
@@ -56,6 +57,19 @@ export const useProjectUrlSync = () => {
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
   }, [goTo]);
+
+  useEffect(() => {
+    const project = PROJECTS[index];
+    if (!project) return;
+
+    track("scene_viewed", {
+      project_id: project.id,
+      label: project.label,
+      index,
+      // 주소에 이미 있던 값으로 들어왔는지, 내비로 옮겨왔는지.
+      entry: mounted.current ? "nav" : "direct",
+    });
+  }, [index]);
 
   useEffect(() => {
     const id = PROJECTS[index]?.id;

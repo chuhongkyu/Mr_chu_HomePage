@@ -11,6 +11,7 @@ import HotspotMarker, {
   type HotspotPlacement,
 } from "@/components/profile/common/HotspotMarker";
 import { layer } from "@/style/tokens.generated";
+import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/webgl/common/SceneHotspot.module.scss";
 
@@ -78,8 +79,9 @@ export const SceneHotspot = ({
       // NDC 는 위가 +1. 앵커가 화면 아래쪽이면 카드를 위로 편다.
       setResolved(ndc.y < LOWER_HALF * 2 - 1 ? "up" : "down");
     }
+    if (!open) track("hotspot_opened", { zone: marker.label });
     setOpen((prev) => !prev);
-  }, [open, placement, camera]);
+  }, [open, placement, camera, marker.label]);
 
   /** 열어 둔 채로 시트를 띄우면 배경막이 두 겹으로 깔린다. */
   const openMore = useMemo(

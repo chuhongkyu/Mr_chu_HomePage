@@ -6,6 +6,7 @@ import type { ExtendedRecordMap } from "notion-types";
 import Loading from "@/components/common/Loading";
 import BottomSheet from "@/components/profile/common/BottomSheet";
 import NotionContent from "@/components/project/NotionContent";
+import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/common/ArticleSheet.module.scss";
 
@@ -33,17 +34,31 @@ export const ArticleSheet = ({ id, isOpen, onClose }: ArticleSheetProps) => {
     if (!isOpen || recordMap || failed) return;
 
     let cancelled = false;
+    // 누른 시점과 실제로 그려진 시점을 나눠 센다. 받아오다 실패하면
+    // "열었는데 못 봤다" 가 되는데, 하나로 묶으면 그게 안 보인다.
+    const startedAt = performance.now();
+
     fetch(`/api/notion/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data: ExtendedRecordMap) => {
-        if (!cancelled) setRecordMap(data);
+        if (cancelled) return;
+        setRecordMap(data);
+        track("article_shown", {
+          article_id: id,
+          ms: Math.round(performance.now() - startedAt),
+        });
       })
       .catch((error) => {
-        console.error("[ArticleSheet] 스냅샷을 불러오지 못했습니다:", error);
-        if (!cancelled) setFailed(true);
+        console.error("[ArticleSheet] 글을 불러오지 못했습니다:", error);
+        if (cancelled) return;
+        setFailed(true);
+        track("article_failed", {
+          article_id: id,
+          reason: error instanceof Error ? error.message : "unknown",
+        });
       });
 
     return () => {

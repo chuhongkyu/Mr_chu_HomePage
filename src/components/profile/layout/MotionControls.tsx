@@ -2,6 +2,7 @@
 
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { MOTIONS } from "@/components/profile/webgl/character/MotionCharacter";
+import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/layout/MotionControls.module.scss";
 
@@ -45,7 +46,10 @@ export const MotionControls = () => {
           key={name}
           type="button"
           className={`${styles.chip} ${motion === name ? styles.active : ""}`}
-          onClick={() => play(name)}
+          onClick={() => {
+            track("motion_played", { motion: name });
+            play(name);
+          }}
           aria-pressed={motion === name}
         >
           {LABELS[name]}
