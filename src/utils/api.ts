@@ -1,4 +1,5 @@
 import type { QueryFunctionContext } from "@tanstack/react-query";
+import { NotionAPI } from "notion-client";
 import type { ExtendedRecordMap } from "notion-types";
 
 import {
@@ -38,16 +39,52 @@ const getProjectList = async (
  * 상세 14개가 전부 스피너만 돌고 있었다. 이제 빌드도 런타임도 Notion 에
  * 의존하지 않는다.
  */
+const NOTION_RETRIES = 2;
+
+/**
+ * 노션에서 직접 받는다. 다 실패하면 null.
+ *
+ * `notion-client` 는 app.notion.com 을 긁는 비공식 API 라 배포 환경에서
+ * 막힐 수 있다. 그 경우를 부르는 쪽이 폴백으로 처리한다.
+ */
+const fetchFromNotion = async (
+  id: string
+): Promise<ExtendedRecordMap | null> => {
+  for (let attempt = 1; attempt <= NOTION_RETRIES; attempt++) {
+    try {
+      return await new NotionAPI().getPage(id);
+    } catch (error) {
+      if (attempt === NOTION_RETRIES) {
+        console.error("[getProjectDetail] Notion 호출 실패", { id, error });
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 400));
+      }
+    }
+  }
+  return null;
+};
+
+/**
+ * 노션 본문.
+ *
+ * 노션을 먼저 부른다. 스냅샷을 주 경로로 두면 글을 고쳐도 반영되지 않고,
+ * 이미지의 서명 URL(몇 시간짜리)까지 같이 굳어 시간이 지나면 419 로 깨진다.
+ *
+ * 노션이 막혔을 때만 커밋된 스냅샷으로 떨어진다. 페이지가 통째로 죽는 대신
+ * 조금 오래된 글이라도 보여 준다.
+ */
 const getProjectDetail = async ({ id }: IDetail): Promise<ExtendedRecordMap> => {
   if (!id) throw new Error("프로젝트 ID가 없습니다.");
 
+  const live = await fetchFromNotion(id);
+  if (live) return live;
+
   try {
-    // 정적 import 로 두면 15개가 전부 번들에 들어간다. 필요한 것만 읽는다.
     const snapshot = await import(`../../public/notion/${id}.json`);
     return (snapshot.default ?? snapshot) as ExtendedRecordMap;
   } catch {
     throw new Error(
-      `Notion 스냅샷이 없습니다 (id=${id}). ` +
+      `Notion 페이지를 불러오지 못했고 스냅샷도 없습니다 (id=${id}). ` +
         "새로 추가한 글이면 `npm run notion:sync` 를 돌리고 커밋할 것."
     );
   }
