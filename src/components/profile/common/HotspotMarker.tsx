@@ -12,6 +12,9 @@ import styles from "@/components/profile/common/HotspotMarker.module.scss";
 /** 라인이 카드 모서리가 아니라 안쪽에 꽂히도록 미는 양. 카드 높이 기준. */
 const CARD_SHIFT = "20%";
 
+const OPEN = { type: "spring", stiffness: 420, damping: 34 } as const;
+const LABEL_OUT = { duration: 0.12, ease: "easeOut" } as const;
+
 /** 라벨·카드가 라인 줄을 기준으로 아래로 펴질지 위로 펴질지. */
 export type HotspotPlacement = "down" | "up";
 
@@ -124,10 +127,10 @@ export const HotspotMarker = ({
         // motion 이 scale 과 같은 transform 으로 합성하므로 충돌하지 않는다.
         y: placement === "up" ? CARD_SHIFT : `-${CARD_SHIFT}`,
       }}
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ type: "spring", stiffness: 280, damping: 26 }}
+      exit={{ opacity: 0, scale: 0.6 }}
+      transition={OPEN}
     >
       {cardBody}
     </motion.div>
@@ -189,7 +192,10 @@ export const HotspotMarker = ({
       </button>
 
       <div className={panelClass}>
-        <AnimatePresence initial={false} mode="wait">
+        {/* `mode="wait"` 를 쓰지 않는다. 라벨이 완전히 사라질 때까지 카드가
+            기다려서, 누르고 한 박자 쉰 뒤에 열리는 것처럼 보인다.
+            겹쳐 두면 라벨 자리에서 카드가 자라나는 것으로 읽힌다. */}
+        <AnimatePresence initial={false}>
           {open && !centered ? (
             anchoredCard
           ) : open ? null : (
@@ -200,8 +206,8 @@ export const HotspotMarker = ({
               onClick={onToggle}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 280, damping: 26 }}
+              exit={{ opacity: 0, scale: 0.9, transition: LABEL_OUT }}
+              transition={OPEN}
             >
               {label}
             </motion.button>

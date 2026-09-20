@@ -2,6 +2,7 @@ import type { ProjectContentProps } from "@/components/profile/constants/project
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
 import { SceneHotspot } from "@/components/profile/webgl/common/SceneHotspot";
 import {
+  APPEAR_SECONDS,
   CLOSE_ZONE_UV,
   closeImagePoint,
   DaangnApart,
@@ -14,12 +15,16 @@ import { color } from "@/style/tokens.generated";
  *
  * 핫스팟 좌표는 그림 위 UV 라 이미지가 바뀌면 `CLOSE_ZONE_UV` 만 다시 재면 된다.
  */
+/** 구역과 구역 사이 간격(초). */
+const ZONE_STAGGER = 0.12;
+
 export const DaangnScene = ({ onOpenArticle }: ProjectContentProps) => {
   return (
     // 화면 가운데에 오도록 카메라 target 에 맞춘다.
     <DaangnApart position={[...CAMERA.target]}>
       <SceneHotspot
         position={closeImagePoint(...CLOSE_ZONE_UV.garden)}
+        appearDelay={APPEAR_SECONDS}
         label="Garden"
         index="01"
         accent={color.daangn.garden}
@@ -30,6 +35,7 @@ export const DaangnScene = ({ onOpenArticle }: ProjectContentProps) => {
       />
       <SceneHotspot
         position={closeImagePoint(...CLOSE_ZONE_UV.room)}
+        appearDelay={APPEAR_SECONDS + ZONE_STAGGER}
         label="Room"
         index="02"
         accent={color.daangn.room}
@@ -42,6 +48,7 @@ export const DaangnScene = ({ onOpenArticle }: ProjectContentProps) => {
       <SceneHotspot
         // 잰 중심보다 조금 위. 노랑 마당이 아래로 넓어서 중심이 처진다.
         position={closeImagePoint(...CLOSE_ZONE_UV.fleamarket, { offsetY: 1 })}
+        appearDelay={APPEAR_SECONDS + ZONE_STAGGER * 2}
         label="Fleamarket"
         index="03"
         accent={color.daangn.fleamarket}

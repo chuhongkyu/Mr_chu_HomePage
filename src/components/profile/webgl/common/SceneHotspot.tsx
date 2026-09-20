@@ -32,6 +32,8 @@ export type SceneHotspotProps = Omit<
    * 화면 아래쪽에 있으면 위로 펴서 카드가 잘리지 않게 한다.
    */
   placement?: HotspotPlacement | "auto";
+  /** 씬에 들어오고 이만큼 지난 뒤에 나타난다(초). 그림이 먼저 서야 한다. */
+  appearDelay?: number;
 };
 
 /**
@@ -43,6 +45,7 @@ export type SceneHotspotProps = Omit<
 export const SceneHotspot = ({
   position,
   placement = "auto",
+  appearDelay = 0,
   onMore,
   ...marker
 }: SceneHotspotProps) => {
@@ -121,7 +124,11 @@ export const SceneHotspot = ({
       {/* BottomSheet 가 배경막 10, 시트 11 을 쓴다.
           그보다 낮게 둬야 모달이 열렸을 때 점·선이 위로 뚫고 올라오지 않는다. */}
       <Html zIndexRange={[layer["scene-html"], 0]} className={styles.layer}>
-        <div ref={markerRef} className={styles.marker}>
+        <div
+          ref={markerRef}
+          className={styles.marker}
+          style={{ "--appear-delay": `${appearDelay}s` } as React.CSSProperties}
+        >
           <HotspotMarker
             {...marker}
             onMore={openMore}

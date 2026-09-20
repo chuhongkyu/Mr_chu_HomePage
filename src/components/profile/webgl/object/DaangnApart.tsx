@@ -1,6 +1,7 @@
-import { type ReactNode, useMemo, useRef } from "react";
+import { type ReactNode, useEffect, useMemo, useRef } from "react";
 import { Billboard, useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import gsap from "gsap";
 import * as THREE from "three";
 
 import { CAMERA } from "@/components/profile/constants/sceneConfig";
@@ -28,6 +29,8 @@ const CLOSE_SUBJECT_CENTER = 0.5046;
 const WIDE_SUBJECT_CENTER = 0.4893;
 
 export const DEFAULT_CLOSE_HEIGHT = 22;
+
+export const APPEAR_SECONDS = 0.7;
 
 /**
  * 근경 이미지의 구역별 중심. (u, v) 는 이미지 좌상단 기준 0~1.
@@ -130,6 +133,20 @@ export const DaangnApart = ({
   const closeRef = useRef<THREE.MeshBasicMaterial>(null);
   const wideRef = useRef<THREE.MeshBasicMaterial>(null);
 
+  const appear = useRef({ v: 0 });
+
+  useEffect(() => {
+    appear.current.v = 0;
+    const tween = gsap.to(appear.current, {
+      v: 1,
+      duration: APPEAR_SECONDS,
+      ease: "power2.out",
+    });
+    return () => {
+      tween.kill();
+    };
+  }, []);
+
   const size = useThree((state) => state.size);
   // 카메라와 같은 기준을 봐야 크로스페이드 구간이 어긋나지 않는다.
   const viewHeight = useCurrentProject().viewHeight ?? CAMERA.orthoViewHeight;
@@ -160,8 +177,9 @@ export const DaangnApart = ({
       : 1;
 
     const closeness = smoothstep(fadeStart, fadeEnd, ratio);
-    closeRef.current.opacity = closeness;
-    wideRef.current.opacity = 1 - closeness;
+    const shown = appear.current.v;
+    closeRef.current.opacity = closeness * shown;
+    wideRef.current.opacity = (1 - closeness) * shown;
   });
 
   return (

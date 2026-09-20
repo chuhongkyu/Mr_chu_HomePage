@@ -8,3 +8,25 @@
 .marker {
   pointer-events: auto;
 }
+
+.marker {
+  animation: hotspot-appear 0.4s ease-out both;
+  animation-delay: var(--appear-delay, 0s);
+}
+
+@keyframes hotspot-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marker {
+    animation: none;
+  }
+}

@@ -10,7 +10,10 @@ import { PROJECTS } from "@/components/profile/constants/projects";
 import SceneNav from "@/components/profile/layout/SceneNav";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
-import { useCurrentProject } from "@/components/profile/store/useSceneStore";
+import {
+  useCurrentProject,
+  useProjectUrlSync,
+} from "@/components/profile/store/useSceneStore";
 import Background from "@/components/profile/webgl/common/Background";
 import CameraManager from "@/components/profile/webgl/common/CameraManager";
 import Lights from "@/components/profile/webgl/common/Lights";
@@ -52,6 +55,8 @@ const writeStoryParam = (id: string | null, mode: "push" | "replace") => {
  * 여기서는 캔버스·카메라·조명 같은 공통분모와, 캔버스 밖 DOM(내비·시트)만 맡는다.
  */
 const Scene = () => {
+  useProjectUrlSync();
+
   const project = useCurrentProject();
   const [openPostId, setOpenPostId] = useState<string | null>(null);
   // R3F 에는 intrinsic <scene> 이 있어서 <project.Content /> 는 헷갈린다. 풀어서 쓴다.
