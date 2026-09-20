@@ -43,6 +43,11 @@ const PLAY_ONCE: Partial<Record<MotionName, true>> = {
 
 const FADE = 0.3;
 
+/** 클립 원본이 느린 것만 올린다. 적지 않으면 1배속. */
+const CLIP_SPEED: Partial<Record<MotionName, number>> = {
+  running: 1.4,
+};
+
 /**
  * 바닥 이펙트가 만들어질 때 기준으로 삼은 캐릭터 스케일.
  * `JumpTrailEffect` 의 원 반지름·스파크 길이가 이 크기의 캐릭터(키 약 3.9)에
@@ -143,6 +148,12 @@ export const MotionCharacter = ({
     return () => {
       action.fadeOut(FADE);
     };
+  }, [actions, motion]);
+
+  // 위 효과 뒤에 걸어야 한다. `reset()` 이 배속을 1 로 되돌리기 때문이다.
+  useEffect(() => {
+    const action = actions[motion];
+    if (action) action.timeScale = CLIP_SPEED[motion] ?? 1;
   }, [actions, motion]);
 
   // 현재 클립을 ref 로 들고 있는다. fadeOut 중에 다른 클립으로 바뀌었으면

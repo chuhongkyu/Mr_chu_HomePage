@@ -1,5 +1,6 @@
 "use client";
 
+import FloatingLinks from "@/components/profile/layout/FloatingLinks";
 import HeaderMenu from "@/components/profile/layout/HeaderMenu";
 import SceneBadge from "@/components/profile/layout/SceneBadge";
 import { useCurrentProject } from "@/components/profile/store/useSceneStore";
@@ -18,7 +19,10 @@ const ProfileHeader = () => {
     <header className={styles.header}>
       <div className={styles.inner}>
         <HeaderMenu />
-        <SceneBadge label={project.headline} />
+        <div className={styles.side}>
+          <SceneBadge label={project.headline} />
+          <FloatingLinks links={project.links} />
+        </div>
       </div>
     </header>
   );

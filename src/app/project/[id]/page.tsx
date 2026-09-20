@@ -8,9 +8,10 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export const revalidate = 604800;
+// 노션에서 글을 고치면 이 시간 안에 반영된다.
+export const revalidate = 60;
 
-// 스냅샷에 없는 ID 는 404. 런타임에 Notion 을 찾아가지 않는다.
+// 스냅샷 목록에 없는 ID 는 404.
 export const dynamicParams = false;
 
 // Next 는 page/layout 에서 export 된 generateStaticParams 만 인식한다.

@@ -18,6 +18,14 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  // 오른쪽이 세로로 쌓이므로 위를 기준으로 맞춘다.
+  align-items: flex-start;
   max-width: $max-width;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-5;
 }

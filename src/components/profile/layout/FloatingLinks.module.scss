@@ -1,0 +1,47 @@
+@use "system" as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-2;
+  // 헤더가 클릭을 통과시킨다. 여기만 되돌린다.
+  pointer-events: auto;
+}
+
+.item {
+  @include ty(t2, bold, true);
+
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-5 $space-3 $space-4;
+  border: 1px solid var(--color-border);
+  // 헤더의 메뉴 버튼·상태 뱃지와 같은 값. 셋이 한 벌로 읽혀야 한다.
+  border-radius: $radius-sm;
+  background: color-mix(in srgb, var(--color-bg-surface) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  color: var(--color-font-base);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--color-bg-surface);
+  }
+}
+
+.icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--color-font-muted);
+}
+
+.image {
+  object-fit: contain;
+}
