@@ -1,4 +1,8 @@
 import type { ComponentType } from "react";
+import {
+  IconMicrophoneLine,
+  IconPaletteLine,
+} from "@karrotmarket/react-monochrome-icon";
 
 import type { MotionName } from "@/components/profile/webgl/character/MotionCharacter";
 import ArtScene from "@/components/profile/webgl/scenes/ArtScene";
@@ -10,6 +14,13 @@ import { color } from "@/style/tokens.generated";
 export type ProjectContentProps = {
   onOpenArticle: () => void;
 };
+
+/**
+ * 내비의 아이콘. 문자열이면 이미지 경로다.
+ *
+ * 넷 중 셋은 선 아이콘이고 Genaimo 만 로고를 쓴다. 대체할 픽토그램이 없다.
+ */
+export type ProjectIcon = ComponentType<{ size?: number }> | string;
 
 export type ProjectLink = {
   label: string;
@@ -24,6 +35,7 @@ export type Project = {
   id: string;
   /** 하단 내비. */
   label: string;
+  icon: ProjectIcon;
   year: string;
   /** 상단 헤더. */
   headline: string;
@@ -60,8 +72,6 @@ export type Project = {
   linkMotion?: MotionName;
   /** 헤더 문구 아래에 세로로 쌓이는 바로가기. */
   links?: ProjectLink[];
-  /** 줌 조절기를 띄운다. 직교 씬에서만 뜻이 있다. */
-  zoomControl?: boolean;
 };
 
 const DEFAULT_BACKDROP = color.daangn.backdrop;
@@ -71,6 +81,7 @@ export const PROJECTS: Project[] = [
   {
     id: "daangn",
     label: "당근이네",
+    icon: "/assets/img/daangn/logo.png",
     year: "2025~",
     headline: "개발보다 세계관이 더 중요했다",
 
@@ -83,16 +94,15 @@ export const PROJECTS: Project[] = [
     backdrop: DEFAULT_BACKDROP,
     Content: DaangnScene,
     articleId: "3dfc588d-b9e9-807e-b97c-fa8174f39e28",
-    zoomControl: true,
   },
   {
     id: "genaimo",
     label: "Genaimo",
+    icon: "/assets/img/genaimo/logo.webp",
     year: "2024~2025",
     headline: "만들고, 들고 나가서, 팔았다",
     title: "직접 만든 AI 서비스로 GDC 세계 무대에 서다",
-    description:
-      "센프란시스코 GDC참가 경험과 현장의 인사이트, 그리고 직접 만든 서비스를 고객들에게 소개하고 영업한 기록",
+    description: "센프란시스코 GDC참가 경험과 현장의 인사이트",
     image: "/assets/og/post2.jpg",
     url: "https://www.linkedin.com/posts/hong-kyu-chu-a38b9a249_gdc-activity-7310031891129143297-gZ7g",
     backdrop: DEFAULT_BACKDROP,
@@ -111,6 +121,7 @@ export const PROJECTS: Project[] = [
   {
     id: "fastcampus",
     label: "온라인 강의",
+    icon: IconMicrophoneLine,
     year: "2023~2026",
     headline: "설명할 수 없으면 아는 게 아니었다",
 
@@ -127,12 +138,12 @@ export const PROJECTS: Project[] = [
   {
     id: "art",
     label: "현대미술",
+    icon: IconPaletteLine,
     year: "2012-2018",
     headline: "붓을 놓고 코드를 잡기까지",
 
     title: "현대 미술",
-    description:
-      "추홍규 @chu_hong_kyu, <샤갈>, 2020, 장지에 수비안료, 85x125cm #KEAs2021 #KEAs2021선정작가",
+    description: "샤갈,#KEAs2021 #KEAs2021선정작가",
     image: "/assets/og/post00.png",
     url: "https://sprout-decision-ec5.notion.site/36fc588db9e980b5b3a7fd407fc3984c?pvs=73",
 

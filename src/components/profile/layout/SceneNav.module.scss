@@ -47,31 +47,28 @@
   }
 }
 
-// 화살표와 라벨이 놓이는 줄.
+// 씬을 바로 고르는 아이콘 줄.
 .row {
   display: flex;
   align-items: center;
   gap: $space-2;
 }
 
-.button {
+.arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border: 0;
-  border-radius: $radius-full;
+  border-radius: $radius-sm;
   background: transparent;
   color: var(--color-font-base);
   cursor: pointer;
-  transition:
-    background 0.15s ease,
-    opacity 0.15s ease;
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, $color-gray-0 60%, transparent);
+    background: color-mix(in srgb, var(--color-bg-surface) 60%, transparent);
   }
 
   &:disabled {
@@ -80,27 +77,51 @@
   }
 }
 
-// 라벨과 연도를 한 덩어리로 묶어 가운데 정렬한다.
-// 이 블록이 남는 폭을 다 먹어야 화살표가 양 끝에 붙는다.
-// 예전에 몇/몇 카운터가 이 블록 바깥 오른쪽에 있었는데,
-// 그만큼 중심이 왼쪽으로 밀려서 대칭이 깨졌다. 연도가 그 역할을 대신한다.
-.title {
+.scenes {
+  display: flex;
   flex: 1;
-  min-width: 0;
-  padding: 0 $space-2;
-  text-align: center;
-  white-space: nowrap;
+  justify-content: center;
+  gap: $space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.label {
-  @include ty(t2, bold, true);
-  color: var(--color-font-base);
-}
-
-.year {
-  @include ty(t1, regular, true);
-
-  margin-left: $space-2;
+.scene {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: transparent;
+  // 지금 보고 있는 것만 또렷하다. 나머지는 있다는 것만 알린다.
   color: var(--color-font-muted);
-  font-variant-numeric: tabular-nums;
+  opacity: 0.45;
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &[data-current="true"] {
+    opacity: 1;
+    color: var(--color-font-base);
+    background: color-mix(in srgb, var(--color-bg-surface) 70%, transparent);
+  }
+
 }
+
+// 로고는 세로로 긴 것(525×900)부터 정사각까지 제각각이라 잘라내면 안 된다.
+.image {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+

@@ -1,58 +1,95 @@
 "use client";
 
+import Image from "next/image";
 import IconChevronLeftRegular from "@seed-design/react-icon/lib/IconChevronLeftRegular";
 import IconChevronRightRegular from "@seed-design/react-icon/lib/IconChevronRightRegular";
 
-import { PROJECTS } from "@/components/profile/constants/projects";
+import {
+  type ProjectIcon,
+  PROJECTS,
+} from "@/components/profile/constants/projects";
 import SceneNavLink from "@/components/profile/layout/SceneNavLink";
 import { useSceneStore } from "@/components/profile/store/useSceneStore";
 
 import styles from "@/components/profile/layout/SceneNav.module.scss";
 
-/**
- * 씬 사이를 오가는 내비.
- *
- * 목록 끝에서는 화살표가 비활성화된다. 순환시키면 "지금 처음인지 끝인지"를
- * 알 수 없어진다. 지금은 씬이 하나뿐이라 양쪽 다 꺼져 있다.
- */
+const ICON_SIZE = 18;
+
+const Glyph = ({ icon }: { icon: ProjectIcon }) => {
+  if (typeof icon === "string") {
+    return (
+      <Image
+        src={icon}
+        alt=""
+        width={ICON_SIZE}
+        height={ICON_SIZE}
+        className={styles.image}
+      />
+    );
+  }
+
+  const Icon = icon;
+  return <Icon size={ICON_SIZE} />;
+};
+
 export type SceneNavProps = {
-  /** 아래 카드를 눌렀을 때. 무엇을 열지는 씬 정의의 `link.open` 이 정한다. */
+  /** 아래 카드를 눌렀을 때. 무엇을 열지는 프로젝트의 `url` 유무가 정한다. */
   onOpenLink: () => void;
 };
 
+/**
+ * 씬 사이를 오가는 내비.
+ *
+ * 아이콘을 누르면 바로 건너뛰고, 양 끝 화살표로 차례로 넘길 수도 있다.
+ * 이름은 두지 않는다. 한 줄을 더 먹는 데 비해 아이콘이 이미 말해 준다.
+ */
 export const SceneNav = ({ onOpenLink }: SceneNavProps) => {
   const index = useSceneStore((s) => s.index);
+  const goTo = useSceneStore((s) => s.goTo);
   const next = useSceneStore((s) => s.next);
   const prev = useSceneStore((s) => s.prev);
 
   const project = PROJECTS[index];
-  const hasPrev = index > 0;
-  const hasNext = index < PROJECTS.length - 1;
 
   return (
     <nav className={styles.nav} aria-label="씬 이동">
       <div className={styles.row}>
         <button
           type="button"
-          className={styles.button}
+          className={styles.arrow}
           onClick={prev}
-          disabled={!hasPrev}
+          disabled={index === 0}
           aria-label="이전 씬"
         >
           <IconChevronLeftRegular size={18} />
         </button>
 
-        {/* 남는 폭을 다 먹어서 화살표가 양 끝에 붙고, 안쪽은 가운데 정렬된다. */}
-        <span className={styles.title}>
-          <span className={styles.label}>{project.label}</span>
-          <span className={styles.year}>{project.year}</span>
-        </span>
+        <ul className={styles.scenes}>
+          {PROJECTS.map((item, i) => {
+            const current = i === index;
+
+            return (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  className={styles.scene}
+                  data-current={current}
+                  aria-current={current ? "true" : undefined}
+                  aria-label={item.label}
+                  onClick={() => goTo(i)}
+                >
+                  <Glyph icon={item.icon} />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
 
         <button
           type="button"
-          className={styles.button}
+          className={styles.arrow}
           onClick={next}
-          disabled={!hasNext}
+          disabled={index === PROJECTS.length - 1}
           aria-label="다음 씬"
         >
           <IconChevronRightRegular size={18} />
