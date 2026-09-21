@@ -3,7 +3,6 @@
 import FloatingLinks from "@/components/profile/layout/FloatingLinks";
 import HeaderMenu from "@/components/profile/layout/HeaderMenu";
 import SceneBadge from "@/components/profile/layout/SceneBadge";
-import ZoomControl from "@/components/profile/layout/ZoomControl";
 import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 
 import styles from "@/components/profile/layout/ProfileHeader.module.scss";
@@ -19,10 +18,7 @@ const ProfileHeader = () => {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <div className={styles.side}>
-          <HeaderMenu />
-          {project.zoomControl && <ZoomControl />}
-        </div>
+        <HeaderMenu />
         <div className={styles.side}>
           <SceneBadge label={project.headline} />
           <FloatingLinks links={project.links} />
