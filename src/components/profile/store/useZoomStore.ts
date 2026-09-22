@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+import { BASE_VIEW_HEIGHT } from "@/components/profile/constants/zoomStages";
+
 type ZoomStore = {
   /**
    * 지금 담고 있는 세로. 카메라가 매 프레임 알려준다.
@@ -20,7 +22,9 @@ type ZoomStore = {
 };
 
 export const useZoomStore = create<ZoomStore>((set, get) => ({
-  viewHeight: 0,
+  // 카메라가 첫 프레임을 돌기 전에도 내비가 제자리를 짚어야 한다.
+  // 0 으로 두면 그 사이에는 활성화된 눈금이 없다.
+  viewHeight: BASE_VIEW_HEIGHT,
   request: null,
   jump: null,
 
