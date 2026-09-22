@@ -69,19 +69,21 @@ const SPAWN_BODY_CENTER: [number, number, number] = [
 ];
 
 /**
- * 캐릭터 둘레 여백을 얼마나 더 줄지. 적은 그대로 그 여백이 변한다.
- * 양수면 늘고 음수면 준다.
+ * 젠아이모 구도를 잡는 값. 여기만 만지면 된다 — 젠아이모 말고는 아무것도
+ * 이 값을 보지 않는다.
  *
- * 화면 기준 월드 단위다. 담는 세로가 13, 16:9 면 가로가 23.1 이므로
- * 같은 1 이라도 위아래는 화면의 8%, 좌우는 4% 다.
+ * 캐릭터 몸 중앙에서 카메라를 화면 기준으로 민 양이다. 보이는 것은 반대로
+ * 밀리므로, `up: -1` 이면 캐릭터가 화면에서 1 올라가 위 여백이 그만큼 줄고
+ * `right: -1` 이면 캐릭터가 1 오른쪽으로 가 왼쪽 여백이 그만큼 늘어난다.
+ *
+ * 담는 세로가 13, 16:9 면 가로가 23.1 이다. 같은 1 이라도 위아래는 화면의
+ * 8%, 좌우는 4% 라 좌우가 절반만 움직인다.
  */
-export const SPAWN_VIEW_MARGIN = { top: -1, left: 1 };
+export const SPAWN_VIEW_SHIFT = { right: -1, up: -1 };
 
-// 여백이 늘어난다는 건 캐릭터가 그 반대쪽으로 밀린다는 뜻이고, 카메라는
-// 다시 그 반대로 간다. 위 여백은 부호가 그대로, 왼쪽 여백은 뒤집힌다.
 const SHIFT = screenShift(
-  -SPAWN_VIEW_MARGIN.left,
-  SPAWN_VIEW_MARGIN.top,
+  SPAWN_VIEW_SHIFT.right,
+  SPAWN_VIEW_SHIFT.up,
   GENAIMO_ELEVATION
 );
 
