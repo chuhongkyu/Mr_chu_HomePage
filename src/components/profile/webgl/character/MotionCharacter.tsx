@@ -237,14 +237,19 @@ export const MotionCharacter = ({
 
           {MESH_NAMES.map((name) => (
             <React.Fragment key={name}>
+              {/* 스킨드 메시의 경계 상자는 바인드 포즈 그대로다. 뼈가 움직여도
+                  따라오지 않아서, 캐릭터가 화면 끝으로 가면 아직 보이는데도
+                  통째로 사라진다. 이 씬은 캐릭터가 돌아다니므로 끈다. */}
               <skinnedMesh
                 renderOrder={0}
+                frustumCulled={false}
                 geometry={nodes[name].geometry}
                 material={outlineMaterial}
                 skeleton={nodes[name].skeleton}
               />
               <skinnedMesh
                 renderOrder={1}
+                frustumCulled={false}
                 receiveShadow
                 geometry={nodes[name].geometry}
                 material={toonMaterial}

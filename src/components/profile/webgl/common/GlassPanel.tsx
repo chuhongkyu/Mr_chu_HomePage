@@ -138,6 +138,11 @@ export type GlassPanelProps = {
   sheen?: number;
 
   content?: GlassPanelContent;
+  /**
+   * 글씨 색. 기본은 흰색이라 `dark` 톤 위에서 읽힌다. 밝은 바탕에 얹을
+   * 때는 어두운 색을 직접 줘야 글씨가 사라지지 않는다.
+   */
+  textColor?: string;
   /** 월드 유닛. 판 크기에 비례시키지 마라 — 없는 위계가 생긴 것처럼 읽힌다. */
   titleSize?: number;
   bodySize?: number;
@@ -193,6 +198,7 @@ type PanelTextProps = {
   };
   width: number;
   height: number;
+  color: string;
   titleSize: number;
   bodySize: number;
   padding: number;
@@ -205,6 +211,7 @@ const PanelText = ({
   spec,
   width,
   height,
+  color: textColor,
   titleSize,
   bodySize,
   padding,
@@ -225,8 +232,8 @@ const PanelText = ({
         body: spec.body,
         width,
         height,
-        color: color.gray[0],
-        mutedColor: color.alpha.white[60],
+        color: textColor,
+        mutedColor: textColor,
         padding,
         titleSize,
         bodySize,
@@ -251,6 +258,7 @@ const PanelText = ({
     spec.body,
     width,
     height,
+    textColor,
     titleSize,
     bodySize,
     padding,
@@ -297,6 +305,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(
       sheen = 0.12,
 
       content,
+      textColor = color.gray[0],
       titleSize = 0.46,
       bodySize = 0.3,
       textPadding = 0.28,
@@ -398,6 +407,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(
                 spec={content}
                 width={contentWidth}
                 height={contentHeight}
+                color={textColor}
                 titleSize={titleSize}
                 bodySize={bodySize}
                 padding={textPadding}
@@ -409,6 +419,7 @@ export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(
                 <PanelText
                   spec={content}
                   {...split.text}
+                  color={textColor}
                   titleSize={titleSize}
                   bodySize={bodySize}
                   padding={textPadding}

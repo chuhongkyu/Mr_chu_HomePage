@@ -20,8 +20,10 @@ import {
   MotionCharacter,
   type MotionName,
 } from "@/components/profile/webgl/character/MotionCharacter";
+import GlassPanel from "@/components/profile/webgl/common/GlassPanel";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
+import { color } from "@/style/tokens.generated";
 import { track } from "@/utils/analytics";
 
 /**
@@ -156,6 +158,16 @@ const BODY_RADIUS = 2;
 
 /** 몇 번째 누름마다 화를 낼지. 나머지는 점프한다. */
 const ANGRY_EVERY = 5;
+
+/**
+ * 이름표 판. 안쪽 값은 월드 단위라, 줌 배수를 한 번 되돌린 group 에 담는다.
+ *
+ * 글씨 크기는 담는 세로(13)에 대한 비율로 읽어야 한다. 세로 800px 화면에서
+ * 1 월드 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도
+ * 같이 커진다 — 판이 3D 라 화면 px 로 고정할 수 없다.
+ */
+const PANEL_TITLE_SIZE = 0.68;
+const PANEL_LOCAL: [number, number, number] = [0, 10, -6];
 
 /**
  * 못 들어가는 구역을 `rig` 안쪽 좌표로 옮겨 둔 것. XZ 만 본다 — 바닥을
@@ -354,6 +366,19 @@ export const GenaimoScene = () => {
           />
         )
       )} */}
+
+      {/* 판 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
+          역수를 한 번 곱해 되돌린다. 안 되돌리면 판만 1/7 로 나온다. */}
+      <group scale={1 / GENAIMO_WORLD_SCALE} position={PANEL_LOCAL}>
+        <GlassPanel
+          width={5}
+          height={1.8}
+          content={{ kind: "text", title: "Genaimo" }}
+          // 밝은 배경 위라 기본 흰 글씨는 묻힌다.
+          textColor={color.gray[900]}
+          titleSize={PANEL_TITLE_SIZE}
+        />
+      </group>
 
       <FlightPath points={FLIGHT_POINTS} active={cleared} />
     </group>
