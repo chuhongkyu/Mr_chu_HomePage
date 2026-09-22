@@ -1,0 +1,79 @@
+@use "system" as *;
+
+.root {
+  position: fixed;
+  z-index: $layer-toast;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid $color-alpha-white-20;
+  border-radius: $radius-sm;
+  background: $color-alpha-black-80;
+  color: $color-gray-0;
+  font: inherit;
+  font-weight: 700;
+  // 끌 때 글자가 잡혀 끌리지 않게.
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+
+  &[data-dragging="true"] {
+    cursor: grabbing;
+  }
+
+  &[data-open="true"] {
+    background: $color-gray-0;
+    color: $color-gray-900;
+    border-color: $color-gray-0;
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + #{$space-2});
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 196px;
+  padding: $space-3;
+  border: 1px solid $color-alpha-white-20;
+  border-radius: $radius-md;
+  background: $color-alpha-black-80;
+  backdrop-filter: blur(12px);
+  color: $color-gray-0;
+}
+
+.title {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+.tool {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-2;
+  border-radius: $radius-xs;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-alpha-white-20;
+  }
+}
+
+.hint {
+  margin-left: auto;
+  opacity: 0.5;
+}

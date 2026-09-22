@@ -5,19 +5,12 @@ import * as THREE from "three";
 import { SkeletonUtils } from "three-stdlib";
 
 import { MOTION_EFFECTS } from "@/components/profile/constants/motionEffects";
+import { STICKMAN_MODEL_PATH } from "@/components/profile/constants/stickman";
 import { JumpTrailEffect } from "@/components/profile/webgl/common/JumpTrailEffect";
 import { LightningRing } from "@/components/profile/webgl/common/LightningRing";
 import { BrushStick } from "@/components/profile/webgl/object/BrushStick";
 import outlineFragmentShader from "@/shaders/outline.frag.glsl";
 import outlineVertexShader from "@/shaders/outlineSkinned.vert.glsl";
-
-export const STICKMAN_MODEL_PATH = "/assets/models/stickman-draco.glb";
-
-/**
- * 모델 자연 키. bbox 는 169.3 × 192.9 × 42.7 이고 원점이 발밑이다.
- * 그래서 position 의 y 가 곧 발이 닿는 높이다.
- */
-export const STICKMAN_MODEL_HEIGHT = 192.9;
 
 /**
  * 버튼으로 재생할 클립. 순서가 곧 버튼 순서다.
@@ -230,7 +223,7 @@ export const MotionCharacter = ({
       </Suspense>
 
       <group ref={group}>
-        <group scale={scale} rotation={[0, Math.PI / 2, 0]}>
+        <group scale={scale}>
           <group>
             <primitive object={nodes.thighR001} />
             <primitive object={nodes.thighL001} />

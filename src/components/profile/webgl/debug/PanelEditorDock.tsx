@@ -1,4 +1,7 @@
 import { useState } from "react";
+import IconCheckRegular from "@seed-design/react-icon/lib/IconCheckRegular";
+import IconCopyRegular from "@seed-design/react-icon/lib/IconCopyRegular";
+import IconRetryRegular from "@seed-design/react-icon/lib/IconRetryRegular";
 
 import { usePanelEditorStore } from "@/components/profile/store/usePanelEditorStore";
 import {
@@ -80,9 +83,21 @@ export const PanelEditorDock = () => {
 
       {selected && world && (
         <>
-          <Field label="right" value={selected.at[0]} onChange={(v) => moveTo(0, v)} />
-          <Field label="up" value={selected.at[1]} onChange={(v) => moveTo(1, v)} />
-          <Field label="depth" value={selected.at[2]} onChange={(v) => moveTo(2, v)} />
+          <Field
+            label="right"
+            value={selected.at[0]}
+            onChange={(v) => moveTo(0, v)}
+          />
+          <Field
+            label="up"
+            value={selected.at[1]}
+            onChange={(v) => moveTo(1, v)}
+          />
+          <Field
+            label="depth"
+            value={selected.at[2]}
+            onChange={(v) => moveTo(2, v)}
+          />
           <Field
             label="width"
             value={selected.width}
@@ -103,17 +118,33 @@ export const PanelEditorDock = () => {
       )}
 
       <div className={styles.actions}>
-        <button type="button" className={styles.button} onClick={copy}>
-          {copied ? "복사됨" : "TS 복사"}
+        <button
+          type="button"
+          className={styles.button}
+          onClick={copy}
+          aria-label="소스 복사"
+          title="소스 복사"
+        >
+          {copied ? (
+            <IconCheckRegular size={14} />
+          ) : (
+            <IconCopyRegular size={14} />
+          )}
         </button>
-        <button type="button" className={styles.button} onClick={reset}>
-          되돌리기
+        <button
+          type="button"
+          className={styles.button}
+          onClick={reset}
+          aria-label="되돌리기"
+          title="되돌리기"
+        >
+          <IconRetryRegular size={14} />
         </button>
       </div>
 
       <div className={styles.note}>
-        기즈모로 끌거나 위 숫자를 고친 뒤 복사해서 `fastcampusPanels.ts` 의 배열을
-        갈아 끼운다.
+        기즈모로 끌거나 위 숫자를 고친 뒤 복사해서 `fastcampusPanels.ts` 의
+        배열을 갈아 끼운다.
       </div>
     </div>
   );
