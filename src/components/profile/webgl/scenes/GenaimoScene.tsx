@@ -7,6 +7,10 @@ import {
   DAANGN_SPAWN,
   DAANGN_SPAWN_WORLD,
 } from "@/components/profile/constants/daangnStage";
+import {
+  GENAIMO_ELEVATION,
+  viewDirection,
+} from "@/components/profile/constants/sceneConfig";
 import { STICKMAN_SCALE } from "@/components/profile/constants/stickman";
 import {
   GENAIMO_BAND,
@@ -30,10 +34,30 @@ import { color } from "@/style/tokens.generated";
 import { track } from "@/utils/analytics";
 
 /**
+ * 씬 전체를 카메라 쪽으로 당기는 양(월드 단위).
+ *
+ * 당근이네 근경 그림은 카메라를 향해 선 판이고, 이 줌에서는 불투명도가 1 이다.
+ * 등장 지점은 그 판보다 겨우 1.1 앞이라 — y 가 -4 라서 내려다보는 카메라
+ * 기준으로는 거의 판에 붙어 있다 — 화면 위쪽으로 한 키 조금 넘게만 달려도
+ * 판 뒤로 넘어가 그림에 먹힌다.
+ *
+ * 직교라 시선 방향으로 옮기는 건 화면에 보이지 않는다. 그래서 씬을 통째로
+ * 앞으로 당겨 둔다. 바닥 반경 60 을 끝까지 가도 깊이 손실이 9.5 이므로
+ * 그보다 넉넉히 잡는다.
+ */
+const FOREGROUND_LIFT = 12;
+
+const LIFT = viewDirection(GENAIMO_ELEVATION);
+
+/**
  * 캐릭터가 딛는 자리. 당근이네에서 걸어 나오는 지점을 그대로 쓴다.
  * 연출이 이 자리에 포커스를 맞춘 채 끝나므로 씬의 중심도 여기다.
  */
-const CHARACTER_POSITION: [number, number, number] = [...DAANGN_SPAWN_WORLD];
+const CHARACTER_POSITION: [number, number, number] = [
+  DAANGN_SPAWN_WORLD[0] + LIFT[0] * FOREGROUND_LIFT,
+  DAANGN_SPAWN_WORLD[1] + LIFT[1] * FOREGROUND_LIFT,
+  DAANGN_SPAWN_WORLD[2] + LIFT[2] * FOREGROUND_LIFT,
+];
 
 /**
  * 만든 모션이 흘러 나가는 곳. 월드 축이 화면에서 대각선으로 간다.
@@ -169,8 +193,8 @@ const ANGRY_EVERY = 5;
  * 되돌린 group 에서 잰다 — 담는 세로가 13 이고 세로 800px 화면에서 1 월드
  * 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도 같이 커진다.
  */
-const LABEL_SIZE = 0.68;
-const LABEL_LOCAL: [number, number, number] = [25, 15, -20];
+const LABEL_SIZE = 0.56;
+const LABEL_LOCAL: [number, number, number] = [24.5, 12, -20];
 
 /**
  * 글씨가 놓인 면의 방향. 빌보드로 카메라를 따라 돌리지 않는다.
@@ -246,6 +270,10 @@ const SceneLabel = ({
  *
  * 저장값과 등장 지점이 둘 다 카메라 타겟 기준이라 그 항이 지워지고,
  * 남는 건 등장 지점에서 본 거리다. 그걸 줌 배수로 나누면 로컬이 된다.
+ *
+ * `FOREGROUND_LIFT` 는 빼지 않는다. 시선 방향으로 옮긴 것이라 같은 로컬
+ * 좌표가 화면에서는 그대로 같은 자리다. 구역은 2D 그림에 맞춰 눈으로 잡은
+ * 값이니 화면 관계를 지켜야 하고, 월드 XZ 로 보정하면 오히려 어긋난다.
  */
 const BLOCKERS = DAANGN_COLLIDERS.map(({ position, size }) => ({
   x: (position[0] - DAANGN_SPAWN.position[0]) / GENAIMO_WORLD_SCALE,
@@ -440,7 +468,11 @@ export const GenaimoScene = () => {
 
       {/* 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
           역수를 한 번 곱해 되돌린다. 안 되돌리면 글씨만 1/7 로 나온다. */}
-      <group scale={1 / GENAIMO_WORLD_SCALE} position={LABEL_LOCAL}>
+      <group
+        scale={1 / GENAIMO_WORLD_SCALE}
+        position={LABEL_LOCAL}
+        rotation={[0, 0, 0.015]}
+      >
         <SceneLabel
           text="Genaimo"
           size={LABEL_SIZE}

@@ -34,9 +34,32 @@ export const DEFAULT_ELEVATION = 34;
 // 직교 카메라는 거리가 크기와 무관하다. 클리핑 여유만 보고 넉넉히 둔다.
 const ISO_DISTANCE = 60;
 
+/**
+ * 젠아이모만 기본보다 조금 더 위에서 본다.
+ *
+ * 씬 쪽에서 시선 방향을 다시 구해야 해서 상수로 둔다. 여기와 `PROJECTS` 에
+ * 따로 적으면 한쪽만 고쳤을 때 캐릭터가 조용히 그림 뒤로 넘어간다.
+ */
+export const GENAIMO_ELEVATION = 37;
+
 /** 앙각(도) → OrbitControls 의 극각(라디안). 극각은 +Y 에서 잰다. */
 export const elevationToPolar = (elevation: number) =>
   Math.PI / 2 - (elevation * Math.PI) / 180;
+
+/**
+ * 타겟에서 카메라를 향하는 단위 벡터. 방위각은 45° 로 고정한다.
+ *
+ * 직교에서는 이 방향으로 옮겨도 화면에 아무 변화가 없다. 크기도 자리도
+ * 그대로이고 앞뒤 순서만 바뀐다.
+ */
+export const viewDirection = (elevation: number): [number, number, number] => {
+  const el = (elevation * Math.PI) / 180;
+  return [
+    Math.cos(el) * Math.sin(ISO_AZIMUTH),
+    Math.sin(el),
+    Math.cos(el) * Math.cos(ISO_AZIMUTH),
+  ];
+};
 
 /**
  * 앙각에 맞는 카메라 위치. 방위각은 45° 로 고정한다.

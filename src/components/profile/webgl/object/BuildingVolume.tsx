@@ -27,23 +27,17 @@ const Volume = ({ box, picked }: { box: BuildingBox; picked: boolean }) => {
 
   return (
     <group position={box.position}>
-      {/* 뒷면만 그린다. 앞쪽 벽까지 그리면 상자가 카메라와 캐릭터 사이에
-          올 때마다 그 벽이 캐릭터 위에 덮여, 반투명하게 지워진 것처럼
-          보인다. 뒷면만 남기면 부피는 그대로 읽히면서 앞을 안 가린다. */}
       <mesh geometry={geometry}>
         <meshBasicMaterial
           color={color}
-          side={THREE.BackSide}
           transparent
           opacity={picked ? 0.28 : 0.16}
           depthWrite={false}
         />
       </mesh>
 
-      {/* 선도 깊이를 쓰지 않는다. 불투명으로 두면 가는 선이 캐릭터를
-          잘라 먹는다. */}
       <lineSegments geometry={edges}>
-        <lineBasicMaterial color={color} transparent depthWrite={false} />
+        <lineBasicMaterial color={color} />
       </lineSegments>
     </group>
   );
