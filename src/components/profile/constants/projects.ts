@@ -116,7 +116,7 @@ export const PROJECTS: Project[] = [
     linkMotion: "jump",
     links: [
       {
-        label: "기술 정리",
+        label: "개발 기록",
         href: "/project/204c588d-b9e9-80b3-b0cf-d19e755bce9b",
         icon: "/assets/img/notion.png",
       },
@@ -137,6 +137,13 @@ export const PROJECTS: Project[] = [
     backdrop: DEFAULT_BACKDROP,
     Content: FastcampusScene,
     backdropGradient: true,
+    links: [
+      {
+        label: "강의 회고",
+        href: "/project/3e3c588d-b9e9-80f5-803b-e8eb9ed48eab",
+        icon: "/assets/img/notion.png",
+      },
+    ],
   },
   {
     id: "art",
