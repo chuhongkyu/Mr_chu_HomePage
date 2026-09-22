@@ -102,9 +102,25 @@ tokens/*.json                 ← 단일 소스. DTCG 포맷이라 Figma Variabl
 | `npm run dev`             | Next 개발 서버                                              |
 | `npm run storybook`       | Storybook (:6006)                                           |
 | `npm run build-storybook` | Storybook 정적 빌드                                         |
+| `npm run pr`              | PR 생성 (base 브랜치 선택)                                  |
 
 > Storybook 10 은 Node 22.12+ 를 요구한다. `script/with-node.sh` 가
-> `.nvmrc`(22.19.0)의 버전으로 알아서 전환하므로 `nvm use` 를 먼저 칠 필요는 없다.
+> `.nvmrc` 의 버전으로 알아서 전환하므로 `nvm use` 를 먼저 칠 필요는 없다.
+
+---
+
+## 🌿 Git 워크플로
+
+`dev` 가 작업 브랜치, `main` 이 배포 브랜치다.
+
+```
+dev 에 직접 커밋  →  쌓이면  →  dev → main Release PR
+```
+
+기능마다 `feat/*` 를 따지 않는다. 혼자 쓰는 저장소고 PR 에서 도는 CI 가 없어서,
+브랜치를 하나 더 거쳐도 얻는 게 없기 때문이다. `main` 은 `dev` 머지로만 변한다.
+
+자세한 규칙과 커밋 컨벤션은 [CLAUDE.md](./CLAUDE.md) 에 있다.
 
 ---
 

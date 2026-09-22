@@ -21,7 +21,11 @@ jobs:
       contents: write
 
     steps:
+      # main 은 dev 머지로만 변한다. cron 워크플로는 기본 브랜치에서 도니까
+      # ref 를 안 적으면 봇 커밋이 main 에 직접 얹혀 dev 가 뒤처진다.
       - uses: actions/checkout@v4
+        with:
+          ref: dev
 
       - uses: actions/setup-node@v4
         with:
