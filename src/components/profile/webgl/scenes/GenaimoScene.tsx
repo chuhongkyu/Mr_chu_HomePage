@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Billboard } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -174,19 +173,32 @@ const LABEL_SIZE = 0.68;
 const LABEL_LOCAL: [number, number, number] = [25, 15, -20];
 
 /**
+ * 글씨가 놓인 면의 방향. 빌보드로 카메라를 따라 돌리지 않는다.
+ *
+ * 유리판과 같은 규약이다(`fastcampusPanels.ts` 의 `AXIS_ROTATION`).
+ *   [0, 0, 0]      법선 +Z — 화면에서 오른쪽 아래로 물러난다
+ *   [0, π/2, 0]    법선 +X — 화면에서 왼쪽 아래로 물러난다
+ * 카메라 쪽으로 돌리지 마라. 글씨만 씬에서 떠 보인다.
+ */
+const LABEL_ROTATION: [number, number, number] = [0, 0, 0];
+
+/**
  * 공중에 뜬 낱말 하나.
  *
- * 이 씬에서만 쓰므로 공통으로 빼지 않는다. 판도 테두리도 없이 글자만 있으면
- * 되는 자리라, 유리판을 쓰면 안 보이는 판과 그 뒤 깊이 싸움만 남는다.
+ * 이 씬에서만 쓰므로 공통으로 빼지 않는다. 유리판과 놓이는 방식은 같고
+ * 판·테두리만 없다. 글자만 있으면 되는 자리라 판을 쓰면 안 보이는 유리와
+ * 그 뒤 깊이 싸움만 남는다.
  */
 const SceneLabel = ({
   text,
   size,
   color: textColor,
+  rotation,
 }: {
   text: string;
   size: number;
   color: string;
+  rotation: [number, number, number];
 }) => {
   const [label, setLabel] = useState<LabelTexture | null>(null);
 
@@ -216,18 +228,15 @@ const SceneLabel = ({
   if (!label) return null;
 
   return (
-    // 카메라가 기울어 있어서 그냥 세우면 글씨가 비스듬히 눕는다.
-    <Billboard>
-      <mesh>
-        <planeGeometry args={[label.width, label.height]} />
-        <meshBasicMaterial
-          map={label.texture}
-          transparent
-          toneMapped={false}
-          depthWrite={false}
-        />
-      </mesh>
-    </Billboard>
+    <mesh rotation={rotation}>
+      <planeGeometry args={[label.width, label.height]} />
+      <meshBasicMaterial
+        map={label.texture}
+        transparent
+        toneMapped={false}
+        depthWrite={false}
+      />
+    </mesh>
   );
 };
 
@@ -432,7 +441,12 @@ export const GenaimoScene = () => {
       {/* 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
           역수를 한 번 곱해 되돌린다. 안 되돌리면 글씨만 1/7 로 나온다. */}
       <group scale={1 / GENAIMO_WORLD_SCALE} position={LABEL_LOCAL}>
-        <SceneLabel text="Genaimo" size={LABEL_SIZE} color={color.gray[900]} />
+        <SceneLabel
+          text="Genaimo"
+          size={LABEL_SIZE}
+          color={color.gray[900]}
+          rotation={LABEL_ROTATION}
+        />
       </group>
 
       <FlightPath points={FLIGHT_POINTS} active={cleared} />
