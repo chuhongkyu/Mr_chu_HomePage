@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Billboard } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -20,7 +21,10 @@ import {
   MotionCharacter,
   type MotionName,
 } from "@/components/profile/webgl/character/MotionCharacter";
-import GlassPanel from "@/components/profile/webgl/common/GlassPanel";
+import {
+  drawLabel,
+  type LabelTexture,
+} from "@/components/profile/webgl/common/canvasText";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
 import { color } from "@/style/tokens.generated";
@@ -160,14 +164,74 @@ const BODY_RADIUS = 2;
 const ANGRY_EVERY = 5;
 
 /**
- * 이름표 판. 안쪽 값은 월드 단위라, 줌 배수를 한 번 되돌린 group 에 담는다.
+ * 씬 이름표. 안쪽 값은 월드 단위라, 줌 배수를 한 번 되돌린 group 에 담는다.
  *
  * 글씨 크기는 담는 세로(13)에 대한 비율로 읽어야 한다. 세로 800px 화면에서
  * 1 월드 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도
- * 같이 커진다 — 판이 3D 라 화면 px 로 고정할 수 없다.
+ * 같이 커진다 — 3D 라 화면 px 로 고정할 수 없다.
  */
-const PANEL_TITLE_SIZE = 0.68;
-const PANEL_LOCAL: [number, number, number] = [0, 10, -6];
+const LABEL_SIZE = 0.68;
+const LABEL_LOCAL: [number, number, number] = [25, 15, -20];
+
+/**
+ * 공중에 뜬 낱말 하나.
+ *
+ * 이 씬에서만 쓰므로 공통으로 빼지 않는다. 판도 테두리도 없이 글자만 있으면
+ * 되는 자리라, 유리판을 쓰면 안 보이는 판과 그 뒤 깊이 싸움만 남는다.
+ */
+const SceneLabel = ({
+  text,
+  size,
+  color: textColor,
+  position,
+}: {
+  text: string;
+  size: number;
+  color: string;
+  position: [number, number, number];
+}) => {
+  const [label, setLabel] = useState<LabelTexture | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    let current: LabelTexture | null = null;
+
+    const paint = () => {
+      if (!alive) return;
+      const next = drawLabel({ text, color: textColor, size });
+      if (!next) return;
+      current?.texture.dispose();
+      current = next;
+      setLabel(next);
+    };
+
+    paint();
+    // 웹폰트가 늦게 붙으면 첫 그림이 대체 폰트로 나간다.
+    document.fonts?.ready.then(paint).catch(() => {});
+
+    return () => {
+      alive = false;
+      current?.texture.dispose();
+    };
+  }, [text, textColor, size]);
+
+  if (!label) return null;
+
+  return (
+    // 카메라가 기울어 있어서 그냥 세우면 글씨가 비스듬히 눕는다.
+    <Billboard position={position}>
+      <mesh>
+        <planeGeometry args={[label.width, label.height]} />
+        <meshBasicMaterial
+          map={label.texture}
+          transparent
+          toneMapped={false}
+          depthWrite={false}
+        />
+      </mesh>
+    </Billboard>
+  );
+};
 
 /**
  * 못 들어가는 구역을 `rig` 안쪽 좌표로 옮겨 둔 것. XZ 만 본다 — 바닥을
@@ -367,16 +431,14 @@ export const GenaimoScene = () => {
         )
       )} */}
 
-      {/* 판 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
-          역수를 한 번 곱해 되돌린다. 안 되돌리면 판만 1/7 로 나온다. */}
-      <group scale={1 / GENAIMO_WORLD_SCALE} position={PANEL_LOCAL}>
-        <GlassPanel
-          width={5}
-          height={1.8}
-          content={{ kind: "text", title: "Genaimo" }}
-          // 밝은 배경 위라 기본 흰 글씨는 묻힌다.
-          textColor={color.gray[900]}
-          titleSize={PANEL_TITLE_SIZE}
+      {/* 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
+          역수를 한 번 곱해 되돌린다. 안 되돌리면 글씨만 1/7 로 나온다. */}
+      <group scale={1 / GENAIMO_WORLD_SCALE}>
+        <SceneLabel
+          text="Genaimo"
+          size={LABEL_SIZE}
+          color={color.gray[900]}
+          position={LABEL_LOCAL}
         />
       </group>
 
