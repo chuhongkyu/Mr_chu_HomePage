@@ -5,7 +5,7 @@
 프로젝트 나열형 포트폴리오에서 **"나는 이런 방식으로 디자인하고, 만들고, 시스템화한다"** 를 증명하는
 포트폴리오로 전환합니다. 문서로 설명하는 게 아니라, **이 사이트 자체가 그 시스템의 결과물**입니다.
 
-- 배포: https://mr-chu-home-page.vercel.app/
+- PRD = [www.mrchu.art](https://www.mrchu.art/)
 - 변경 이력(리팩토링 히스토리): [docs/HISTORY.md](./docs/HISTORY.md)
 
 ---

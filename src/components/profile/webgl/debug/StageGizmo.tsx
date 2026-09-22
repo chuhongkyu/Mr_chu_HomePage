@@ -35,9 +35,9 @@ const Handle = ({ target }: { target: StageTarget }) => {
     const object = proxy.current;
     if (!object) return;
 
-    const { box, spawn } = useStageEditorStore.getState();
-    if (target === "building") {
-      object.position.set(...box.position);
+    const { boxes, spawn } = useStageEditorStore.getState();
+    if (typeof target === "number") {
+      object.position.set(...boxes[target].position);
       return;
     }
     object.position.set(...spawn.position);
@@ -54,8 +54,8 @@ const Handle = ({ target }: { target: StageTarget }) => {
       round(object.position.z),
     ];
 
-    if (target === "building") {
-      patchBox({ position });
+    if (typeof target === "number") {
+      patchBox(target, { position });
       return;
     }
     patchSpawn({ position });

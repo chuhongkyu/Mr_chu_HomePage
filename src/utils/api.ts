@@ -2,10 +2,7 @@ import type { QueryFunctionContext } from "@tanstack/react-query";
 import { NotionAPI } from "notion-client";
 import type { ExtendedRecordMap } from "notion-types";
 
-import {
-  IList,
-  ProjectListResponse,
-} from "@/components/common/window/searchFrom/SearchType";
+import { ProjectListResponse } from "@/components/common/window/searchFrom/SearchType";
 
 export interface IDetail {
   id?: string;

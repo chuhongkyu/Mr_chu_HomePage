@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { IModalRightContainer } from "@/components/common/page/layout/ModalType";
 

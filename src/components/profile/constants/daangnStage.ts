@@ -28,13 +28,23 @@ export type SpawnPoint = {
   scale: number;
 };
 
-export const DAANGN_BUILDING: BuildingBox = {
-  position: [1, 3, 0],
-  size: [10, 12, 8],
-};
+/**
+ * 캐릭터가 들어가지 못하는 구역. 첫 칸이 그림 속 건물이다.
+ *
+ * 그림은 2D 한 장이라 어디가 막힌 곳인지 3D 가 알 방법이 없다. 그래서
+ * 손으로 상자를 얹어 둔다. y 는 막는 데 쓰지 않지만(바닥을 걷는 캐릭터라
+ * 높이로 갈릴 일이 없다) 편집기에서 그림과 겹쳐 보려면 필요하다.
+ *
+ * 값은 `?mode=edit` 의 "당근이네 배치" 에서 맞춘 뒤 TS 복사로 붙여 넣는다.
+ */
+export const DAANGN_COLLIDERS: BuildingBox[] = [
+  { position: [1, 2.5, 0], size: [10, 12, 8] },
+  { position: [-3.39, -2, 7.08], size: [4, 4, 4] },
+  { position: [5.69, -2, 5.76], size: [4, 4, 4] },
+];
 
 export const DAANGN_SPAWN: SpawnPoint = {
-  position: [5.54, 0, 10.21],
+  position: [0.87, -4, 5.42],
   scale: 0.14,
 };
 
@@ -52,7 +62,7 @@ export const DAANGN_SPAWN_WORLD: [number, number, number] = [
 export const SPAWN_CHARACTER_HEIGHT = STICKMAN_HEIGHT * DAANGN_SPAWN.scale;
 
 /**
- * 캐릭터가 보일 때 카메라가 볼 지점.
+ * 캐릭터가 보일 때 카메라가 볼 지점. 젠아이모만 쓴다.
  *
  * 모델 원점이 발밑이라 발을 그대로 보면 몸이 화면 위쪽에 쏠린다. 키의
  * 절반만큼 올려서 몸 중앙을 가운데에 둔다. 키는 그림에 맞춰 줄인 쪽이다.
@@ -66,11 +76,15 @@ export const SPAWN_VIEW_TARGET: [number, number, number] = [
 
 const num = (value: number) => Number(value.toFixed(2)).toString();
 
-export const serializeStage = (box: BuildingBox, spawn: SpawnPoint) =>
-  `export const DAANGN_BUILDING: BuildingBox = {
-  position: [${box.position.map(num).join(", ")}],
-  size: [${box.size.map(num).join(", ")}],
-};
+const box = (item: BuildingBox) =>
+  `  { position: [${item.position.map(num).join(", ")}], size: [${item.size
+    .map(num)
+    .join(", ")}] },`;
+
+export const serializeStage = (boxes: BuildingBox[], spawn: SpawnPoint) =>
+  `export const DAANGN_COLLIDERS: BuildingBox[] = [
+${boxes.map(box).join("\n")}
+];
 
 export const DAANGN_SPAWN: SpawnPoint = {
   position: [${spawn.position.map(num).join(", ")}],

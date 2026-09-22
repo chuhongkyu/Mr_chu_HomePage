@@ -54,8 +54,14 @@ type Props = {
  */
 const ease = { to: null as number | null, zoom: 0 };
 
-/** 클수록 빨리 붙는다. 9 면 0.5 초에 99% 간다. */
-const EASE_LAMBDA = 9;
+/**
+ * 클수록 빨리 붙는다. 당근이네(22) ↔ 젠아이모(13) 한 구간이
+ * 9 면 0.6 초, 4.5 면 1.2 초다.
+ *
+ * 멀수록 오래 걸린다 — 끝나는 조건이 남은 거리의 비율이라서다.
+ * 스냅처럼 짧게 되돌리는 건 여기 맞춰 느려지지 않는다.
+ */
+const EASE_LAMBDA = 4.5;
 
 /** 줌에 따라 옮겨 가는 카메라 지점. 매 프레임 쓰므로 한 번만 만든다. */
 const axisTarget: [number, number, number] = [0, 0, 0];
@@ -270,10 +276,15 @@ const CameraManager = ({ mode = "orthographic" }: Props) => {
     currentPostIdRef.current = currentPostId;
   }, [currentPostId]);
 
-  // 축을 벗어났다 돌아오면 팬을 처음부터 다시 잡는다.
+  // 단계가 바뀌면 팬을 처음부터 다시 잡는다. 축을 벗어날 때도 마찬가지다.
+  //
+  // 팬은 한 단계 안에서 그림을 둘러보라고 있는 것이지 다음 단계까지 들고 갈
+  // 것이 아니다. 들고 가면 같은 단계에 들어와도 매번 다른 자리에서 시작해서,
+  // 씬마다 잡아 둔 구도(`SPAWN_VIEW_TARGET` 같은 것)를 눈으로 맞출 수 없다.
+  // 게다가 클램프가 월드 고정이라 확대될수록 같은 오프셋이 화면을 더 먹는다.
   useEffect(() => {
-    if (!onAxis) resetAxisPan();
-  }, [onAxis]);
+    resetAxisPan();
+  }, [onAxis, scene.id]);
 
   /** 휠이 멎었는지 재는 자리. */
   const settle = useRef({ height: 0, idle: 0 });

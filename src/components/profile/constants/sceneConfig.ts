@@ -27,16 +27,39 @@ export const ISO_AZIMUTH = Math.PI / 4;
  * 기본 앙각(도). 지평선 위로 이만큼 올라가서 내려다본다.
  *
  * 정등각(true isometric)은 35.2644° 지만 그보다 조금 더 위에서 본다.
- * 모든 씬이 같은 각을 쓰므로, 씬마다 따로 적지 말고 이 값을 고친다.
+ * 씬이 `elevation` 으로 따로 정하지 않았을 때 쓰는 값이다.
  */
 export const DEFAULT_ELEVATION = 34;
 
 // 직교 카메라는 거리가 크기와 무관하다. 클리핑 여유만 보고 넉넉히 둔다.
 const ISO_DISTANCE = 60;
 
+/**
+ * 젠아이모만 기본보다 조금 더 위에서 본다.
+ *
+ * 씬 쪽에서 시선 방향을 다시 구해야 해서 상수로 둔다. 여기와 `PROJECTS` 에
+ * 따로 적으면 한쪽만 고쳤을 때 캐릭터가 조용히 그림 뒤로 넘어간다.
+ */
+export const GENAIMO_ELEVATION = 37;
+
 /** 앙각(도) → OrbitControls 의 극각(라디안). 극각은 +Y 에서 잰다. */
 export const elevationToPolar = (elevation: number) =>
   Math.PI / 2 - (elevation * Math.PI) / 180;
+
+/**
+ * 타겟에서 카메라를 향하는 단위 벡터. 방위각은 45° 로 고정한다.
+ *
+ * 직교에서는 이 방향으로 옮겨도 화면에 아무 변화가 없다. 크기도 자리도
+ * 그대로이고 앞뒤 순서만 바뀐다.
+ */
+export const viewDirection = (elevation: number): [number, number, number] => {
+  const el = (elevation * Math.PI) / 180;
+  return [
+    Math.cos(el) * Math.sin(ISO_AZIMUTH),
+    Math.sin(el),
+    Math.cos(el) * Math.cos(ISO_AZIMUTH),
+  ];
+};
 
 /**
  * 앙각에 맞는 카메라 위치. 방위각은 45° 로 고정한다.

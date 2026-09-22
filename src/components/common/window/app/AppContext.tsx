@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 import { cloum1Apps, cloum2Apps, cloum3Apps, cloum4Apps } from "@/components/common/window/app/AppData";
-import { AppItem, AppMoveAction, Area } from "@/components/common/window/app/AppType";
+import { AppMoveAction, Area } from "@/components/common/window/app/AppType";
 import { WithChildren } from "@/types/global";
 
 const initialAreas: Area[] = [

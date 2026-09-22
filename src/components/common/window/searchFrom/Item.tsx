@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import { WithChildren } from "@/types/global";
 
 import styles from "@/style/page.module.scss";

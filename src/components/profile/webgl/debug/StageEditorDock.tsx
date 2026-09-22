@@ -35,27 +35,32 @@ const Field = ({ label, value, step = 0.1, onChange }: FieldProps) => (
 );
 
 const TARGETS: { id: StageTarget; label: string }[] = [
-  { id: "building", label: "건물" },
   { id: "spawn", label: "등장 지점" },
 ];
 
 /** 당근이네 배치 편집기의 조작판. 캔버스 밖 DOM 이다. */
 export const StageEditorDock = () => {
-  const box = useStageEditorStore((s) => s.box);
+  const boxes = useStageEditorStore((s) => s.boxes);
   const spawn = useStageEditorStore((s) => s.spawn);
   const target = useStageEditorStore((s) => s.target);
   const patchBox = useStageEditorStore((s) => s.patchBox);
   const patchSpawn = useStageEditorStore((s) => s.patchSpawn);
   const select = useStageEditorStore((s) => s.select);
   const reset = useStageEditorStore((s) => s.reset);
+  const addBox = useStageEditorStore((s) => s.addBox);
+  const removeBox = useStageEditorStore((s) => s.removeBox);
+
+  /** 고른 구역. 등장 지점을 잡고 있으면 없다. */
+  const picked = typeof target === "number" ? boxes[target] : null;
 
   const [copied, setCopied] = useState(false);
 
   const boxAt =
     (key: "position" | "size", index: 0 | 1 | 2) => (value: number) => {
-      const next: [number, number, number] = [...box[key]];
+      if (!picked || typeof target !== "number") return;
+      const next: [number, number, number] = [...picked[key]];
       next[index] = value;
-      patchBox({ [key]: next });
+      patchBox(target, { [key]: next });
     };
 
   const spawnAt = (index: 0 | 1 | 2) => (value: number) => {
@@ -65,7 +70,7 @@ export const StageEditorDock = () => {
   };
 
   const copy = async () => {
-    await navigator.clipboard.writeText(serializeStage(box, spawn));
+    await navigator.clipboard.writeText(serializeStage(boxes, spawn));
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1400);
   };
@@ -77,7 +82,7 @@ export const StageEditorDock = () => {
       <div className={styles.list}>
         {TARGETS.map((item) => (
           <button
-            key={item.id}
+            key={String(item.id)}
             type="button"
             className={styles.chip}
             data-on={target === item.id}
@@ -86,30 +91,66 @@ export const StageEditorDock = () => {
             {item.label}
           </button>
         ))}
+
+        {boxes.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            className={styles.chip}
+            data-on={target === index}
+            onClick={() => select(index)}
+          >
+            구역 {index + 1}
+          </button>
+        ))}
+
+        <button type="button" className={styles.chip} onClick={addBox}>
+          + 구역
+        </button>
       </div>
 
-      {target === "building" ? (
+      {picked ? (
         <>
           <Field
             label="x"
-            value={box.position[0]}
+            value={picked.position[0]}
             onChange={boxAt("position", 0)}
           />
           <Field
             label="y"
-            value={box.position[1]}
+            value={picked.position[1]}
             onChange={boxAt("position", 1)}
           />
           <Field
             label="z"
-            value={box.position[2]}
+            value={picked.position[2]}
             onChange={boxAt("position", 2)}
           />
 
           <div className={styles.note}>크기</div>
-          <Field label="가로" value={box.size[0]} onChange={boxAt("size", 0)} />
-          <Field label="높이" value={box.size[1]} onChange={boxAt("size", 1)} />
-          <Field label="세로" value={box.size[2]} onChange={boxAt("size", 2)} />
+          <Field
+            label="가로"
+            value={picked.size[0]}
+            onChange={boxAt("size", 0)}
+          />
+          <Field
+            label="높이"
+            value={picked.size[1]}
+            onChange={boxAt("size", 1)}
+          />
+          <Field
+            label="세로"
+            value={picked.size[2]}
+            onChange={boxAt("size", 2)}
+          />
+
+          <button
+            type="button"
+            className={styles.chip}
+            onClick={() => removeBox(target as number)}
+          >
+            이 구역 지우기
+          </button>
         </>
       ) : (
         <>
@@ -124,8 +165,8 @@ export const StageEditorDock = () => {
           />
 
           <div className={styles.note}>
-            키 {(STICKMAN_HEIGHT * spawn.scale).toFixed(2)} · 건물 높이{" "}
-            {box.size[1]}
+            키 {(STICKMAN_HEIGHT * spawn.scale).toFixed(2)} · 막힌 구역{" "}
+            {boxes.length}개
           </div>
         </>
       )}

@@ -1,53 +1,67 @@
-import { useEffect, useRef } from "react";
-import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 import {
+  DAANGN_COLLIDERS,
   DAANGN_SPAWN,
   DAANGN_SPAWN_WORLD,
 } from "@/components/profile/constants/daangnStage";
 import {
-  STICKMAN_HEIGHT,
-  STICKMAN_SCALE,
-} from "@/components/profile/constants/stickman";
+  GENAIMO_ELEVATION,
+  viewDirection,
+} from "@/components/profile/constants/sceneConfig";
+import { STICKMAN_SCALE } from "@/components/profile/constants/stickman";
 import {
   GENAIMO_BAND,
   GENAIMO_WORLD_SCALE,
   smoothstep,
 } from "@/components/profile/constants/zoomStages";
-import MotionControls from "@/components/profile/layout/MotionControls";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 import {
   MotionCharacter,
   type MotionName,
 } from "@/components/profile/webgl/character/MotionCharacter";
-import { GridFloor } from "@/components/profile/webgl/common/GridFloor";
+import {
+  drawLabel,
+  type LabelTexture,
+} from "@/components/profile/webgl/common/canvasText";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
-import { layer } from "@/style/tokens.generated";
+import { color } from "@/style/tokens.generated";
 import { track } from "@/utils/analytics";
+
+/**
+ * 씬 전체를 카메라 쪽으로 당기는 양(월드 단위).
+ *
+ * 당근이네 근경 그림은 카메라를 향해 선 판이고, 이 줌에서는 불투명도가 1 이다.
+ * 등장 지점은 그 판보다 겨우 1.1 앞이라 — y 가 -4 라서 내려다보는 카메라
+ * 기준으로는 거의 판에 붙어 있다 — 화면 위쪽으로 한 키 조금 넘게만 달려도
+ * 판 뒤로 넘어가 그림에 먹힌다.
+ *
+ * 직교라 시선 방향으로 옮기는 건 화면에 보이지 않는다. 그래서 씬을 통째로
+ * 앞으로 당겨 둔다. 바닥 반경 60 을 끝까지 가도 깊이 손실이 9.5 이므로
+ * 그보다 넉넉히 잡는다.
+ */
+const FOREGROUND_LIFT = 12;
+
+const LIFT = viewDirection(GENAIMO_ELEVATION);
 
 /**
  * 캐릭터가 딛는 자리. 당근이네에서 걸어 나오는 지점을 그대로 쓴다.
  * 연출이 이 자리에 포커스를 맞춘 채 끝나므로 씬의 중심도 여기다.
  */
-const CHARACTER_POSITION: [number, number, number] = [...DAANGN_SPAWN_WORLD];
-/**
- * 칩 줄을 캐릭터 앞쪽(카메라 쪽) 바닥으로 조금 당긴다.
- * 방위각 45° 카메라에서 "앞"은 +x +z 방향이다.
- */
-const CHIPS_FORWARD = 2;
-const CHIPS_LOCAL: [number, number, number] = [
-  CHIPS_FORWARD + 10,
-  0,
-  CHIPS_FORWARD,
+const CHARACTER_POSITION: [number, number, number] = [
+  DAANGN_SPAWN_WORLD[0] + LIFT[0] * FOREGROUND_LIFT,
+  DAANGN_SPAWN_WORLD[1] + LIFT[1] * FOREGROUND_LIFT,
+  DAANGN_SPAWN_WORLD[2] + LIFT[2] * FOREGROUND_LIFT,
 ];
 
 /**
  * 만든 모션이 흘러 나가는 곳. 월드 축이 화면에서 대각선으로 간다.
- *   -X 왼쪽 위 · -Z 오른쪽 위 · +Z 왼쪽 아래 · +X 오른쪽 아래(모션 칩 자리)
+ *   -X 왼쪽 위 · -Z 오른쪽 위 · +Z 왼쪽 아래 · +X 오른쪽 아래
  *
  * 계단처럼 꺾어 올린다. 세로화면에서 화면 가로 반경이 10 남짓이라 옆으로는
  * 더 보낼 데가 없고, 세로는 18 이라 넉넉하다.
@@ -138,13 +152,8 @@ const PLATFORMS = [
  *
  * AI 로 만든 모션을 각 플랫폼으로 뽑아내던 도구라, 그 흐름을 바닥에 깐다.
  *
- * 칩은 `Html transform` 으로 바닥 평면에 눕힌다. 화면 고정 오버레이로 두면
- * 캐릭터를 팬으로 옮겼을 때 따로 놀아서, 어느 캐릭터의 조작인지 흐려진다.
- *
- * 크기는 scale 로 만지지 않는다. transform 모드는 DOM 을 항상 1/40 로 줄여
- * 그리므로 월드 크기 = DOM 폭 ÷ 40 이다. scale 로 키우면 border 1px 과
- * padding·radius 까지 같이 늘어나 디자인이 흐트러진다.
- * 그래서 SCSS 에서 실제 크기(520px = 월드 13 유닛)로 그린다.
+ * 동작은 버튼으로 고르지 않는다. 씬에 들어서면 한 번 생각하고, 바닥을
+ * 누르면 그리로 달린다. 조작이 곧 연출이라 화면에 얹는 UI 가 없다.
  */
 /** 동작에 따라 캐릭터 색이 바뀐다. 적지 않은 동작은 기본색. */
 const MOTION_COLOR: Partial<Record<MotionName, string>> = {
@@ -155,6 +164,126 @@ const MOTION_COLOR: Partial<Record<MotionName, string>> = {
 
 /** `scenes.ts` 의 id 와 같아야 한다. */
 const SCENE_ID = "genaimo";
+
+/**
+ * 클릭을 받는 바닥. 보이지는 않는다.
+ *
+ * 한 변이 캐릭터 키(11.57)의 열 배쯤이라 담기는 화면을 넉넉히 덮는다.
+ * `visible={false}` 로 끄면 레이캐스트에서도 빠지므로, 재질을 투명하게
+ * 두고 깊이에도 쓰지 않는 쪽으로 감춘다.
+ */
+const GROUND_SIZE = 120;
+
+/** 달리는 속도(로컬 단위/초). 캐릭터 키가 11.57 이니 초당 두 키 남짓이다. */
+const RUN_SPEED = 25;
+
+/** 이만큼 남으면 도착으로 친다. 0 으로 두면 목표 위에서 미세하게 떤다. */
+const ARRIVE = 0.3;
+
+/** 캐릭터가 차지하는 반경. 발끝이 벽에 박히지 않을 만큼만. */
+const BODY_RADIUS = 2;
+
+/** 몇 번째 누름마다 화를 낼지. 나머지는 점프한다. */
+const ANGRY_EVERY = 5;
+
+/**
+ * 씬 이름표.
+ *
+ * 자리는 `rig` 안쪽 좌표다(캐릭터와 같은 단위). 크기만 월드 단위라 줌 배수를
+ * 되돌린 group 에서 잰다 — 담는 세로가 13 이고 세로 800px 화면에서 1 월드
+ * 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도 같이 커진다.
+ */
+const LABEL_SIZE = 0.56;
+const LABEL_LOCAL: [number, number, number] = [24.5, 12, -20];
+
+/**
+ * 글씨가 놓인 면의 방향. 빌보드로 카메라를 따라 돌리지 않는다.
+ *
+ * 유리판과 같은 규약이다(`fastcampusPanels.ts` 의 `AXIS_ROTATION`).
+ *   [0, 0, 0]      법선 +Z — 화면에서 오른쪽 아래로 물러난다
+ *   [0, π/2, 0]    법선 +X — 화면에서 왼쪽 아래로 물러난다
+ * 카메라 쪽으로 돌리지 마라. 글씨만 씬에서 떠 보인다.
+ */
+const LABEL_ROTATION: [number, number, number] = [0, 0, 0];
+
+/**
+ * 공중에 뜬 낱말 하나.
+ *
+ * 이 씬에서만 쓰므로 공통으로 빼지 않는다. 유리판과 놓이는 방식은 같고
+ * 판·테두리만 없다. 글자만 있으면 되는 자리라 판을 쓰면 안 보이는 유리와
+ * 그 뒤 깊이 싸움만 남는다.
+ */
+const SceneLabel = ({
+  text,
+  size,
+  color: textColor,
+  rotation,
+}: {
+  text: string;
+  size: number;
+  color: string;
+  rotation: [number, number, number];
+}) => {
+  const [label, setLabel] = useState<LabelTexture | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    let current: LabelTexture | null = null;
+
+    const paint = () => {
+      if (!alive) return;
+      const next = drawLabel({ text, color: textColor, size });
+      if (!next) return;
+      current?.texture.dispose();
+      current = next;
+      setLabel(next);
+    };
+
+    paint();
+    // 웹폰트가 늦게 붙으면 첫 그림이 대체 폰트로 나간다.
+    document.fonts?.ready.then(paint).catch(() => {});
+
+    return () => {
+      alive = false;
+      current?.texture.dispose();
+    };
+  }, [text, textColor, size]);
+
+  if (!label) return null;
+
+  return (
+    <mesh rotation={rotation}>
+      <planeGeometry args={[label.width, label.height]} />
+      <meshBasicMaterial
+        map={label.texture}
+        transparent
+        toneMapped={false}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+};
+
+/**
+ * 못 들어가는 구역을 `rig` 안쪽 좌표로 옮겨 둔 것. XZ 만 본다 — 바닥을
+ * 걷는 캐릭터라 높이로 갈릴 일이 없다.
+ *
+ * 저장값과 등장 지점이 둘 다 카메라 타겟 기준이라 그 항이 지워지고,
+ * 남는 건 등장 지점에서 본 거리다. 그걸 줌 배수로 나누면 로컬이 된다.
+ *
+ * `FOREGROUND_LIFT` 는 빼지 않는다. 시선 방향으로 옮긴 것이라 같은 로컬
+ * 좌표가 화면에서는 그대로 같은 자리다. 구역은 2D 그림에 맞춰 눈으로 잡은
+ * 값이니 화면 관계를 지켜야 하고, 월드 XZ 로 보정하면 오히려 어긋난다.
+ */
+const BLOCKERS = DAANGN_COLLIDERS.map(({ position, size }) => ({
+  x: (position[0] - DAANGN_SPAWN.position[0]) / GENAIMO_WORLD_SCALE,
+  z: (position[2] - DAANGN_SPAWN.position[2]) / GENAIMO_WORLD_SCALE,
+  hx: size[0] / 2 / GENAIMO_WORLD_SCALE + BODY_RADIUS,
+  hz: size[2] / 2 / GENAIMO_WORLD_SCALE + BODY_RADIUS,
+}));
+
+const blocked = (x: number, z: number) =>
+  BLOCKERS.some((b) => Math.abs(x - b.x) < b.hx && Math.abs(z - b.z) < b.hz);
 
 /**
  * 종이비행기가 도는 길. 캐릭터 발밑이 원점.
@@ -178,12 +307,96 @@ const TRACE_STAGGER = 0.12;
 export const GenaimoScene = () => {
   const motion = useMotionStore((s) => s.motion);
   const rest = useMotionStore((s) => s.rest);
+  const play = useMotionStore((s) => s.play);
 
   /**
-   * 줌이 크기를 정한다. scale 을 prop 으로 주면 R3F 가 리렌더마다 되돌려
-   * 놓으므로 감싼 group 을 직접 만진다.
+   * 이 씬에 들어서면 한 번 생각한다.
+   *
+   * 씬은 줌축에 얹혀 있는 동안 계속 마운트돼 있어서 마운트 훅으로는 진입을
+   * 잡을 수 없다. 지금 짚고 있는 프로젝트가 바뀌는 순간이 곧 진입이다.
+   * `thinking` 은 한 번만 재생되는 클립이라 끝나면 `onMotionEnd` 가 idle 로
+   * 되돌린다.
+   */
+  const currentId = useCurrentProject().id;
+  useEffect(() => {
+    if (currentId !== SCENE_ID) return;
+    play("thinking");
+  }, [currentId, play]);
+
+  /**
+   * 씬 전체를 감싼 group. 줌이 이것의 크기를 정한다. scale 을 prop 으로
+   * 주면 R3F 가 리렌더마다 되돌려 놓으므로 직접 만진다.
    */
   const rig = useRef<THREE.Group>(null);
+  /** 캐릭터만 따로 옮긴다. `rig` 안쪽이라 줌 배수를 타지 않는다. */
+  const body = useRef<THREE.Group>(null);
+  /** 달려갈 곳. 없으면 서 있다. */
+  const destination = useRef<THREE.Vector3 | null>(null);
+
+  useFrame((_, deltaSeconds) => {
+    const target = destination.current;
+    if (!target || !body.current) return;
+
+    const dx = target.x - body.current.position.x;
+    const dz = target.z - body.current.position.z;
+    const left = Math.hypot(dx, dz);
+
+    if (left <= ARRIVE) {
+      destination.current = null;
+      rest();
+      return;
+    }
+
+    const step = Math.min(RUN_SPEED * deltaSeconds, left);
+    const here = body.current.position;
+    const nextX = here.x + (dx / left) * step;
+    const nextZ = here.z + (dz / left) * step;
+
+    // 막히면 한 축씩 따로 밀어 본다. 벽에 비스듬히 닿았을 때 멈춰 서지
+    // 않고 벽을 타고 미끄러진다.
+    if (!blocked(nextX, nextZ)) {
+      here.x = nextX;
+      here.z = nextZ;
+    } else if (!blocked(nextX, here.z)) {
+      here.x = nextX;
+    } else if (!blocked(here.x, nextZ)) {
+      here.z = nextZ;
+    } else {
+      // 어느 쪽으로도 못 간다. 목표가 구역 안이면 영영 도착하지 못하므로
+      // 여기서 접는다.
+      destination.current = null;
+      rest();
+      return;
+    }
+
+    // 모델이 +Z 를 보고 서 있다. atan2(x, z) 라야 그 축이 기준이 된다.
+    body.current.rotation.y = Math.atan2(dx, dz);
+  });
+
+  const runTo = (event: ThreeEvent<MouseEvent>) => {
+    if (!rig.current) return;
+    // 교차점은 월드 좌표다. 캐릭터가 사는 `rig` 안쪽 좌표로 내려야
+    // 줌 배수가 섞이지 않는다.
+    const local = rig.current.worldToLocal(event.point.clone());
+    destination.current = new THREE.Vector3(local.x, 0, local.z);
+    play("running");
+  };
+
+  /** 자기 자신을 누른 횟수. 화낼 차례인지만 세면 되므로 ref 로 둔다. */
+  const taps = useRef(0);
+
+  const poke = (event: ThreeEvent<MouseEvent>) => {
+    // 캐릭터 뒤에 바닥이 깔려 있다. 막지 않으면 같은 클릭이 바닥까지
+    // 내려가 제자리로 달려가라는 명령이 된다.
+    event.stopPropagation();
+
+    // 달리던 중이면 멈춘다. 뛰면서 점프하면 어느 쪽 반응인지 읽히지 않는다.
+    destination.current = null;
+
+    taps.current += 1;
+    play(taps.current % ANGRY_EVERY === 0 ? "angry" : "jump");
+  };
+
   useFrame(({ camera, size }) => {
     if (!rig.current) return;
 
@@ -218,7 +431,18 @@ export const GenaimoScene = () => {
     // 월드 전체가 캐릭터 발밑을 원점으로 한 덩어리다.
     // 줌이 이 group 의 크기를 정하므로 안쪽 좌표는 손대지 않는다.
     <group ref={rig} position={CHARACTER_POSITION}>
-      <group>
+      {/* 클릭만 받는 바닥. 캐릭터 발밑 높이에 눕혀 둔다. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} onClick={runTo}>
+        <planeGeometry args={[GROUND_SIZE, GROUND_SIZE]} />
+        <meshBasicMaterial
+          transparent
+          opacity={0}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <group ref={body} onClick={poke}>
         <MotionCharacter
           motion={motion}
           color={MOTION_COLOR[motion]}
@@ -242,21 +466,19 @@ export const GenaimoScene = () => {
         )
       )} */}
 
-      {/* 바닥에 눕힌 칩.
-          바깥 group 이 카메라 방위각(45°)에 맞춰 돌리고, 안쪽 Html 이
-          평면을 바닥으로 눕힌다. 둘로 나누면 Euler 순서를 따질 일이 없다.
-
-          scale 로 줌 배수를 되돌린다. 같이 줄면 글씨가 1/7 이 된다. */}
-      <group position={CHIPS_LOCAL} rotation={[0, Math.PI / 2, 0]} scale={3}>
-        <Html
-          transform
-          rotation={[-Math.PI / 2, 0, 0]}
-          center
-          zIndexRange={[layer["scene-html"], 0]}
-          pointerEvents="none"
-        >
-          <MotionControls />
-        </Html>
+      {/* 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
+          역수를 한 번 곱해 되돌린다. 안 되돌리면 글씨만 1/7 로 나온다. */}
+      <group
+        scale={1 / GENAIMO_WORLD_SCALE}
+        position={LABEL_LOCAL}
+        rotation={[0, 0, 0.015]}
+      >
+        <SceneLabel
+          text="Genaimo"
+          size={LABEL_SIZE}
+          color={color.gray[900]}
+          rotation={LABEL_ROTATION}
+        />
       </group>
 
       <FlightPath points={FLIGHT_POINTS} active={cleared} />
