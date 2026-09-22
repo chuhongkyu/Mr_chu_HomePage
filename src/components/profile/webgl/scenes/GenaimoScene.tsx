@@ -3,14 +3,8 @@ import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-import {
-  DAANGN_SPAWN,
-  DAANGN_SPAWN_WORLD,
-} from "@/components/profile/constants/daangnStage";
-import {
-  STICKMAN_HEIGHT,
-  STICKMAN_SCALE,
-} from "@/components/profile/constants/stickman";
+import { DAANGN_SPAWN_WORLD } from "@/components/profile/constants/daangnStage";
+import { STICKMAN_SCALE } from "@/components/profile/constants/stickman";
 import {
   GENAIMO_BAND,
   GENAIMO_WORLD_SCALE,
@@ -23,7 +17,6 @@ import {
   MotionCharacter,
   type MotionName,
 } from "@/components/profile/webgl/character/MotionCharacter";
-import { GridFloor } from "@/components/profile/webgl/common/GridFloor";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
 import { layer } from "@/style/tokens.generated";
@@ -40,7 +33,7 @@ const CHARACTER_POSITION: [number, number, number] = [...DAANGN_SPAWN_WORLD];
  */
 const CHIPS_FORWARD = 2;
 const CHIPS_LOCAL: [number, number, number] = [
-  CHIPS_FORWARD + 10,
+  CHIPS_FORWARD + 8,
   0,
   CHIPS_FORWARD,
 ];
