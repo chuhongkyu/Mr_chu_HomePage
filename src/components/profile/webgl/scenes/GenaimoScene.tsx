@@ -3,7 +3,11 @@ import { Html } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-import { DAANGN_SPAWN_WORLD } from "@/components/profile/constants/daangnStage";
+import {
+  DAANGN_COLLIDERS,
+  DAANGN_SPAWN,
+  DAANGN_SPAWN_WORLD,
+} from "@/components/profile/constants/daangnStage";
 import { STICKMAN_SCALE } from "@/components/profile/constants/stickman";
 import {
   GENAIMO_BAND,
@@ -165,6 +169,26 @@ const RUN_SPEED = 25;
 /** 이만큼 남으면 도착으로 친다. 0 으로 두면 목표 위에서 미세하게 떤다. */
 const ARRIVE = 0.3;
 
+/** 캐릭터가 차지하는 반경. 발끝이 벽에 박히지 않을 만큼만. */
+const BODY_RADIUS = 2;
+
+/**
+ * 못 들어가는 구역을 `rig` 안쪽 좌표로 옮겨 둔 것. XZ 만 본다 — 바닥을
+ * 걷는 캐릭터라 높이로 갈릴 일이 없다.
+ *
+ * 저장값과 등장 지점이 둘 다 카메라 타겟 기준이라 그 항이 지워지고,
+ * 남는 건 등장 지점에서 본 거리다. 그걸 줌 배수로 나누면 로컬이 된다.
+ */
+const BLOCKERS = DAANGN_COLLIDERS.map(({ position, size }) => ({
+  x: (position[0] - DAANGN_SPAWN.position[0]) / GENAIMO_WORLD_SCALE,
+  z: (position[2] - DAANGN_SPAWN.position[2]) / GENAIMO_WORLD_SCALE,
+  hx: size[0] / 2 / GENAIMO_WORLD_SCALE + BODY_RADIUS,
+  hz: size[2] / 2 / GENAIMO_WORLD_SCALE + BODY_RADIUS,
+}));
+
+const blocked = (x: number, z: number) =>
+  BLOCKERS.some((b) => Math.abs(x - b.x) < b.hx && Math.abs(z - b.z) < b.hz);
+
 /**
  * 종이비행기가 도는 길. 캐릭터 발밑이 원점.
  *
@@ -228,8 +252,27 @@ export const GenaimoScene = () => {
     }
 
     const step = Math.min(RUN_SPEED * deltaSeconds, left);
-    body.current.position.x += (dx / left) * step;
-    body.current.position.z += (dz / left) * step;
+    const here = body.current.position;
+    const nextX = here.x + (dx / left) * step;
+    const nextZ = here.z + (dz / left) * step;
+
+    // 막히면 한 축씩 따로 밀어 본다. 벽에 비스듬히 닿았을 때 멈춰 서지
+    // 않고 벽을 타고 미끄러진다.
+    if (!blocked(nextX, nextZ)) {
+      here.x = nextX;
+      here.z = nextZ;
+    } else if (!blocked(nextX, here.z)) {
+      here.x = nextX;
+    } else if (!blocked(here.x, nextZ)) {
+      here.z = nextZ;
+    } else {
+      // 어느 쪽으로도 못 간다. 목표가 구역 안이면 영영 도착하지 못하므로
+      // 여기서 접는다.
+      destination.current = null;
+      rest();
+      return;
+    }
+
     // 모델이 +Z 를 보고 서 있다. atan2(x, z) 라야 그 축이 기준이 된다.
     body.current.rotation.y = Math.atan2(dx, dz);
   });

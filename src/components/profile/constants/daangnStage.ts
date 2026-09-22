@@ -28,10 +28,18 @@ export type SpawnPoint = {
   scale: number;
 };
 
-export const DAANGN_BUILDING: BuildingBox = {
-  position: [1, 3, 0],
-  size: [10, 12, 8],
-};
+/**
+ * 캐릭터가 들어가지 못하는 구역. 첫 칸이 그림 속 건물이다.
+ *
+ * 그림은 2D 한 장이라 어디가 막힌 곳인지 3D 가 알 방법이 없다. 그래서
+ * 손으로 상자를 얹어 둔다. y 는 막는 데 쓰지 않지만(바닥을 걷는 캐릭터라
+ * 높이로 갈릴 일이 없다) 편집기에서 그림과 겹쳐 보려면 필요하다.
+ *
+ * 값은 `?mode=edit` 의 "당근이네 배치" 에서 맞춘 뒤 TS 복사로 붙여 넣는다.
+ */
+export const DAANGN_COLLIDERS: BuildingBox[] = [
+  { position: [1, 3, 0], size: [10, 12, 8] },
+];
 
 export const DAANGN_SPAWN: SpawnPoint = {
   position: [4.71, 0, 10.21],
@@ -66,11 +74,15 @@ export const SPAWN_VIEW_TARGET: [number, number, number] = [
 
 const num = (value: number) => Number(value.toFixed(2)).toString();
 
-export const serializeStage = (box: BuildingBox, spawn: SpawnPoint) =>
-  `export const DAANGN_BUILDING: BuildingBox = {
-  position: [${box.position.map(num).join(", ")}],
-  size: [${box.size.map(num).join(", ")}],
-};
+const box = (item: BuildingBox) =>
+  `  { position: [${item.position.map(num).join(", ")}], size: [${item.size
+    .map(num)
+    .join(", ")}] },`;
+
+export const serializeStage = (boxes: BuildingBox[], spawn: SpawnPoint) =>
+  `export const DAANGN_COLLIDERS: BuildingBox[] = [
+${boxes.map(box).join("\n")}
+];
 
 export const DAANGN_SPAWN: SpawnPoint = {
   position: [${spawn.position.map(num).join(", ")}],
