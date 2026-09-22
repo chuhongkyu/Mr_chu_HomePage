@@ -4,10 +4,10 @@ const description =
   "MR.CHU's resume featuring roles at Ailive, DOSE Interactive, and Mapo-gu, with project highlights like Samsung, Lotte, KGC, and CASS. Also teaches creative frontend development at Fast Campus.";
 
 export const metadata: Metadata = {
-  title: "Resume | MR.CHU",
+  title: "Resume",
   description: description,
   openGraph: {
-    title: "Resume | MR.CHU",
+    title: "Resume",
     description: description,
     images: [
       {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Resume | MR.CHU",
+    title: "Resume",
     description: description,
     images: ["/assets/og-img_resume.jpg"],
   },
