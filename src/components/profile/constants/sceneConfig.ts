@@ -34,39 +34,9 @@ export const DEFAULT_ELEVATION = 34;
 // 직교 카메라는 거리가 크기와 무관하다. 클리핑 여유만 보고 넉넉히 둔다.
 const ISO_DISTANCE = 60;
 
-/** 젠아이모만 기본보다 조금 더 위에서 본다. 화면축을 쓰는 값이 이 각에 묶인다. */
-export const GENAIMO_ELEVATION = 37;
-
 /** 앙각(도) → OrbitControls 의 극각(라디안). 극각은 +Y 에서 잰다. */
 export const elevationToPolar = (elevation: number) =>
   Math.PI / 2 - (elevation * Math.PI) / 180;
-
-/**
- * 화면 기준으로 민 양을 월드 벡터로 바꾼다. `right` 는 화면 오른쪽,
- * `up` 은 화면 위쪽이 +다.
- *
- * 카메라 타겟에 더하면 화면이 그 방향으로 움직이므로, **보이는 것은 반대로
- * 밀린다.** `up: -1` 은 캐릭터 위 여백을 1 만큼 줄이고, `right: -1` 은
- * 캐릭터 왼쪽 여백을 1 만큼 늘린다.
- *
- * 앙각이 화면 위쪽이 어디인지를 정하므로 같은 각을 넘겨야 한다.
- */
-export const screenShift = (
-  right: number,
-  up: number,
-  elevation: number
-): [number, number, number] => {
-  const el = (elevation * Math.PI) / 180;
-  const sinEl = Math.sin(el);
-  const cosEl = Math.cos(el);
-  const sinAz = Math.sin(ISO_AZIMUTH);
-  const cosAz = Math.cos(ISO_AZIMUTH);
-  return [
-    right * cosAz - up * sinEl * sinAz,
-    up * cosEl,
-    -right * sinAz - up * sinEl * cosAz,
-  ];
-};
 
 /**
  * 앙각에 맞는 카메라 위치. 방위각은 45° 로 고정한다.

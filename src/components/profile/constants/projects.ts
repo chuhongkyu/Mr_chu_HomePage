@@ -5,7 +5,6 @@ import {
 } from "@karrotmarket/react-monochrome-icon";
 
 import { SPAWN_VIEW_TARGET } from "@/components/profile/constants/daangnStage";
-import { GENAIMO_ELEVATION } from "@/components/profile/constants/sceneConfig";
 import type { MotionName } from "@/components/profile/webgl/character/MotionCharacter";
 import ArtScene from "@/components/profile/webgl/scenes/ArtScene";
 import DaangnScene from "@/components/profile/webgl/scenes/DaangnScene";
@@ -117,10 +116,7 @@ export const PROJECTS: Project[] = [
     // 줌축은 target 만 보간하고 앙각은 단계가 바뀌는 순간 갈아 끼운다.
     // 당근이네(기본 34)와 값이 달라 담는 세로 17.5 를 지날 때 한 프레임
     // 꺾인다. 알고 둔 것이니 튄다고 이 값을 지우지 마라.
-    //
-    // `SPAWN_VIEW_TARGET` 이 이 각으로 화면축을 잡는다. 여기만 고치면
-    // 프레이밍이 따라오지 않으므로 상수를 같이 쓴다.
-    elevation: GENAIMO_ELEVATION,
+    elevation: 37,
     linkMotion: "jump",
     links: [
       {

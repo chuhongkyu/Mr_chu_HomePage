@@ -11,11 +11,7 @@
  * 값은 `?mode=edit` 의 도구 모음에서 "당근이네 배치" 를 켜고 맞춘 뒤,
  * TS 복사로 여기에 붙여 넣는다.
  */
-import {
-  CAMERA,
-  GENAIMO_ELEVATION,
-  screenShift,
-} from "@/components/profile/constants/sceneConfig";
+import { CAMERA } from "@/components/profile/constants/sceneConfig";
 import { STICKMAN_HEIGHT } from "@/components/profile/constants/stickman";
 
 export type BuildingBox = {
@@ -56,42 +52,16 @@ export const DAANGN_SPAWN_WORLD: [number, number, number] = [
 export const SPAWN_CHARACTER_HEIGHT = STICKMAN_HEIGHT * DAANGN_SPAWN.scale;
 
 /**
- * 캐릭터 몸 중앙.
+ * 캐릭터가 보일 때 카메라가 볼 지점. 젠아이모만 쓴다.
  *
  * 모델 원점이 발밑이라 발을 그대로 보면 몸이 화면 위쪽에 쏠린다. 키의
  * 절반만큼 올려서 몸 중앙을 가운데에 둔다. 키는 그림에 맞춰 줄인 쪽이다.
  * 원래 키로 재면 캐릭터 머리 위 한참을 보게 된다.
  */
-const SPAWN_BODY_CENTER: [number, number, number] = [
+export const SPAWN_VIEW_TARGET: [number, number, number] = [
   DAANGN_SPAWN_WORLD[0],
   DAANGN_SPAWN_WORLD[1] + SPAWN_CHARACTER_HEIGHT / 2,
   DAANGN_SPAWN_WORLD[2],
-];
-
-/**
- * 젠아이모 구도를 잡는 값. 여기만 만지면 된다 — 젠아이모 말고는 아무것도
- * 이 값을 보지 않는다.
- *
- * 캐릭터 몸 중앙에서 카메라를 화면 기준으로 민 양이다. 보이는 것은 반대로
- * 밀리므로, `up: -1` 이면 캐릭터가 화면에서 1 올라가 위 여백이 그만큼 줄고
- * `right: -1` 이면 캐릭터가 1 오른쪽으로 가 왼쪽 여백이 그만큼 늘어난다.
- *
- * 담는 세로가 13, 16:9 면 가로가 23.1 이다. 같은 1 이라도 위아래는 화면의
- * 8%, 좌우는 4% 라 좌우가 절반만 움직인다.
- */
-export const SPAWN_VIEW_SHIFT = { right: -1, up: -1 };
-
-const SHIFT = screenShift(
-  SPAWN_VIEW_SHIFT.right,
-  SPAWN_VIEW_SHIFT.up,
-  GENAIMO_ELEVATION
-);
-
-/** 캐릭터가 보일 때 카메라가 볼 지점. */
-export const SPAWN_VIEW_TARGET: [number, number, number] = [
-  SPAWN_BODY_CENTER[0] + SHIFT[0],
-  SPAWN_BODY_CENTER[1] + SHIFT[1],
-  SPAWN_BODY_CENTER[2] + SHIFT[2],
 ];
 
 const num = (value: number) => Number(value.toFixed(2)).toString();
