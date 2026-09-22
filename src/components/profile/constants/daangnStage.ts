@@ -34,7 +34,7 @@ export const DAANGN_BUILDING: BuildingBox = {
 };
 
 export const DAANGN_SPAWN: SpawnPoint = {
-  position: [5.54, 0, 10.21],
+  position: [4.71, 0, 10.21],
   scale: 0.14,
 };
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 import { DAANGN_SPAWN_WORLD } from "@/components/profile/constants/daangnStage";
@@ -13,6 +13,7 @@ import {
 import MotionControls from "@/components/profile/layout/MotionControls";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
+import { useCurrentProject } from "@/components/profile/store/useSceneStore";
 import {
   MotionCharacter,
   type MotionName,
@@ -150,6 +151,21 @@ const MOTION_COLOR: Partial<Record<MotionName, string>> = {
 const SCENE_ID = "genaimo";
 
 /**
+ * 클릭을 받는 바닥. 보이지는 않는다.
+ *
+ * 한 변이 캐릭터 키(11.57)의 열 배쯤이라 담기는 화면을 넉넉히 덮는다.
+ * `visible={false}` 로 끄면 레이캐스트에서도 빠지므로, 재질을 투명하게
+ * 두고 깊이에도 쓰지 않는 쪽으로 감춘다.
+ */
+const GROUND_SIZE = 120;
+
+/** 달리는 속도(로컬 단위/초). 캐릭터 키가 11.57 이니 초당 두 키 남짓이다. */
+const RUN_SPEED = 25;
+
+/** 이만큼 남으면 도착으로 친다. 0 으로 두면 목표 위에서 미세하게 떤다. */
+const ARRIVE = 0.3;
+
+/**
  * 종이비행기가 도는 길. 캐릭터 발밑이 원점.
  *
  * 반지름 18 이 상한이다. 기울어진 카메라라 원이 커지면 화면 세로로도 번지는데,
@@ -171,12 +187,62 @@ const TRACE_STAGGER = 0.12;
 export const GenaimoScene = () => {
   const motion = useMotionStore((s) => s.motion);
   const rest = useMotionStore((s) => s.rest);
+  const play = useMotionStore((s) => s.play);
 
   /**
-   * 줌이 크기를 정한다. scale 을 prop 으로 주면 R3F 가 리렌더마다 되돌려
-   * 놓으므로 감싼 group 을 직접 만진다.
+   * 이 씬에 들어서면 한 번 생각한다.
+   *
+   * 씬은 줌축에 얹혀 있는 동안 계속 마운트돼 있어서 마운트 훅으로는 진입을
+   * 잡을 수 없다. 지금 짚고 있는 프로젝트가 바뀌는 순간이 곧 진입이다.
+   * `thinking` 은 한 번만 재생되는 클립이라 끝나면 `onMotionEnd` 가 idle 로
+   * 되돌린다.
+   */
+  const currentId = useCurrentProject().id;
+  useEffect(() => {
+    if (currentId !== SCENE_ID) return;
+    play("thinking");
+  }, [currentId, play]);
+
+  /**
+   * 씬 전체를 감싼 group. 줌이 이것의 크기를 정한다. scale 을 prop 으로
+   * 주면 R3F 가 리렌더마다 되돌려 놓으므로 직접 만진다.
    */
   const rig = useRef<THREE.Group>(null);
+  /** 캐릭터만 따로 옮긴다. `rig` 안쪽이라 줌 배수를 타지 않는다. */
+  const body = useRef<THREE.Group>(null);
+  /** 달려갈 곳. 없으면 서 있다. */
+  const destination = useRef<THREE.Vector3 | null>(null);
+
+  useFrame((_, deltaSeconds) => {
+    const target = destination.current;
+    if (!target || !body.current) return;
+
+    const dx = target.x - body.current.position.x;
+    const dz = target.z - body.current.position.z;
+    const left = Math.hypot(dx, dz);
+
+    if (left <= ARRIVE) {
+      destination.current = null;
+      rest();
+      return;
+    }
+
+    const step = Math.min(RUN_SPEED * deltaSeconds, left);
+    body.current.position.x += (dx / left) * step;
+    body.current.position.z += (dz / left) * step;
+    // 모델이 +Z 를 보고 서 있다. atan2(x, z) 라야 그 축이 기준이 된다.
+    body.current.rotation.y = Math.atan2(dx, dz);
+  });
+
+  const runTo = (event: ThreeEvent<MouseEvent>) => {
+    if (!rig.current) return;
+    // 교차점은 월드 좌표다. 캐릭터가 사는 `rig` 안쪽 좌표로 내려야
+    // 줌 배수가 섞이지 않는다.
+    const local = rig.current.worldToLocal(event.point.clone());
+    destination.current = new THREE.Vector3(local.x, 0, local.z);
+    play("running");
+  };
+
   useFrame(({ camera, size }) => {
     if (!rig.current) return;
 
@@ -211,7 +277,18 @@ export const GenaimoScene = () => {
     // 월드 전체가 캐릭터 발밑을 원점으로 한 덩어리다.
     // 줌이 이 group 의 크기를 정하므로 안쪽 좌표는 손대지 않는다.
     <group ref={rig} position={CHARACTER_POSITION}>
-      <group>
+      {/* 클릭만 받는 바닥. 캐릭터 발밑 높이에 눕혀 둔다. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} onClick={runTo}>
+        <planeGeometry args={[GROUND_SIZE, GROUND_SIZE]} />
+        <meshBasicMaterial
+          transparent
+          opacity={0}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <group ref={body}>
         <MotionCharacter
           motion={motion}
           color={MOTION_COLOR[motion]}

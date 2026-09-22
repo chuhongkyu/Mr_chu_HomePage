@@ -10,7 +10,7 @@ import {
   smoothstep,
 } from "@/components/profile/constants/zoomStages";
 
-export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.jpg";
+export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.png";
 export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
 
 /**
@@ -22,6 +22,9 @@ export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
  */
 const CLOSE_ASPECT = 1024 / 657;
 const WIDE_ASPECT = 1296 / 832;
+
+/** 레이캐스트에서 빼는 표시. 교차점을 하나도 담지 않으면 클릭 대상이 아니다. */
+const SKIP = () => {};
 
 /**
  * 이미지에서 건물(채색 영역)이 차지하는 세로 비율과 그 중심 위치.
@@ -185,7 +188,9 @@ export const DaangnApart = ({
           `depthWrite: false` 라 깊이로는 가려지지 않으니 그리는 차례가 곧
           앞뒤다. 0 이나 양수로 두면 나중에 그려져서, 같은 투명 묶음에 있는
           캐릭터 효과(비행기·착지)를 통째로 덮어 버린다. */}
-      <mesh position={[0, wideOffsetY, 0]} renderOrder={-2}>
+      {/* 배경 두 장은 클릭을 받지 않는다. 화면을 가득 덮고 있어서
+          레이캐스트에 걸리면 바닥을 겨눈 클릭을 전부 가로챈다. */}
+      <mesh position={[0, wideOffsetY, 0]} renderOrder={-2} raycast={SKIP}>
         <planeGeometry args={wideSize} />
         <meshBasicMaterial
           ref={wideRef}
@@ -196,7 +201,7 @@ export const DaangnApart = ({
         />
       </mesh>
 
-      <mesh position={[0, closeOffsetY, 0.01]} renderOrder={-1}>
+      <mesh position={[0, closeOffsetY, 0.01]} renderOrder={-1} raycast={SKIP}>
         <planeGeometry args={closeSize} />
         <meshBasicMaterial
           ref={closeRef}

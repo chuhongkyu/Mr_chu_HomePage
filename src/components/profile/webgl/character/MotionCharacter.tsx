@@ -31,6 +31,7 @@ export type MotionName = (typeof MOTIONS)[number];
 /** 한 번만 재생하고 멈춘 뒤 idle 로 돌아오는 클립. */
 const PLAY_ONCE: Partial<Record<MotionName, true>> = {
   jump: true,
+  thinking: true,
   brush01: true,
 };
 
