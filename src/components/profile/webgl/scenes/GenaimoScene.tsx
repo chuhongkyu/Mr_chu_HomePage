@@ -164,11 +164,11 @@ const BODY_RADIUS = 2;
 const ANGRY_EVERY = 5;
 
 /**
- * 씬 이름표. 안쪽 값은 월드 단위라, 줌 배수를 한 번 되돌린 group 에 담는다.
+ * 씬 이름표.
  *
- * 글씨 크기는 담는 세로(13)에 대한 비율로 읽어야 한다. 세로 800px 화면에서
- * 1 월드 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도
- * 같이 커진다 — 3D 라 화면 px 로 고정할 수 없다.
+ * 자리는 `rig` 안쪽 좌표다(캐릭터와 같은 단위). 크기만 월드 단위라 줌 배수를
+ * 되돌린 group 에서 잰다 — 담는 세로가 13 이고 세로 800px 화면에서 1 월드
+ * 유닛이 약 62px 이므로 0.68 이 42px 쯤이다. 화면이 커지면 글씨도 같이 커진다.
  */
 const LABEL_SIZE = 0.68;
 const LABEL_LOCAL: [number, number, number] = [25, 15, -20];
@@ -183,12 +183,10 @@ const SceneLabel = ({
   text,
   size,
   color: textColor,
-  position,
 }: {
   text: string;
   size: number;
   color: string;
-  position: [number, number, number];
 }) => {
   const [label, setLabel] = useState<LabelTexture | null>(null);
 
@@ -219,7 +217,7 @@ const SceneLabel = ({
 
   return (
     // 카메라가 기울어 있어서 그냥 세우면 글씨가 비스듬히 눕는다.
-    <Billboard position={position}>
+    <Billboard>
       <mesh>
         <planeGeometry args={[label.width, label.height]} />
         <meshBasicMaterial
@@ -433,13 +431,8 @@ export const GenaimoScene = () => {
 
       {/* 안쪽 값은 월드 단위로 적는다. 바깥 rig 가 줌 배수로 줄여 놓으므로
           역수를 한 번 곱해 되돌린다. 안 되돌리면 글씨만 1/7 로 나온다. */}
-      <group scale={1 / GENAIMO_WORLD_SCALE}>
-        <SceneLabel
-          text="Genaimo"
-          size={LABEL_SIZE}
-          color={color.gray[900]}
-          position={LABEL_LOCAL}
-        />
+      <group scale={1 / GENAIMO_WORLD_SCALE} position={LABEL_LOCAL}>
+        <SceneLabel text="Genaimo" size={LABEL_SIZE} color={color.gray[900]} />
       </group>
 
       <FlightPath points={FLIGHT_POINTS} active={cleared} />
