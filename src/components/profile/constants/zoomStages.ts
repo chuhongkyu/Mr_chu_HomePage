@@ -24,12 +24,12 @@ export type ZoomStage = {
 
 export const ZOOM_STAGES: readonly ZoomStage[] = [
   // 더 당길수록 캐릭터가 커지지만 근경 그림이 그만큼 늘어난다. 배수는
-  // 22(근경의 월드 세로)를 이 값으로 나눈 것이다. 16 이면 1.375 배 —
-  // 소스 657px 중 478px 이 화면 세로를 채운다.
+  // 22(근경의 월드 세로)를 이 값으로 나눈 것이다. 13 이면 1.69 배 —
+  // 소스 657px 중 388px 이 화면 세로를 채운다.
   //
   // 이 값은 줌축 전체의 최대 확대이기도 하다(`MIN_VIEW_HEIGHT`).
   // 내릴수록 스냅이 되돌리는 구간도 같이 넓어져서 휠이 안 먹는 느낌이 난다.
-  { project: "genaimo", viewHeight: 16, target: SPAWN_VIEW_TARGET },
+  { project: "genaimo", viewHeight: 13, target: SPAWN_VIEW_TARGET },
   { project: "daangn", viewHeight: 22, target: CAMERA.target },
   { project: "fastcampus", viewHeight: 60, target: CAMERA.target },
 ];

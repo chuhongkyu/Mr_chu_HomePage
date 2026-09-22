@@ -54,8 +54,14 @@ type Props = {
  */
 const ease = { to: null as number | null, zoom: 0 };
 
-/** 클수록 빨리 붙는다. 9 면 0.5 초에 99% 간다. */
-const EASE_LAMBDA = 9;
+/**
+ * 클수록 빨리 붙는다. 당근이네(22) ↔ 젠아이모(13) 한 구간이
+ * 9 면 0.6 초, 4.5 면 1.2 초다.
+ *
+ * 멀수록 오래 걸린다 — 끝나는 조건이 남은 거리의 비율이라서다.
+ * 스냅처럼 짧게 되돌리는 건 여기 맞춰 느려지지 않는다.
+ */
+const EASE_LAMBDA = 4.5;
 
 /** 줌에 따라 옮겨 가는 카메라 지점. 매 프레임 쓰므로 한 번만 만든다. */
 const axisTarget: [number, number, number] = [0, 0, 0];
