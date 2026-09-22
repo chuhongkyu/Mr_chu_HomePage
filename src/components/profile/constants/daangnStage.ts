@@ -38,11 +38,13 @@ export type SpawnPoint = {
  * 값은 `?mode=edit` 의 "당근이네 배치" 에서 맞춘 뒤 TS 복사로 붙여 넣는다.
  */
 export const DAANGN_COLLIDERS: BuildingBox[] = [
-  { position: [1, 3, 0], size: [10, 12, 8] },
+  { position: [1, 2.5, 0], size: [10, 12, 8] },
+  { position: [-3.39, -2, 7.08], size: [4, 4, 4] },
+  { position: [5.69, -2, 5.76], size: [4, 4, 4] },
 ];
 
 export const DAANGN_SPAWN: SpawnPoint = {
-  position: [4.71, 0, 10.21],
+  position: [0.87, -4, 5.42],
   scale: 0.14,
 };
 

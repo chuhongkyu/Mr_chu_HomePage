@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Html } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -14,7 +13,6 @@ import {
   GENAIMO_WORLD_SCALE,
   smoothstep,
 } from "@/components/profile/constants/zoomStages";
-import MotionControls from "@/components/profile/layout/MotionControls";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
 import { useCurrentProject } from "@/components/profile/store/useSceneStore";
@@ -24,7 +22,6 @@ import {
 } from "@/components/profile/webgl/character/MotionCharacter";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
 import FlightPath from "@/components/profile/webgl/object/FlightPath";
-import { layer } from "@/style/tokens.generated";
 import { track } from "@/utils/analytics";
 
 /**
@@ -32,20 +29,10 @@ import { track } from "@/utils/analytics";
  * 연출이 이 자리에 포커스를 맞춘 채 끝나므로 씬의 중심도 여기다.
  */
 const CHARACTER_POSITION: [number, number, number] = [...DAANGN_SPAWN_WORLD];
-/**
- * 칩 줄을 캐릭터 앞쪽(카메라 쪽) 바닥으로 조금 당긴다.
- * 방위각 45° 카메라에서 "앞"은 +x +z 방향이다.
- */
-const CHIPS_FORWARD = 2;
-const CHIPS_LOCAL: [number, number, number] = [
-  CHIPS_FORWARD + 8,
-  0,
-  CHIPS_FORWARD,
-];
 
 /**
  * 만든 모션이 흘러 나가는 곳. 월드 축이 화면에서 대각선으로 간다.
- *   -X 왼쪽 위 · -Z 오른쪽 위 · +Z 왼쪽 아래 · +X 오른쪽 아래(모션 칩 자리)
+ *   -X 왼쪽 위 · -Z 오른쪽 위 · +Z 왼쪽 아래 · +X 오른쪽 아래
  *
  * 계단처럼 꺾어 올린다. 세로화면에서 화면 가로 반경이 10 남짓이라 옆으로는
  * 더 보낼 데가 없고, 세로는 18 이라 넉넉하다.
@@ -136,13 +123,8 @@ const PLATFORMS = [
  *
  * AI 로 만든 모션을 각 플랫폼으로 뽑아내던 도구라, 그 흐름을 바닥에 깐다.
  *
- * 칩은 `Html transform` 으로 바닥 평면에 눕힌다. 화면 고정 오버레이로 두면
- * 캐릭터를 팬으로 옮겼을 때 따로 놀아서, 어느 캐릭터의 조작인지 흐려진다.
- *
- * 크기는 scale 로 만지지 않는다. transform 모드는 DOM 을 항상 1/40 로 줄여
- * 그리므로 월드 크기 = DOM 폭 ÷ 40 이다. scale 로 키우면 border 1px 과
- * padding·radius 까지 같이 늘어나 디자인이 흐트러진다.
- * 그래서 SCSS 에서 실제 크기(520px = 월드 13 유닛)로 그린다.
+ * 동작은 버튼으로 고르지 않는다. 씬에 들어서면 한 번 생각하고, 바닥을
+ * 누르면 그리로 달린다. 조작이 곧 연출이라 화면에 얹는 UI 가 없다.
  */
 /** 동작에 따라 캐릭터 색이 바뀐다. 적지 않은 동작은 기본색. */
 const MOTION_COLOR: Partial<Record<MotionName, string>> = {
@@ -354,23 +336,6 @@ export const GenaimoScene = () => {
           />
         )
       )} */}
-
-      {/* 바닥에 눕힌 칩.
-          바깥 group 이 카메라 방위각(45°)에 맞춰 돌리고, 안쪽 Html 이
-          평면을 바닥으로 눕힌다. 둘로 나누면 Euler 순서를 따질 일이 없다.
-
-          scale 로 줌 배수를 되돌린다. 같이 줄면 글씨가 1/7 이 된다. */}
-      <group position={CHIPS_LOCAL} rotation={[0, Math.PI / 2, 0]} scale={3}>
-        <Html
-          transform
-          rotation={[-Math.PI / 2, 0, 0]}
-          center
-          zIndexRange={[layer["scene-html"], 0]}
-          pointerEvents="none"
-        >
-          <MotionControls />
-        </Html>
-      </group>
 
       <FlightPath points={FLIGHT_POINTS} active={cleared} />
     </group>
