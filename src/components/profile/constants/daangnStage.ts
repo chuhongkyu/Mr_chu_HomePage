@@ -69,17 +69,19 @@ const SPAWN_BODY_CENTER: [number, number, number] = [
 ];
 
 /**
- * 캐릭터 몸 중앙을 기준으로 여백을 다시 잡는 양. 화면 기준 월드 단위다.
- * 담는 세로가 13 이므로 1 이 화면 세로의 8% 쯤 된다.
+ * 캐릭터 둘레 여백을 얼마나 더 줄지. 적은 그대로 그 여백이 변한다.
+ * 양수면 늘고 음수면 준다.
  *
- *   up    음수면 캐릭터 위 여백이 그만큼 줄어든다
- *   right 음수면 캐릭터 왼쪽 여백이 그만큼 늘어난다
+ * 화면 기준 월드 단위다. 담는 세로가 13, 16:9 면 가로가 23.1 이므로
+ * 같은 1 이라도 위아래는 화면의 8%, 좌우는 4% 다.
  */
-export const SPAWN_VIEW_SHIFT = { right: -1, up: -1 };
+export const SPAWN_VIEW_MARGIN = { top: -1, left: 1 };
 
+// 여백이 늘어난다는 건 캐릭터가 그 반대쪽으로 밀린다는 뜻이고, 카메라는
+// 다시 그 반대로 간다. 위 여백은 부호가 그대로, 왼쪽 여백은 뒤집힌다.
 const SHIFT = screenShift(
-  SPAWN_VIEW_SHIFT.right,
-  SPAWN_VIEW_SHIFT.up,
+  -SPAWN_VIEW_MARGIN.left,
+  SPAWN_VIEW_MARGIN.top,
   GENAIMO_ELEVATION
 );
 
