@@ -4,8 +4,11 @@ import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import * as THREE from "three";
 
-import { CAMERA } from "@/components/profile/constants/sceneConfig";
-import { useCurrentProject } from "@/components/profile/store/useSceneStore";
+import {
+  CITY_VIEW_HEIGHT,
+  IMAGE_SWAP_BAND,
+  smoothstep,
+} from "@/components/profile/constants/zoomStages";
 
 export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.jpg";
 export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
@@ -68,7 +71,9 @@ export type DaangnApartProps = {
   /**
    * 줌 아웃 상태에서 보이는 도시 전경.
    *
-   * 40 이 최대 축소 시 화면 세로(`viewHeight` 22 ÷ `zoomOutRatio` 0.55)다.
+   * 기본값은 온라인 강의 단계의 담는 세로다. 그 단계가 곧 최대 축소이므로,
+   * 같은 값이어야 그림이 화면 세로를 정확히 덮는다. 단계를 더 뒤로 물리면
+   * 이 값도 따라가야 한다 — 안 그러면 그림 아래위가 잘려 끝이 드러난다.
    * 이 그림은 여백 없이 가장자리까지 도시가 차 있어서, 화면을 못 덮으면
    * 그림 끝이 선으로 드러난다. 그래서 40 아래로는 내리지 않는다.
    *
@@ -77,12 +82,6 @@ export type DaangnApartProps = {
    * 덮으면서 건물이 작아 보이는(17.0) 유일한 구간이다.
    */
   wideHeight?: number;
-  /**
-   * 크로스페이드가 일어나는 줌 비율 구간.
-   * 1.0 이 최대 확대(시작 상태), `zoomOutRatio` 가 최대 축소다.
-   */
-  fadeStart?: number;
-  fadeEnd?: number;
   /**
    * 그림이 놓일 지점. 두 이미지의 건물 중심이 여기에 맞춰진다.
    * 화면 가운데에 두려면 카메라 target 과 같은 값을 준다.
@@ -93,11 +92,6 @@ export type DaangnApartProps = {
    * `closeImagePoint` 로 그림 위 지점을 그대로 지정할 수 있다.
    */
   children?: ReactNode;
-};
-
-const smoothstep = (edge0: number, edge1: number, x: number) => {
-  const t = THREE.MathUtils.clamp((x - edge0) / (edge1 - edge0), 0, 1);
-  return t * t * (3 - 2 * t);
 };
 
 /**
@@ -115,9 +109,7 @@ const smoothstep = (edge0: number, edge1: number, x: number) => {
  */
 export const DaangnApart = ({
   closeHeight = DEFAULT_CLOSE_HEIGHT,
-  wideHeight = 40,
-  fadeStart = 0.7,
-  fadeEnd = 0.9,
+  wideHeight = CITY_VIEW_HEIGHT,
   position = [0, 0, 0],
   children,
 }: DaangnApartProps) => {
@@ -148,8 +140,6 @@ export const DaangnApart = ({
   }, []);
 
   const size = useThree((state) => state.size);
-  // 카메라와 같은 기준을 봐야 크로스페이드 구간이 어긋나지 않는다.
-  const viewHeight = useCurrentProject().viewHeight ?? CAMERA.orthoViewHeight;
 
   /**
    * 그림 중심을 얼마나 옮겨야 건물 중심이 앵커에 오는지.
@@ -170,22 +160,32 @@ export const DaangnApart = ({
   useFrame(({ camera }) => {
     if (!closeRef.current || !wideRef.current) return;
 
-    // 직교 카메라의 zoom 은 화면 높이에서 역산된 값이다. 그 기준 대비 비율을 본다.
-    // 원근 모드에는 zoom 개념이 없으므로 근경을 그대로 둔다.
-    const ratio = (camera as THREE.OrthographicCamera).isOrthographicCamera
-      ? camera.zoom / (size.height / viewHeight)
-      : 1;
+    // 담는 세로가 곧 상태다. 직교 zoom 은 화면 높이에서 역산된 값이라
+    // 되돌리면 월드 단위가 나온다. 원근에는 zoom 이 없으므로 근경을 둔다.
+    const ortho = camera as THREE.OrthographicCamera;
+    const viewHeight = ortho.isOrthographicCamera
+      ? size.height / ortho.zoom
+      : DEFAULT_CLOSE_HEIGHT;
 
-    const closeness = smoothstep(fadeStart, fadeEnd, ratio);
+    const wideness = smoothstep(
+      IMAGE_SWAP_BAND[0],
+      IMAGE_SWAP_BAND[1],
+      viewHeight
+    );
+
     const shown = appear.current.v;
-    closeRef.current.opacity = closeness * shown;
-    wideRef.current.opacity = (1 - closeness) * shown;
+    closeRef.current.opacity = (1 - wideness) * shown;
+    wideRef.current.opacity = wideness * shown;
   });
 
   return (
     <Billboard position={position}>
-      {/* 도시 전경이 뒤. 근경이 불투명해지면 완전히 가린다. */}
-      <mesh position={[0, wideOffsetY, 0]} renderOrder={0}>
+      {/* 도시 전경이 뒤. 근경이 불투명해지면 완전히 가린다.
+          renderOrder 가 음수인 이유는 이 두 장이 배경이기 때문이다.
+          `depthWrite: false` 라 깊이로는 가려지지 않으니 그리는 차례가 곧
+          앞뒤다. 0 이나 양수로 두면 나중에 그려져서, 같은 투명 묶음에 있는
+          캐릭터 효과(비행기·착지)를 통째로 덮어 버린다. */}
+      <mesh position={[0, wideOffsetY, 0]} renderOrder={-2}>
         <planeGeometry args={wideSize} />
         <meshBasicMaterial
           ref={wideRef}
@@ -196,7 +196,7 @@ export const DaangnApart = ({
         />
       </mesh>
 
-      <mesh position={[0, closeOffsetY, 0.01]} renderOrder={1}>
+      <mesh position={[0, closeOffsetY, 0.01]} renderOrder={-1}>
         <planeGeometry args={closeSize} />
         <meshBasicMaterial
           ref={closeRef}

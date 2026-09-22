@@ -29,7 +29,7 @@ export const ISO_AZIMUTH = Math.PI / 4;
  * 정등각(true isometric)은 35.2644° 지만 그보다 조금 더 위에서 본다.
  * 모든 씬이 같은 각을 쓰므로, 씬마다 따로 적지 말고 이 값을 고친다.
  */
-export const DEFAULT_ELEVATION = 42;
+export const DEFAULT_ELEVATION = 34;
 
 // 직교 카메라는 거리가 크기와 무관하다. 클리핑 여유만 보고 넉넉히 둔다.
 const ISO_DISTANCE = 60;

@@ -7,6 +7,7 @@ import { Canvas } from "@react-three/fiber";
 import ArticleSheet from "@/components/profile/common/ArticleSheet";
 import LinkedInPopup from "@/components/profile/common/LinkedInPopup";
 import { PROJECTS } from "@/components/profile/constants/projects";
+import { stageFor } from "@/components/profile/constants/zoomStages";
 import SceneNav from "@/components/profile/layout/SceneNav";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
@@ -18,6 +19,7 @@ import Background from "@/components/profile/webgl/common/Background";
 import CameraManager from "@/components/profile/webgl/common/CameraManager";
 import Lights from "@/components/profile/webgl/common/Lights";
 import { usePanelEditing } from "@/components/profile/webgl/debug/usePanelEditing";
+import { useStageEditing } from "@/components/profile/webgl/debug/useStageEditing";
 import { track } from "@/utils/analytics";
 
 import styles from "@/components/profile/Scene.module.scss";
@@ -27,6 +29,11 @@ import styles from "@/components/profile/Scene.module.scss";
  * 캔버스 안(`drei/Html`)에 두면 drei 가 wrapper 에 transform 을 걸고,
  * transform 이 containing block 을 만들어 `position: fixed` 를 가둔다.
  */
+const StageEditorDock = dynamic(
+  () => import("@/components/profile/webgl/debug/StageEditorDock"),
+  { ssr: false }
+);
+
 const PanelEditorDock = dynamic(
   () => import("@/components/profile/webgl/debug/PanelEditorDock"),
   { ssr: false }
@@ -60,8 +67,6 @@ const Scene = () => {
 
   const project = useCurrentProject();
   const [openPostId, setOpenPostId] = useState<string | null>(null);
-  // R3F 에는 intrinsic <scene> 이 있어서 <project.Content /> 는 헷갈린다. 풀어서 쓴다.
-  const { Content } = project;
   const [articleOpen, setArticleOpen] = useState(false);
 
   // 주소가 곧 상태다. 직접 들어와도, 뒤로가기를 눌러도 같은 경로로 처리된다.
@@ -115,7 +120,11 @@ const Scene = () => {
     setArticleOpen(false);
   }, []);
 
-  const editingPanels = usePanelEditing();
+  /** 줌축 위에 있으면 축에 얹힌 씬을 모두 띄운다. */
+  const onAxis = Boolean(stageFor(project.id));
+
+  const showPanelDock = usePanelEditing() && project.id === "fastcampus";
+  const showStageDock = useStageEditing() && onAxis;
 
   // 클리어한 씬은 배경을 바꿔 연다. `Background` 가 색도 그라데이션도
   // 옮겨 가며 칠하므로, 값만 갈아 끼우면 전환이 저절로 이어진다.
@@ -146,15 +155,31 @@ const Scene = () => {
 
         <Suspense fallback={null}>
           <CameraManager />
-          {/* 씬이 바뀌면 이전 오브제는 통째로 언마운트된다.
-              key 를 주지 않으면 같은 자리의 컴포넌트로 취급돼 상태가 샌다. */}
-          <Content key={project.id} onOpenArticle={openArticle} />
+
+          {/* 줌축에 얹힌 씬들은 함께 떠 있는다. 줌으로 오갈 때 언마운트되면
+              당근이네 그림과 Genaimo 캐릭터가 겹치는 구간을 만들 수 없다.
+              PROJECTS 를 그대로 훑어 key 를 고정하는 게 핵심이다. 조건마다
+              따로 그리면 같은 씬이 자리를 옮긴 것으로 취급돼 다시 뜬다. */}
+          {PROJECTS.map((item) => {
+            const show =
+              item.id === project.id || (onAxis && Boolean(stageFor(item.id)));
+            if (!show) return null;
+
+            const Body = item.Content;
+            return <Body key={item.id} onOpenArticle={openArticle} />;
+          })}
         </Suspense>
       </Canvas>
 
       <SceneNav onOpenLink={openLink} />
 
-      {editingPanels && <PanelEditorDock />}
+      {/* 기즈모가 있는 씬에서만 띄운다. 다른 씬에서는 만질 대상이 없다. */}
+      {(showPanelDock || showStageDock) && (
+        <div className={styles.docks}>
+          {showPanelDock && <PanelEditorDock />}
+          {showStageDock && <StageEditorDock />}
+        </div>
+      )}
 
       {project.articleId && (
         <ArticleSheet
@@ -165,10 +190,7 @@ const Scene = () => {
       )}
 
       {openPost && (
-        <LinkedInPopup
-          post={openPost}
-          onClose={() => setOpenPostId(null)}
-        />
+        <LinkedInPopup post={openPost} onClose={() => setOpenPostId(null)} />
       )}
     </div>
   );

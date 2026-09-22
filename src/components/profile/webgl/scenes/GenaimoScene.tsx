@@ -1,14 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
-import { CAMERA } from "@/components/profile/constants/sceneConfig";
+import {
+  DAANGN_SPAWN,
+  DAANGN_SPAWN_WORLD,
+} from "@/components/profile/constants/daangnStage";
+import {
+  STICKMAN_HEIGHT,
+  STICKMAN_SCALE,
+} from "@/components/profile/constants/stickman";
+import {
+  GENAIMO_BAND,
+  GENAIMO_WORLD_SCALE,
+  smoothstep,
+} from "@/components/profile/constants/zoomStages";
 import MotionControls from "@/components/profile/layout/MotionControls";
 import { useMotionStore } from "@/components/profile/store/useMotionStore";
 import { useSceneClearStore } from "@/components/profile/store/useSceneClearStore";
 import {
   MotionCharacter,
   type MotionName,
-  STICKMAN_MODEL_HEIGHT,
 } from "@/components/profile/webgl/character/MotionCharacter";
 import { GridFloor } from "@/components/profile/webgl/common/GridFloor";
 import ExportTrace from "@/components/profile/webgl/object/ExportTrace";
@@ -16,28 +29,20 @@ import FlightPath from "@/components/profile/webgl/object/FlightPath";
 import { layer } from "@/style/tokens.generated";
 import { track } from "@/utils/analytics";
 
-const SCALE = 0.06;
-
 /**
- * 모델 원점이 발밑이라, 그대로 두면 캐릭터가 카메라 타겟보다 통째로 위에 선다.
- * 키의 절반만큼 내려서 몸 중앙이 화면 가운데에 오게 한다.
- * x/z 는 카메라가 보는 지점에 맞춘다. 원점(0,0,0)은 타겟에서 한참 비켜나 있다.
+ * 캐릭터가 딛는 자리. 당근이네에서 걸어 나오는 지점을 그대로 쓴다.
+ * 연출이 이 자리에 포커스를 맞춘 채 끝나므로 씬의 중심도 여기다.
  */
-const CHARACTER_POSITION: [number, number, number] = [
-  CAMERA.target[0],
-  CAMERA.target[1] - (STICKMAN_MODEL_HEIGHT * SCALE) / 2,
-  CAMERA.target[2],
-];
-
+const CHARACTER_POSITION: [number, number, number] = [...DAANGN_SPAWN_WORLD];
 /**
  * 칩 줄을 캐릭터 앞쪽(카메라 쪽) 바닥으로 조금 당긴다.
  * 방위각 45° 카메라에서 "앞"은 +x +z 방향이다.
  */
 const CHIPS_FORWARD = 2;
-const CHIPS_POSITION: [number, number, number] = [
-  CHARACTER_POSITION[0] + CHIPS_FORWARD + 3,
-  CHARACTER_POSITION[1],
-  CHARACTER_POSITION[2] + CHIPS_FORWARD,
+const CHIPS_LOCAL: [number, number, number] = [
+  CHIPS_FORWARD + 10,
+  0,
+  CHIPS_FORWARD,
 ];
 
 /**
@@ -141,18 +146,12 @@ const PLATFORMS = [
  * padding·radius 까지 같이 늘어나 디자인이 흐트러진다.
  * 그래서 SCSS 에서 실제 크기(520px = 월드 13 유닛)로 그린다.
  */
-/**
- * 동작에 따라 캐릭터 색이 바뀐다. 적지 않은 동작은 기본색.
- * 클리어해서 배경이 하늘색이 되면 그 기본색이 흰색으로 바뀐다.
- */
+/** 동작에 따라 캐릭터 색이 바뀐다. 적지 않은 동작은 기본색. */
 const MOTION_COLOR: Partial<Record<MotionName, string>> = {
   running: "#1F1F1F",
   angry: "#D92D20",
-  jump: "#FFFFFF",
   brush: "#FFFFFF",
 };
-
-const CLEARED_COLOR = "#FFFFFF";
 
 /** `scenes.ts` 의 id 와 같아야 한다. */
 const SCENE_ID = "genaimo";
@@ -180,6 +179,24 @@ export const GenaimoScene = () => {
   const motion = useMotionStore((s) => s.motion);
   const rest = useMotionStore((s) => s.rest);
 
+  /**
+   * 줌이 크기를 정한다. scale 을 prop 으로 주면 R3F 가 리렌더마다 되돌려
+   * 놓으므로 감싼 group 을 직접 만진다.
+   */
+  const rig = useRef<THREE.Group>(null);
+  useFrame(({ camera, size }) => {
+    if (!rig.current) return;
+
+    const ortho = camera as THREE.OrthographicCamera;
+    const viewHeight = ortho.isOrthographicCamera
+      ? size.height / ortho.zoom
+      : GENAIMO_BAND[0];
+
+    const grown = 1 - smoothstep(GENAIMO_BAND[0], GENAIMO_BAND[1], viewHeight);
+    rig.current.scale.setScalar(GENAIMO_WORLD_SCALE * grown);
+    rig.current.visible = grown > 0.001;
+  });
+
   const cleared = useSceneClearStore((s) => s.cleared[SCENE_ID] ?? false);
   const toggle = useSceneClearStore((s) => s.toggle);
 
@@ -198,40 +215,39 @@ export const GenaimoScene = () => {
   }, [motion, toggle]);
 
   return (
-    <>
-      {/* 캐릭터가 선 자리에 그대로 깔린다.
-          모델 원점이 발밑이라 같은 좌표를 쓰면 발이 격자에 닿는다.
-          페이드도 격자 원점 기준이라 x/z 를 안 맞추면 한쪽으로 치우쳐 사라진다. */}
-      <GridFloor position={CHARACTER_POSITION} />
-      <MotionCharacter
-        motion={motion}
-        color={MOTION_COLOR[motion] ?? (cleared ? CLEARED_COLOR : undefined)}
-        onMotionEnd={rest}
-        scale={SCALE}
-        position={CHARACTER_POSITION}
-      />
-
-      {/* 선은 캐릭터 발밑에서 출발한다. 격자와 같은 원점을 쓴다. */}
-      <group position={CHARACTER_POSITION}>
-        {PLATFORMS.map(
-          ({ id, label, color, clearedColor, path, axes, delay }, index) => (
-            <ExportTrace
-              key={id}
-              label={label}
-              color={cleared ? clearedColor : color}
-              path={path}
-              axes={axes}
-              delay={delay}
-              fadeDelay={TRACE_DELAY + index * TRACE_STAGGER}
-            />
-          )
-        )}
+    // 월드 전체가 캐릭터 발밑을 원점으로 한 덩어리다.
+    // 줌이 이 group 의 크기를 정하므로 안쪽 좌표는 손대지 않는다.
+    <group ref={rig} position={CHARACTER_POSITION}>
+      <group>
+        <MotionCharacter
+          motion={motion}
+          color={MOTION_COLOR[motion]}
+          onMotionEnd={rest}
+          scale={STICKMAN_SCALE}
+        />
       </group>
+
+      {/* 선은 캐릭터 발밑에서 출발한다. */}
+      {/* {PLATFORMS.map(
+        ({ id, label, color, clearedColor, path, axes, delay }, index) => (
+          <ExportTrace
+            key={id}
+            label={label}
+            color={cleared ? clearedColor : color}
+            path={path}
+            axes={axes}
+            delay={delay}
+            fadeDelay={TRACE_DELAY + index * TRACE_STAGGER}
+          />
+        )
+      )} */}
 
       {/* 바닥에 눕힌 칩.
           바깥 group 이 카메라 방위각(45°)에 맞춰 돌리고, 안쪽 Html 이
-          평면을 바닥으로 눕힌다. 둘로 나누면 Euler 순서를 따질 일이 없다. */}
-      <group position={CHIPS_POSITION} rotation={[0, Math.PI / 2, 0]}>
+          평면을 바닥으로 눕힌다. 둘로 나누면 Euler 순서를 따질 일이 없다.
+
+          scale 로 줌 배수를 되돌린다. 같이 줄면 글씨가 1/7 이 된다. */}
+      <group position={CHIPS_LOCAL} rotation={[0, Math.PI / 2, 0]} scale={3}>
         <Html
           transform
           rotation={[-Math.PI / 2, 0, 0]}
@@ -243,10 +259,8 @@ export const GenaimoScene = () => {
         </Html>
       </group>
 
-      <group position={CHARACTER_POSITION}>
-        <FlightPath points={FLIGHT_POINTS} active={cleared} />
-      </group>
-    </>
+      <FlightPath points={FLIGHT_POINTS} active={cleared} />
+    </group>
   );
 };
 

@@ -1,0 +1,103 @@
+@use "system" as *;
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: transparent;
+  color: var(--color-font-base);
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-bg-surface) 60%, transparent);
+  }
+}
+
+// 눈금이 절반씩 양 끝을 넘어가므로 좌우에 그만큼 여백을 둔다.
+.track {
+  position: relative;
+  flex: 1;
+  height: 30px;
+  margin: 0 15px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.rail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: $radius-pill;
+  background: color-mix(in srgb, var(--color-font-base) 22%, transparent);
+}
+
+// `--at` 은 카메라가 매 프레임 써 넣는다. 리렌더 없이 손잡이만 움직인다.
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--at, 0.5) * 100%);
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: $radius-full;
+  background: var(--color-font-base);
+  pointer-events: none;
+}
+
+// 눈금은 흰 알약으로 채운다. 3D 위에 맨 아이콘만 얹으면 배경이 밝을 때
+// 형태가 사라져서 어디를 눌러야 할지 읽히지 않는다.
+.stop {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  // 정사각이라 50% 가 정확히 원이다.
+  border-radius: $radius-full;
+  border: 1px solid var(--color-border);
+  background: $color-gray-0;
+  transform: translate(-50%, -50%);
+  color: var(--color-font-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    color: var(--color-font-base);
+  }
+
+  // 지금 보고 있는 것만 도드라진다.
+  &[data-current="true"] {
+    color: var(--color-font-base);
+    border-color: var(--color-font-base);
+    box-shadow: 0 2px 8px $color-alpha-black-24;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+.image {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}

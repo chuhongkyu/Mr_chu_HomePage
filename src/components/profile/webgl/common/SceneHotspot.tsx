@@ -35,6 +35,8 @@ export type SceneHotspotProps = Omit<
   placement?: HotspotPlacement | "auto";
   /** 씬에 들어오고 이만큼 지난 뒤에 나타난다(초). 그림이 먼저 서야 한다. */
   appearDelay?: number;
+  /** 줌이 이 구역을 벗어나면 물러난다. */
+  hidden?: boolean;
 };
 
 /**
@@ -47,6 +49,7 @@ export const SceneHotspot = ({
   position,
   placement = "auto",
   appearDelay = 0,
+  hidden = false,
   onMore,
   ...marker
 }: SceneHotspotProps) => {
@@ -97,6 +100,11 @@ export const SceneHotspot = ({
 
   // 카드 밖을 누르거나 Esc 를 누르면 닫힌다.
   // 다른 핫스팟을 누르면 이쪽이 닫히고 저쪽이 열리므로, 한 번에 하나만 열린다.
+  // 물러나는 중에 카드가 열려 있으면 허공에 카드만 남는다.
+  useEffect(() => {
+    if (hidden) setOpen(false);
+  }, [hidden]);
+
   useEffect(() => {
     if (!open) return;
 
@@ -129,6 +137,7 @@ export const SceneHotspot = ({
         <div
           ref={markerRef}
           className={styles.marker}
+          data-hidden={hidden}
           style={{ "--appear-delay": `${appearDelay}s` } as React.CSSProperties}
         >
           <HotspotMarker

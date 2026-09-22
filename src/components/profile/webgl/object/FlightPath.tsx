@@ -7,6 +7,17 @@ import { PaperAirplane } from "@/components/profile/webgl/object/PaperAirplane";
 /** 경로 전체를 1 로 봤을 때. */
 const DASH_LENGTH = 0.025;
 
+/**
+ * 배경(`#e1e1e1`)에서 읽히는 파랑.
+ *
+ * 흰색은 1.31:1, 하늘색(#33CCF2)은 1.45:1 이라 둘 다 바탕에 묻힌다.
+ * 이 값은 5.12:1 이고, 씬의 WebGL 선과 같은 파랑이라 따로 놀지 않는다.
+ */
+const FLIGHT_BLUE = "#1D4ED8";
+
+/** 0.5 면 바탕에 섞여 2.16:1 까지 떨어진다. */
+const DASH_OPACITY = 0.8;
+
 /** 모델이 +Z 를 앞으로 본다. */
 const FORWARD = new THREE.Vector3(0, 0, 1);
 
@@ -22,7 +33,7 @@ export type FlightPathProps = {
 };
 
 /**
- * 종이비행기가 흰 점선을 따라 도는 연출.
+ * 종이비행기가 점선을 따라 도는 연출.
  *
  * 선을 하나의 긴 관으로 잇지 마라. 점선이라야 지나간 자취로 읽히고,
  * 이으면 그냥 테두리가 된다.
@@ -30,10 +41,10 @@ export type FlightPathProps = {
 export const FlightPath = ({
   points,
   active = true,
-  color = "#ffffff",
+  color = FLIGHT_BLUE,
   dashes = 26,
   seconds = 9,
-  scale = 2.5,
+  scale = 5,
 }: FlightPathProps) => {
   const curve = useMemo(
     () =>
@@ -53,7 +64,7 @@ export const FlightPath = ({
       new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.5,
+        opacity: DASH_OPACITY,
         depthWrite: false,
       }),
     [color]
@@ -70,7 +81,10 @@ export const FlightPath = ({
         )
       );
       group.add(
-        new THREE.Mesh(new THREE.TubeGeometry(segment, 6, 0.04, 6, false), material)
+        new THREE.Mesh(
+          new THREE.TubeGeometry(segment, 6, 0.04, 6, false),
+          material
+        )
       );
     }
 
@@ -109,7 +123,7 @@ export const FlightPath = ({
 
       {/* 모델이 뒤집혀 있다. */}
       <group ref={airplane}>
-        <PaperAirplane scale={scale} rotation={[Math.PI, 0, 0]} />
+        <PaperAirplane color={color} scale={scale} rotation={[Math.PI, 0, 0]} />
       </group>
     </>
   );
