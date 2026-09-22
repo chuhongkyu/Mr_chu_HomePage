@@ -110,7 +110,7 @@ export const ZoomSlider = () => {
    */
   useEffect(() => {
     const apply = (viewHeight: number) => {
-      if (!viewHeight || !track.current) return;
+      if (!track.current) return;
       track.current.style.setProperty(
         "--at",
         clamp01(toRatio(viewHeight)).toFixed(4)
