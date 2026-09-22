@@ -4,11 +4,22 @@ import localFont from "next/font/local";
 import RootLayout from "@/components/common/RootLayout";
 import { PostHogProvider } from "@/components/providers/PostHogProvider";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
+import { AUTHOR, OG_IMAGE, SITE_NAME, SITE_URL } from "@/constants/site";
 
 import "@/app/style.scss";
 
 export const metadata: Metadata = {
-  title: "FE | MR.CHU",
+  // 상대경로 이미지와 canonical 이 절대 URL 로 풀리는 기준이다.
+  // 없으면 Next 가 localhost 로 채워 넣는다(빌드가 경고한다).
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  title: {
+    default: "FE | MR.CHU",
+    // 하위 페이지가 제 이름만 적으면 뒤가 자동으로 붙는다.
+    template: `%s | ${SITE_NAME}`,
+  },
+  authors: [{ name: AUTHOR.name, url: SITE_URL }],
+  creator: AUTHOR.name,
   description:
     "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
   keywords: [
@@ -24,24 +35,21 @@ export const metadata: Metadata = {
     "당근마켓 당근이네",
   ],
   openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     title: "FE | MR.CHU",
     description:
       "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
-    images: [
-      {
-        url: "/assets/og_img_default.jpg",
-        width: 1200,
-        height: 630,
-        alt: "FE MR.CHU",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "FE | MR.CHU",
     description:
       "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
-    images: ["/assets/og_img_default.jpg"],
+    images: [OG_IMAGE.url],
   },
 };
 
