@@ -11,7 +11,11 @@
  * 값은 `?mode=edit` 의 도구 모음에서 "당근이네 배치" 를 켜고 맞춘 뒤,
  * TS 복사로 여기에 붙여 넣는다.
  */
-import { CAMERA } from "@/components/profile/constants/sceneConfig";
+import {
+  CAMERA,
+  GENAIMO_ELEVATION,
+  screenShift,
+} from "@/components/profile/constants/sceneConfig";
 import { STICKMAN_HEIGHT } from "@/components/profile/constants/stickman";
 
 export type BuildingBox = {
@@ -65,31 +69,25 @@ const SPAWN_BODY_CENTER: [number, number, number] = [
 ];
 
 /**
- * 캐릭터를 가운데 둘지, 그림을 가운데 둘지.
+ * 캐릭터 몸 중앙을 기준으로 여백을 다시 잡는 양. 화면 기준 월드 단위다.
+ * 담는 세로가 13 이므로 1 이 화면 세로의 8% 쯤 된다.
  *
- *   0 → 캐릭터 몸 중앙이 화면 정중앙
- *   1 → 그림 중심(`CAMERA.target`)이 화면 정중앙
- *
- * 캐릭터가 그림 한복판이 아니라 앞쪽 모서리에 서 있어서 둘이 겹치지 않는다.
- * 0 으로 두면 화면에 그림의 왼쪽 아래 귀퉁이만 담긴다 — 화면 기준으로
- * 그림 중심이 오른쪽 3.3, 위 6.1 만큼(담는 세로 13 의 47%) 밖에 있다.
- * 1 로 밀면 반대로 캐릭터가 왼쪽 아래 구석으로 간다.
+ *   up    음수면 캐릭터 위 여백이 그만큼 줄어든다
+ *   right 음수면 캐릭터 왼쪽 여백이 그만큼 늘어난다
  */
-export const SPAWN_VIEW_RECENTER = 0.4;
+export const SPAWN_VIEW_SHIFT = { right: -1, up: -1 };
 
-/**
- * 캐릭터가 보일 때 카메라가 볼 지점.
- *
- * 직교라 시선 방향 성분은 화면에 안 보인다. 두 점을 그냥 이어도 화면에서는
- * 위·오른쪽으로만 움직인다.
- */
+const SHIFT = screenShift(
+  SPAWN_VIEW_SHIFT.right,
+  SPAWN_VIEW_SHIFT.up,
+  GENAIMO_ELEVATION
+);
+
+/** 캐릭터가 보일 때 카메라가 볼 지점. */
 export const SPAWN_VIEW_TARGET: [number, number, number] = [
-  SPAWN_BODY_CENTER[0] +
-    (CAMERA.target[0] - SPAWN_BODY_CENTER[0]) * SPAWN_VIEW_RECENTER,
-  SPAWN_BODY_CENTER[1] +
-    (CAMERA.target[1] - SPAWN_BODY_CENTER[1]) * SPAWN_VIEW_RECENTER,
-  SPAWN_BODY_CENTER[2] +
-    (CAMERA.target[2] - SPAWN_BODY_CENTER[2]) * SPAWN_VIEW_RECENTER,
+  SPAWN_BODY_CENTER[0] + SHIFT[0],
+  SPAWN_BODY_CENTER[1] + SHIFT[1],
+  SPAWN_BODY_CENTER[2] + SHIFT[2],
 ];
 
 const num = (value: number) => Number(value.toFixed(2)).toString();
