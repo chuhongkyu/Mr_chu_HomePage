@@ -1,26 +1,29 @@
 import { Metadata } from "next";
 
+import { OG_IMAGE } from "@/constants/site";
+
 import "prismjs/themes/prism-tomorrow.css";
 import "react-notion-x/src/styles.css";
 
-const title = "Project | MR.CHU";
+const title = "Project";
 const description =
   "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation";
-const image = "/assets/og_img_project.jpg";
 
 export const metadata: Metadata = {
-  title: title,
+  // 문자열 하나로 두면 루트의 title.template 이 이 가지에서 통째로 사라져,
+  // 글 제목(`당근이네`)에 사이트 이름이 안 붙는다. 여기서 다시 세운다.
+  title: { default: title, template: "%s | MR.CHU" },
   description: description,
   openGraph: {
     title: title,
     description: description,
-    images: [{ url: image, width: 1200, height: 630, alt: "FE MR.CHU" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: title,
     description: description,
-    images: [image],
+    images: [OG_IMAGE.url],
   },
 };
 
