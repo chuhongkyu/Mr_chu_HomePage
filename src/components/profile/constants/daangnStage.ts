@@ -52,16 +52,44 @@ export const DAANGN_SPAWN_WORLD: [number, number, number] = [
 export const SPAWN_CHARACTER_HEIGHT = STICKMAN_HEIGHT * DAANGN_SPAWN.scale;
 
 /**
- * 캐릭터가 보일 때 카메라가 볼 지점.
+ * 캐릭터 몸 중앙.
  *
  * 모델 원점이 발밑이라 발을 그대로 보면 몸이 화면 위쪽에 쏠린다. 키의
  * 절반만큼 올려서 몸 중앙을 가운데에 둔다. 키는 그림에 맞춰 줄인 쪽이다.
  * 원래 키로 재면 캐릭터 머리 위 한참을 보게 된다.
  */
-export const SPAWN_VIEW_TARGET: [number, number, number] = [
+const SPAWN_BODY_CENTER: [number, number, number] = [
   DAANGN_SPAWN_WORLD[0],
   DAANGN_SPAWN_WORLD[1] + SPAWN_CHARACTER_HEIGHT / 2,
   DAANGN_SPAWN_WORLD[2],
+];
+
+/**
+ * 캐릭터를 가운데 둘지, 그림을 가운데 둘지.
+ *
+ *   0 → 캐릭터 몸 중앙이 화면 정중앙
+ *   1 → 그림 중심(`CAMERA.target`)이 화면 정중앙
+ *
+ * 캐릭터가 그림 한복판이 아니라 앞쪽 모서리에 서 있어서 둘이 겹치지 않는다.
+ * 0 으로 두면 화면에 그림의 왼쪽 아래 귀퉁이만 담긴다 — 화면 기준으로
+ * 그림 중심이 오른쪽 3.3, 위 6.1 만큼(담는 세로 13 의 47%) 밖에 있다.
+ * 1 로 밀면 반대로 캐릭터가 왼쪽 아래 구석으로 간다.
+ */
+export const SPAWN_VIEW_RECENTER = 0.4;
+
+/**
+ * 캐릭터가 보일 때 카메라가 볼 지점.
+ *
+ * 직교라 시선 방향 성분은 화면에 안 보인다. 두 점을 그냥 이어도 화면에서는
+ * 위·오른쪽으로만 움직인다.
+ */
+export const SPAWN_VIEW_TARGET: [number, number, number] = [
+  SPAWN_BODY_CENTER[0] +
+    (CAMERA.target[0] - SPAWN_BODY_CENTER[0]) * SPAWN_VIEW_RECENTER,
+  SPAWN_BODY_CENTER[1] +
+    (CAMERA.target[1] - SPAWN_BODY_CENTER[1]) * SPAWN_VIEW_RECENTER,
+  SPAWN_BODY_CENTER[2] +
+    (CAMERA.target[2] - SPAWN_BODY_CENTER[2]) * SPAWN_VIEW_RECENTER,
 ];
 
 const num = (value: number) => Number(value.toFixed(2)).toString();
