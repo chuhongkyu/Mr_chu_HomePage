@@ -113,6 +113,10 @@ export const PROJECTS: Project[] = [
     // 당근이네 스폰 지점이 그대로 이 씬의 중심이다. 연출이 그 자리에
     // 포커스를 맞춘 채로 끝나므로, 다른 곳을 보면 화면이 한 번 튄다.
     target: SPAWN_VIEW_TARGET,
+    // 줌축은 target 만 보간하고 앙각은 단계가 바뀌는 순간 갈아 끼운다.
+    // 당근이네(기본 34)와 값이 달라 담는 세로 17.5 를 지날 때 한 프레임
+    // 꺾인다. 알고 둔 것이니 튄다고 이 값을 지우지 마라.
+    elevation: 37,
     linkMotion: "jump",
     links: [
       {

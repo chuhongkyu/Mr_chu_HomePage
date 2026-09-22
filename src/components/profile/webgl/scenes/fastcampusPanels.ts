@@ -41,6 +41,8 @@ export const axisFor = (
 //
 // 이 씬이 줌축에 얹히면서 직교가 됐다. 직교에는 원근이 없으므로 depth 는
 // 크기에도 화면 자리에도 영향을 주지 않는다. 이제 앞뒤(가림 순서)만 정한다.
+// 기본 앙각으로 굽는다. 이 씬에 `elevation` 을 따로 주면 카메라만 움직이고
+// 판은 34° 기준 자리에 남아 구도가 어긋난다.
 const ELEVATION_RAD = (DEFAULT_ELEVATION * Math.PI) / 180;
 const SIN_AZ = Math.sin(ISO_AZIMUTH);
 const COS_AZ = Math.cos(ISO_AZIMUTH);
