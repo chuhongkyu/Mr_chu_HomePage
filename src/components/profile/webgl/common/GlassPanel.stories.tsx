@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { GlassPanel } from "@/components/profile/webgl/common/GlassPanel";
 import { ModelStage } from "@/components/showcase/ModelStage";
+import { color } from "@/style/tokens.generated";
 
-/** 패스트캠퍼스 씬의 크림슨. 유리 톤은 이 배경 위에서 맞춰 뒀다. */
-const CRIMSON = "#AE0C36";
+/** 씬 배경. 유리 톤은 이 배경 위에서 맞춘다. */
+const SCENE_BACKDROP = color.daangn.backdrop;
 
 /**
  * 공중에 뜬 유리판.
@@ -38,7 +39,14 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <ModelStage background={CRIMSON} center={false} fit={false} grid={false} contactShadow={false} cameraPosition={[0, 0, 12]}>
+      <ModelStage
+        background={SCENE_BACKDROP}
+        center={false}
+        fit={false}
+        grid={false}
+        contactShadow={false}
+        cameraPosition={[0, 0, 12]}
+      >
         <Story />
       </ModelStage>
     ),
@@ -81,4 +89,3 @@ export const WithImage: Story = {
 export const ThickBorder: Story = {
   args: { width: 6, height: 4, thickness: 0.3, bevel: 0.18, radius: 0.5 },
 };
-

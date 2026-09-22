@@ -4,6 +4,7 @@ import {
   IconPaletteLine,
 } from "@karrotmarket/react-monochrome-icon";
 
+import { SPAWN_VIEW_TARGET } from "@/components/profile/constants/daangnStage";
 import type { MotionName } from "@/components/profile/webgl/character/MotionCharacter";
 import ArtScene from "@/components/profile/webgl/scenes/ArtScene";
 import DaangnScene from "@/components/profile/webgl/scenes/DaangnScene";
@@ -60,6 +61,8 @@ export type Project = {
   articleId?: string;
   /** 직교라 거리는 크기와 무관하고 이 값이 배율을 정한다. */
   viewHeight?: number;
+  /** 카메라가 볼 지점. 비우면 모든 씬이 공유하는 `CAMERA.target`. */
+  target?: [number, number, number];
   elevation?: number;
   projection?: "orthographic" | "perspective";
   /**
@@ -98,7 +101,7 @@ export const PROJECTS: Project[] = [
   {
     id: "genaimo",
     label: "Genaimo",
-    icon: "/assets/img/genaimo/logo.webp",
+    icon: "/assets/img/genaimo/logo.png",
     year: "2024~2025",
     headline: "만들고, 들고 나가서, 팔았다",
     title: "직접 만든 AI 서비스로 GDC 세계 무대에 서다",
@@ -107,7 +110,9 @@ export const PROJECTS: Project[] = [
     url: "https://www.linkedin.com/posts/hong-kyu-chu-a38b9a249_gdc-activity-7310031891129143297-gZ7g",
     backdrop: DEFAULT_BACKDROP,
     Content: GenaimoScene,
-    viewHeight: 36,
+    // 당근이네 스폰 지점이 그대로 이 씬의 중심이다. 연출이 그 자리에
+    // 포커스를 맞춘 채로 끝나므로, 다른 곳을 보면 화면이 한 번 튄다.
+    target: SPAWN_VIEW_TARGET,
     linkMotion: "jump",
     links: [
       {
@@ -116,7 +121,6 @@ export const PROJECTS: Project[] = [
         icon: "/assets/img/notion.png",
       },
     ],
-    clearedBackdrop: "#33CCF2",
   },
   {
     id: "fastcampus",
@@ -130,9 +134,8 @@ export const PROJECTS: Project[] = [
     image: "/assets/og/post1.jpg",
     url: "https://www.linkedin.com/posts/hong-kyu-chu-a38b9a249_%EB%8D%94-%EC%89%BD%EA%B3%A0-%ED%8E%B8%ED%95%98%EA%B2%8C-%EB%A7%8C%EB%93%9C%EB%8A%94-3d-%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EA%B5%AC%ED%98%84%EB%B6%80%ED%84%B0-%EC%B5%9C%EC%A0%81%ED%99%94%EA%B9%8C%EC%A7%80-activity-7122521989285625856-Sp1a",
 
-    backdrop: "#AE0C36",
+    backdrop: DEFAULT_BACKDROP,
     Content: FastcampusScene,
-    projection: "perspective",
     backdropGradient: true,
   },
   {

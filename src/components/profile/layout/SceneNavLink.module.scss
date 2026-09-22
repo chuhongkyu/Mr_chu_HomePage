@@ -7,6 +7,9 @@
   align-items: center;
   gap: $space-4;
   width: 100%;
+  // 썸네일 48 + 위아래 여백 4 씩 = 56 이 밑바닥이다. 글이 한 줄이냐 두
+  // 줄이냐에 따라 카드가 늘었다 줄었다 하면 내비 전체가 들썩인다.
+  min-height: 60px;
   padding: $space-2 $space-3;
   border: 1px solid var(--color-border);
   border-radius: $radius-lg;

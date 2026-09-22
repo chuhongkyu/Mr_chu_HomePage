@@ -1,4 +1,11 @@
-import { forwardRef, ReactNode, Suspense, useEffect, useMemo, useState } from "react";
+import {
+  forwardRef,
+  ReactNode,
+  Suspense,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useTexture } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import gsap from "gsap";
@@ -92,6 +99,21 @@ export type GlassPanelContent =
       body?: string;
     };
 
+export type GlassTone = "light" | "dark";
+
+/**
+ * 톤별 유리 기본값.
+ *
+ * `dark` 의 0.65 는 눈대중이 아니다. 배경(#e1e1e1) 위에서 이 값이라야 판이
+ * #5e5e5e 로 앉아 흰 글씨가 6.5:1, 흐린 글씨가 3.5:1 이 된다. 더 낮추면
+ * 글씨가 다시 묻힌다.
+ */
+const TONES: Record<GlassTone, { tint: string; rim: string; opacity: number }> =
+  {
+    light: { tint: color.gray[0], rim: color.gray[0], opacity: 0.16 },
+    dark: { tint: color.gray[950], rim: color.gray[0], opacity: 0.65 },
+  };
+
 export type GlassPanelProps = {
   width?: number;
   height?: number;
@@ -102,6 +124,11 @@ export type GlassPanelProps = {
   bevel?: number;
   inset?: number;
 
+  /**
+   * 판 바탕 톤. 밝은 배경 위에서는 `light` 가 흰 유리에 흰 글씨라 글씨가
+   * 사라진다. 그때는 `dark` 로 바탕을 깔아야 한다.
+   */
+  tone?: GlassTone;
   tint?: THREE.ColorRepresentation;
   rimColor?: THREE.ColorRepresentation;
   /** 정면 기준. 가장자리는 프레넬이 따로 올린다. */
@@ -218,7 +245,16 @@ const PanelText = ({
       alive = false;
       current?.dispose();
     };
-  }, [spec.eyebrow, spec.title, spec.body, width, height, titleSize, bodySize, padding]);
+  }, [
+    spec.eyebrow,
+    spec.title,
+    spec.body,
+    width,
+    height,
+    titleSize,
+    bodySize,
+    padding,
+  ]);
 
   if (!texture) return null;
 
@@ -240,144 +276,154 @@ const PanelText = ({
  * 기본값은 붉은 배경(패스트캠퍼스 씬)에서 맞춰 뒀다. 다른 배경에 올릴 때는
  * `tint` 와 `opacity` 를 만진다.
  */
-export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(({
-  width = 6,
-  height = 4,
-  thickness = 0.12,
-  radius = 0.3,
-  bevel = 0.06,
-  inset = 0.34,
+export const GlassPanel = forwardRef<THREE.Group, GlassPanelProps>(
+  (
+    {
+      tone = "light",
+      width = 6,
+      height = 4,
+      thickness = 0.12,
+      radius = 0.3,
+      bevel = 0.06,
+      inset = 0.34,
 
-  // `THREE.Color` 는 rgba() 를 못 읽어서 알파 토큰을 쓸 수 없다.
-  // 투명도는 색이 아니라 `opacity` 가 맡는다.
-  tint = color.gray[0],
-  rimColor = color.gray[0],
-  opacity = 0.16,
-  rimPower = 2.4,
-  rimStrength = 0.75,
-  sheen = 0.12,
+      // `THREE.Color` 는 rgba() 를 못 읽어서 알파 토큰을 쓸 수 없다.
+      // 투명도는 색이 아니라 `opacity` 가 맡는다.
+      tint = TONES[tone].tint,
+      rimColor = TONES[tone].rim,
+      opacity = TONES[tone].opacity,
+      rimPower = 2.4,
+      rimStrength = 0.75,
+      sheen = 0.12,
 
-  content,
-  titleSize = 0.46,
-  bodySize = 0.3,
-  textPadding = 0.28,
-  href,
-  position,
-  rotation,
-  children,
-}, ref) => {
-  const geometry = useMemo(
-    () => createPanelGeometry({ width, height, thickness, radius, bevel }),
-    [width, height, thickness, radius, bevel],
-  );
+      content,
+      titleSize = 0.46,
+      bodySize = 0.3,
+      textPadding = 0.28,
+      href,
+      position,
+      rotation,
+      children,
+    },
+    ref
+  ) => {
+    const geometry = useMemo(
+      () => createPanelGeometry({ width, height, thickness, radius, bevel }),
+      [width, height, thickness, radius, bevel]
+    );
 
-  const material = useMemo(
-    () =>
-      createGlassMaterial({
-        tint,
-        rimColor,
-        opacity,
-        rimPower,
-        rimStrength,
-        sheen,
-        width,
-        height,
-      }),
-    [tint, rimColor, opacity, rimPower, rimStrength, sheen, width, height],
-  );
+    const material = useMemo(
+      () =>
+        createGlassMaterial({
+          tint,
+          rimColor,
+          opacity,
+          rimPower,
+          rimStrength,
+          sheen,
+          width,
+          height,
+        }),
+      [tint, rimColor, opacity, rimPower, rimStrength, sheen, width, height]
+    );
 
-  useEffect(() => () => geometry.dispose(), [geometry]);
-  useEffect(() => () => material.dispose(), [material]);
+    useEffect(() => () => geometry.dispose(), [geometry]);
+    useEffect(() => () => material.dispose(), [material]);
 
-  const contentWidth = Math.max(width - inset * 2, 0.1);
-  const contentHeight = Math.max(height - inset * 2, 0.1);
+    const contentWidth = Math.max(width - inset * 2, 0.1);
+    const contentHeight = Math.max(height - inset * 2, 0.1);
 
-  // 유리가 깊이를 쓰지 않으므로, 앞에 둬야 글과 이미지가 유리 톤을 안 탄다.
-  const contentZ = panelDepth(thickness, bevel) / 2 + CONTENT_LIFT;
+    // 유리가 깊이를 쓰지 않으므로, 앞에 둬야 글과 이미지가 유리 톤을 안 탄다.
+    const contentZ = panelDepth(thickness, bevel) / 2 + CONTENT_LIFT;
 
-  const split =
-    content?.kind === "split"
-      ? splitLayout(content.imageSide ?? "left", contentWidth, contentHeight)
-      : null;
+    const split =
+      content?.kind === "split"
+        ? splitLayout(content.imageSide ?? "left", contentWidth, contentHeight)
+        : null;
 
-  const open = href
-    ? (event: ThreeEvent<MouseEvent>) => {
-        event.stopPropagation();
-        track("outbound_clicked", { href, source: "glass_panel" });
-        window.open(href, "_blank", "noopener,noreferrer");
-      }
-    : undefined;
+    const open = href
+      ? (event: ThreeEvent<MouseEvent>) => {
+          event.stopPropagation();
+          track("outbound_clicked", { href, source: "glass_panel" });
+          window.open(href, "_blank", "noopener,noreferrer");
+        }
+      : undefined;
 
-  const [hovered, setHovered] = useState(false);
+    const [hovered, setHovered] = useState(false);
 
-  useEffect(() => {
-    const value = material.uniforms.uOpacity;
-    const tween = gsap.to(value, {
-      value: hovered ? opacity + HOVER_OPACITY : opacity,
-      duration: HOVER_SECONDS,
-      ease: "power2.out",
-    });
-    return () => {
-      tween.kill();
+    useEffect(() => {
+      const value = material.uniforms.uOpacity;
+      const tween = gsap.to(value, {
+        value: hovered ? opacity + HOVER_OPACITY : opacity,
+        duration: HOVER_SECONDS,
+        ease: "power2.out",
+      });
+      return () => {
+        tween.kill();
+      };
+    }, [hovered, material, opacity]);
+
+    const enter = () => {
+      setHovered(true);
+      if (href) document.body.style.cursor = "pointer";
     };
-  }, [hovered, material, opacity]);
 
-  const enter = () => {
-    setHovered(true);
-    if (href) document.body.style.cursor = "pointer";
-  };
+    const leave = () => {
+      setHovered(false);
+      if (href) document.body.style.cursor = "";
+    };
 
-  const leave = () => {
-    setHovered(false);
-    if (href) document.body.style.cursor = "";
-  };
+    const panel = (
+      <group
+        ref={ref}
+        position={position}
+        rotation={rotation}
+        onClick={open}
+        onPointerOver={enter}
+        onPointerOut={leave}
+      >
+        <mesh geometry={geometry} material={material} />
 
-  const panel = (
-    <group
-      ref={ref}
-      position={position}
-      rotation={rotation}
-      onClick={open}
-      onPointerOver={enter}
-      onPointerOut={leave}
-    >
-      <mesh geometry={geometry} material={material} />
-
-      <group position={[0, 0, contentZ]}>
-        <Suspense fallback={null}>
-          {content?.kind === "image" && (
-            <PanelImage src={content.src} width={contentWidth} height={contentHeight} />
-          )}
-          {content?.kind === "text" && (
-            <PanelText
-              spec={content}
-              width={contentWidth}
-              height={contentHeight}
-              titleSize={titleSize}
-              bodySize={bodySize}
-              padding={textPadding}
-            />
-          )}
-          {content?.kind === "split" && split && (
-            <>
-              <PanelImage src={content.src} {...split.image} />
+        <group position={[0, 0, contentZ]}>
+          <Suspense fallback={null}>
+            {content?.kind === "image" && (
+              <PanelImage
+                src={content.src}
+                width={contentWidth}
+                height={contentHeight}
+              />
+            )}
+            {content?.kind === "text" && (
               <PanelText
                 spec={content}
-                {...split.text}
+                width={contentWidth}
+                height={contentHeight}
                 titleSize={titleSize}
                 bodySize={bodySize}
                 padding={textPadding}
               />
-            </>
-          )}
-          {children}
-        </Suspense>
+            )}
+            {content?.kind === "split" && split && (
+              <>
+                <PanelImage src={content.src} {...split.image} />
+                <PanelText
+                  spec={content}
+                  {...split.text}
+                  titleSize={titleSize}
+                  bodySize={bodySize}
+                  padding={textPadding}
+                />
+              </>
+            )}
+            {children}
+          </Suspense>
+        </group>
       </group>
-    </group>
-  );
+    );
 
-  return panel;
-});
+    return panel;
+  }
+);
 
 GlassPanel.displayName = "GlassPanel";
 

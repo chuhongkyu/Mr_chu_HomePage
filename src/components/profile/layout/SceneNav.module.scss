@@ -16,15 +16,11 @@
   gap: $space-3;
   // 268px 로 묶으면 카드 안 글 영역이 184px 밖에 안 남아 줄줄이 잘린다.
   width: min(360px, calc(100vw - #{$space-6} * 2));
-  padding: $space-2;
+  padding: $space-3;
   // 알약이 아니라 둥근 사각형. 안에 카드가 들어가서 알약은 어색하다.
   border-radius: $radius-2xl;
 
-  @include glass(
-    $opacity: 42%,
-    $blur: 16px,
-    $border: color-mix(in srgb, $color-gray-0 55%, transparent)
-  );
+  @include glass($opacity: 42%, $blur: 16px, $border: color-mix(in srgb, $color-gray-0 55%, transparent));
   @include glass-raised;
 
   animation: nav-rise 0.35s ease-out 0.25s both;
@@ -114,7 +110,6 @@
     color: var(--color-font-base);
     background: color-mix(in srgb, var(--color-bg-surface) 70%, transparent);
   }
-
 }
 
 // 로고는 세로로 긴 것(525×900)부터 정사각까지 제각각이라 잘라내면 안 된다.
@@ -124,4 +119,3 @@
   height: 18px;
   object-fit: contain;
 }
-

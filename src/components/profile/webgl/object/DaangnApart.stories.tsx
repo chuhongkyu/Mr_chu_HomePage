@@ -23,8 +23,6 @@ const meta = {
   argTypes: {
     closeHeight: { control: { type: "range", min: 4, max: 40, step: 0.5 } },
     wideHeight: { control: { type: "range", min: 4, max: 90, step: 1 } },
-    fadeStart: { control: { type: "range", min: 0.5, max: 1, step: 0.01 } },
-    fadeEnd: { control: { type: "range", min: 0.5, max: 1, step: 0.01 } },
     position: { table: { disable: true } },
   },
   decorators: [

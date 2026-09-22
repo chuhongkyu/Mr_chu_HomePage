@@ -14,6 +14,23 @@
   animation-delay: var(--appear-delay, 0s);
 }
 
+.marker[data-hidden="true"] {
+  animation: hotspot-leave 0.28s ease-in both;
+  animation-delay: 0s;
+  pointer-events: none;
+}
+
+@keyframes hotspot-leave {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
 @keyframes hotspot-appear {
   from {
     opacity: 0;

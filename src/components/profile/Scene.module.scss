@@ -33,3 +33,18 @@
     color: $color-brand-500;
   }
 }
+
+// 편집기 조작판이 서는 기둥.
+// 각 dock 이 저마다 fixed 로 붙으면 둘을 켰을 때 같은 자리에 겹친다.
+.docks {
+  position: fixed;
+  top: $space-3;
+  right: $space-3;
+  z-index: $layer-toast;
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  max-height: calc(100dvh - #{$space-3} * 2);
+  overflow-y: auto;
+}
