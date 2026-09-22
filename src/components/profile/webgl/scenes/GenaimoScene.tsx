@@ -154,6 +154,9 @@ const ARRIVE = 0.3;
 /** 캐릭터가 차지하는 반경. 발끝이 벽에 박히지 않을 만큼만. */
 const BODY_RADIUS = 2;
 
+/** 몇 번째 누름마다 화를 낼지. 나머지는 점프한다. */
+const ANGRY_EVERY = 5;
+
 /**
  * 못 들어가는 구역을 `rig` 안쪽 좌표로 옮겨 둔 것. XZ 만 본다 — 바닥을
  * 걷는 캐릭터라 높이로 갈릴 일이 없다.
@@ -268,6 +271,21 @@ export const GenaimoScene = () => {
     play("running");
   };
 
+  /** 자기 자신을 누른 횟수. 화낼 차례인지만 세면 되므로 ref 로 둔다. */
+  const taps = useRef(0);
+
+  const poke = (event: ThreeEvent<MouseEvent>) => {
+    // 캐릭터 뒤에 바닥이 깔려 있다. 막지 않으면 같은 클릭이 바닥까지
+    // 내려가 제자리로 달려가라는 명령이 된다.
+    event.stopPropagation();
+
+    // 달리던 중이면 멈춘다. 뛰면서 점프하면 어느 쪽 반응인지 읽히지 않는다.
+    destination.current = null;
+
+    taps.current += 1;
+    play(taps.current % ANGRY_EVERY === 0 ? "angry" : "jump");
+  };
+
   useFrame(({ camera, size }) => {
     if (!rig.current) return;
 
@@ -313,7 +331,7 @@ export const GenaimoScene = () => {
         />
       </mesh>
 
-      <group ref={body}>
+      <group ref={body} onClick={poke}>
         <MotionCharacter
           motion={motion}
           color={MOTION_COLOR[motion]}

@@ -32,6 +32,7 @@ export type MotionName = (typeof MOTIONS)[number];
 const PLAY_ONCE: Partial<Record<MotionName, true>> = {
   jump: true,
   thinking: true,
+  angry: true,
   brush01: true,
 };
 
