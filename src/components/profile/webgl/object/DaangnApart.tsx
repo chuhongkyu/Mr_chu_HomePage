@@ -10,8 +10,33 @@ import {
   smoothstep,
 } from "@/components/profile/constants/zoomStages";
 
-export const DAANGN_APART_CLOSE = "/assets/img/daangn/daangn_apart.png";
-export const DAANGN_APART_WIDE = "/assets/img/daangn/daangn_apart_zoom.jpg";
+/**
+ * WebP 를 받을 수 있는지. 모듈이 처음 평가될 때 한 번만 잰다.
+ *
+ * `<picture>` 는 DOM 요소라 3D 텍스처에는 못 쓴다. `TextureLoader` 는 URL 을
+ * 하나만 받으므로 고르는 일을 코드가 대신한다.
+ *
+ * `toDataURL` 이 보는 건 인코딩 지원이다. 디코딩만 되는 브라우저(Safari
+ * 14~15)에서는 false 가 나와 원본을 받는다 — 느릴 뿐 깨지지 않는다. 반대로
+ * 못 받는데 true 가 나오는 경우는 없으므로 이 방향의 오차만 감수한다.
+ */
+const canUseWebp = () => {
+  if (typeof document === "undefined") return false;
+  const probe = document.createElement("canvas");
+  probe.width = 1;
+  probe.height = 1;
+  return probe.toDataURL("image/webp").startsWith("data:image/webp");
+};
+
+const WEBP = canUseWebp();
+
+// 두 장 다 5184×3328 이라 어느 쪽을 받아도 `*_ASPECT` 가 안 틀어진다.
+export const DAANGN_APART_CLOSE = WEBP
+  ? "/assets/img/daangn/daangn_apart.webp"
+  : "/assets/img/daangn/daangn_apart.png";
+export const DAANGN_APART_WIDE = WEBP
+  ? "/assets/img/daangn/daangn_apart_zoom.webp"
+  : "/assets/img/daangn/daangn_apart_zoom.jpg";
 
 /**
  * 두 그림 다 가로로 넓은 판에 다시 담았다. 세로로 길던 원본은 가로가 넓은

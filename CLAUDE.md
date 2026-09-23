@@ -14,7 +14,7 @@ dev 에 직접 커밋  →  쌓이면  →  dev → main Release PR
 2. **`main` 은 `dev` 머지로만 변한다.** `main` 에 직접 커밋하지 않는다.
 3. 한 덩어리가 끝나면 `npm run pr` 로 base 를 `main` 으로 골라 Release PR 을 만든다.
    `main..dev` 커밋 목록이 본문으로 자동으로 들어간다.
-4. **머지된 뒤 `dev` 를 `main` 까지 따라 올린다.**
+4. **머지되면 그 자리에서 바로 `dev` 를 따라 올린다. 새 작업보다 먼저.**
 
    ```
    git checkout dev && git merge --ff-only origin/main && git push origin dev
@@ -23,6 +23,14 @@ dev 에 직접 커밋  →  쌓이면  →  dev → main Release PR
    머지 커밋은 `main` 에만 생긴다. `dev` 에는 그 커밋이 없어서 한 칸 뒤에 남는다.
    건너뛰면 릴리스마다 한 칸씩 벌어지고, 다음 Release PR 의 `main..dev` 목록에
    지난 릴리스의 머지 커밋이 섞여 든다.
+
+   **먼저 하라는 게 핵심이다.** 당기기 전에 `dev` 에 커밋하면 두 브랜치가
+   갈라져 `--ff-only` 가 실패한다. 그때는 일반 머지로 합칠 수밖에 없고,
+   `dev` 에 머지 커밋이 하나 남는다.
+
+   ```
+   git merge origin/main       # 갈라진 뒤에만. 히스토리가 한 번 갈라졌다 붙는다
+   ```
 
 ### 왜 feature 브랜치를 안 쓰나
 
