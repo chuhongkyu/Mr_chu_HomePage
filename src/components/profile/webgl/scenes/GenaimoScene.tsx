@@ -186,6 +186,10 @@ const BODY_RADIUS = 2;
 /** 몇 번째 누름마다 화를 낼지. 나머지는 점프한다. */
 const ANGRY_EVERY = 5;
 
+/** 캐릭터를 누르는 판정 상자. 키(11.57)와 몸통 폭에 맞춘다. */
+const HIT_HEIGHT = 11.57;
+const HIT_WIDTH = 5;
+
 /**
  * 씬 이름표.
  *
@@ -442,7 +446,16 @@ export const GenaimoScene = () => {
         />
       </mesh>
 
-      <group ref={body} onClick={poke}>
+      <group ref={body}>
+        {/* 누름 판정은 이 상자가 받는다. 스킨드 메시에 직접 걸면 안 잡힌다 —
+            레이캐스트가 쓰는 경계가 바인드 포즈 그대로라 뼈를 따라오지
+            않는다(프러스텀 컬링을 끈 것과 같은 이유다). 크기는 몸통 기준이고
+            팔 벌린 폭(10.2)까지 덮지 않는다. */}
+        <mesh position={[0, HIT_HEIGHT / 2, 0]} onClick={poke}>
+          <boxGeometry args={[HIT_WIDTH, HIT_HEIGHT, HIT_WIDTH]} />
+          <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+        </mesh>
+
         <MotionCharacter
           motion={motion}
           color={MOTION_COLOR[motion]}
