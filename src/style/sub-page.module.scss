@@ -305,6 +305,38 @@ $modal-top-nav-z-index: 9;
         }
       }
 
+      li.job {
+        align-items: center;
+        gap: 10px;
+
+        // 이름이 남는 폭을 먹어야 날짜가 오른쪽 끝에 붙는다. 로고까지 셋이
+        // 되면 space-between 이 셋을 고르게 벌려 이름이 가운데로 떠 버린다.
+        p:first-of-type {
+          flex: 1;
+        }
+      }
+
+      /**
+       * 회사 로고 타일.
+       *
+       * 로고마다 비율이 다르다 — 당근은 525×900 세로형, 마포는 1487×751
+       * 가로형이다. `cover` 로 채우면 둘 다 잘리므로 `contain` 으로 넣고
+       * 정사각 타일 안에 앉힌다.
+       *
+       * 검은 바탕은 투명 png 때문이다. 흰 로고가 밝은 카드 위에서 사라진다.
+       * 불투명 jpg 는 바탕이 안 보이고 테두리만 남는다.
+       */
+      .job-logo {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        padding: 3px;
+        border-radius: 8px;
+        border: 1px solid $color-alpha-black-10;
+        background: $color-gray-950;
+        object-fit: contain;
+      }
+
       hr {
         border: none;
         border-top: 1px dashed $color-alpha-black-10;

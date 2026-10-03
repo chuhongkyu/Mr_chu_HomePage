@@ -1,10 +1,39 @@
 "use client";
+import Image from "next/image";
 import { motion } from "motion/react";
 
 import { resumeWrapperVariants } from "@/components/common/page/container/AnimatedVariants";
 import ProfileItem from "@/components/resume/ProfileItem";
 
 import styles from "@/style/sub-page.module.scss";
+
+/**
+ * 로고는 비율이 제각각이다. 당근은 세로형, 마포는 가로형이고 둘 다 투명
+ * 배경이라 `contain` 으로 넣고 검은 바탕을 깐다. 자세한 건 SCSS 의
+ * `.job-logo` 에 적어 뒀다.
+ */
+const JOBS = [
+  {
+    name: "당근 마켓 (프론트 엔드)",
+    since: "2025.09",
+    logo: "/assets/img/daangn/logo.png",
+  },
+  {
+    name: "(주) 아이리브 (프론트 엔드)",
+    since: "2024.09",
+    logo: "/assets/img/resume/ailive_icon.jpg",
+  },
+  {
+    name: "(주) 더즈인터랙티브 (프론트 엔드)",
+    since: "2022.08",
+    logo: "/assets/img/resume/does_icon.jpg",
+  },
+  {
+    name: "마포 청년 일자리 사업단(앱 개발팀)",
+    since: "2022.03",
+    logo: "/assets/img/resume/mapo_icon.png",
+  },
+];
 
 const CareerContainer = () => {
   return (
@@ -19,22 +48,19 @@ const CareerContainer = () => {
         title="Jobs"
         column="1 / -1"
       >
-        <li>
-          <p>당근 마켓 (프론트 엔드)</p>
-          <p>2025.09</p>
-        </li>
-        <li>
-          <p>(주) 아이리브 (프론트 엔드)</p>
-          <p>2024.09</p>
-        </li>
-        <li>
-          <p>(주) 더즈인터랙티브 (프론트 엔드)</p>
-          <p>2022.08</p>
-        </li>
-        <li>
-          <p>마포 청년 일자리 사업단(앱 개발팀)</p>
-          <p>2022.03</p>
-        </li>
+        {JOBS.map((job) => (
+          <li key={job.name} className={styles.job}>
+            <Image
+              className={styles["job-logo"]}
+              src={job.logo}
+              alt=""
+              width={28}
+              height={28}
+            />
+            <p>{job.name}</p>
+            <p>{job.since}</p>
+          </li>
+        ))}
       </ProfileItem>
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f3eb.svg"
