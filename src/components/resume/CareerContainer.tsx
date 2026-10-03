@@ -1,10 +1,115 @@
 "use client";
+import Image from "next/image";
 import { motion } from "motion/react";
 
 import { resumeWrapperVariants } from "@/components/common/page/container/AnimatedVariants";
 import ProfileItem from "@/components/resume/ProfileItem";
 
 import styles from "@/style/sub-page.module.scss";
+
+/**
+ * 로고는 비율이 제각각이다. 당근은 세로형, 마포는 가로형이고 둘 다 투명
+ * 배경이라 `contain` 으로 넣고 검은 바탕을 깐다. 자세한 건 SCSS 의
+ * `.career-logo` 에 적어 뒀다.
+ */
+type Career = {
+  name: string;
+  /** 이름 옆에 가운뎃점으로 붙는다. */
+  role: string;
+  since: string;
+  logo: string;
+  href?: string;
+  /**
+   * 정사각으로 만들어진 아이콘은 타일을 꽉 채운다. 비정사각 로고 마크는
+   * 기본값대로 여백을 두고 앉힌다 — 꽉 채우면 잘린다.
+   */
+  fill?: true;
+};
+
+const JOBS: Career[] = [
+  {
+    name: "당근마켓",
+    since: "2025.09 ~ 2026.09",
+    role: "Software Engineer, Frontend",
+    logo: "/assets/img/daangn/logo.png",
+  },
+  {
+    name: "(주)아이리브",
+    since: "2024.09 ~ 2025.09",
+    role: "Frontend Developer",
+    logo: "/assets/img/resume/ailive_icon.jpg",
+    fill: true,
+  },
+  {
+    name: "(주)더즈인터랙티브",
+    since: "2022.08 ~ 2023.11",
+    role: "Frontend Developer",
+    logo: "/assets/img/resume/does_icon.jpg",
+    fill: true,
+  },
+  {
+    name: "마포 청년 일자리 사업단",
+    since: "2022.03 ~ 2022.08",
+    role: "App Developer",
+    logo: "/assets/img/resume/mapo_icon.png",
+  },
+];
+
+const EXPERIENCES: Career[] = [
+  {
+    name: "패스트 캠퍼스",
+    role: "R3F 강사",
+    since: "2023.10 ~",
+    logo: "/assets/img/resume/fastcampus_icon.png",
+    fill: true,
+    href: "https://fastcampus.co.kr/dev_online_3dinteractive",
+  },
+  {
+    name: "Sticker Slime",
+    role: "IOS, Android 1인 개발",
+    since: "2021.07 ~",
+    logo: "/assets/img/resume/stickerslime_icon.png",
+    fill: true,
+  },
+  {
+    name: "우리말 추측하기",
+    role: "IOS, Android 1인 개발",
+    since: "2026.10.03 ~",
+    logo: "/assets/img/resume/wordgame_icon.png",
+    fill: true,
+  },
+];
+
+/** 로고 · 이름 · 직무 · 기간 한 줄. Jobs 와 Experience 가 같은 꼴이다. */
+const CareerRow = ({ name, role, since, logo, href, fill }: Career) => (
+  <li className={styles.career}>
+    <Image
+      className={`${styles["career-logo"]} ${fill ? styles["career-logo-fill"] : ""}`}
+      src={logo}
+      alt=""
+      width={40}
+      height={40}
+    />
+    <div className={styles["career-body"]}>
+      <p>
+        {href ? (
+          <a
+            className={styles["career-link"]}
+            href={href}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {name}
+          </a>
+        ) : (
+          name
+        )}
+        <span className={styles["career-role"]}>{role}</span>
+      </p>
+      <p className={styles["career-since"]}>{since}</p>
+    </div>
+  </li>
+);
 
 const CareerContainer = () => {
   return (
@@ -19,22 +124,9 @@ const CareerContainer = () => {
         title="Jobs"
         column="1 / -1"
       >
-        <li>
-          <p>당근 마켓 (프론트 엔드)</p>
-          <p>2025.09</p>
-        </li>
-        <li>
-          <p>(주) 아이리브 (프론트 엔드)</p>
-          <p>2024.09</p>
-        </li>
-        <li>
-          <p>(주) 더즈인터랙티브 (프론트 엔드)</p>
-          <p>2022.08</p>
-        </li>
-        <li>
-          <p>마포 청년 일자리 사업단(앱 개발팀)</p>
-          <p>2022.03</p>
-        </li>
+        {JOBS.map((job) => (
+          <CareerRow key={job.name} {...job} />
+        ))}
       </ProfileItem>
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f3eb.svg"
@@ -54,20 +146,9 @@ const CareerContainer = () => {
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4bc.svg"
         title="Experience"
       >
-        <li>
-          <a
-            href="https://fastcampus.co.kr/dev_online_3dinteractive"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <p>패스트 캠퍼스 (R3F 강사)</p>
-          </a>
-          <p>2023.10 ~</p>
-        </li>
-        <li>
-          <p>Sticker Slime(ios, android) - 1인개발</p>
-          <p>2021.07 ~</p>
-        </li>
+        {EXPERIENCES.map((item) => (
+          <CareerRow key={item.name} {...item} />
+        ))}
       </ProfileItem>
       <ProfileItem
         icon="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d5.svg"

@@ -10,6 +10,8 @@ import styles from "@/style/sub-page.module.scss";
 interface IWorks {
   children: ReactNode;
   title: string;
+  /** 제목 아래 한 줄. 직군처럼 목록 전체에 걸리는 말만 넣는다. */
+  subtitle?: string;
   icon: string;
   column?: string | number;
   row?: string;
@@ -17,6 +19,7 @@ interface IWorks {
 
 function ProfileItem({
   title,
+  subtitle,
   children,
   icon,
   column = "span 1",
@@ -29,16 +32,21 @@ function ProfileItem({
       style={{ gridColumn: column, gridRow: row }}
       whileHover={{ y: -3 }}
     >
-      <h3 className={styles["item-title"]}>
-        <Image
-          width={20}
-          height={20}
-          className={styles.icon}
-          src={icon}
-          alt={title}
-        />
-        {title}
-      </h3>
+      {/* 아래 선은 제목과 부제를 함께 받쳐야 한다. h3 에 걸면 둘 사이로
+          선이 끼어든다. */}
+      <div className={styles["item-head"]}>
+        <h3 className={styles["item-title"]}>
+          <Image
+            width={20}
+            height={20}
+            className={styles.icon}
+            src={icon}
+            alt={title}
+          />
+          {title}
+        </h3>
+        {subtitle && <p className={styles["item-subtitle"]}>{subtitle}</p>}
+      </div>
       <ul className={styles.content}>{children}</ul>
     </motion.div>
   );

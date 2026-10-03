@@ -245,14 +245,27 @@ $modal-top-nav-z-index: 9;
       flex-shrink: 0;
     }
 
+    .item-head {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
     h3 {
       @include ty(t5, bold, true);
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 18px 20px 14px;
       color: $color-gray-950;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      letter-spacing: -0.01em;
+    }
+
+    .item-subtitle {
+      // 스케일이 올라가는 방향이다 — t4 14px, t5 16px, t6 18px.
+      // 제목(t5)보다 작게 하려면 내려가야 한다.
+      @include ty(t4, regular, true);
+      // 아이콘(18) + 제목과의 간격(8) 만큼 들여 제목 글머리와 세로를 맞춘다.
+      margin: 4px 0 0 26px;
+      color: $color-gray-600;
       letter-spacing: -0.01em;
     }
 
@@ -303,6 +316,93 @@ $modal-top-nav-z-index: 9;
             display: block;
           }
         }
+      }
+
+      li.career {
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+
+        // 줄 사이를 가르는 선. 첫 줄 위에는 제목 아래 선이 이미 있다.
+        & + & {
+          border-top: 1px solid $color-alpha-black-5;
+        }
+      }
+
+      .career-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        // 긴 회사명이 칸을 밀어내지 않게 한다.
+        min-width: 0;
+      }
+
+      // 회사명 옆에 붙는 직무. 상속만 받으면 이름과 같은 t5 라 둘이 한
+      // 덩어리로 읽힌다.
+      .career-role {
+        // 위 `li span` 이 뱃지 줄을 위해 모든 span 을 flex 로 만든다.
+        // 플렉스 컨테이너는 블록이라 그대로 두면 이름 아래로 떨어진다.
+        display: inline;
+        @include ty(t4, regular, true);
+        color: $color-gray-600;
+
+        // 가운뎃점은 장식이다. 글자로 넣으면 읽어 주는 기계가 "점" 까지 읽는다.
+        &::before {
+          content: "·";
+          margin: 0 4px;
+          color: $color-gray-400;
+        }
+      }
+
+      // `li p:last-child` 가 t5 를 걸고 있어서 그보다 특이도가 높아야 한다.
+      // `.career-since` 만으로는 져서 크기가 안 바뀐다.
+      .career-body p.career-since {
+        // 이름보다 한 단계 작고 흐리게. 같은 무게로 두면 둘 중 무엇이
+        // 회사인지 한눈에 안 들어온다. 이름이 t5(16px) 이므로 t4(14px) 다.
+        @include ty(t4, regular, true);
+        color: $color-gray-600;
+      }
+
+      /**
+       * 회사 로고 타일.
+       *
+       * 로고마다 비율이 다르다 — 당근은 525×900 세로형, 마포는 1487×751
+       * 가로형이다. `cover` 로 채우면 둘 다 잘리므로 `contain` 으로 넣고
+       * 정사각 타일 안에 앉힌다.
+       *
+       * 검은 바탕은 투명 png 때문이다. 흰 로고가 밝은 카드 위에서 사라진다.
+       * 불투명 jpg 는 바탕이 안 보이고 테두리만 남는다.
+       */
+      // 링크도 본문과 같은 색이다. 전역 리셋이 없어서 두면 파란 밑줄이 뜬다.
+      .career-link {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .career-logo {
+        // 회사명과 기간 두 줄을 합친 높이에 맞춘다. 더 작으면 글 옆에
+        // 얹힌 장식처럼 보이고, 크면 줄 높이를 혼자 밀어 올린다.
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid $color-alpha-black-10;
+        background: $color-gray-950;
+        object-fit: contain;
+      }
+
+      // 정사각으로 만들어진 아이콘. 여백을 두면 검은 바탕이 테두리처럼
+      // 둘러서 아이콘이 한 겹 들어앉은 것처럼 보인다.
+      .career-logo-fill {
+        padding: 0;
+        object-fit: cover;
+        background: none;
       }
 
       hr {
