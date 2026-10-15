@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://mrchu.art/
-
-# Sitemaps
-Sitemap: https://mrchu.art/sitemap.xml
