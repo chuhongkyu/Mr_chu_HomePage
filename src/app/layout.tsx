@@ -4,7 +4,14 @@ import localFont from "next/font/local";
 import RootLayout from "@/components/common/RootLayout";
 import { PostHogProvider } from "@/components/providers/PostHogProvider";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
-import { AUTHOR, OG_IMAGE, SITE_NAME, SITE_URL } from "@/constants/site";
+import {
+  AUTHOR,
+  HOME_DESCRIPTION,
+  HOME_TITLE,
+  OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/constants/site";
 
 import "@/app/style.scss";
 
@@ -14,14 +21,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   title: {
-    default: "FE | MR.CHU",
+    default: HOME_TITLE,
     // 하위 페이지가 제 이름만 적으면 뒤가 자동으로 붙는다.
     template: `%s | ${SITE_NAME}`,
   },
   authors: [{ name: AUTHOR.name, url: SITE_URL }],
   creator: AUTHOR.name,
-  description:
-    "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+  description: HOME_DESCRIPTION,
   keywords: [
     "MR.CHU",
     "추홍규",
@@ -39,16 +45,14 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "FE | MR.CHU",
-    description:
-      "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FE | MR.CHU",
-    description:
-      "Creative Developer specializing in Three.js, WebGL, and AI-driven 3D animation",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [OG_IMAGE.url],
   },
 };

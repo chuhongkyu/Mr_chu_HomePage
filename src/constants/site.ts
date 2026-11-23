@@ -28,5 +28,28 @@ export const AUTHOR = {
   jobTitle: "Creative Frontend Developer",
 } as const;
 
+/**
+ * 이 사람을 부르는 다른 이름들. 영문 표기는 순서가 두 가지로 섞여 쓰인다.
+ * 검색은 이 중 무엇으로 들어와도 같은 사람에 닿아야 한다.
+ */
+export const AUTHOR_NAMES = ["MR.CHU", "Hongkyu Chu", "Chu Hongkyu"];
+
+/**
+ * 다른 곳에 있는 내 프로필. 구글이 "추홍규" 라는 이름을 이 사이트와 같은
+ * 사람으로 묶는 근거다. 저쪽에서도 이 사이트를 가리켜야 연결이 단단해진다.
+ */
+export const SAME_AS = [
+  "https://github.com/chuhongkyu",
+  "https://www.linkedin.com/in/hong-kyu-chu-a38b9a249",
+];
+
+/**
+ * 홈의 제목과 설명. 이름이 앞에 와야 한다 — "추홍규" 검색에서 가장 크게
+ * 보는 게 제목이고, 예전 `FE | MR.CHU` 에는 이름이 아예 없었다.
+ */
+export const HOME_TITLE = "추홍규 | MR.CHU · 프론트엔드 개발자";
+export const HOME_DESCRIPTION =
+  "프론트엔드 개발자 추홍규(MR.CHU)의 포트폴리오입니다. 당근마켓과 아이리브에서 웹 위의 3D 인터랙션을 만들었습니다.";
+
 /** 절대 URL 로 만든다. OG 이미지와 canonical 은 상대경로를 쓰면 안 된다. */
 export const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
